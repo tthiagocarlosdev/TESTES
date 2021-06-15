@@ -1,0 +1,27 @@
+body{
+    background: rgb(92, 162, 253);
+    font: normal 18px verdana;
+}
+header{
+    color: whitesmoke;
+    text-align: center;
+}
+section{
+    background: whitesmoke;
+    border-radius: 10 px;
+    padding:15px;
+    width: 500px;
+    margin: 0 auto;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.609);
+}
+select#mostrarSelect{
+    width: 150px;
+}
+footer{
+    color: whitesmoke;
+    text-align: center;
+    font-style: italic;
+}
+div{
+    text-align: center;
+}
