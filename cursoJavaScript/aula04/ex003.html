@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Primeiro Programa</title>
+    <title>Exercício 003</title>
     <style>
         body{
             background-color:rgb(73, 130, 252);
@@ -15,23 +15,22 @@
            color:black; 
         }
         div{
-            color:rgb(248, 232, 0);
+            color:rgb(0, 0, 0);
             font: normal 25pt Verdana;
         }
     </style>
 </head>
 <body>
-    <h1>Olá, mundo!</h1>
-    <p>Já me livrei da maldição.</p>
+    <h1>Soma números</h1>
+    <p>Resposta:</p>
     <div id="resposta">
 
     </div>
     <script>
-        window.alert('Minha primeira mensagem!')
-        window.confirm('Está gostando de JS?')
-        let nome = window.prompt('Qual é o seu nome?')
-        resposta = document.querySelector('div#resposta')
-        resposta.innerHTML = `Olá ${nome}! Seja bem-vindo!`
+        var numeroUm = Number(window.prompt('Digite um número: '))
+        var numeroDois = Number(window.prompt('Digite outro número: '))
+        var soma = numeroUm + numeroDois
+        resposta.innerHTML = `A soma entre ${numeroUm}  e ${numeroDois} é ${soma}!`
     </script>
 </body>
 </html>
