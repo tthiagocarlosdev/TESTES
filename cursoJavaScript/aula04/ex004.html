@@ -20,7 +20,7 @@
     <h1>Seu nome</h1>
     <script>
         var nome = window.prompt('Qual é o seu nome? ')
-        name = nome.replace(/ /gi, '')
+        name = nome.replace(/\s/gi, '')
         document.write(`<p><strong>Olá ${nome}, seu nome tem ${name.length} letras.</strong></p>`)
         document.write(`<p>Seu nome junto: ${name}</p>`)
         document.write(`<p>Seu nome em maiúsculo: ${nome.toUpperCase()}</p>`)
