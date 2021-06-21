@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora do dia</title>
+    <style>
+        body {
+            font: normal 18pt Verdana;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hora do Dia</h1>
+    <div id="resposta"></div>
+
+    <script>
+        var agora = new Date()
+        var hora = agora.getHours()
+        var minutos = agora.getMinutes()
+        var resposta = document.querySelector('div#resposta')
+        resposta.innerHTML = `<p>Agora são ${hora}:${minutos}</p>`
+        if(hora < 12){
+            document.body.style.background = '#4EAAFA'
+        } else if (hora < 18){
+            document.body.style.background = '#F0A13A'
+        } else {
+            document.body.style.background = '#0104A8'
+            document.body.style.color = '#FFFFFF'
+        }
+    </script>
+</body>
+</html>
