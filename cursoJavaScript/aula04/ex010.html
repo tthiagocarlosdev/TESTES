@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DETRAN</title>
+    <style>
+        body {
+            font: normal 18pt Verdana;
+        }
+        div#resposta{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sistemas de Multas</h1>
+    Digite sua velocidade: 
+    <input type="number" name="velocidade" id="velocidade"> km/h
+    <input type="button" value="Calcular" onclick="calcular()">
+    <div id="resposta"></div>
+    <script>
+        function calcular() {
+            var resposta = document.querySelector('div#resposta')
+            var velo = document.querySelector('input#velocidade')
+            var velocidade = Number(velo.value)
+            resposta.innerHTML = `<p>A velocidade do carro é ${velocidade}km/h</p>`
+            if (velocidade > 60){
+                resposta.innerHTML += `<p>Você ultrapasou a velocidade permitida. <strong>MULTADO!</strong></p>`
+            }
+            resposta.innerHTML += `<p>Diriga sempre usando cinto de segurança!</p>`
+        }
+
+    </script>
+</body>
+</html>
