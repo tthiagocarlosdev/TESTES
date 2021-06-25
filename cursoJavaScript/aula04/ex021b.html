@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Par ou Impar</title>
+    <style>
+        body{
+            background-color: rgb(0, 98, 255);
+            font: normal 15px Verdana;
+            text-align: center;
+        }
+        section{
+            background: whitesmoke;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: auto;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.363);
+        }
+        footer{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Par ou Ímpar</h1>
+    </header>
+    <section>
+        <div>
+            <p>
+                Digite um número:
+                <input type="number" name="numero" id="numero">
+            </p>
+            <p><input type="button" value="Verificar" onclick="verificar()"></p>
+        </div>
+        <div id="resposta">
+            
+        </div>
+    </section>
+    <footer>
+        &copy;ThiagoCarlos
+    </footer>
+    <script>
+        function verificar(){
+            var numero = document.querySelector('input#numero')
+            var resposta = document.querySelector('div#resposta')
+            numero = Number(numero.value)
+            if(numero % 2 == 0){
+                resposta.innerHTML = `O número ${numero} é PAR!`
+            } else {
+                resposta.innerHTML = `O número ${numero} é ÍMPAR!`
+            }
+        }
+    </script>
+</body>
+</html>
