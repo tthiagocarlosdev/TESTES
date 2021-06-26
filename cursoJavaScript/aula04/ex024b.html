@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soma valores</title>
+    <title>Fatorial</title>
     <style>
         body{
             background-color: rgb(0, 98, 255);
@@ -26,17 +26,15 @@
 </head>
 <body>
     <header>
-        <h1>Soma valores</h1>
+        <h1>Fatorial</h1>
     </header>
     <section>
         <div>
             <p>
-                Digite um valor: 
-                <input type="number" name="numeroA" id="numeroA">
+                Digite um número para descobrir o seu Fatorial: 
             </p>
             <p>
-                Digite outro valor: 
-                <input type="number" name="numeroB" id="numeroB">
+                <input type="number" name="numero" id="numero">
             </p>
             <p><input type="button" value="Verificar" onclick="verificar()"></p>
         </div>
@@ -49,18 +47,21 @@
     </footer>
     <script>
         function verificar(){
-            var numeroA = document.querySelector('input#numeroA')
-            var numeroB = document.querySelector('input#numeroB')
+            var numero = document.querySelector('input#numero')
             var resposta = document.querySelector('div#resposta')
-            if(numeroA.value.length == 0 || numeroB.value.length == 0){
-                alert('Algum valor deixou de ser digitado! Será considerado zero!')
+            if(numero.value.length == 0){
+                alert('[ERROR] Algum valor deverá ser digitado!')
+            } else {
+                numero = Number(numero.value)
+                function fatorial(numero){
+                    let fatorial = 1
+                    for(let contador = numero; contador > 1; contador--){
+                        fatorial *= contador
+                    }
+                    return fatorial
+                }
+                resposta.innerHTML = `O fatorial de ${numero} é igual a ${fatorial(numero)}.`
             }
-            numeroA = Number(numeroA.value)
-            numeroB = Number(numeroB.value)
-            function soma(A = 0, B = 0){
-                return A + B
-            }
-            resposta.innerHTML = `A soma entre ${numeroA} e ${numeroB} é igual a ${soma(numeroA, numeroB)}.`
         }
     </script>
 </body>
