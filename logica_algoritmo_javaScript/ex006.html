@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex006</title>
+    <style>
+        body{
+            background:rgb(228, 197, 59);
+            font: normal 15pt verdana;
+        }
+        header{
+            color:white;
+            text-align: center;
+        }
+        section{
+            background:white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: 0 auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.609); 
+        }
+        p#reais{
+            text-align: center;
+        }
+        div#resultado{
+            text-align: center;
+        }
+        footer{
+            color:white;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dólares da Creuza</h1>
+    </header>
+    <section>
+        <div>
+            <p>
+                Quantos reais eu tenho: 
+                <input type="number" name="reais" id="reais">
+            </p>
+            <p id="reais">
+                <input type="button" value="Calcular" onclick="calcular()">
+            </p>
+        </div>
+        <div id="resultado">
+            
+        </div>
+    </section>
+    <footer>
+        <p>&copy;LogicaAlgoritmoJavaScript</p>
+    </footer>
+    <script>
+        function calcular(){
+            var reais = Number(document.querySelector('input#reais').value)
+            var resultado = document.querySelector('div#resultado')
+            resultado.innerHTML = `Eu tenho ${(reais/4.95).toLocaleString('pt-BR', {style: 'currency', currency: 'USD'})}`
+        }
+    </script>
+</body>
+</html>
