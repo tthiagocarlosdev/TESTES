@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex017</title>
+    <style>
+        body{
+            background:rgb(88, 208, 212);
+            font: normal 15pt verdana;
+        }
+        header{
+            color:white;
+            text-align: center;
+        }
+        section{
+            background:white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: 0 auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.609); 
+        }
+        p#botoes{
+            text-align: center;
+        }
+        footer{
+            color:white;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CRIANÇA ESPERANÇA</h1>
+    </header>
+    <section>
+        <div id='paginaInicial'>
+            <p>
+                Muito Obrigado por ajudar!
+            </p>
+            <p>
+                <input type="radio" name="doacao" id="dezReais" checked>
+                <label for="dezReais">Para doar R$10,00</label>
+            </p>
+            <p>
+                <input type="radio" name="doacao" id="vinte&CincoReais">
+                <label for="vinte&CincoReais">Para doar R$25,00</label>
+            </p>
+            <p>
+                <input type="radio" name="doacao" id="cinquentaReais">
+                <label for="cinquentaReais">Para doar R$50,00</label>
+            </p>
+            <p>
+                <input type="radio" name="doacao" id="outrosValores">
+                <label for="outrosValores">Para outros valores</label>
+                <input type="number" name="doacao" id="outrosValores">
+            </p>
+            <p id='botoes'>
+                <input type="button" value="Cancelar" onclick="cancelar()">
+                <input type="button" value="Doar" onclick="doar()">
+            </p>
+        </div>
+        <div id='resultadoFinal'>
+            
+        </div>
+    </section>
+    <footer>
+        <p>&copy;LogicaAlgoritmoJavaScript</p>
+    </footer>
+    <script>
+        function cancelar(){
+            var paginaInicial = document.querySelector('div#paginaInicial')
+            paginaInicial.innerHTML = `<p>Sua doação foi de R$0,00</p>`
+            paginaInicial.innerHTML += `<p>Muito obrigado!</p>`
+            paginaInicial.style.textAlign = 'center'
+        }
+        function doar(){
+            var doacao = document.getElementsByName('doacao')
+            var valor = 0
+            if(doacao[0].checked){
+                valor = 1
+            } else if(doacao[1].checked){
+                valor = 2
+            } else if(doacao[2].checked){
+                valor = 3
+            } else if(doacao[3].checked){
+                /*var imagem = document.createElement('img')
+                imagem.setAttribute('id', 'foto')*/
+                paginaInicial.innerHTML = `Digite o valor a ser doado:`
+                var button = document.createElement('button')
+                button.setAttribute('type', 'button')
+                button.appendChild(document.createTextNode('Seu botão'))
+                document.body.appendChild(button)
+                //valor = 4
+            }
+            
+            switch (valor) {
+                case 1:
+                    alert('10 reais')
+                    break;
+                case 2:
+                    alert('25 reais')
+                    break;
+                case 3:
+                    alert('50 reais')
+                    break;
+                case 4:
+                    alert('outros valores')
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
