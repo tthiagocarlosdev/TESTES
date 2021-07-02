@@ -56,7 +56,7 @@
             <p>
                 <input type="radio" name="doacao" id="outrosValores">
                 <label for="outrosValores">Para outros valores</label>
-                <input type="number" name="doacao" id="outrosValores">
+                <input type="number" name="doacao" id="outroValor">
             </p>
             <p id='botoes'>
                 <input type="button" value="Cancelar" onclick="cancelar()">
@@ -71,12 +71,14 @@
         <p>&copy;LogicaAlgoritmoJavaScript</p>
     </footer>
     <script>
+        //função para cancelar a doação
         function cancelar(){
             var paginaInicial = document.querySelector('div#paginaInicial')
             paginaInicial.innerHTML = `<p>Sua doação foi de R$0,00</p>`
             paginaInicial.innerHTML += `<p>Muito obrigado!</p>`
             paginaInicial.style.textAlign = 'center'
         }
+        //função para escolher o valor a ser doado
         function doar(){
             var doacao = document.getElementsByName('doacao')
             var valor = 0
@@ -87,28 +89,31 @@
             } else if(doacao[2].checked){
                 valor = 3
             } else if(doacao[3].checked){
-                /*var imagem = document.createElement('img')
-                imagem.setAttribute('id', 'foto')*/
-                paginaInicial.innerHTML = `Digite o valor a ser doado:`
-                var button = document.createElement('button')
-                button.setAttribute('type', 'button')
-                button.appendChild(document.createTextNode('Seu botão'))
-                document.body.appendChild(button)
-                //valor = 4
+                valor = 4
             }
-            
+            //função para mostrar a página final
+            function final(doacao){
+                paginaInicial.innerHTML = ``
+                var resultadoFinal = document.querySelector('div#resultadoFinal')
+                var resultadoFinal = document.querySelector('div#resultadoFinal')
+                resultadoFinal.innerHTML = `<p>Sua doação foi de R$${doacao},00</p>`
+                resultadoFinal.innerHTML +=`<p>Muito Obrigado!</p>`
+                resultadoFinal.style.textAlign = 'center'
+            }
+            //escolha caso para mostrar o resultado final.
             switch (valor) {
-                case 1:
-                    alert('10 reais')
+                case 1:                
+                final(10)
                     break;
                 case 2:
-                    alert('25 reais')
+                final(25)
                     break;
                 case 3:
-                    alert('50 reais')
+                final(50)
                     break;
                 case 4:
-                    alert('outros valores')
+                var outroValor = Number(document.querySelector('input#outroValor').value)
+                final(outroValor)
                     break;
             }
         }
