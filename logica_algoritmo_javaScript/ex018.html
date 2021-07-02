@@ -22,6 +22,12 @@
             margin: 0 auto;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.609); 
         }
+        p#botaVerificar{
+            text-align: center;
+        }
+        div#resultadoFinal{
+            text-align: center;
+        }
         footer{
             color:white;
             text-align: center;
@@ -65,15 +71,22 @@
             var quantidadeDependentes = Number(document.querySelector('input#quantidadeDependentes').value)
             var paginaInicial = document.querySelector('div#paginaInicial')
             var resultadoFinal = document.querySelector('div#resultadoFinal')
-            
-            function novoSalario(salario){
-                return (salario + ((salario * 5) / 100))
+            // função calcula novo salário
+            function novoSalario(salario, percentual){
+                return (salario + ((salario * percentual) / 100))
             }
-
+            // estrutura para passar o percentual de aumento de acordo com a quantidade de dependentes.
             if(quantidadeDependentes == 0){
-                
+                var percentual = 5   
+            } else if(quantidadeDependentes <= 3){
+                percentual = 10
+            } else if(quantidadeDependentes <= 6){
+                percentual = 15
+            } else {
+                percentual = 18
             }
-            resultadoFinal.innerHTML = `O nome salário de ${nomeFuncionario} será de ${novoSalario(salarioFuncionario)} com ${quantidadeDependentes} dependentes.`
+            paginaInicial.innerHTML = ``
+            resultadoFinal.innerHTML = `${nomeFuncionario} tem ${quantidadeDependentes} dependentes, seu novo salário será de ${novoSalario(salarioFuncionario, percentual).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}`
         }
     </script>
 </body>
