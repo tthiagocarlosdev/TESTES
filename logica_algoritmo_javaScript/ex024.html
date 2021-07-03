@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex024</title>
+    <style>
+        body{
+            background:rgb(11, 106, 109);
+            font: normal 15pt verdana;
+        }
+        header{
+            color:white;
+            text-align: center;
+        }
+        section{
+            background:white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: 0 auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.609); 
+        }
+        footer{
+            color:white;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Somador Numérico</h1>
+    </header>
+    <section>
+        <div>
+            <p>
+                Digite e adicione valores: 
+                <input type="number" name="valorA" id="valorA">
+                <input type="button" value="Adicionar" onclick='adicionar()'>
+            </p>
+        </div>
+        <div id="paginaIntermediaria">
+
+        </div>
+        <div>
+            <p>
+                <input type="button" value="Somar" onclick='somar()'>
+            </p>    
+        </div>
+        
+        <div id='paginaFinal'>
+            
+        </div>
+    </section>
+    <footer>
+        <p>&copy;LogicaAlgoritmoJavaScript</p>
+    </footer>
+    <script>
+        var valorA = document.querySelector('input#valorA')
+        var paginaIntermediaria = document.querySelector('div#paginaIntermediaria')
+        var paginaFinal = document.querySelector('div#paginaFinal')
+        var valores = []
+        var somaValores = 0
+        var tamanho = 0
+        
+        function adicionar(){
+            if(valorA.value.length == 0){
+                alert('Digite um valor!')
+            } else {
+                paginaIntermediaria.innerHTML = ``
+                paginaFinal.innerHTML = ``
+                somaValores = 0 
+                valores.push(Number(valorA.value))
+                tamanho = valores.length
+                paginaIntermediaria.innerHTML += `Valores adicionados: ${valores}`                
+                paginaIntermediaria.innerHTML +=`<p>Quantidade de valores adicionados: ${tamanho}</p>`
+            }
+        }
+        
+        function somar(){
+            contador = 0            
+            while(contador <= tamanho - 1){
+                somaValores += valores[contador]
+                contador++
+            }
+            paginaFinal.innerHTML += `A soma de todos os valores é ${somaValores}` 
+        }
+    </script>
+</body>
+</html>
