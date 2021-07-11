@@ -55,11 +55,14 @@
         <p>&copy;LogicaAlgoritmoJavaScript</p>
     </footer>
     <script>
-        var inicio = document.querySelector('input#inicio')
-        var fim = document.querySelector('input#fim')
-        var paginaFinal = document.querySelector('div#paginaFinal')
+        
 
         function calcular(){
+            var inicio = document.querySelector('input#inicio')
+            var fim = document.querySelector('input#fim')
+            var paginaFinal = document.querySelector('div#paginaFinal')
+            paginaFinal.innerHTML = ``
+            
             if(inicio.value.length == 0){
                 alert("[ERROR] Digite o início!")
             } else if (fim.value.length == 0){
