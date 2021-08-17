@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ex019</title>
+    <title>ex020</title>
     <style>
         body{
-            background:rgb(0, 78, 11);
+            background:rgb(0, 119, 255);
             font: normal 15pt verdana;
         }
         header{
@@ -31,58 +31,53 @@
 </head>
 <body>
     <header>
-        <h1>Aproveitamento Aluno</h1>
+        <h1>BANGU x MADUREIRA</h1>
     </header>
     <section>
-        <div id="paginaInicial">
+        <div id='paginaInicial'>
             <p>
-                PRIMEIRA NOTA: 
-                <input type="number" name="primeiraNota" id="primeiraNota">
+                Gols do Bangu: 
+                <input type="number" name="golsBangu" id="golsBangu">
             </p>
             <p>
-                SEGUNDA NOTA: 
-                <input type="number" name="segundaNota" id="segundaNota">
+                Gols do Madureira: 
+                <input type="number" name="golsMadureira" id="golsMadureira">
             </p>
             <p>
-                <input type="button" value="Calcular" onclick="calcular()">
+                <input type="button" value="verificar" onclick='verificar()'>
             </p>
         </div>
-        <div id="resultadoFinal">
-            <p></p>
+        <div id='paginaFinal'>
+            
         </div>
     </section>
     <footer>
         <p>&copy;LogicaAlgoritmoJavaScript</p>
     </footer>
     <script>
-       function calcular(){
-           var primeiraNota = document.querySelector('input#primeiraNota')
-           var segundaNota = document.querySelector('input#segundaNota')
-           var resultadoFinal = document.querySelector('div#resultadoFinal')
-           //validação de entrada de dados
-           if(primeiraNota.value.length == 0 || segundaNota.value.length == 0){
-               alert("Você precisa digitar a nota!")
-           } else {
-            primeiraNota = Number(primeiraNota.value)
-            segundaNota = Number(segundaNota.value)
-            var media = ((primeiraNota + segundaNota) / 2)
-            paginaInicial.innerHTML = ``
-            resultadoFinal.innerHTML = `<p>MÉDIA: ${media.toFixed(1)}</p>`
-            if(media < 1){
-                resultadoFinal.innerHTML += 'APROVEITAMENTO DO ALUNO: F'
-            } else if(media < 3){
-                resultadoFinal.innerHTML += 'APROVEITAMENTO DO ALUNO: E'
-            } else if(media < 5){
-                resultadoFinal.innerHTML += 'APROVEITAMENTO DO ALUNO: D'
-            } else if(media < 7){
-                resultadoFinal.innerHTML += 'APROVEITAMENTO DO ALUNO: C'
-            } else if(media < 9){
-                resultadoFinal.innerHTML += 'APROVEITAMENTO DO ALUNO: B'
+        function verificar(){
+            var golsBangu = document.querySelector('input#golsBangu')
+            var golsMadureira = document.querySelector('input#golsMadureira')
+            var paginaInicial = document.querySelector('div#paginaInicial')
+            var paginaFinal = document.querySelector('div#paginaFinal')
+
+            if(golsBangu.value.length == 0 || golsMadureira.value.length == 0){
+                alert('[ERROR] Você precisa digitar os gols!')
             } else {
-                resultadoFinal.innerHTML += 'APROVEITAMENTO DO ALUNO: A'
+                golsBangu = Number(golsBangu.value)
+                golsMadureira = Number(golsMadureira.value)
+                var diferença = Math.abs(golsBangu - golsMadureira)
+                paginaInicial.innerHTML = ``
+                paginaFinal.innerHTML = `<p>DIFERENÇA: ${diferença}</p>`
+                if(diferença < 1){
+                    paginaFinal.innerHTML += `STATUS: EMPATE!`
+                } else if(diferença < 4){
+                    paginaFinal.innerHTML += `STATUS: NORMAL!`
+                } else {
+                    paginaFinal.innerHTML += `STATUS: GOLEADA!`
+                }
             }
-           }
-       } 
+        }
     </script>
 </body>
 </html>

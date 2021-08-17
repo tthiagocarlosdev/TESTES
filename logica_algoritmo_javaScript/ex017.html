@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ex017</title>
+    <title>ex018.</title>
     <style>
         body{
-            background:rgb(88, 208, 212);
+            background:rgb(209, 1, 71);
             font: normal 15pt verdana;
         }
         header{
@@ -22,7 +22,10 @@
             margin: 0 auto;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.609); 
         }
-        p#botoes{
+        p#botaVerificar{
+            text-align: center;
+        }
+        div#resultadoFinal{
             text-align: center;
         }
         footer{
@@ -34,36 +37,27 @@
 </head>
 <body>
     <header>
-        <h1>CRIANÇA ESPERANÇA</h1>
+        <h1>Dependentes Funcionário</h1>
     </header>
     <section>
-        <div id='paginaInicial'>
+        <div id="paginaInicial">
             <p>
-                Muito Obrigado por ajudar!
+                Nome do funcionário: 
+                <input type="text" name="nomeFuncionario" id="nomeFuncionario">
             </p>
             <p>
-                <input type="radio" name="doacao" id="dezReais" checked>
-                <label for="dezReais">Para doar R$10,00</label>
+                Qual o salário do funcionário: 
+                <input type="number" name="salarioFuncionario" id="salarioFuncionario">
             </p>
             <p>
-                <input type="radio" name="doacao" id="vinte&CincoReais">
-                <label for="vinte&CincoReais">Para doar R$25,00</label>
+                Quantidade de dependentes: 
+                <input type="number" name="quantidadeDependentes" id="quantidadeDependentes">
             </p>
-            <p>
-                <input type="radio" name="doacao" id="cinquentaReais">
-                <label for="cinquentaReais">Para doar R$50,00</label>
-            </p>
-            <p>
-                <input type="radio" name="doacao" id="outrosValores">
-                <label for="outrosValores">Para outros valores</label>
-                <input type="number" name="doacao" id="outroValor">
-            </p>
-            <p id='botoes'>
-                <input type="button" value="Cancelar" onclick="cancelar()">
-                <input type="button" value="Doar" onclick="doar()">
+            <p id="botaVerificar">
+                <input type="button" value="Verificar" onclick="verificar()">
             </p>
         </div>
-        <div id='resultadoFinal'>
+        <div id="resultadoFinal">
             
         </div>
     </section>
@@ -71,51 +65,28 @@
         <p>&copy;LogicaAlgoritmoJavaScript</p>
     </footer>
     <script>
-        //função para cancelar a doação
-        function cancelar(){
+        function verificar(){
+            var nomeFuncionario = String(document.querySelector('input#nomeFuncionario').value)
+            var salarioFuncionario = Number(document.querySelector('input#salarioFuncionario').value)
+            var quantidadeDependentes = Number(document.querySelector('input#quantidadeDependentes').value)
             var paginaInicial = document.querySelector('div#paginaInicial')
-            paginaInicial.innerHTML = `<p>Sua doação foi de R$0,00</p>`
-            paginaInicial.innerHTML += `<p>Muito obrigado!</p>`
-            paginaInicial.style.textAlign = 'center'
-        }
-        //função para escolher o valor a ser doado
-        function doar(){
-            var doacao = document.getElementsByName('doacao')
-            var valor = 0
-            if(doacao[0].checked){
-                valor = 1
-            } else if(doacao[1].checked){
-                valor = 2
-            } else if(doacao[2].checked){
-                valor = 3
-            } else if(doacao[3].checked){
-                valor = 4
+            var resultadoFinal = document.querySelector('div#resultadoFinal')
+            // função calcula novo salário
+            function novoSalario(salario, percentual){
+                return (salario + ((salario * percentual) / 100))
             }
-            //função para mostrar a página final
-            function final(doacao){
-                paginaInicial.innerHTML = ``
-                var resultadoFinal = document.querySelector('div#resultadoFinal')
-                var resultadoFinal = document.querySelector('div#resultadoFinal')
-                resultadoFinal.innerHTML = `<p>Sua doação foi de R$${doacao},00</p>`
-                resultadoFinal.innerHTML +=`<p>Muito Obrigado!</p>`
-                resultadoFinal.style.textAlign = 'center'
+            // estrutura para passar o percentual de aumento de acordo com a quantidade de dependentes.
+            if(quantidadeDependentes == 0){
+                var percentual = 5   
+            } else if(quantidadeDependentes <= 3){
+                percentual = 10
+            } else if(quantidadeDependentes <= 6){
+                percentual = 15
+            } else {
+                percentual = 18
             }
-            //escolha caso para mostrar o resultado final.
-            switch (valor) {
-                case 1:                
-                final(10)
-                    break;
-                case 2:
-                final(25)
-                    break;
-                case 3:
-                final(50)
-                    break;
-                case 4:
-                var outroValor = Number(document.querySelector('input#outroValor').value)
-                final(outroValor)
-                    break;
-            }
+            paginaInicial.innerHTML = ``
+            resultadoFinal.innerHTML = `${nomeFuncionario} tem ${quantidadeDependentes} dependentes, seu novo salário será de ${novoSalario(salarioFuncionario, percentual).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}`
         }
     </script>
 </body>

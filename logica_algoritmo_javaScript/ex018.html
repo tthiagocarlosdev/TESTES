@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ex018.</title>
+    <title>ex019</title>
     <style>
         body{
-            background:rgb(209, 1, 71);
+            background:rgb(0, 78, 11);
             font: normal 15pt verdana;
         }
         header{
@@ -22,12 +22,6 @@
             margin: 0 auto;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.609); 
         }
-        p#botaVerificar{
-            text-align: center;
-        }
-        div#resultadoFinal{
-            text-align: center;
-        }
         footer{
             color:white;
             text-align: center;
@@ -37,57 +31,58 @@
 </head>
 <body>
     <header>
-        <h1>Dependentes Funcionário</h1>
+        <h1>Aproveitamento Aluno</h1>
     </header>
     <section>
         <div id="paginaInicial">
             <p>
-                Nome do funcionário: 
-                <input type="text" name="nomeFuncionario" id="nomeFuncionario">
+                PRIMEIRA NOTA: 
+                <input type="number" name="primeiraNota" id="primeiraNota">
             </p>
             <p>
-                Qual o salário do funcionário: 
-                <input type="number" name="salarioFuncionario" id="salarioFuncionario">
+                SEGUNDA NOTA: 
+                <input type="number" name="segundaNota" id="segundaNota">
             </p>
             <p>
-                Quantidade de dependentes: 
-                <input type="number" name="quantidadeDependentes" id="quantidadeDependentes">
-            </p>
-            <p id="botaVerificar">
-                <input type="button" value="Verificar" onclick="verificar()">
+                <input type="button" value="Calcular" onclick="calcular()">
             </p>
         </div>
         <div id="resultadoFinal">
-            
+            <p></p>
         </div>
     </section>
     <footer>
         <p>&copy;LogicaAlgoritmoJavaScript</p>
     </footer>
     <script>
-        function verificar(){
-            var nomeFuncionario = String(document.querySelector('input#nomeFuncionario').value)
-            var salarioFuncionario = Number(document.querySelector('input#salarioFuncionario').value)
-            var quantidadeDependentes = Number(document.querySelector('input#quantidadeDependentes').value)
-            var paginaInicial = document.querySelector('div#paginaInicial')
-            var resultadoFinal = document.querySelector('div#resultadoFinal')
-            // função calcula novo salário
-            function novoSalario(salario, percentual){
-                return (salario + ((salario * percentual) / 100))
-            }
-            // estrutura para passar o percentual de aumento de acordo com a quantidade de dependentes.
-            if(quantidadeDependentes == 0){
-                var percentual = 5   
-            } else if(quantidadeDependentes <= 3){
-                percentual = 10
-            } else if(quantidadeDependentes <= 6){
-                percentual = 15
-            } else {
-                percentual = 18
-            }
+       function calcular(){
+           var primeiraNota = document.querySelector('input#primeiraNota')
+           var segundaNota = document.querySelector('input#segundaNota')
+           var resultadoFinal = document.querySelector('div#resultadoFinal')
+           //validação de entrada de dados
+           if(primeiraNota.value.length == 0 || segundaNota.value.length == 0){
+               alert("Você precisa digitar a nota!")
+           } else {
+            primeiraNota = Number(primeiraNota.value)
+            segundaNota = Number(segundaNota.value)
+            var media = ((primeiraNota + segundaNota) / 2)
             paginaInicial.innerHTML = ``
-            resultadoFinal.innerHTML = `${nomeFuncionario} tem ${quantidadeDependentes} dependentes, seu novo salário será de ${novoSalario(salarioFuncionario, percentual).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}`
-        }
+            resultadoFinal.innerHTML = `<p>MÉDIA: ${media.toFixed(1)}</p>`
+            if(media < 1){
+                resultadoFinal.innerHTML += 'APROVEITAMENTO DO ALUNO: F'
+            } else if(media < 3){
+                resultadoFinal.innerHTML += 'APROVEITAMENTO DO ALUNO: E'
+            } else if(media < 5){
+                resultadoFinal.innerHTML += 'APROVEITAMENTO DO ALUNO: D'
+            } else if(media < 7){
+                resultadoFinal.innerHTML += 'APROVEITAMENTO DO ALUNO: C'
+            } else if(media < 9){
+                resultadoFinal.innerHTML += 'APROVEITAMENTO DO ALUNO: B'
+            } else {
+                resultadoFinal.innerHTML += 'APROVEITAMENTO DO ALUNO: A'
+            }
+           }
+       } 
     </script>
 </body>
 </html>

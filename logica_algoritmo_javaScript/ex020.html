@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ex020</title>
+    <title>ex017</title>
     <style>
         body{
-            background:rgb(0, 119, 255);
+            background:rgb(88, 208, 212);
             font: normal 15pt verdana;
         }
         header{
@@ -22,6 +22,9 @@
             margin: 0 auto;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.609); 
         }
+        p#botoes{
+            text-align: center;
+        }
         footer{
             color:white;
             text-align: center;
@@ -31,23 +34,36 @@
 </head>
 <body>
     <header>
-        <h1>BANGU x MADUREIRA</h1>
+        <h1>CRIANÇA ESPERANÇA</h1>
     </header>
     <section>
         <div id='paginaInicial'>
             <p>
-                Gols do Bangu: 
-                <input type="number" name="golsBangu" id="golsBangu">
+                Muito Obrigado por ajudar!
             </p>
             <p>
-                Gols do Madureira: 
-                <input type="number" name="golsMadureira" id="golsMadureira">
+                <input type="radio" name="doacao" id="dezReais" checked>
+                <label for="dezReais">Para doar R$10,00</label>
             </p>
             <p>
-                <input type="button" value="verificar" onclick='verificar()'>
+                <input type="radio" name="doacao" id="vinte&CincoReais">
+                <label for="vinte&CincoReais">Para doar R$25,00</label>
+            </p>
+            <p>
+                <input type="radio" name="doacao" id="cinquentaReais">
+                <label for="cinquentaReais">Para doar R$50,00</label>
+            </p>
+            <p>
+                <input type="radio" name="doacao" id="outrosValores">
+                <label for="outrosValores">Para outros valores</label>
+                <input type="number" name="doacao" id="outroValor">
+            </p>
+            <p id='botoes'>
+                <input type="button" value="Cancelar" onclick="cancelar()">
+                <input type="button" value="Doar" onclick="doar()">
             </p>
         </div>
-        <div id='paginaFinal'>
+        <div id='resultadoFinal'>
             
         </div>
     </section>
@@ -55,27 +71,50 @@
         <p>&copy;LogicaAlgoritmoJavaScript</p>
     </footer>
     <script>
-        function verificar(){
-            var golsBangu = document.querySelector('input#golsBangu')
-            var golsMadureira = document.querySelector('input#golsMadureira')
+        //função para cancelar a doação
+        function cancelar(){
             var paginaInicial = document.querySelector('div#paginaInicial')
-            var paginaFinal = document.querySelector('div#paginaFinal')
-
-            if(golsBangu.value.length == 0 || golsMadureira.value.length == 0){
-                alert('[ERROR] Você precisa digitar os gols!')
-            } else {
-                golsBangu = Number(golsBangu.value)
-                golsMadureira = Number(golsMadureira.value)
-                var diferença = Math.abs(golsBangu - golsMadureira)
+            paginaInicial.innerHTML = `<p>Sua doação foi de R$0,00</p>`
+            paginaInicial.innerHTML += `<p>Muito obrigado!</p>`
+            paginaInicial.style.textAlign = 'center'
+        }
+        //função para escolher o valor a ser doado
+        function doar(){
+            var doacao = document.getElementsByName('doacao')
+            var valor = 0
+            if(doacao[0].checked){
+                valor = 1
+            } else if(doacao[1].checked){
+                valor = 2
+            } else if(doacao[2].checked){
+                valor = 3
+            } else if(doacao[3].checked){
+                valor = 4
+            }
+            //função para mostrar a página final
+            function final(doacao){
                 paginaInicial.innerHTML = ``
-                paginaFinal.innerHTML = `<p>DIFERENÇA: ${diferença}</p>`
-                if(diferença < 1){
-                    paginaFinal.innerHTML += `STATUS: EMPATE!`
-                } else if(diferença < 4){
-                    paginaFinal.innerHTML += `STATUS: NORMAL!`
-                } else {
-                    paginaFinal.innerHTML += `STATUS: GOLEADA!`
-                }
+                var resultadoFinal = document.querySelector('div#resultadoFinal')
+                var resultadoFinal = document.querySelector('div#resultadoFinal')
+                resultadoFinal.innerHTML = `<p>Sua doação foi de R$${doacao},00</p>`
+                resultadoFinal.innerHTML +=`<p>Muito Obrigado!</p>`
+                resultadoFinal.style.textAlign = 'center'
+            }
+            //escolha caso para mostrar o resultado final.
+            switch (valor) {
+                case 1:                
+                final(10)
+                    break;
+                case 2:
+                final(25)
+                    break;
+                case 3:
+                final(50)
+                    break;
+                case 4:
+                var outroValor = Number(document.querySelector('input#outroValor').value)
+                final(outroValor)
+                    break;
             }
         }
     </script>
