@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nacionalidade</title>
+    <style>
+        body {
+            font: normal 18pt Verdana;
+            color: whitesmoke;
+            background-color: rgba(19, 12, 12, 0.900);
+        }
+    </style>
+</head>
+<body>
+    <h1>Nacionalidade</h1>
+    <input type="text" name="nacionalidade" id="nacionalidade">
+    <input type="button" value="Carregar" onclick="carregar()">
+    <div id="resposta"></div>
+
+    <script>
+        function carregar() {
+            var nacional = document.querySelector('input#nacionalidade')
+            var nacionalidade = nacional.value.toString()
+            var resposta = document.querySelector('div#resposta')
+            if(nacionalidade === 'Brasil'){
+                resposta.innerHTML = `<p>Voce nasceu em ${nacionalidade}!</p>`
+                resposta.innerHTML += `<p>Você é brasileiro!</p>`
+            } else {
+                resposta.innerHTML = `<p>Voce nasceu em ${nacionalidade}</p>`
+                resposta.innerHTML += `<p>Você é estrangeiro!</p>`
+            }
+            
+        }
+        
+    </script>
+</body>
+</html>

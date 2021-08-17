@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 003</title>
+    <style>
+        body{
+            background-color:rgb(73, 130, 252);
+            color: whitesmoke;
+            font: normal 25pt Arial;
+        }
+        h1{
+           color:black; 
+        }
+        div{
+            color:rgb(0, 0, 0);
+            font: normal 25pt Verdana;
+        }
+    </style>
+</head>
+<body>
+    <h1>Soma números</h1>
+    <p>Resposta:</p>
+    <div id="resposta">
+
+    </div>
+    <script>
+        var numeroUm = Number(window.prompt('Digite um número: '))
+        var numeroDois = Number(window.prompt('Digite outro número: '))
+        var soma = numeroUm + numeroDois
+        resposta.innerHTML = `A soma entre ${numeroUm}  e ${numeroDois} é igual a ${soma}!`
+    </script>
+</body>
+</html>

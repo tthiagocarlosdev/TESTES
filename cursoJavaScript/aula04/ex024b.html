@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatorial</title>
+    <style>
+        body{
+            background-color: rgb(0, 98, 255);
+            font: normal 15px Verdana;
+            text-align: center;
+        }
+        section{
+            background: whitesmoke;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: auto;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.363);
+        }
+        footer{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fatorial</h1>
+    </header>
+    <section>
+        <div>
+            <p>
+                Digite um número para descobrir o seu Fatorial: 
+            </p>
+            <p>
+                <input type="number" name="numero" id="numero">
+            </p>
+            <p><input type="button" value="Verificar" onclick="verificar()"></p>
+        </div>
+        <div id="resposta">
+            
+        </div>
+    </section>
+    <footer>
+        &copy;ThiagoCarlos
+    </footer>
+    <script>
+        function verificar(){
+            var numero = document.querySelector('input#numero')
+            var resposta = document.querySelector('div#resposta')
+            if(numero.value.length == 0){
+                alert('[ERROR] Algum valor deverá ser digitado!')
+            } else {
+                numero = Number(numero.value)
+                function fatorial(numero){
+                    let fatorial = 1
+                    for(let contador = numero; contador > 1; contador--){
+                        fatorial *= contador
+                    }
+                    return fatorial
+                }
+                resposta.innerHTML = `O fatorial de ${numero} é igual a ${fatorial(numero)}.`
+            }
+        }
+    </script>
+</body>
+</html>

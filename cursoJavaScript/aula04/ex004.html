@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 004</title>
+    <style>
+        body{
+            background-color:rgb(73, 130, 252);
+            color: whitesmoke;
+            font: normal 25pt Courier;
+        }
+        h1{
+           color:black; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Seu nome</h1>
+    <script>
+        var nome = window.prompt('Qual é o seu nome? ')
+        name = nome.replace(/\s/gi, '')
+        document.write(`<p><strong>Olá ${nome}, seu nome tem ${name.length} letras.</strong></p>`)
+        document.write(`<p>Seu nome junto: ${name}</p>`)
+        document.write(`<p>Seu nome em maiúsculo: ${nome.toUpperCase()}</p>`)
+        document.write(`<p>Seu nome em minúsculo: ${nome.toLowerCase()}</p>`)
+    </script>
+</body>
+</html>

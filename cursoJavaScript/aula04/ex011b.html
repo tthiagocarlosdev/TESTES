@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vota ou não Vota</title>
+    <style>
+        body{
+            font: normal 18pt Verdana;
+            color: whitesmoke;
+            background: rgba(19, 12, 12, 0.900);
+        }
+    </style>
+</head>
+<body>
+    <h1>Vota ou não vota</h1>
+    Digite a sua idade: 
+    <input type="number" name="idade" id="idade">
+    <input type="button" value="Carregar" onclick="carregar()">
+    <div id="resposta"></div>
+
+    <script>
+        function carregar() {
+            var idadeInput = document.querySelector('input#idade')
+            var idade = Number(idadeInput.value)
+            var resposta = document.querySelector('div#resposta')
+            resposta.innerHTML = `<p>Você tem ${idade} anos!</p>`
+            var  naoVota = idade < 16
+            var votoOpcional = idade < 18 || idade > 65
+            if (naoVota) {
+                resposta.innerHTML += `<p>Você <strong>não</strong> vota!</p>`
+            } else if (votoOpcional){
+                resposta.innerHTML += `<p>Seu voto é <strong>Opcional</strong></p>`
+            } else {
+                resposta.innerHTML += `<p> Voto <strong>Obrigatório</strong>!</p>`
+            }
+        }
+        
+    </script>
+</body>
+</html>

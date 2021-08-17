@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somando Números</title>
+    <style>
+        body {
+            font: normal 18pt Verdana;
+        }
+        input {
+            font: normal 18pt Verdana;
+            width: 100px;
+        }
+        div#resposta{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Somando Valores</h1>
+    <input type="number" name="valorUm" id="valorUm"> +
+    <input type="number" name="valorDois" id="valorDois">
+    <input type="button" value="Somar" onclick="somar()">
+    <div id="resposta"></div>
+    
+    <script>
+        function somar() {
+            var valorUm = document.querySelector('input#valorUm')
+            var valorDois = document.querySelector('input#valorDois')
+            var resposta = document.querySelector('div#resposta')
+            var valor1 = Number(valorUm.value)
+            var valor2 = Number(valorDois.value)
+            var soma = valor1 + valor2
+            resposta.innerHTML = `A soma entre ${valor1} e ${valor2} é igual a <strong>${soma}<strong>.`
+        }
+    </script>
+</body>
+</html>
