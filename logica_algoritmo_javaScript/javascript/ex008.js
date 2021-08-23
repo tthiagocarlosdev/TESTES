@@ -1,0 +1,8 @@
+var readlineSync = require('readline-sync')
+console.log("IMPOSTO DA CREUZA")
+console.log("===================")
+var productValue = readlineSync.question("Quanto custou o produto? R$")
+console.clear()
+console.log("IMPOSTO DA CREUZA")
+console.log("===================")
+console.log(`Vou pagar de imposto R$${(productValue * 0.6).toFixed(2)}`)

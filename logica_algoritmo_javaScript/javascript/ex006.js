@@ -1,0 +1,6 @@
+var readlineSync = require('readline-sync')
+console.log("DÓLARES DA CREUZA")
+var real = readlineSync.question("Digite quantos reais você tem R$")
+console.clear()
+console.log("DÓLARES DA CREUZA")
+console.log(`Você tem $${(real / 5.41).toFixed(2)}`)
