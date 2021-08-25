@@ -12,8 +12,8 @@ console.log("   APTO CARTEIRA   ")
 console.log("===================")
 console.log(`Sua idade é ${idade} anos!`)
 if(idade >= 18){
-    console.log("STATUS: Apto a tirar a Carteira!")
+    console.log("Apto a tirar a Carteira!")
 } else{
-    console.log("STATUS: Inapto a tirar a Carteira!")
+    console.log("Inapto a tirar a Carteira!")
 }
 console.log("===================")
