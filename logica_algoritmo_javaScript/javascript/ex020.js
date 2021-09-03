@@ -28,7 +28,7 @@ switch (opcao) {
         doacao = 0
         break;
     default:
-        console.log("[ERRO] Opção errada!")
+        console.log("Sua doação será considerada R$0,00")
         break;
 }
 console.log("=========================")
