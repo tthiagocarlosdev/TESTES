@@ -51,6 +51,6 @@ for(contador in nome){
 console.log("=========================")
 console.log(`MÉDIA DA TURMA`)
 console.log("-------------------------")
-console.log(`Média da Turma: ${mediaTurma}`)
+console.log(`Média da Turma: ${mediaTurma.toFixed(2)}`)
 console.log(`Alunos acima da média: ${alunoAcimaDaMedia}`)
 console.log("=========================")
