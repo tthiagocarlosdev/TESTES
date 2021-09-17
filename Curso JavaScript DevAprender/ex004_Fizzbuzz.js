@@ -23,6 +23,6 @@ console.log(`Mensagem: ${fizzbuzz(numero)}`)
 console.log('--------------------')
 
 /*
-Function Number.isNaN()
+Number.isNaN() method
 https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN
 */
