@@ -1,4 +1,4 @@
-var readlineSync = require('readline-sync')
+//var readlineSync = require('readline-sync')
 /*var name = readlineSync.question('Whats is your name? ')
 var name = "Thiago Carlos"
 console.log(`Welcome ${name}!`)
@@ -298,7 +298,7 @@ console.log(`Array outras: ${outras}`)
 // console.log('4º solução:')
 // console.log(`Array letras: ${letras}`)
 // console.log(`Array outras: ${outras}`)
-*/
+
 
 // COMBINANDO E CORTANDO ARRAYS
 
@@ -316,3 +316,54 @@ console.log(`Arrays juntos: ${combinado}`)
 
 const cortado = combinado.slice() // copia todo o array
 console.log(cortado)
+
+// OPERADOR SPREAD
+
+const primeiro = ['a', 'b', 'c']
+const segundo = ['d', 'e', 'f']
+const combinado = [...primeiro, ...segundo]
+const combinado2 = [...primeiro, 1, ...segundo, '%']
+const clonado = [...combinado]
+
+console.log('Primeiro: '+primeiro)
+console.log(`Segundo: ${segundo}`)
+console.log(`Combinado: ${combinado}`)
+console.log(`Combinado 2: ${combinado2}`)
+console.log(`Clonado: ${clonado}`)
+
+
+// FOREACH 
+
+const letras = ['a', 'b', 'c', 'd', 'e', 'f']
+console.log("for of")
+for(indice of letras){
+    console.log(indice)
+}
+console.log("forEach")
+letras.forEach((letras, indice) => console.log(`Letras: ${letras} - Índice: ${indice}`))
+
+
+// COMBINANDO ARRAYS
+
+const letras = ['a', 'b', 'c', 'd', 'e', 'f']
+const combinado = letras.join('.')
+
+const frase = 'Estou aprendendo JavaScript com DevAprender'
+const resultado = frase.split(' ')
+
+console.log(letras)
+console.log(combinado)
+console.log(frase)
+console.log(resultado)
+console.log(resultado.join('-'))
+
+
+// RECEBENDO DADOS (INPUT)
+
+let name = prompt("What's your name?")
+alert(`Welcome ${name}`)
+let age = Number(prompt("What's your age?"))
+alert(age >= 18 ? `Ok ${name}, você tem ${age} anos e é maior de idade!`: `Ok ${name}, você tem ${age} anos e é menor de idade!`)
+*/
+
+// INTRO MANIPULAÇÃO DO DOM
