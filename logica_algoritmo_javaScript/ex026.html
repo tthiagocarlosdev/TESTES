@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex026</title>
+    <style>
+        body{
+            background:rgb(88, 208, 212);
+            font: normal 15pt verdana;
+        }
+        header{
+            color:white;
+            text-align: center;
+        }
+        section{
+            background:white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 650px;
+            margin: 0 auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.609); 
+        }
+        footer{
+            color:white;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Conversão de Moeda</h1>
+    </header>
+    <section>
+        <div>
+            <p>
+                Quantas vezes você quer converter: 
+                <input type="number" name="quantidadeConversao" id="quantidadeConversao">
+                <input type="button" value="Adicionar" onclick="adicionarA()">
+            </p>
+            <p>
+                Quantos reais eu tenho:  
+                <input type="number" name="valorConverter" id="valorConverter">
+                <input type="button" value="Adicionar" onclick="adicionarB()">
+            </p>
+            <p>
+                <input type="button" value="Converter" onclick="converter()">
+            </p> 
+        </div>
+        <div id="paginaFinal">
+            
+        </div>
+    </section>
+    <footer>
+        <p>&copy;LogicaAlgoritmoJavaScript</p>
+    </footer>
+    <script>
+        var quantidadeConversao = document.querySelector('input#quantidadeConversao')
+        var valorConverter = document.querySelector('input#valorConverter')
+        var paginaFinal = document.querySelector('div#paginaFinal')
+        
+        function adicionarA(){
+            if(quantidadeConversao.value.length == 0 || Number(quantidadeConversao.value) <= 0){
+                alert('Digite a quantidade de conversões!')
+            }
+        }
+        function adicionarB(){
+            if(valorConverter.value.length == 0 || Number(valorConverter.value) <= 0){
+                alert('Digite algum valor!')
+            }
+        }
+        function converter(){
+            var contador = 1
+            var dolar = 0
+            while(contador <= Number(quantidadeConversao.value)){
+                dolar = (Number(valorConverter.value) / 5.09201)
+                paginaFinal.innerHTML += `<p>Eu tenho em ${dolar.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>`
+                contador++
+            }
+        }
+    </script>
+</body>
+</html>

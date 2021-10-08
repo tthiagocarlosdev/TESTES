@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex010</title>
+    <style>
+        body{
+            background:rgb(9, 70, 128);
+            font: normal 15pt verdana;
+        }
+        header{
+            color:white;
+            text-align: center;
+        }
+        section{
+            background:white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: 0 auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.609); 
+        }
+        p#botaoVerificar{
+            text-align: center;
+        }
+        div#resultadoFinal{
+            text-align: center;
+        }
+        footer{
+            color:white;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cálculo idade</h1>
+    </header>
+    <section>
+        <div>
+            <p>
+                Em que ano você nasceu: 
+                <input type="number" name="anoNascimento" id="anoNascimento">
+            </p>
+            <p id="botaoVerificar">
+                <input type="button" value="Verificar" onclick="verificar()">
+            </p>
+        </div>
+        <div id="resultadoFinal">
+            
+        </div>
+    </section>
+    <footer>
+        <p>&copy;LogicaAlgoritmoJavaScript</p>
+    </footer>
+    <script>
+        function verificar(){
+            var agora = new Date()
+            var anoAtual = agora.getFullYear()
+            var anoNascimento = Number(document.querySelector('input#anoNascimento').value)
+            var resultadoFinal = document.querySelector('div#resultadoFinal')
+            var idade = anoAtual - anoNascimento
+            if(anoNascimento > anoAtual || anoNascimento <= 0){
+                alert('Ano de nascimento incorreto! Digite um ano válido!')
+            } else {
+                resultadoFinal.innerHTML = `Em ${anoAtual} você terá ${idade} anos`
+                if(idade >= 21){
+                    resultadoFinal.innerHTML += ` e terá atingido a maioridade!`
+                } else {
+                    resultadoFinal.innerHTML += `!`
+                }
+            }
+        }
+    </script>
+</body>
+</html>

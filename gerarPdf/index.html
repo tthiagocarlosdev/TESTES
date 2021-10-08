@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download PDF</title>
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+</head>
+<body>
+    <h1>Baixar um arquivo em PDF com JavaScript</h1>
+    <div id="dados">
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Altura</th>
+            </tr>
+            <tr>
+                <td>Thiago</td>
+                <td>33 anos</td>
+                <td>1.86m</td>
+            </tr>
+            <tr>
+                <td>Carlos</td>
+                <td>25 anos</td>
+                <td>1.75m</td>
+            </tr>
+            <tr>
+                <td>Silva</td>
+                <td>50 anos</td>
+                <td>1.80m</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <p><input type="button" value="DOWNLOAD" onclick="downloadPdf()"></p>
+    </div>
+    <script>
+        function downloadPdf(){
+            var dados = document.querySelector('div#dados')
+            html2pdf()
+            .from(dados)
+            .save()
+        }
+    </script>
+</body>
+</html>
+<!--
+    Tutorial
+    https://www.youtube.com/watch?v=rZr23bMwHsU
+    
+    Site:
+    https://ekoopmans.github.io/html2pdf.js/
+    
+-->
