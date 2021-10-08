@@ -1,4 +1,6 @@
 var readlineSync = require('readline-sync')
+
+//declaração de funções
 function header(){
     console.log("=========================")
     console.log("      RESERVAR CINEMA    ")
@@ -22,15 +24,17 @@ function cadeiraReservada(numero){
         }        
     }    
 }
-
+//declaração de variáveis
 var reserva = []
 var cadeira = 0
 var cinema = ""
 
+//inserção de valores no array
 for(c = 1; c <= 10; c++){
     reserva[c] = c
 }
 
+//cálculo do programa
 do{
     header()
     cadeirasCinema()
@@ -64,6 +68,7 @@ do{
     
 } while (resposta == "s")
 
+//final do programa
 console.clear()
 header()
 console.log("Programa encerrado!")
