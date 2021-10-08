@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex005</title>
+    <style>
+        body{
+            background:rgb(196, 52, 88);
+            font: normal 15pt verdana;
+        }
+        header{
+            color:white;
+            text-align: center;
+        }
+        section{
+            background:white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: 0 auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.609); 
+        }
+        p#botaoCalcular{
+            text-align: center;
+        }
+        div#resultado{
+            text-align: center;
+        }
+        footer{
+            color:white;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Idade de Creuza</h1>
+    </header>
+    <section>
+        <div>
+            <p>
+                Em qual ano você nasceu? 
+                <input type="number" name="anoNascimento" id="anoNascimento">
+            </p>
+            <p id="botaoCalcular">
+                <input type="button" value="Calcular" onclick="calcular()">
+            </p>
+        </div>
+        <div id="resultado">
+            
+        </div>
+    </section>
+    <footer>
+        <p>&copy;LogicaAlgoritmoJavaScript</p>
+    </footer>
+    <script>
+       function calcular(){
+            var agora = new Date()
+            var anoAtual = agora.getFullYear()
+            var anoNascimento = Number(document.querySelector('input#anoNascimento').value)
+            var resultado = document.querySelector('div#resultado')
+            if(anoNascimento > anoAtual){
+                alert("Valor inválido! Digite um valor correto!")
+            } else {
+                resultado.innerHTML = `Eu tenho ${anoAtual - anoNascimento} anos!`
+            }
+       } 
+    </script>
+</body>
+</html>

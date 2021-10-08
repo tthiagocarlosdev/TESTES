@@ -1,0 +1,6 @@
+var readlineSync = require('readline-sync')
+console.log("TEMPERATURA DA CREUZA")
+var fahrenheit = readlineSync.question("Digite a temperatura em Fahrenheit: ")
+console.clear()
+console.log("TEMPERATURA DA CREUZA")
+console.log(`A temperatura em graus celcius é ${((fahrenheit - 32) / 1.8).toFixed(2)}°`)

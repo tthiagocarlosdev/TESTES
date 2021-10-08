@@ -22,7 +22,11 @@ var tamanhoSenha = readlineSync.question("Digite o tamanho de sua senha: ")
 console.clear()
 
 //sorteio dos valores aleatórios
+<<<<<<< HEAD
+for (contador = 1; contador <= tamanhoSenha; contador++){
+=======
 for (contador = 1; contador <= tamanhoSenha; contador++){    
+>>>>>>> 78f4db0bb75cf69f4d6d12be6cc3d9d92d7cd66f
     codigoAscii[contador] = getRandomIntInclusive(33, 126)
 }
 // conversão dos valores numéricos em caracteres usando 'String.fromCharCode()'

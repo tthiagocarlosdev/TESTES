@@ -1,0 +1,107 @@
+﻿LogicaAlgoritmoJavaScript
+$npm install readline-sync → para o terminal aceitar input no node.js
+COMANDOS DE ENTRADA/SAÍDA E VARIÁVEIS
+ex001 → MENSAGEM: Desenvolva um programa que pergunte qual é o nome do usuário e no final mostre uma mensagem com o nome do usuário que foi digitado. Use o comando de entra e saída “console.log”.
+ex002 → SOMA: Desenvola um programa que solicite ao usuário digitar dois números e no final apresente o resultado da soma entre os dois números.
+ex003 → MEDIA: Desenvola um programa que solicite ao usuário digitar dois números e no final apresente o resultado da média entre os dois números.
+OPERADORES LÓGICOS
+ex004 → TESTE DOS TRIANGULOS: Desenvolva um programa que solicite ao usuário digitar o valor de três lados de uma forma geométrica. O programa deverá informar se o valores digitados pelo usuários forma um triângulo, se esse triângulo é equilátero ou escalento. Dica: Para forma um triângulo, cada lado tem que ser menor do que a soma dos outros dois. Para ser equilátero, todos os lados devem ser iguais. E para ser escalento todos os lados devem ser diferentes um do outro.
+EXERCÍCIOS DA  CREUZA
+ex005 → IDADE DE CREUZA: Creuza está fazendo aniversário, mas não sabe quantas velas colocar no bolo. Ela sabe apenas o ano do seu nascimento. Ajude Creuza a solucionar este problema.
+ex006 → DÓLARES DA CREUZA: Creuza vai viajar para os Estados Unidos e quer saber quanto vai levar em dólares. Ajude ela a descobrir quanto vai levar.
+ex007 → TEMPERATURA DA CREUZA: Creuza chegou nos EUA olhou para o termômetro e viu 100 graus Fahrenheit, mas ela quer saber quanto é esta temperatura em Graus Celsius. Ajude Creuza.
+ex008 → IMPOSTO DA CREUZA: Creuza Comprou muita muamba e quer saber quanto vai pagar de imposto.
+ex009 → EMPRÉSTIMO DA CREUZA: Creuza ficou sem dinheiro e teve que pegar um empréstimo. Ela vai pagar um valor de 20% a mais do valor que ela tomar emprestado e vai poder dividir em quantas parcelas ela quiser. Ajude Creuza a saber o valor de cada parcela.
+ESTRUTURAS CONDICIONAIS SIMPLES
+ex010 → CALCULO IDADE: Desenvolva um programa em que o usuário digite o ano de nascimento e o programa mostre a idade do usuário e uma mensagem informando se ele já atingiu a maioridade.
+ESTRUTURAS CONDICIONAIS COMPOSTA
+ex011 → PAR OU ÍMPAR: Desenvolva um programa que o usuário digite um valor e o programa informe se aquele valor é par ou ímpar.
+ex012 → CÁLCULO IMC: Desenvolva um programa em que o usuário digite o seu peso e altura e o programa informe o IMC do usuário e se ele está dentro do peso ideal ou fora do peso ideal. Dica: faixa de peso ideal entre 18.5 e 25.
+ex013 → APTO CARTEIRA: Desenvolva um programa em que o usuário digite o seu ano de nascimento e o programa informe se o usuário está apto ou inapto a tirar a carteira de trânsito. Considerando apto o usuário maior de idade.
+ex014 → ALUNO APROVADO REPROVADO: Desenvolva um programa em que o usuário digite duas notas e o mostre a média das notas e se o aluno está aprovado ou reprovado. Considerando aprovado o aluno com média maior igual a sete.
+ESTRUTURAS CONDICIONAIS COMPOSTAS ANINHADAS
+ex015 → ALUNO APROVADO REPROVADO: Desenvolva um programa em que o usuário digite duas notas e o mostre a média das notas e se o aluno está aprovado, em recuperação ou reprovado. Considerando aprovado o aluno com média maior igual a sete, em recuperação com média entre sete e cinco e reprovado com média menor que cinco.
+ex016 → CÁLCULO IMC: Desenvolva um programa que leia o peso e a estatura de uma pessoa, determine o seu IMC e classifique de acordo com a tabela abaixo:
+IMC
+Menor que 17
+MUITO ABAIXO DO PESO
+Maior igual a 17 e menor que 18.5
+ABAIXO DO PESO
+Maior igual a 18.5 e menor que 25
+PESO IDEAL
+Maior igual a 25 e menor que 30
+SOBREPESO
+Maior igual a 30 e menor que 35
+OBESIDADE
+Maior igual a 35 e menor que 40
+OBESIDADE SEVERA
+Maior igual a 40
+OBESIDADE MORBIDA
+
+ex017 → DEPENDENTES FUNCIONÁRIO: Desenvolva um programa em que o usuário digite seu nome, o seu salário atual e quantos dependentes ele tem. No final o programa deve apresentar o novo salário do funcionário de acordo com a quantidade de dependentes. Se ele não tem dependentes, aumento de 5%, se ele tem de 1 até 3 dependentes, aumento de 10%, se ele tem de 4 até 6, aumento de 15% e se ele tem mais de 6 dependentes, aumento de 18%.
+ex018 → APROVEITAMENTO DE UM ALUNO: Desenvolva um programa em que o usuário digite duas notas e o programa apresente a média das notas e o aproveitamento do aluno, sendo: se a nota for maior ou igual a nove, aproveitamento A;  se a nota for maior ou igual a sete, aproveitamento B; se a nota for maior ou igual a cinco, aproveitamento C; se a nota for maior ou igual a 3, aproveitamento D; se a nota for maior ou igual a um, aproveitamento E; e se a nota for menor do que um, aproveitamento F.
+ex019 → BANGU x MADUREIRA: Desenvolva um programa em que seja digitado o placar de um jogo e no final apresente o status da partida de acordo com as seguintes condições: Se a diferença for igual a zero, status empate, se a diferença for de um até três gols, então status normal e se a diferença for maior do que três, então status goleada.
+ESTRUTURAS DE ESCOLHA CASO
+ex020 → CRIANÇA ESPERANÇA: Desenvolva um programa em que o usuário escolha quanto será a sua doação e no final o programa apresente uma mensagem de quanto foi a doação. Dica de página inicial: 
+"Muito Obrigado por ajudar "
+"[1] para doar R$10 "
+"[2] para doar R$25 "
+"[3] para doas R$50 "
+"[4] para doar outros valores "
+"[5] para cancelar "
+Caso o usuário escolha “outros valores” o programa deverá informa no final quanto foi esse valor, conforme o valor inserido pelo usuário.
+ESTRUTURAS DE REPETIÇÃO “while”
+ex021 → CONTE ATÉ 10: Desenvolva um programa que conte de 0 até 10. Use a estrutura de repetição “while”.
+ex022 → CONTE DE 10 ATÉ 0: Desenvolva um programa que conte de 10 até 0. Use a estrutura de repetição “while”.
+ex023 → CONTE DE 0 ATÉ ONDE QUISER: Desenvolva um programa que conte de 0 até onde quiser. O usuário também deve escolher de quanto será o pulo. Use a estrutura de repetição “while”.
+ex024 → SOMADOR NUMÉRICO: Desenvolva um programa em que o usuário digite cinco valores e no final o programa apresente a soma total dos valores digitados. Use a estrutura de repetição “while”.
+ex025 → SOMADOR MAIOR MENOR: Desenvolva um programa em que o usuário digite cinco valores e no final o programa apresente a soma total dos valores digitados, qual o maior valor e qual o menor valor digitado. Use a estrutura de repetição “while”.
+ex026 → CONVERSÃO MOEDA N VEZES: Desenvolva um programa em que o usuário faça conversões de moeda. O usuário deve escolher quantas conversões ele realizará antes de digitar o valor em real que ele tem. O valor em real deve ser convertido para dólar. Use a estrutura de repetição “while”.
+ex027 → CONTADOR INTELIGENTE: Desenvolva um programa em que o usuário digite o valor inicial e o valor final de uma contagem a ser mostrada pelo programa. Se o valor final for maior do que o inicial, a contagem será progressiva, caso contrário, a contagem será regressiva. Use a estrutura de repetição “while”.
+ex028 → MELHOR ALUNO: Desenvolva um programa que receba a quantidade total de alunos de uma sala. Em seguida receba os nomes e notas desses alunos e no final mostre o aluno com a melhor nota e sua respectiva nota.
+ESTRUTURAS DE REPETIÇÃO - “do”
+ex029 → MINHA TABUADA: Desenvolva um programa que pede para o usuário escolher um número e seja mostrado a tabuada desse número. Use o laço de repetição “do”.
+ex030 → CONTA NEGATIVOS: Desenvolva um programa que receba até cinco números e no final mostre quantos números negativos foram digitados. Use o laço de repetição “do”.
+ex031 → FATORIAL: Desenvolva um programa em que o usuário digite um número e o programa mostre o fatorial desse número. Use o laço de repetição “do”.
+ex032 → FATORIAL REPETICAO: Desenvolva um programa em que o usuário digite um número e o programa mostre o fatorial desse número e no final pergunte se o usuário quer repetir a operação. Use o laço de repetição “do”.
+ex033 → NUMERO PRIMO: Desenvolva um programa em que o usuário digite um número e mostre como resultado se esse número é primo ou não. Dica: um número primo é aquele que só pode ser dividido por um e por ele mesmo. Use o laço de repetição “do”.
+ex034 → SUPER CONTADOR: Desenvolva um programa em que o usuário escolha em um menu se quer contar de 0 a 10 ou de 10 a 0. Use o laço de repetição “do”.
+ex035 → ESCOLHENDO PESSOAS: Desenvolva um programa em que realize o cadastro de homens e mulheres, suas idades e a cor da pele. No final mostre total de homens com mais de 18 anos e cabelos castanhos e o total de mulheres entre 25 e 30 anos e cabelos loiros. Menu da cor da pele: Preto, Castanho, Loiro e Ruivo. Use o laço de repetição “do”.
+ESTRUTURAS DE REPETIÇÃO “for”
+ex036 → CONTAR 1 ATE 10 PARA: Desenvolva um programa em que conte de 0 até 10 e de 10 até zero, usando a estrutura de repetição “for”.
+ex037 → SOMA VALORES PARA: Desenvolva um programa em que receba 5 valores e no final apresente a soma desses valores. Use a estrutura de repetiçao “for”.
+ex038 → VALORES PARES: Desenvolva um programa em que o usuário digite um valor e o programa apresente apenas os valores pares da contagem progressiva até o valor digitado e a contagem regressiva partindo do valor digitado. Use a estrutura de repetiçao “for”.
+ex039 → QUANTOS ENTRE 0 E 10: Desenvolva um programa em que o usuário digite até 6 valores e no final o programa apresente o total de valores entre 0 e 10; e a soma desses valores entre 0 e 10 que forem impares. Use a estrutura de repetiçao “for”.
+ex040 → COMBINACOES: Desenvolva um programa em que mostre as combinações de três valores, agrupado de dois em dois. Use a estrutura de repetiçao “for”.
+ex041 → SEQUENCIA DE FIBONACCI: Desenvolva um programa em que mostre 10 primeiros números da sequencia de Fibonacci. Use a estrutura de repetiçao “for”.
+ex042 → ANALISADOR DE VALORES: Desenvolva um programa em que o usuário digite 5 valores e no final ele apresente: a soma dos valores,  a média entre os valores, quantos são divisíveis por 5, quantos são nulos e a soma dos valores pares. Use a estrutura de repetiçao “for”.
+PROCEDIMENTOS - ROTINAS
+ex041 → DETECTOR PESADO: Desenvolva um programa que o usuário digite o nome de cinco pessoas e o peso corporal de cada. A cada pessoa incluída no sistema, deve ser mostrado o maior peso cadastrado até o momento. No final deve ser apresentado o nome da pessoa que teve o maior peso e seu peso. Use estrutura de procedimento.
+ex042 → FAZ SOMA PROCEDIMENTO: Crie um programa que receba dois valores e apresente a soma entre os dois valores inseridos. Use estrutura de procedimento com passagem de parâmetro por valor.
+ex043 → PAR OU IMPAR PROCEDIMENTO: Elabore um programa que o usuário digite um valor e o programa informe se aquele valor é par ou ímpar. Use estrutura de procedimento com passagem de parâmetro por valor.
+ex044 → SEQUÊNCIA DE FIBONACCI REFERENCIA: Construa um programa que mostre os 15 primeiros números da sequência de Fibonacci. Use estrutura de procedimento com passagem de parâmetro por referência.
+FUNÇÕES
+ex045 → SOMA FUNÇÃO: Desenvolva um programa em que o usuário digite dois valores e esses valores sejam passados para uma função. Essa função deve retornar a soma dos valores inseridos.
+ex046 → PAR IMPAR FUNÇÃO: Construa um programa que tenha uma função que receba um valor e retorne se o valor é par ou ímpar.
+ex047 → FATORIAL FUNÇÃO: Elabore um programa o qual o usuário digite um número e o programa tenha uma função que retorne o fatorial do número digitado pelo usuário.
+ex048 → SEQUÊNCIA DE FIBONACCI FUNÇÃO: Crie um programa que o usuário digite os dois valores iniciais da sequência de Fibonacci e o programa tenha uma função que retorne os valores seguintes da sequência de Fibonacci.
+ex049 → ANALISADOR DE STRINGS: Elabore um programa que o usuário digite seu nome e o programa retorne quantas letras tem o nome do usuário digitado; Retorne seu nome em maiúsculo, em minúsculo; Retorne a primeira e última letra do seu nome; Qual a posição da letra “A” no nome; qual o código ascii da letra “A” e o código ascii 65 corresponde a qual caractere.	
+VETORES – VARIÁVEIS COMPOSTAS
+ex050 →TESTE VETOR: Desenvolva um programa em que o usuário digite seis valores e o programa apresente os seis vetores. Use variáveis compostas (vetores/arrays).
+ex051 → VALORES PARES VETORES: Crie um programa em que o usuário digite sete valores e no final o programa mostre a quantidade de valores pares digitados. Use variáveis compostas (vetores).
+ex061 → VALORES PARES VETORES 2: Elabore um programa em que o usuário digite sete valores e no final o programa mostre a quantidade de valores pares digitados e a posição de cada valor par digitado. Use variáveis compostas (vetores).
+ex062 → LISTAGEM DA TURMA: Construa um programa em que sejam cadastrados os nomes de 4 usuários, e duas notas para cada usuário cadastrado. Ao final o programa deve apresentar os nomes de cada usuário e suas respectivas médias. Use variáveis compostas (vetores).
+ex063 → LISTAGEM DA TURMA 2: Desenvolva um programa em que sejam cadastrados os nomes de 4 usuários, e duas notas para cada usuário cadastrado. Ao final o programa deve apresentar uma lista com os nomes dos usuários cadastrados e suas médias. Também deve mostrar outra lista com os nomes e o status de suas médias. Caso o aluno tenha média maior ou igual a 7, aluno aprovado, caso a nota seja menor do que 7, aluno reprovado. A lista de status deverá conter o nome seguido do status de cada usuário cadastrado. Use variáveis compostas (vetores).
+ex064 → LISTAGEM DA TURMA 3: Crie um programa em que sejam cadastrados os nomes de 4 alunos, e duas notas para cada aluno cadastrado. Ao final o programa deve apresentar uma lista com os nomes de cada aluno e suas respectivas médias. Também deverá apresentar a quantidade de alunos com a média maior do que a média da turma e a média da turma. Use variáveis compostas (vetores).
+ex065 → SÓ COM C: Elabore um programa que sejam cadastrados 10 nomes de usuários. No final o programa deve apresentar uma lista com os nomes que começam com a letra “C”.
+ex066 → ORDENA VETOR: Construa um programa em que o usuário digite 10 valores de forma aleatória e no final o programa apresente os valores em ordem crescente.
+ex067 → CAMPEONATO FUTEBOL: Desenvolva um programa em que seja cadastrado 3 times e no final seja mostrado uma tabela com os confrontos entre os times.
+ex068 → CORRIGINDO PROVAS: Elabore um programa que seja cadastrado um gabarito com 5 questões. Cadastre também 3 alunos e as 5 resposta de cada aluno. Cada resposta corresta do aluno valerá 2 pontos. No final o programa deve mostrar a lista com o nome dos alunos e a nota de cada aluno. Também deverá ser mostrado a média final da turma.
+ex069 → RESERVAR CINEMA: Crie um programa que simule a reserva de cadeiras de um cinema. No total serão 10 cadeiras. Quando o usuario escolher qual a sua cadeira, deverá ser apresentado quais as cadeiras estão livres e quais estão ocupadas. Caso o usuário escolha uma cadeira já ocupada, uma mensagem devera notificá-lo que a sua opção já foi escolhida e deverá perguntar se ele quer escolher outra. O programa sera encerrado quando o usuário optar por não escolher mais cadeiras.
+VARIÁVEIS COMPOSTAS HOMOGÊNEAS MULTIDIMENSIONAIS (MATRIZES)
+ex070 → MATRIZ 3x2: Desenvolva um programa que solicite ao usuario inserir valores numa matriz de ordem 3x2. No final o programa deverá apresentar os valores inseridos pelo usuário.
+ex071 → MATRIZ 3x3 PAR: Crie um programa que o usuario insira valores numa matriz 3x3. Deverá ser mostrada a posição a qual o usuário esta inserindo o valor. No final o programa deverá mostrar a matriz com todos o valores inseridos pelo usuário, destacando os valores pares. Deverá apresentar também o total de valores pares inseridos.
+ex072 → MATRIZ_IDENTIDADE 3x3: Elabore um programa que mostre uma matriz identidade de ordem 3x3.
+ex073 → MATRIZ 4x4: Construa um programa que o usuario insira valores numa matriz de ordem 4x4. O programa deverá apresentar o valores da matriz; a soma da Diagonal Principal, o produto da segunda linha e o maior valor da terceira coluna.
+ex074 → DISSECANDO MATRIZ: Elabore um programa que o usuario insira valoes numa matriz de ordem 4x4. O programa deve conter um menu com as opções: Matriz completa, Diagonal principal, Triângulo superior, Triângulo inferior e Sair. O programa deve mostrar a matriz de acordo com a opção escolhida pelo usuário. Se o usuário escolhe matriz completa, deve ser mostrado a matriz completa, se o usuário escolher a diagonal principal, deve ser mostrado a diagonal principal e assim por diante.
+ex075 → JOGO DA VELHA: 

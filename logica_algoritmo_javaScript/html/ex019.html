@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex020</title>
+    <style>
+        body{
+            background:rgb(0, 119, 255);
+            font: normal 15pt verdana;
+        }
+        header{
+            color:white;
+            text-align: center;
+        }
+        section{
+            background:white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: 0 auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.609); 
+        }
+        footer{
+            color:white;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BANGU x MADUREIRA</h1>
+    </header>
+    <section>
+        <div id='paginaInicial'>
+            <p>
+                Gols do Bangu: 
+                <input type="number" name="golsBangu" id="golsBangu">
+            </p>
+            <p>
+                Gols do Madureira: 
+                <input type="number" name="golsMadureira" id="golsMadureira">
+            </p>
+            <p>
+                <input type="button" value="verificar" onclick='verificar()'>
+            </p>
+        </div>
+        <div id='paginaFinal'>
+            
+        </div>
+    </section>
+    <footer>
+        <p>&copy;LogicaAlgoritmoJavaScript</p>
+    </footer>
+    <script>
+        function verificar(){
+            var golsBangu = document.querySelector('input#golsBangu')
+            var golsMadureira = document.querySelector('input#golsMadureira')
+            var paginaInicial = document.querySelector('div#paginaInicial')
+            var paginaFinal = document.querySelector('div#paginaFinal')
+
+            if(golsBangu.value.length == 0 || golsMadureira.value.length == 0){
+                alert('[ERROR] Você precisa digitar os gols!')
+            } else {
+                golsBangu = Number(golsBangu.value)
+                golsMadureira = Number(golsMadureira.value)
+                var diferença = Math.abs(golsBangu - golsMadureira)
+                paginaInicial.innerHTML = ``
+                paginaFinal.innerHTML = `<p>DIFERENÇA: ${diferença}</p>`
+                if(diferença < 1){
+                    paginaFinal.innerHTML += `STATUS: EMPATE!`
+                } else if(diferença < 4){
+                    paginaFinal.innerHTML += `STATUS: NORMAL!`
+                } else {
+                    paginaFinal.innerHTML += `STATUS: GOLEADA!`
+                }
+            }
+        }
+    </script>
+</body>
+</html>

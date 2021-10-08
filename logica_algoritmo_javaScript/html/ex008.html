@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex008</title>
+    <style>
+        body{
+            background:rgb(0, 115, 168);
+            font: normal 15pt verdana;
+        }
+        header{
+            color:white;
+            text-align: center;
+        }
+        section{
+            background:white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: 0 auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.609); 
+        }
+        p#botaoCalcular{
+            text-align: center;
+        }
+        div#resultado{
+            text-align: center;
+        }
+        footer{
+            color:white;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Imposto da Creuza</h1>
+    </header>
+    <section>
+        <div>
+            <p>
+                Quanto custou o produto? 
+                <input type="number" name="valorProduto" id="valorProduto">
+            </p>
+            <p id="botaoCalcular">
+                <input type="button" value="Calcular" onclick="calcular()">
+            </p>
+        </div>
+        <div id="resultadoFinal">
+            
+        </div>
+    </section>
+    <footer>
+        <p>&copy;LogicaAlgoritmoJavaScript</p>
+    </footer>
+    <script>
+        function calcular(){
+            var valorProduto = Number(document.querySelector('input#valorProduto').value)
+            var resultadoFinal = document.querySelector('div#resultadoFinal')
+            resultadoFinal.innerHTML = `Vou pagar de imposto ${((valorProduto * 60) / 100).toLocaleString('pt-BR', {style: 'currency', currency: 'USD'})}`
+        }
+    </script>
+</body>
+</html>
