@@ -11,4 +11,4 @@ do{
     var resposta = readlineSync.question("Quer inserir mais dados? [y][n]: ")
 } while (resposta == 'y')
 //https://ricardo-reis.medium.com/array-multidimensional-javascript-619bb33f2ed6
-//teste
+//teste-kayo
