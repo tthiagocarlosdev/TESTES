@@ -1,7 +1,6 @@
 var input = require('readline-sync')
 
 const { headerFunctions } = require('./headerFunctions')
-const { validationFunctions } = require('./validationFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 
 /*
@@ -26,6 +25,8 @@ function showGenre(genre){
 }
 
 /* variáveis */
+headerFunctions.header()
+/*
 const nome = anamnesisFunctions.name()
 const diaNascimento = Number(anamnesisFunctions.birthDay())
 const mesNascimento = Number(anamnesisFunctions.birthMonth())
@@ -44,3 +45,4 @@ console.log(`Ano Nascimento: ${anoNascimento}`)
 console.log(`Data Nascimento: ${dataNascimento}`)
 console.log(`Idade: ${idade}`)
 
+*/
