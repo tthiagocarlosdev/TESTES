@@ -145,3 +145,71 @@ Ao executar o programa:
 ===============================
 ```
 
+Agora vamos criar uma função que vai receber o nome do usuário. Esta função receberá o nome do usuário que deverá ter apenas letras e acentos/sinais, caso tenha **número**, deverá informar ao usuário que o dado está incorreto e pedir novamente para o usuário inserir o nome. Para isto vamos criar também duas funções de validação que serão usadas dentro da função do nome. 
+
+Em **anamnesisFunctions.js** dentro da variável que criamos, a função **name**:
+
+```js
+name: function() {
+    
+    let notNumber = true
+    let name = ''
+    
+    while(notNumber){
+      name = input.question('Digite seu nome: ')
+      notNumber = validationFunctions.itsLetters(name)
+      validationFunctions.incorrectValue(false, notNumber)
+    }
+    
+    return name
+  
+  },
+```
+
+Em **validationFunctions.js** também dentro da variável que criamos, a função **itsLetters** que receberá uma string como parâmetro e irá retornar **true** se dentro da _string_ contém número e _false_ se não tiver número:
+
+```js
+itsLetters: function(string){
+      
+    const regExp1 = /\d/g
+    let itsAlfa = regExp1.test(string)
+
+    if(itsAlfa){
+      return true
+    } else {
+      return false
+    }
+  },
+```
+
+Em **validationFunctions.js** a função **incorrectValue** terá dois valores booleanos como parâmetros e caso um dos dois seja _true_ a função irá retornar a function **header()** e a mensagem _"Dado incorreto!"_:
+
+```js
+incorrectValue: function (valueA, valueB){
+    if(valueA || valueB ){ 
+      console.clear()
+      headerFunctions.header()
+      console.log('Dado Incorreto!')
+    }
+  },
+```
+
+Em **saf.js** vamos criar uma variável nome, que receberá a function **name()** e depois vamos fazer uma **console.log** desa variável:
+
+```js
+var input = require('readline-sync')
+
+const { headerFunctions } = require('./headerFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+
+headerFunctions.header()
+
+/* variáveis */
+const nome = anamnesisFunctions.name()
+
+console.clear()
+headerFunctions.header()
+console.log(`Nome: ${nome}`)
+```
+
+Dia de nascimento

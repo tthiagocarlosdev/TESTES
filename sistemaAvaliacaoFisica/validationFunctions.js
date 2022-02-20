@@ -7,9 +7,9 @@ const validationFunctions = {
   itsLetters: function(string){
       
     const regExp1 = /\d/g
-    let istAlfa = regExp1.test(string)
+    let itsAlfa = regExp1.test(string)
 
-    if(istAlfa){
+    if(itsAlfa){
       return true
     } else {
       return false
@@ -43,6 +43,23 @@ const validationFunctions = {
       return false
     }
   },
+
+  minimumValue: function (standardValue, givenAway){
+    
+    if(givenAway < standardValue){
+      return true
+    } else {
+      return false
+    }
+  },
+
+  maximumValue: function(standardValue, givenAway){
+    if(givenAway > standardValue){
+      return true
+    } else {
+      return false
+    }
+  }
 
   
 }

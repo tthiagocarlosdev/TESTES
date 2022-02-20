@@ -25,13 +25,18 @@ const anamnesisFunctions = {
   
     let correctValue = true
     let correctAmount = true
+    let minimumValue = true
+    let maximumValue = true
     let birthDay = 0
   
-    while(correctValue || correctAmount){
+    while(correctValue || correctAmount || minimumValue || maximumValue){
       birthDay = input.question('Digite o dia de seu nascimento [DD]: ')
       correctValue = validationFunctions.itsNumber(birthDay)
       correctAmount = validationFunctions.correctSize(birthDay, 2)
+      minimumValue = validationFunctions.minimumValue(1, birthDay)
+      maximumValue = validationFunctions.maximumValue(31, birthDay)
       validationFunctions.incorrectValue(correctValue, correctAmount)
+      validationFunctions.incorrectValue(maximumValue, minimumValue)
     }
   
     return birthDay
