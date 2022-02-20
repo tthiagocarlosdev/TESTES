@@ -59,7 +59,7 @@ const validationFunctions = {
     } else {
       return false
     }
-  }
+  },
 
   
 }

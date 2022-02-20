@@ -212,4 +212,113 @@ headerFunctions.header()
 console.log(`Nome: ${nome}`)
 ```
 
-Dia de nascimento
+Agora vamos criar a function **birthDay** que vai receber o **dia de nascimento** do usuário. Essa function deverá receber apenas número, de dois dígitos e o valor mínimo de 01 e máximo de 31. Caso receba algum valor fora destas condições, uma mensagem de valor incorreto deverá ser apresentada e uma nova solicitação para inserir a dia de nascimento deverá aparecer. Vamos criar mais 4 funções de validação para usarmos nesta function, são elas:
+
+- **itsNumber( )** - recebe o valor inserido como parâmetro e valida se ele realmente é um número;
+- **correctSize( )** - recebe o valor inserido e a quantidade de dígitos que ele deve ter, fazendo a validação se a quantidade está de acordo com a que foi passada;
+- **minimumValue( )** - recebe o dia de nascimento e o valor mínimo que ele pode ter;
+- **maximumValue( )** -recebe o dia de nascimento e o valor máximo que ele pode ter;
+
+Todas estas function devem retornar um valor booleano.
+
+Sendo assim, em **validationFunctions.js**:
+
+- **itsNumber( )**
+
+```js
+itsNumber: function(value){
+  
+    const regExp2 = /\D/g
+    let itsNumber = regExp2.test(value)
+    
+    if(itsNumber){
+      return true
+    } else {
+      return false
+    }
+  },
+```
+
+- **correctSize( )**
+
+```js
+correctSize: function(string, amount){
+    if(string.length > amount){
+      return true
+    } else {
+      return false
+    }
+  },
+```
+
+- **minimumValue( )**
+
+```js
+ minimumValue: function (standardValue, givenAway){
+    
+    if(givenAway < standardValue){
+      return true
+    } else {
+      return false
+    }
+  },
+```
+
+- **maximumValue( )**
+
+```js
+maximumValue: function(standardValue, givenAway){
+    if(givenAway > standardValue){
+      return true
+    } else {
+      return false
+    }
+  },
+```
+
+Em **anamnesisFunctions.js**
+
+```js
+birthDay: function(){
+  
+    let correctValue = true
+    let correctAmount = true
+    let minimumValue = true
+    let maximumValue = true
+    let birthDay = 0
+  
+    while(correctValue || correctAmount || minimumValue || maximumValue){
+      birthDay = input.question('Digite o dia de seu nascimento [DD]: ')
+      correctValue = validationFunctions.itsNumber(birthDay)
+      correctAmount = validationFunctions.correctSize(birthDay, 2)
+      minimumValue = validationFunctions.minimumValue(1, birthDay)
+      maximumValue = validationFunctions.maximumValue(31, birthDay)
+      validationFunctions.incorrectValue(correctValue, correctAmount)
+      validationFunctions.incorrectValue(maximumValue, minimumValue)
+    }
+  
+    return birthDay
+  },
+```
+
+Em **saf.js** criamos a variável **diaNascimento** a qual recebe a function **birthDay( )**:
+
+```js
+var input = require('readline-sync')
+
+const { headerFunctions } = require('./headerFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+
+headerFunctions.header()
+
+/* variáveis */
+const nome = anamnesisFunctions.name()
+const diaNascimento = Number(anamnesisFunctions.birthDay())
+
+console.clear()
+headerFunctions.header()
+console.log(`Nome: ${nome}`)
+console.log(`Dia Nascimento: ${diaNascimento}`)
+```
+
+mesNascimento
