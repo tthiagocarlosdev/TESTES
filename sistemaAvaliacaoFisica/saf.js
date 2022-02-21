@@ -8,25 +8,26 @@ headerFunctions.header()
 /* variáveis */
 const nome = anamnesisFunctions.name()
 const diaNascimento = Number(anamnesisFunctions.birthDay())
+const mesNascimento = Number(anamnesisFunctions.birthMonth())
+const anoNascimento = Number(anamnesisFunctions.birthYear())
 
 console.clear()
 headerFunctions.header()
 console.log(`Nome: ${nome}`)
 console.log(`Dia Nascimento: ${diaNascimento}`)
+console.log(`Mês Nascimento: ${mesNascimento}`)
+console.log(`Ano Nascimento: ${anoNascimento}`)
+
+
+
 
 /*
-
-const mesNascimento = Number(anamnesisFunctions.birthMonth())
-const anoNascimento = Number(anamnesisFunctions.birthYear())
 const dataPassada = new Date(anoNascimento, mesNascimento, diaNascimento)
 const dataNascimento = anamnesisFunctions.dateBrazilianFormat(dataPassada)
 const idade = anamnesisFunctions.age(dataPassada)
 
 
 
-
-console.log(`Mês Nascimento: ${mesNascimento}`)
-console.log(`Ano Nascimento: ${anoNascimento}`)
 console.log(`Data Nascimento: ${dataNascimento}`)
 console.log(`Idade: ${idade}`)
 

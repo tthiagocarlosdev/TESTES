@@ -36,8 +36,8 @@ const validationFunctions = {
     }
   },
 
-  correctSize: function(string, amount){
-    if(string.length > amount){
+  correctSize: function(string, givenAway){
+    if(string.length > givenAway){
       return true
     } else {
       return false

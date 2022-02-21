@@ -36,7 +36,7 @@ const anamnesisFunctions = {
       minimumValue = validationFunctions.minimumValue(1, birthDay)
       maximumValue = validationFunctions.maximumValue(31, birthDay)
       validationFunctions.incorrectValue(correctValue, correctAmount)
-      validationFunctions.incorrectValue(maximumValue, minimumValue)
+      validationFunctions.incorrectValue(minimumValue, maximumValue)
     }
   
     return birthDay
@@ -46,13 +46,18 @@ const anamnesisFunctions = {
   
     let correctValue = true
     let correctAmount = true
+    let minimumValue = true
+    let maximumValue = true
     let birthMonth = 0
   
-    while(correctValue || correctAmount){
+    while(correctValue || correctAmount || minimumValue || maximumValue){
       birthMonth = input.question('Digite o mês de seu nascimento [MM]: ')
       correctValue = validationFunctions.itsNumber(birthMonth)
       correctAmount = validationFunctions.correctSize(birthMonth, 2)
+      minimumValue = validationFunctions.minimumValue(1, birthMonth)
+      maximumValue = validationFunctions.maximumValue(12, birthMonth)
       validationFunctions.incorrectValue(correctValue, correctAmount)
+      validationFunctions.incorrectValue(minimumValue, maximumValue)
     }
   
     return birthMonth
@@ -62,13 +67,20 @@ const anamnesisFunctions = {
   birthYear: function(){
     let correctValue = true
     let correctAmount = true
+    let minimumValue = true
+    let maximumValue = true
     let yearOfBirth = 0
+    let newDate = new Date()
+    let currentYear = newDate.getFullYear()
   
-    while(correctValue || correctAmount){
+    while(correctValue || correctAmount || minimumValue || maximumValue){
       yearOfBirth = input.question('Digite o ano de seu nascimento [AAAA]:')
       correctValue = validationFunctions.itsNumber(yearOfBirth)
       correctAmount = validationFunctions.correctSize(yearOfBirth, 4)
+      minimumValue = validationFunctions.minimumValue(1900, yearOfBirth)
+      maximumValue = validationFunctions.maximumValue(currentYear, yearOfBirth)
       validationFunctions.incorrectValue(correctValue, correctAmount)
+      validationFunctions.incorrectValue(minimumValue, maximumValue)
     }
   
     return Number(yearOfBirth)

@@ -294,7 +294,7 @@ birthDay: function(){
       minimumValue = validationFunctions.minimumValue(1, birthDay)
       maximumValue = validationFunctions.maximumValue(31, birthDay)
       validationFunctions.incorrectValue(correctValue, correctAmount)
-      validationFunctions.incorrectValue(maximumValue, minimumValue)
+      validationFunctions.incorrectValue(minimumValue, maximumValue)
     }
   
     return birthDay
@@ -321,4 +321,111 @@ console.log(`Nome: ${nome}`)
 console.log(`Dia Nascimento: ${diaNascimento}`)
 ```
 
-mesNascimento
+Agora vamos criar a function **birthMonth** que vai receber o **mês de nascimento** do usuário. Essa function deverá receber apenas número, de dois dígitos e o valor mínimo de 01 e máximo de 12. Caso receba algum valor fora destas condições, uma mensagem de valor incorreto deverá ser apresentada e uma nova solicitação para inserir o mês de nascimento deverá aparecer. Vamos utilizar as 4 functions de validação que usamos na function **birthDay**:
+
+- **itsNumber( )**, **correctSize( )**, **minimumValue( )**, **maximumValue( )**
+
+Sendo assim, em **anamnesisFunctions.js**:
+
+```js
+ birthMonth: function(){
+  
+    let correctValue = true
+    let correctAmount = true
+    let minimumValue = true
+    let maximumValue = true
+    let birthMonth = 0
+  
+    while(correctValue || correctAmount || minimumValue || maximumValue){
+      birthMonth = input.question('Digite o mês de seu nascimento [MM]: ')
+      correctValue = validationFunctions.itsNumber(birthMonth)
+      correctAmount = validationFunctions.correctSize(birthMonth, 2)
+      minimumValue = validationFunctions.minimumValue(1, birthMonth)
+      maximumValue = validationFunctions.maximumValue(12, birthMonth)
+      validationFunctions.incorrectValue(correctValue, correctAmount)
+      validationFunctions.incorrectValue(minimumValue, maximumValue)
+    }
+  
+    return birthMonth
+  
+  },
+```
+
+Em **saf.js** criamos a variável **mesNascimento** a qual recebe a function **birthMonth( )**:
+
+```javascript
+var input = require('readline-sync')
+
+const { headerFunctions } = require('./headerFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+
+headerFunctions.header()
+
+/* variáveis */
+const nome = anamnesisFunctions.name()
+const diaNascimento = Number(anamnesisFunctions.birthDay())
+const mesNascimento = Number(anamnesisFunctions.birthMonth())
+
+console.clear()
+headerFunctions.header()
+console.log(`Nome: ${nome}`)
+console.log(`Dia Nascimento: ${diaNascimento}`)
+console.log(`Mês Nascimento: ${mesNascimento}`)
+```
+
+Agora vamos criar a function **birthYear** que vai receber o **ano de nascimento** do usuário. Essa function deverá receber apenas número, de 4 dígitos, com o valor mínimo de 1900 e como máximo o **ano atual**. Caso receba algum valor fora destas condições, uma mensagem de valor incorreto deverá ser apresentada e uma nova solicitação para inserir o ano de nascimento deverá aparecer. Vamos utilizar as 4 functions de validação que usamos na function **birthMonth**:
+
+- **itsNumber( )**, **correctSize( )**, **minimumValue( )**, **maximumValue( )**
+
+Sendo assim, em **anamnesisFunctions.js**:
+
+```javascript
+birthYear: function(){
+    let correctValue = true
+    let correctAmount = true
+    let minimumValue = true
+    let maximumValue = true
+    let yearOfBirth = 0
+    let newDate = new Date()
+    let currentYear = newDate.getFullYear()
+  
+    while(correctValue || correctAmount || minimumValue || maximumValue){
+      yearOfBirth = input.question('Digite o ano de seu nascimento [AAAA]:')
+      correctValue = validationFunctions.itsNumber(yearOfBirth)
+      correctAmount = validationFunctions.correctSize(yearOfBirth, 4)
+      minimumValue = validationFunctions.minimumValue(1900, yearOfBirth)
+      maximumValue = validationFunctions.maximumValue(currentYear, yearOfBirth)
+      validationFunctions.incorrectValue(correctValue, correctAmount)
+      validationFunctions.incorrectValue(minimumValue, maximumValue)
+    }
+  
+    return Number(yearOfBirth)
+  
+  },
+```
+
+Em **saf.js** criamos a variável **anoNascimento** a qual recebe a function **birthYear( )**:
+
+```javascript
+var input = require('readline-sync')
+
+const { headerFunctions } = require('./headerFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+
+headerFunctions.header()
+
+/* variáveis */
+const nome = anamnesisFunctions.name()
+const diaNascimento = Number(anamnesisFunctions.birthDay())
+const mesNascimento = Number(anamnesisFunctions.birthMonth())
+const anoNascimento = Number(anamnesisFunctions.birthYear())
+
+console.clear()
+headerFunctions.header()
+console.log(`Nome: ${nome}`)
+console.log(`Dia Nascimento: ${diaNascimento}`)
+console.log(`Mês Nascimento: ${mesNascimento}`)
+console.log(`Ano Nascimento: ${anoNascimento}`)
+```
+
+data no formato brasileiro
