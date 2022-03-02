@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Sistema de Avaliação Física</title>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Sistema de Avaliação Física</h1>
+  </div>
+
+  <div class="box">
+    
+    <div class="container">
+
+      <div class="caption">
+        <h2>Anamnese</h2>
+      </div>
+  
+      <form id="form" class="form">
+        
+        <div class="form-control">
+          <label for="userName">Nome do usuário</label>
+          <input type="text" name="userName" id="userName" placeholder="Nome do usuário...">
+          <i class="fa-solid fa-square-check"></i>
+          <i class="fa-solid fa-square-exclamation"></i>
+          <small>Mensagem</small>
+        </div>
+    
+        <div class="form-control-checkbox">
+          <p>Gênero</p>
+          <div class="checkbox">
+            <input type="radio" name="sex" id="male" >
+            <label for="userName">Masculino</label>
+            <input type="radio" name="sex" id="female">
+            <label for="userName">Feminino</label>
+          </div>
+          <i class="fa-solid fa-square-check"></i>
+          <i class="fa-solid fa-square-exclamation"></i>
+          <small>Mensagem</small>
+        </div>
+    
+        <div class="form-control">
+          <label for="userName">Data de nascimento</label>
+          <input type="date" name="birthDate" id="birthDate">
+          <i class="fa-solid fa-square-check"></i>
+          <i class="fa-solid fa-square-exclamation"></i>
+          <small>Mensagem</small>
+        </div>
+    
+        <button type="submit">Enviar</button>
+        
+      </form>
+  
+    </div>
+
+  </div>
+
+  <script src="https://kit.fontawesome.com/bec2f6bc88.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
