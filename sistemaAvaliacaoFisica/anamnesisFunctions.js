@@ -91,7 +91,7 @@ const anamnesisFunctions = {
   
     let newDate = new Date(date)
     
-    return `${newDate.getDate()}/${newDate.getMonth()}/${newDate.getFullYear()}`
+    return `${newDate.getDate()}/${newDate.getMonth()+1}/${newDate.getFullYear()}`
     
   },
 

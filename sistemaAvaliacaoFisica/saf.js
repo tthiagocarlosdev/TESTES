@@ -10,31 +10,24 @@ const name = anamnesisFunctions.name()
 const birthDay = Number(anamnesisFunctions.birthDay())
 const birthMonth = Number(anamnesisFunctions.birthMonth())
 const birthYear = Number(anamnesisFunctions.birthYear())
-const informedDateOfBirth = new Date(birthYear, birthMonth, birthDay)
+const informedDateOfBirth = new Date(birthYear, birthMonth - 1, birthDay)
 const birthDate = anamnesisFunctions.dateBrazilianFormat(informedDateOfBirth)
+const age = anamnesisFunctions.age(informedDateOfBirth)
 
 console.clear()
 headerFunctions.header()
-console.log(`Nome: ${name}`)
+console.log(`Nome: ${name}.`)
 console.log(`Data de nascimento: ${birthDate}`)
+console.log(`Idade: ${age} anos!`)
+
+console.log(`===============================`)
+
+
 
 
 
 
 /*
-const dataPassada = new Date(anoNascimento, mesNascimento, diaNascimento)
-const dataNascimento = anamnesisFunctions.dateBrazilianFormat(dataPassada)
-const idade = anamnesisFunctions.age(dataPassada)
-
-
-
-console.log(`Data Nascimento: ${dataNascimento}`)
-console.log(`Idade: ${idade}`)
-
-*/
-
-/*
- - validação datas 'máximo'
  - função gênero 
 */
 

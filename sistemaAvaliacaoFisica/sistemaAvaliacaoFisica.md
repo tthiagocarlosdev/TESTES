@@ -428,4 +428,133 @@ console.log(`Mês Nascimento: ${mesNascimento}`)
 console.log(`Ano Nascimento: ${anoNascimento}`)
 ```
 
-data no formato brasileiro
+### Data no formato Brasileiro
+
+Agora vamos mostrar a data no formato brasileiro, para isto, em **anamnesisFunctions.js** vamos criar a **dateBrazilianFormat( )** que irá nos retornar a data em formato brasileiro:
+
+```javascript
+dateBrazilianFormat: function (date) {
+  
+    let newDate = new Date(date)
+    
+    return `${newDate.getDate()}/${newDate.getMonth()+1}/${newDate.getFullYear()}`
+    
+  },
+```
+
+Em **saf.js** vamos criar uma variável que receberá a data de nascimento que foi informada, **informedDateOfBirth**, (detalhe para o **birthMonth** que será passado como parâmetro, com o valor informado menos um, pois o valor retornado pelo método **.getMonth()** é um inteiro entre 0 e 11, sendo 0 o mês de janeiro e 11 dezembro) e depois chamar a function **dateBrazilianFormat( )**.
+
+```javascript
+var input = require('readline-sync')
+
+const { headerFunctions } = require('./headerFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+
+headerFunctions.header()
+
+/* variáveis */
+const name = anamnesisFunctions.name()
+const birthDay = Number(anamnesisFunctions.birthDay())
+const birthMonth = Number(anamnesisFunctions.birthMonth())
+const birthYear = Number(anamnesisFunctions.birthYear())
+const informedDateOfBirth = new Date(birthYear, birthMonth - 1, birthDay)
+const birthDate = anamnesisFunctions.dateBrazilianFormat(informedDateOfBirth)
+
+console.clear()
+headerFunctions.header()
+console.log(`Nome: ${name}`)
+console.log(`Dia Nascimento: ${birthDay}`)
+console.log(`Mês Nascimento: ${birthMonth}`)
+console.log(`Ano Nascimento: ${birthYear}`)
+console.log(`Data de nascimento: ${birthDate}`)
+```
+
+Agora não precisamos mais mostrar o dia, mês e ano separadamente, portanto pode apagar.
+
+```javascript
+var input = require('readline-sync')
+
+const { headerFunctions } = require('./headerFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+
+headerFunctions.header()
+
+/* variáveis */
+const name = anamnesisFunctions.name()
+const birthDay = Number(anamnesisFunctions.birthDay())
+const birthMonth = Number(anamnesisFunctions.birthMonth())
+const birthYear = Number(anamnesisFunctions.birthYear())
+const informedDateOfBirth = new Date(birthYear, birthMonth, birthDay)
+const birthDate = anamnesisFunctions.dateBrazilianFormat(informedDateOfBirth)
+
+console.clear()
+headerFunctions.header()
+console.log(`Nome: ${name}`)
+console.log(`Data de nascimento: ${birthDate}`)
+```
+
+No terminal:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+Nome: Fulano.
+Data de nascimento: 1/1/1900
+```
+
+### Idade
+
+Vamos construir a idade usando a function **age( )** em **anamnesisFunctions.js**. Esta function receberá uma data como parâmentro e fará o cálculo para determinar a idade em anos.
+
+```js
+age: function(birthDate) {
+
+    let currentDay = new Date()
+    let dateInMilliseconds = Math.abs(currentDay.getTime() - birthDate.getTime())
+    let age = Math.floor(dateInMilliseconds / (1000 * 60 * 60 * 24 * 365))
+    
+    return age
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável **age** que receberá a function **age( )** e depois mostrar a idade do usuário:
+
+```javascript
+var input = require('readline-sync')
+
+const { headerFunctions } = require('./headerFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+
+headerFunctions.header()
+
+/* variáveis */
+const name = anamnesisFunctions.name()
+const birthDay = Number(anamnesisFunctions.birthDay())
+const birthMonth = Number(anamnesisFunctions.birthMonth())
+const birthYear = Number(anamnesisFunctions.birthYear())
+const informedDateOfBirth = new Date(birthYear, birthMonth - 1, birthDay)
+const birthDate = anamnesisFunctions.dateBrazilianFormat(informedDateOfBirth)
+const age = anamnesisFunctions.age(informedDateOfBirth)
+
+console.clear()
+headerFunctions.header()
+console.log(`Nome: ${name}.`)
+console.log(`Data de nascimento: ${birthDate}`)
+console.log(`Idade: ${age} anos!`)
+console.log(`===============================`)
+```
+
+No terminal:
+
+``` tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+Nome: Fulano.
+Data de nascimento: 1/12/1990
+Idade: 31 anos!
+===============================
+```
+
