@@ -6,17 +6,17 @@ const { anamnesisFunctions } = require('./anamnesisFunctions')
 headerFunctions.header()
 
 /* variáveis */
-const nome = anamnesisFunctions.name()
-const diaNascimento = Number(anamnesisFunctions.birthDay())
-const mesNascimento = Number(anamnesisFunctions.birthMonth())
-const anoNascimento = Number(anamnesisFunctions.birthYear())
+const name = anamnesisFunctions.name()
+const birthDay = Number(anamnesisFunctions.birthDay())
+const birthMonth = Number(anamnesisFunctions.birthMonth())
+const birthYear = Number(anamnesisFunctions.birthYear())
+const informedDateOfBirth = new Date(birthYear, birthMonth, birthDay)
+const birthDate = anamnesisFunctions.dateBrazilianFormat(informedDateOfBirth)
 
 console.clear()
 headerFunctions.header()
-console.log(`Nome: ${nome}`)
-console.log(`Dia Nascimento: ${diaNascimento}`)
-console.log(`Mês Nascimento: ${mesNascimento}`)
-console.log(`Ano Nascimento: ${anoNascimento}`)
+console.log(`Nome: ${name}`)
+console.log(`Data de nascimento: ${birthDate}`)
 
 
 
