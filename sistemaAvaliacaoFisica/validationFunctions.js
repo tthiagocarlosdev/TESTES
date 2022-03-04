@@ -6,8 +6,8 @@ const validationFunctions = {
   
   itsLetters: function(string){
       
-    const regExp1 = /\d/g
-    let itsAlfa = regExp1.test(string)
+    const numberRegExp = /\d/g
+    let itsAlfa = numberRegExp.test(string)
 
     if(itsAlfa){
       return true
@@ -60,7 +60,6 @@ const validationFunctions = {
       return false
     }
   },
-
   
 }
 

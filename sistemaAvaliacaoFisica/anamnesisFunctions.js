@@ -87,6 +87,7 @@ const anamnesisFunctions = {
   
   },
 
+
   dateBrazilianFormat: function (date) {
   
     let newDate = new Date(date)

@@ -4,7 +4,12 @@ Olá dev's! Para praticar lógica de programação com JavaScript e Node.js, vam
 
 ## Preparing
 
+### Criando a pasta do projeto
+
 * Abra o VSCode e escolha um local para criar a pasta do projeto, Crie a pasta e coloque o nome do projeto. Eu coloquei **sistemaAvaliacaoFisica**. 
+
+### Instalando módulo readline-sync
+
 * Abra o terminal e vamos instalar o módulo **readline-sync** que será responsável pela interação do usuário com o sistema. No terminal, na raiz do projeto, digite o comando abaixo e tecle Enter.
 
 ```shell
@@ -12,15 +17,17 @@ $ npm install readline-sync
 ```
 
 - Apos a instalação, você vai perceber que uma pasta foi criada. É a pasta **node_modules**.
+
+### Criando os arquivos do projeto
+
 - Vamos agora criar quatro arquivos:
   -  **saf.js**. Esse será o arquivo principal do nosso projeto;
   - **headerFunctions.js**. Vamos colocar as funções de cabeçalho;
   - **validationFunctions.js**. Vamos colocar funções de validação;
   - **anamnesisFunctions.js**. Vamos colocar as funções da anamnese.
-
 - Em **saf.js** vamos:
   - Criar a variável de **input** com o módulo **readline-sync**;
-  - Importar os arquivos **headerFunctions.js** e **anamnesisFunctions**.
+  - Importar os arquivos **headerFunctions.js** e **anamnesisFunctions.js**.
 
 ```js
 var input = require('readline-sync')
@@ -88,9 +95,11 @@ Agora estamos prontos para colocar a mão na massa.
 
 Vamos começar pela anamnese, que é uma entrevista para saber do avaliado algumas informações importantes.
 
+### Cabeçalho
+
 Antes, vamos fazer um cabeçalho para nossa aplicação.
 
-Agora vamos criar a nossa primeira função de cabeçalho, denominada **header**. Em **headerFunctions.js**, dentro da variável **headerFunctions** vamos colocar a função **header**, conforme  abaixo:
+Agora vamos criar a nossa primeira function de cabeçalho, denominada **header**. Em **headerFunctions.js**, dentro da variável **headerFunctions** vamos colocar a function **header**, conforme  abaixo:
 
 ```js
 const headerFunctions = {
@@ -125,11 +134,13 @@ module.exports = {
 }
 ```
 
-No arquivo **saf.js** vamos chamar a função **header** para que ela seja executada:
+No arquivo **saf.js** vamos chamar a function **header** para que ela seja executada:
 
 ```javascript
 headerFunctions.header()
 ```
+
+### Executar o programa
 
 Para executar o programa, no terminal, digite o comando abaixo:
 
@@ -145,9 +156,11 @@ Ao executar o programa:
 ===============================
 ```
 
-Agora vamos criar uma função que vai receber o nome do usuário. Esta função receberá o nome do usuário que deverá ter apenas letras e acentos/sinais, caso tenha **número**, deverá informar ao usuário que o dado está incorreto e pedir novamente para o usuário inserir o nome. Para isto vamos criar também duas funções de validação que serão usadas dentro da função do nome. 
+### Nome do usuário
 
-Em **anamnesisFunctions.js** dentro da variável que criamos, a função **name**:
+Agora vamos criar uma function que vai receber o nome do usuário. Esta função receberá o nome do usuário que deverá ter apenas letras e acentos/sinais, caso tenha **número**, deverá informar ao usuário que o dado está incorreto e pedir novamente para o usuário inserir o nome. Para isto vamos criar também duas funções de validação que serão usadas dentro da função do nome. 
+
+Em **anamnesisFunctions.js** dentro da variável que criamos, crie a function **name**:
 
 ```js
 name: function() {
@@ -166,7 +179,9 @@ name: function() {
   },
 ```
 
-Em **validationFunctions.js** também dentro da variável que criamos, a função **itsLetters** que receberá uma string como parâmetro e irá retornar **true** se dentro da _string_ contém número e _false_ se não tiver número:
+### Validação de nome
+
+Em **validationFunctions.js** também dentro da variável que criamos, a function **itsLetters** que receberá uma string como parâmetro e irá retornar **true** se dentro da _string_ contém número e _false_ se não tiver número:
 
 ```js
 itsLetters: function(string){
@@ -182,7 +197,7 @@ itsLetters: function(string){
   },
 ```
 
-Em **validationFunctions.js** a função **incorrectValue** terá dois valores booleanos como parâmetros e caso um dos dois seja _true_ a função irá retornar a function **header()** e a mensagem _"Dado incorreto!"_:
+Em **validationFunctions.js** a function **incorrectValue** terá dois valores booleanos como parâmetros e caso um dos dois seja _true_ a function irá retornar a function **header()** e a mensagem _"Dado incorreto!"_:
 
 ```js
 incorrectValue: function (valueA, valueB){
@@ -194,7 +209,7 @@ incorrectValue: function (valueA, valueB){
   },
 ```
 
-Em **saf.js** vamos criar uma variável nome, que receberá a function **name()** e depois vamos fazer uma **console.log** desa variável:
+Em **saf.js** vamos criar uma variável name, que receberá a function **name()** e depois vamos fazer um **console.log** dessa variável:
 
 ```js
 var input = require('readline-sync')
@@ -205,19 +220,21 @@ const { anamnesisFunctions } = require('./anamnesisFunctions')
 headerFunctions.header()
 
 /* variáveis */
-const nome = anamnesisFunctions.name()
+const name = anamnesisFunctions.name()
 
 console.clear()
 headerFunctions.header()
-console.log(`Nome: ${nome}`)
+console.log(`Nome: ${name}`)
 ```
+
+### Dia do nascimento
 
 Agora vamos criar a function **birthDay** que vai receber o **dia de nascimento** do usuário. Essa function deverá receber apenas número, de dois dígitos e o valor mínimo de 01 e máximo de 31. Caso receba algum valor fora destas condições, uma mensagem de valor incorreto deverá ser apresentada e uma nova solicitação para inserir a dia de nascimento deverá aparecer. Vamos criar mais 4 funções de validação para usarmos nesta function, são elas:
 
 - **itsNumber( )** - recebe o valor inserido como parâmetro e valida se ele realmente é um número;
 - **correctSize( )** - recebe o valor inserido e a quantidade de dígitos que ele deve ter, fazendo a validação se a quantidade está de acordo com a que foi passada;
 - **minimumValue( )** - recebe o dia de nascimento e o valor mínimo que ele pode ter;
-- **maximumValue( )** -recebe o dia de nascimento e o valor máximo que ele pode ter;
+- **maximumValue( )** - recebe o dia de nascimento e o valor máximo que ele pode ter;
 
 Todas estas function devem retornar um valor booleano.
 
@@ -301,7 +318,7 @@ birthDay: function(){
   },
 ```
 
-Em **saf.js** criamos a variável **diaNascimento** a qual recebe a function **birthDay( )**:
+Em **saf.js** criamos a variável **birthDay** a qual recebe a function **birthDay( )**:
 
 ```js
 var input = require('readline-sync')
@@ -312,14 +329,16 @@ const { anamnesisFunctions } = require('./anamnesisFunctions')
 headerFunctions.header()
 
 /* variáveis */
-const nome = anamnesisFunctions.name()
-const diaNascimento = Number(anamnesisFunctions.birthDay())
+const name = anamnesisFunctions.name()
+const birthDay = Number(anamnesisFunctions.birthDay())
 
 console.clear()
 headerFunctions.header()
-console.log(`Nome: ${nome}`)
-console.log(`Dia Nascimento: ${diaNascimento}`)
+console.log(`Nome: ${name}`)
+console.log(`Dia Nascimento: ${birthDay}`)
 ```
+
+### Mês de nascimento
 
 Agora vamos criar a function **birthMonth** que vai receber o **mês de nascimento** do usuário. Essa function deverá receber apenas número, de dois dígitos e o valor mínimo de 01 e máximo de 12. Caso receba algum valor fora destas condições, uma mensagem de valor incorreto deverá ser apresentada e uma nova solicitação para inserir o mês de nascimento deverá aparecer. Vamos utilizar as 4 functions de validação que usamos na function **birthDay**:
 
@@ -351,7 +370,7 @@ Sendo assim, em **anamnesisFunctions.js**:
   },
 ```
 
-Em **saf.js** criamos a variável **mesNascimento** a qual recebe a function **birthMonth( )**:
+Em **saf.js** criamos a variável **birthMonth** a qual recebe a function **birthMonth( )**:
 
 ```javascript
 var input = require('readline-sync')
@@ -362,16 +381,18 @@ const { anamnesisFunctions } = require('./anamnesisFunctions')
 headerFunctions.header()
 
 /* variáveis */
-const nome = anamnesisFunctions.name()
-const diaNascimento = Number(anamnesisFunctions.birthDay())
-const mesNascimento = Number(anamnesisFunctions.birthMonth())
+const name = anamnesisFunctions.name()
+const birthDay = Number(anamnesisFunctions.birthDay())
+const birthMonth = Number(anamnesisFunctions.birthMonth())
 
 console.clear()
 headerFunctions.header()
-console.log(`Nome: ${nome}`)
-console.log(`Dia Nascimento: ${diaNascimento}`)
-console.log(`Mês Nascimento: ${mesNascimento}`)
+console.log(`Nome: ${name}`)
+console.log(`Dia Nascimento: ${birthDay}`)
+console.log(`Mês Nascimento: ${birthMonth}`)
 ```
+
+### Ano de nascimento
 
 Agora vamos criar a function **birthYear** que vai receber o **ano de nascimento** do usuário. Essa function deverá receber apenas número, de 4 dígitos, com o valor mínimo de 1900 e como máximo o **ano atual**. Caso receba algum valor fora destas condições, uma mensagem de valor incorreto deverá ser apresentada e uma nova solicitação para inserir o ano de nascimento deverá aparecer. Vamos utilizar as 4 functions de validação que usamos na function **birthMonth**:
 
@@ -404,7 +425,7 @@ birthYear: function(){
   },
 ```
 
-Em **saf.js** criamos a variável **anoNascimento** a qual recebe a function **birthYear( )**:
+Em **saf.js** criamos a variável **birthYear** a qual recebe a function **birthYear( )**:
 
 ```javascript
 var input = require('readline-sync')
@@ -415,17 +436,17 @@ const { anamnesisFunctions } = require('./anamnesisFunctions')
 headerFunctions.header()
 
 /* variáveis */
-const nome = anamnesisFunctions.name()
-const diaNascimento = Number(anamnesisFunctions.birthDay())
-const mesNascimento = Number(anamnesisFunctions.birthMonth())
-const anoNascimento = Number(anamnesisFunctions.birthYear())
+const name = anamnesisFunctions.name()
+const birthDay = Number(anamnesisFunctions.birthDay())
+const birthMonth = Number(anamnesisFunctions.birthMonth())
+const birthYear = Number(anamnesisFunctions.birthYear())
 
 console.clear()
 headerFunctions.header()
-console.log(`Nome: ${nome}`)
-console.log(`Dia Nascimento: ${diaNascimento}`)
-console.log(`Mês Nascimento: ${mesNascimento}`)
-console.log(`Ano Nascimento: ${anoNascimento}`)
+console.log(`Nome: ${name}`)
+console.log(`Dia Nascimento: ${birthDay}`)
+console.log(`Mês Nascimento: ${birthMonth}`)
+console.log(`Ano Nascimento: ${birthYear}`)
 ```
 
 ### Data no formato Brasileiro
@@ -442,7 +463,7 @@ dateBrazilianFormat: function (date) {
   },
 ```
 
-Em **saf.js** vamos criar uma variável que receberá a data de nascimento que foi informada, **informedDateOfBirth**, (detalhe para o **birthMonth** que será passado como parâmetro, com o valor informado menos um, pois o valor retornado pelo método **.getMonth()** é um inteiro entre 0 e 11, sendo 0 o mês de janeiro e 11 dezembro) e depois chamar a function **dateBrazilianFormat( )**.
+Em **saf.js** vamos criar uma variável que receberá a data de nascimento que foi informada, **informedDateOfBirth**, (detalhe para o **birthMonth** que será passado como parâmetro com o valor informado menos um, pois o valor retornado pelo método **.getMonth()** é um inteiro entre 0 e 11, sendo 0 o mês de janeiro e 11 dezembro) e depois chamar a function **dateBrazilianFormat( )**.
 
 ```javascript
 var input = require('readline-sync')

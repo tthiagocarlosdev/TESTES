@@ -13,6 +13,7 @@ const birthYear = Number(anamnesisFunctions.birthYear())
 const informedDateOfBirth = new Date(birthYear, birthMonth - 1, birthDay)
 const birthDate = anamnesisFunctions.dateBrazilianFormat(informedDateOfBirth)
 const age = anamnesisFunctions.age(informedDateOfBirth)
+// const gender = anamnesisFunctions.gender()
 
 console.clear()
 headerFunctions.header()
