@@ -9,8 +9,8 @@ const headerFunctions = {
     console.log("===============================")
   },
 
-  anamnesisHeader: function(){
-    console.log("           Anamnese            ")
+  subTitle: function(title){
+    console.log(`           ${title}            `)
     console.log("===============================")
   },
 

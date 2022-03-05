@@ -7,18 +7,46 @@ const validationFunctions = {
   hasNumberOrSymbol: function(string){
     
     const numberSymbolRegExp = /(\d|\W)/gi
-    let notNumberSymbol = numberSymbolRegExp.test(string)
-    console.log(notNumberSymbol)
-    return notNumberSymbol ? true : false
+    let numberSymbol = numberSymbolRegExp.test(string)
+
+    return numberSymbol ? true : false
     
   },
 
-  incorrectValue: function (valueA, valueB){
+  incorrectValue: function (valueA, valueB, title){
+    
     if(valueA || valueB ){ 
       console.clear()
       headerFunctions.systemHeader()
+      headerFunctions.subTitle(title)
       console.log('Dado Incorreto!')
     }
+
+  },
+
+    // retorna true se a data digitada pelo usuário está no formato da Regex Expression
+  dateAsRegexExpression: function(date, regex){
+    
+    let dateAsRegexExpression = regex.test(date)
+    
+    return dateAsRegexExpression ? true : false
+    
+  },
+
+    // recebe duas datas e valida se são iguais
+  validDate: function(informedDate, realDate){
+    
+    return informedDate === realDate ? true : false
+    
+  },
+
+    // recebe a data de nascimento em formato ISO e retorna se é maior do que a data atual
+  dateOfBirthHighestCurrentDate: function(dateOfBirth){
+    var currentDate = new Date()
+
+    // O método getTime() retorna o valor numérico correspondente ao horário da data especificada de acordo com o horário universal.
+    return dateOfBirth.getTime() > currentDate.getTime() ? true : false
+
   },
 
   itsNumber: function(value){

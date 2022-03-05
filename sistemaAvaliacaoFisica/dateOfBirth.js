@@ -30,14 +30,16 @@ function dateInBrazilFormat(dateInString){
   
 }
 
-// recebe uma data com string e uma regex. Retorna no formato ISO
-function dateInISOFormat(datePasse, regex){
-  var stringDate = String(regex.exec(datePasse))
-  let day = stringDate.substring(0,2)
-  let month = stringDate.substring(3,5)
-  let year = stringDate.substring(6, 10)
+// recebe uma data no formato brasleiro como string. Retorna a data no formato ISO
+function dateInISOFormat(dateInString){
+  
+  //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
+  let arrayNumber = dateInString.split('/')
+  let day = Number(arrayNumber[0])
+  let month = Number(arrayNumber[1])
+  let year = Number(arrayNumber[2])
 
-  return new Date(Number(year), Number(month-1), Number(day))
+  return new Date(year, month-1, day)
 }
 
 // recebe duas datas e valida se são iguais
@@ -78,7 +80,7 @@ function dateOfBirth(){
     
     dateEqualExpressionRegex = dateAsRegexExpression(typedDate, dateRegExp)
     
-    dateInBrazilianFormat = dateInBrazilFormat(typedDate, dateRegExp)
+    dateInBrazilianFormat = dateInBrazilFormat(typedDate)
 
     dateValid = validDate(typedDate, dateInBrazilianFormat)
 
@@ -94,9 +96,8 @@ function dateOfBirth(){
 
 let dataNascimento = dateOfBirth()
 console.log(`Data de nascimento: ${dataNascimento}`)
+
 const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
 let dataNascimentoISO = dateInISOFormat(dataNascimento, dateRegExp)
 let idade = age(dataNascimentoISO)
 console.log(`idade: ${idade} anos.`)
-
-

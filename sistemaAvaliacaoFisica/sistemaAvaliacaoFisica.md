@@ -99,7 +99,7 @@ Vamos começar pela anamnese, que é uma entrevista para saber do avaliado algum
 
 Antes, vamos fazer um cabeçalho para nossa aplicação.
 
-Agora vamos criar a nossa primeira function de cabeçalho, denominada **header**. Em **headerFunctions.js**, dentro da variável **headerFunctions** vamos colocar a function **header**, conforme  abaixo:
+Agora vamos criar a nossa primeira function de cabeçalho, denominada **systemHeader**. Em **headerFunctions.js**, dentro da variável **headerFunctions** vamos colocar a function **systemHeader**, conforme  abaixo:
 
 ```js
 const headerFunctions = {
@@ -113,11 +113,11 @@ const headerFunctions = {
 }
 ```
 
-Vamos criar também um function que irá mostrar o cabeçalho da anamnse:
+Vamos criar também um function que irá mostrar os subtítulos. Ela recebe como parâmetro o subtítulo da avaliação:
 
 ```js
-anamnesisHeader: function(){
-    console.log("           Anamnese            ")
+subTitle: function(title){
+    console.log(`           ${title}            `)
     console.log("===============================")
   },
 ```
@@ -136,8 +136,8 @@ const headerFunctions = {
     console.log("===============================")
   },
 
-  anamnesisHeader: function(){
-    console.log("           Anamnese            ")
+  subTitle: function(title){
+    console.log(`           ${title}            `)
     console.log("===============================")
   },
 
@@ -152,7 +152,7 @@ No arquivo **saf.js** vamos chamar as functions **systemHeader( )** e **anamnesi
 
 ```js
 headerFunctions.systemHeader()
-headerFunctions.anamnesisHeader()
+headerFunctions.subTitle("Anamnese")
 ```
 
 ### Executar o programa
@@ -186,10 +186,11 @@ userName: function() {
     let name = ''
     
     while(NumberOrSymbol){
+        
       name = input.question('Digite seu nome: ')
       NumberOrSymbol = validationFunctions.hasNumberOrSymbol(name)
-      console.log(NumberOrSymbol)
-      validationFunctions.incorrectValue(false, NumberOrSymbol)
+      validationFunctions.incorrectValue(false, NumberOrSymbol, "Anamnese")
+        
     }
     
     return name
@@ -199,26 +200,27 @@ userName: function() {
 
 ### Validação de nome
 
-Em **validationFunctions.js** também dentro da variável que criamos, a function **hasNumberOrSymbol** que receberá uma string como parâmetro e irá retornar **true** se dentro da _string_ contém número e _false_ se não tiver número:
+Em **validationFunctions.js** também dentro da variável que criamos, a function **hasNumberOrSymbol** que receberá uma string como parâmetro e irá retornar **true** se dentro da _string_ contém número ou símbolo e **false** se não tiver número ou símbolo:
 
 ```js
 hasNumberOrSymbol: function(string){
     
     const numberSymbolRegExp = /(\d|\W)/gi
-    let notNumberSymbol = numberSymbolRegExp.test(string)
-    console.log(notNumberSymbol)
-    return notNumberSymbol ? true : false
+    let numberSymbol = numberSymbolRegExp.test(string)
+   
+    return numberSymbol ? true : false
     
   },
 ```
 
-Em **validationFunctions.js** a function **incorrectValue** terá dois valores booleanos como parâmetros e caso um dos dois seja _true_ a function irá retornar a function **systemHeader( )** e a mensagem _"Dado incorreto!"_:
+Em **validationFunctions.js** a function **incorrectValue** terá dois valores booleanos como parâmetros e o subtítulo da parte da avaliação. Caso um dos dois valores booleanos seja _true_ a function irá retornar as functions **systemHeader( )** e **subTitle( )**, como também a mensagem _"Dado incorreto!"_:
 
 ```js
-incorrectValue: function (valueA, valueB){
+incorrectValue: function (valueA, valueB, title){
     if(valueA || valueB ){ 
       console.clear()
       headerFunctions.systemHeader()
+      headerFunctions.subTitle(title)
       console.log('Dado Incorreto!')
     }
   },
@@ -233,14 +235,14 @@ const { headerFunctions } = require('./headerFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 
 headerFunctions.systemHeader()
-headerFunctions.anamnesisHeader()
+headerFunctions.subTitle("Anamnese")
 
 // variáveis 
 const name = anamnesisFunctions.userName()
 
 console.clear()
 headerFunctions.systemHeader()
-headerFunctions.anamnesisHeader()
+headerFunctions.subTitle("Anamnese")
 console.log(`Nome: ${name}`)
 
 console.log(`===============================`)
@@ -258,312 +260,277 @@ Nome: Thiago
 ===============================
 ```
 
-
-
-# PAREI AQUI ++++++++++++++++++++++++++
-
-
-
 ### Dia do nascimento
 
-Agora vamos criar a function **birthDay** que vai receber o **dia de nascimento** do usuário. Essa function deverá receber apenas número, de dois dígitos e o valor mínimo de 01 e máximo de 31. Caso receba algum valor fora destas condições, uma mensagem de valor incorreto deverá ser apresentada e uma nova solicitação para inserir a dia de nascimento deverá aparecer. Vamos criar mais 4 funções de validação para usarmos nesta function, são elas:
+Agora vamos criar a function **dateOfBirth** que vai criar o **dia de nascimento** do usuário. Essa function vai solicitar ao usuário para digitar sua data de nascimento no formato brasileiro (dia / mês  / ano), sendo (2 dígitos / 2 dígitos / 4 dígitos). Essa function terá três validações e duas functions de criação de data pelo objeto Date( ):
 
-- **itsNumber( )** - recebe o valor inserido como parâmetro e valida se ele realmente é um número;
-- **correctSize( )** - recebe o valor inserido e a quantidade de dígitos que ele deve ter, fazendo a validação se a quantidade está de acordo com a que foi passada;
-- **minimumValue( )** - recebe o dia de nascimento e o valor mínimo que ele pode ter;
-- **maximumValue( )** - recebe o dia de nascimento e o valor máximo que ele pode ter;
+* **dateAsRegexExpression( )** - Para confirmar se a data digitada pelo usuário está no formato brasileiro. Recebe a data como string digitada pelo usuário e uma Expressão Regular. Retorna um valor booleano;
+*  **dateInBrazilFormat( )** - Recebe a data digitada pelo usuário como string e retorna uma data criada pelo objeto Date( ). Está function foi criada, pois caso o usuário digite uma data inválida, a function retorna uma data qualquer e no momento de comparar com a próxima function, como ela não é válida, dá um erro, pedindo para o usuário digitar novamente a data;
+* **validDate( )** - Vai receber a data digitada pelo usuário e a data criada pela function **dateInBrazilFormat( )** e compara se são iguais. Retorna um valor booleano;
+* **dateInISOFormat( )** - Recebe a data no formato brasileiro como string. Retorna a data no formato ISO;
+* **dateOfBirthHighestCurrentDate( )** - Recebe a data em formato ISO e verifica se ela é posterior a data atual. Retorna um valor booleano.
 
-Todas estas function devem retornar um valor booleano.
-
-Sendo assim, em **validationFunctions.js**:
-
-- **itsNumber( )**
+Em **anamnesisFunctions.js** vamos começar criando a function **dateOfBirth( )** que terá a seguinte estrutura:
 
 ```js
-itsNumber: function(value){
-  
-    const regExp2 = /\D/g
-    let itsNumber = regExp2.test(value)
+dateOfBirth: function(){
+  	let dateInBrazilianFormat = ''
+    let typedDate = ''
+    const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
+    let dateEqualExpressionRegex = false
+    let dateValid = false
+    let birthHighestCurrentDate = true
     
-    if(itsNumber){
-      return true
-    } else {
-      return false
-    }
-  },
-```
-
-- **correctSize( )**
-
-```js
-correctSize: function(string, amount){
-    if(string.length > amount){
-      return true
-    } else {
-      return false
-    }
-  },
-```
-
-- **minimumValue( )**
-
-```js
- minimumValue: function (standardValue, givenAway){
+    do{
+  
+    }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
     
-    if(givenAway < standardValue){
-      return true
-    } else {
-      return false
-    }
-  },
-```
-
-- **maximumValue( )**
-
-```js
-maximumValue: function(standardValue, givenAway){
-    if(givenAway > standardValue){
-      return true
-    } else {
-      return false
-    }
-  },
-```
-
-Em **anamnesisFunctions.js**
-
-```js
-birthDay: function(){
-  
-    let correctValue = true
-    let correctAmount = true
-    let minimumValue = true
-    let maximumValue = true
-    let birthDay = 0
-  
-    while(correctValue || correctAmount || minimumValue || maximumValue){
-      birthDay = input.question('Digite o dia de seu nascimento [DD]: ')
-      correctValue = validationFunctions.itsNumber(birthDay)
-      correctAmount = validationFunctions.correctSize(birthDay, 2)
-      minimumValue = validationFunctions.minimumValue(1, birthDay)
-      maximumValue = validationFunctions.maximumValue(31, birthDay)
-      validationFunctions.incorrectValue(correctValue, correctAmount)
-      validationFunctions.incorrectValue(minimumValue, maximumValue)
-    }
-  
-    return birthDay
-  },
-```
-
-Em **saf.js** criamos a variável **birthDay** a qual recebe a function **birthDay( )**:
-
-```js
-var input = require('readline-sync')
-
-const { headerFunctions } = require('./headerFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
-
-headerFunctions.header()
-
-/* variáveis */
-const name = anamnesisFunctions.name()
-const birthDay = Number(anamnesisFunctions.birthDay())
-
-console.clear()
-headerFunctions.header()
-console.log(`Nome: ${name}`)
-console.log(`Dia Nascimento: ${birthDay}`)
-```
-
-### Mês de nascimento
-
-Agora vamos criar a function **birthMonth** que vai receber o **mês de nascimento** do usuário. Essa function deverá receber apenas número, de dois dígitos e o valor mínimo de 01 e máximo de 12. Caso receba algum valor fora destas condições, uma mensagem de valor incorreto deverá ser apresentada e uma nova solicitação para inserir o mês de nascimento deverá aparecer. Vamos utilizar as 4 functions de validação que usamos na function **birthDay**:
-
-- **itsNumber( )**, **correctSize( )**, **minimumValue( )**, **maximumValue( )**
-
-Sendo assim, em **anamnesisFunctions.js**:
-
-```js
- birthMonth: function(){
-  
-    let correctValue = true
-    let correctAmount = true
-    let minimumValue = true
-    let maximumValue = true
-    let birthMonth = 0
-  
-    while(correctValue || correctAmount || minimumValue || maximumValue){
-      birthMonth = input.question('Digite o mês de seu nascimento [MM]: ')
-      correctValue = validationFunctions.itsNumber(birthMonth)
-      correctAmount = validationFunctions.correctSize(birthMonth, 2)
-      minimumValue = validationFunctions.minimumValue(1, birthMonth)
-      maximumValue = validationFunctions.maximumValue(12, birthMonth)
-      validationFunctions.incorrectValue(correctValue, correctAmount)
-      validationFunctions.incorrectValue(minimumValue, maximumValue)
-    }
-  
-    return birthMonth
-  
-  },
-```
-
-Em **saf.js** criamos a variável **birthMonth** a qual recebe a function **birthMonth( )**:
-
-```javascript
-var input = require('readline-sync')
-
-const { headerFunctions } = require('./headerFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
-
-headerFunctions.header()
-
-/* variáveis */
-const name = anamnesisFunctions.name()
-const birthDay = Number(anamnesisFunctions.birthDay())
-const birthMonth = Number(anamnesisFunctions.birthMonth())
-
-console.clear()
-headerFunctions.header()
-console.log(`Nome: ${name}`)
-console.log(`Dia Nascimento: ${birthDay}`)
-console.log(`Mês Nascimento: ${birthMonth}`)
-```
-
-### Ano de nascimento
-
-Agora vamos criar a function **birthYear** que vai receber o **ano de nascimento** do usuário. Essa function deverá receber apenas número, de 4 dígitos, com o valor mínimo de 1900 e como máximo o **ano atual**. Caso receba algum valor fora destas condições, uma mensagem de valor incorreto deverá ser apresentada e uma nova solicitação para inserir o ano de nascimento deverá aparecer. Vamos utilizar as 4 functions de validação que usamos na function **birthMonth**:
-
-- **itsNumber( )**, **correctSize( )**, **minimumValue( )**, **maximumValue( )**
-
-Sendo assim, em **anamnesisFunctions.js**:
-
-```javascript
-birthYear: function(){
-    let correctValue = true
-    let correctAmount = true
-    let minimumValue = true
-    let maximumValue = true
-    let yearOfBirth = 0
-    let newDate = new Date()
-    let currentYear = newDate.getFullYear()
-  
-    while(correctValue || correctAmount || minimumValue || maximumValue){
-      yearOfBirth = input.question('Digite o ano de seu nascimento [AAAA]:')
-      correctValue = validationFunctions.itsNumber(yearOfBirth)
-      correctAmount = validationFunctions.correctSize(yearOfBirth, 4)
-      minimumValue = validationFunctions.minimumValue(1900, yearOfBirth)
-      maximumValue = validationFunctions.maximumValue(currentYear, yearOfBirth)
-      validationFunctions.incorrectValue(correctValue, correctAmount)
-      validationFunctions.incorrectValue(minimumValue, maximumValue)
-    }
-  
-    return Number(yearOfBirth)
-  
-  },
-```
-
-Em **saf.js** criamos a variável **birthYear** a qual recebe a function **birthYear( )**:
-
-```javascript
-var input = require('readline-sync')
-
-const { headerFunctions } = require('./headerFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
-
-headerFunctions.header()
-
-/* variáveis */
-const name = anamnesisFunctions.name()
-const birthDay = Number(anamnesisFunctions.birthDay())
-const birthMonth = Number(anamnesisFunctions.birthMonth())
-const birthYear = Number(anamnesisFunctions.birthYear())
-
-console.clear()
-headerFunctions.header()
-console.log(`Nome: ${name}`)
-console.log(`Dia Nascimento: ${birthDay}`)
-console.log(`Mês Nascimento: ${birthMonth}`)
-console.log(`Ano Nascimento: ${birthYear}`)
-```
-
-### Data no formato Brasileiro
-
-Agora vamos mostrar a data no formato brasileiro, para isto, em **anamnesisFunctions.js** vamos criar a **dateBrazilianFormat( )** que irá nos retornar a data em formato brasileiro:
-
-```javascript
-dateBrazilianFormat: function (date) {
-  
-    let newDate = new Date(date)
-    
-    return `${newDate.getDate()}/${newDate.getMonth()+1}/${newDate.getFullYear()}`
+    return dateInBrazilianFormat
     
   },
 ```
 
-Em **saf.js** vamos criar uma variável que receberá a data de nascimento que foi informada, **informedDateOfBirth**, (detalhe para o **birthMonth** que será passado como parâmetro com o valor informado menos um, pois o valor retornado pelo método **.getMonth()** é um inteiro entre 0 e 11, sendo 0 o mês de janeiro e 11 dezembro) e depois chamar a function **dateBrazilianFormat( )**.
+Essa function irá retornar a data de nascimento no formato brasileiro **dateInBrazilianFormat**.
 
-```javascript
+Primeiro o usuário irá digitar a sua data de nascimento e essa informação será armazenada em **typedDate**.
+
+Em seguinda essa data será validada pela function **dateAsRegexExpression( )**.
+
+```js
+dateOfBirth: function(){
+    let dateInBrazilianFormat = ''
+    let typedDate = ''
+    const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
+    let dateEqualExpressionRegex = false
+    let dateValid = false
+    let birthHighestCurrentDate = true
+  
+    do{
+      typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
+      
+      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+  
+    }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
+    
+    return dateInBrazilianFormat
+    
+  },
+```
+
+Em **validationFunctions.js** vamos criar a function **dateAsRegexExpression**:
+
+```js
+dateAsRegexExpression: function(date, regex){
+    
+    let dateAsRegexExpression = regex.test(date)
+    
+    return dateAsRegexExpression ? true : false
+    
+  },
+```
+
+Agora em **anamnesisFunctions.js** vamos passar a data de nascimento pela function **dateInBrazilFormat( )** e armazenar a nova data criada em **dateInBrazilianFormat**:
+
+```js
+dateOfBirth: function(){
+    let dateInBrazilianFormat = ''
+    let typedDate = ''
+    const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
+    let dateEqualExpressionRegex = false
+    let dateValid = false
+    let birthHighestCurrentDate = true
+  
+    do{
+      typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
+      
+      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      
+      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
+  
+  
+    }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
+    
+    return dateInBrazilianFormat
+    
+  },
+```
+
+Ainda em **anamnesisFunctions.js** crie a function **dateInBrazilFormat( )**:
+
+```js
+dateInBrazilFormat: function(dateInString){
+
+    let arrayNumber = dateInString.split('/')
+    let day = Number(arrayNumber[0])
+    let month = Number(arrayNumber[1])
+    let year = Number(arrayNumber[2])
+
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    }
+    
+    let dateInBrazilianFormat = new Date(year, month-1, day)
+   
+    return dateInBrazilianFormat.toLocaleDateString("pt-br", options)
+    
+  },
+```
+
+Vamos agora comparar as duas datas, **typedDate** e **dateInBrazilianFormat** para saber se são iguais, passando pela function **validDate( )** e armazenando em **dateValid**.
+
+```js
+dateOfBirth: function(){
+    let dateInBrazilianFormat = ''
+    let typedDate = ''
+    const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
+    let dateEqualExpressionRegex = false
+    let dateValid = false
+    let birthHighestCurrentDate = true
+  
+    do{
+      typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
+      
+      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      
+      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
+  
+      dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
+  
+    }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
+    
+    return dateInBrazilianFormat
+    
+  },
+```
+
+Em **validationFunctions.js** criamos a function **validDate( )**:
+
+```js
+validDate: function(informedDate, realDate){
+    
+    return informedDate === realDate ? true : false
+    
+  },
+```
+
+Agora em **anamnesisFunctions.js** vamos verificar se a data é posterior a data atual, passando a data em formato ISO pela function **dateOfBirthHighestCurrentDate( )** e armazenando o resultado em **birthHighestCurrentDate**:
+
+```js
+dateOfBirth: function(){
+    let dateInBrazilianFormat = ''
+    let typedDate = ''
+    const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
+    let dateEqualExpressionRegex = false
+    let dateValid = false
+    let birthHighestCurrentDate = true
+  
+    do{
+      typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
+      
+      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      
+      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
+  
+      dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
+  
+      let dateISO = anamnesisFunctions.dateInISOFormat(dateInBrazilianFormat)
+      
+      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
+  
+    }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
+    
+    return dateInBrazilianFormat
+    
+  },
+```
+
+Em **validationFunctions.js** criamos a function **dateOfBirthHighestCurrentDate( )**:
+
+```js
+dateOfBirthHighestCurrentDate: function(dateOfBirth){
+    var currentDate = new Date()
+
+    return dateOfBirth.getTime() > currentDate.getTime() ? true : false
+
+  },
+```
+
+Para encerrar a function **dateOfBirth( )**, em **anamnesisFunctions.js** vamos passar os valores de **dateEqualExpressionRegex**, **dateValid** e **birthHighestCurrentDate** pela function **incorrectValue( )** que irá fazer com que o sistema de repetição funcione e também seja apresentada a mensagem de _Dado errado_ caso a data seja inválida:
+
+```js
+dateOfBirth: function(){
+    let dateInBrazilianFormat = ''
+    let typedDate = ''
+    const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
+    let dateEqualExpressionRegex = false
+    let dateValid = false
+    let birthHighestCurrentDate = true
+  
+    do{
+      typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
+      
+      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      
+      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
+  
+      dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
+  
+      let dateISO = anamnesisFunctions.dateInISOFormat(dateInBrazilianFormat)
+      
+      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
+
+      validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Anamnese")
+      validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Anamnese")
+  
+    }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
+    
+    return dateInBrazilianFormat
+    
+  },
+```
+
+Em **saf.js** criamos a variável **birthdayInBrazilianFormat** que receberá o resultado a function **dateOfBirth( )**, depois damos o **console.log**:
+
+```js
 var input = require('readline-sync')
 
 const { headerFunctions } = require('./headerFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 
-headerFunctions.header()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
 
-/* variáveis */
-const name = anamnesisFunctions.name()
-const birthDay = Number(anamnesisFunctions.birthDay())
-const birthMonth = Number(anamnesisFunctions.birthMonth())
-const birthYear = Number(anamnesisFunctions.birthYear())
-const informedDateOfBirth = new Date(birthYear, birthMonth - 1, birthDay)
-const birthDate = anamnesisFunctions.dateBrazilianFormat(informedDateOfBirth)
+// variáveis 
+const name = anamnesisFunctions.userName()
+const birthdayInBrazilianFormat = anamnesisFunctions.dateOfBirth(
 
 console.clear()
-headerFunctions.header()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
 console.log(`Nome: ${name}`)
-console.log(`Dia Nascimento: ${birthDay}`)
-console.log(`Mês Nascimento: ${birthMonth}`)
-console.log(`Ano Nascimento: ${birthYear}`)
-console.log(`Data de nascimento: ${birthDate}`)
+console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
+
+console.log(`===============================`)
 ```
 
-Agora não precisamos mais mostrar o dia, mês e ano separadamente, portanto pode apagar.
-
-```javascript
-var input = require('readline-sync')
-
-const { headerFunctions } = require('./headerFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
-
-headerFunctions.header()
-
-/* variáveis */
-const name = anamnesisFunctions.name()
-const birthDay = Number(anamnesisFunctions.birthDay())
-const birthMonth = Number(anamnesisFunctions.birthMonth())
-const birthYear = Number(anamnesisFunctions.birthYear())
-const informedDateOfBirth = new Date(birthYear, birthMonth, birthDay)
-const birthDate = anamnesisFunctions.dateBrazilianFormat(informedDateOfBirth)
-
-console.clear()
-headerFunctions.header()
-console.log(`Nome: ${name}`)
-console.log(`Data de nascimento: ${birthDate}`)
-```
-
-No terminal:
+Executando o programa:
 
 ```tex
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
-Nome: Fulano.
-Data de nascimento: 1/1/1900
+           Anamnese            
+===============================
+Nome: Fulano
+Data de nascimento: 20/01/2000
+===============================
 ```
 
 ### Idade
 
-Vamos construir a idade usando a function **age( )** em **anamnesisFunctions.js**. Esta function receberá uma data como parâmentro e fará o cálculo para determinar a idade em anos.
+Vamos construir a idade usando a function **age( )** em **anamnesisFunctions.js**. Esta function recebe a data em formato ISO e retorna a idade em anos.
 
 ```js
 age: function(birthDate) {
@@ -577,7 +544,9 @@ age: function(birthDate) {
   },
 ```
 
-Em **saf.js** vamos criar a variável **age** que receberá a function **age( )** e depois mostrar a idade do usuário:
+Em **saf.js** vamos criar a variável **birthdayInISOFormat** que receberá a data de nascimento no formato ISO usando a function **dateInISOFormat( )**.
+
+ Em seguinda criamos a variável **age** que receberá a function **age( )** e depois mostrar a idade do usuário:
 
 ```javascript
 var input = require('readline-sync')
@@ -585,22 +554,22 @@ var input = require('readline-sync')
 const { headerFunctions } = require('./headerFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 
-headerFunctions.header()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
 
-/* variáveis */
-const name = anamnesisFunctions.name()
-const birthDay = Number(anamnesisFunctions.birthDay())
-const birthMonth = Number(anamnesisFunctions.birthMonth())
-const birthYear = Number(anamnesisFunctions.birthYear())
-const informedDateOfBirth = new Date(birthYear, birthMonth - 1, birthDay)
-const birthDate = anamnesisFunctions.dateBrazilianFormat(informedDateOfBirth)
-const age = anamnesisFunctions.age(informedDateOfBirth)
+// variáveis 
+const name = anamnesisFunctions.userName()
+const birthdayInBrazilianFormat = anamnesisFunctions.dateOfBirth()
+const birthdayInISOFormat = anamnesisFunctions.dateInISOFormat(birthdayInBrazilianFormat)
+const age = anamnesisFunctions.age(birthdayInISOFormat)
 
 console.clear()
-headerFunctions.header()
-console.log(`Nome: ${name}.`)
-console.log(`Data de nascimento: ${birthDate}`)
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
+console.log(`Nome: ${name}`)
+console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
 console.log(`Idade: ${age} anos!`)
+
 console.log(`===============================`)
 ```
 
@@ -610,8 +579,10 @@ No terminal:
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
-Nome: Fulano.
-Data de nascimento: 1/12/1990
+           Anamnese            
+===============================
+Nome: Fulano
+Data de nascimento: 01/12/1990
 Idade: 31 anos!
 ===============================
 ```

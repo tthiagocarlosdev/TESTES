@@ -4,6 +4,7 @@ var input = require('readline-sync')
 
 const { validationFunctions } = require('./validationFunctions')
 
+
 const anamnesisFunctions = {
       
   userName: function() {
@@ -12,99 +13,91 @@ const anamnesisFunctions = {
     let name = ''
     
     while(NumberOrSymbol){
+
       name = input.question('Digite seu nome: ')
       NumberOrSymbol = validationFunctions.hasNumberOrSymbol(name)
-      console.log(NumberOrSymbol)
-      validationFunctions.incorrectValue(false, NumberOrSymbol)
+      validationFunctions.incorrectValue(false, NumberOrSymbol, "Anamnese")
+
     }
     
     return name
   
   },
 
-  birthDay: function(){
-  
-    let correctValue = true
-    let correctAmount = true
-    let minimumValue = true
-    let maximumValue = true
-    let birthDay = 0
-  
-    while(correctValue || correctAmount || minimumValue || maximumValue){
-      birthDay = input.question('Digite o dia de seu nascimento [DD]: ')
-      correctValue = validationFunctions.itsNumber(birthDay)
-      correctAmount = validationFunctions.correctSize(birthDay, 2)
-      minimumValue = validationFunctions.minimumValue(1, birthDay)
-      maximumValue = validationFunctions.maximumValue(31, birthDay)
-      validationFunctions.incorrectValue(correctValue, correctAmount)
-      validationFunctions.incorrectValue(minimumValue, maximumValue)
-    }
-  
-    return birthDay
-  },
-  
-  birthMonth: function(){
-  
-    let correctValue = true
-    let correctAmount = true
-    let minimumValue = true
-    let maximumValue = true
-    let birthMonth = 0
-  
-    while(correctValue || correctAmount || minimumValue || maximumValue){
-      birthMonth = input.question('Digite o mês de seu nascimento [MM]: ')
-      correctValue = validationFunctions.itsNumber(birthMonth)
-      correctAmount = validationFunctions.correctSize(birthMonth, 2)
-      minimumValue = validationFunctions.minimumValue(1, birthMonth)
-      maximumValue = validationFunctions.maximumValue(12, birthMonth)
-      validationFunctions.incorrectValue(correctValue, correctAmount)
-      validationFunctions.incorrectValue(minimumValue, maximumValue)
-    }
-  
-    return birthMonth
-  
-  },
+  // recebe a data como string e retorna a data no formato brasileiro criada pelo Objeto Date()
+  dateInBrazilFormat: function(dateInString){
 
-  birthYear: function(){
-    let correctValue = true
-    let correctAmount = true
-    let minimumValue = true
-    let maximumValue = true
-    let yearOfBirth = 0
-    let newDate = new Date()
-    let currentYear = newDate.getFullYear()
-  
-    while(correctValue || correctAmount || minimumValue || maximumValue){
-      yearOfBirth = input.question('Digite o ano de seu nascimento [AAAA]:')
-      correctValue = validationFunctions.itsNumber(yearOfBirth)
-      correctAmount = validationFunctions.correctSize(yearOfBirth, 4)
-      minimumValue = validationFunctions.minimumValue(1900, yearOfBirth)
-      maximumValue = validationFunctions.maximumValue(currentYear, yearOfBirth)
-      validationFunctions.incorrectValue(correctValue, correctAmount)
-      validationFunctions.incorrectValue(minimumValue, maximumValue)
+    //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
+    let arrayNumber = dateInString.split('/')
+    let day = Number(arrayNumber[0])
+    let month = Number(arrayNumber[1])
+    let year = Number(arrayNumber[2])
+
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
     }
-  
-    return Number(yearOfBirth)
-  
-  },
-
-
-  dateBrazilianFormat: function (date) {
-  
-    let newDate = new Date(date)
     
-    return `${newDate.getDate()}/${newDate.getMonth()+1}/${newDate.getFullYear()}`
+    let dateInBrazilianFormat = new Date(year, month-1, day)
+    
+    // O método toLocaleDateString() retorna uma string com a representação de parte da data baseando-se no idioma. Os novos argumentos locales e options deixam as aplicações especificarem o idioma cujas convenções de formatação devem ser usadas e permitem customizar o comportamento da função.
+    return dateInBrazilianFormat.toLocaleDateString("pt-br", options)
     
   },
 
+  // recebe uma data no formato brasleiro como string. Retorna a data no formato ISO
+  dateInISOFormat: function(dateInString){
+    
+    //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
+    let arrayNumber = dateInString.split('/')
+    let day = Number(arrayNumber[0])
+    let month = Number(arrayNumber[1])
+    let year = Number(arrayNumber[2])
+
+    return new Date(year, month-1, day)
+
+  },
+
+  dateOfBirth: function(){
+    let dateInBrazilianFormat = ''
+    let typedDate = ''
+    const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
+    let dateEqualExpressionRegex = false
+    let dateValid = false
+    let birthHighestCurrentDate = true
+  
+    do{
+      typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
+      
+      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      
+      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
+  
+      dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
+  
+      let dateISO = anamnesisFunctions.dateInISOFormat(dateInBrazilianFormat)
+      
+      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
+
+      validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Anamnese")
+      validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Anamnese")
+  
+    }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
+    
+    return dateInBrazilianFormat
+    
+  },
+
+  // Recebe a data em formato ISO e retorna a idade em anos.
   age: function(birthDate) {
 
-    let currentDay = new Date()
-    let dateInMilliseconds = Math.abs(currentDay.getTime() - birthDate.getTime())
-    let age = Math.floor(dateInMilliseconds / (1000 * 60 * 60 * 24 * 365))
+      let currentDay = new Date()
+      let dateInMilliseconds = Math.abs(currentDay.getTime() - birthDate.getTime())
+      let age = Math.floor(dateInMilliseconds / (1000 * 60 * 60 * 24 * 365))
+      
+      return age
     
-    return age
-  
   },
 
 }
