@@ -112,7 +112,7 @@ function dateInStandardFormat(datePasse, regex){
   let month = stringData.substring(3,5)
   let year = stringData.substring(6, 10)
 
-  return new Date(`${Number(year)}-${Number(month)}-${Number(day)}`)
+  return new Date (Number(year), Number(month-1), Number(day))
 }
 
 // recebe a data no padrão normal e retorna no padrão brasil como string
@@ -128,6 +128,7 @@ function validDate(informedDate, defaultDate){
     return false
   }
 }
+
 
 function DateOfBirth(){
   let dateExpressionRegex = true
@@ -145,6 +146,7 @@ function DateOfBirth(){
 
     if(!dateExpressionRegex){ 
       const dataFormatoPadrao = dateInStandardFormat(dataPassada, dateRegExp)
+      console.log(dataFormatoPadrao)
       dataFormatoBrasil = dateInBrazilFormat(dataFormatoPadrao)
       dataValida = !validDate(dataPassada, dataFormatoBrasil) 
     } else {

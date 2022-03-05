@@ -10,6 +10,7 @@ function dateAsRegexExpression(date, regex){
   }
 }
 
+
 // recebe a data como string e uma regex, retorna a data no formato brasileiro
 function dateInBrazilFormat(dateInString, regex){
 
@@ -60,33 +61,49 @@ function dateOfBirthHighestCurrentDate(dateOfBirth){
   }
 }
 
+function age(birthDate) {
+
+  let currentDay = new Date()
+  let dateInMilliseconds = Math.abs(currentDay.getTime() - birthDate.getTime())
+  let age = Math.floor(dateInMilliseconds / (1000 * 60 * 60 * 24 * 365))
+  
+  return age
+
+}
+
 function dateOfBirth(){
   let dateEqualExpressionRegex = false
   const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
   let typedDate = ''
-  let dateInStandardFormat = ''
+  let dateInBrazilianFormat = ''
   let dateValid = false
   let BirthHighestCurrentDate = true
 
-  while(!dateEqualExpressionRegex || !dateValid || BirthHighestCurrentDate){
-    
+  do{
     typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
     
     dateEqualExpressionRegex = dateAsRegexExpression(typedDate, dateRegExp)
     
-    dateInStandardFormat = dateInBrazilFormat(typedDate, dateRegExp)
+    dateInBrazilianFormat = dateInBrazilFormat(typedDate, dateRegExp)
 
-    dateValid = validDate(typedDate, dateInStandardFormat)
+    dateValid = validDate(typedDate, dateInBrazilianFormat)
 
-    let dataISO = dateInISOFormat(dateInStandardFormat, dateRegExp)
+    let dataISO = dateInISOFormat(dateInBrazilianFormat, dateRegExp)
+    
     BirthHighestCurrentDate = dateOfBirthHighestCurrentDate(dataISO)
 
-  }
+  }while(!dateEqualExpressionRegex || !dateValid || BirthHighestCurrentDate)
+
   
-  return dateInStandardFormat
+  return dateInBrazilianFormat
   
 }
 
-console.log(dateOfBirth())
+let dataNascimento = dateOfBirth()
+console.log(`Data de nascimento: ${dataNascimento}`)
+const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
+let dataNascimentoISO = dateInISOFormat(dataNascimento, dateRegExp)
+let idade = age(dataNascimentoISO)
+console.log(`idade: ${idade} anos.`)
 
 
