@@ -95,7 +95,7 @@ Agora estamos prontos para colocar a mão na massa.
 
 Vamos começar pela anamnese, que é uma entrevista para saber do avaliado algumas informações importantes.
 
-### Cabeçalho
+### Cabeçalhos
 
 Antes, vamos fazer um cabeçalho para nossa aplicação.
 
@@ -104,13 +104,22 @@ Agora vamos criar a nossa primeira function de cabeçalho, denominada **header**
 ```js
 const headerFunctions = {
   
-  header: function(){
+  systemHeader: function(){
     console.log("===============================")
     console.log("  SISTEMA DE AVALIAÇÃO FÍSICA  ")
     console.log("===============================")
   },
 
 }
+```
+
+Vamos criar também um function que irá mostrar o cabeçalho da anamnse:
+
+```js
+anamnesisHeader: function(){
+    console.log("           Anamnese            ")
+    console.log("===============================")
+  },
 ```
 
 Arquivo **headerFunctions** completo, até o momento:
@@ -121,9 +130,14 @@ var input = require('readline-sync')
 /* header functions */
 const headerFunctions = {
   
-  header: function(){
+  systemHeader: function(){
     console.log("===============================")
     console.log("  SISTEMA DE AVALIAÇÃO FÍSICA  ")
+    console.log("===============================")
+  },
+
+  anamnesisHeader: function(){
+    console.log("           Anamnese            ")
     console.log("===============================")
   },
 
@@ -134,10 +148,11 @@ module.exports = {
 }
 ```
 
-No arquivo **saf.js** vamos chamar a function **header** para que ela seja executada:
+No arquivo **saf.js** vamos chamar as functions **systemHeader( )** e **anamnesisHeader( )** para serem executadas:
 
-```javascript
-headerFunctions.header()
+```js
+headerFunctions.systemHeader()
+headerFunctions.anamnesisHeader()
 ```
 
 ### Executar o programa
@@ -150,28 +165,31 @@ $ node saf.js
 
 Ao executar o programa:
 
-```shell
+```tex
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
 ===============================
 ```
 
 ### Nome do usuário
 
-Agora vamos criar uma function que vai receber o nome do usuário. Esta função receberá o nome do usuário que deverá ter apenas letras e acentos/sinais, caso tenha **número**, deverá informar ao usuário que o dado está incorreto e pedir novamente para o usuário inserir o nome. Para isto vamos criar também duas funções de validação que serão usadas dentro da função do nome. 
+Agora vamos criar uma function que vai receber o nome do usuário. Esta function receberá o nome do usuário que deverá ter apenas letras e acentos/sinais, caso tenha **número**, deverá informar ao usuário que o dado está incorreto e pedir novamente para o usuário inserir o nome. Para isto vamos criar também duas functions de validação que serão usadas dentro da function do nome. 
 
-Em **anamnesisFunctions.js** dentro da variável que criamos, crie a function **name**:
+Em **anamnesisFunctions.js** dentro da variável que criamos, crie a function **userName**:
 
 ```js
-name: function() {
+userName: function() {
     
-    let notNumber = true
+    let NumberOrSymbol = true
     let name = ''
     
-    while(notNumber){
+    while(NumberOrSymbol){
       name = input.question('Digite seu nome: ')
-      notNumber = validationFunctions.itsLetters(name)
-      validationFunctions.incorrectValue(false, notNumber)
+      NumberOrSymbol = validationFunctions.hasNumberOrSymbol(name)
+      console.log(NumberOrSymbol)
+      validationFunctions.incorrectValue(false, NumberOrSymbol)
     }
     
     return name
@@ -181,35 +199,32 @@ name: function() {
 
 ### Validação de nome
 
-Em **validationFunctions.js** também dentro da variável que criamos, a function **itsLetters** que receberá uma string como parâmetro e irá retornar **true** se dentro da _string_ contém número e _false_ se não tiver número:
+Em **validationFunctions.js** também dentro da variável que criamos, a function **hasNumberOrSymbol** que receberá uma string como parâmetro e irá retornar **true** se dentro da _string_ contém número e _false_ se não tiver número:
 
 ```js
-itsLetters: function(string){
-      
-    const regExp1 = /\d/g
-    let itsAlfa = regExp1.test(string)
-
-    if(itsAlfa){
-      return true
-    } else {
-      return false
-    }
+hasNumberOrSymbol: function(string){
+    
+    const numberSymbolRegExp = /(\d|\W)/gi
+    let notNumberSymbol = numberSymbolRegExp.test(string)
+    console.log(notNumberSymbol)
+    return notNumberSymbol ? true : false
+    
   },
 ```
 
-Em **validationFunctions.js** a function **incorrectValue** terá dois valores booleanos como parâmetros e caso um dos dois seja _true_ a function irá retornar a function **header()** e a mensagem _"Dado incorreto!"_:
+Em **validationFunctions.js** a function **incorrectValue** terá dois valores booleanos como parâmetros e caso um dos dois seja _true_ a function irá retornar a function **systemHeader( )** e a mensagem _"Dado incorreto!"_:
 
 ```js
 incorrectValue: function (valueA, valueB){
     if(valueA || valueB ){ 
       console.clear()
-      headerFunctions.header()
+      headerFunctions.systemHeader()
       console.log('Dado Incorreto!')
     }
   },
 ```
 
-Em **saf.js** vamos criar uma variável name, que receberá a function **name()** e depois vamos fazer um **console.log** dessa variável:
+Em **saf.js** vamos criar uma variável **name**, que receberá a function **userName( )** e depois vamos fazer um **console.log** dessa variável:
 
 ```js
 var input = require('readline-sync')
@@ -217,15 +232,37 @@ var input = require('readline-sync')
 const { headerFunctions } = require('./headerFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 
-headerFunctions.header()
+headerFunctions.systemHeader()
+headerFunctions.anamnesisHeader()
 
-/* variáveis */
-const name = anamnesisFunctions.name()
+// variáveis 
+const name = anamnesisFunctions.userName()
 
 console.clear()
-headerFunctions.header()
+headerFunctions.systemHeader()
+headerFunctions.anamnesisHeader()
 console.log(`Nome: ${name}`)
+
+console.log(`===============================`)
 ```
+
+Ao executar:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Nome: Thiago
+===============================
+```
+
+
+
+# PAREI AQUI ++++++++++++++++++++++++++
+
+
 
 ### Dia do nascimento
 

@@ -161,8 +161,9 @@ function DateOfBirth(){
 }
 
 
-const dN = DateOfBirth()
-console.log(dN)
+// const dN = DateOfBirth()
+// console.log(dN)
+
 /*
 const informedDateOfBirth = new Date(birthYear, birthMonth - 1, birthDay)
 const birthDate = anamnesisFunctions.dateBrazilianFormat(informedDateOfBirth)
@@ -216,3 +217,231 @@ console.log(date)
 
 const actual = new Intl.DateTimeFormat("pt-br").format(date)
 console.log(actual)*/
+
+function dateInBrazilFormat(dateInString){
+  
+  let arrayNumber = dateInString.split('/')
+  let day = Number(arrayNumber[0])
+  let month = Number(arrayNumber[1])
+  let year = Number(arrayNumber[2])
+
+  console.log(day)
+  console.log(month)
+  console.log(year)
+
+  const options = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  }
+  
+  let dateInBrazilianFormat = new Date(year, month-1, day)
+  
+  return dateInBrazilianFormat.toLocaleDateString("pt-br", options)
+  
+}
+  
+
+let date = '29/02/2022'
+
+
+console.log(dateInBrazilFormat(date))
+
+//recebe uma string e um separador. Retorna um array de strings divididos em cada ponto onde o separador ocorre na string informada.
+function splitString(stringToSplit, separator) {
+  var arrayOfStrings = stringToSplit.split(separator);
+  return arrayOfStrings
+}
+
+
+// console.log(day)
+// console.log(month)
+// console.log(year)
+
+/*=======================================================================*/
+
+/* Anamnesis Functions */
+/*
+var input = require('readline-sync')
+
+const { validationFunctions } = require('./validationFunctions')
+
+const anamnesisFunctions = {
+      
+  name: function() {
+    
+    let notNumber = true
+    let name = ''
+    
+    while(notNumber){
+      name = input.question('Digite seu nome: ')
+      notNumber = validationFunctions.itsLetters(name)
+      validationFunctions.incorrectValue(false, notNumber)
+    }
+    
+    return name
+  
+  },
+
+  birthDay: function(){
+  
+    let correctValue = true
+    let correctAmount = true
+    let minimumValue = true
+    let maximumValue = true
+    let birthDay = 0
+  
+    while(correctValue || correctAmount || minimumValue || maximumValue){
+      birthDay = input.question('Digite o dia de seu nascimento [DD]: ')
+      correctValue = validationFunctions.itsNumber(birthDay)
+      correctAmount = validationFunctions.correctSize(birthDay, 2)
+      minimumValue = validationFunctions.minimumValue(1, birthDay)
+      maximumValue = validationFunctions.maximumValue(31, birthDay)
+      validationFunctions.incorrectValue(correctValue, correctAmount)
+      validationFunctions.incorrectValue(minimumValue, maximumValue)
+    }
+  
+    return birthDay
+  },
+  
+  birthMonth: function(){
+  
+    let correctValue = true
+    let correctAmount = true
+    let minimumValue = true
+    let maximumValue = true
+    let birthMonth = 0
+  
+    while(correctValue || correctAmount || minimumValue || maximumValue){
+      birthMonth = input.question('Digite o mês de seu nascimento [MM]: ')
+      correctValue = validationFunctions.itsNumber(birthMonth)
+      correctAmount = validationFunctions.correctSize(birthMonth, 2)
+      minimumValue = validationFunctions.minimumValue(1, birthMonth)
+      maximumValue = validationFunctions.maximumValue(12, birthMonth)
+      validationFunctions.incorrectValue(correctValue, correctAmount)
+      validationFunctions.incorrectValue(minimumValue, maximumValue)
+    }
+  
+    return birthMonth
+  
+  },
+
+  birthYear: function(){
+    let correctValue = true
+    let correctAmount = true
+    let minimumValue = true
+    let maximumValue = true
+    let yearOfBirth = 0
+    let newDate = new Date()
+    let currentYear = newDate.getFullYear()
+  
+    while(correctValue || correctAmount || minimumValue || maximumValue){
+      yearOfBirth = input.question('Digite o ano de seu nascimento [AAAA]:')
+      correctValue = validationFunctions.itsNumber(yearOfBirth)
+      correctAmount = validationFunctions.correctSize(yearOfBirth, 4)
+      minimumValue = validationFunctions.minimumValue(1900, yearOfBirth)
+      maximumValue = validationFunctions.maximumValue(currentYear, yearOfBirth)
+      validationFunctions.incorrectValue(correctValue, correctAmount)
+      validationFunctions.incorrectValue(minimumValue, maximumValue)
+    }
+  
+    return Number(yearOfBirth)
+  
+  },
+
+
+  dateBrazilianFormat: function (date) {
+  
+    let newDate = new Date(date)
+    
+    return `${newDate.getDate()}/${newDate.getMonth()+1}/${newDate.getFullYear()}`
+    
+  },
+
+  age: function(birthDate) {
+
+    let currentDay = new Date()
+    let dateInMilliseconds = Math.abs(currentDay.getTime() - birthDate.getTime())
+    let age = Math.floor(dateInMilliseconds / (1000 * 60 * 60 * 24 * 365))
+    
+    return age
+  
+  },
+
+}
+
+module.exports = {
+  anamnesisFunctions
+}*/
+
+/*======================================================================================
+
+ Validation Functions 
+
+const { headerFunctions } = require('./headerFunctions')
+
+const validationFunctions = {
+  
+  itsLetters: function(string){
+      
+    const numberRegExp = /\d/g
+    let itsAlfa = numberRegExp.test(string)
+
+    if(itsAlfa){
+      return true
+    } else {
+      return false
+    }
+  },
+
+  incorrectValue: function (valueA, valueB){
+    if(valueA || valueB ){ 
+      console.clear()
+      headerFunctions.header()
+      console.log('Dado Incorreto!')
+    }
+  },
+
+  itsNumber: function(value){
+  
+    const regExp2 = /\D/g
+    let itsNumber = regExp2.test(value)
+    
+    if(itsNumber){
+      return true
+    } else {
+      return false
+    }
+  },
+
+  correctSize: function(string, givenAway){
+    if(string.length > givenAway){
+      return true
+    } else {
+      return false
+    }
+  },
+
+  minimumValue: function (standardValue, givenAway){
+    
+    if(givenAway < standardValue){
+      return true
+    } else {
+      return false
+    }
+  },
+
+  maximumValue: function(standardValue, givenAway){
+    if(givenAway > standardValue){
+      return true
+    } else {
+      return false
+    }
+  },
+  
+}
+
+module.exports = {
+  validationFunctions
+}
+*/

@@ -6,15 +6,16 @@ const { validationFunctions } = require('./validationFunctions')
 
 const anamnesisFunctions = {
       
-  name: function() {
+  userName: function() {
     
-    let notNumber = true
+    let NumberOrSymbol = true
     let name = ''
     
-    while(notNumber){
+    while(NumberOrSymbol){
       name = input.question('Digite seu nome: ')
-      notNumber = validationFunctions.itsLetters(name)
-      validationFunctions.incorrectValue(false, notNumber)
+      NumberOrSymbol = validationFunctions.hasNumberOrSymbol(name)
+      console.log(NumberOrSymbol)
+      validationFunctions.incorrectValue(false, NumberOrSymbol)
     }
     
     return name

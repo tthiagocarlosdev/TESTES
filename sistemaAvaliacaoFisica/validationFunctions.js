@@ -4,22 +4,19 @@ const { headerFunctions } = require('./headerFunctions')
 
 const validationFunctions = {
   
-  itsLetters: function(string){
-      
-    const numberRegExp = /\d/g
-    let itsAlfa = numberRegExp.test(string)
-
-    if(itsAlfa){
-      return true
-    } else {
-      return false
-    }
+  hasNumberOrSymbol: function(string){
+    
+    const numberSymbolRegExp = /(\d|\W)/gi
+    let notNumberSymbol = numberSymbolRegExp.test(string)
+    console.log(notNumberSymbol)
+    return notNumberSymbol ? true : false
+    
   },
 
   incorrectValue: function (valueA, valueB){
     if(valueA || valueB ){ 
       console.clear()
-      headerFunctions.header()
+      headerFunctions.systemHeader()
       console.log('Dado Incorreto!')
     }
   },

@@ -1,64 +1,58 @@
 var input = require('readline-sync')
 
-// informa se a data passada pelo usuário está no formato regex
+// retorna true se a data digitada pelo usuário está no formato da Regex Expression
 function dateAsRegexExpression(date, regex){
+  
   let dateAsRegexExpression = regex.test(date)
-  if(dateAsRegexExpression){
-    return true
-  } else {
-    return false
-  }
+  
+  return dateAsRegexExpression ? true : false
+  
 }
 
+// recebe a data como string e retorna a data no formato brasileiro criada pelo Objeto Date()
+function dateInBrazilFormat(dateInString){
 
-// recebe a data como string e uma regex, retorna a data no formato brasileiro
-function dateInBrazilFormat(dateInString, regex){
-
-  let stringData = String(regex.exec(dateInString))
-  let day = stringData.substring(0,2)
-  let month = stringData.substring(3,5)
-  let year = stringData.substring(6, 10)
+  //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
+  let arrayNumber = dateInString.split('/')
+  let day = Number(arrayNumber[0])
+  let month = Number(arrayNumber[1])
+  let year = Number(arrayNumber[2])
 
   const options = {
     year: "numeric",
     month: "numeric",
     day: "numeric",
   }
-
-  let dateInPattern = new Date(Number(year), Number(month-1), Number(day))
   
-  return dateInPattern.toLocaleDateString("pt-br", options)
+  let dateInBrazilianFormat = new Date(year, month-1, day)
+  
+  return dateInBrazilianFormat.toLocaleDateString("pt-br", options)
   
 }
 
 // recebe uma data com string e uma regex. Retorna no formato ISO
 function dateInISOFormat(datePasse, regex){
-  var stringData = String(regex.exec(datePasse))
-  let day = stringData.substring(0,2)
-  let month = stringData.substring(3,5)
-  let year = stringData.substring(6, 10)
+  var stringDate = String(regex.exec(datePasse))
+  let day = stringDate.substring(0,2)
+  let month = stringDate.substring(3,5)
+  let year = stringDate.substring(6, 10)
 
   return new Date(Number(year), Number(month-1), Number(day))
 }
 
-// recebe duas datas e verifica se são iguais
+// recebe duas datas e valida se são iguais
 function validDate(informedDate, realDate){
-  if(informedDate === realDate){
-    return true
-  } else {
-    return false
-  }
+  
+  return informedDate === realDate ? true : false
+  
 }
 
 // recebe a data de nascimento em formato ISO e retorna se é maior do que a data atual
 function dateOfBirthHighestCurrentDate(dateOfBirth){
   var currentDate = new Date()
 
-  if(dateOfBirth.getTime() > currentDate.getTime()){
-    return true
-  } else {
-    return false
-  }
+  return dateOfBirth.getTime() > currentDate.getTime() ? true : false
+
 }
 
 function age(birthDate) {
@@ -88,12 +82,11 @@ function dateOfBirth(){
 
     dateValid = validDate(typedDate, dateInBrazilianFormat)
 
-    let dataISO = dateInISOFormat(dateInBrazilianFormat, dateRegExp)
+    let dateISO = dateInISOFormat(dateInBrazilianFormat, dateRegExp)
     
-    BirthHighestCurrentDate = dateOfBirthHighestCurrentDate(dataISO)
+    BirthHighestCurrentDate = dateOfBirthHighestCurrentDate(dateISO)
 
   }while(!dateEqualExpressionRegex || !dateValid || BirthHighestCurrentDate)
-
   
   return dateInBrazilianFormat
   

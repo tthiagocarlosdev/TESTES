@@ -3,10 +3,20 @@ var input = require('readline-sync')
 const { headerFunctions } = require('./headerFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 
-headerFunctions.header()
+headerFunctions.systemHeader()
+headerFunctions.anamnesisHeader()
 
-/* variáveis */
-const name = anamnesisFunctions.name()
+// variáveis 
+const name = anamnesisFunctions.userName()
+
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.anamnesisHeader()
+console.log(`Nome: ${name}`)
+
+console.log(`===============================`)
+
+/*
 const birthDay = Number(anamnesisFunctions.birthDay())
 const birthMonth = Number(anamnesisFunctions.birthMonth())
 const birthYear = Number(anamnesisFunctions.birthYear())
@@ -15,15 +25,13 @@ const birthDate = anamnesisFunctions.dateBrazilianFormat(informedDateOfBirth)
 const age = anamnesisFunctions.age(informedDateOfBirth)
 // const gender = anamnesisFunctions.gender()
 
-console.clear()
-headerFunctions.header()
-console.log(`Nome: ${name}.`)
+
 console.log(`Data de nascimento: ${birthDate}`)
 console.log(`Idade: ${age} anos!`)
 
-console.log(`===============================`)
 
 
+*/
 
 
 
