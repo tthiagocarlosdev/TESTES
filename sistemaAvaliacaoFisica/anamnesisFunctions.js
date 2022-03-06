@@ -9,14 +9,14 @@ const anamnesisFunctions = {
       
   userName: function() {
     
-    let NumberOrSymbol = true
+    let itsNumber = true
     let name = ''
     
-    while(NumberOrSymbol){
+    while(itsNumber){
 
       name = input.question('Digite seu nome: ')
-      NumberOrSymbol = validationFunctions.hasNumberOrSymbol(name)
-      validationFunctions.incorrectValue(false, NumberOrSymbol, "Anamnese")
+      itsNumber = validationFunctions.itsNumber(name)
+      validationFunctions.incorrectValue(false, itsNumber, "Anamnese")
 
     }
     
@@ -97,6 +97,35 @@ const anamnesisFunctions = {
       let age = Math.floor(dateInMilliseconds / (1000 * 60 * 60 * 24 * 365))
       
       return age
+    
+  },
+
+  sexNumber: function(){
+    
+    let istNumber = false
+    let isLessThanMinimumOrGreaterThanMaximum = true
+    let sexNumber = 0
+  
+    do{
+      console.log('Escolha Sexo:')
+      console.log('[1] Masculino')
+      console.log('[2] Feminino')
+      sexNumber = input.question('')
+  
+      istNumber = validationFunctions.itsNumber(sexNumber)
+  
+      isLessThanMinimumOrGreaterThanMaximum = validationFunctions.isLessThanMinimumOrGreaterThanMaximum(1, 2, Number(sexNumber))
+      
+      validationFunctions.incorrectValue(!istNumber, isLessThanMinimumOrGreaterThanMaximum, "Anamnese")
+  
+    }while(!istNumber || isLessThanMinimumOrGreaterThanMaximum)
+    
+    return sexNumber
+  },
+
+  showSex: function(numberSex){
+
+    return numberSex == 1 ? 'Masculino': 'Feminino'
     
   },
 

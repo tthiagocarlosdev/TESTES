@@ -93,7 +93,7 @@ console.log(isDateRegExp(data))
 console.log(stringDate(data))*/
 
 
-
+/*
 // informa se a data passada pelo usuário está no formato brasil
 function isDateRegExp(date, regex){
   // const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
@@ -159,7 +159,7 @@ function DateOfBirth(){
 
   return dataFormatoBrasil
 }
-
+*/
 
 // const dN = DateOfBirth()
 // console.log(dN)
@@ -216,7 +216,7 @@ console.log(date)
 // console.log(date.toLocaleDateString("pt-br", options))
 
 const actual = new Intl.DateTimeFormat("pt-br").format(date)
-console.log(actual)*/
+console.log(actual)
 
 function dateInBrazilFormat(dateInString){
   
@@ -256,7 +256,7 @@ function splitString(stringToSplit, separator) {
 
 // console.log(day)
 // console.log(month)
-// console.log(year)
+// console.log(year)*/
 
 /*=======================================================================*/
 
@@ -445,3 +445,31 @@ module.exports = {
   validationFunctions
 }
 */
+
+function sex(){
+
+  let istNumber = false
+  let isLessThanMinimumOrGreaterThanMaximum = true
+  let sex = 0
+
+  do{
+    console.log('Escolha:')
+    console.log('[1] Masculino')
+    console.log('[2] Feminino')
+    sex = input.question('')
+    // console.log(sex)
+
+    istNumber = validationFunctions.itsNumber(sex)
+    // console.log(istNumber)
+
+    isLessThanMinimumOrGreaterThanMaximum = validationFunctions.isLessThanMinimumOrGreaterThanMaximum(1, 2, Number(sex))
+    // console.log(isLessThanMinimumOrGreaterThanMaximum)
+    validationFunctions.incorrectValue(!istNumber, isLessThanMinimumOrGreaterThanMaximum, "Anamnese")
+
+  }while(!istNumber || isLessThanMinimumOrGreaterThanMaximum)
+  
+  return sex
+}
+let sexoNumber = sex()
+let genre = anamnesisFunctions.showGenre(sexoNumber)
+console.log(`Sexo: ${genre}`)

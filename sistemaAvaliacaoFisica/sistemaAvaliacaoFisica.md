@@ -587,3 +587,91 @@ Idade: 31 anos!
 ===============================
 ```
 
+### Sexo
+
+Agora vamos criar a function **sexNumber( )**. Em **anamnesisFunctions.js** vamos colocar esta function que mostrará um menu para o usuário escolher qual é seu sexo. Esta function terá que validar a escolha do usuário, se é um número (**itsNumber( )**) e se esse número é menor ou maior do que as opções de escolha(**isLessThanMinimumOrGreaterThanMaximum( )**).
+
+```js
+sexNumber: function(){
+    
+    let istNumber = false
+    let isLessThanMinimumOrGreaterThanMaximum = true
+    let sexNumber = 0
+  
+    do{
+      console.log('Escolha Sexo:')
+      console.log('[1] Masculino')
+      console.log('[2] Feminino')
+      sexNumber = input.question('')
+  
+      istNumber = validationFunctions.itsNumber(sexNumber)
+  
+      isLessThanMinimumOrGreaterThanMaximum = validationFunctions.isLessThanMinimumOrGreaterThanMaximum(1, 2, Number(sexNumber))
+      
+      validationFunctions.incorrectValue(!istNumber, isLessThanMinimumOrGreaterThanMaximum, "Anamnese")
+  
+    }while(!istNumber || isLessThanMinimumOrGreaterThanMaximum)
+    
+    return sexNumber
+  },
+```
+
+Ainda em  **anamnesisFunctions.js** vamos criar a function **showSex( )** que mostrará qual é o sexo do usuário. esta function receberá como parâmetro o **numberSex**:
+
+```js
+  showSex: function(numberSex){
+
+    return numberSex == 1 ? 'Masculino': 'Feminino'
+    
+  },
+```
+
+Em **saf.js** vamos criar as variáveis **sexNumber** e **sex** que vão receber as functions **sexNumber( )** e **showSex** respectivamente e depois vamos mostrar o sexo do usuário:
+
+```js
+var input = require('readline-sync')
+
+const { headerFunctions } = require('./headerFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { validationFunctions } = require('./validationFunctions')
+
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
+
+// variables 
+const name = anamnesisFunctions.userName()
+const birthdayInBrazilianFormat = anamnesisFunctions.dateOfBirth()
+const birthdayInISOFormat = anamnesisFunctions.dateInISOFormat(birthdayInBrazilianFormat)
+const age = anamnesisFunctions.age(birthdayInISOFormat)
+const sexNumber = anamnesisFunctions.sexNumber()
+const sex = anamnesisFunctions.showSex(sexNumber)
+
+
+
+// show results
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
+console.log(`Nome: ${name}`)
+console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
+console.log(`Idade: ${age} anos!`)
+console.log(`Sexo: ${sex}`)
+
+console.log(`===============================`)
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Nome: Fulano Cicrano
+Data de nascimento: 10/03/1999
+Idade: 23 anos!
+Sexo: Masculino
+===============================
+```
+

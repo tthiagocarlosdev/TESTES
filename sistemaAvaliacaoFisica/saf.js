@@ -2,22 +2,29 @@ var input = require('readline-sync')
 
 const { headerFunctions } = require('./headerFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { validationFunctions } = require('./validationFunctions')
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
-// variáveis 
+// variables 
 const name = anamnesisFunctions.userName()
 const birthdayInBrazilianFormat = anamnesisFunctions.dateOfBirth()
 const birthdayInISOFormat = anamnesisFunctions.dateInISOFormat(birthdayInBrazilianFormat)
 const age = anamnesisFunctions.age(birthdayInISOFormat)
+const sexNumber = anamnesisFunctions.sexNumber()
+const sex = anamnesisFunctions.showSex(sexNumber)
 
+
+
+// show results
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 console.log(`Nome: ${name}`)
 console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
 console.log(`Idade: ${age} anos!`)
+console.log(`Sexo: ${sex}`)
 
 console.log(`===============================`)
 
@@ -29,18 +36,6 @@ console.log(`===============================`)
  - função gênero 
 */
 
-function sex () {
-  console.log('Escolha:')
-  console.log('[1] Masculino')
-  console.log('[2] Feminino')
-  let sex = input.question('')
-  return sex
-}
 
-function showGenre(genre){
-  if(genre == 1){
-    console.log('Masculino')
-  } else {
-    console.log('Feminino')
-  }
-}
+
+

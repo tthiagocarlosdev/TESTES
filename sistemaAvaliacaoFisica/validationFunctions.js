@@ -49,16 +49,20 @@ const validationFunctions = {
 
   },
 
+  // verifica se o valor passado é apenas um número
   itsNumber: function(value){
   
-    const regExp2 = /\D/g
+    const regExp2 = /\d/g
     let itsNumber = regExp2.test(value)
+   
+    return itsNumber ? true : false
     
-    if(itsNumber){
-      return true
-    } else {
-      return false
-    }
+  },
+
+  isLessThanMinimumOrGreaterThanMaximum: function(minimum, maximum, givenAway){
+    
+    return givenAway < minimum || givenAway > maximum ? true : false
+    
   },
 
   correctSize: function(string, givenAway){
