@@ -3,13 +3,21 @@
 const { headerFunctions } = require('./headerFunctions')
 
 const validationFunctions = {
-  
-  hasNumberOrSymbol: function(string){
-    
-    const numberSymbolRegExp = /(\d|\W)/gi
-    let numberSymbol = numberSymbolRegExp.test(string)
 
-    return numberSymbol ? true : false
+  itsLetters: function(stringValue){
+    letterOrSpaceRegExp = /\D/gi
+
+    return letterOrSpaceRegExp.test(stringValue) ? true : false
+    
+  },
+
+  // verifica se o valor passado é apenas um número
+  itsNumber: function(value){
+  
+    const regExp2 = /\d/g
+    let itsNumber = regExp2.test(value)
+   
+    return itsNumber ? true : false
     
   },
 
@@ -25,11 +33,9 @@ const validationFunctions = {
   },
 
     // retorna true se a data digitada pelo usuário está no formato da Regex Expression
-  dateAsRegexExpression: function(date, regex){
+  dateAsRegexExpression: function(dateValue, regex){
     
-    let dateAsRegexExpression = regex.test(date)
-    
-    return dateAsRegexExpression ? true : false
+    return regex.test(dateValue) ? true : false
     
   },
 
@@ -49,45 +55,10 @@ const validationFunctions = {
 
   },
 
-  // verifica se o valor passado é apenas um número
-  itsNumber: function(value){
-  
-    const regExp2 = /\d/g
-    let itsNumber = regExp2.test(value)
-   
-    return itsNumber ? true : false
-    
-  },
-
   isLessThanMinimumOrGreaterThanMaximum: function(minimum, maximum, givenAway){
     
     return givenAway < minimum || givenAway > maximum ? true : false
     
-  },
-
-  correctSize: function(string, givenAway){
-    if(string.length > givenAway){
-      return true
-    } else {
-      return false
-    }
-  },
-
-  minimumValue: function (standardValue, givenAway){
-    
-    if(givenAway < standardValue){
-      return true
-    } else {
-      return false
-    }
-  },
-
-  maximumValue: function(standardValue, givenAway){
-    if(givenAway > standardValue){
-      return true
-    } else {
-      return false
-    }
   },
   
 }

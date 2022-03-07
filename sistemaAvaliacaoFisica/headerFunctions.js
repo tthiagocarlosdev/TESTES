@@ -1,5 +1,3 @@
-var input = require('readline-sync')
-
 /* header functions */
 const headerFunctions = {
   

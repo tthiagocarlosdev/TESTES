@@ -446,30 +446,94 @@ module.exports = {
 }
 */
 
-function sex(){
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+// others functions
 
-  let istNumber = false
-  let isLessThanMinimumOrGreaterThanMaximum = true
-  let sex = 0
+// correctSize: function(string, givenAway){
+  //   if(string.length > givenAway){
+  //     return true
+  //   } else {
+  //     return false
+  //   }
+  // },
 
-  do{
-    console.log('Escolha:')
-    console.log('[1] Masculino')
-    console.log('[2] Feminino')
-    sex = input.question('')
-    // console.log(sex)
+  // hasNumberOrSymbol: function(stringValue){
+    
+  //   const numberSymbolRegExp = /(\d|\W)/gi
+  //   let numberSymbol = numberSymbolRegExp.test(stringValue)
 
-    istNumber = validationFunctions.itsNumber(sex)
-    // console.log(istNumber)
+  //   return numberSymbol ? true : false
+    
+  // },
 
-    isLessThanMinimumOrGreaterThanMaximum = validationFunctions.isLessThanMinimumOrGreaterThanMaximum(1, 2, Number(sex))
-    // console.log(isLessThanMinimumOrGreaterThanMaximum)
-    validationFunctions.incorrectValue(!istNumber, isLessThanMinimumOrGreaterThanMaximum, "Anamnese")
+  // minimumValue: function (standardValue, givenAway){
+    
+  //   if(givenAway < standardValue){
+  //     return true
+  //   } else {
+  //     return false
+  //   }
+  // },
 
-  }while(!istNumber || isLessThanMinimumOrGreaterThanMaximum)
+  // maximumValue: function(standardValue, givenAway){
+  //   if(givenAway > standardValue){
+  //     return true
+  //   } else {
+  //     return false
+  //   }
+  // },
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+
+// function sex(){
+
+//   let istNumber = false
+//   let isLessThanMinimumOrGreaterThanMaximum = true
+//   let sex = 0
+
+//   do{
+//     console.log('Escolha:')
+//     console.log('[1] Masculino')
+//     console.log('[2] Feminino')
+//     sex = input.question('')
+//     // console.log(sex)
+
+//     istNumber = validationFunctions.itsNumber(sex)
+//     // console.log(istNumber)
+
+//     isLessThanMinimumOrGreaterThanMaximum = validationFunctions.isLessThanMinimumOrGreaterThanMaximum(1, 2, Number(sex))
+//     // console.log(isLessThanMinimumOrGreaterThanMaximum)
+//     validationFunctions.incorrectValue(!istNumber, isLessThanMinimumOrGreaterThanMaximum, "Anamnese")
+
+//   }while(!istNumber || isLessThanMinimumOrGreaterThanMaximum)
   
-  return sex
+//   return sex
+// }
+// let sexoNumber = sex()
+// let genre = anamnesisFunctions.showGenre(sexoNumber)
+// console.log(`Sexo: ${genre}`)
+
+let name = input.question('Digite se nome: ')
+
+function espace(nameValue){
+  let regexEscape = /[\s]/gi
+
+  return regexEscape.test(nameValue) ? true : false
+  
 }
-let sexoNumber = sex()
-let genre = anamnesisFunctions.showGenre(sexoNumber)
-console.log(`Sexo: ${genre}`)
+
+function itsLetters(nameValue){
+  let regexLetters = /[A-z]/gi 
+
+  return regexLetters.test(nameValue) ? true : false
+}
+
+function hasCaracter(nameValue){
+  let regexCaracter = /\W/gi
+
+  return regexCaracter.test(nameValue)
+}
+
+console.log(espace(name))
+console.log(itsLetters(name))
+console.log(hasCaracter(name))

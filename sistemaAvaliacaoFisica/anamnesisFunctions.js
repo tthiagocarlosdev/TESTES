@@ -10,13 +10,16 @@ const anamnesisFunctions = {
   userName: function() {
     
     let itsNumber = true
+    let itsLetters = false
     let name = ''
     
-    while(itsNumber){
+    while(itsNumber || !itsLetters){
 
       name = input.question('Digite seu nome: ')
       itsNumber = validationFunctions.itsNumber(name)
-      validationFunctions.incorrectValue(false, itsNumber, "Anamnese")
+      itsLetters = validationFunctions.itsLetters(name)
+    
+      validationFunctions.incorrectValue(!itsLetters, itsNumber, "Anamnese")
 
     }
     
@@ -24,8 +27,39 @@ const anamnesisFunctions = {
   
   },
 
-  // recebe a data como string e retorna a data no formato brasileiro criada pelo Objeto Date()
-  dateInBrazilFormat: function(dateInString){
+  // cria a data de nascimento do usuário
+  dateOfBirth: function(){
+    let dateInBrazilianFormat = ''
+    let typedDate = ''
+    const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
+    let dateEqualExpressionRegex = false
+    let dateValid = false
+    let birthHighestCurrentDate = true
+  
+    do{
+      typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
+      
+      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      
+      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
+  
+      dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
+  
+      let dateISO = anamnesisFunctions.dateInISOFormat(dateInBrazilianFormat)
+      
+      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
+
+      validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Anamnese")
+      validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Anamnese")
+  
+    }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
+    
+    return dateInBrazilianFormat
+    
+  },
+
+   // recebe a data como string e retorna a data no formato brasileiro criada pelo Objeto Date()
+   dateInBrazilFormat: function(dateInString){
 
     //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
     let arrayNumber = dateInString.split('/')
@@ -58,37 +92,7 @@ const anamnesisFunctions = {
     return new Date(year, month-1, day)
 
   },
-
-  dateOfBirth: function(){
-    let dateInBrazilianFormat = ''
-    let typedDate = ''
-    const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
-    let dateEqualExpressionRegex = false
-    let dateValid = false
-    let birthHighestCurrentDate = true
   
-    do{
-      typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
-      
-      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
-      
-      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
-  
-      dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
-  
-      let dateISO = anamnesisFunctions.dateInISOFormat(dateInBrazilianFormat)
-      
-      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
-
-      validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Anamnese")
-      validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Anamnese")
-  
-    }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
-    
-    return dateInBrazilianFormat
-    
-  },
-
   // Recebe a data em formato ISO e retorna a idade em anos.
   age: function(birthDate) {
 
