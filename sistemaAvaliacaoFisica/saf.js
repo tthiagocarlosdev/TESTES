@@ -22,13 +22,3 @@ console.log(`Idade: ${age} anos!`)
 console.log(`Sexo: ${sex}`)
 
 console.log(`===============================`)
-
-// const gender = anamnesisFunctions.gender()
-
-/*
- - função gênero 
-*/
-
-
-
-
