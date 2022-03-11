@@ -1,4 +1,4 @@
-/* Anamnesis Functions */
+/* Personal Data Functions */
 
 var input = require('readline-sync')
 
@@ -131,6 +131,26 @@ const personalData = {
 
     return numberSex == 1 ? 'Masculino': 'Feminino'
     
+  },
+
+  userProfession: function() {
+    
+    let itsNumber = true
+    let itsLetters = false
+    let profession = ''
+    
+    while(itsNumber || !itsLetters){
+
+      profession = input.question('Digite sua profissão: ')
+      itsNumber = validationFunctions.itsNumber(profession)
+      itsLetters = validationFunctions.itsLetters(profession)
+    
+      validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
+
+    }
+    
+    return profession
+  
   },
 
 }

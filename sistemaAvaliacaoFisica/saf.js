@@ -11,6 +11,7 @@ const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianForm
 const age = personalData.age(birthdayInISOFormat)
 const sexNumber = personalData.sexNumber()
 const sex = personalData.showSex(sexNumber)
+const profession = personalData.userProfession()
 
 // show results
 console.clear()
@@ -20,5 +21,6 @@ console.log(`Nome: ${name}`)
 console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
 console.log(`Idade: ${age} anos!`)
 console.log(`Sexo: ${sex}`)
+console.log(`Profissão: ${profession}`)
 
 console.log(`===============================`)

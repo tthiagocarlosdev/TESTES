@@ -70,7 +70,7 @@ module.exports = {
   - Exportar essa variável.
 
 ```js
-/* Anamnesis Functions */
+/* Personal Data Functions */
 
 var input = require('readline-sync')
 
@@ -716,4 +716,102 @@ Sexo: Masculino
 ===============================
 ```
 
+### Profissão
+
+Agora vamos criar a function  **userProfession( )** que retornará a profissão do usuário. Esta function deve aceitar apenas letras e símbolos. Também não pode aceitar se não for digitado a profissão (vazio).
+
+Em **personalData.js** criamos esta function e usamos nela as functions **itsNumber( )** e **itsLetters( )** e as validações já estão realizadas.
+
+```js
+userProfession: function() {
+    
+    let itsNumber = true
+    let itsLetters = false
+    let profession = ''
+    
+    while(itsNumber || !itsLetters){
+
+      profession = input.question('Digite sua profissão: ')
+      itsNumber = validationFunctions.itsNumber(profession)
+      itsLetters = validationFunctions.itsLetters(profession)
+    
+      validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
+
+    }
+    
+    return profession
+  
+  },
+```
+
+Em **saf.js** criamos a variável **profession** recebendo a function **userProfession( )**:
+
+```js
+const { headerFunctions } = require('./headerFunctions')
+const { personalData } = require('./personalData')
+
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+
+// variables 
+const name = personalData.userName()
+const birthdayInBrazilianFormat = personalData.dateOfBirth()
+const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
+const age = personalData.age(birthdayInISOFormat)
+const sexNumber = personalData.sexNumber()
+const sex = personalData.showSex(sexNumber)
+const profession = personalData.userProfession()
+
+// show results
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+console.log(`Nome: ${name}`)
+console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
+console.log(`Idade: ${age} anos!`)
+console.log(`Sexo: ${sex}`)
+console.log(`Profissão: ${profession}`)
+
+console.log(`===============================`)
+```
+
+Ao executar:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Nome: Fulano Cicrano
+Data de nascimento: 10/03/1999
+Idade: 23 anos!
+Sexo: Masculino
+Profissão: Administrador
+===============================
+```
+
+
+
 anamnesisFunctions.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
