@@ -24,13 +24,13 @@ $ npm install readline-sync
   -  **saf.js**. Esse será o arquivo principal do nosso projeto;
   - **headerFunctions.js**. Vamos colocar as funções de cabeçalho;
   - **validationFunctions.js**. Vamos colocar funções de validação;
-  - **anamnesisFunctions.js**. Vamos colocar as funções da anamnese.
+  - **personalData.js**. Vamos colocar as funções da anamnese.
 - Em **saf.js** vamos:
-  - Importar os arquivos **headerFunctions.js** e **anamnesisFunctions.js**.
+  - Importar os arquivos **headerFunctions.js** e **personalData.js**.
 
 ```js
 const { headerFunctions } = require('./headerFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { personalData } = require('./personalData')
 ```
 
 - Em **headerFunctions.js** vamos:
@@ -63,10 +63,10 @@ module.exports = {
 }
 ```
 
-- Em **anamnesisFunctions.js** vamos:
+- Em **personalData.js** vamos:
   - Criar a variável de **input** com o módulo **readline-sync**;
   - Criar a variável de importação de **validationFunctions.js**;
-  - Criar uma variável objeto, **anamnesisFunctions**, que vai guardar as funções de anamnese;
+  - Criar uma variável objeto, **personalData**, que vai guardar as funções de anamnese;
   - Exportar essa variável.
 
 ```js
@@ -76,18 +76,18 @@ var input = require('readline-sync')
 
 const { validationFunctions } = require('./validationFunctions')
 
-const anamnesisFunctions = {}
+const personalData = {}
 
 module.exports = {
-  anamnesisFunctions
+  personalData
 }
 ```
 
 Agora estamos prontos para colocar a mão na massa.
 
-## Building Anamnesis
+## Personal Data
 
-Vamos começar pela anamnese, que é uma entrevista para saber do avaliado algumas informações importantes.
+Vamos começar pelos dados pessoais do avaliado.
 
 ### Cabeçalhos
 
@@ -144,7 +144,7 @@ No arquivo **saf.js** vamos chamar as functions **systemHeader( )** e **anamnesi
 
 ```js
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Anamnese")
+headerFunctions.subTitle("Dados Pessoais")
 ```
 
 ### Executar o programa
@@ -161,7 +161,7 @@ Ao executar o programa:
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
-           Anamnese            
+         Dados Pessoais            
 ===============================
 ```
 
@@ -169,7 +169,7 @@ Ao executar o programa:
 
 Agora vamos criar uma function que vai receber o nome do usuário. Esta function receberá o nome do usuário que deverá ter apenas letras e acentos/sinais, caso tenha **número**, deverá informar ao usuário que o dado está incorreto e pedir novamente para o usuário inserir o nome. Para isto vamos criar também duas functions de validação que serão usadas dentro da function do nome. 
 
-Em **anamnesisFunctions.js** dentro da variável que criamos, crie a function **userName**:
+Em **personalData.js** dentro da variável que criamos, crie a function **userName**:
 
 ```js
 userName: function() {
@@ -184,7 +184,7 @@ userName: function() {
       itsNumber = validationFunctions.itsNumber(name)
       itsLetters = validationFunctions.itsLetters(name)
     
-      validationFunctions.incorrectValue(!itsLetters, itsNumber, "Anamnese")
+      validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
 
     }
     
@@ -238,18 +238,18 @@ Em **saf.js** vamos criar uma variável **name**, que receberá a function **use
 var input = require('readline-sync')
 
 const { headerFunctions } = require('./headerFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { personalData } = require('./personalData')
 
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Anamnese")
+headerFunctions.subTitle("Dados Pessoais")
 
 // variables 
-const name = anamnesisFunctions.userName()
+const name = personalData.userName()
 
 // show results
 console.clear()
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Anamnese")
+headerFunctions.subTitle("Dados Pessoais")
 console.log(`Nome: ${name}`)
 
 console.log(`===============================`)
@@ -261,7 +261,7 @@ Ao executar:
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
-           Anamnese            
+           Dados Pessoais             
 ===============================
 Nome: Fulano de Tal
 ===============================
@@ -277,7 +277,7 @@ Agora vamos criar a function **dateOfBirth** que vai criar o **dia de nascimento
 * **dateInISOFormat( )** - Recebe a data no formato brasileiro como string. Retorna a data no formato ISO;
 * **dateOfBirthHighestCurrentDate( )** - Recebe a data em formato ISO e verifica se ela é posterior a data atual. Retorna um valor booleano.
 
-Em **anamnesisFunctions.js** vamos começar criando a function **dateOfBirth( )** que terá a seguinte estrutura:
+Em **personalData.js** vamos começar criando a function **dateOfBirth( )** que terá a seguinte estrutura:
 
 ```js
 dateOfBirth: function(){
@@ -334,7 +334,7 @@ dateAsRegexExpression: function(dateValue, regex){
  },
 ```
 
-Agora em **anamnesisFunctions.js** vamos passar a data de nascimento pela function **dateInBrazilFormat( )** e armazenar a nova data criada em **dateInBrazilianFormat**:
+Agora em **personalData.js** vamos passar a data de nascimento pela function **dateInBrazilFormat( )** e armazenar a nova data criada em **dateInBrazilianFormat**:
 
 ```js
 dateOfBirth: function(){
@@ -350,7 +350,7 @@ dateOfBirth: function(){
       
       dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
       
-      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
+      dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
   
   
     }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
@@ -360,7 +360,7 @@ dateOfBirth: function(){
   },
 ```
 
-Ainda em **anamnesisFunctions.js** crie a function **dateInBrazilFormat( )**:
+Ainda em **personalData.js** crie a function **dateInBrazilFormat( )**:
 
 ```js
 dateInBrazilFormat: function(dateInString){
@@ -399,7 +399,7 @@ dateOfBirth: function(){
       
       dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
       
-      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
+      dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
   
       dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
   
@@ -420,7 +420,7 @@ validDate: function(informedDate, realDate){
   },
 ```
 
-Em **anamnesisFunctions.js** vamos criar a function **dateInISOFormat( )** e atribuir o seu retorno a variável **dateISO** na funtion **dateOfBirth( )**:
+Em **personalData.js** vamos criar a function **dateInISOFormat( )** e atribuir o seu retorno a variável **dateISO** na funtion **dateOfBirth( )**:
 
 ```js
 dateInISOFormat: function(dateInString){
@@ -449,11 +449,11 @@ dateOfBirth: function(){
       
       dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
       
-      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
+      dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
   
       dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
   
-      let dateISO = anamnesisFunctions.dateInISOFormat(dateInBrazilianFormat)
+      let dateISO = personalData.dateInISOFormat(dateInBrazilianFormat)
   
     }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
     
@@ -462,7 +462,7 @@ dateOfBirth: function(){
   },
 ```
 
-Agora em **anamnesisFunctions.js** vamos verificar se a data é posterior a data atual, passando a data em formato ISO pela function **dateOfBirthHighestCurrentDate( )** e armazenando o resultado em **birthHighestCurrentDate**:
+Agora em **personalData.js** vamos verificar se a data é posterior a data atual, passando a data em formato ISO pela function **dateOfBirthHighestCurrentDate( )** e armazenando o resultado em **birthHighestCurrentDate**:
 
 ```js
 dateOfBirth: function(){
@@ -478,11 +478,11 @@ dateOfBirth: function(){
       
       dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
       
-      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
+      dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
   
       dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
   
-      let dateISO = anamnesisFunctions.dateInISOFormat(dateInBrazilianFormat)
+      let dateISO = personalData.dateInISOFormat(dateInBrazilianFormat)
       
       birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
   
@@ -504,7 +504,7 @@ dateOfBirthHighestCurrentDate: function(dateOfBirth){
   },
 ```
 
-Para encerrar a function **dateOfBirth( )**, em **anamnesisFunctions.js** vamos passar os valores de **dateEqualExpressionRegex**, **dateValid** e **birthHighestCurrentDate** pela function **incorrectValue( )** que irá fazer com que o sistema de repetição funcione e também seja apresentada a mensagem de _Dado incorreto!_ caso a data seja inválida:
+Para encerrar a function **dateOfBirth( )**, em **personalData.js** vamos passar os valores de **dateEqualExpressionRegex**, **dateValid** e **birthHighestCurrentDate** pela function **incorrectValue( )** que irá fazer com que o sistema de repetição funcione e também seja apresentada a mensagem de "_Dado incorreto!_" caso a data seja inválida:
 
 ```js
 dateOfBirth: function(){
@@ -520,16 +520,16 @@ dateOfBirth: function(){
       
       dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
       
-      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
+      dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
   
       dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
   
-      let dateISO = anamnesisFunctions.dateInISOFormat(dateInBrazilianFormat)
+      let dateISO = personalData.dateInISOFormat(dateInBrazilianFormat)
       
       birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
 
-      validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Anamnese")
-      validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Anamnese")
+      validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Dados Pessoais")
+      validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Dados Pessoais")
   
     }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
     
@@ -542,19 +542,19 @@ Em **saf.js** criamos a variável **birthdayInBrazilianFormat** que receberá o 
 
 ```js
 const { headerFunctions } = require('./headerFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { personalData } = require('./personalData')
 
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Anamnese")
+headerFunctions.subTitle("Dados Pessoais")
 
 // variables 
-const name = anamnesisFunctions.userName()
-const birthdayInBrazilianFormat = anamnesisFunctions.dateOfBirth()
+const name = personalData.userName()
+const birthdayInBrazilianFormat = personalData.dateOfBirth()
 
 // show results
 console.clear()
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Anamnese")
+headerFunctions.subTitle("Dados Pessoais")
 console.log(`Nome: ${name}`)
 console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
 
@@ -567,7 +567,7 @@ Executando o programa:
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
-           Anamnese            
+           Dados Pessoais            
 ===============================
 Nome: Fulano
 Data de nascimento: 20/01/2000
@@ -576,7 +576,7 @@ Data de nascimento: 20/01/2000
 
 ### Idade
 
-Vamos construir a idade usando a function **age( )** em **anamnesisFunctions.js**. Esta function recebe a data em formato ISO e retorna a idade em anos.
+Vamos construir a idade usando a function **age( )** em **personalData.js**. Esta function recebe a data em formato ISO e retorna a idade em anos.
 
 ```js
 age: function(birthDate) {
@@ -596,21 +596,21 @@ Em **saf.js** vamos criar a variável **birthdayInISOFormat** que receberá a da
 
 ```javascript
 const { headerFunctions } = require('./headerFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { personalData } = require('./personalData')
 
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Anamnese")
+headerFunctions.subTitle("Dados Pessoais")
 
 // variables 
-const name = anamnesisFunctions.userName()
-const birthdayInBrazilianFormat = anamnesisFunctions.dateOfBirth()
-const birthdayInISOFormat = anamnesisFunctions.dateInISOFormat(birthdayInBrazilianFormat)
-const age = anamnesisFunctions.age(birthdayInISOFormat)
+const name = personalData.userName()
+const birthdayInBrazilianFormat = personalData.dateOfBirth()
+const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
+const age = personalData.age(birthdayInISOFormat)
 
 // show results
 console.clear()
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Anamnese")
+headerFunctions.subTitle("Dados Pessoais")
 console.log(`Nome: ${name}`)
 console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
 console.log(`Idade: ${age} anos!`)
@@ -624,7 +624,7 @@ No terminal:
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
-           Anamnese            
+           Dados Pessoais            
 ===============================
 Nome: Fulano
 Data de nascimento: 01/12/1990
@@ -634,7 +634,7 @@ Idade: 31 anos!
 
 ### Sexo
 
-Agora vamos criar a function **sexNumber( )**. Em **anamnesisFunctions.js** vamos colocar esta function que mostrará um menu para o usuário escolher qual é seu sexo. Esta function terá que validar a escolha do usuário, se é um número (**itsNumber( )**) e se esse número é menor ou maior do que as opções de escolha(**isLessThanMinimumOrGreaterThanMaximum( )**).
+Agora vamos criar a function **sexNumber( )**. Em **personalData.js** vamos colocar esta function que mostrará um menu para o usuário escolher qual é seu sexo. Esta function terá que validar a escolha do usuário, se é um número (**itsNumber( )**) e se esse número é menor ou maior do que as opções de escolha(**isLessThanMinimumOrGreaterThanMaximum( )**).
 
 ```js
 sexNumber: function(){
@@ -661,7 +661,7 @@ sexNumber: function(){
   },
 ```
 
-Ainda em  **anamnesisFunctions.js** vamos criar a function **showSex( )** que mostrará qual é o sexo do usuário. esta function receberá como parâmetro o **numberSex**:
+Ainda em  **personalData.js** vamos criar a function **showSex( )** que mostrará qual é o sexo do usuário. esta function receberá como parâmetro o **numberSex**:
 
 ```js
   showSex: function(numberSex){
@@ -675,29 +675,30 @@ Em **saf.js** vamos criar as variáveis **sexNumber** e **sex** que vão receber
 
 ```js
 const { headerFunctions } = require('./headerFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { personalData } = require('./personalData')
 
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Anamnese")
+headerFunctions.subTitle("Dados Pessoais")
 
 // variables 
-const name = anamnesisFunctions.userName()
-const birthdayInBrazilianFormat = anamnesisFunctions.dateOfBirth()
-const birthdayInISOFormat = anamnesisFunctions.dateInISOFormat(birthdayInBrazilianFormat)
-const age = anamnesisFunctions.age(birthdayInISOFormat)
-const sexNumber = anamnesisFunctions.sexNumber()
-const sex = anamnesisFunctions.showSex(sexNumber)
+const name = personalData.userName()
+const birthdayInBrazilianFormat = personalData.dateOfBirth()
+const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
+const age = personalData.age(birthdayInISOFormat)
+const sexNumber = personalData.sexNumber()
+const sex = personalData.showSex(sexNumber)
 
 // show results
 console.clear()
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Anamnese")
+headerFunctions.subTitle("Dados Pessoais")
 console.log(`Nome: ${name}`)
 console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
 console.log(`Idade: ${age} anos!`)
 console.log(`Sexo: ${sex}`)
 
 console.log(`===============================`)
+
 ```
 
 Ao executar o programa:
@@ -706,7 +707,7 @@ Ao executar o programa:
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
-           Anamnese            
+           Dados Pessoais            
 ===============================
 Nome: Fulano Cicrano
 Data de nascimento: 10/03/1999
@@ -715,3 +716,4 @@ Sexo: Masculino
 ===============================
 ```
 
+anamnesisFunctions.js

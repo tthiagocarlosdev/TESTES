@@ -5,7 +5,7 @@ var input = require('readline-sync')
 const { validationFunctions } = require('./validationFunctions')
 
 
-const anamnesisFunctions = {
+const personalData = {
       
   userName: function() {
     
@@ -19,7 +19,7 @@ const anamnesisFunctions = {
       itsNumber = validationFunctions.itsNumber(name)
       itsLetters = validationFunctions.itsLetters(name)
     
-      validationFunctions.incorrectValue(!itsLetters, itsNumber, "Anamnese")
+      validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
 
     }
     
@@ -41,16 +41,16 @@ const anamnesisFunctions = {
       
       dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
       
-      dateInBrazilianFormat = anamnesisFunctions.dateInBrazilFormat(typedDate)
+      dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
   
       dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
   
-      let dateISO = anamnesisFunctions.dateInISOFormat(dateInBrazilianFormat)
+      let dateISO = personalData.dateInISOFormat(dateInBrazilianFormat)
       
       birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
 
-      validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Anamnese")
-      validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Anamnese")
+      validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Dados Pessoais")
+      validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Dados Pessoais")
   
     }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
     
@@ -136,5 +136,5 @@ const anamnesisFunctions = {
 }
 
 module.exports = {
-  anamnesisFunctions
+  personalData
 }
