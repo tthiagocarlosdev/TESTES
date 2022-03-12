@@ -3,26 +3,44 @@
 ## Dados pessoais
 
 - [x]    **Nome: (INPUT)**
+  
   - [x]    Letras e símbolos
   - [x]   validação vazio
-
- - [x]    **Data de nascimento: (INPUT)**
-       - [x]    data no formato brasileiro (DD/MM/AAAA)
-       - [x]   validação vazio
-       - [x]   validar a data
-       - [x]   validar data menor que data atual
+  
+ - [x] **Data de nascimento: (INPUT)**
+      - [x]    data no formato brasileiro (DD/MM/AAAA)
+      - [x]   validação vazio
+      - [x]   validar a data
+      - [x]   validar data menor que data atual
    - [x]   **Idade: (SHOW)**
    - [x]   **Sexo: (INPUT)**
         - [x]   Apenas números
         - [x]   Validar vazio
    - [x]   **Mostrar Sexo: (SHOW)**
-   - [ ]   **Profissão: (INPUT)**
-        - [ ]   Letras e símbolos
-        - [ ]   Validação vazio
-   - [ ]   **Email: (INPUT)**
-        - [ ]   Validar email
-        - [ ]   Validar vazio
+   - [x]   **Profissão: (INPUT)**
+        
+        - [x]   Letras e símbolos
+        - [x]   Validação vazio
+   - [x] **Email: (INPUT)**
+        - [x] Validar email
+
+        - [x] Validar vazio
+
+          Basicamente um email deve possuir as seguintes opções em seu campo.
+
+          - [x] Não possuir espaços;
+
+          - [x] Possuir o @;
+
+          - [x] Possuir algum caracter após o @;
+
+          - [x] Possuir algum caracter antes do @;
+          - [x] Possuir pelo menos um ponto após o caracter depois do @;
+          - [x] Possuir algum caracter após o ponto.
+
+          
    - [ ]   **Telefone: (INPUT)**
+        
         - [ ]   Apenas números
         - [ ]     Validar número de telefone
         - [ ]   Validação vazio

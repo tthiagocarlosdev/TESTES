@@ -12,6 +12,7 @@ const age = personalData.age(birthdayInISOFormat)
 const sexNumber = personalData.sexNumber()
 const sex = personalData.showSex(sexNumber)
 const profession = personalData.userProfession()
+const userEmail = personalData.userEmail()
 
 // show results
 console.clear()
@@ -22,5 +23,6 @@ console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
 console.log(`Idade: ${age} anos!`)
 console.log(`Sexo: ${sex}`)
 console.log(`Profissão: ${profession}`)
+console.log(`E-mail: ${userEmail}`)
 
 console.log(`===============================`)

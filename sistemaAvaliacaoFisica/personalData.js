@@ -153,6 +153,25 @@ const personalData = {
   
   },
 
+  userEmail: function() {
+    
+    let email = ''
+    let itsEmail = false
+
+    do{
+      
+      email = input.question('Digite seu email: ')
+
+      itsEmail = validationFunctions.validEmail(email)
+      
+      validationFunctions.incorrectValue(!itsEmail, false, "Dados Pessoais")
+
+    }while(!itsEmail)
+    
+    return email
+
+  },
+
 }
 
 module.exports = {

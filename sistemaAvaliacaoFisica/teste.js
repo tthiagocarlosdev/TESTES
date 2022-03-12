@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
-const { validationFunctions } = require('./validationFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
+// const { validationFunctions } = require('./validationFunctions')
+// const { anamnesisFunctions } = require('./anamnesisFunctions')
 
 
 // var regex = /^d{2}/d{2}/d{4}$/
@@ -513,27 +513,111 @@ module.exports = {
 // let genre = anamnesisFunctions.showGenre(sexoNumber)
 // console.log(`Sexo: ${genre}`)
 
-let name = input.question('Digite se nome: ')
+// let name = input.question('Digite se nome: ')
 
-function espace(nameValue){
-  let regexEscape = /[\s]/gi
+// function espace(nameValue){
+//   let regexEscape = /[\s]/gi
 
-  return regexEscape.test(nameValue) ? true : false
+//   return regexEscape.test(nameValue) ? true : false
   
+// }
+
+// function itsLetters(nameValue){
+//   let regexLetters = /[A-z]/gi 
+
+//   return regexLetters.test(nameValue) ? true : false
+// }
+
+// function hasCaracter(nameValue){
+//   let regexCaracter = /\W/gi
+
+//   return regexCaracter.test(nameValue)
+// }
+
+// console.log(espace(name))
+// console.log(itsLetters(name))
+// console.log(hasCaracter(name))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/* == Email == */
+
+/*userEmail
+function validEmail(email){
+  let temEspaco = email.search(/[ ]/g) != -1
+  let temArroba = email.search(/[@]/g) != -1
+
+  if(!temEspaco && temArroba){
+
+    const arrayString = email.split(/[@]/g)
+    const usuario = arrayString[0]
+    const dominio = arrayString[1]
+    let caracterAntesArroba = usuario.length > 0
+    let caracterAposArroba = dominio.length > 2
+    let pontoAposArroba = dominio.search(/[.]/g) != -1
+    let arrayPonto = dominio.split(/[.]/g)
+    
+
+    if(caracterAntesArroba && caracterAposArroba && pontoAposArroba){
+      
+      let caracterAposPonto = arrayPonto[1].length > 0
+      
+
+      if(caracterAposPonto){
+  
+        console.log(`Tem espaço: ${temEspaco}`)
+        console.log(`Tem arroba: ${temArroba}`)
+        console.log(`Caracter antes arroba: ${caracterAntesArroba}`)
+        console.log(`Caracter após arroba: ${caracterAposArroba}`)
+        console.log(`Ponto após arroba: ${pontoAposArroba}`)
+        console.log(`Caracter: ${caracterAposPonto}`)
+
+      }
+      
+      
+    } else {
+      console.log('ERROR')
+    }
+
+    } else {
+      console.log('ERROR')
+
+    }
 }
 
-function itsLetters(nameValue){
-  let regexLetters = /[A-z]/gi 
+const emails = ["thiago@carlos.com", "andre@java.com", "andre@java.com.br", "andre@.m"]
 
-  return regexLetters.test(nameValue) ? true : false
+for(let email of emails){
+  validEmail(email)
+  console.log('=======================')
+}*/
+
+
+function validEmail(userEmail) {
+
+  user = userEmail.substring(0, userEmail.indexOf("@"))
+  domain = userEmail.substring(userEmail.indexOf("@")+ 1, userEmail.length)
+  let = validations = ((user.length >=1) && 
+                      (domain.length >=3) && 
+                      (user.search("@")==-1) && 
+                      (domain.search("@")==-1) && 
+                      (user.search(" ")==-1) && 
+                      (domain.search(" ")==-1) && 
+                      (domain.search(".")!=-1) && 
+                      (domain.indexOf(".") >=1)&& 
+                      (domain.lastIndexOf(".") < domain.length - 1))
+
+  if (validations) {
+     return true
+  }
+  else{
+    return false
+  }
+}
+  
+const emails = ["thiago@carlos.com", "andre@.m", "andrejava.com.br", "andre@java.net"]
+
+for(let email of emails){
+  console.log(validEmail(email))
+  console.log('=======================')
 }
 
-function hasCaracter(nameValue){
-  let regexCaracter = /\W/gi
-
-  return regexCaracter.test(nameValue)
-}
-
-console.log(espace(name))
-console.log(itsLetters(name))
-console.log(hasCaracter(name))

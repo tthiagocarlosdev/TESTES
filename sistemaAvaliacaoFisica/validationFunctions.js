@@ -60,6 +60,24 @@ const validationFunctions = {
     return givenAway < minimum || givenAway > maximum ? true : false
     
   },
+
+  validEmail: function(userEmail){
+
+    let user = userEmail.substring(0, userEmail.indexOf("@"))
+    let domain = userEmail.substring(userEmail.indexOf("@")+ 1, userEmail.length)
+    let validations = ((user.length >=1) && 
+                        (domain.length >=3) && 
+                        (user.search("@")==-1) && 
+                        (domain.search("@")==-1) && 
+                        (user.search(" ")==-1) && 
+                        (domain.search(" ")==-1) && 
+                        (domain.search(".")!=-1) && 
+                        (domain.indexOf(".") >=1)&& 
+                        (domain.lastIndexOf(".") < domain.length - 1))
+  
+      return validations ? true : false
+    
+  },
   
 }
 

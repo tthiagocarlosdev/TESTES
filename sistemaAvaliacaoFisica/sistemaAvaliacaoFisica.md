@@ -791,6 +791,133 @@ Profissão: Administrador
 ===============================
 ```
 
+### E-mail
+
+Agora vamos criar a function **userEmail( )** que vai retornar um email válido digitado pelo usuário.
+
+Dentro desta function iremos usar outra function de validação do email, **validEmail( )**. Um email para ser válido deve possuir as seguintes condições:
+
+- Não possuir espaços;
+- Possuir o @;
+- Possuir algum caracter após o @;
+- Possuir algum caracter antes do @;
+- Possuir pelo menos um ponto após o caracter depois do @;
+- Possuir algum caracter após o ponto.
+
+A function **validEmail( )**, recebe o  email como parâmetro e separa em duas partes:
+
+- user = antes do @
+- domain = depois do @
+
+Após começamos as validações que já haviam sido definidas acima no if na sequencia abaixo:
+
+- Tamanho de user maior ou igual a 1 caracter.
+- Tamanho do domain maior ou igual a 3 caracteres.
+- user não pode conter o @.
+- domain não pode conter o @.
+- user não pode conter o “ ” espaço em branco.
+- domain não pode conter o “ ” espaço em branco.
+- domain tem que possuir “.” Ponto.
+- A posição do primeiro ponto tem que ser maior ou igual a 1, lembrando a posição 0 deve ser ocupado por algum caracter após o @.
+- A posição do ultimo ponto tem que ser menor que o ultimo caracter, deve ser finalizado o domínio por um caracter.
+
+Caso o email digitado pelo usuário não atenda a qualquer uma destas condições, uma mensagem de erro deve ser apresentada, e o usuário deve digitar seu email novamente. Feitas essas considerações, vamos aos códigos abaixo:
+
+Em **validationFunctions.js**:
+
+```js
+validEmail: function(userEmail){
+
+    let user = userEmail.substring(0, userEmail.indexOf("@"))
+    let domain = userEmail.substring(userEmail.indexOf("@")+ 1, userEmail.length)
+    let validations = ((user.length >=1) && 
+                        (domain.length >=3) && 
+                        (user.search("@")==-1) && 
+                        (domain.search("@")==-1) && 
+                        (user.search(" ")==-1) && 
+                        (domain.search(" ")==-1) && 
+                        (domain.search(".")!=-1) && 
+                        (domain.indexOf(".") >=1)&& 
+                        (domain.lastIndexOf(".") < domain.length - 1))
+  
+      return validations ? true : false
+    
+  },
+```
+
+Em **personalData.js**:
+
+```js
+userEmail: function() {
+    
+    let email = ''
+    let itsEmail = false
+
+    do{
+      
+      email = input.question('Digite seu email: ')
+
+      itsEmail = validationFunctions.validEmail(email)
+      
+      validationFunctions.incorrectValue(!itsEmail, false, "Dados Pessoais")
+
+    }while(!itsEmail)
+    
+    return email
+
+  },
+```
+
+Em **saf.js** criamos a variável **userEmail** que vai receber a function **userEmail( )**. Depois apresentamos o resultado:
+
+```js
+const { headerFunctions } = require('./headerFunctions')
+const { personalData } = require('./personalData')
+
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+
+// variables 
+const name = personalData.userName()
+const birthdayInBrazilianFormat = personalData.dateOfBirth()
+const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
+const age = personalData.age(birthdayInISOFormat)
+const sexNumber = personalData.sexNumber()
+const sex = personalData.showSex(sexNumber)
+const profession = personalData.userProfession()
+const userEmail = personalData.userEmail()
+
+// show results
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+console.log(`Nome: ${name}`)
+console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
+console.log(`Idade: ${age} anos!`)
+console.log(`Sexo: ${sex}`)
+console.log(`Profissão: ${profession}`)
+console.log(`E-mail: ${userEmail}`)
+
+console.log(`===============================`)
+```
+
+Ao executar:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Nome: Fulano Cicrano
+Data de nascimento: 10/03/1999
+Idade: 23 anos!
+Sexo: Masculino
+Profissão: Administrador
+E-mail: fulano@cicrano.com
+===============================
+```
+
 
 
 anamnesisFunctions.js
