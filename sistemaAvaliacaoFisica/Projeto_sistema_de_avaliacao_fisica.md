@@ -18,7 +18,7 @@
         - [x]   Validar vazio
    - [x]   **Mostrar Sexo: (SHOW)**
    - [x]   **Profissão: (INPUT)**
-        
+     
         - [x]   Letras e símbolos
         - [x]   Validação vazio
    - [x] **Email: (INPUT)**
@@ -38,12 +38,14 @@
           - [x] Possuir pelo menos um ponto após o caracter depois do @;
           - [x] Possuir algum caracter após o ponto.
 
-          
-   - [ ]   **Telefone: (INPUT)**
-        
-        - [ ]   Apenas números
-        - [ ]     Validar número de telefone
-        - [ ]   Validação vazio
+   https://www.devmedia.com.br/validando-e-mail-em-inputs-html-com-javascript/26427
+
+   
+
+   - [x]   **Telefone: (INPUT)**
+        - [x]   Apenas números
+        - [x]     Validar número de telefone
+        - [x]   Validação vazio
 
 ## Anamnese
 

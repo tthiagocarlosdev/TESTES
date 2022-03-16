@@ -24,7 +24,7 @@ $ npm install readline-sync
   -  **saf.js**. Esse será o arquivo principal do nosso projeto;
   - **headerFunctions.js**. Vamos colocar as funções de cabeçalho;
   - **validationFunctions.js**. Vamos colocar funções de validação;
-  - **personalData.js**. Vamos colocar as funções da anamnese.
+  - **personalData.js**. Vamos colocar as funções dos dados pessoais.
 - Em **saf.js** vamos:
   - Importar os arquivos **headerFunctions.js** e **personalData.js**.
 
@@ -66,7 +66,7 @@ module.exports = {
 - Em **personalData.js** vamos:
   - Criar a variável de **input** com o módulo **readline-sync**;
   - Criar a variável de importação de **validationFunctions.js**;
-  - Criar uma variável objeto, **personalData**, que vai guardar as funções de anamnese;
+  - Criar uma variável objeto, **personalData**, que vai guardar as funções dos dados pessoais;
   - Exportar essa variável.
 
 ```js
@@ -271,7 +271,7 @@ Nome: Fulano de Tal
 
 Agora vamos criar a function **dateOfBirth** que vai criar o **dia de nascimento** do usuário. Essa function vai solicitar ao usuário para digitar sua data de nascimento no formato brasileiro (dia / mês  / ano), sendo (2 dígitos / 2 dígitos / 4 dígitos). Essa function terá três validações e duas functions de criação de data pelo objeto **Date( )**:
 
-* **dateAsRegexExpression( )** - Para confirmar se a data digitada pelo usuário está no formato brasileiro. Recebe a data como string digitada pelo usuário e uma Expressão Regular. Retorna um valor booleano;
+* **isRegularExpression( )** - Para confirmar se a data digitada pelo usuário está no formato brasileiro. Recebe a data como string digitada pelo usuário e uma Expressão Regular. Retorna um valor booleano;
 *  **dateInBrazilFormat( )** - Recebe a data digitada pelo usuário como string e retorna uma data criada pelo objeto Date( ). Está function foi criada, pois caso o usuário digite uma data inválida, a function retorna uma data qualquer e no momento de comparar com a próxima function, como ela não é válida, dá um erro, pedindo para o usuário digitar novamente a data;
 * **validDate( )** - Vai receber a data digitada pelo usuário e a data criada pela function **dateInBrazilFormat( )** e compara se são iguais. Retorna um valor booleano;
 * **dateInISOFormat( )** - Recebe a data no formato brasileiro como string. Retorna a data no formato ISO;
@@ -301,7 +301,7 @@ Essa function irá retornar a data de nascimento no formato brasileiro **dateInB
 
 Primeiro o usuário irá digitar a sua data de nascimento e essa informação será armazenada em **typedDate**.
 
-Em seguinda essa data será validada pela function **dateAsRegexExpression( )**.
+Em seguinda essa data será validada pela function **isRegularExpression( )**.
 
 ```js
 dateOfBirth: function(){
@@ -315,7 +315,7 @@ dateOfBirth: function(){
     do{
       typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
       
-      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      dateEqualExpressionRegex = validationFunctions.isRegularExpression(typedDate, dateRegExp)
   
     }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
     
@@ -324,10 +324,10 @@ dateOfBirth: function(){
   },
 ```
 
-Em **validationFunctions.js** vamos criar a function **dateAsRegexExpression**:
+Em **validationFunctions.js** vamos criar a function **isRegularExpression**:
 
 ```js
-dateAsRegexExpression: function(dateValue, regex){
+isRegularExpression: function(dateValue, regex){
     
     return regex.test(dateValue) ? true : false
     
@@ -348,7 +348,7 @@ dateOfBirth: function(){
     do{
       typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
       
-      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      dateEqualExpressionRegex = validationFunctions.isRegularExpression(typedDate, dateRegExp)
       
       dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
   
@@ -397,7 +397,7 @@ dateOfBirth: function(){
     do{
       typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
       
-      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      dateEqualExpressionRegex = validationFunctions.isRegularExpression(typedDate, dateRegExp)
       
       dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
   
@@ -447,7 +447,7 @@ dateOfBirth: function(){
     do{
       typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
       
-      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      dateEqualExpressionRegex = validationFunctions.isRegularExpression(typedDate, dateRegExp)
       
       dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
   
@@ -476,7 +476,7 @@ dateOfBirth: function(){
     do{
       typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
       
-      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      dateEqualExpressionRegex = validationFunctions.isRegularExpression(typedDate, dateRegExp)
       
       dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
   
@@ -518,7 +518,7 @@ dateOfBirth: function(){
     do{
       typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
       
-      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      dateEqualExpressionRegex = validationFunctions.isRegularExpression(typedDate, dateRegExp)
       
       dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
   
@@ -917,6 +917,89 @@ Profissão: Administrador
 E-mail: fulano@cicrano.com
 ===============================
 ```
+
+### Número de telefone
+
+Agora vamos criar a function **phoneNumber( )** que orá retornar um número de celular válido. Está function só pode receber números, em formato de número de celular, DDD + número de celular (nove dígitos). Caso o número não esteja de acordo, uma mensagem de erro deverá aparecer e solicitar que o usuário digite o número de celular novamente.
+
+Em **personalData.js**:
+
+```js
+phoneNumber: function(){
+  
+    let phoneNumber = 0
+    let regexPhone = /^([0-9]{2})[0-9]{9}$/
+    let istPhoneNumber = true
+  
+    do{
+      
+      phoneNumber = input.question('Digite seu número de celular com DDD: ')
+      istPhoneNumber = validationFunctions.isRegularExpression(phoneNumber, regexPhone)
+      validationFunctions.incorrectValue(false, !istPhoneNumber, "Dados Pessoais")
+  
+    }while(!istPhoneNumber)
+    
+    return phoneNumber
+  },
+```
+
+Em **saf.js** vamos criar a variável **phoneNumber** que receberá a function **phoneNumber( )** e depois mostrar o número do telefone:
+
+```js
+const { headerFunctions } = require('./headerFunctions')
+const { personalData } = require('./personalData')
+
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+
+// variables 
+const name = personalData.userName()
+const birthdayInBrazilianFormat = personalData.dateOfBirth()
+const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
+const age = personalData.age(birthdayInISOFormat)
+const sexNumber = personalData.sexNumber()
+const sex = personalData.showSex(sexNumber)
+const profession = personalData.userProfession()
+const userEmail = personalData.userEmail()
+const phoneNumber = personalData.phoneNumber()
+
+// show results
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+console.log(`Nome: ${name}`)
+console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
+console.log(`Idade: ${age} anos!`)
+console.log(`Sexo: ${sex}`)
+console.log(`Profissão: ${profession}`)
+console.log(`E-mail: ${userEmail}`)
+console.log(`Celular: ${phoneNumber}`)
+
+console.log(`===============================`)
+
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Nome: Fulano Cicrano
+Data de nascimento: 10/03/1999
+Idade: 23 anos!
+Sexo: Masculino
+Profissão: Administrador
+E-mail: fulano@cicrano.com
+Celular: 61917166613
+===============================
+```
+
+Chegamos ao fim da parte de **Dados Pessoais**. Agora vamos entrar na próxima etapa, **Anamnese**, Let's Go!
+
+## Anamnesis
 
 
 

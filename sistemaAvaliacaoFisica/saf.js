@@ -13,6 +13,7 @@ const sexNumber = personalData.sexNumber()
 const sex = personalData.showSex(sexNumber)
 const profession = personalData.userProfession()
 const userEmail = personalData.userEmail()
+const phoneNumber = personalData.phoneNumber()
 
 // show results
 console.clear()
@@ -24,5 +25,6 @@ console.log(`Idade: ${age} anos!`)
 console.log(`Sexo: ${sex}`)
 console.log(`Profissão: ${profession}`)
 console.log(`E-mail: ${userEmail}`)
+console.log(`Celular: ${phoneNumber}`)
 
 console.log(`===============================`)

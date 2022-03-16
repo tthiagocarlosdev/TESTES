@@ -39,7 +39,7 @@ const personalData = {
     do{
       typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
       
-      dateEqualExpressionRegex = validationFunctions.dateAsRegexExpression(typedDate, dateRegExp)
+      dateEqualExpressionRegex = validationFunctions.isRegularExpression(typedDate, dateRegExp)
       
       dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
   
@@ -170,6 +170,23 @@ const personalData = {
     
     return email
 
+  },
+
+  phoneNumber: function(){
+  
+    let phoneNumber = 0
+    let regexPhone = /^([0-9]{2})[0-9]{9}$/
+    let istPhoneNumber = true
+  
+    do{
+      
+      phoneNumber = input.question('Digite seu número de celular com DDD: ')
+      istPhoneNumber = validationFunctions.isRegularExpression(phoneNumber, regexPhone)
+      validationFunctions.incorrectValue(false, !istPhoneNumber, "Dados Pessoais")
+  
+    }while(!istPhoneNumber)
+    
+    return phoneNumber
   },
 
 }

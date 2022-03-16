@@ -32,10 +32,12 @@ const validationFunctions = {
 
   },
 
-    // retorna true se a data digitada pelo usuário está no formato da Regex Expression
-  dateAsRegexExpression: function(dateValue, regex){
+  // recebe um valor e uma expressão regular. retorna true se o valor estiver de acordo com a expressão regular  
+  // retorna true se a data digitada pelo usuário está no formato da Regex Expression
+  
+  isRegularExpression: function(stringValue, regex){
     
-    return regex.test(dateValue) ? true : false
+    return regex.test(stringValue) ? true : false
     
   },
 

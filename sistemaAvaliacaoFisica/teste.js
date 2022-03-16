@@ -1,6 +1,6 @@
 var input = require('readline-sync')
 
-// const { validationFunctions } = require('./validationFunctions')
+ const { validationFunctions } = require('./validationFunctions')
 // const { anamnesisFunctions } = require('./anamnesisFunctions')
 
 
@@ -589,7 +589,7 @@ const emails = ["thiago@carlos.com", "andre@java.com", "andre@java.com.br", "and
 for(let email of emails){
   validEmail(email)
   console.log('=======================')
-}*/
+}
 
 
 function validEmail(userEmail) {
@@ -621,3 +621,24 @@ for(let email of emails){
   console.log('=======================')
 }
 
+*//*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == phone number == **/
+
+function phoneNumber(){
+  
+  let phoneNumber = 0
+  let regexPhone = /^([0-9]{2})[0-9]{9}$/
+  let istPhoneNumber = true
+
+  do{
+    
+    phoneNumber = input.question('Digite seu número de celular com DDD: ')
+    istPhoneNumber = validationFunctions.isRegularExpression(phoneNumber, regexPhone)
+    validationFunctions.incorrectValue(false, !istPhoneNumber, "Dados Pessoais")
+
+  }while(!istPhoneNumber)
+  
+  return phoneNumber
+}
+
+console.log(`Número de telefone: ${phoneNumber()}`)
