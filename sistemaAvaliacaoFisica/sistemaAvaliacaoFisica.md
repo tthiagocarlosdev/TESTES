@@ -1342,9 +1342,136 @@ module.exports = {
 }
 ```
 
+### Questionário PAR-Q
 
+Na variável **anamnesisFunctions** vamos criar a primeira function, **choice( )**, que será uma function que exibirá um menu de escolha, tendo como opções [1] para sim e [2] para não:
 
+```js
+choice(){
 
+    console.log('Escolha:')
+    console.log('[1] Sim')
+    console.log('[2] Não')
+
+  },
+```
+
+Vamos agora criar a function **questionnairePARQ( )**. Esta function deverá apresentar 7 perguntas para o usuário, aceitando apenas como resposta, "sim", ou "não". Caso alguma resposta seja "sim", a mensagem "Você deverá realizar um exame médico antes de iniciar suas atividades!" deverá ser apresentada. Caso todas as repostas seja "não", a mensagem "Todas as respostas do questionário foram 'Sim'!" deverá ser apresentada. Na validação das respostas, só serão aceitos os numerais 1 e 2, caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta.
+
+Questionário PAR-Q:
+
+- Seu médico já mencionou alguma vez que você tem uma condição cardíaca e que você só deve realizar atividade física recomendada por um médico?
+- Você sente dor no tórax quando realiza atividade física?
+- No mês passado, você teve dor torácica quando não estava realizando atividade física?
+- Você perdeu o equilíbrio por causa de tontura ou alguma vez perdeu a consciência?
+- Você tem algum problema ósseo ou de articulação que poderia piorar em conseqüência de uma alteração em sua atividade física?
+- Seu médico está prescrevendo medicamentos (por exemplo, água pílulas) para sua pressão ou condição cardíaca?
+- Você teria alguma razão para não praticar exercício físico ou outro problema que impeça?
+
+```js
+questionnairePARQ(){
+
+    let questionnairePARQ = [
+      "Seu médico já mencionou alguma vez que você tem uma condição cardíaca e que você só deve realizar atividade física recomendada por um médico?",
+      "Você sente dor no tórax quando realiza atividade física?",
+      "No mês passado, você teve dor torácica quando não estava realizando atividade física?",
+      "Você perdeu o equilíbrio por causa de tontura ou alguma vez perdeu a consciência?",
+      "Você tem algum problema ósseo ou de articulação que poderia piorar em conseqüência de uma alteração em sua atividade física?",
+      "Seu médico está prescrevendo medicamentos para sua pressão ou condição cardíaca?",
+      "Você teria alguma razão para não praticar exercício físico ou outro problema que impeça?",
+    ]
+    let questionnairePARQAnswer = []
+    let itsNumberOneOrTwo = true
+    let regexNumber = /[1]|[2]/
+
+    for(let i = 0; i < questionnairePARQ.length; i++){
+      
+      do{
+
+        console.log(`${[i+1]} - ${questionnairePARQ[i]}`)
+        anamnesisFunctions.choice()
+        questionnairePARQAnswer[i] = input.question("")
+        itsNumberOneOrTwo = validationFunctions.isRegularExpression(questionnairePARQAnswer[i], regexNumber)
+        validationFunctions.incorrectValue(false, !itsNumberOneOrTwo, "Anamnese")
+
+      }while(!itsNumberOneOrTwo)
+      
+    }
+    
+    if(questionnairePARQAnswer.includes("1")){
+      return "Você deverá realizar um exame médico antes de iniciar suas atividades!"
+    } else {
+      return "Todas as respostas do questionário foram 'Sim'!"
+    }
+
+  },
+```
+
+Em **saf.js** vamos requerer o arquivo **anamnesisFunctions**:
+
+```js
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+```
+
+Em seguida vamos criar a sessão de **variables anamnesisFunctions** e **show results anamnesisFunctions** declarando a variável **questionnairePARQ** que receberá a function **questionnairePARQ( )**. Em seguida apresentamos o resultado. Logo, em **saf.js**:
+
+```js
+const { headerFunctions } = require('./headerFunctions')
+const { personalData } = require('./personalData')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+
+// variables personalData
+const name = personalData.userName()
+const birthdayInBrazilianFormat = personalData.dateOfBirth()
+const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
+const age = personalData.age(birthdayInISOFormat)
+const sexNumber = personalData.sexNumber()
+const sex = personalData.showSex(sexNumber)
+const profession = personalData.userProfession()
+const userEmail = personalData.userEmail()
+const phoneNumber = personalData.phoneNumber()
+
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
+
+// variables anamnesisFunctions
+const questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+
+// show results personalData
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+console.log(`Nome: ${name}`)
+console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
+console.log(`Idade: ${age} anos!`)
+console.log(`Sexo: ${sex}`)
+console.log(`Profissão: ${profession}`)
+console.log(`E-mail: ${userEmail}`)
+console.log(`Celular: ${phoneNumber}`)
+
+// show results anamnesisFunctions
+console.log(`===============================`)
+headerFunctions.subTitle("Anamnese")
+
+console.log(`Questionário PAR-Q: ${questionnairePARQ}`)
+
+console.log(`===============================`)
+
+```
+
+Esta parte da execução, iremos apenas mostrar a parte da Anamnese, no final de todo o programa mostramos ele completo, logo ao executar:
+
+```tex
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Você deverá realizar um exame médico antes de iniciar suas atividades!
+===============================
+```
 
 
 

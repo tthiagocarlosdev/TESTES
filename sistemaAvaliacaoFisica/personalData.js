@@ -120,7 +120,7 @@ const personalData = {
   
       isLessThanMinimumOrGreaterThanMaximum = validationFunctions.isLessThanMinimumOrGreaterThanMaximum(1, 2, Number(sexNumber))
       
-      validationFunctions.incorrectValue(!istNumber, isLessThanMinimumOrGreaterThanMaximum, "Anamnese")
+      validationFunctions.incorrectValue(!istNumber, isLessThanMinimumOrGreaterThanMaximum, "Dados pessoais")
   
     }while(!istNumber || isLessThanMinimumOrGreaterThanMaximum)
     

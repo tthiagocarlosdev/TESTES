@@ -49,23 +49,23 @@
 
 ## Anamnese
 
-- [ ] **Questionário - PAR-Q: (INPUT)**
+- [x] **Questionário - PAR-Q: (INPUT)**
 
-  - [ ] Apenas números 1[sim] e 2[não]
-  - [ ] Validação vazio
-  - [ ] Caso tenha algumas resposta sim uma mensagem deverá ser apresentada:
+  - [x] Apenas números 1[sim] e 2[não]
+  - [x] Validação vazio
+  - [x] Caso tenha algumas resposta sim uma mensagem deverá ser apresentada:
 
   ​        "Você deverá realizar um exame médico antes de iniciar suas atividades!"
   
-- [ ] Questionário - PAR-Q:
+- [x] Questionário - PAR-Q:
 
-  - [ ] Seu médico já mencionou alguma vez que você tem uma condição cardíaca e que você só deve realizar atividade física recomendada por um médico?
-  - [ ] Você sente dor no tórax quando realiza atividade física?
-  - [ ] No mês passado, você teve dor torácica quando não estava realizando atividade física?
-  - [ ] Você perdeu o equilíbrio por causa de tontura ou alguma vez perdeu a consciência?
-  - [ ] Você tem algum problema ósseo ou de articulação que poderia piorar em conseqüência de uma alteração em sua atividade física?
-  - [ ] Seu médico está prescrevendo medicamentos (por exemplo, água pílulas) para sua pressão ou condição cardíaca?
-  - [ ] Você teria alguma razão para não praticar exercício físico ou outro problema que impeça?
+  - [x] Seu médico já mencionou alguma vez que você tem uma condição cardíaca e que você só deve realizar atividade física recomendada por um médico?
+  - [x] Você sente dor no tórax quando realiza atividade física?
+  - [x] No mês passado, você teve dor torácica quando não estava realizando atividade física?
+  - [x] Você perdeu o equilíbrio por causa de tontura ou alguma vez perdeu a consciência?
+  - [x] Você tem algum problema ósseo ou de articulação que poderia piorar em conseqüência de uma alteração em sua atividade física?
+  - [x] Seu médico está prescrevendo medicamentos (por exemplo, água pílulas) para sua pressão ou condição cardíaca?
+  - [x] Você teria alguma razão para não praticar exercício físico ou outro problema que impeça?
 
 
 
@@ -78,6 +78,12 @@
     2 - Ativo
 
   - [ ] Validar vazio
+
+
+
+- [ ] **Estado Físico Atual: (SHOW)**
+
+Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
