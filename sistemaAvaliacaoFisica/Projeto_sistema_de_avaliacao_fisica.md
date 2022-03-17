@@ -151,18 +151,19 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Lesões desportivas: (INPUT)**
-  - [ ] Apenas números:
-
+- [x] **Lesões desportivas: (INPUT)**
+  
+  - [x] Apenas números:
+  
     1 - sim
-
+  
     2 - não
-
-  - [ ] Caso a resposta seja sim o usuário deve informar qual a lesão
-
-  - [ ] Input de apenas texto (Qual lesão) (INPUT)
-
-  - [ ] Validar vazio   
+  
+  - [x] Caso a resposta seja sim o usuário deve informar qual a lesão
+  
+  - [x] Input de apenas texto (Qual lesão) (INPUT)
+  
+  - [x] Validar vazio   
 
 
 

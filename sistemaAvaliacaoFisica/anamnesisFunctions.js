@@ -232,6 +232,44 @@ const anamnesisFunctions = {
   
   },
 
+  sportsInjuries(){
+  
+    let sportsInjuriesNumber = 2
+    let sportsInjuriesText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado já sofreu alguma lesão desportiva?`)
+      anamnesisFunctions.choice()
+      sportsInjuriesNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(sportsInjuriesNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(sportsInjuriesNumber === 1){
+        
+        do{
+  
+          console.log(`Qual lesão?`)
+          sportsInjuriesText = input.question('')
+          itsLetters = validationFunctions.itsLetters(sportsInjuriesText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        sportsInjuriesText = `Nunca sofreu lesão desportiva.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return sportsInjuriesText
+  
+  },
+
 }
 
 module.exports = {

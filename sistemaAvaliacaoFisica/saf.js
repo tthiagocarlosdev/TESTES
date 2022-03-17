@@ -27,6 +27,7 @@ const pastIllness = anamnesisFunctions.pastIllness()
 const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
 const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
 const useMedication = anamnesisFunctions.useMedication()
+const sportsInjuries = anamnesisFunctions.sportsInjuries()
 
 // show results personalData
 /*console.clear()
@@ -52,5 +53,6 @@ console.log(`Doença Pregressa: ${pastIllness}`)
 console.log(`Doença Pregressa na Família: ${illnessesFamily}`)
 console.log(`Cirurgia: ${surgeryPerformed}`)
 console.log(`Uso de Medicamento: ${useMedication}`)
+console.log(`Lesão Desportiva: ${sportsInjuries}`)
 
 console.log(`===============================`)

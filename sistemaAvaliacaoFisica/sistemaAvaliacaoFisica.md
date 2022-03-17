@@ -1816,6 +1816,80 @@ Uso de Medicamento: Não faz uso de medicamento.
 ===============================
 ```
 
+### Lesões desportivas
+
+Agora vamos criar a function **sportsInjuries( )** que será do mesmo jeito, com os mesmos requisitos da function **useMedication( )**. Vamos mudar apenas os nomes de algumas variáveis (sportsInjuriesNumber e sportsInjuriesText) dentro da function e algumas frases ('Avaliado já sofreu alguma lesão desportiva?', 'Qual lesão?', 'Nunca sofreu lesão desportiva.'). Logo, em **anamnesisFunctions.js** colocamos:
+
+```js
+sportsInjuries(){
+  
+    let sportsInjuriesNumber = 2
+    let sportsInjuriesText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado já sofreu alguma lesão desportiva?`)
+      anamnesisFunctions.choice()
+      sportsInjuriesNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(sportsInjuriesNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(sportsInjuriesNumber === 1){
+        
+        do{
+  
+          console.log(`Qual lesão?`)
+          sportsInjuriesText = input.question('')
+          itsLetters = validationFunctions.itsLetters(sportsInjuriesText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        sportsInjuriesText = `Nunca sofreu lesão desportiva.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return sportsInjuriesText
+  
+  },
+```
+
+Em **saf.js** adicionamos a variável **sportsInjuries** e depois mostramos ela:
+
+```js
+const sportsInjuries = anamnesisFunctions.sportsInjuries()
+```
+
+```js
+console.log(`Lesão Desportiva: ${sportsInjuries}`)
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Estado físico: Sedentário
+Doença Pregressa: Sem doença pregressa.
+Doença Pregressa na Família: Sem doença pregressa na família.
+Cirurgia: Nunca realizou procedimento cirúrgico.
+Uso de Medicamento: Não faz uso de medicamento.
+Lesão Desportiva: Ruptura de ligamento do ombro direito.
+===============================
+```
+
+### Objetivo do treino
+
 
 
 
