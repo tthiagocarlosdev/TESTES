@@ -1745,7 +1745,76 @@ Cirurgia: Nunca realizou procedimento cirúrgico.
 ===============================
 ```
 
+### Usa medicamentos
 
+Agora vamos criar a function **useMedication( )** que será do mesmo jeito, com os mesmos requisitos da function **surgeryPerformed( )**. Vamos mudar apenas os nomes de algumas variáveis (useMedicationNumber e useMedicationText) dentro da function e algumas frases ('Avaliado faz uso de medicamentos?', 'Qual medicamento?', 'Não faz uso de medicamento.'). Logo, em **anamnesisFunctions.js** colocamos:
+
+```js
+useMedication(){
+
+    let useMedicationNumber = 2
+    let useMedicationText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado faz uso de medicamentos?`)
+      anamnesisFunctions.choice()
+      useMedicationNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(useMedicationNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(useMedicationNumber === 1){
+        
+        do{
+  
+          console.log(`Qual medicamento?`)
+          useMedicationText = input.question('')
+          itsLetters = validationFunctions.itsLetters(useMedicationText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        useMedicationText = `Não faz uso de medicamento.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return useMedicationText
+  
+  },
+```
+
+Em **saf.js** adicionamos a variável **useMedication** e depois mostramos ela:
+
+```js
+const useMedication = anamnesisFunctions.useMedication()
+```
+
+```js
+console.log(`Uso de Medicamento: ${useMedication}`)
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Você deverá realizar um exame médico antes de iniciar suas atividades!
+Estado físico: Sedentário
+Doença Pregressa: Alergia
+Doença Pregressa na Família: Sem doença pregressa na família.
+Cirurgia: Artroscopia de ombro
+Uso de Medicamento: Não faz uso de medicamento.
+===============================
+```
 
 
 

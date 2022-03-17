@@ -135,18 +135,19 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Usa medicamentosa: (INPUT)**
-  - [ ] Apenas números:
-
+- [x] **Usa medicamentos: (INPUT)**
+  
+  - [x] Apenas números:
+  
     1 - sim
-
+  
     2 - não
-
-  - [ ] Caso a resposta seja sim o usuário deve informar qual o medicamento usa
-
-  - [ ] Input de apenas texto (Qual medicamento) (INPUT)
-
-  - [ ] Validar vazio
+  
+  - [x] Caso a resposta seja sim o usuário deve informar qual o medicamento usa
+  
+  - [x] Input de apenas texto (Qual medicamento) (INPUT)
+  
+  - [x] Validar vazio
 
 
 

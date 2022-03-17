@@ -26,6 +26,7 @@ const currentPhysicalState = anamnesisFunctions.currentPhysicalState()
 const pastIllness = anamnesisFunctions.pastIllness()
 const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
 const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
+const useMedication = anamnesisFunctions.useMedication()
 
 // show results personalData
 /*console.clear()
@@ -50,5 +51,6 @@ console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(currentPhysi
 console.log(`Doença Pregressa: ${pastIllness}`)
 console.log(`Doença Pregressa na Família: ${illnessesFamily}`)
 console.log(`Cirurgia: ${surgeryPerformed}`)
+console.log(`Uso de Medicamento: ${useMedication}`)
 
 console.log(`===============================`)

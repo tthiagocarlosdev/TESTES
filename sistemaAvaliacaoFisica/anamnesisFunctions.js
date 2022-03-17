@@ -194,6 +194,44 @@ const anamnesisFunctions = {
   
   },
 
+  useMedication(){
+
+    let useMedicationNumber = 2
+    let useMedicationText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado faz uso de medicamentos?`)
+      anamnesisFunctions.choice()
+      useMedicationNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(useMedicationNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(useMedicationNumber === 1){
+        
+        do{
+  
+          console.log(`Qual medicamento?`)
+          useMedicationText = input.question('')
+          itsLetters = validationFunctions.itsLetters(useMedicationText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        useMedicationText = `Não faz uso de medicamento.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return useMedicationText
+  
+  },
+
 }
 
 module.exports = {
