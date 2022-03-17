@@ -103,18 +103,19 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Doenças na Família: (INPUT)**
-  - [ ] Apenas números:
-
+- [x] **Doenças na Família: (INPUT)**
+  
+  - [x] Apenas números:
+  
     1 - sim
-
+  
     2 - não
-
-  - [ ] Caso a resposta seja sim o usuário deve informar qual doença ele tem
-
-  - [ ] Input de apenas texto (Qual a doença) (INPUT)
-
-  - [ ] Validar vazio
+  
+  - [x] Caso a resposta seja sim o usuário deve informar qual doença ele tem
+  
+  - [x] Input de apenas texto (Qual a doença) (INPUT)
+  
+  - [x] Validar vazio
 
 
 

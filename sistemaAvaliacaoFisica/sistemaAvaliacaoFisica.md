@@ -1538,7 +1538,7 @@ Estado físico: Ativo
 
 ### Doença Pregressa
 
-Agora vamos criar a function **pastIllness( )** que irá retornar se o avaliad possue doença pregressa ou não. Esta function deve aceitar apenas um dígito, sendo apenas  **[1]** para **Sim** e **[2]** para **Não**. Caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Caso a resposta seja **sim** o usuário deve informar qual doença ele teve/tem. Vamos chamar a function **itsLetters( )** para validar o que será digitado pelo o usuário, pois não será aceito apenas número, espaço ou vazio, o usuáriotem ue digitar um texto. Caso o usuário não digite texto a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Sobre o retorno desta function: Caso o usuário digite **não**, será retornado a mensagem **"Sem doença pregressa."**, porém se ele digitar **sim**, deverá ser retornado a doença informada pelo o mesmo.
+Agora vamos criar a function **pastIllness( )** que irá retornar se o avaliado possue doença pregressa ou não. Esta function deve aceitar apenas um dígito, sendo apenas  **[1]** para **Sim** e **[2]** para **Não**. Caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Caso a resposta seja **sim** o usuário deve informar qual doença ele teve/tem. Vamos chamar a function **itsLetters( )** para validar o que será digitado pelo o usuário, pois não será aceito apenas número, espaço ou vazio, o usuáriotem ue digitar um texto. Caso o usuário não digite texto a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Sobre o retorno desta function: Caso o usuário digite **não**, será retornado a mensagem **"Sem doença pregressa."**, porém se ele digitar **sim**, deverá ser retornado a doença informada pelo o mesmo.
 
 Em **anamnesisFunctions.js**:
 
@@ -1607,6 +1607,75 @@ Doença Pregressa: Sem doença pregressa.
 ```
 
 ### Doenças na Família
+
+Agora vamos criar a function **illnessesInTheFamily( )** que será do mesmo jeito, com os mesmo requisitos da function **pastIllness( )**. Vamos mudar apenas os nomes de algumas variáveis (illnessesFamilyNumber e illnessesFamilyText) dentro da function e algumas frases ('Avaliado possue alguém da família com doença pregressa?', 'Sem doença pregressa na família.'). Logo, em **anamnesisFunctions.js** colocamos:
+
+```js
+illnessesInTheFamily(){
+
+    let illnessesFamilyNumber = 2
+    let illnessesFamilyText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado possue alguém da família com doença pregressa?`)
+      anamnesisFunctions.choice()
+      illnessesFamilyNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(illnessesFamilyNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(illnessesFamilyNumber === 1){
+        
+        do{
+  
+          console.log(`Qual doença?`)
+          illnessesFamilyText = input.question('')
+          itsLetters = validationFunctions.itsLetters(illnessesFamilyText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        illnessesFamilyText = `Sem doença pregressa na família.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return illnessesFamilyText
+  
+  },
+```
+
+Em **saf.js** adicionamos a variável **illnessesFamily** e depois mostramos ela:
+
+```js
+const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
+```
+
+```js
+console.log(`Doença Pregressa na Família: ${illnessesFamily}`)
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Estado físico: Ativo
+Doença Pregressa: Sem doença pregressa.
+Doença Pregressa na Família: Avo hipertensao
+===============================
+```
+
+### Cirurgia Realizada
 
 
 
