@@ -1608,7 +1608,7 @@ Doença Pregressa: Sem doença pregressa.
 
 ### Doenças na Família
 
-Agora vamos criar a function **illnessesInTheFamily( )** que será do mesmo jeito, com os mesmo requisitos da function **pastIllness( )**. Vamos mudar apenas os nomes de algumas variáveis (illnessesFamilyNumber e illnessesFamilyText) dentro da function e algumas frases ('Avaliado possue alguém da família com doença pregressa?', 'Sem doença pregressa na família.'). Logo, em **anamnesisFunctions.js** colocamos:
+Agora vamos criar a function **illnessesInTheFamily( )** que será do mesmo jeito, com os mesmos requisitos da function **pastIllness( )**. Vamos mudar apenas os nomes de algumas variáveis (illnessesFamilyNumber e illnessesFamilyText) dentro da function e algumas frases ('Avaliado possue alguém da família com doença pregressa?', 'Sem doença pregressa na família.'). Logo, em **anamnesisFunctions.js** colocamos:
 
 ```js
 illnessesInTheFamily(){
@@ -1677,9 +1677,73 @@ Doença Pregressa na Família: Avo hipertensao
 
 ### Cirurgia Realizada
 
+Agora vamos criar a function **surgeryPerformed( )** que será do mesmo jeito, com os mesmos requisitos da function **illnessesInTheFamily( )**. Vamos mudar apenas os nomes de algumas variáveis (surgeryPerformedNumber e surgeryPerformedText) dentro da function e algumas frases ('Avaliado já realizou precedimento cirúrgico?', 'Qual cirurgia?', 'Nunca realizou procedimento cirúrgico.'). Logo, em **anamnesisFunctions.js** colocamos:
 
+```js
+surgeryPerformed(){
 
+    let surgeryPerformedNumber = 2
+    let surgeryPerformedText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado já realizou precedimento cirúrgico?`)
+      anamnesisFunctions.choice()
+      surgeryPerformedNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(surgeryPerformedNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(surgeryPerformedNumber === 1){
+        
+        do{
+  
+          console.log(`Qual cirurgia?`)
+          surgeryPerformedText = input.question('')
+          itsLetters = validationFunctions.itsLetters(surgeryPerformedText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        surgeryPerformedText = `Nunca realizou procedimento cirúrgico.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return surgeryPerformedText
+  
+  },
+```
 
+Em **saf.js** adicionamos a variável **surgeryPerformed** e depois mostramos ela:
+
+```js
+const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
+```
+
+```js
+console.log(`Cirurgia: ${surgeryPerformed}`)
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Estado físico: Ativo
+Doença Pregressa: Sem doença pregressa.
+Doença Pregressa na Família: Sem doença pregressa na família.
+Cirurgia: Nunca realizou procedimento cirúrgico.
+===============================
+```
 
 
 

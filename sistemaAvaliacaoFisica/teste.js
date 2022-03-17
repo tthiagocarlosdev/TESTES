@@ -817,42 +817,41 @@ function illnessesInTheFamily(){
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Surgery Performed == **/
 
-
 function surgeryPerformed(){
 
-  let illnessesFamilyNumber = 2
-  let illnessesFamilyText = ''
+  let surgeryPerformedNumber = 2
+  let surgeryPerformedText = ''
   let itsNumberOneOrTwo = true
   let regexNumber = /^[1]$|^[2]$/
   let itsLetters = true
 
   do{
 
-    console.log(`Avaliado possue alguém da família com doença pregressa?`)
+    console.log(`Avaliado já realizou precedimento cirúrgico?`)
     anamnesisFunctions.choice()
-    illnessesFamilyNumber = Number(input.question(''))
+    surgeryPerformedNumber = Number(input.question(''))
 
-    itsNumberOneOrTwo = validationFunctions.isRegularExpression(illnessesFamilyNumber, regexNumber)
+    itsNumberOneOrTwo = validationFunctions.isRegularExpression(surgeryPerformedNumber, regexNumber)
     validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
 
-    if(illnessesFamilyNumber === 1){
+    if(surgeryPerformedNumber === 1){
       
       do{
 
-        console.log(`Qual doença?`)
-        illnessesFamilyText = input.question('')
-        itsLetters = validationFunctions.itsLetters(illnessesFamilyText)
+        console.log(`Qual cirurgia?`)
+        surgeryPerformedText = input.question('')
+        itsLetters = validationFunctions.itsLetters(surgeryPerformedText)
         validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
 
       }while(!itsLetters)
       
     } else {
-      illnessesFamilyText = `Sem doença pregressa na família.`
+      surgeryPerformedText = `Nunca realizou procedimento cirúrgico.`
     }
 
   }while(!itsNumberOneOrTwo)
 
-    return illnessesFamilyText
+    return surgeryPerformedText
 
 }
 

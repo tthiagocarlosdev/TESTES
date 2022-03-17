@@ -25,6 +25,7 @@ const questionnairePARQ = anamnesisFunctions.questionnairePARQ()
 const currentPhysicalState = anamnesisFunctions.currentPhysicalState()
 const pastIllness = anamnesisFunctions.pastIllness()
 const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
+const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
 
 // show results personalData
 /*console.clear()
@@ -48,5 +49,6 @@ console.log(`Questionário PAR-Q: ${questionnairePARQ}`)
 console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(currentPhysicalState)}`)
 console.log(`Doença Pregressa: ${pastIllness}`)
 console.log(`Doença Pregressa na Família: ${illnessesFamily}`)
+console.log(`Cirurgia: ${surgeryPerformed}`)
 
 console.log(`===============================`)

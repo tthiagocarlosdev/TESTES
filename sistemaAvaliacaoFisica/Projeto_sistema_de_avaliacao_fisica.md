@@ -119,18 +119,19 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Cirurgia Realizada: (INPUT)**
-  - [ ] Apenas números:
-
+- [x] **Cirurgia Realizada: (INPUT)**
+  
+  - [x] Apenas números:
+  
     1 - sim
-
+  
     2 - não
-
-  - [ ] Caso a resposta seja sim o usuário deve informar qual cirugia ele realizou
-
-  - [ ] Input de apenas texto (Qual Cirurgia/quanto tempo/Motivo) (INPUT)
-
-  - [ ] Validar vazio
+  
+  - [x] Caso a resposta seja sim o usuário deve informar qual cirugia ele realizou
+  
+  - [x] Input de apenas texto (Qual Cirurgia/quanto tempo/Motivo) (INPUT)
+  
+  - [x] Validar vazio
 
 
 

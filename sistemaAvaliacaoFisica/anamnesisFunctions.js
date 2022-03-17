@@ -156,6 +156,44 @@ const anamnesisFunctions = {
   
   },
 
+  surgeryPerformed(){
+
+    let surgeryPerformedNumber = 2
+    let surgeryPerformedText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado já realizou precedimento cirúrgico?`)
+      anamnesisFunctions.choice()
+      surgeryPerformedNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(surgeryPerformedNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(surgeryPerformedNumber === 1){
+        
+        do{
+  
+          console.log(`Qual cirurgia?`)
+          surgeryPerformedText = input.question('')
+          itsLetters = validationFunctions.itsLetters(surgeryPerformedText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        surgeryPerformedText = `Nunca realizou procedimento cirúrgico.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return surgeryPerformedText
+  
+  },
+
 }
 
 module.exports = {
