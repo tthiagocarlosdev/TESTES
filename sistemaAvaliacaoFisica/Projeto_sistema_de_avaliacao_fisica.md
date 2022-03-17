@@ -87,19 +87,19 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Doença Pregressa: (INPUT)**
+- [x] **Doença Pregressa: (INPUT)**
 
-  - [ ] Apenas números:
+  - [x] Apenas números:
 
     1 - sim
 
     2 - não
 
-  - [ ] Caso a resposta seja sim o usuário deve informar qual doença ele tem
+  - [x] Caso a resposta seja sim o usuário deve informar qual doença ele tem
 
-  - [ ] Input de apenas texto (Qual a doença) (INPUT)
+  - [x] Input de apenas texto (Qual a doença) (INPUT)
 
-  - [ ] Validar vazio
+  - [x] Validar vazio
 
 
 

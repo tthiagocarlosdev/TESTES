@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
  const { validationFunctions } = require('./validationFunctions')
-// const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
 
 
 // var regex = /^d{2}/d{2}/d{4}$/
@@ -693,7 +693,7 @@ questionnairePARQ()
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Current Physical State == **/
-
+/*
 function currentPhysicalState(){
 
   let currentPhysicalState = 0
@@ -721,6 +721,51 @@ function showPhysicalState(numericValue){
 
 }
 
-
-// console.log(currentPhysicalState())
 console.log(`Estado físico: ${showPhysicalState(currentPhysicalState())}`)
+*/
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Past Illness == **/
+
+function pastIllness(){
+
+  let pastIllnessNumber = 2
+  let pastIllnessText = ''
+  let itsNumberOneOrTwo = true
+  let regexNumber = /^[1]$|^[2]$/
+  let itsLetters = true
+
+  do{
+
+    console.log(`Avaliado possue doença pregressa?`)
+    anamnesisFunctions.choice()
+    pastIllnessNumber = Number(input.question(''))
+
+    itsNumberOneOrTwo = validationFunctions.isRegularExpression(pastIllnessNumber, regexNumber)
+    validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+
+    if(pastIllnessNumber === 1){
+      
+      do{
+
+        console.log(`Qual doença?`)
+        pastIllnessText = input.question('')
+        itsLetters = validationFunctions.itsLetters(pastIllnessText)
+        validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+
+      }while(!itsLetters)
+      
+    } else {
+      pastIllnessText = `Sem doença pregressa.`
+    }
+
+  }while(!itsNumberOneOrTwo)
+
+    return pastIllnessText
+
+}
+
+let x = pastIllness()
+console.clear()
+// console.log(x.pastIllnessNumber)
+console.log(x)

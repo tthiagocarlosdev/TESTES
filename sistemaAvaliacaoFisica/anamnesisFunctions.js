@@ -80,6 +80,44 @@ const anamnesisFunctions = {
   
   },
 
+  pastIllness(){
+
+    let pastIllnessNumber = 2
+    let pastIllnessText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado possue doença pregressa?`)
+      anamnesisFunctions.choice()
+      pastIllnessNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(pastIllnessNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(pastIllnessNumber === 1){
+        
+        do{
+  
+          console.log(`Qual doença?`)
+          pastIllnessText = input.question('')
+          itsLetters = validationFunctions.itsLetters(pastIllnessText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        pastIllnessText = `Sem doença pregressa.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return pastIllnessText
+  
+  },
+
 }
 
 module.exports = {

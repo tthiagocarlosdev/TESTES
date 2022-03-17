@@ -1536,6 +1536,78 @@ Estado físico: Ativo
 ===============================
 ```
 
+### Doença Pregressa
+
+Agora vamos criar a function **pastIllness( )** que irá retornar se o avaliad possue doença pregressa ou não. Esta function deve aceitar apenas um dígito, sendo apenas  **[1]** para **Sim** e **[2]** para **Não**. Caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Caso a resposta seja **sim** o usuário deve informar qual doença ele teve/tem. Vamos chamar a function **itsLetters( )** para validar o que será digitado pelo o usuário, pois não será aceito apenas número, espaço ou vazio, o usuáriotem ue digitar um texto. Caso o usuário não digite texto a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Sobre o retorno desta function: Caso o usuário digite **não**, será retornado a mensagem **"Sem doença pregressa."**, porém se ele digitar **sim**, deverá ser retornado a doença informada pelo o mesmo.
+
+Em **anamnesisFunctions.js**:
+
+```js
+pastIllness(){
+
+    let pastIllnessNumber = 2
+    let pastIllnessText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado possue doença pregressa?`)
+      anamnesisFunctions.choice()
+      pastIllnessNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(pastIllnessNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(pastIllnessNumber === 1){
+        
+        do{
+  
+          console.log(`Qual doença?`)
+          pastIllnessText = input.question('')
+          itsLetters = validationFunctions.itsLetters(pastIllnessText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        pastIllnessText = `Sem doença pregressa.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return pastIllnessText
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável **pastIllness** que receberá a function **pastIllness( )** e depois vamos mostrar o resultado.
+
+```js
+const pastIllness = anamnesisFunctions.pastIllness()
+```
+
+```js
+console.log(`Doença Pregressa: ${pastIllness}`)
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Você deverá realizar um exame médico antes de iniciar suas atividades!
+Estado físico: Sedentário
+Doença Pregressa: Sem doença pregressa.
+===============================
+```
+
+### Doenças na Família
+
 
 
 
