@@ -167,9 +167,9 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Objetivo do treino : (INPUT)**
+- [x] **Objetivo do treino : (INPUT)**
 
-  - [ ] Apenas números:
+  - [x] Apenas números:
 
     1 - Estético
 
@@ -181,11 +181,11 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
     5 - Desportivo
 
-  - [ ] Validar vazio
+  - [x] Validar vazio
 
 
 
-- [ ] **Mostrar objetivo do treino: (SHOW)**
+- [x] **Mostrar objetivo do treino: (SHOW)**
 
 
 

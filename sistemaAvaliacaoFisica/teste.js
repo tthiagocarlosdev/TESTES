@@ -623,7 +623,7 @@ for(let email of emails){
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /* == phone number == */
-/*
+
 function phoneNumber(){
   
   let phoneNumber = 0
@@ -641,13 +641,13 @@ function phoneNumber(){
   return phoneNumber
 }
 
-console.log(`Número de telefone: ${phoneNumber()}`)
-*/
+// console.log(`Número de telefone: ${phoneNumber()}`)
+
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Questionnaire - PAR-Q == **/
 
-/*
+
 function questionnairePARQ(){
 
   let questionnairePARQ = [
@@ -688,12 +688,12 @@ function questionnairePARQ(){
 
 }
 
-questionnairePARQ()
-*/
+// questionnairePARQ()
+
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Current Physical State == **/
-/*
+
 function currentPhysicalState(){
 
   let currentPhysicalState = 0
@@ -721,8 +721,8 @@ function showPhysicalState(numericValue){
 
 }
 
-console.log(`Estado físico: ${showPhysicalState(currentPhysicalState())}`)
-*/
+// console.log(`Estado físico: ${showPhysicalState(currentPhysicalState())}`)
+
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Past Illness == **/
@@ -941,4 +941,50 @@ function sportsInjuries(){
 
 }
 
-console.log(sportsInjuries())
+// console.log(sportsInjuries())
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Training Objective == **/
+
+function trainingObjective(){
+
+  let trainingObjectiveAnswer = ''
+  let regexNumber = /^[1-5]$/
+  let isNumberOneToFive = true
+
+  do{
+
+    console.log('Qual é o objetivo do seu treino?')
+    console.log(`[1] Estético`)
+    console.log(`[2] Bem-estar e Saúde`)
+    console.log(`[3] Terapêutico`)
+    console.log(`[4] Recreativo`)
+    console.log(`[5] Desportivo`)
+    trainingObjectiveAnswer = Number(input.question(''))
+
+    isNumberOneToFive = validationFunctions.isRegularExpression(trainingObjectiveAnswer, regexNumber)
+    validationFunctions.incorrectValue(!isNumberOneToFive, false, "Anamnese")
+
+  }while(!isNumberOneToFive)
+  
+  switch (trainingObjectiveAnswer) {
+    case 1:
+      return `Estético`
+      break
+    case 2:
+      return `Bem-estar e Saúde`
+      break
+    case 3:
+      return `Terapêutico`
+      break
+    case 4:
+      return `Recreativo`  
+      break
+    default:
+      return `Desportivo`
+      break
+  }
+
+}
+
+console.log(trainingObjective())

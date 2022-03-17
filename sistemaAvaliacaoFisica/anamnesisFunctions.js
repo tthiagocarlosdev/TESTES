@@ -270,6 +270,47 @@ const anamnesisFunctions = {
   
   },
 
+  trainingObjective(){
+
+    let trainingObjectiveAnswer = ''
+    let regexNumber = /^[1-5]$/
+    let isNumberOneToFive = true
+  
+    do{
+  
+      console.log('Qual é o objetivo do seu treino?')
+      console.log(`[1] Estético`)
+      console.log(`[2] Bem-estar e Saúde`)
+      console.log(`[3] Terapêutico`)
+      console.log(`[4] Recreativo`)
+      console.log(`[5] Desportivo`)
+      trainingObjectiveAnswer = Number(input.question(''))
+  
+      isNumberOneToFive = validationFunctions.isRegularExpression(trainingObjectiveAnswer, regexNumber)
+      validationFunctions.incorrectValue(!isNumberOneToFive, false, "Anamnese")
+  
+    }while(!isNumberOneToFive)
+    
+    switch (trainingObjectiveAnswer) {
+      case 1:
+        return `Estético`
+        break
+      case 2:
+        return `Bem-estar e Saúde`
+        break
+      case 3:
+        return `Terapêutico`
+        break
+      case 4:
+        return `Recreativo`  
+        break
+      default:
+        return `Desportivo`
+        break
+    }
+  
+  },
+
 }
 
 module.exports = {

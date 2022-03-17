@@ -1890,7 +1890,94 @@ Lesão Desportiva: Ruptura de ligamento do ombro direito.
 
 ### Objetivo do treino
 
+Vamos construir a function **trainingObjective( )**.`Esta function irá perguntar ao usuário qual é o objetivo do seu treino, mostrando um menu, tendo o usuário que escolher entre as opções conforme abaixo:
 
+```tex
+Qual é o objetivo do seu treino?
+[1] Estético
+[2] Bem-estar e Saúde
+[3] Terapêutico
+[4] Recreativo
+[5] Desportivo
+```
+
+Está function só pode aceitar um dígito de números de 1 a 5. Caso o usuário digite qualquer outro valor diferente disto, vazio, espaço ou até mesmo um número com mais de um dígito, a function **incorrectValue( )** deverá ser chamada  e o usuário terá que responder novamente com um valor correto.
+
+Está function deve retornar o objetivo conforme selecionado pelo o mesmo. Logo, em **anamnesisFunctions.js**:
+
+```js
+trainingObjective(){
+
+    let trainingObjectiveAnswer = ''
+    let regexNumber = /^[1-5]$/
+    let isNumberOneToFive = true
+  
+    do{
+  
+      console.log('Qual é o objetivo do seu treino?')
+      console.log(`[1] Estético`)
+      console.log(`[2] Bem-estar e Saúde`)
+      console.log(`[3] Terapêutico`)
+      console.log(`[4] Recreativo`)
+      console.log(`[5] Desportivo`)
+      trainingObjectiveAnswer = Number(input.question(''))
+  
+      isNumberOneToFive = validationFunctions.isRegularExpression(trainingObjectiveAnswer, regexNumber)
+      validationFunctions.incorrectValue(!isNumberOneToFive, false, "Anamnese")
+  
+    }while(!isNumberOneToFive)
+    
+    switch (trainingObjectiveAnswer) {
+      case 1:
+        return `Estético`
+        break
+      case 2:
+        return `Bem-estar e Saúde`
+        break
+      case 3:
+        return `Terapêutico`
+        break
+      case 4:
+        return `Recreativo`  
+        break
+      default:
+        return `Desportivo`
+        break
+    }
+  
+  },
+```
+
+Em **saf.js** criamos a variável **trainingObjective** que recebe como valor o retorno da function **trainingObjective( )** e em seguida mostramos o resultado:
+
+```js
+const trainingObjective = anamnesisFunctions.trainingObjective()
+```
+
+```js
+console.log(`Objetivo do treino: ${trainingObjective}`)
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Estado físico: Ativo
+Doença Pregressa: Sem doença pregressa.
+Doença Pregressa na Família: Sem doença pregressa na família.
+Cirurgia: Nunca realizou procedimento cirúrgico.
+Uso de Medicamento: Não faz uso de medicamento.
+Lesão Desportiva: Nunca sofreu lesão desportiva.
+Objetivo do treino: Bem-estar e Saúde
+===============================
+```
+
+### Horário disponível para treino (DIAS)
 
 
 
