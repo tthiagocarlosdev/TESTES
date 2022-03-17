@@ -1382,7 +1382,7 @@ questionnairePARQ(){
     ]
     let questionnairePARQAnswer = []
     let itsNumberOneOrTwo = true
-    let regexNumber = /[1]|[2]/
+    let regexNumber = /^[1]$|^[2]$/
 
     for(let i = 0; i < questionnairePARQ.length; i++){
       
@@ -1470,6 +1470,69 @@ Esta parte da execução, iremos apenas mostrar a parte da Anamnese, no final de
            Anamnese            
 ===============================
 Questionário PAR-Q: Você deverá realizar um exame médico antes de iniciar suas atividades!
+===============================
+```
+
+### Estado Físico Atual
+
+AGora vamos criar a function **currentPhysicalState( )** que vai pedir para o usuário informar qual é o seu estado físico atual a partir do menu de escolha **[1]** para **Sedentário** e **[2]** para **Ativo**. Esta function deve aceitar apenas um dígito, sendo apenas o numeral 1 ou 2. Caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Está function retorna o valor digitado pelo usuário.
+
+```js
+currentPhysicalState(){
+
+    let currentPhysicalState = 0
+    let itsNumberOneOrTwo = true
+    const regexNumber = /^[1]$|^[2]$/
+    
+    do{
+  
+      console.log('Qual seu estado físico atualmente? ')
+      console.log(`[1] Sedentário`)
+      console.log(`[2] Ativo`)
+      currentPhysicalState = input.question('')
+      
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(currentPhysicalState, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+    }while(!itsNumberOneOrTwo)
+  
+    return currentPhysicalState
+  
+  },
+```
+
+Em **saf.js** criamos a variável **currentPhysicalState** que recebe o retorno da function **currentPhysicalState( )**.
+
+```js
+const currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+```
+
+Em **anamnesisFunctions.js** criamos a function **showPhysicalState( )** que irá mostrar se o usuário é sedentário ou ativo. Está function terá como parâmetro um valor numérico:
+
+```js
+showPhysicalState(numericValue){
+  
+    return Number(numericValue) === 1 ? 'Sedentário' : 'Ativo'
+  
+  },
+```
+
+E em **saf.js** vamos mostrar o resultado chamando a function **showPhysicalState( )** e pasando como parâmetro a variável **currentPhysicalState**.
+
+```js
+console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(currentPhysicalState)}`)
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Estado físico: Ativo
 ===============================
 ```
 

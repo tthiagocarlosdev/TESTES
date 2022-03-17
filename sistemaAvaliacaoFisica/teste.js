@@ -696,26 +696,31 @@ questionnairePARQ()
 
 function currentPhysicalState(){
 
+  let currentPhysicalState = 0
   let itsNumberOneOrTwo = true
-  let regexNumber = /[1]|[2]/
-
+  let regexNumber = /^[1]$|^[2]$/
+  
   do{
 
     console.log('Qual seu estado físico atualmente? ')
     console.log(`[1] Sedentário`)
     console.log(`[2] Ativo`)
-    let currentPhysicalState = input.question('')
+    currentPhysicalState = input.question('')
     itsNumberOneOrTwo = validationFunctions.isRegularExpression(currentPhysicalState, regexNumber)
-    validationFunctions.incorrectValue(false, !itsNumberOneOrTwo, "Anamnese")
+    validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
 
   }while(!itsNumberOneOrTwo)
 
-
   return currentPhysicalState
 
+}
 
+function showPhysicalState(numericValue){
+
+  return Number(numericValue) === 1 ? 'Sedentário' : 'Ativo'
 
 }
 
 
-console.log(currentPhysicalState())
+// console.log(currentPhysicalState())
+console.log(`Estado físico: ${showPhysicalState(currentPhysicalState())}`)

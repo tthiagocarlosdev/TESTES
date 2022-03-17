@@ -27,7 +27,7 @@ const anamnesisFunctions = {
     ]
     let questionnairePARQAnswer = []
     let itsNumberOneOrTwo = true
-    let regexNumber = /[1]|[2]/
+    let regexNumber = /^[1]$|^[2]$/
 
     for(let i = 0; i < questionnairePARQ.length; i++){
       
@@ -36,6 +36,7 @@ const anamnesisFunctions = {
         console.log(`${[i+1]} - ${questionnairePARQ[i]}`)
         anamnesisFunctions.choice()
         questionnairePARQAnswer[i] = input.question("")
+        
         itsNumberOneOrTwo = validationFunctions.isRegularExpression(questionnairePARQAnswer[i], regexNumber)
         validationFunctions.incorrectValue(false, !itsNumberOneOrTwo, "Anamnese")
 
@@ -49,6 +50,34 @@ const anamnesisFunctions = {
       return "Todas as respostas do questionário foram 'Sim'!"
     }
 
+  },
+
+  currentPhysicalState(){
+
+    let currentPhysicalState = 0
+    let itsNumberOneOrTwo = true
+    const regexNumber = /^[1]$|^[2]$/
+    
+    do{
+  
+      console.log('Qual seu estado físico atualmente? ')
+      console.log(`[1] Sedentário`)
+      console.log(`[2] Ativo`)
+      currentPhysicalState = input.question('')
+     
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(currentPhysicalState, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+    }while(!itsNumberOneOrTwo)
+  
+    return currentPhysicalState
+  
+  },
+  
+  showPhysicalState(numericValue){
+  
+    return Number(numericValue) === 1 ? 'Sedentário' : 'Ativo'
+  
   },
 
 }

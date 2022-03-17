@@ -69,19 +69,19 @@
 
 
 
-- [ ] **Estado Físico Atual: (INPUT)**
+- [x] **Estado Físico Atual: (INPUT)**
 
-  - [ ] Apenas número:
+  - [x] Apenas número:
 
     1 - Sedentário
 
     2 - Ativo
 
-  - [ ] Validar vazio
+  - [x] Validar vazio
 
 
 
-- [ ] **Estado Físico Atual: (SHOW)**
+- [x] **Estado Físico Atual: (SHOW)**
 
 Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
