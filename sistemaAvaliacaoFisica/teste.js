@@ -987,4 +987,28 @@ function trainingObjective(){
 
 }
 
-console.log(trainingObjective())
+// console.log(trainingObjective())
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Days Available For Training == **/
+
+function daysAvailableForTraining(){
+
+ let daysAvailableForTraining = 0
+ let isNumberOneToSeven = true
+ let regexNumber = /^[1-7]$/
+ 
+ do{
+
+  daysAvailableForTraining = input.question('Digite a quantidade de dias disponíveis para treinar: ')
+
+  isNumberOneToSeven = validationFunctions.isRegularExpression(daysAvailableForTraining, regexNumber)
+  validationFunctions.incorrectValue(!isNumberOneToSeven, false, "Anamnese")
+
+ }while(!isNumberOneToSeven)
+
+ return daysAvailableForTraining
+
+}
+
+console.log(daysAvailableForTraining())

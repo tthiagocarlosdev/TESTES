@@ -1977,13 +1977,64 @@ Objetivo do treino: Bem-estar e Saúde
 ===============================
 ```
 
-### Horário disponível para treino (DIAS)
+### Dias disponíveis para treino
 
+Vamos criar a function **daysAvailableForTraining( )**. Esta function pergunta a quantidade de dias disponíveis pelo avaliado para treinar. Portanto, só aceita números entre 1 e 7. Caso o usuário digite qualquer outro valor diferente disto, vazio, espaço ou até mesmo um número com mais de um dígito, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com um valor correto.
 
+Está function deve retornar a quantidade de dias digitado pelo usuário. Logo, em **anamnesisFunctions.js**:
 
+```js
+daysAvailableForTraining(){
 
+    let daysAvailableForTraining = 0
+    let isNumberOneToSeven = true
+    let regexNumber = /^[1-7]$/
+    
+    do{
+   
+     daysAvailableForTraining = input.question('Digite a quantidade de dias disponíveis para treinar: ')
+   
+     isNumberOneToSeven = validationFunctions.isRegularExpression(daysAvailableForTraining, regexNumber)
+     validationFunctions.incorrectValue(!isNumberOneToSeven, false, "Anamnese")
+   
+    }while(!isNumberOneToSeven)
+   
+    return daysAvailableForTraining
+   
+   },
+```
 
+Em **saf.js** criamos a variável **daysAvailableForTraining** que recebe como valor o retorno da function **daysAvailableForTraining( )** e em seguida mostramos o resultado:
 
+```js
+const daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
+```
+
+```js
+console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining}`)
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Estado físico: Ativo
+Doença Pregressa: Sem doença pregressa.
+Doença Pregressa na Família: Sem doença pregressa na família.
+Cirurgia: Nunca realizou procedimento cirúrgico.
+Uso de Medicamento: Não faz uso de medicamento.
+Lesão Desportiva: Nunca sofreu lesão desportiva.
+Objetivo do treino: Bem-estar e Saúde
+Dias disponíveis para treinar: 4
+===============================
+```
+
+### Horas disponível por treino
 
 
 

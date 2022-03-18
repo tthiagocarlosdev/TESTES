@@ -189,14 +189,14 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Horário disponível para treino (DIAS): (INPUT)**
-  - [ ] Apenas números
-  - [ ] Quantidade de dias
-  - [ ] Validar vazio
+- [x] **Dias disponíveis para treino: (INPUT)**
+  - [x] Apenas números
+  - [x] Quantidade de dias
+  - [x] Validar vazio
 
 
 
-- [ ] **Horário disponível para treino (HORAS): (INPUT)**
+- [ ] **Horas disponível por treino: (INPUT)**
   - [ ] Apenas números
   - [ ] Quantas horas por dia
   - [ ] Validar vazio

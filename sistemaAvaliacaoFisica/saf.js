@@ -29,6 +29,7 @@ const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
 const useMedication = anamnesisFunctions.useMedication()
 const sportsInjuries = anamnesisFunctions.sportsInjuries()
 const trainingObjective = anamnesisFunctions.trainingObjective()
+const daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
 
 // show results personalData
 /*console.clear()
@@ -56,5 +57,6 @@ console.log(`Cirurgia: ${surgeryPerformed}`)
 console.log(`Uso de Medicamento: ${useMedication}`)
 console.log(`Lesão Desportiva: ${sportsInjuries}`)
 console.log(`Objetivo do treino: ${trainingObjective}`)
+console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining}`)
 
 console.log(`===============================`)
