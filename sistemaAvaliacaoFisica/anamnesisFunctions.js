@@ -330,6 +330,25 @@ const anamnesisFunctions = {
    
    },
 
+   timeAvailablePerTraining(){
+
+    let timeAvailablePerTraining = 0
+    let isNumberFromOneToThreeHundred = true
+    let regexNumber = /(^[1-9]$)|(^[1-9][0-9]$)|(^[1-2][0-9]{2}$)|(^[3][0][0]$)/
+  
+    do{
+  
+      timeAvailablePerTraining = input.question('Digite o tempo disponível para treino (min): ')
+      isNumberFromOneToThreeHundred = validationFunctions.isRegularExpression(timeAvailablePerTraining, regexNumber)
+      validationFunctions.incorrectValue(!isNumberFromOneToThreeHundred, false, "Anamnese")
+   
+    }while(!isNumberFromOneToThreeHundred)
+     
+  
+    return timeAvailablePerTraining
+  
+  },
+
 }
 
 module.exports = {

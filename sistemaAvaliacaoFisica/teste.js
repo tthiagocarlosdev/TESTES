@@ -1011,4 +1011,31 @@ function daysAvailableForTraining(){
 
 }
 
-console.log(daysAvailableForTraining())
+// console.log(daysAvailableForTraining())
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Time Available Per Training == **/
+
+function timeAvailablePerTraining(){
+
+  let timeAvailablePerTraining = 0
+  let isNumberFromOneToThreeHundred = true
+  let regexNumber = /(^[1-9]$)|(^[1-9][0-9]$)|(^[1-2][0-9]{2}$)|(^[3][0][0]$)/
+
+  do{
+
+    timeAvailablePerTraining = input.question('Digite o tempo disponível para treino (min): ')
+    isNumberFromOneToThreeHundred = validationFunctions.isRegularExpression(timeAvailablePerTraining, regexNumber)
+    validationFunctions.incorrectValue(!isNumberFromOneToThreeHundred, false, "Anamnese")
+ 
+  }while(!isNumberFromOneToThreeHundred)
+   
+
+  return timeAvailablePerTraining
+
+}
+
+console.log(timeAvailablePerTraining())
+/*
+/(^[1-9]{1}$)|(^[1-9]{1}[0-9]$)|(^[1-2]{1}[0-9][0-9]$)|(^[3][0][0]$)/
+*/

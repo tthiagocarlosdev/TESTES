@@ -196,10 +196,10 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Horas disponível por treino: (INPUT)**
-  - [ ] Apenas números
-  - [ ] Quantas horas por dia
-  - [ ] Validar vazio
+- [x] **Tempo disponível por treino(min): (INPUT)**
+  - [x] Apenas números
+  - [x] Quantas horas por dia
+  - [x] Validar vazio
 
 
 

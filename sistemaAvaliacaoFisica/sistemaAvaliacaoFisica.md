@@ -2034,7 +2034,69 @@ Dias disponíveis para treinar: 4
 ===============================
 ```
 
-### Horas disponível por treino
+### Tempo disponível por treino(min):
+
+Vamos criar a function **timeAvailablePerTraining( )** que vai perguntar ao usuário quanto tempo em minutos ele tem disponível para treinar. Esta function aceitará apenas número de 1 a 300 como valor. Caso o usuário digite qualquer outro valor diferente disto, vazio, espaço, alguma letra, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com um valor correto.
+
+Está function deve retornar o tempo em minutos digitado pelo usuário. Logo, em **anamnesisFunctions.js**:
+
+```js
+timeAvailablePerTraining(){
+
+    let timeAvailablePerTraining = 0
+    let isNumberFromOneToThreeHundred = true
+    let regexNumber = /(^[1-9]$)|(^[1-9][0-9]$)|(^[1-2][0-9]{2}$)|(^[3][0][0]$)/
+  
+    do{
+  
+      timeAvailablePerTraining = input.question('Digite o tempo disponível para treino (min): ')
+      isNumberFromOneToThreeHundred = validationFunctions.isRegularExpression(timeAvailablePerTraining, regexNumber)
+      validationFunctions.incorrectValue(!isNumberFromOneToThreeHundred, false, "Anamnese")
+   
+    }while(!isNumberFromOneToThreeHundred)
+     
+  
+    return timeAvailablePerTraining
+  
+  },
+```
+
+Em **saf.js** criamos a variável **timeAvailablePerTraining** que recebe como valor o retorno da function **timeAvailablePerTraining( )** e em seguida mostramos o resultado:
+
+```js
+const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
+```
+
+```js
+console.log(`Tempo disponível para treino: ${timeAvailablePerTraining} minutos.`)
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Estado físico: Ativo
+Doença Pregressa: Sem doença pregressa.
+Doença Pregressa na Família: Diabetes
+Cirurgia: Artroscopia de ombro
+Uso de Medicamento: Não faz uso de medicamento.
+Lesão Desportiva: Ruptura de ligamento
+Objetivo do treino: Bem-estar e Saúde
+Dias disponíveis para treinar: 4
+Tempo disponível para treino: 45 minutos.
+==============================
+```
+
+mostrar os arquivos completos e a excução do programa
+
+## Cardiorrespiratório
+
+
 
 
 
