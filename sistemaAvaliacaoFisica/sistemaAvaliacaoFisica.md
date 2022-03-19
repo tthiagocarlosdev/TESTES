@@ -2092,7 +2092,558 @@ Tempo disponível para treino: 45 minutos.
 ==============================
 ```
 
-mostrar os arquivos completos e a excução do programa
+Como ficaram os arquivos do programa até esta etapa:
+
+**anamnesisFunctions.js**:
+
+```js
+/* anamnesisFunctions.js */
+
+var input = require('readline-sync')
+
+const { validationFunctions } = require('./validationFunctions')
+
+const anamnesisFunctions = {
+
+  choice(){
+
+    console.log('Escolha:')
+    console.log('[1] Sim')
+    console.log('[2] Não')
+
+  },
+
+  questionnairePARQ(){
+
+    let questionnairePARQ = [
+      "Seu médico já mencionou alguma vez que você tem uma condição cardíaca e que você só deve realizar atividade física recomendada por um médico?",
+      "Você sente dor no tórax quando realiza atividade física?",
+      "No mês passado, você teve dor torácica quando não estava realizando atividade física?",
+      "Você perdeu o equilíbrio por causa de tontura ou alguma vez perdeu a consciência?",
+      "Você tem algum problema ósseo ou de articulação que poderia piorar em conseqüência de uma alteração em sua atividade física?",
+      "Seu médico está prescrevendo medicamentos para sua pressão ou condição cardíaca?",
+      "Você teria alguma razão para não praticar exercício físico ou outro problema que impeça?",
+    ]
+    let questionnairePARQAnswer = []
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+
+    for(let i = 0; i < questionnairePARQ.length; i++){
+      
+      do{
+
+        console.log(`${[i+1]} - ${questionnairePARQ[i]}`)
+        anamnesisFunctions.choice()
+        questionnairePARQAnswer[i] = input.question("")
+        
+        itsNumberOneOrTwo = validationFunctions.isRegularExpression(questionnairePARQAnswer[i], regexNumber)
+        validationFunctions.incorrectValue(false, !itsNumberOneOrTwo, "Anamnese")
+
+      }while(!itsNumberOneOrTwo)
+      
+    }
+    
+    if(questionnairePARQAnswer.includes("1")){
+      return "Você deverá realizar um exame médico antes de iniciar suas atividades!"
+    } else {
+      return "Todas as respostas do questionário foram 'Sim'!"
+    }
+
+  },
+
+  currentPhysicalState(){
+
+    let currentPhysicalState = 0
+    let itsNumberOneOrTwo = true
+    const regexNumber = /^[1]$|^[2]$/
+    
+    do{
+  
+      console.log('Qual seu estado físico atualmente? ')
+      console.log(`[1] Sedentário`)
+      console.log(`[2] Ativo`)
+      currentPhysicalState = input.question('')
+     
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(currentPhysicalState, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+    }while(!itsNumberOneOrTwo)
+  
+    return currentPhysicalState
+  
+  },
+  
+  showPhysicalState(numericValue){
+  
+    return Number(numericValue) === 1 ? 'Sedentário' : 'Ativo'
+  
+  },
+
+  pastIllness(){
+
+    let pastIllnessNumber = 2
+    let pastIllnessText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado possue doença pregressa?`)
+      anamnesisFunctions.choice()
+      pastIllnessNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(pastIllnessNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(pastIllnessNumber === 1){
+        
+        do{
+  
+          console.log(`Qual doença?`)
+          pastIllnessText = input.question('')
+          itsLetters = validationFunctions.itsLetters(pastIllnessText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        pastIllnessText = `Sem doença pregressa.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return pastIllnessText
+  
+  },
+
+  illnessesInTheFamily(){
+
+    let illnessesFamilyNumber = 2
+    let illnessesFamilyText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado possue alguém da família com doença pregressa?`)
+      anamnesisFunctions.choice()
+      illnessesFamilyNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(illnessesFamilyNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(illnessesFamilyNumber === 1){
+        
+        do{
+  
+          console.log(`Qual doença?`)
+          illnessesFamilyText = input.question('')
+          itsLetters = validationFunctions.itsLetters(illnessesFamilyText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        illnessesFamilyText = `Sem doença pregressa na família.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return illnessesFamilyText
+  
+  },
+
+  surgeryPerformed(){
+
+    let surgeryPerformedNumber = 2
+    let surgeryPerformedText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado já realizou precedimento cirúrgico?`)
+      anamnesisFunctions.choice()
+      surgeryPerformedNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(surgeryPerformedNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(surgeryPerformedNumber === 1){
+        
+        do{
+  
+          console.log(`Qual cirurgia?`)
+          surgeryPerformedText = input.question('')
+          itsLetters = validationFunctions.itsLetters(surgeryPerformedText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        surgeryPerformedText = `Nunca realizou procedimento cirúrgico.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return surgeryPerformedText
+  
+  },
+
+  useMedication(){
+
+    let useMedicationNumber = 2
+    let useMedicationText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado faz uso de medicamentos?`)
+      anamnesisFunctions.choice()
+      useMedicationNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(useMedicationNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(useMedicationNumber === 1){
+        
+        do{
+  
+          console.log(`Qual medicamento?`)
+          useMedicationText = input.question('')
+          itsLetters = validationFunctions.itsLetters(useMedicationText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        useMedicationText = `Não faz uso de medicamento.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return useMedicationText
+  
+  },
+
+  sportsInjuries(){
+  
+    let sportsInjuriesNumber = 2
+    let sportsInjuriesText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Avaliado já sofreu alguma lesão desportiva?`)
+      anamnesisFunctions.choice()
+      sportsInjuriesNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(sportsInjuriesNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+  
+      if(sportsInjuriesNumber === 1){
+        
+        do{
+  
+          console.log(`Qual lesão?`)
+          sportsInjuriesText = input.question('')
+          itsLetters = validationFunctions.itsLetters(sportsInjuriesText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+  
+        }while(!itsLetters)
+        
+      } else {
+        sportsInjuriesText = `Nunca sofreu lesão desportiva.`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return sportsInjuriesText
+  
+  },
+
+  trainingObjective(){
+
+    let trainingObjectiveAnswer = ''
+    let regexNumber = /^[1-5]$/
+    let isNumberOneToFive = true
+  
+    do{
+  
+      console.log('Qual é o objetivo do seu treino?')
+      console.log(`[1] Estético`)
+      console.log(`[2] Bem-estar e Saúde`)
+      console.log(`[3] Terapêutico`)
+      console.log(`[4] Recreativo`)
+      console.log(`[5] Desportivo`)
+      trainingObjectiveAnswer = Number(input.question(''))
+  
+      isNumberOneToFive = validationFunctions.isRegularExpression(trainingObjectiveAnswer, regexNumber)
+      validationFunctions.incorrectValue(!isNumberOneToFive, false, "Anamnese")
+  
+    }while(!isNumberOneToFive)
+    
+    switch (trainingObjectiveAnswer) {
+      case 1:
+        return `Estético`
+        break
+      case 2:
+        return `Bem-estar e Saúde`
+        break
+      case 3:
+        return `Terapêutico`
+        break
+      case 4:
+        return `Recreativo`  
+        break
+      default:
+        return `Desportivo`
+        break
+    }
+  
+  },
+
+  daysAvailableForTraining(){
+
+    let daysAvailableForTraining = 0
+    let isNumberOneToSeven = true
+    let regexNumber = /^[1-7]$/
+    
+    do{
+   
+     daysAvailableForTraining = input.question('Digite a quantidade de dias disponíveis para treinar: ')
+   
+     isNumberOneToSeven = validationFunctions.isRegularExpression(daysAvailableForTraining, regexNumber)
+     validationFunctions.incorrectValue(!isNumberOneToSeven, false, "Anamnese")
+   
+    }while(!isNumberOneToSeven)
+   
+    return daysAvailableForTraining
+   
+   },
+
+   timeAvailablePerTraining(){
+
+    let timeAvailablePerTraining = 0
+    let isNumberFromOneToThreeHundred = true
+    let regexNumber = /(^[1-9]$)|(^[1-9][0-9]$)|(^[1-2][0-9]{2}$)|(^[3][0][0]$)/
+  
+    do{
+  
+      timeAvailablePerTraining = input.question('Digite o tempo disponível para treino (min): ')
+      isNumberFromOneToThreeHundred = validationFunctions.isRegularExpression(timeAvailablePerTraining, regexNumber)
+      validationFunctions.incorrectValue(!isNumberFromOneToThreeHundred, false, "Anamnese")
+   
+    }while(!isNumberFromOneToThreeHundred)
+     
+  
+    return timeAvailablePerTraining
+  
+  },
+
+}
+
+module.exports = {
+  anamnesisFunctions
+}
+```
+
+**validationFunctions.js**
+
+```js
+/* Validation Functions */
+
+const { headerFunctions } = require('./headerFunctions')
+
+const validationFunctions = {
+
+  itsLetters: function(stringValue){
+    letterOrSpaceRegExp = /\D/gi
+
+    return letterOrSpaceRegExp.test(stringValue) ? true : false
+    
+  },
+
+  // verifica se o valor passado é apenas um número
+  itsNumber: function(value){
+  
+    const regExp2 = /\d/g
+    let itsNumber = regExp2.test(value)
+   
+    return itsNumber ? true : false
+    
+  },
+
+  incorrectValue: function (valueA, valueB, title){
+    
+    if(valueA || valueB ){ 
+      console.clear()
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle(title)
+      console.log('Dado Incorreto!')
+    }
+
+  },
+
+  // recebe um valor e uma expressão regular. retorna true se o valor estiver de acordo com a expressão regular
+  isRegularExpression: function(stringValue, regex){
+    
+    return regex.test(stringValue) ? true : false
+    
+  },
+
+    // recebe duas datas e valida se são iguais
+  validDate: function(informedDate, realDate){
+    
+    return informedDate === realDate ? true : false
+    
+  },
+
+    // recebe a data de nascimento em formato ISO e retorna se é maior do que a data atual
+  dateOfBirthHighestCurrentDate: function(dateOfBirth){
+    var currentDate = new Date()
+
+    // O método getTime() retorna o valor numérico correspondente ao horário da data especificada de acordo com o horário universal.
+    return dateOfBirth.getTime() > currentDate.getTime() ? true : false
+
+  },
+
+  isLessThanMinimumOrGreaterThanMaximum: function(minimum, maximum, givenAway){
+    
+    return givenAway < minimum || givenAway > maximum ? true : false
+    
+  },
+
+  validEmail: function(userEmail){
+
+    let user = userEmail.substring(0, userEmail.indexOf("@"))
+    let domain = userEmail.substring(userEmail.indexOf("@")+ 1, userEmail.length)
+    let validations = ((user.length >=1) && 
+                        (domain.length >=3) && 
+                        (user.search("@")==-1) && 
+                        (domain.search("@")==-1) && 
+                        (user.search(" ")==-1) && 
+                        (domain.search(" ")==-1) && 
+                        (domain.search(".")!=-1) && 
+                        (domain.indexOf(".") >=1)&& 
+                        (domain.lastIndexOf(".") < domain.length - 1))
+  
+      return validations ? true : false
+    
+  },
+  
+}
+
+module.exports = {
+  validationFunctions
+}
+```
+
+**saf.js**:
+
+```js
+const { headerFunctions } = require('./headerFunctions')
+const { personalData } = require('./personalData')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+
+// variables personalData
+const name = personalData.userName()
+const birthdayInBrazilianFormat =  personalData.dateOfBirth()
+const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
+const age = personalData.age(birthdayInISOFormat)
+const sexNumber = personalData.sexNumber()
+const sex = personalData.showSex(sexNumber)
+const profession = personalData.userProfession()
+const userEmail = personalData.userEmail()
+const phoneNumber = personalData.phoneNumber()
+
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
+
+// variables anamnesisFunctions
+const questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+const currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+const pastIllness = anamnesisFunctions.pastIllness()
+const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
+const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
+const useMedication = anamnesisFunctions.useMedication()
+const sportsInjuries = anamnesisFunctions.sportsInjuries()
+const trainingObjective = anamnesisFunctions.trainingObjective()
+const daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
+const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
+
+// show results personalData
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+console.log(`Nome: ${name}`)
+console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
+console.log(`Idade: ${age} anos!`)
+console.log(`Sexo: ${sex}`)
+console.log(`Profissão: ${profession}`)
+console.log(`E-mail: ${userEmail}`)
+console.log(`Celular: ${phoneNumber}`)
+
+// show results anamnesisFunctions
+console.log(`===============================`) 
+headerFunctions.subTitle("Anamnese")
+
+console.log(`Questionário PAR-Q: ${questionnairePARQ}`)
+console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(currentPhysicalState)}`)
+console.log(`Doença Pregressa: ${pastIllness}`)
+console.log(`Doença Pregressa na Família: ${illnessesFamily}`)
+console.log(`Cirurgia: ${surgeryPerformed}`)
+console.log(`Uso de Medicamento: ${useMedication}`)
+console.log(`Lesão Desportiva: ${sportsInjuries}`)
+console.log(`Objetivo do treino: ${trainingObjective}`)
+console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining} dias.`)
+console.log(`Tempo disponível para treino: ${timeAvailablePerTraining} minutos.`)
+
+console.log(`===============================`)
+
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Nome: Cicrana de La
+Data de nascimento: 25/12/2010
+Idade: 11 anos!
+Sexo: Feminino
+Profissão: Estudante
+E-mail: cicrana@dela.com
+Celular: 81966613171
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Estado físico: Sedentário
+Doença Pregressa: Sem doença pregressa.
+Doença Pregressa na Família: Avos cardiopatas
+Cirurgia: Artroscopia de ombro
+Uso de Medicamento: Não faz uso de medicamento.
+Lesão Desportiva: Nunca sofreu lesão desportiva.
+Objetivo do treino: Bem-estar e Saúde
+Dias disponíveis para treinar: 4 dias.
+Tempo disponível para treino: 45 minutos.
+===============================
+```
 
 ## Cardiorrespiratório
 

@@ -32,9 +32,7 @@ const validationFunctions = {
 
   },
 
-  // recebe um valor e uma expressão regular. retorna true se o valor estiver de acordo com a expressão regular  
-  // retorna true se a data digitada pelo usuário está no formato da Regex Expression
-  
+  // recebe um valor e uma expressão regular. retorna true se o valor estiver de acordo com a expressão regular
   isRegularExpression: function(stringValue, regex){
     
     return regex.test(stringValue) ? true : false

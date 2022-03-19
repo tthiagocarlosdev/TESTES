@@ -2,19 +2,19 @@ const { headerFunctions } = require('./headerFunctions')
 const { personalData } = require('./personalData')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 
-// headerFunctions.systemHeader()
-// headerFunctions.subTitle("Dados Pessoais")
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
 
 // variables personalData
-/*const name = personalData.userName()
-const birthdayInBrazilianFormat = personalData.dateOfBirth()
+const name = personalData.userName()
+const birthdayInBrazilianFormat =  personalData.dateOfBirth()
 const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
 const age = personalData.age(birthdayInISOFormat)
 const sexNumber = personalData.sexNumber()
 const sex = personalData.showSex(sexNumber)
 const profession = personalData.userProfession()
 const userEmail = personalData.userEmail()
-const phoneNumber = personalData.phoneNumber()*/
+const phoneNumber = personalData.phoneNumber()
 
 console.clear()
 headerFunctions.systemHeader()
@@ -33,7 +33,7 @@ const daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
 const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
 
 // show results personalData
-/*console.clear()
+console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 console.log(`Nome: ${name}`)
@@ -42,12 +42,10 @@ console.log(`Idade: ${age} anos!`)
 console.log(`Sexo: ${sex}`)
 console.log(`Profissão: ${profession}`)
 console.log(`E-mail: ${userEmail}`)
-console.log(`Celular: ${phoneNumber}`)*/
+console.log(`Celular: ${phoneNumber}`)
 
 // show results anamnesisFunctions
-console.clear()
-headerFunctions.systemHeader()
-// console.log(`===============================`) 
+console.log(`===============================`) 
 headerFunctions.subTitle("Anamnese")
 
 console.log(`Questionário PAR-Q: ${questionnairePARQ}`)
@@ -58,7 +56,7 @@ console.log(`Cirurgia: ${surgeryPerformed}`)
 console.log(`Uso de Medicamento: ${useMedication}`)
 console.log(`Lesão Desportiva: ${sportsInjuries}`)
 console.log(`Objetivo do treino: ${trainingObjective}`)
-console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining}`)
+console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining} dias.`)
 console.log(`Tempo disponível para treino: ${timeAvailablePerTraining} minutos.`)
 
 console.log(`===============================`)
