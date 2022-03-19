@@ -209,12 +209,14 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 - [ ] **Frequência Cardíaca de Repouso (FCR): (INPUT)**
   - [ ] Apenas números:
+  - [ ] bpm
   - [ ] Validar vazio
 
 
 
 - [ ] **Frequência Cardíaca Máxima (SHOW)**
   - [ ] Karvonen (1957)FCM=220-IDADE
+  - [ ] bpm
 
 
 

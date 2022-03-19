@@ -1,6 +1,7 @@
 const { headerFunctions } = require('./headerFunctions')
 const { personalData } = require('./personalData')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { cardiorespiratory } = require('./cardiorespiratory')
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")

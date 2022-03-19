@@ -2647,9 +2647,36 @@ Tempo disponível para treino: 45 minutos.
 
 ## Cardiorrespiratório
 
+Vamos para a próxima etapa onde vamos construir a parte do **Cardiorrespiratório**. Para isto vamos criar o arquivo **cardiorespiratory.js**. Dentro deste arquivo vamos:
 
+- Criar a variável **input**;
+- Requerer a variável **validationFunctions**;
+- Criar uma variável objeto **cardiorespiratory**;
+- Exportar essa variável.
 
+```js
+/* cardiorespiratory */
 
+var input = require('readline-sync')
+
+const { validationFunctions } = require('./validationFunctions')
+
+const cardiorespiratory = {
+
+}
+
+module.exports = {
+    cardiorespiratory
+}
+```
+
+No arquivo **saf.js** vamos faer a requisição do arquivo **cardiorespiratory.js**:
+
+```js
+const { cardiorespiratory } = require('./cardiorespiratory')
+```
+
+### Frequência Cardíaca de Repouso
 
 
 
