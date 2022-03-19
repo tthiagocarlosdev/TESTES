@@ -207,10 +207,10 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
   
 
-- [ ] **Frequência Cardíaca de Repouso (FCR): (INPUT)**
-  - [ ] Apenas números:
-  - [ ] bpm
-  - [ ] Validar vazio
+- [x] **Frequência Cardíaca de Repouso (FCR): (INPUT)**
+  - [x] Apenas números:
+  - [x] bpm
+  - [x] Validar vazio
 
 
 

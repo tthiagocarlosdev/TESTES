@@ -1,11 +1,11 @@
 const { headerFunctions } = require('./headerFunctions')
 const { personalData } = require('./personalData')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
-const { cardiorespiratory } = require('./cardiorespiratory')
+const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
-
+/*
 // variables personalData
 const name = personalData.userName()
 const birthdayInBrazilianFormat =  personalData.dateOfBirth()
@@ -32,7 +32,10 @@ const sportsInjuries = anamnesisFunctions.sportsInjuries()
 const trainingObjective = anamnesisFunctions.trainingObjective()
 const daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
 const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
-
+*/
+// variables cardiorespiratory
+const restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+/*
 // show results personalData
 console.clear()
 headerFunctions.systemHeader()
@@ -59,5 +62,11 @@ console.log(`Lesão Desportiva: ${sportsInjuries}`)
 console.log(`Objetivo do treino: ${trainingObjective}`)
 console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining} dias.`)
 console.log(`Tempo disponível para treino: ${timeAvailablePerTraining} minutos.`)
+*/
+// show results cardiorespiratoryFunctions
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Cardiorespiratório")
+console.log(`Frequência Cardíaca de Repouso(bpm): ${restingHeartRate}`)
 
 console.log(`===============================`)

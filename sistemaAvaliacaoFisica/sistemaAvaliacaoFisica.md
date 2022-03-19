@@ -2647,11 +2647,11 @@ Tempo disponível para treino: 45 minutos.
 
 ## Cardiorrespiratório
 
-Vamos para a próxima etapa onde vamos construir a parte do **Cardiorrespiratório**. Para isto vamos criar o arquivo **cardiorespiratory.js**. Dentro deste arquivo vamos:
+Vamos para a próxima etapa onde vamos construir a parte do **Cardiorrespiratório**. Para isto vamos criar o arquivo **cardiorespiratoryFunctions.js**. Dentro deste arquivo vamos:
 
 - Criar a variável **input**;
 - Requerer a variável **validationFunctions**;
-- Criar uma variável objeto **cardiorespiratory**;
+- Criar uma variável objeto **cardiorespiratoryFunctions**;
 - Exportar essa variável.
 
 ```js
@@ -2661,22 +2661,100 @@ var input = require('readline-sync')
 
 const { validationFunctions } = require('./validationFunctions')
 
-const cardiorespiratory = {
+const cardiorespiratoryFunctions = {
 
 }
 
 module.exports = {
-    cardiorespiratory
+    cardiorespiratoryFunctions
 }
 ```
 
 No arquivo **saf.js** vamos faer a requisição do arquivo **cardiorespiratory.js**:
 
 ```js
-const { cardiorespiratory } = require('./cardiorespiratory')
+const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 ```
 
 ### Frequência Cardíaca de Repouso
+
+Agora vamos criar a function **restingHeartRate( )** que vai determinar a **Frequência Cardíaca de Repouso** do usuário. Esta function aceitará apenas números de 0 a 200. Qualquer valor diferente disso, a function **incorrectValue( )** deverá ser chamada e o usuário deve digitar um número válido. Sendo assim, em **cardiorespiratoryFunctions.js**:
+
+```js
+restingHeartRate(){
+
+        let restingHeartRate = 0
+        let isANumberFromZeroToTwoHundredAndTwenty = true
+        let regexNumber = /(^[0-9]$)|(^[1-9][0-9]$)|(^[1][0-9]{2}$)|(^[2][0][0]$)/
+      
+        do{
+      
+          restingHeartRate = input.question('Digite a Frequência Cardíaca de Repouso (bpm): ')
+          isANumberFromZeroToTwoHundredAndTwenty = validationFunctions.isRegularExpression(restingHeartRate, regexNumber)
+          validationFunctions.incorrectValue(!isANumberFromZeroToTwoHundredAndTwenty, false, "Cardiorrespiratório")
+       
+        }while(!isANumberFromZeroToTwoHundredAndTwenty)
+         
+        return restingHeartRate
+      
+    
+ },
+```
+
+Em **saf.js** vamos criar a variável **restingHeartRate** que recebe como valor a function **restingHeartRate( )** e depois vamos mostrar o resultado;
+
+```js
+// variables cardiorespiratory
+const restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+```
+
+```js
+// show results cardiorespiratoryFunctions
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Cardiorespiratório")
+console.log(`Frequência Cardíaca de Repouso(bpm): ${restingHeartRate}`)
+```
+
+Ao executar o programa vamos comentar as partes de variáveis e mostrar o resutado de **personalData** e **anamnesisFunctions**, deixano apenas funcionando a parte de **cardiorespiratory**.
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Cardiorespiratório            
+===============================
+Frequência Cardíaca de Repouso(bpm): 55
+===============================
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
