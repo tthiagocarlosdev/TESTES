@@ -1,19 +1,26 @@
 var readlineSync = require('readline-sync')
 function header(){
     console.log("=========================")
-    console.log("        MATRIZ 3x2       ")
+    console.log("        MATRIZ 3x3       ")
     console.log("=========================")
 }
 header()
-matriz = [[]]
+matriz = []
 for(i = 1; i <= 3; i++){
     for(j = 1; j <= 3; j++){
-        matriz[[j]].push("x")
+        matriz.push("x")
     }
 }
+console.log(matriz)
+
+matrizZ = []
 for(i = 1; i <= 3; i++){
     for(j = 1; j <= 3; j++){
-        console.log(`${matriz[i],[j]}`)
+        if(i = j){
+            matrizZ.push("z")
+        } else {
+            matrizZ.push("0")
+        }
     }
-    console.log(`\n`)
 }
+console.log(matrizZ)
