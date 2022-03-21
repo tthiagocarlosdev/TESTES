@@ -1074,4 +1074,26 @@ function maximumHeartRate(ageValue){
 
 }
 
-console.log(maximumHeartRate(34))
+// console.log(maximumHeartRate(34))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == working heart rate == **/
+
+function workingHeartRate(restingHeartRateValue, maximumHeartRateValue){
+
+  let workingHeartRate = []
+  let percentage = []
+
+  for(let i = 40; i <= 95; i+=5){
+    workingHeartRate.push(Math.round(((( maximumHeartRateValue - restingHeartRateValue )* (i / 100) ) + restingHeartRateValue)))
+    percentage.push(i)
+  }
+
+  console.log(`Frequência Cardíaca de Treino:`)
+  for(let i = 0; i < workingHeartRate.length; i++){
+    console.log(`        ${percentage[i]}% = ${workingHeartRate[i]} bpm`)
+  } 
+
+}
+
+workingHeartRate(60, 186)

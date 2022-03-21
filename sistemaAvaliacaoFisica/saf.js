@@ -70,5 +70,6 @@ headerFunctions.systemHeader()
 headerFunctions.subTitle("Cardiorespiratório")
 console.log(`Frequência Cardíaca de Repouso: ${restingHeartRate} bpm.`)
 console.log(`Frequência Cardíaca Máxima: ${maximumHeartRate} bpm.`)
+cardiorespiratoryFunctions.workingHeartRate(Number(restingHeartRate), Number(maximumHeartRate))
 
 console.log(`===============================`)

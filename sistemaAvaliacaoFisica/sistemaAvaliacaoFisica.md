@@ -2765,6 +2765,65 @@ Frequência Cardíaca Máxima: 186 bpm.
 
 ### Frequência Cardíaca de trabalho
 
+Agora vamos criar a function **workingHeartRate( )** que vai mostrar a **Frequência Cardíaca de Treino** de acordo com os percentuais de 40% até 95%. Esta function terá como parâmetro a **Frequência Cardíaca de Repouso** (**restingHeartRate**) e a **Frequência Cardíaca Máxima** (**maximumHeartRate**). Para os cálculos, vamos usar a fórmula: 
+
+Frequência Cardíaca de Treino = ((( Frequência Cardíaca Máxima - Frequência Cardíaca de Repouso) * Percentual Ddesejado) + Frequência Cardíaca de Repouso)
+
+Logo, em **cardiorespiratoryFunctions.js**:
+
+```js
+workingHeartRate(restingHeartRateValue, maximumHeartRateValue){
+
+        let workingHeartRate = []
+        let percentage = []
+      
+        for(let i = 40; i <= 95; i+=5){
+          workingHeartRate.push(Math.round(((( maximumHeartRateValue - restingHeartRateValue )* (i / 100) ) + restingHeartRateValue)))
+          percentage.push(i)
+        }
+      
+        console.log(`Frequência Cardíaca de Treino:`)
+        for(let i = 0; i < workingHeartRate.length; i++){
+          console.log(`        ${percentage[i]}% = ${workingHeartRate[i]} bpm`)
+        } 
+      
+      },
+```
+
+Em **saf.js** chamamos a function **workingHeartRate( )** passando como parâmetro **restingHeartRate** e **maximumHeartRate**:
+
+```js
+cardiorespiratoryFunctions.workingHeartRate(Number(restingHeartRate), Number(maximumHeartRate))
+```
+
+Ao executar o programa:
+
+```sh
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Cardiorespiratório            
+===============================
+Frequência Cardíaca de Repouso: 60 bpm.
+Frequência Cardíaca Máxima: 186 bpm.
+Frequência Cardíaca de Treino:
+        40% = 110 bpm
+        45% = 117 bpm
+        50% = 123 bpm
+        55% = 129 bpm
+        60% = 136 bpm
+        65% = 142 bpm
+        70% = 148 bpm
+        75% = 155 bpm
+        80% = 161 bpm
+        85% = 167 bpm
+        90% = 173 bpm
+        95% = 180 bpm
+===============================
+```
+
+### Pressão Arterial de Repouso (mmHg)
+
 
 
 
