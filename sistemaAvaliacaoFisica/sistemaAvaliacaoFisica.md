@@ -2728,7 +2728,42 @@ Frequência Cardíaca de Repouso(bpm): 55
 ===============================
 ```
 
+### Frequência Cardíaca Máxima
 
+Agora vamos criar a function **maximumHeartRate( )** que vai determinar a frequência cardíaca máxima do usuário a partir da idade do mesmo. Esta function recebe como parâmetro o valor da idade do usuário e retorna a frequência cardíaca máxima calculada pela fórmula Karvonen (1957) **FCM = 220 - IDADE**. Logo em **cardiorespiratoryFunctions.js**:
+
+```js
+maximumHeartRate(ageValue){
+
+        return 220 - Number(ageValue)
+      
+ },
+```
+
+ Em **saf.js** criamos variável **maximumHeartRate** que recebe a function **maximumHeartRate( )** e depois mostramos o resultado. Lembre de passa a idade do usuário como parâmetro nesta function:
+
+```js
+const maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(age)
+```
+
+```js
+console.log(`Frequência Cardíaca Máxima: ${maximumHeartRate} bpm.`)
+```
+
+Ao executar o programa:
+
+```tex
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Cardiorespiratório            
+===============================
+Frequência Cardíaca de Repouso: 60 bpm.
+Frequência Cardíaca Máxima: 186 bpm.
+===============================
+```
+
+### Frequência Cardíaca de trabalho
 
 
 

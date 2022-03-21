@@ -5,13 +5,13 @@ const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
-/*
+
 // variables personalData
-const name = personalData.userName()
+/*const name = personalData.userName()*/
 const birthdayInBrazilianFormat =  personalData.dateOfBirth()
 const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
 const age = personalData.age(birthdayInISOFormat)
-const sexNumber = personalData.sexNumber()
+/*const sexNumber = personalData.sexNumber()
 const sex = personalData.showSex(sexNumber)
 const profession = personalData.userProfession()
 const userEmail = personalData.userEmail()
@@ -35,6 +35,7 @@ const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
 */
 // variables cardiorespiratory
 const restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+const maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(age)
 /*
 // show results personalData
 console.clear()
@@ -67,6 +68,7 @@ console.log(`Tempo disponível para treino: ${timeAvailablePerTraining} minutos.
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Cardiorespiratório")
-console.log(`Frequência Cardíaca de Repouso(bpm): ${restingHeartRate}`)
+console.log(`Frequência Cardíaca de Repouso: ${restingHeartRate} bpm.`)
+console.log(`Frequência Cardíaca Máxima: ${maximumHeartRate} bpm.`)
 
 console.log(`===============================`)

@@ -24,6 +24,12 @@ const cardiorespiratoryFunctions = {
       
     },
 
+    maximumHeartRate(ageValue){
+
+        return 220 - Number(ageValue)
+      
+    },
+
 }
 
 module.exports = {

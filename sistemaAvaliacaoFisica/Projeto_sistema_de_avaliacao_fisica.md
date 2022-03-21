@@ -214,19 +214,21 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Frequência Cardíaca Máxima (SHOW)**
-  - [ ] Karvonen (1957)FCM=220-IDADE
-  - [ ] bpm
+- [x] **Frequência Cardíaca Máxima (SHOW)**
+  - [x] Karvonen (1957)FCM=220-IDADE
+  - [x] bpm
 
 
 
 - [ ] **Frequência Cardíaca de trabalho: (SHOW)**
+  
   - [ ] Karvonen (1957) FC reserva (FCT)=(((FCM-FCR)*%D)+FCR)
   - [ ] Tabela com FCT de 40% até 90% pulando de 5% em 5%.
-
   
-
+  
+  
 - [ ] **Pressão Arterial de Repouso (mmHg): (INPUT)**
+  
   - [ ] sistólica & diastólica (INPUT)
   - [ ] Validar vazio
   - [ ] Apenas números

@@ -1062,5 +1062,16 @@ function restingHeartRate(){
 
 }
 
-console.log(restingHeartRate())
+// console.log(restingHeartRate())
 
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == maximum heart rate == **/
+
+function maximumHeartRate(ageValue){
+
+  return 220 - Number(ageValue)
+
+}
+
+console.log(maximumHeartRate(34))
