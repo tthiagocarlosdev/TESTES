@@ -2670,7 +2670,7 @@ module.exports = {
 }
 ```
 
-No arquivo **saf.js** vamos faer a requisição do arquivo **cardiorespiratory.js**:
+No arquivo **saf.js** vamos fazer a requisição do arquivo **cardiorespiratory.js**:
 
 ```js
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
@@ -3263,6 +3263,36 @@ Diastólica: Normal
 
 
 ## Antropometria
+
+Vamos para a próxima etapa, onde vamos construir a parte de **Antropometria**. Para isto vamos criar o arquivo **anthropometryFunctions.js**. Dentro deste arquivo vamos:
+
+- Criar a variável **input**;
+- Requerer o arquivo **validationFunctions.js**;
+- Criar uma variável objeto **anthropometryFunctions**;
+- Exportar essa variável.
+
+```js
+/* anthropometryFunctions */
+
+var input = require('readline-sync')
+
+const { validationFunctions } = require('./validationFunctions')
+
+const anthropometryFunctions = {
+
+
+}
+
+module.exports = {
+  anthropometryFunctions
+}
+```
+
+No arquivo **saf.js** vamos fazer a requisição do arquivo **anthropometryFunctions.js**:
+
+```js
+const  { anthropometryFunctions } = require('./anthropometryFunctions')
+```
 
 ### Peso Corporal
 

@@ -1179,4 +1179,8 @@ let bloodPressure = {
   diastolic: 80
 }
 
-console.log(classificationOfBloodPressure(bloodPressure))
+// console.log(classificationOfBloodPressure(bloodPressure))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == anthropometryFunctions == **/
+/** == Body weight == **/

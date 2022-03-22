@@ -2,6 +2,7 @@ const { headerFunctions } = require('./headerFunctions')
 const { personalData } = require('./personalData')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
+const  { anthropometryFunctions } = require('./anthropometryFunctions')
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
