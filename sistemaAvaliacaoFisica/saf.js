@@ -3,7 +3,7 @@ const { personalData } = require('./personalData')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 const  { anthropometryFunctions } = require('./anthropometryFunctions')
-
+/*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
@@ -43,7 +43,15 @@ const restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
 const maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(age)
 const restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
 const bloodPressureRating = cardiorespiratoryFunctions.classificationOfBloodPressure(restingBloodPressure)
+*/
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
 
+// variables anthropometryFunctions
+const bodyWeight = anthropometryFunctions.bodyWeight()
+
+/*
 // show results personalData
 console.clear()
 headerFunctions.systemHeader()
@@ -81,5 +89,14 @@ console.log(`Pressão Arterial de Repouso: ${restingBloodPressure.systolic}/${re
 console.log(`Classificação da Pressão Arterial`)
 console.log(`Sistólica: ${bloodPressureRating.systolicClassification}`)
 console.log(`Diastólica: ${bloodPressureRating.diastolicClassification}`)
+*/
+
+console.clear() // temporary
+headerFunctions.systemHeader() // temporary
+headerFunctions.subTitle("Antropometria") // temporary
+// show results anthropometryFunctions
+// console.log(`===============================`) 
+// headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${bodyWeight} kilos.`)
 
 console.log(`===============================`)

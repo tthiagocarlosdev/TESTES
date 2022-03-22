@@ -269,10 +269,10 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 ## Antropometria
 
-- [ ] **Peso Corporal (kg): (INPUT)**
-  - [ ] Apenas número real
-  - [ ] Validar vazio
-  - [ ] Peso com no máximo três dígitos inteiros e uma casa decimal
+- [x] **Peso Corporal (kg): (INPUT)**
+  - [x] Apenas número real
+  - [x] Validar vazio
+  - [x] Peso com no máximo três dígitos inteiros e uma casa decimal
 
 ​      
 

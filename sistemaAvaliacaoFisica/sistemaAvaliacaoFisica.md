@@ -3296,6 +3296,59 @@ const  { anthropometryFunctions } = require('./anthropometryFunctions')
 
 ### Peso Corporal
 
+Agora vamos criar a function **bodyWeight( )** que vai solicitar do usuário o seu peso corporal. Esta function só poderá aceitar número real, com uma casa decimal. Então, vamos fazer com que ela aceite de **0.0** até **1000.0** usando expressões regulares. Caso o usuário digite qualquer coisa diferente disso, a function **incorrectValue( )** deverá ser chamada e o usuário deverá colocar um valor de peso correto. Com o usuário inserindo o valor correto, a function retorna o valor do peso corporal inserido pelo usuário. Logo, em **anthropometryFunctions.js**:
+
+```js
+bodyWeight(){
+
+    let bodyWeight = 0
+    let itsRealNumber = true
+    let regularExpressionFromZeroToThousand = /(^[0-9]\.[0-9]$)|(^[1-9][0-9]\.[0-9]$)|(^[1-9][0-9]{2}\.[0-9]$)|(^[1][0]{3}\.[0-9]$)/
+  
+    do{
+  
+      bodyWeight = input.question('Digite seu peso (kg): ')
+      itsRealNumber = validationFunctions.isRegularExpression(bodyWeight, regularExpressionFromZeroToThousand)
+      validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+  
+    }while(!itsRealNumber)
+  
+    return bodyWeight
+    
+  },
+```
+
+Em **saf.js** vamos criar a variável **bodyWeight** que receberá como valor o retorno da function **bodyWeight( )**, em seguinda mostramos o resultado:
+
+```js
+// variables anthropometryFunctions
+const bodyWeight = anthropometryFunctions.bodyWeight()
+```
+
+```js
+console.clear() // temporary
+headerFunctions.systemHeader() // temporary
+headerFunctions.subTitle("Antropometria") // temporary
+// show results anthropometryFunctions
+// console.log(`===============================`) 
+// headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${bodyWeight} kilos.`)
+```
+
+Para executar, avamos comentar as outras partes, deixando apenas **variables anthropometryFunctions** e **show results anthropometryFunctions** ativos, logo:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.0 kilos.
+===============================
+```
+
+### Estatura
+
 
 
 
