@@ -227,11 +227,11 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
   
   
   
-- [ ] **Pressão Arterial de Repouso (mmHg): (INPUT)**
+- [x] **Pressão Arterial de Repouso (mmHg): (INPUT)**
   
-  - [ ] sistólica & diastólica (INPUT)
-  - [ ] Validar vazio
-  - [ ] Apenas números
+  - [x] sistólica & diastólica (INPUT)
+  - [x] Validar vazio
+  - [x] Apenas números
 
 ​    
 

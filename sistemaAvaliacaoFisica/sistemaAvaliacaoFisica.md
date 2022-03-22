@@ -2824,6 +2824,74 @@ Frequência Cardíaca de Treino:
 
 ### Pressão Arterial de Repouso (mmHg)
 
+Agora vamos criar a function **restingBloodPressure( )** que vai determinar a **Pressão Arterial de Repouso em mmHg**. Está function pedirá para o usuário digitar a **pressão sistólica** e a **pressão diastólica**. Só serão aceitos números e qualquer valor diferente disso, inclusive vazio, a function **incorrectValue( )** deverá ser chamada e o usuário deverá digitar os dois valores novamente. A function retorna os valores da pressão **sistólica** e **diastólica** e para isto, vamos retorna estes dois valores dentro de um objeto, **bloodPressure**. Logo, em **cardiorespiratoryFunctions.js**:
+
+```js
+restingBloodPressure(){
+
+        let bloodPressure = {
+          systolic: 0, 
+          diastolic: 0
+        }
+        let systolicIsNumber = true
+        let diastolicIsNumber = true
+      
+      
+        do{
+      
+          bloodPressure.systolic = input.question('Digite a pressão sistólica (mmHg): ')
+          bloodPressure.diastolic = input.question('Digite a pressão diastólica (mmHg): ')
+      
+          systolicIsNumber = validationFunctions.itsNumber(bloodPressure.systolic)
+          diastolicIsNumber = validationFunctions.itsNumber(bloodPressure.diastolic)
+          validationFunctions.incorrectValue(!systolicIsNumber, !diastolicIsNumber, "Cardiorrespiratório")
+      
+        }while(!systolicIsNumber || !diastolicIsNumber)
+      
+         return bloodPressure
+      
+      },
+```
+
+Em **saf.js** vamos criar a variável **restingBloodPressure** que receberá a function **restingBloodPressure( )** e depois vamos mostrar o valor da **Pressão Arterial de Reposuo**:
+
+```js
+const restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
+```
+
+```js
+console.log(`Pressão Arterial de Repouso: ${restingBloodPressure.systolic}/${restingBloodPressure.diastolic} mmHg.`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Cardiorespiratório            
+===============================
+Frequência Cardíaca de Repouso: 60 bpm.
+Frequência Cardíaca Máxima: 198 bpm.
+Frequência Cardíaca de Treino:
+        40% = 115 bpm
+        45% = 122 bpm
+        50% = 129 bpm
+        55% = 136 bpm
+        60% = 143 bpm
+        65% = 150 bpm
+        70% = 157 bpm
+        75% = 164 bpm
+        80% = 170 bpm
+        85% = 177 bpm
+        90% = 184 bpm
+        95% = 191 bpm
+Pressão Arterial de Repouso: 120/80 mmHg.
+===============================
+```
+
+### Pressão Arterial - Classificação 
+
 
 
 

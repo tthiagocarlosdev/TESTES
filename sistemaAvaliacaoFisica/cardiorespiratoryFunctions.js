@@ -47,6 +47,31 @@ const cardiorespiratoryFunctions = {
       
       },
 
+      restingBloodPressure(){
+
+        let bloodPressure = {
+          systolic: 0, 
+          diastolic: 0
+        }
+        let systolicIsNumber = true
+        let diastolicIsNumber = true
+      
+      
+        do{
+      
+          bloodPressure.systolic = input.question('Digite a pressão sistólica (mmHg): ')
+          bloodPressure.diastolic = input.question('Digite a pressão diastólica (mmHg): ')
+      
+          systolicIsNumber = validationFunctions.itsNumber(bloodPressure.systolic)
+          diastolicIsNumber = validationFunctions.itsNumber(bloodPressure.diastolic)
+          validationFunctions.incorrectValue(!systolicIsNumber, !diastolicIsNumber, "Cardiorrespiratório")
+      
+        }while(!systolicIsNumber || !diastolicIsNumber)
+      
+         return bloodPressure
+      
+      },
+
 }
 
 module.exports = {
