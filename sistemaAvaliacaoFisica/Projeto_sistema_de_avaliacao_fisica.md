@@ -235,7 +235,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 ​    
 
-- [ ] **Sistólica - Classificação (SHOW)**
+- [x] **Sistólica - Classificação (SHOW)**
 
   PAS < 120 = "Ótima"
 
@@ -251,7 +251,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Diastólica - Classificação (SHOW)**
+- [x] **Diastólica - Classificação (SHOW)**
 
   PAS < 80 = "Ótima"
 

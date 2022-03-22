@@ -71,6 +71,47 @@ const cardiorespiratoryFunctions = {
          return bloodPressure
       
       },
+      
+      classificationOfBloodPressure(objectValue){
+
+        let classification = {
+          systolicClassification: '',
+          diastolicClassification: '',
+        }
+      
+        /* Systolic Classification */
+        if(objectValue.systolic < 120){
+          classification.systolicClassification = 'Ótima'
+        } else if(objectValue.systolic < 130){
+          classification.systolicClassification = 'Normal'
+        } else if(objectValue.systolic < 140){
+          classification.systolicClassification = 'Limítrofe'
+        } else if(objectValue.systolic < 160){
+          classification.systolicClassification = 'Hipertensão Estágio 1'
+        } else if(objectValue.systolic < 180){
+          classification.systolicClassification = 'Hipertensão Estágio 2'
+        } else{
+          classification.systolicClassification = 'Hipertensão Estágio 3'
+        }
+      
+        /* Diastolic Classification */
+        if(objectValue.diastolic < 80){
+          classification.diastolicClassification = 'Ótima'
+        } else if(objectValue.diastolic < 85){
+          classification.diastolicClassification = 'Normal'
+        } else if(objectValue.diastolic < 90){
+          classification.diastolicClassification = 'Limítrofe'
+        } else if(objectValue.diastolic < 100){
+          classification.diastolicClassification = 'Hipertensão Estágio 1'
+        } else if(objectValue.diastolic < 110){
+          classification.diastolicClassification = 'Hipertensão Estágio 2'
+        } else{
+          classification.diastolicClassification = 'Hipertensão Estágio 3'
+        }
+      
+        return classification
+      
+      },
 
 }
 

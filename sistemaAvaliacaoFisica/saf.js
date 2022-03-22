@@ -7,11 +7,11 @@ headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
 // variables personalData
-/*const name = personalData.userName()*/
+const name = personalData.userName()
 const birthdayInBrazilianFormat =  personalData.dateOfBirth()
 const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
 const age = personalData.age(birthdayInISOFormat)
-/*const sexNumber = personalData.sexNumber()
+const sexNumber = personalData.sexNumber()
 const sex = personalData.showSex(sexNumber)
 const profession = personalData.userProfession()
 const userEmail = personalData.userEmail()
@@ -32,12 +32,17 @@ const sportsInjuries = anamnesisFunctions.sportsInjuries()
 const trainingObjective = anamnesisFunctions.trainingObjective()
 const daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
 const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
-*/
+
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Cardiorrespiratório")
+
 // variables cardiorespiratory
 const restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
 const maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(age)
 const restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
-/*
+const bloodPressureRating = cardiorespiratoryFunctions.classificationOfBloodPressure(restingBloodPressure)
+
 // show results personalData
 console.clear()
 headerFunctions.systemHeader()
@@ -64,14 +69,16 @@ console.log(`Lesão Desportiva: ${sportsInjuries}`)
 console.log(`Objetivo do treino: ${trainingObjective}`)
 console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining} dias.`)
 console.log(`Tempo disponível para treino: ${timeAvailablePerTraining} minutos.`)
-*/
+
 // show results cardiorespiratoryFunctions
-console.clear()
-headerFunctions.systemHeader()
+console.log(`===============================`) 
 headerFunctions.subTitle("Cardiorespiratório")
 console.log(`Frequência Cardíaca de Repouso: ${restingHeartRate} bpm.`)
 console.log(`Frequência Cardíaca Máxima: ${maximumHeartRate} bpm.`)
 cardiorespiratoryFunctions.workingHeartRate(Number(restingHeartRate), Number(maximumHeartRate))
 console.log(`Pressão Arterial de Repouso: ${restingBloodPressure.systolic}/${restingBloodPressure.diastolic} mmHg.`)
+console.log(`Classificação da Pressão Arterial`)
+console.log(`Sistólica: ${bloodPressureRating.systolicClassification}`)
+console.log(`Diastólica: ${bloodPressureRating.diastolicClassification}`)
 
 console.log(`===============================`)
