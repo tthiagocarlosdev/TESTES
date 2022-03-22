@@ -50,6 +50,7 @@ headerFunctions.subTitle("Antropometria")
 
 // variables anthropometryFunctions
 const bodyWeight = anthropometryFunctions.bodyWeight()
+const bodyStature = anthropometryFunctions.stature()
 
 /*
 // show results personalData
@@ -98,5 +99,6 @@ headerFunctions.subTitle("Antropometria") // temporary
 // console.log(`===============================`) 
 // headerFunctions.subTitle("Antropometria")
 console.log(`Peso Corporal: ${bodyWeight} kilos.`)
+console.log(`Estatura Corporal: ${bodyStature} metros.`)
 
 console.log(`===============================`)

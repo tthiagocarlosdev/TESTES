@@ -1195,7 +1195,7 @@ function bodyWeight(){
 
   do{
 
-    bodyWeight = input.question('Digite seu peso (kg): ')
+    bodyWeight = input.question('Digite seu peso (kg)[0000.0]: ')
     itsRealNumber = validationFunctions.isRegularExpression(bodyWeight, regularExpressionFromZeroToThousand)
     validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
 
@@ -1205,6 +1205,27 @@ function bodyWeight(){
   
 }
 
-console.log(bodyWeight())
+// console.log(bodyWeight())
 
-let regexNumber = /(^[0-9]$)|(^[1-9][0-9]$)|(^[1][0-9]{2}$)|(^[2][0][0]$)/
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Stature == **/
+
+function stature(){
+
+  let bodyStature = 0
+  let itsRealNumber = true
+  let regularExpressionZeroToNinePointNinetyNine = /(^[0-9]\.([0-9]){2}$)/
+
+  do{
+
+    bodyStature =input.question('Digite sua estatura (m)[0.00]: ')
+    itsRealNumber = validationFunctions.isRegularExpression(bodyStature, regularExpressionZeroToNinePointNinetyNine)
+    validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+
+  }while(!itsRealNumber)
+  
+  return bodyStature
+
+}
+
+console.log(stature())

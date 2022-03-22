@@ -14,7 +14,7 @@ const anthropometryFunctions = {
   
     do{
   
-      bodyWeight = input.question('Digite seu peso (kg): ')
+      bodyWeight = input.question('Digite seu peso (kg)[00.0]: ')
       itsRealNumber = validationFunctions.isRegularExpression(bodyWeight, regularExpressionFromZeroToThousand)
       validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
   
@@ -22,6 +22,24 @@ const anthropometryFunctions = {
   
     return bodyWeight
     
+  },
+
+  stature(){
+
+    let bodyStature = 0
+    let itsRealNumber = true
+    let regularExpressionZeroToNinePointNinetyNine = /(^[0-9]\.([0-9]){2}$)/
+  
+    do{
+  
+      bodyStature =input.question('Digite sua estatura (m)[0.00]: ')
+      itsRealNumber = validationFunctions.isRegularExpression(bodyStature, regularExpressionZeroToNinePointNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+  
+    }while(!itsRealNumber)
+    
+    return bodyStature
+  
   },
 
 }

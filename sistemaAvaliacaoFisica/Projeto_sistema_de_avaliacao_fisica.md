@@ -276,10 +276,10 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 ​      
 
-- [ ] **Estatura (metros): (INPUT)**
-  - [ ] Apenas número real
-  - [ ] Validar vazio
-  - [ ] Estatura com um dígito inteiro e duas casa decimais
+- [x] **Estatura (metros): (INPUT)**
+  - [x] Apenas número real
+  - [x] Validar vazio
+  - [x] Estatura com um dígito inteiro e duas casa decimais
 
 
 

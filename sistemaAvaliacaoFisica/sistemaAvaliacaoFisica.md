@@ -3307,7 +3307,7 @@ bodyWeight(){
   
     do{
   
-      bodyWeight = input.question('Digite seu peso (kg): ')
+      bodyWeight = input.question('Digite seu peso (kg)[00.0]: ')
       itsRealNumber = validationFunctions.isRegularExpression(bodyWeight, regularExpressionFromZeroToThousand)
       validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
   
@@ -3349,9 +3349,52 @@ Peso Corporal: 95.0 kilos.
 
 ### Estatura
 
+Agora vamos criar a function **stature( )** que vai solicitar do usuário a sua estatura corporal. Esta function só poderá aceitar número real, com duas casas decimais. Então, vamos fazer com que ela aceite de **0.00** até **9.99** usando expressões regulares. Caso o usuário digite qualquer coisa diferente disso, a function **incorrectValue( )** deverá ser chamada e o usuário deverá colocar um valor de estatura correto. Com o usuário inserindo o valor correto, a function retorna o valor da estatura corporal inserida pelo usuário. Logo, em **anthropometryFunctions.js**:
 
+```js
+stature(){
 
+    let bodyStature = 0
+    let itsRealNumber = true
+    let regularExpressionZeroToNinePointNinetyNine = /(^[0-9]\.([0-9]){2}$)/
+  
+    do{
+  
+      bodyStature =input.question('Digite sua estatura (m)[0.00]: ')
+      itsRealNumber = validationFunctions.isRegularExpression(bodyStature, regularExpressionZeroToNinePointNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+  
+    }while(!itsRealNumber)
+    
+    return bodyStature
+  
+  },
+```
 
+Em **saf.js** vamos criar a variável **bodyStature** que receberá como valor o retorno da function **stature( )**, em seguinda mostramos o resultado:
+
+```js
+const bodyStature = anthropometryFunctions.stature()
+```
+
+```js
+console.log(`Estatura Corporal: ${bodyStature} metros.`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 85.5 kilos.
+Estatura Corporal: 1.86 metros.
+===============================
+```
+
+### Índice de Massa Corporal - IMC
 
 
 
