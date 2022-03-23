@@ -51,6 +51,7 @@ headerFunctions.subTitle("Antropometria")
 // variables anthropometryFunctions
 const bodyWeight = anthropometryFunctions.bodyWeight()
 const bodyStature = anthropometryFunctions.stature()
+const bodyMassIndex = anthropometryFunctions.bodyMassIndex(bodyWeight, bodyStature)
 
 /*
 // show results personalData
@@ -100,5 +101,6 @@ headerFunctions.subTitle("Antropometria") // temporary
 // headerFunctions.subTitle("Antropometria")
 console.log(`Peso Corporal: ${bodyWeight} kilos.`)
 console.log(`Estatura Corporal: ${bodyStature} metros.`)
+console.log(`Índice de Massa Corporal - IMC: ${bodyMassIndex}`)
 
 console.log(`===============================`)

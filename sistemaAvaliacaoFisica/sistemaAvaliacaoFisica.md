@@ -3396,6 +3396,41 @@ Estatura Corporal: 1.86 metros.
 
 ### Índice de Massa Corporal - IMC
 
+Function **bodyMassIndex( )** que vai determinar o **Índice de Massa Corporal - IMC** do usuário. Esta function recebe como parâmetro o **peso** e a **estatura** do usuário e retorna o **IMC** com duas casa decimais. A fórmula para determinar o IMC é ` IMC = (peso / (estatura * estatura))`. Logo, em **anthropometryFunctions.js**:
+
+```js
+bodyMassIndex(weightValue, heightValue){
+
+    // IMC = peso / estatura * estatura
+    return (weightValue / (heightValue * heightValue)).toFixed(2)
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável **bodyMassIndex** para receber a function **bodyMassIndex( )** passando como parâmetro as variáveis **bodyWeight** e **bodyStature**:
+
+```js
+const bodyMassIndex = anthropometryFunctions.bodyMassIndex(bodyWeight, bodyStature)
+```
+
+```js
+console.log(`Índice de Massa Corporal - IMC: ${bodyMassIndex}`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.0 kilos.
+Estatura Corporal: 1.86 metros.
+Índice de Massa Corporal - IMC: 27.46
+===============================
+```
+
 
 
 

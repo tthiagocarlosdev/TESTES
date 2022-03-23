@@ -1228,4 +1228,19 @@ function stature(){
 
 }
 
-console.log(stature())
+// console.log(stature())
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Body Mass Index - BMI == **/
+
+function bodyMassIndex(weightValue, heightValue){
+
+  // IMC = peso / estatura * estatura
+  return (weightValue / (heightValue * heightValue)).toFixed(2)
+
+}
+
+let peso = 95.0
+let altura = 1.86
+
+console.log(bodyMassIndex(peso, altura))

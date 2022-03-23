@@ -42,6 +42,13 @@ const anthropometryFunctions = {
   
   },
 
+  bodyMassIndex(weightValue, heightValue){
+
+    // IMC = peso / estatura * estatura
+    return (weightValue / (heightValue * heightValue)).toFixed(2)
+  
+  },
+
 }
 
 module.exports = {
