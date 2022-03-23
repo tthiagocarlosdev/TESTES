@@ -283,12 +283,12 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [x] **IMC: (SHOW)**
+- [x] **Índice de Massa Corporal - IMC: (SHOW)**
   - [x] IMC = Peso / Estatura * Estatura
 
 
 
-- [ ] **IMC - Classificação: (SHOW)**
+- [x] **Índice de Massa Corporal - IMC - Classificação: (SHOW)**
 
   IMC < 17 = "Magreza Grau 2"
 

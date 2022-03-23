@@ -2903,7 +2903,7 @@ Agora vamos criar a function **classificationOfBloodPressure( )** que vai retorn
 | Pressão Arterial Sistólica < 180 = "Hipertensão Estágio 2" | Pressão Arterial Diastólica < 110 = "Hipertensão Estágio 2" |
 | Pressão Arterial Sistólica > 179 = "Hipertensão Estágio 3" | Pressão Arterial Diastólica < 300 = "Hipertensão Estágio 3" |
 
-o retorno desta function também será um objeto. Logo, em **cardiorespiratoryFunctions.js**:
+O retorno desta function também será um objeto. Logo, em **cardiorespiratoryFunctions.js**:
 
 ```js
 classificationOfBloodPressure(objectValue){
@@ -3430,6 +3430,75 @@ Estatura Corporal: 1.86 metros.
 Índice de Massa Corporal - IMC: 27.46
 ===============================
 ```
+
+### Índice de Massa Corporal - IMC - Classificação
+
+Agora vamos criar a function **bodyMassIndexClassification( )** que vai retornar a classificação do IMC. Esta function recebe como parâmetro o **IMC** do usuário. Em seguida retorna a classificação de acordo com a tabela abaixo:
+
+| Índice de Massa Corporal - IMC - Classificação |
+| :--------------------------------------------: |
+|          IMC < 17 = "Magreza Grau 2"           |
+|         IMC < 18,5 = "Abaixo do peso"          |
+|            IMC < 25 = "Peso Normal"            |
+|             IMC < 30 = "Sobrepeso"             |
+|         IMC < 35 = "Obesidade nível 1"         |
+|         IMC < 40 = "Obesidade nível 2"         |
+|         IMC > 40 = "Obesidade Morbida"         |
+
+Em **anthropometryFunctions.js**:
+
+```js
+bodyMassIndexClassification(bodyMassIndexValue){
+
+    let classification = ``
+  
+    if(bodyMassIndexValue < 17){
+      classification = `Magreza Grau 2`
+    } else if(bodyMassIndexValue < 18.5){
+      classification = `Abaixo do peso`
+    } else if(bodyMassIndexValue < 25){
+      classification = `Peso Normal`
+    } else if(bodyMassIndexValue < 30){
+      classification = `Sobrepeso`
+    } else if(bodyMassIndexValue < 35){
+      classification = `Obesidade nível 1`
+    } else if(bodyMassIndexValue < 40){
+      classification = `Obesidade nível 2`
+    } else{
+      classification = `Obesidade Morbida`
+    }
+  
+    return classification
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável **bodyMassIndexClassification** que recebe a function **bodyMassIndexClassification( )**. Devemos passar a variável **bodyMassIndex** na function **bodyMassIndexClassification( )**. Depois vamos mostrar o resultado:
+
+```js
+const bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(bodyMassIndex)
+```
+
+```js
+console.log(`Classificação IMC: ${bodyMassIndexClassification}`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.0 kilos.
+Estatura Corporal: 1.86 metros.
+Índice de Massa Corporal - IMC: 27.46
+Classificação IMC: Sobrepeso
+===============================
+```
+
+### Perimetria
 
 
 

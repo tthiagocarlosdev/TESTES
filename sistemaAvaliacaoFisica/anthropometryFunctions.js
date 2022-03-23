@@ -49,6 +49,30 @@ const anthropometryFunctions = {
   
   },
 
+  bodyMassIndexClassification(bodyMassIndexValue){
+
+    let classification = ``
+  
+    if(bodyMassIndexValue < 17){
+      classification = `Magreza Grau 2`
+    } else if(bodyMassIndexValue < 18.5){
+      classification = `Abaixo do peso`
+    } else if(bodyMassIndexValue < 25){
+      classification = `Peso Normal`
+    } else if(bodyMassIndexValue < 30){
+      classification = `Sobrepeso`
+    } else if(bodyMassIndexValue < 35){
+      classification = `Obesidade nível 1`
+    } else if(bodyMassIndexValue < 40){
+      classification = `Obesidade nível 2`
+    } else{
+      classification = `Obesidade Morbida`
+    }
+  
+    return classification
+  
+  },
+
 }
 
 module.exports = {

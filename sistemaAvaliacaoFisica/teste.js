@@ -1243,4 +1243,39 @@ function bodyMassIndex(weightValue, heightValue){
 let peso = 95.0
 let altura = 1.86
 
-console.log(bodyMassIndex(peso, altura))
+// console.log(bodyMassIndex(peso, altura))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Body Mass Index Classification == **/
+
+function bodyMassIndexClassification(bodyMassIndexValue){
+
+  let classification = ``
+
+  if(bodyMassIndexValue < 17){
+    classification = `Magreza Grau 2`
+  } else if(bodyMassIndexValue < 18.5){
+    classification = `Abaixo do peso`
+  } else if(bodyMassIndexValue < 25){
+    classification = `Peso Normal`
+  } else if(bodyMassIndexValue < 30){
+    classification = `Sobrepeso`
+  } else if(bodyMassIndexValue < 35){
+    classification = `Obesidade nível 1`
+  } else if(bodyMassIndexValue < 40){
+    classification = `Obesidade nível 2`
+  } else{
+    classification = `Obesidade Morbida`
+  }
+
+  return classification
+
+}
+
+console.log(bodyMassIndexClassification(16.9))
+console.log(bodyMassIndexClassification(17.8))
+console.log(bodyMassIndexClassification(22.6))
+console.log(bodyMassIndexClassification(27))
+console.log(bodyMassIndexClassification(33.8))
+console.log(bodyMassIndexClassification(38.9))
+console.log(bodyMassIndexClassification(40))
