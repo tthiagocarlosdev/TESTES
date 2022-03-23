@@ -113,6 +113,12 @@ const anthropometryFunctions = {
   
   },
 
+  hipWaistRatio(waistPerimetry, hipPerimetry){
+
+    return (waistPerimetry/ hipPerimetry).toFixed(2)
+  
+  },
+
 }
 
 module.exports = {

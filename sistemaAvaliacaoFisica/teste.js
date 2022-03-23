@@ -1330,3 +1330,14 @@ function showPerimeter(objectValue){
 }
 
 console.log(showPerimeter(perimetriaCoporporal))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Hip Waist Ratio == **/
+
+function hipWaistRatio(waistPerimetry, hipPerimetry){
+
+  return (waistPerimetry/ hipPerimetry).toFixed(2)
+
+}
+
+console.log(hipWaistRatio(perimetriaCoporporal.Cintura, perimetriaCoporporal.Quadril))

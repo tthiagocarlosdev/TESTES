@@ -323,8 +323,8 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Relação Cintura Quadril: (SHOW)**
-  - [ ] RCQ = Perimetria Cintura / Perimetria Quadril
+- [x] **Relação Cintura Quadril: (SHOW)**
+  - [x] RCQ = Perimetria Cintura / Perimetria Quadril
 
 
 

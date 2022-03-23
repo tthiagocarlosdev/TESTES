@@ -3582,6 +3582,53 @@ Panturrilha: 40.0 cm
 
 ### Relação Cintura Quadril
 
+Function **hipWaistRatio( )**, determina a **Relação Cintura Quadril - RCQ** a partir das medidas perimétricas da **cintura** e **quadril**. Logo, esta function recebe como parâmetro os valores destas partes do corpo e retorna o **RCQ** que será determinado pela fórmula: **RCQ = Perimetria Cintura / Perimetria Quadril**. Logo em **anthropometryFunctions.js**:
+
+```js
+hipWaistRatio(waistPerimetry, hipPerimetry){
+
+    return (waistPerimetry/ hipPerimetry).toFixed(2)
+  
+  },
+```
+
+Em **saf.js** criamos a variável **hipWaistRatio** que recebe como valor o retorno da function **hipWaistRatio( )**. Passamos como parâmetro os valores da **cintura** e do **quadril**:
+
+```js
+const hipWaistRatio = anthropometryFunctions.hipWaistRatio(bodyPerimeter.Cintura, bodyPerimeter.Quadril)
+```
+
+Em seguida mostramos exibimos o resultado:
+
+```js
+console.log(`Relação Cintura Quadril: ${hipWaistRatio}`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 85.0 kilos.
+Estatura Corporal: 1.86 metros.
+Índice de Massa Corporal - IMC: 24.57
+Classificação IMC: Peso Normal
+Perimetria Corporal:
+Braço: 30.0 cm
+Antebraço: 25.5 cm
+Cintura: 80.5 cm
+Quadril: 95.8 cm
+Coxa: 65.9 cm
+Panturrilha: 45.6 cm
+Relação Cintura Quadril: 0.84
+===============================
+```
+
+### Relação Cintura Quadril - Classificação
+
 
 
 
