@@ -1272,10 +1272,61 @@ function bodyMassIndexClassification(bodyMassIndexValue){
 
 }
 
-console.log(bodyMassIndexClassification(16.9))
-console.log(bodyMassIndexClassification(17.8))
-console.log(bodyMassIndexClassification(22.6))
-console.log(bodyMassIndexClassification(27))
-console.log(bodyMassIndexClassification(33.8))
-console.log(bodyMassIndexClassification(38.9))
-console.log(bodyMassIndexClassification(40))
+// console.log(bodyMassIndexClassification(16.9))
+// console.log(bodyMassIndexClassification(17.8))
+// console.log(bodyMassIndexClassification(22.6))
+// console.log(bodyMassIndexClassification(27))
+// console.log(bodyMassIndexClassification(33.8))
+// console.log(bodyMassIndexClassification(38.9))
+// console.log(bodyMassIndexClassification(40))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Body Perimetry == **/
+
+function bodyPerimetry(){
+
+  let measurementPoints = {
+    Braço: 0,
+    Antebraço: 0,
+    Cintura: 0,
+    Quadril: 0,
+    Coxa: 0,
+    Panturrilha: 0
+  } 
+  let itsRealNumber = true
+  let regexThreeWholeDigitsAndOneDecimalPlace = /(^[0-9]\.[0-9]$)|(^[0-9]{2}\.[0-9]$)|(^[0-9]{3}\.[0-9]$)/
+
+  for(let bodyPart in measurementPoints){
+
+    do{
+
+      measurementPoints[bodyPart] = input.question(`Digite a perimetria - ${bodyPart} (cm)[000.0]: `)
+
+      itsRealNumber = validationFunctions.isRegularExpression(measurementPoints[bodyPart], regexThreeWholeDigitsAndOneDecimalPlace)
+      validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+
+    }while(!itsRealNumber)
+    
+  }
+
+  return measurementPoints
+
+}
+
+let perimetriaCoporporal = bodyPerimetry()
+
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Show Perimeter == **/
+
+function showPerimeter(objectValue){
+  
+  console.log('Perimetria Corporal:')
+  
+  for(let property in objectValue){
+    console.log(`${property}: ${objectValue[property]} cm`) 
+  }
+
+}
+
+console.log(showPerimeter(perimetriaCoporporal))

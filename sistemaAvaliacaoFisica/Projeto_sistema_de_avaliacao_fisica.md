@@ -306,16 +306,20 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Perimetria: (INPUT)**
-  - [ ] Braço (cm)
-  - [ ] Antebraço (cm)
-  - [ ] Cintura (cm)
-  - [ ] Quadril (cm)
-  - [ ] Coxa (cm)
-  - [ ] Panturrilha (cm)
-  - [ ] Validar vazio
-  - [ ] Apenas número real
-  - [ ] Perimetria com no máximo três dígitos inteiros e uma casa decimal
+- [x] **Perimetria: (INPUT)**
+  - [x] Braço (cm)
+  - [x] Antebraço (cm)
+  - [x] Cintura (cm)
+  - [x] Quadril (cm)
+  - [x] Coxa (cm)
+  - [x] Panturrilha (cm)
+  - [x] Validar vazio
+  - [x] Apenas número real
+  - [x] Perimetria com no máximo três dígitos inteiros e uma casa decimal [000.0]
+
+
+
+- [x] **Perimetria: (SHOW)**
 
 
 

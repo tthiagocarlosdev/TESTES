@@ -3500,7 +3500,87 @@ Classificação IMC: Sobrepeso
 
 ### Perimetria
 
+Function **bodyPerimetry( )** vai solicitar para o usuário digitar as medidas perimétricas de algumas partes do seu corpo em centímetros, como: **Braço**, **Antebraço**, **Cintura**, **Quadril**, **Coxa** e **Panturrilha**. Está function aceitará apenas números de um dígito e uma casa decimal até três dígitos e uma casa decimal. Qualquer valor diferente disso, a function **incorrectValue( )** deverá ser chamada e o usuário deverá digitar o valor correto. Esta function terá como retorno um **objeto** contendo como propriedades as partes do corpo listada acima e seus respectivos valores. Logo em **anthropometryFunctions.js**:
 
+```js
+bodyPerimetry(){
+
+    let measurementPoints = {
+      Braço: 0,
+      Antebraço: 0,
+      Cintura: 0,
+      Quadril: 0,
+      Coxa: 0,
+      Panturrilha: 0
+    } 
+    let itsRealNumber = true
+    let regexThreeWholeDigitsAndOneDecimalPlace = /(^[0-9]\.[0-9]$)|(^[0-9]{2}\.[0-9]$)|(^[0-9]{3}\.[0-9]$)/
+  
+    for(let bodyPart in measurementPoints){
+  
+      do{
+  
+        measurementPoints[bodyPart] = input.question(`Digite a perimetria - ${bodyPart} (cm)[000.0]: `)
+  
+        itsRealNumber = validationFunctions.isRegularExpression(measurementPoints[bodyPart], regexThreeWholeDigitsAndOneDecimalPlace)
+        validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+  
+      }while(!itsRealNumber)
+      
+    }
+  
+    return measurementPoints
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável **bodyPerimeter** que vai receber o objeto retornado da function **bodyPerimetry( )**.
+
+```js
+const bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+```
+
+Para mostrar o resultado, vamos criar outra function, **showPerimeter( )**. Esta funcion receberá como parâmetro o um objeto e mostrará as propriedades e seus repectivos valores. Log, em **anthropometryFunctions.js**:
+
+```javascript
+showPerimeter(objectValue){
+  
+    console.log('Perimetria Corporal:')
+    
+    for(let property in objectValue){
+      console.log(`${property}: ${objectValue[property]} cm`) 
+    }
+  
+  },
+```
+
+Em **saf.js** chamamos a function **showPerimeter( )** e passamos como parâmetro a variável **bodyPerimeter**:
+
+```javascript
+anthropometryFunctions.showPerimeter(bodyPerimeter)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.0 kilos.
+Estatura Corporal: 1.86 metros.
+Índice de Massa Corporal - IMC: 27.46
+Classificação IMC: Sobrepeso
+Perimetria Corporal:
+Braço: 40.0 cm
+Antebraço: 30.0 cm
+Cintura: 85.0 cm
+Quadril: 95.0 cm
+Coxa: 60.0 cm
+Panturrilha: 40.0 cm
+===============================
+```
+
+### Relação Cintura Quadril
 
 
 
