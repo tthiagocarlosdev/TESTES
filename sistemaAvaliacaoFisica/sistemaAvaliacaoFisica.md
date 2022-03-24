@@ -3950,7 +3950,101 @@ Circunfência cintura - Classificação: Nenhum Risco
 
 ### Medidas subcutâneas
 
+Function **subcutaneousMeasures( )** irá solicitar do usuário informar as medias das dobras cutâneas **Triciptal**, **Subescapular**, **Peitoral**, **SupraIliaca**, **Abdominal**, **Coxa** e **Panturrilha**. Esta function só aceitará números de até dois dígitos. Caso seja informado um valor diferente, a function **incorrectValue( )** deverá ser chamada e o usuário deverá informar um valor aceito. No final esta function retorna um **objeto** tendo como propriedade cada dobra cutânea e seus respectivos valores. logo, em **anthropometryFunctions.js**:
 
+```js
+subcutaneousMeasures(){
+
+    let subcutaneousFolds = {
+      Triciptal: 0,
+      Subescapular: 0,
+      Peitoral: 0,
+      SupraIliaca: 0,
+      Abdominal: 0,
+      Coxa: 0,
+      Panturrilha: 0
+    } 
+    let validNumber = true
+    let regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
+  
+    for(let folds in subcutaneousFolds){
+  
+      do{
+  
+        subcutaneousFolds[folds] = input.question(`Digite a dobra cutânea - ${folds} (mm)[00]: `)
+  
+        validNumber = validationFunctions.isRegularExpression(subcutaneousFolds[folds], regexTwoDigits)
+        validationFunctions.incorrectValue(false, !validNumber, "Antropometria")
+  
+      }while(!validNumber)
+  
+    }
+  
+    return subcutaneousFolds
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável **skinFolds** que vai receber a function **subcutaneousMeasures( )**:
+
+```js
+const skinFolds = anthropometryFunctions.subcutaneousMeasures()
+```
+
+Em **anthropometryFunctions.js** vamos criar a function **showSubcutaneousFolds( )** que vai receber o objeto com as dobras cutâneas como parâmetro e vai mostrar as propriedades e valores deste objeto:
+
+```js
+showSubcutaneousFolds(objectValue){
+  
+    console.log('Dobras Cutâneas:')
+    
+    for(let property in objectValue){
+      console.log(`${property}: ${objectValue[property]} mm`) 
+    }
+  
+  },
+```
+
+Em **saf.js** vamos chamar a function **showSubcutaneousFolds( )** passando como parâmetro a variável **skinFolds**:
+
+```js
+anthropometryFunctions.showSubcutaneousFolds(skinFolds)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.0 kilos
+Estatura Corporal: 1.86 metros
+Índice de Massa Corporal - IMC: 27.46
+Classificação IMC: Sobrepeso
+Perimetria Corporal:
+Braço: 38.0 cm
+Antebraço: 30.0 cm
+Cintura: 85.7 cm
+Quadril: 96.8 cm
+Coxa: 50.4 cm
+Panturrilha: 42.3 cm
+Relação Cintura Quadril- RCQ: 0.89
+Classificação RCQ: Moderado Risco
+Circunfência cintura - Classificação: Nenhum Risco
+Dobras Cutâneas:
+Triciptal: 12 mm
+Subescapular: 15 mm
+Peitoral: 6 mm
+SupraIliaca: 19 mm
+Abdominal: 24 mm
+Coxa: 25 mm
+Panturrilha: 7 mm
+===============================
+```
+
+### Percentual de gordura
 
 
 

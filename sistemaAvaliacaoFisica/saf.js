@@ -57,6 +57,7 @@ const bodyPerimeter = anthropometryFunctions.bodyPerimetry()
 const hipWaistRatio = anthropometryFunctions.hipWaistRatio(bodyPerimeter.Cintura, bodyPerimeter.Quadril)
 const waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(sexNumber, age, hipWaistRatio)
 const waistCircumference = anthropometryFunctions.waistCircumferenceClassification(sexNumber, bodyPerimeter.Cintura)
+const skinFolds = anthropometryFunctions.subcutaneousMeasures()
 
 /*
 // show results personalData
@@ -112,5 +113,6 @@ anthropometryFunctions.showPerimeter(bodyPerimeter)
 console.log(`Relação Cintura Quadril- RCQ: ${hipWaistRatio}`)
 console.log(`Classificação RCQ: ${waistHipRatioClassification}`)
 console.log(`Circunfência cintura - Classificação: ${waistCircumference}`)
+anthropometryFunctions.showSubcutaneousFolds(skinFolds)
 
 console.log(`===============================`)

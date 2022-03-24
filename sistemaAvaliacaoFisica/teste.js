@@ -1566,10 +1566,61 @@ function waistCircumferenceClassification(sexValue, waistValue){
 
 }
 
-console.log(waistCircumferenceClassification(1, 93))
-console.log(waistCircumferenceClassification(1, 101))
-console.log(waistCircumferenceClassification(1, 102))
+// console.log(waistCircumferenceClassification(1, 93))
+// console.log(waistCircumferenceClassification(1, 101))
+// console.log(waistCircumferenceClassification(1, 102))
 
-console.log(waistCircumferenceClassification(2, 79))
-console.log(waistCircumferenceClassification(2, 87))
-console.log(waistCircumferenceClassification(2, 88))
+// console.log(waistCircumferenceClassification(2, 79))
+// console.log(waistCircumferenceClassification(2, 87))
+// console.log(waistCircumferenceClassification(2, 88))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Subcutaneous Measures == **/
+
+function subcutaneousMeasures(){
+
+  let subcutaneousFolds = {
+    Triciptal: 0,
+    Subescapular: 0,
+    Peitoral: 0,
+    SupraIliaca: 0,
+    Abdominal: 0,
+    Coxa: 0,
+    Panturrilha: 0
+  } 
+  let validNumber = true
+  let regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
+
+  for(let folds in subcutaneousFolds){
+
+    do{
+
+      subcutaneousFolds[folds] = input.question(`Digite a dobra cutânea - ${folds} (mm)[00]: `)
+
+      validNumber = validationFunctions.isRegularExpression(subcutaneousFolds[folds], regexTwoDigits)
+      validationFunctions.incorrectValue(false, !validNumber, "Antropometria")
+
+    }while(!validNumber)
+
+  }
+
+  return subcutaneousFolds
+
+}
+
+// console.log(subcutaneousMeasures())
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == show Subcutaneous Folds == **/
+
+function showSubcutaneousFolds(objectValue){
+  
+  console.log('Dobras Cutâneas:')
+  
+  for(let property in objectValue){
+    console.log(`${property}: ${objectValue[property]} mm`) 
+  }
+
+}
+
+console.log(showSubcutaneousFolds(subcutaneousMeasures()))

@@ -456,17 +456,17 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Medidas subcutâneas: (INPUT)**
-  - [ ] Validar vazio
-  - [ ] Apenas número
-  - [ ] Dois dígitos
-  - [ ] Triciptal
-  - [ ] Subescapular
-  - [ ] Peitoral
-  - [ ] Supra-ilíaca
-  - [ ] Abdominal
-  - [ ] Coxa
-  - [ ] Panturrilha
+- [x] **Medidas subcutâneas: (INPUT)**
+  - [x] Validar vazio
+  - [x] Apenas número
+  - [x] Dois dígitos
+  - [x] Triciptal
+  - [x] Subescapular
+  - [x] Peitoral
+  - [x] Supra-ilíaca
+  - [x] Abdominal
+  - [x] Coxa
+  - [x] Panturrilha
 
 
 
