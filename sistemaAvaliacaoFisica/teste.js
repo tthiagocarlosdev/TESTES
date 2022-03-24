@@ -1623,4 +1623,75 @@ function showSubcutaneousFolds(objectValue){
 
 }
 
-console.log(showSubcutaneousFolds(subcutaneousMeasures()))
+// console.log(showSubcutaneousFolds(subcutaneousMeasures()))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Fat Percentage == **/
+
+let subcutaneousFolds = {
+  Triciptal: 7,
+  Subescapular: 15,
+  Peitoral: 5,
+  SupraIliaca: 18,
+  Abdominal: 24,
+  Coxa: 14,
+  Panturrilha: 10
+} 
+
+function sumElements(array){
+
+  let sumElements = 0
+  
+  for(let element in array){
+    sumElements += Number(array[element])
+  }
+
+  return sumElements
+
+}
+
+function fatPercentage(ageValue, sexValue, skinFoldObject){
+
+  let = skinfoldArray = []
+  let sumOfFolds = 0
+  let bodyDensity = 0
+  let fatPercentage = 0
+
+  switch (sexValue) {
+    
+    case 1:
+      
+      skinfoldArray.push(skinFoldObject.Peitoral, skinFoldObject.Abdominal, skinFoldObject.Coxa)
+
+      sumOfFolds = sumElements(skinfoldArray)
+      bodyDensity = ((1.10938 - (0.0008267 * sumOfFolds )) + ((0.0000016 * (sumOfFolds * sumOfFolds)) - (0.0002574 * ageValue)))
+      fatPercentage = (((4.95 / bodyDensity) - 4.5 ) * 100).toFixed(2)
+
+      return fatPercentage
+
+      break;
+    
+    case 2:
+
+      skinfoldArray.push(skinFoldObject.Triciptal, skinFoldObject.SupraIliaca, skinFoldObject.Coxa)
+      sumOfFolds = sumElements(skinfoldArray)
+      bodyDensity = ((1.0994921-(0.0009929 * sumOfFolds)) + ((0.0000023 * (sumOfFolds * sumOfFolds)) - (0.0001392 * ageValue)))
+      fatPercentage = (((5.01 / bodyDensity) - 4.57) * 100).toFixed(2)
+
+      return fatPercentage
+
+      break;
+  
+    default:
+
+      return `[ERROR] Sexo não identificado!`
+
+      break;
+
+  }
+
+}
+
+console.log(fatPercentage(34, 1, subcutaneousFolds))
+console.log(fatPercentage(55, 2, subcutaneousFolds))
+console.log(fatPercentage(55, 3, subcutaneousFolds))

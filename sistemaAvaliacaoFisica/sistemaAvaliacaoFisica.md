@@ -4046,13 +4046,132 @@ Panturrilha: 7 mm
 
 ### Percentual de gordura
 
+Function **fatPercentage( )** determina o percentual de gordura do usuário. Recebe como parâmetro a idade e o sexo do usuário e também o objeto com as dobras cutâneas deste usuário. Dentro desta function vamos chamar a function **sumElements( )** que vai receber um **array** tendo como elementos os valores de três dobras cutâneas, sendo **Peitoral**, **Abdominal** e **Coxa** para homem, e **Triciptal**, **SupraIliaca** e **Coxa** para mulheres, retornando a soma destes elementos.  A variável **sumOfFolds** recebe a **soma das dobras**. 
 
+Em seguida determinamos a **Densidade Corporal** que vai ser atribuída a variável **bodyDensity**, sendo a fórmula:
 
+- Para homem: 
 
+Densidade Corporal = ((1,10938 - (0,0008267 * Soma das dobras )) + ((0,0000016 * (Soma das dobras * Soma das dobras)) - (0,0002574 * idade)))
 
+- Para mulher:
 
+Densidade Corporal = ((1,0994921-(0,0009929 * Soma das dobras)) + ((0,0000023 * (Soma das dobras * Soma das dobras)) - (0,0001392 * idade))))
 
+Por último vamos determinar o percentual de gordura **fatPercentage** que será o retorno da function **fatPercentage( )**, sendo a fórmula:
 
+- Para homem:
+
+Percentual de gordura = (((4,95 / Densidade Corporal) - 4,5 ) * 100);
+
+- Para mulher:
+
+Percentual de gordura = (((5,01 / Densidade Corporal) - 4,57) * 100))
+
+Logo em **anthropometryFunctions.js**:
+
+```js
+sumElements(array){
+
+    let sumElements = 0
+    
+    for(let element in array){
+      sumElements += Number(array[element])
+    }
+  
+    return sumElements
+  
+  },
+```
+
+```js
+fatPercentage(ageValue, sexValue, skinFoldObject){
+
+    let = skinfoldArray = []
+    let sumOfFolds = 0
+    let bodyDensity = 0
+    let fatPercentage = 0
+  
+    switch (sexValue) {
+      
+      case 1:
+        
+        skinfoldArray.push(skinFoldObject.Peitoral, skinFoldObject.Abdominal, skinFoldObject.Coxa)
+        sumOfFolds = anthropometryFunctions.sumElements(skinfoldArray)
+        bodyDensity = ((1.10938 - (0.0008267 * sumOfFolds )) + ((0.0000016 * (sumOfFolds * sumOfFolds)) - (0.0002574 * ageValue)))
+        fatPercentage = (((4.95 / bodyDensity) - 4.5 ) * 100).toFixed(2)
+  
+        return fatPercentage
+  
+        break;
+      
+      case 2:
+  
+        skinfoldArray.push(skinFoldObject.Triciptal, skinFoldObject.SupraIliaca, skinFoldObject.Coxa)
+        sumOfFolds = anthropometryFunctions.sumElements(skinfoldArray)
+        bodyDensity = ((1.0994921-(0.0009929 * sumOfFolds)) + ((0.0000023 * (sumOfFolds * sumOfFolds)) - (0.0001392 * ageValue)))
+        fatPercentage = (((5.01 / bodyDensity) - 4.57) * 100).toFixed(2)
+  
+        return fatPercentage
+  
+        break;
+    
+      default:
+  
+        return `[ERROR] Sexo não identificado!`
+  
+        break;
+  
+    }
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável **fatPercentage** que receberá a function **fatPercentage( )** passando como parâmetro **age**, **sexNumber** e **skinFolds**. Depois vamos mostrar o resultado:
+
+```js
+const fatPercentage = anthropometryFunctions.fatPercentage(age, sexNumber, skinFolds)
+```
+
+```js
+console.log(`Percentual de gordura: ${fatPercentage}%`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.0 kilos
+Estatura Corporal: 1.86 metros
+Índice de Massa Corporal - IMC: 27.46
+Classificação IMC: Sobrepeso
+Perimetria Corporal:
+Braço: 38.8 cm
+Antebraço: 30.0 cm
+Cintura: 85.7 cm
+Quadril: 96.8 cm
+Coxa: 50.4 cm
+Panturrilha: 42.3 cm
+Relação Cintura Quadril- RCQ: 0.89
+Classificação RCQ: Moderado Risco
+Circunfência cintura - Classificação: Nenhum Risco
+Dobras Cutâneas:
+Triciptal: 12 mm
+Subescapular: 15 mm
+Peitoral: 6 mm
+SupraIliaca: 19 mm
+Abdominal: 24 mm
+Coxa: 25 mm
+Panturrilha: 7 mm
+Percentual de gordura: 16.98%
+===============================
+```
+
+### Percentual de gordura - Classificação
 
 
 

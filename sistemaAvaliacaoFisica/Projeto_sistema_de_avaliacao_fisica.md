@@ -470,33 +470,33 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Percentual de gordura: (SHOW)**
+- [x] **Percentual de gordura: (SHOW)**
 
-  - [ ] se **homem**
+  - [x] se **homem**
 
-    - [ ] **Soma das dobras**
+    - [x] **Soma das dobras**
 
       Soma das dobras = Peitoral + Abdominal + Coxa
 
-    - [ ] **Densidade Corporal**
+    - [x] **Densidade Corporal**
 
       Densidade Corporal = ((1,10938 - (0,0008267 * Soma das dobras )) + ((0,0000016 * (Soma das dobras * Soma das dobras)) - (0,0002574 * idade)))
 
-    - [ ] **Percentual de gordura**
+    - [x] **Percentual de gordura**
 
       %GC dobras cutâneas = (((4,95 / Densidade Corporal) - 4,5 ) * 100);
 
-  - [ ] se **mulher** 
+  - [x] se **mulher** 
 
-    - [ ] **Soma das dobras**
+    - [x] **Soma das dobras**
 
       Soma das dobras = Tricipital + Supra-ilíaca + Coxa
 
-    - [ ] **Densidade Corporal**
+    - [x] **Densidade Corporal**
 
       Densidade Corporal = ((1,0994921-(0,0009929 * Soma das dobras)) + ((0,0000023 * (Soma das dobras * Soma das dobras)) - (0,0001392 * idade))))
 
-    - [ ] **Percentual de gordura**
+    - [x] **Percentual de gordura**
 
       %GC dobras cutâneas = (((5,01 / Densidade Corporal) - 4,57) * 100))
 
@@ -547,6 +547,8 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
   - [ ] Se **mulher**
 
     M.C.I. = (Masssa Corporal Magra / (1 - 0,23))
+    
+    
 
 ## Testes Neuromuscular
 

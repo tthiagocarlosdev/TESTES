@@ -352,6 +352,59 @@ const anthropometryFunctions = {
   
   },
 
+  sumElements(array){
+
+    let sumElements = 0
+    
+    for(let element in array){
+      sumElements += Number(array[element])
+    }
+  
+    return sumElements
+  
+  },
+
+  fatPercentage(ageValue, sexValue, skinFoldObject){
+
+    let = skinfoldArray = []
+    let sumOfFolds = 0
+    let bodyDensity = 0
+    let fatPercentage = 0
+  
+    switch (sexValue) {
+      
+      case 1:
+        
+        skinfoldArray.push(skinFoldObject.Peitoral, skinFoldObject.Abdominal, skinFoldObject.Coxa)
+        sumOfFolds = anthropometryFunctions.sumElements(skinfoldArray)
+        bodyDensity = ((1.10938 - (0.0008267 * sumOfFolds )) + ((0.0000016 * (sumOfFolds * sumOfFolds)) - (0.0002574 * ageValue)))
+        fatPercentage = (((4.95 / bodyDensity) - 4.5 ) * 100).toFixed(2)
+  
+        return fatPercentage
+  
+        break;
+      
+      case 2:
+  
+        skinfoldArray.push(skinFoldObject.Triciptal, skinFoldObject.SupraIliaca, skinFoldObject.Coxa)
+        sumOfFolds = anthropometryFunctions.sumElements(skinfoldArray)
+        bodyDensity = ((1.0994921-(0.0009929 * sumOfFolds)) + ((0.0000023 * (sumOfFolds * sumOfFolds)) - (0.0001392 * ageValue)))
+        fatPercentage = (((5.01 / bodyDensity) - 4.57) * 100).toFixed(2)
+  
+        return fatPercentage
+  
+        break;
+    
+      default:
+  
+        return `[ERROR] Sexo não identificado!`
+  
+        break;
+  
+    }
+  
+  },
+
 }
 
 module.exports = {
