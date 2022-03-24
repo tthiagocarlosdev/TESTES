@@ -9,11 +9,11 @@ headerFunctions.subTitle("Dados Pessoais")
 
 // variables personalData
 const name = personalData.userName()
-const birthdayInBrazilianFormat =  personalData.dateOfBirth()
+*/const birthdayInBrazilianFormat =  personalData.dateOfBirth()
 const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
 const age = personalData.age(birthdayInISOFormat)
 const sexNumber = personalData.sexNumber()
-const sex = personalData.showSex(sexNumber)
+/*const sex = personalData.showSex(sexNumber)
 const profession = personalData.userProfession()
 const userEmail = personalData.userEmail()
 const phoneNumber = personalData.phoneNumber()
@@ -55,6 +55,7 @@ const bodyMassIndex = anthropometryFunctions.bodyMassIndex(bodyWeight, bodyStatu
 const bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(bodyMassIndex)
 const bodyPerimeter = anthropometryFunctions.bodyPerimetry()
 const hipWaistRatio = anthropometryFunctions.hipWaistRatio(bodyPerimeter.Cintura, bodyPerimeter.Quadril)
+const waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(sexNumber, age, hipWaistRatio)
 
 /*
 // show results personalData
@@ -102,11 +103,12 @@ headerFunctions.subTitle("Antropometria") // temporary
 // show results anthropometryFunctions
 // console.log(`===============================`) 
 // headerFunctions.subTitle("Antropometria")
-console.log(`Peso Corporal: ${bodyWeight} kilos.`)
-console.log(`Estatura Corporal: ${bodyStature} metros.`)
+console.log(`Peso Corporal: ${bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${bodyStature} metros`)
 console.log(`Índice de Massa Corporal - IMC: ${bodyMassIndex}`)
 console.log(`Classificação IMC: ${bodyMassIndexClassification}`)
 anthropometryFunctions.showPerimeter(bodyPerimeter)
-console.log(`Relação Cintura Quadril: ${hipWaistRatio}`)
+console.log(`Relação Cintura Quadril- RCQ: ${hipWaistRatio}`)
+console.log(`Classificação RCQ: ${waistHipRatioClassification}`)
 
 console.log(`===============================`)

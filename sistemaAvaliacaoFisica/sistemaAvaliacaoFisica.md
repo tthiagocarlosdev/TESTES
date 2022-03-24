@@ -657,7 +657,7 @@ sexNumber: function(){
   
     }while(!istNumber || isLessThanMinimumOrGreaterThanMaximum)
     
-    return sexNumber
+    return Number(sexNumber)
   },
 ```
 
@@ -3628,6 +3628,239 @@ Relação Cintura Quadril: 0.84
 ```
 
 ### Relação Cintura Quadril - Classificação
+
+Function **waistHipRatioClassification( )** vai realizar a classificação da **Relação Cintura Quadril - RCQ** de acordo com as regras da tabela abaixo. Esta function recebe como parâmetro o **sexo**, **idade** e o **RCQ** do usuário. Retorna a classificação:
+
+- **Se Homem:**
+
+| Com **idade entre 20 a 29 anos** | Com **idade entre 30 a 39 anos** |
+| -------------------------------- | -------------------------------- |
+| RCQ < 0,83 = "Baixo Risco"       | RCQ < 0,84 = "Baixo Risco"       |
+| RCQ < 0,89 = "Moderado Risco"    | RCQ < 0,92 = "Moderado Risco"    |
+| RCQ < 0,95 = "Alto Risco"        | RCQ < 0,97 = "Alto Risco"        |
+| RCQ >= 0,95 = "Muito Alto Risco" | RCQ >= 0,97 = "Muito Alto Risco" |
+| **Com idade entre 40 a 49 anos** | **Com idade entre 50 a 59 anos** |
+| RCQ < 0,88 = "Baixo Risco"       | RCQ < 0,90 = "Baixo Risco"       |
+| RCQ < 0,96 = "Moderado Risco"    | RCQ < 0,97 = "Moderado Risco"    |
+| RCQ < 1 = "Alto Risco"           | RCQ < 1,02 = "Alto Risco"        |
+| RCQ >= 1 = "Muito Alto Risco"    | RCQ >= 1,02 = "Muito Alto Risco" |
+| **Com idade entre 60 a 69 anos** |                                  |
+| RCQ < 0,91 = "Baixo Risco"       |                                  |
+| RCQ < 0,99 = "Moderado Risco"    |                                  |
+| RCQ < 1,03 = "Alto Risco"        |                                  |
+| RCQ >= 1,03 = "Muito Alto Risco" |                                  |
+
+- **Se Mulher:**
+
+| Com **idade entre 20 a 29 anos** | Com **idade entre 30 a 39 anos** |
+| -------------------------------- | -------------------------------- |
+| RCQ < 0,71 = "Baixo Risco"       | RCQ < 0,72 = "Baixo Risco"       |
+| RCQ < 0,78 = "Moderado Risco"    | RCQ < 0,79 = "Moderado Risco"    |
+| RCQ < 0,82 = "Alto Risco"        | RCQ < 0,84 = "Alto Risco"        |
+| RCQ >= 0,82 = "Muito Alto Risco" | RCQ >= 0,84 = "Muito Alto Risco" |
+| **Com idade entre 40 a 49 anos** | **Com idade entre 50 a 59 anos** |
+| RCQ < 0,73 = "Baixo Risco"       | RCQ < 0,74 = "Baixo Risco"       |
+| RCQ < 0,80 = "Moderado Risco"    | RCQ < 0,82 = "Moderado Risco"    |
+| RCQ < 0,87 = "Alto Risco"        | RCQ < 0,88 = "Alto Risco"        |
+| RCQ >= 0,87 = "Muito Alto Risco" | RCQ >= 0,88 = "Muito Alto Risco" |
+| **Com idade entre 60 a 69 anos** |                                  |
+| RCQ < 0,76 = "Baixo Risco"       |                                  |
+| RCQ < 0,84 = "Moderado Risco"    |                                  |
+| RCQ < 0,90 = "Alto Risco"        |                                  |
+| RCQ >= 0,90 = "Muito Alto Risco" |                                  |
+
+Logo, em **anthropometryFunctions.js**:
+
+```js
+waistHipRatioClassification(sexValue, ageValue, waistHipRatioValue){
+
+    let classification = ``
+  
+    switch (sexValue) {
+  
+      // masculine - masculine - masculine - masculine - masculine
+      case 1:
+        
+        if(ageValue > 19 && ageValue < 30){
+          
+          if(waistHipRatioValue < 0.83){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.89){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.95){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 40){
+          
+          if(waistHipRatioValue < 0.84){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.92){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.97){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 50){
+          
+          if(waistHipRatioValue < 0.88){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.96){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 1){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 60){
+          
+          if(waistHipRatioValue < 0.90){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.97){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 1.02){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 70){
+          
+          if(waistHipRatioValue < 0.91){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.99){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 1.03){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else{
+          classification = `Esta classificação não se aplica a sua idade!`
+        }
+  
+        break;
+      
+      // feminine - feminine - feminine - feminine - feminine
+      case 2:
+        if(ageValue > 19 && ageValue < 30){
+          
+          if(waistHipRatioValue < 0.71){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.78){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.82){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 40){
+          
+          if(waistHipRatioValue < 0.72){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.79){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.84){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 50){
+          
+          if(waistHipRatioValue < 0.73){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.80){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.87){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 60){
+          
+          if(waistHipRatioValue < 0.74){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.82){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.88){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 70){
+          
+          if(waistHipRatioValue < 0.76){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.84){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.90){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else{
+          classification = `Esta classificação não se aplica a sua idade!`
+        }
+  
+        break;
+  
+      default:
+        classification = `[ERROR] Sexo não identificado!`
+        break;
+    }
+    
+  
+    return classification
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável **waistHipRatioClassification** que vai receber a function **waistHipRatioClassification( )** passando **sexNumber**, **age** e **hipWaistRatio** como parâmetros. Em seguida mostramos o resultado.
+
+```js
+const waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(sexNumber, age, hipWaistRatio)
+```
+
+```js
+console.log(`Classificação RCQ: ${waistHipRatioClassification}`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.0 kilos.
+Estatura Corporal: 1.86 metros.
+Índice de Massa Corporal - IMC: 27.46
+Classificação IMC: Sobrepeso
+Perimetria Corporal:
+Braço: 38.7 cm
+Antebraço: 30.0 cm
+Cintura: 80.5 cm
+Quadril: 95.3 cm
+Coxa: 55.5 cm
+Panturrilha: 45.3 cm
+Relação Cintura Quadril- RCQ: 0.84
+Classificação RCQ: Moderado Risco
+===============================
+```
+
+### Circunfência cintura - Classificação
 
 
 

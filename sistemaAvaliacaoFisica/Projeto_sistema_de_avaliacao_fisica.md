@@ -328,11 +328,11 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Relação Cintura Quadril - Classificação (SHOW)**
+- [x] **Relação Cintura Quadril - Classificação (SHOW)**
 
-  - [ ] Se **homem**
+  - [x] Se **homem**
 
-    - [ ] Com **idade entre 20 a 29 anos**
+    - [x] Com **idade entre 20 a 29 anos**
 
       RCQ < 0,83 = "Baixo Risco"
 
@@ -342,7 +342,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       RCQ >= 0,95 = "Muito Alto Risco"
 
-    - [ ] Com **idade entre 30 a 39 anos**
+    - [x] Com **idade entre 30 a 39 anos**
 
       RCQ < 0,84 = "Baixo Risco"
 
@@ -352,7 +352,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       RCQ >= 0,97 = "Muito Alto Risco"
 
-    - [ ] Com **idade entre 40 a 49 anos**
+    - [x] Com **idade entre 40 a 49 anos**
 
       RCQ < 0,88 = "Baixo Risco"
 
@@ -362,7 +362,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       RCQ >= 1 = "Muito Alto Risco"
 
-    - [ ] Com **idade entre 50 a 59 anos**
+    - [x] Com **idade entre 50 a 59 anos**
 
       RCQ < 0,90 = "Baixo Risco"
 
@@ -372,7 +372,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       RCQ >= 1,02 = "Muito Alto Risco"
 
-    - [ ] Com **idade entre 60 a 69 anos**
+    - [x] Com **idade entre 60 a 69 anos**
 
       RCQ < 0,91 = "Baixo Risco"
 
@@ -382,9 +382,9 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       RCQ >= 1,03 = "Muito Alto Risco"
 
-  - [ ] Se **mulher**
+  - [x] Se **mulher**
 
-    - [ ] Com **idade entre 20 a 29 anos**
+    - [x] Com **idade entre 20 a 29 anos**
 
       RCQ < 0,71 = "Baixo Risco"
 
@@ -394,7 +394,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       RCQ >= 0,82 = "Muito Alto Risco"
 
-    - [ ] Com **idade entre 30 a 39 anos**
+    - [x] Com **idade entre 30 a 39 anos**
 
       RCQ < 0,72 = "Baixo Risco"
 
@@ -404,7 +404,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       RCQ >= 0,84 = "Muito Alto Risco"
 
-    - [ ] Com **idade entre 40 a 49 anos**
+    - [x] Com **idade entre 40 a 49 anos**
 
       RCQ < 0,73 = "Baixo Risco"
 
@@ -414,7 +414,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       RCQ >= 0,87 = "Muito Alto Risco"
 
-    - [ ] Com **idade entre 50 a 59 anos**
+    - [x] Com **idade entre 50 a 59 anos**
 
       RCQ < 0,74 = "Baixo Risco"
 
@@ -424,7 +424,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       RCQ >= 0,88 = "Muito Alto Risco"
 
-    - [ ] Com **idade entre 60 a 69 anos**
+    - [x] Com **idade entre 60 a 69 anos**
 
       RCQ < 0,76 = "Baixo Risco"
 

@@ -124,7 +124,7 @@ const personalData = {
   
     }while(!istNumber || isLessThanMinimumOrGreaterThanMaximum)
     
-    return sexNumber
+    return Number(sexNumber)
   },
 
   showSex: function(numberSex){

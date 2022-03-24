@@ -119,6 +119,159 @@ const anthropometryFunctions = {
   
   },
 
+  waistHipRatioClassification(sexValue, ageValue, waistHipRatioValue){
+
+    let classification = ``
+  
+    switch (sexValue) {
+  
+      // masculine - masculine - masculine - masculine - masculine
+      case 1:
+        
+        if(ageValue > 19 && ageValue < 30){
+          
+          if(waistHipRatioValue < 0.83){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.89){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.95){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 40){
+          
+          if(waistHipRatioValue < 0.84){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.92){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.97){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 50){
+          
+          if(waistHipRatioValue < 0.88){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.96){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 1){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 60){
+          
+          if(waistHipRatioValue < 0.90){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.97){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 1.02){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 70){
+          
+          if(waistHipRatioValue < 0.91){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.99){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 1.03){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else{
+          classification = `Esta classificação não se aplica a sua idade!`
+        }
+  
+        break;
+      
+      // feminine - feminine - feminine - feminine - feminine
+      case 2:
+        if(ageValue > 19 && ageValue < 30){
+          
+          if(waistHipRatioValue < 0.71){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.78){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.82){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 40){
+          
+          if(waistHipRatioValue < 0.72){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.79){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.84){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 50){
+          
+          if(waistHipRatioValue < 0.73){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.80){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.87){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 60){
+          
+          if(waistHipRatioValue < 0.74){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.82){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.88){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 70){
+          
+          if(waistHipRatioValue < 0.76){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.84){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.90){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else{
+          classification = `Esta classificação não se aplica a sua idade!`
+        }
+  
+        break;
+  
+      default:
+        classification = `[ERROR] Sexo não identificado!`
+        break;
+    }
+    
+  
+    return classification
+  
+  },
+
 }
 
 module.exports = {
