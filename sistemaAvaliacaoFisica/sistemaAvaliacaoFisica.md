@@ -3862,6 +3862,94 @@ Classificação RCQ: Moderado Risco
 
 ### Circunfência cintura - Classificação
 
+Function **waistCircumferenceClassification( )** vai determinar a clasificação da circunferência da cintura do usuário, de acordo com os valores da tabela abaixo. Esta function recebe o **sexo** e o valor da **cincurferência cintura** como parâmetros e retorna a classificação:
+
+| se **homem**                     | se **mulher**                   |
+| -------------------------------- | ------------------------------- |
+| Cintura < 94 = "Nenhum Risco"    | Cintura < 80 = "Nenhum Risco"   |
+| Cintura < 102 = "Risco Moderado" | Cintura < 88 = "Risco Moderado" |
+| Cintura >= 102 = "Risco Alto"    | Cintura >= 88 = "Risco Alto"    |
+
+Logo em **anthropometryFunctions.js**:
+
+```js
+waistCircumferenceClassification(sexValue, waistValue){
+
+    classification = ``
+  
+    switch (sexValue) {
+      
+      case 1:
+        
+        if(waistValue < 94){
+          classification = `Nenhum Risco`
+        } else if(waistValue < 102){
+          classification = `Risco Moderado`
+        } else {
+          classification = `Risco Alto`
+        }
+  
+        break;
+  
+      case 2:
+  
+        if(waistValue < 80){
+          classification = `Nenhum Risco`
+        } else if(waistValue < 88){
+          classification = `Risco Moderado`
+        } else {
+          classification = `Risco Alto`
+        }
+  
+        break;
+  
+      default:
+        classification = `[ERROR] Sexo não identificado!`
+        break;
+    }
+  
+    return classification
+  
+  },
+```
+
+Em **saf.js** criamos a variável **waistCircumference** que recebe a function **waistCircumferenceClassification( )** passando como parâmetro para esta function **sexNumber** e **bodyPerimeter.Cintura**. Em seguida mostramos o resultado:
+
+```js
+const waistCircumference = anthropometryFunctions.waistCircumferenceClassification(sexNumber, bodyPerimeter.Cintura)
+```
+
+```js
+console.log(`Circunfência cintura - Classificação: ${waistCircumference}`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.0 kilos
+Estatura Corporal: 1.86 metros
+Índice de Massa Corporal - IMC: 27.46
+Classificação IMC: Sobrepeso
+Perimetria Corporal:
+Braço: 38.7 cm
+Antebraço: 30.0 cm
+Cintura: 85.0 cm
+Quadril: 90.6 cm
+Coxa: 55.8 cm
+Panturrilha: 40.7 cm
+Relação Cintura Quadril- RCQ: 0.94
+Classificação RCQ: Alto Risco
+Circunfência cintura - Classificação: Nenhum Risco
+===============================
+```
+
+### Medidas subcutâneas
+
 
 
 

@@ -1498,27 +1498,78 @@ function waistHipRatioClassification(sexValue, ageValue, waistHipRatioValue){
 
 }
 // waistHipRatioClassification(sexValue, ageValue, waistHipRatioValue)
-console.log(waistHipRatioClassification(2, 29, 0.70))
-console.log(waistHipRatioClassification(2, 29, 0.77))
-console.log(waistHipRatioClassification(2, 29, 0.81))
-console.log(waistHipRatioClassification(2, 29, 0.82))
+// console.log(waistHipRatioClassification(2, 29, 0.70))
+// console.log(waistHipRatioClassification(2, 29, 0.77))
+// console.log(waistHipRatioClassification(2, 29, 0.81))
+// console.log(waistHipRatioClassification(2, 29, 0.82))
 
-console.log(waistHipRatioClassification(2, 39, 0.71))
-console.log(waistHipRatioClassification(2, 39, 0.78))
-console.log(waistHipRatioClassification(2, 39, 0.83))
-console.log(waistHipRatioClassification(2, 39, 0.84))
+// console.log(waistHipRatioClassification(2, 39, 0.71))
+// console.log(waistHipRatioClassification(2, 39, 0.78))
+// console.log(waistHipRatioClassification(2, 39, 0.83))
+// console.log(waistHipRatioClassification(2, 39, 0.84))
 
-console.log(waistHipRatioClassification(2, 49, 0.72))
-console.log(waistHipRatioClassification(2, 49, 0.79))
-console.log(waistHipRatioClassification(2, 49, 0.86))
-console.log(waistHipRatioClassification(2, 49, 0.87))
+// console.log(waistHipRatioClassification(2, 49, 0.72))
+// console.log(waistHipRatioClassification(2, 49, 0.79))
+// console.log(waistHipRatioClassification(2, 49, 0.86))
+// console.log(waistHipRatioClassification(2, 49, 0.87))
 
-console.log(waistHipRatioClassification(2, 59, 0.73))
-console.log(waistHipRatioClassification(2, 59, 0.81))
-console.log(waistHipRatioClassification(2, 59, 0.87))
-console.log(waistHipRatioClassification(2, 59, 0.88))
+// console.log(waistHipRatioClassification(2, 59, 0.73))
+// console.log(waistHipRatioClassification(2, 59, 0.81))
+// console.log(waistHipRatioClassification(2, 59, 0.87))
+// console.log(waistHipRatioClassification(2, 59, 0.88))
 
-console.log(waistHipRatioClassification(2, 69, 0.75))
-console.log(waistHipRatioClassification(2, 69, 0.83))
-console.log(waistHipRatioClassification(2, 69, 0.89))
-console.log(waistHipRatioClassification(2, 69, 0.90))
+// console.log(waistHipRatioClassification(2, 69, 0.75))
+// console.log(waistHipRatioClassification(2, 69, 0.83))
+// console.log(waistHipRatioClassification(2, 69, 0.89))
+// console.log(waistHipRatioClassification(2, 69, 0.90))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Waist Circumference - Classification == **/
+
+
+function waistCircumferenceClassification(sexValue, waistValue){
+
+  classification = ``
+
+  switch (sexValue) {
+    
+    case 1:
+      
+      if(waistValue < 94){
+        classification = `Nenhum Risco`
+      } else if(waistValue < 102){
+        classification = `Risco Moderado`
+      } else {
+        classification = `Risco Alto`
+      }
+
+      break;
+
+    case 2:
+
+      if(waistValue < 80){
+        classification = `Nenhum Risco`
+      } else if(waistValue < 88){
+        classification = `Risco Moderado`
+      } else {
+        classification = `Risco Alto`
+      }
+
+      break;
+
+    default:
+      classification = `[ERROR] Sexo não identificado!`
+      break;
+  }
+
+  return classification
+
+}
+
+console.log(waistCircumferenceClassification(1, 93))
+console.log(waistCircumferenceClassification(1, 101))
+console.log(waistCircumferenceClassification(1, 102))
+
+console.log(waistCircumferenceClassification(2, 79))
+console.log(waistCircumferenceClassification(2, 87))
+console.log(waistCircumferenceClassification(2, 88))

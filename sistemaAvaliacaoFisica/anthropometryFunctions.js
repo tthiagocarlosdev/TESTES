@@ -272,6 +272,45 @@ const anthropometryFunctions = {
   
   },
 
+  waistCircumferenceClassification(sexValue, waistValue){
+
+    classification = ``
+  
+    switch (sexValue) {
+      
+      case 1:
+        
+        if(waistValue < 94){
+          classification = `Nenhum Risco`
+        } else if(waistValue < 102){
+          classification = `Risco Moderado`
+        } else {
+          classification = `Risco Alto`
+        }
+  
+        break;
+  
+      case 2:
+  
+        if(waistValue < 80){
+          classification = `Nenhum Risco`
+        } else if(waistValue < 88){
+          classification = `Risco Moderado`
+        } else {
+          classification = `Risco Alto`
+        }
+  
+        break;
+  
+      default:
+        classification = `[ERROR] Sexo não identificado!`
+        break;
+    }
+  
+    return classification
+  
+  },
+
 }
 
 module.exports = {

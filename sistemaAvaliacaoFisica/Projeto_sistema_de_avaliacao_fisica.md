@@ -436,9 +436,9 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Circunfência cintura (cm): (SHOW)**
+- [x] **Circunfência cintura (cm): (SHOW)**
 
-  - [ ] se **homem**
+  - [x] se **homem**
 
     Cintura < 94 = "Nenhum Risco"
 
@@ -446,7 +446,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
     Cintura >= 102 = "Risco Alto"
 
-  - [ ] se **mulher**
+  - [x] se **mulher**
 
     Cintura < 80 = "Nenhum Risco"
 
