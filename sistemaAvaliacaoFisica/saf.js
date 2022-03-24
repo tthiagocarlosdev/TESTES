@@ -59,6 +59,7 @@ const waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassifi
 const waistCircumference = anthropometryFunctions.waistCircumferenceClassification(sexNumber, bodyPerimeter.Cintura)
 const skinFolds = anthropometryFunctions.subcutaneousMeasures()
 const fatPercentage = anthropometryFunctions.fatPercentage(age, sexNumber, skinFolds)
+const fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(sexNumber, fatPercentage)
 
 /*
 // show results personalData
@@ -116,5 +117,6 @@ console.log(`Classificação RCQ: ${waistHipRatioClassification}`)
 console.log(`Circunfência cintura - Classificação: ${waistCircumference}`)
 anthropometryFunctions.showSubcutaneousFolds(skinFolds)
 console.log(`Percentual de gordura: ${fatPercentage}%`)
+console.log(`Classificação % Gordura: ${fatPercentageClassification}`)
 
 console.log(`===============================`)

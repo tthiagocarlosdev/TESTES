@@ -4173,6 +4173,114 @@ Percentual de gordura: 16.98%
 
 ### Percentual de gordura - Classificação
 
+Function **fatPercentageClassification( )** determina a classificação do percentual de gordura do usuário. Esta function recebe como parâmetro o **sexo** e o **percentual de gordura** do usuário. Retorna a classificação de acordo com a tabela abaixo:
+
+| homem                                          | mulher                                         |
+| ---------------------------------------------- | ---------------------------------------------- |
+| Percentual de gordura < 6 = "Desnutrição"      | Percentual de gordura < 9 = "Desnutrição"      |
+| Percentual de gordura < 15 = "Abaixo da média" | Percentual de gordura < 23 = "Abaixo da média" |
+| Percentual de gordura < 16 = "Média"           | Percentual de gordura < 24 = "Média"           |
+| Percentual de gordura < 25 = "Sobrepeso"       | Percentual de gordura < 32 = "Sobrepeso"       |
+| Percentual de gordura >= 25 = "Obesidade"      | Percentual de gordura >= 32 = "Obesidade"      |
+
+Logo em **anthropometryFunctions.js**:
+
+```js
+fatPercentageClassification(sexValue, fatPercentageValue){
+
+    let classification = ``
+  
+    switch (sexValue) {
+      
+      case 1:
+        
+        if(fatPercentageValue < 6){
+          classification = `Desnutrição`
+        } else if(fatPercentageValue < 15){
+          classification = `Abaixo da média`
+        } else if(fatPercentageValue < 16){
+          classification = `Média`
+        } else if(fatPercentageValue < 25){
+          classification = `Sobrepeso`
+        } else{
+          classification = `Obesidade`
+        }
+  
+        break;
+  
+      case 2:
+  
+        if(fatPercentageValue < 9){
+          classification = `Desnutrição`
+        } else if(fatPercentageValue < 23){
+          classification = `Abaixo da média`
+        } else if(fatPercentageValue < 24){
+          classification = `Média`
+        } else if(fatPercentageValue < 32){
+          classification = `Sobrepeso`
+        } else{
+          classification = `Obesidade`
+        }
+  
+        break;
+  
+      default:
+        classification = `[ERROR] Sexo não identificado!`
+        break;
+    }
+    
+    return classification
+  
+  },
+```
+
+Em **saf.js** criar a variável **fatPercentageClassification** que recebe a function **fatPercentageClassification( )** passando como parâmetro **sexNumber** e **fatPercentage**. Em seguinda mostramos o resultado:
+
+```js
+const fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(sexNumber, fatPercentage)
+```
+
+```js
+console.log(`Classificaćão % Gordura: ${fatPercentageClassification}`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.0 kilos
+Estatura Corporal: 1.86 metros
+Índice de Massa Corporal - IMC: 27.46
+Classificação IMC: Sobrepeso
+Perimetria Corporal:
+Braço: 38.8 cm
+Antebraço: 30.0 cm
+Cintura: 85.7 cm
+Quadril: 96.8 cm
+Coxa: 50.4 cm
+Panturrilha: 42.3 cm
+Relação Cintura Quadril- RCQ: 0.89
+Classificação RCQ: Moderado Risco
+Circunfência cintura - Classificação: Nenhum Risco
+Dobras Cutâneas:
+Triciptal: 12 mm
+Subescapular: 15 mm
+Peitoral: 6 mm
+SupraIliaca: 19 mm
+Abdominal: 24 mm
+Coxa: 25 mm
+Panturrilha: 7 mm
+Percentual de gordura: 16.98%
+Classificação % Gordura: Sobrepeso
+===============================
+```
+
+### Massa Corporal Gorda
+
 
 
 

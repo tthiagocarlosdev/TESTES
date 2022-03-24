@@ -1692,6 +1692,68 @@ function fatPercentage(ageValue, sexValue, skinFoldObject){
 
 }
 
-console.log(fatPercentage(34, 1, subcutaneousFolds))
-console.log(fatPercentage(55, 2, subcutaneousFolds))
-console.log(fatPercentage(55, 3, subcutaneousFolds))
+// console.log(fatPercentage(34, 1, subcutaneousFolds))
+// console.log(fatPercentage(55, 2, subcutaneousFolds))
+// console.log(fatPercentage(55, 3, subcutaneousFolds))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Fat percentage - Classification == **/
+
+function fatPercentageClassification(sexValue, fatPercentageValue){
+
+  let classification = ``
+
+  switch (sexValue) {
+    
+    case 1:
+      
+      if(fatPercentageValue < 6){
+        classification = `Desnutrição`
+      } else if(fatPercentageValue < 15){
+        classification = `Abaixo da média`
+      } else if(fatPercentageValue < 16){
+        classification = `Média`
+      } else if(fatPercentageValue < 25){
+        classification = `Sobrepeso`
+      } else{
+        classification = `Obesidade`
+      }
+
+      break;
+
+    case 2:
+
+      if(fatPercentageValue < 9){
+        classification = `Desnutrição`
+      } else if(fatPercentageValue < 23){
+        classification = `Abaixo da média`
+      } else if(fatPercentageValue < 24){
+        classification = `Média`
+      } else if(fatPercentageValue < 32){
+        classification = `Sobrepeso`
+      } else{
+        classification = `Obesidade`
+      }
+
+      break;
+
+    default:
+      classification = `[ERROR] Sexo não identificado!`
+      break;
+  }
+  
+  return classification
+
+}
+
+console.log(fatPercentageClassification(1, 5.99))
+console.log(fatPercentageClassification(1, 14.99))
+console.log(fatPercentageClassification(1, 15.99))
+console.log(fatPercentageClassification(1, 24.99))
+console.log(fatPercentageClassification(1, 25))
+
+console.log(fatPercentageClassification(2, 8.99))
+console.log(fatPercentageClassification(2, 22.99))
+console.log(fatPercentageClassification(2, 23.99))
+console.log(fatPercentageClassification(2, 31.99))
+console.log(fatPercentageClassification(2, 32))

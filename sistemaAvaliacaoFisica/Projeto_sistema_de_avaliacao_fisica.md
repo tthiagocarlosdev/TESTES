@@ -502,9 +502,9 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Percentual de gordura - Classificação: (SHOW)**
+- [x] **Percentual de gordura - Classificação: (SHOW)**
 
-  - [ ] Se **homem**
+  - [x] Se **homem**
 
     Percentual de gordura < 6 = "Desnutrição"
 
@@ -516,7 +516,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
     Percentual de gordura >= 25 = "Obesidade"
 
-  - [ ] Se **mulher**
+  - [x] Se **mulher**
 
     Percentual de gordura < 9 = "Desnutrição"
 
