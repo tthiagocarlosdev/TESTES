@@ -62,6 +62,7 @@ const fatPercentage = anthropometryFunctions.fatPercentage(age, sexNumber, skinF
 const fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(sexNumber, fatPercentage)
 const fatBodyMass = anthropometryFunctions.fatBodyMass(bodyWeight, fatPercentage)
 const leanBodyMass = anthropometryFunctions.leanBodyMass(bodyWeight, fatBodyMass)
+const expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(sexNumber, leanBodyMass)
 
 /*
 // show results personalData
@@ -122,5 +123,6 @@ console.log(`Percentual de gordura: ${fatPercentage}%`)
 console.log(`Classificação % Gordura: ${fatPercentageClassification}`)
 console.log(`Massa Corporal Gorda: ${fatBodyMass} kilos`)
 console.log(`Massa Corporal Magra: ${leanBodyMass} kilos`)
+console.log(`Massa Corporal Ideal Prevista: ${expectedIdealBodyMass} kilos`)
 
 console.log(`===============================`)

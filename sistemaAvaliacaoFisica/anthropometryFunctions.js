@@ -464,6 +464,12 @@ const anthropometryFunctions = {
   
   },
 
+  expectedIdealBodyMass(sexNumber, leanBodyMass){
+
+    return Number(sexNumber === 1 ? (leanBodyMass / (1 - 0.15)).toFixed(1) : (leanBodyMass / (1 - 0.23)).toFixed(1))
+  
+  },
+
 }
 
 module.exports = {

@@ -1778,4 +1778,17 @@ function leanBodyMass(bodyWeight, fatBodyMass){
 
 }
 
-console.log(leanBodyMass(95.0, 16.13))
+// console.log(leanBodyMass(95.0, 16.13))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Expected Ideal Body Mass == **/
+
+function expectedIdealBodyMass(sexNumber, leanBodyMass){
+
+  return Number(sexNumber === 1 ? (leanBodyMass / (1 - 0.15)).toFixed(1) : (leanBodyMass / (1 - 0.23)).toFixed(1))
+
+}
+
+console.log(expectedIdealBodyMass(1, 78.9))
+console.log(expectedIdealBodyMass(2, 78.9))
+console.log(expectedIdealBodyMass(3, 78.9))

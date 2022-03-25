@@ -538,13 +538,13 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
   M.C.M. = PESO - Massa corporal gorda
 
-- [ ] **Massa Corporal Ideal Prevista: (SHOW)**
+- [x] **Massa Corporal Ideal Prevista: (SHOW)**
 
-  - [ ] Se **homem**
+  - [x] Se **homem**
 
     M.C.I. = (Masssa Corporal Magra / (1 - 0,15))
 
-  - [ ] Se **mulher**
+  - [x] Se **mulher**
 
     M.C.I. = (Masssa Corporal Magra / (1 - 0,23))
     

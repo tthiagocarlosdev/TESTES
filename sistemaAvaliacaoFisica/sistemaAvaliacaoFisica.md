@@ -4402,9 +4402,75 @@ Massa Corporal Magra: 78.9 kilos
 
 ### Massa Corporal Ideal Prevista
 
+Function **expectedIdealBodyMass( )** determina  **Massa Corporal Ideal Prevista** do usuário. Recebe como parâmetro o **sexo** e a **massa corporal magra** do indivíduo. Retorna Massa Corporal Ideal Prevista de acordo com as fórmulas:
 
+- Se homem:
 
+Massa Corporal Ideal Prevista = (Masssa Corporal Magra / (1 - 0,15))
 
+- Se mulher:
+
+Massa Corporal Ideal Prevista = (Masssa Corporal Magra / (1 - 0,23))
+
+Logo, em **anthropometryFunctions.js**:
+
+```js
+expectedIdealBodyMass(sexNumber, leanBodyMass){
+
+    return Number(sexNumber === 1 ? (leanBodyMass / (1 - 0.15)).toFixed(1) : (leanBodyMass / (1 - 0.23)).toFixed(1))
+  
+  },
+```
+
+Em **saf.js** criamos a variável **expectedIdealBodyMass** que recebe a function **expectedIdealBodyMass( )** passando como parâmetro **sexNumber** e **leanBodyMass**. Em seguida mostramos o resultado:
+
+```js
+const expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(sexNumber, leanBodyMass)
+```
+
+```js
+console.log(`Massa Corporal Ideal Prevista: ${expectedIdealBodyMass} kilos`)
+```
+
+Ao executar  o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.0 kilos
+Estatura Corporal: 1.86 metros
+Índice de Massa Corporal - IMC: 27.46
+Classificação IMC: Sobrepeso
+Perimetria Corporal:
+Braço: 38.8 cm
+Antebraço: 30.0 cm
+Cintura: 85.7 cm
+Quadril: 96.8 cm
+Coxa: 50.4 cm
+Panturrilha: 42.3 cm
+Relação Cintura Quadril- RCQ: 0.89
+Classificação RCQ: Moderado Risco
+Circunfência cintura - Classificação: Nenhum Risco
+Dobras Cutâneas:
+Triciptal: 12 mm
+Subescapular: 15 mm
+Peitoral: 6 mm
+SupraIliaca: 19 mm
+Abdominal: 24 mm
+Coxa: 25 mm
+Panturrilha: 7 mm
+Percentual de gordura: 16.98%
+Classificação % Gordura: Sobrepeso
+Massa Corporal Gorda: 16.1 kilos
+Massa Corporal Magra: 78.9 kilos
+Massa Corporal Ideal Prevista: 92.8 kilos
+===============================
+```
+
+Com isto chega ao final a parte **Antropometria** do projeto. Como ficaram os arquivos do programa até esta etapa:
 
 
 
