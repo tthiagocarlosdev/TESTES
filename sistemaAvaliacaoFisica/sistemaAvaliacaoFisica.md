@@ -4472,6 +4472,705 @@ Massa Corporal Ideal Prevista: 92.8 kilos
 
 Com isto chega ao final a parte **Antropometria** do projeto. Como ficaram os arquivos do programa até esta etapa:
 
+**anthropometryFunctions.js**:
+
+```js
+/* anthropometryFunctions */
+
+var input = require('readline-sync')
+
+const { validationFunctions } = require('./validationFunctions')
+
+const anthropometryFunctions = {
+
+  bodyWeight(){
+
+    let bodyWeight = 0
+    let itsRealNumber = true
+    let regularExpressionFromZeroToThousand = /(^[0-9]\.[0-9]$)|(^[1-9][0-9]\.[0-9]$)|(^[1-9][0-9]{2}\.[0-9]$)|(^[1][0]{3}\.[0-9]$)/
+  
+    do{
+  
+      bodyWeight = input.question('Digite seu peso (kg)[00.0]: ')
+      itsRealNumber = validationFunctions.isRegularExpression(bodyWeight, regularExpressionFromZeroToThousand)
+      validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+  
+    }while(!itsRealNumber)
+  
+    return bodyWeight
+    
+  },
+
+  stature(){
+
+    let bodyStature = 0
+    let itsRealNumber = true
+    let regularExpressionZeroToNinePointNinetyNine = /(^[0-9]\.([0-9]){2}$)/
+  
+    do{
+  
+      bodyStature =input.question('Digite sua estatura (m)[0.00]: ')
+      itsRealNumber = validationFunctions.isRegularExpression(bodyStature, regularExpressionZeroToNinePointNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+  
+    }while(!itsRealNumber)
+    
+    return bodyStature
+  
+  },
+
+  bodyMassIndex(weightValue, heightValue){
+
+    // IMC = peso / estatura * estatura
+    return (weightValue / (heightValue * heightValue)).toFixed(2)
+  
+  },
+
+  bodyMassIndexClassification(bodyMassIndexValue){
+
+    let classification = ``
+  
+    if(bodyMassIndexValue < 17){
+      classification = `Magreza Grau 2`
+    } else if(bodyMassIndexValue < 18.5){
+      classification = `Abaixo do peso`
+    } else if(bodyMassIndexValue < 25){
+      classification = `Peso Normal`
+    } else if(bodyMassIndexValue < 30){
+      classification = `Sobrepeso`
+    } else if(bodyMassIndexValue < 35){
+      classification = `Obesidade nível 1`
+    } else if(bodyMassIndexValue < 40){
+      classification = `Obesidade nível 2`
+    } else{
+      classification = `Obesidade Morbida`
+    }
+  
+    return classification
+  
+  },
+
+  bodyPerimetry(){
+
+    let measurementPoints = {
+      Braço: 0,
+      Antebraço: 0,
+      Cintura: 0,
+      Quadril: 0,
+      Coxa: 0,
+      Panturrilha: 0
+    } 
+    let itsRealNumber = true
+    let regexThreeWholeDigitsAndOneDecimalPlace = /(^[0-9]\.[0-9]$)|(^[0-9]{2}\.[0-9]$)|(^[0-9]{3}\.[0-9]$)/
+  
+    for(let bodyPart in measurementPoints){
+  
+      do{
+  
+        measurementPoints[bodyPart] = input.question(`Digite a perimetria - ${bodyPart} (cm)[000.0]: `)
+  
+        itsRealNumber = validationFunctions.isRegularExpression(measurementPoints[bodyPart], regexThreeWholeDigitsAndOneDecimalPlace)
+        validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+  
+      }while(!itsRealNumber)
+      
+    }
+  
+    return measurementPoints
+  
+  },
+
+  showPerimeter(objectValue){
+  
+    console.log('Perimetria Corporal:')
+    
+    for(let property in objectValue){
+      console.log(`${property}: ${objectValue[property]} cm`) 
+    }
+  
+  },
+
+  hipWaistRatio(waistPerimetry, hipPerimetry){
+
+    return (waistPerimetry/ hipPerimetry).toFixed(2)
+  
+  },
+
+  waistHipRatioClassification(sexValue, ageValue, waistHipRatioValue){
+
+    let classification = ``
+  
+    switch (sexValue) {
+  
+      // masculine - masculine - masculine - masculine - masculine
+      case 1:
+        
+        if(ageValue > 19 && ageValue < 30){
+          
+          if(waistHipRatioValue < 0.83){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.89){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.95){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 40){
+          
+          if(waistHipRatioValue < 0.84){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.92){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.97){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 50){
+          
+          if(waistHipRatioValue < 0.88){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.96){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 1){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 60){
+          
+          if(waistHipRatioValue < 0.90){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.97){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 1.02){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 70){
+          
+          if(waistHipRatioValue < 0.91){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.99){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 1.03){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else{
+          classification = `Esta classificação não se aplica a sua idade!`
+        }
+  
+        break;
+      
+      // feminine - feminine - feminine - feminine - feminine
+      case 2:
+        if(ageValue > 19 && ageValue < 30){
+          
+          if(waistHipRatioValue < 0.71){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.78){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.82){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 40){
+          
+          if(waistHipRatioValue < 0.72){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.79){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.84){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 50){
+          
+          if(waistHipRatioValue < 0.73){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.80){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.87){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 60){
+          
+          if(waistHipRatioValue < 0.74){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.82){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.88){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else if(ageValue < 70){
+          
+          if(waistHipRatioValue < 0.76){
+            classification = `Baixo Risco`
+          } else if(waistHipRatioValue < 0.84){
+            classification = `Moderado Risco`
+          } else if(waistHipRatioValue < 0.90){
+            classification = `Alto Risco`
+          } else {
+            classification = `Muito Alto Risco`
+          }
+          
+        } else{
+          classification = `Esta classificação não se aplica a sua idade!`
+        }
+  
+        break;
+  
+      default:
+        classification = `[ERROR] Sexo não identificado!`
+        break;
+    }
+    
+  
+    return classification
+  
+  },
+
+  waistCircumferenceClassification(sexValue, waistValue){
+
+    classification = ``
+  
+    switch (sexValue) {
+      
+      case 1:
+        
+        if(waistValue < 94){
+          classification = `Nenhum Risco`
+        } else if(waistValue < 102){
+          classification = `Risco Moderado`
+        } else {
+          classification = `Risco Alto`
+        }
+  
+        break;
+  
+      case 2:
+  
+        if(waistValue < 80){
+          classification = `Nenhum Risco`
+        } else if(waistValue < 88){
+          classification = `Risco Moderado`
+        } else {
+          classification = `Risco Alto`
+        }
+  
+        break;
+  
+      default:
+        classification = `[ERROR] Sexo não identificado!`
+        break;
+    }
+  
+    return classification
+  
+  },
+
+  subcutaneousMeasures(){
+
+    let subcutaneousFolds = {
+      Triciptal: 0,
+      Subescapular: 0,
+      Peitoral: 0,
+      SupraIliaca: 0,
+      Abdominal: 0,
+      Coxa: 0,
+      Panturrilha: 0
+    } 
+    let validNumber = true
+    let regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
+  
+    for(let folds in subcutaneousFolds){
+  
+      do{
+  
+        subcutaneousFolds[folds] = input.question(`Digite a dobra cutânea - ${folds} (mm)[00]: `)
+  
+        validNumber = validationFunctions.isRegularExpression(subcutaneousFolds[folds], regexTwoDigits)
+        validationFunctions.incorrectValue(false, !validNumber, "Antropometria")
+  
+      }while(!validNumber)
+  
+    }
+  
+    return subcutaneousFolds
+  
+  },
+
+  showSubcutaneousFolds(objectValue){
+  
+    console.log('Dobras Cutâneas:')
+    
+    for(let property in objectValue){
+      console.log(`${property}: ${objectValue[property]} mm`) 
+    }
+  
+  },
+
+  sumElements(array){
+
+    let sumElements = 0
+    
+    for(let element in array){
+      sumElements += Number(array[element])
+    }
+  
+    return sumElements
+  
+  },
+
+  fatPercentage(ageValue, sexValue, skinFoldObject){
+
+    let = skinfoldArray = []
+    let sumOfFolds = 0
+    let bodyDensity = 0
+    let fatPercentage = 0
+  
+    switch (sexValue) {
+      
+      case 1:
+        
+        skinfoldArray.push(skinFoldObject.Peitoral, skinFoldObject.Abdominal, skinFoldObject.Coxa)
+        sumOfFolds = anthropometryFunctions.sumElements(skinfoldArray)
+        bodyDensity = ((1.10938 - (0.0008267 * sumOfFolds )) + ((0.0000016 * (sumOfFolds * sumOfFolds)) - (0.0002574 * ageValue)))
+        fatPercentage = (((4.95 / bodyDensity) - 4.5 ) * 100).toFixed(2)
+  
+        return fatPercentage
+  
+        break;
+      
+      case 2:
+  
+        skinfoldArray.push(skinFoldObject.Triciptal, skinFoldObject.SupraIliaca, skinFoldObject.Coxa)
+        sumOfFolds = anthropometryFunctions.sumElements(skinfoldArray)
+        bodyDensity = ((1.0994921-(0.0009929 * sumOfFolds)) + ((0.0000023 * (sumOfFolds * sumOfFolds)) - (0.0001392 * ageValue)))
+        fatPercentage = (((5.01 / bodyDensity) - 4.57) * 100).toFixed(2)
+  
+        return fatPercentage
+  
+        break;
+    
+      default:
+  
+        return `[ERROR] Sexo não identificado!`
+  
+        break;
+  
+    }
+  
+  },
+
+  fatPercentageClassification(sexValue, fatPercentageValue){
+
+    let classification = ``
+  
+    switch (sexValue) {
+      
+      case 1:
+        
+        if(fatPercentageValue < 6){
+          classification = `Desnutrição`
+        } else if(fatPercentageValue < 15){
+          classification = `Abaixo da média`
+        } else if(fatPercentageValue < 16){
+          classification = `Média`
+        } else if(fatPercentageValue < 25){
+          classification = `Sobrepeso`
+        } else{
+          classification = `Obesidade`
+        }
+  
+        break;
+  
+      case 2:
+  
+        if(fatPercentageValue < 9){
+          classification = `Desnutrição`
+        } else if(fatPercentageValue < 23){
+          classification = `Abaixo da média`
+        } else if(fatPercentageValue < 24){
+          classification = `Média`
+        } else if(fatPercentageValue < 32){
+          classification = `Sobrepeso`
+        } else{
+          classification = `Obesidade`
+        }
+  
+        break;
+  
+      default:
+        classification = `[ERROR] Sexo não identificado!`
+        break;
+    }
+    
+    return classification
+  
+  },
+
+  fatBodyMass(bodyWeight, fatPercentage){
+
+    return Number(((bodyWeight * fatPercentage) / 100).toFixed(1))
+  
+  },
+
+  leanBodyMass(bodyWeight, fatBodyMass){
+
+    return Number(bodyWeight - fatBodyMass)
+  
+  },
+
+  expectedIdealBodyMass(sexNumber, leanBodyMass){
+
+    return Number(sexNumber === 1 ? (leanBodyMass / (1 - 0.15)).toFixed(1) : (leanBodyMass / (1 - 0.23)).toFixed(1))
+  
+  },
+
+}
+
+module.exports = {
+  anthropometryFunctions
+}
+```
+
+**saf.js**:
+
+```js
+const { headerFunctions } = require('./headerFunctions')
+const { personalData } = require('./personalData')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
+const  { anthropometryFunctions } = require('./anthropometryFunctions')
+
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+
+// variables personalData
+const name = personalData.userName()
+const birthdayInBrazilianFormat =  personalData.dateOfBirth()
+const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
+const age = personalData.age(birthdayInISOFormat)
+const sexNumber = personalData.sexNumber()
+const sex = personalData.showSex(sexNumber)
+const profession = personalData.userProfession()
+const userEmail = personalData.userEmail()
+const phoneNumber = personalData.phoneNumber()
+
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
+
+// variables anamnesisFunctions
+const questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+const currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+const pastIllness = anamnesisFunctions.pastIllness()
+const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
+const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
+const useMedication = anamnesisFunctions.useMedication()
+const sportsInjuries = anamnesisFunctions.sportsInjuries()
+const trainingObjective = anamnesisFunctions.trainingObjective()
+const daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
+const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
+
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Cardiorrespiratório")
+
+// variables cardiorespiratory
+const restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+const maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(age)
+const restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
+const bloodPressureRating = cardiorespiratoryFunctions.classificationOfBloodPressure(restingBloodPressure)
+
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
+
+// variables anthropometryFunctions
+const bodyWeight = anthropometryFunctions.bodyWeight()
+const bodyStature = anthropometryFunctions.stature()
+const bodyMassIndex = anthropometryFunctions.bodyMassIndex(bodyWeight, bodyStature)
+const bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(bodyMassIndex)
+const bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+const hipWaistRatio = anthropometryFunctions.hipWaistRatio(bodyPerimeter.Cintura, bodyPerimeter.Quadril)
+const waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(sexNumber, age, hipWaistRatio)
+const waistCircumference = anthropometryFunctions.waistCircumferenceClassification(sexNumber, bodyPerimeter.Cintura)
+const skinFolds = anthropometryFunctions.subcutaneousMeasures()
+const fatPercentage = anthropometryFunctions.fatPercentage(age, sexNumber, skinFolds)
+const fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(sexNumber, fatPercentage)
+const fatBodyMass = anthropometryFunctions.fatBodyMass(bodyWeight, fatPercentage)
+const leanBodyMass = anthropometryFunctions.leanBodyMass(bodyWeight, fatBodyMass)
+const expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(sexNumber, leanBodyMass)
+
+
+// show results personalData
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+console.log(`Nome: ${name}`)
+console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
+console.log(`Idade: ${age} anos!`)
+console.log(`Sexo: ${sex}`)
+console.log(`Profissão: ${profession}`)
+console.log(`E-mail: ${userEmail}`)
+console.log(`Celular: ${phoneNumber}`)
+
+// show results anamnesisFunctions
+console.log(`===============================`) 
+headerFunctions.subTitle("Anamnese")
+
+console.log(`Questionário PAR-Q: ${questionnairePARQ}`)
+console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(currentPhysicalState)}`)
+console.log(`Doença Pregressa: ${pastIllness}`)
+console.log(`Doença Pregressa na Família: ${illnessesFamily}`)
+console.log(`Cirurgia: ${surgeryPerformed}`)
+console.log(`Uso de Medicamento: ${useMedication}`)
+console.log(`Lesão Desportiva: ${sportsInjuries}`)
+console.log(`Objetivo do treino: ${trainingObjective}`)
+console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining} dias.`)
+console.log(`Tempo disponível para treino: ${timeAvailablePerTraining} minutos.`)
+
+// show results cardiorespiratoryFunctions
+console.log(`===============================`) 
+headerFunctions.subTitle("Cardiorespiratório")
+console.log(`Frequência Cardíaca de Repouso: ${restingHeartRate} bpm.`)
+console.log(`Frequência Cardíaca Máxima: ${maximumHeartRate} bpm.`)
+cardiorespiratoryFunctions.workingHeartRate(Number(restingHeartRate), Number(maximumHeartRate))
+console.log(`Pressão Arterial de Repouso: ${restingBloodPressure.systolic}/${restingBloodPressure.diastolic} mmHg.`)
+console.log(`Classificação da Pressão Arterial`)
+console.log(`Sistólica: ${bloodPressureRating.systolicClassification}`)
+console.log(`Diastólica: ${bloodPressureRating.diastolicClassification}`)
+
+// show results anthropometryFunctions
+console.log(`===============================`) 
+headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${bodyStature} metros`)
+console.log(`Índice de Massa Corporal - IMC: ${bodyMassIndex}`)
+console.log(`Classificação IMC: ${bodyMassIndexClassification}`)
+anthropometryFunctions.showPerimeter(bodyPerimeter)
+console.log(`Relação Cintura Quadril- RCQ: ${hipWaistRatio}`)
+console.log(`Classificação RCQ: ${waistHipRatioClassification}`)
+console.log(`Circunfência cintura - Classificação: ${waistCircumference}`)
+anthropometryFunctions.showSubcutaneousFolds(skinFolds)
+console.log(`Percentual de gordura: ${fatPercentage}%`)
+console.log(`Classificação % Gordura: ${fatPercentageClassification}`)
+console.log(`Massa Corporal Gorda: ${fatBodyMass} kilos`)
+console.log(`Massa Corporal Magra: ${leanBodyMass} kilos`)
+console.log(`Massa Corporal Ideal Prevista: ${expectedIdealBodyMass} kilos`)
+
+console.log(`===============================`)
+
+```
+
+Ao executar o progama:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Nome: Maria Severina
+Data de nascimento: 28/02/2001
+Idade: 21 anos!
+Sexo: Feminino
+Profissão: Recepcionista
+E-mail: maria@severina.com
+Celular: 13958674132
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Estado físico: Sedentário
+Doença Pregressa: Sem doença pregressa.
+Doença Pregressa na Família: Pais hipertensos
+Cirurgia: Nunca realizou procedimento cirúrgico.
+Uso de Medicamento: Não faz uso de medicamento.
+Lesão Desportiva: Nunca sofreu lesão desportiva.
+Objetivo do treino: Bem-estar e Saúde
+Dias disponíveis para treinar: 3 dias.
+Tempo disponível para treino: 60 minutos.
+===============================
+           Cardiorespiratório            
+===============================
+Frequência Cardíaca de Repouso: 60 bpm.
+Frequência Cardíaca Máxima: 199 bpm.
+Frequência Cardíaca de Treino:
+        40% = 116 bpm
+        45% = 123 bpm
+        50% = 130 bpm
+        55% = 136 bpm
+        60% = 143 bpm
+        65% = 150 bpm
+        70% = 157 bpm
+        75% = 164 bpm
+        80% = 171 bpm
+        85% = 178 bpm
+        90% = 185 bpm
+        95% = 192 bpm
+Pressão Arterial de Repouso: 130/85 mmHg.
+Classificação da Pressão Arterial
+Sistólica: Limítrofe
+Diastólica: Limítrofe
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 65.8 kilos
+Estatura Corporal: 1.62 metros
+Índice de Massa Corporal - IMC: 25.07
+Classificação IMC: Sobrepeso
+Perimetria Corporal:
+Braço: 28.2 cm
+Antebraço: 19.8 cm
+Cintura: 60.0 cm
+Quadril: 81.5 cm
+Coxa: 53.4 cm
+Panturrilha: 41.2 cm
+Relação Cintura Quadril- RCQ: 0.74
+Classificação RCQ: Moderado Risco
+Circunfência cintura - Classificação: Nenhum Risco
+Dobras Cutâneas:
+Triciptal: 15 mm
+Subescapular: 18 mm
+Peitoral: 11 mm
+SupraIliaca: 22 mm
+Abdominal: 24 mm
+Coxa: 19 mm
+Panturrilha: 8 mm
+Percentual de gordura: 20.97%
+Classificação % Gordura: Abaixo da média
+Massa Corporal Gorda: 13.8 kilos
+Massa Corporal Magra: 52 kilos
+Massa Corporal Ideal Prevista: 67.5 kilos
+===============================
+```
+
+
+
+## Testes Neuromuscular
+
 
 
 
