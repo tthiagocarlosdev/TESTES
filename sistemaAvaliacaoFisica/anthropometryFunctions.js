@@ -452,6 +452,12 @@ const anthropometryFunctions = {
   
   },
 
+  fatBodyMass(bodyWeight, fatPercentage){
+
+    return Number(((bodyWeight * fatPercentage) / 100).toFixed(1))
+  
+  },
+
 }
 
 module.exports = {

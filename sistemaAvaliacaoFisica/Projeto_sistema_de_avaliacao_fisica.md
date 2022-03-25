@@ -530,7 +530,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Massa Corporal Gorda: (SHOW)**
+- [x] **Massa Corporal Gorda: (SHOW)**
 
   M.C.G. = ((PESO * Percentual de gordura) / 100)
 

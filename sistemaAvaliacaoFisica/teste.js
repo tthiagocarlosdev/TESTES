@@ -1746,14 +1746,25 @@ function fatPercentageClassification(sexValue, fatPercentageValue){
 
 }
 
-console.log(fatPercentageClassification(1, 5.99))
-console.log(fatPercentageClassification(1, 14.99))
-console.log(fatPercentageClassification(1, 15.99))
-console.log(fatPercentageClassification(1, 24.99))
-console.log(fatPercentageClassification(1, 25))
+// console.log(fatPercentageClassification(1, 5.99))
+// console.log(fatPercentageClassification(1, 14.99))
+// console.log(fatPercentageClassification(1, 15.99))
+// console.log(fatPercentageClassification(1, 24.99))
+// console.log(fatPercentageClassification(1, 25))
 
-console.log(fatPercentageClassification(2, 8.99))
-console.log(fatPercentageClassification(2, 22.99))
-console.log(fatPercentageClassification(2, 23.99))
-console.log(fatPercentageClassification(2, 31.99))
-console.log(fatPercentageClassification(2, 32))
+// console.log(fatPercentageClassification(2, 8.99))
+// console.log(fatPercentageClassification(2, 22.99))
+// console.log(fatPercentageClassification(2, 23.99))
+// console.log(fatPercentageClassification(2, 31.99))
+// console.log(fatPercentageClassification(2, 32))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Fat Body Mass == **/
+
+function fatBodyMass(bodyWeight, fatPercentage){
+
+  return Number(((bodyWeight * fatPercentage) / 100).toFixed(1))
+
+}
+
+console.log(fatBodyMass(95.5, 15.5))

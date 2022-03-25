@@ -4281,7 +4281,67 @@ Classificação % Gordura: Sobrepeso
 
 ### Massa Corporal Gorda
 
+Function **fatBodyMass( )**, determina a massa corporal de gordura do usuário. Esta function recebe como parâmetro o **peso** e o **percentual de gordura** do indivíduo. Retorna o peso em kilos de gordura corporal do usuário de acordo com a fóruma abaixo:
 
+Massa Corporal Gorda = ((PESO * Percentual de gordura) / 100)
+
+Logo em **anthropometryFunctions.js**:
+
+```js
+fatBodyMass(bodyWeight, fatPercentage){
+
+    return Number(((bodyWeight * fatPercentage) / 100).toFixed(1))
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável **fatBodyMass** que recebe a function **fatBodyMass( )** passando como parâmetro **bodyWeight** e **fatPercentage**. Em seguida mostramos o resultado:
+
+```js
+const fatBodyMass = anthropometryFunctions.fatBodyMass(bodyWeight, fatPercentage)
+```
+
+```js
+console.log(`Massa Corporal Gorda: ${fatBodyMass} kilos`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.0 kilos
+Estatura Corporal: 1.86 metros
+Índice de Massa Corporal - IMC: 27.46
+Classificação IMC: Sobrepeso
+Perimetria Corporal:
+Braço: 38.8 cm
+Antebraço: 30.0 cm
+Cintura: 85.7 cm
+Quadril: 96.8 cm
+Coxa: 50.4 cm
+Panturrilha: 42.3 cm
+Relação Cintura Quadril- RCQ: 0.89
+Classificação RCQ: Moderado Risco
+Circunfência cintura - Classificação: Nenhum Risco
+Dobras Cutâneas:
+Triciptal: 12 mm
+Subescapular: 15 mm
+Peitoral: 6 mm
+SupraIliaca: 19 mm
+Abdominal: 24 mm
+Coxa: 25 mm
+Panturrilha: 7 mm
+Percentual de gordura: 16.98%
+Classificação % Gordura: Sobrepeso
+Massa Corporal Gorda: 16.13kilos
+===============================
+```
+
+### Massa Corporal Magra
 
 
 
