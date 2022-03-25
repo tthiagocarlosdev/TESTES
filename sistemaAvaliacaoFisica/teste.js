@@ -1767,4 +1767,15 @@ function fatBodyMass(bodyWeight, fatPercentage){
 
 }
 
-console.log(fatBodyMass(95.5, 15.5))
+// console.log(fatBodyMass(95.5, 15.5))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Lean Body Mass == **/
+
+function leanBodyMass(bodyWeight, fatBodyMass){
+
+  return Number(bodyWeight - fatBodyMass)
+
+}
+
+console.log(leanBodyMass(95.0, 16.13))

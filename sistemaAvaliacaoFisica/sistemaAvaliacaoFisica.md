@@ -4343,6 +4343,65 @@ Massa Corporal Gorda: 16.13kilos
 
 ### Massa Corporal Magra
 
+Function **leanBodyMass( )**, determina o peso da massa magra do indivíduo. Recebe como parâmetro o **peso corporal**  e o **peso da massa corporal gorda** do indivíduo. A function retorna a subtração desses valores, log, em **anthropometryFunctions.js**:
+
+```js
+leanBodyMass(bodyWeight, fatBodyMass){
+
+    return Number(bodyWeight - fatBodyMass)
+  
+  },
+```
+
+Em **saf.js** criamos a variável **leanBodyMass** que recebe a function **leanBodyMass( )** passando como parâmetro **bodyWeight** e **fatBodyMass**. em seguida mostramos o resultado:
+
+```js
+const leanBodyMass = anthropometryFunctions.leanBodyMass(bodyWeight, fatBodyMass)
+```
+
+```js
+console.log(`Massa Corporal Magra: ${leanBodyMass} kilos`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.0 kilos
+Estatura Corporal: 1.86 metros
+Índice de Massa Corporal - IMC: 27.46
+Classificação IMC: Sobrepeso
+Perimetria Corporal:
+Braço: 38.8 cm
+Antebraço: 30.0 cm
+Cintura: 85.7 cm
+Quadril: 96.8 cm
+Coxa: 50.4 cm
+Panturrilha: 42.3 cm
+Relação Cintura Quadril- RCQ: 0.89
+Classificação RCQ: Moderado Risco
+Circunfência cintura - Classificação: Nenhum Risco
+Dobras Cutâneas:
+Triciptal: 12 mm
+Subescapular: 15 mm
+Peitoral: 6 mm
+SupraIliaca: 19 mm
+Abdominal: 24 mm
+Coxa: 25 mm
+Panturrilha: 7 mm
+Percentual de gordura: 16.98%
+Classificação % Gordura: Sobrepeso
+Massa Corporal Gorda: 16.1 kilos
+Massa Corporal Magra: 78.9 kilos
+===============================
+```
+
+### Massa Corporal Ideal Prevista
+
 
 
 

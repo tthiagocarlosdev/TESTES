@@ -61,6 +61,7 @@ const skinFolds = anthropometryFunctions.subcutaneousMeasures()
 const fatPercentage = anthropometryFunctions.fatPercentage(age, sexNumber, skinFolds)
 const fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(sexNumber, fatPercentage)
 const fatBodyMass = anthropometryFunctions.fatBodyMass(bodyWeight, fatPercentage)
+const leanBodyMass = anthropometryFunctions.leanBodyMass(bodyWeight, fatBodyMass)
 
 /*
 // show results personalData
@@ -120,5 +121,6 @@ anthropometryFunctions.showSubcutaneousFolds(skinFolds)
 console.log(`Percentual de gordura: ${fatPercentage}%`)
 console.log(`Classificação % Gordura: ${fatPercentageClassification}`)
 console.log(`Massa Corporal Gorda: ${fatBodyMass} kilos`)
+console.log(`Massa Corporal Magra: ${leanBodyMass} kilos`)
 
 console.log(`===============================`)

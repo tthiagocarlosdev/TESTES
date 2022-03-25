@@ -458,6 +458,12 @@ const anthropometryFunctions = {
   
   },
 
+  leanBodyMass(bodyWeight, fatBodyMass){
+
+    return Number(bodyWeight - fatBodyMass)
+  
+  },
+
 }
 
 module.exports = {
