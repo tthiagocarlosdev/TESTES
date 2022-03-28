@@ -559,11 +559,11 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Flexibilidade - Classificação: (SHOW)**
+- [x] **Flexibilidade - Classificação: (SHOW)**
 
-  - [ ] se **homem**
+  - [x] se **homem**
 
-    - [ ] Com **idade** entre 0 e 19 anos
+    - [x] Com **idade** entre 0 e 19 anos
 
       Flexibilidade < 24 = "Fraca"
 
@@ -573,7 +573,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexibilidade >= 39 = "Excelente"
 
-    - [ ] Com **idade** entre 20 e 29 anos
+    - [x] Com **idade** entre 20 e 29 anos
 
       Flexibilidade < 25 = "Fraca"
 
@@ -583,7 +583,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexibilidade >= 40 = "Excelente"
 
-    - [ ] Com **idade** entre 30 e 39 anos
+    - [x] Com **idade** entre 30 e 39 anos
 
       Flexibilidade < 23 = "Fraca"
 
@@ -593,7 +593,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexibilidade >= 38 = "Excelente"
 
-    - [ ] Com **idade** entre 40 e 49 anos
+    - [x] Com **idade** entre 40 e 49 anos
 
       Flexibilidade < 18 = "Fraca"
 
@@ -603,7 +603,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexibilidade >= 35 = "Excelente"
 
-    - [ ] Com **idade** entre 50 e 59 anos
+    - [x] Com **idade** entre 50 e 59 anos
 
       Flexibilidade < 16 = "Fraca"
 
@@ -613,7 +613,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexibilidade >= 35 = "Excelente"
 
-    - [ ] Com **idade** entre 60 e 69 anos
+    - [x] Com **idade** entre 60 e 69 anos
 
       Flexibilidade < 15 = "Fraca"
 
@@ -623,9 +623,9 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexibilidade >= 33 = "Excelente"
 
-  - [ ] se **mulher**
+  - [x] se **mulher**
 
-    - [ ] Com **idade** entre 0 e 19 anos
+    - [x] Com **idade** entre 0 e 19 anos
 
       Flexibilidade < 29 = "Fraca"
 
@@ -635,7 +635,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexibilidade >= 43 = "Excelente"
 
-    - [ ] Com **idade** entre 20 e 29 anos
+    - [x] Com **idade** entre 20 e 29 anos
 
       Flexibilidade < 28 = "Fraca"
 
@@ -645,7 +645,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexibilidade >= 41 = "Excelente"
 
-    - [ ] Com **idade** entre 30 e 39 anos
+    - [x] Com **idade** entre 30 e 39 anos
 
       Flexibilidade < 27 = "Fraca"
 
@@ -655,7 +655,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexibilidade >= 41 = "Excelente"
 
-    - [ ] Com **idade** entre 40 e 49 anos
+    - [x] Com **idade** entre 40 e 49 anos
 
       Flexibilidade < 25 = "Fraca"
 
@@ -665,7 +665,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexibilidade >= 38 = "Excelente"
 
-    - [ ] Com **idade** entre 50 e 59 anos
+    - [x] Com **idade** entre 50 e 59 anos
 
       Flexibilidade < 25 = "Fraca"
 
@@ -675,7 +675,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexibilidade >= 39 = "Excelente"
 
-    - [ ] Com **idade** entre 60 e 69 anos
+    - [x] Com **idade** entre 60 e 69 anos
 
       Flexibilidade < 23 = "Fraca"
 

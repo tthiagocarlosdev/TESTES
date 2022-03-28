@@ -9,10 +9,10 @@ headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
 // variables personalData
-/*const name = personalData.userName()
+/*const name = personalData.userName()*/
 const birthdayInBrazilianFormat =  personalData.dateOfBirth()
 const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
-const age = personalData.age(birthdayInISOFormat)*/
+const age = personalData.age(birthdayInISOFormat)
 const sexNumber = personalData.sexNumber()/*
 const sex = personalData.showSex(sexNumber)
 const profession = personalData.userProfession()
@@ -67,6 +67,7 @@ const expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(sexNu
 
 // variables neuromuscularFunctions
 const wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
+const flexibilityRating = neuromuscularFunctions.flexibilityClassification(sexNumber, age, wellsBenchTest)
 
 // show results personalData
 /*console.clear()
@@ -131,6 +132,7 @@ headerFunctions.subTitle("Neuromuscular") //temporary
 // console.log(`===============================`) 
 // headerFunctions.subTitle("Neuromuscular")
 console.log(`Resultado teste Flexibilidade Banco de Wells: ${wellsBenchTest} cm`)
+console.log(`Classificação Flexibilidade: ${flexibilityRating}`)
 
 
 
