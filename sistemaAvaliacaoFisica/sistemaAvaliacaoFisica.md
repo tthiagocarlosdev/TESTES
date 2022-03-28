@@ -5171,7 +5171,28 @@ Massa Corporal Ideal Prevista: 67.5 kilos
 
 ## Testes Neuromuscular
 
+Vamos para a próxima etapa onde vamos construir a parte dos **testes neuromuscular**. Para isto vamos criar o arquivo **neuromuscularFunctions.js**. Dentro deste arquivo vamos:
 
+- Criar a variável **input**;
+- Requerer a variável **validationFunctions**;
+- Criar uma variável objeto **neuromuscularFunctions**;
+- Exportar essa variável.
+
+```js
+/* neuromuscular functions */
+
+var input = require('readline-sync')
+
+const { validationFunctions } = require('./validationFunctions')
+
+const neuromuscularFunctions = {
+
+}
+
+module.exports = {
+  neuromuscularFunctions
+}
+```
 
 
 
