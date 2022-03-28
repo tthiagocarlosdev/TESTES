@@ -552,10 +552,10 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 ## Testes Neuromuscular
 
-- [ ] **Flexibilidade: (INPUT)**
-  - [ ] Número inteiro
-  - [ ] Validar vazio
-  - [ ] de 0 a 100
+- [x] **Flexibilidade: (INPUT)**
+  - [x] Número inteiro
+  - [x] Validar vazio
+  - [x] de 0 a 99
 
 
 

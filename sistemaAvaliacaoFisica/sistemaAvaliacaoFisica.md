@@ -5194,6 +5194,63 @@ module.exports = {
 }
 ```
 
+### Teste de Flexibilidade Banco de Wells
+
+Teste para medir a flexibilidade do usuário. Function **wellsBenchTest( )**, deve ser inserido um número, com no máximo dois dígitos, de 0 a 99. Caso seja digitado qualquer outro valor diferente, a function **incorrectValue( )** deve ser chamada e o usuário deve digitar um valor correto. Retorna o valor alcançado no teste pelo o usuário. Logo, em **neuromuscularFunctions.js**:
+
+```js
+wellsBenchTest(){
+  
+    let testResult = ''
+    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
+    let validNumber = true
+  
+    do{
+  
+      testResult = input.question('Teste de flexibilidade banco de Wells (cm)[00]: ')
+      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
+      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+  
+    }while(!validNumber)
+    
+    return Number(testResult)
+  
+  },
+```
+
+Em **saf.js** vamos desativar as outras etapas, deixando apenas a variável **sexNumber** de **personalData** e construíndo a parte de variáveis e mostrar os resultados de **testes neuromulares**. Deve ser feito a requisição do arquivo **neuromuscularFunctions.js** também:
+
+```js
+const { neuromuscularFunctions } = require('./neuromuscularFunctions')
+```
+
+```js
+// variables neuromuscularFunctions
+const wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
+```
+
+```js
+console.clear() // temporary
+headerFunctions.systemHeader() // temporary
+headerFunctions.subTitle("Neuromuscular") //temporary
+// show results neuromuscularFunctions
+// console.log(`===============================`) 
+// headerFunctions.subTitle("Neuromuscular")
+console.log(`Resultado teste Flexibilidade Banco de Wells: ${wellsBenchTest} cm`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Resultado teste Flexibilidade Banco de Wells: 23 cm
+===============================
+```
+
 
 
 

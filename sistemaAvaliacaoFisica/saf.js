@@ -2,17 +2,18 @@ const { headerFunctions } = require('./headerFunctions')
 const { personalData } = require('./personalData')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
-const  { anthropometryFunctions } = require('./anthropometryFunctions')
+const { anthropometryFunctions } = require('./anthropometryFunctions')
+const { neuromuscularFunctions } = require('./neuromuscularFunctions')
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
 // variables personalData
-const name = personalData.userName()
+/*const name = personalData.userName()
 const birthdayInBrazilianFormat =  personalData.dateOfBirth()
 const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
-const age = personalData.age(birthdayInISOFormat)
-const sexNumber = personalData.sexNumber()
+const age = personalData.age(birthdayInISOFormat)*/
+const sexNumber = personalData.sexNumber()/*
 const sex = personalData.showSex(sexNumber)
 const profession = personalData.userProfession()
 const userEmail = personalData.userEmail()
@@ -62,11 +63,13 @@ const fatPercentage = anthropometryFunctions.fatPercentage(age, sexNumber, skinF
 const fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(sexNumber, fatPercentage)
 const fatBodyMass = anthropometryFunctions.fatBodyMass(bodyWeight, fatPercentage)
 const leanBodyMass = anthropometryFunctions.leanBodyMass(bodyWeight, fatBodyMass)
-const expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(sexNumber, leanBodyMass)
+const expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(sexNumber, leanBodyMass)*/
 
+// variables neuromuscularFunctions
+const wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
 
 // show results personalData
-console.clear()
+/*console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 console.log(`Nome: ${name}`)
@@ -119,6 +122,16 @@ console.log(`Percentual de gordura: ${fatPercentage}%`)
 console.log(`Classificação % Gordura: ${fatPercentageClassification}`)
 console.log(`Massa Corporal Gorda: ${fatBodyMass} kilos`)
 console.log(`Massa Corporal Magra: ${leanBodyMass} kilos`)
-console.log(`Massa Corporal Ideal Prevista: ${expectedIdealBodyMass} kilos`)
+console.log(`Massa Corporal Ideal Prevista: ${expectedIdealBodyMass} kilos`)*/
+
+console.clear() // temporary
+headerFunctions.systemHeader() // temporary
+headerFunctions.subTitle("Neuromuscular") //temporary
+// show results neuromuscularFunctions
+// console.log(`===============================`) 
+// headerFunctions.subTitle("Neuromuscular")
+console.log(`Resultado teste Flexibilidade Banco de Wells: ${wellsBenchTest} cm`)
+
+
 
 console.log(`===============================`)

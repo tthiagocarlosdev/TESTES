@@ -1789,6 +1789,31 @@ function expectedIdealBodyMass(sexNumber, leanBodyMass){
 
 }
 
-console.log(expectedIdealBodyMass(1, 78.9))
-console.log(expectedIdealBodyMass(2, 78.9))
-console.log(expectedIdealBodyMass(3, 78.9))
+// console.log(expectedIdealBodyMass(1, 78.9))
+// console.log(expectedIdealBodyMass(2, 78.9))
+// console.log(expectedIdealBodyMass(3, 78.9))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Neuromuscular Functions == **/
+/** == Flexibility Test == **/
+
+function wellsBenchTest(){
+  
+  let testResult = ''
+  const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
+  let validNumber = true
+
+  do{
+
+    testResult = input.question('Teste de flexibilidade banco de Wells (cm)[00]: ')
+    validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
+    validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+
+  }while(!validNumber)
+  
+  return Number(testResult)
+
+}
+
+console.log(wellsBenchTest())
+
