@@ -6997,7 +6997,32 @@ Classificação flexões de braço: Regular
 
 ## Testes Aeróbicos
 
+Vamos para a próxima etapa onde vamos construir a parte dos **testes aeróbicos**. Para isto vamos criar o arquivo **aerobicFunctions.js**. Dentro deste arquivo vamos:
 
+- Criar a variável **input**;
+- Requerer a variável **validationFunctions**;
+- Criar uma variável objeto **aerobicFunctions**;
+- Exportar essa variável.
+
+```js
+/* aerobic functions */
+
+var input = require('readline-sync')
+
+const { validationFunctions } = require('./validationFunctions')
+
+const aerobicFunctions = {
+
+}
+
+module.exports = {
+  aerobicFunctions
+}
+```
+
+
+
+VO² máx.
 
 
 
