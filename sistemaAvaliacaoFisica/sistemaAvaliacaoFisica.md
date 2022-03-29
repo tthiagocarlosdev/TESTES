@@ -6111,6 +6111,888 @@ Classificação flexões de braço: Excelente
 ===============================
 ```
 
+Com isto chega ao final a parte **Testes Neuromuscular** do projeto. Como ficaram os arquivos do programa até esta etapa:
+
+**neuromuscularFunctions.js**
+
+```js
+/* neuromuscular functions */
+
+var input = require('readline-sync')
+
+const { validationFunctions } = require('./validationFunctions')
+
+const neuromuscularFunctions = {
+
+  wellsBenchTest(){
+  
+    let testResult = ''
+    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
+    let validNumber = true
+  
+    do{
+  
+      testResult = input.question('Teste de flexibilidade banco de Wells (cm)[00]: ')
+      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
+      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+  
+    }while(!validNumber)
+    
+    return Number(testResult)
+  
+  },
+
+  flexibilityClassification(sexNumber, ageValue, flexibilityTestResult){
+
+    let classification = ''
+    const UnidentifiedSex = `[ERROR] Sexo não identificado!`
+    const ageLessThanTwenty = ageValue > 0 && ageValue < 20
+    const ageLessThanThirty = ageValue < 30
+    const ageLessThanForty = ageValue < 40
+    const ageLessThanFifty = ageValue < 50
+    const ageLessThanSixty = ageValue < 60
+    const ageLessThanSeventy = ageValue < 70
+    const weakRating = `Fraca`
+    const regularRating = `Regular`
+    const goodRating = `Boa`
+    const excellentRating = `Excelente`
+    const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+  
+  
+    switch (sexNumber) {
+      
+      // men
+      case 1:
+        
+        if(ageLessThanTwenty){
+          
+          if(flexibilityTestResult < 24){
+            classification = weakRating
+          } else if(flexibilityTestResult < 29){
+            classification = regularRating
+          } else if(flexibilityTestResult < 39){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageLessThanThirty){
+          
+          if(flexibilityTestResult < 25){
+            classification = weakRating
+          } else if(flexibilityTestResult < 30){
+            classification = regularRating
+          } else if(flexibilityTestResult < 40){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageLessThanForty){
+          
+          if(flexibilityTestResult < 23){
+            classification = weakRating
+          } else if(flexibilityTestResult < 28){
+            classification = regularRating
+          } else if(flexibilityTestResult < 38){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageLessThanFifty){
+          
+          if(flexibilityTestResult < 18){
+            classification = weakRating
+          } else if(flexibilityTestResult < 24){
+            classification = regularRating
+          } else if(flexibilityTestResult < 35){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageLessThanSixty){
+          
+          if(flexibilityTestResult < 16){
+            classification = weakRating
+          } else if(flexibilityTestResult < 24){
+            classification = regularRating
+          } else if(flexibilityTestResult < 35){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageLessThanSeventy){
+          
+          if(flexibilityTestResult < 15){
+            classification = weakRating
+          } else if(flexibilityTestResult < 20){
+            classification = regularRating
+          } else if(flexibilityTestResult < 33){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+      
+      // woman
+      case 2:
+  
+        if(ageLessThanTwenty){
+          
+          if(flexibilityTestResult < 29){
+            classification = weakRating
+          } else if(flexibilityTestResult < 34){
+            classification = regularRating
+          } else if(flexibilityTestResult < 43){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageLessThanThirty){
+          
+          if(flexibilityTestResult < 28){
+            classification = weakRating
+          } else if(flexibilityTestResult < 33){
+            classification = regularRating
+          } else if(flexibilityTestResult < 41){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageLessThanForty){
+          
+          if(flexibilityTestResult < 27){
+            classification = weakRating
+          } else if(flexibilityTestResult < 32){
+            classification = regularRating
+          } else if(flexibilityTestResult < 41){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageLessThanFifty){
+          
+          if(flexibilityTestResult < 25){
+            classification = weakRating
+          } else if(flexibilityTestResult < 30){
+            classification = regularRating
+          } else if(flexibilityTestResult < 38){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageLessThanSixty){
+          
+          if(flexibilityTestResult < 25){
+            classification = weakRating
+          } else if(flexibilityTestResult < 30){
+            classification = regularRating
+          } else if(flexibilityTestResult < 39){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageLessThanSeventy){
+          
+          if(flexibilityTestResult < 23){
+            classification = weakRating
+          } else if(flexibilityTestResult < 27){
+            classification = regularRating
+          } else if(flexibilityTestResult < 35){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+    
+      default:
+        classification = UnidentifiedSex
+        break;
+    }
+  
+    return classification
+  },
+  
+  abdominalTest(){
+
+    let testResult = ''
+    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
+    let validNumber = true
+  
+    do{
+      console.log('Teste de Abdominais')
+      testResult = input.question('Digite a quantidade de repetições em 1 min [00]: ')
+      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
+      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+  
+    }while(!validNumber)
+    
+    return Number(testResult)
+  
+  },
+
+  abdominalClassification(sexNumber, ageValue, abdominalTestResult){
+  
+    let classification = ''
+    const unidentifiedSex = `[ERROR] Sexo não identificado!` 
+    const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
+    const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
+    const ageBetweenFortyAndFortyNine = ageValue >= 40 && ageValue <= 49
+    const ageBetweenFiftyAndFiftyNine = ageValue >= 50 && ageValue <= 59
+    const ageBetweenSixtyAndSixtyNine = ageValue >= 60 && ageValue <= 69
+    const veryPoorRating = `Muito Fraco`
+    const weakRating = `Fraco`
+    const regularRating = `Regular`
+    const goodRating = `Bom`
+    const excellentRating = `Excelente`
+    const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+  
+    switch (sexNumber) {
+      
+      // men
+      case 1:
+        
+        if(ageBetweenTwentyAndTwentyNine){
+          
+          if(abdominalTestResult < 30){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 35){
+            classification = weakRating
+          } else if(abdominalTestResult < 40){
+            classification = regularRating
+          } else if(abdominalTestResult < 45){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenThirtyAndThirtyNine){
+          
+          if(abdominalTestResult < 22){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 27){
+            classification = weakRating
+          } else if(abdominalTestResult < 32){
+            classification = regularRating
+          } else if(abdominalTestResult < 37){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFortyAndFortyNine){
+          
+          if(abdominalTestResult < 17){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 21){
+            classification = weakRating
+          } else if(abdominalTestResult < 26){
+            classification = regularRating
+          } else if(abdominalTestResult < 32){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFiftyAndFiftyNine){
+          
+          if(abdominalTestResult < 12){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 17){
+            classification = weakRating
+          } else if(abdominalTestResult < 23){
+            classification = regularRating
+          } else if(abdominalTestResult < 29){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenSixtyAndSixtyNine){
+          
+          if(abdominalTestResult < 9){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 13){
+            classification = weakRating
+          } else if(abdominalTestResult < 19){
+            classification = regularRating
+          } else if(abdominalTestResult < 25){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+      
+      // woman
+      case 2:
+  
+        if(ageBetweenTwentyAndTwentyNine){
+          
+          if(abdominalTestResult < 26){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 30){
+            classification = weakRating
+          } else if(abdominalTestResult < 35){
+            classification = regularRating
+          } else if(abdominalTestResult < 40){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenThirtyAndThirtyNine){
+          
+          if(abdominalTestResult < 21){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 25){
+            classification = weakRating
+          } else if(abdominalTestResult < 30){
+            classification = regularRating
+          } else if(abdominalTestResult < 35){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFortyAndFortyNine){
+          
+          if(abdominalTestResult < 16){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 20){
+            classification = weakRating
+          } else if(abdominalTestResult < 25){
+            classification = regularRating
+          } else if(abdominalTestResult < 30){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFiftyAndFiftyNine){
+          
+          if(abdominalTestResult < 11){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 15){
+            classification = weakRating
+          } else if(abdominalTestResult < 20){
+            classification = regularRating
+          } else if(abdominalTestResult < 25){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenSixtyAndSixtyNine){
+          
+          if(abdominalTestResult < 6){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 10){
+            classification = weakRating
+          } else if(abdominalTestResult < 15){
+            classification = regularRating
+          } else if(abdominalTestResult < 20){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+    
+      default:
+  
+        classification = unidentifiedSex
+  
+        break;
+    }
+  
+    return classification
+  
+  },
+
+  flexArmTest(){
+
+    let testResult = ''
+    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
+    let validNumber = true
+  
+    do{
+      console.log('Teste de Flexão de Braço')
+      testResult = input.question('Digite a quantidade de repetições [00]: ')
+      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
+      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+  
+    }while(!validNumber)
+    
+    return Number(testResult)
+  
+  },
+
+  flexArmClassification(sexNumber, ageValue, flexArmTestResult){
+  
+    let classification = ''
+    const unidentifiedSex = `[ERROR] Sexo não identificado!` 
+    const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
+    const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
+    const ageBetweenFortyAndFortyNine = ageValue >= 40 && ageValue <= 49
+    const ageBetweenFiftyAndFiftyNine = ageValue >= 50 && ageValue <= 59
+    const ageBetweenSixtyAndSixtyNine = ageValue >= 60 && ageValue <= 69
+    const veryPoorRating = `Muito Fraco`
+    const weakRating = `Fraco`
+    const regularRating = `Regular`
+    const goodRating = `Bom`
+    const excellentRating = `Excelente`
+    const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+  
+    switch (sexNumber) {
+      
+      // men
+      case 1:
+        
+        if(ageBetweenTwentyAndTwentyNine){
+          
+          if(flexArmTestResult < 17){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 30){
+            classification = weakRating
+          } else if(flexArmTestResult < 40){
+            classification = regularRating
+          } else if(flexArmTestResult < 50){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenThirtyAndThirtyNine){
+          
+          if(flexArmTestResult < 14){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 22){
+            classification = weakRating
+          } else if(flexArmTestResult < 31){
+            classification = regularRating
+          } else if(flexArmTestResult < 40){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFortyAndFortyNine){
+          
+          if(flexArmTestResult < 11){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 18){
+            classification = weakRating
+          } else if(flexArmTestResult < 27){
+            classification = regularRating
+          } else if(flexArmTestResult < 35){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFiftyAndFiftyNine){
+          
+          if(flexArmTestResult < 8){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 15){
+            classification = weakRating
+          } else if(flexArmTestResult < 24){
+            classification = regularRating
+          } else if(flexArmTestResult < 30){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenSixtyAndSixtyNine){
+          
+          if(flexArmTestResult < 5){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 10){
+            classification = weakRating
+          } else if(flexArmTestResult < 17){
+            classification = regularRating
+          } else if(flexArmTestResult < 25){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+      
+      // woman
+      case 2:
+  
+        if(ageBetweenTwentyAndTwentyNine){
+          
+          if(flexArmTestResult < 7){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 16){
+            classification = weakRating
+          } else if(flexArmTestResult < 27){
+            classification = regularRating
+          } else if(flexArmTestResult < 38){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenThirtyAndThirtyNine){
+          
+          if(flexArmTestResult < 5){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 13){
+            classification = weakRating
+          } else if(flexArmTestResult < 24){
+            classification = regularRating
+          } else if(flexArmTestResult < 35){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFortyAndFortyNine){
+          
+          if(flexArmTestResult < 4){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 10){
+            classification = weakRating
+          } else if(flexArmTestResult < 21){
+            classification = regularRating
+          } else if(flexArmTestResult < 32){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFiftyAndFiftyNine){
+          
+          if(flexArmTestResult < 3){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 8){
+            classification = weakRating
+          } else if(flexArmTestResult < 18){
+            classification = regularRating
+          } else if(flexArmTestResult < 29){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenSixtyAndSixtyNine){
+          
+          if(flexArmTestResult < 2){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 6){
+            classification = weakRating
+          } else if(flexArmTestResult < 13){
+            classification = regularRating
+          } else if(flexArmTestResult < 20){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+    
+      default:
+  
+        classification = unidentifiedSex
+  
+        break;
+    }
+  
+    return classification
+  
+  },
+
+}
+
+module.exports = {
+  neuromuscularFunctions
+}
+```
+
+
+
+**saf.js**
+
+```js
+const { headerFunctions } = require('./headerFunctions')
+const { personalData } = require('./personalData')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
+const { anthropometryFunctions } = require('./anthropometryFunctions')
+const { neuromuscularFunctions } = require('./neuromuscularFunctions')
+
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+
+// variables personalData
+const name = personalData.userName()
+const birthdayInBrazilianFormat =  personalData.dateOfBirth()
+const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
+const age = personalData.age(birthdayInISOFormat)
+const sexNumber = personalData.sexNumber()
+const sex = personalData.showSex(sexNumber)
+const profession = personalData.userProfession()
+const userEmail = personalData.userEmail()
+const phoneNumber = personalData.phoneNumber()
+
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
+
+// variables anamnesisFunctions
+const questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+const currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+const pastIllness = anamnesisFunctions.pastIllness()
+const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
+const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
+const useMedication = anamnesisFunctions.useMedication()
+const sportsInjuries = anamnesisFunctions.sportsInjuries()
+const trainingObjective = anamnesisFunctions.trainingObjective()
+const daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
+const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
+
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Cardiorrespiratório")
+
+// variables cardiorespiratory
+const restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+const maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(age)
+const restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
+const bloodPressureRating = cardiorespiratoryFunctions.classificationOfBloodPressure(restingBloodPressure)
+
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
+
+// variables anthropometryFunctions
+const bodyWeight = anthropometryFunctions.bodyWeight()
+const bodyStature = anthropometryFunctions.stature()
+const bodyMassIndex = anthropometryFunctions.bodyMassIndex(bodyWeight, bodyStature)
+const bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(bodyMassIndex)
+const bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+const hipWaistRatio = anthropometryFunctions.hipWaistRatio(bodyPerimeter.Cintura, bodyPerimeter.Quadril)
+const waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(sexNumber, age, hipWaistRatio)
+const waistCircumference = anthropometryFunctions.waistCircumferenceClassification(sexNumber, bodyPerimeter.Cintura)
+const skinFolds = anthropometryFunctions.subcutaneousMeasures()
+const fatPercentage = anthropometryFunctions.fatPercentage(age, sexNumber, skinFolds)
+const fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(sexNumber, fatPercentage)
+const fatBodyMass = anthropometryFunctions.fatBodyMass(bodyWeight, fatPercentage)
+const leanBodyMass = anthropometryFunctions.leanBodyMass(bodyWeight, fatBodyMass)
+const expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(sexNumber, leanBodyMass)
+
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Neuromuscular")
+
+// variables neuromuscularFunctions
+const wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
+const flexibilityRating = neuromuscularFunctions.flexibilityClassification(sexNumber, age, wellsBenchTest)
+const numberOfAbs = neuromuscularFunctions.abdominalTest()
+const abdominalRating = neuromuscularFunctions.abdominalClassification(sexNumber, age, numberOfAbs)
+const numberOfPushUps = neuromuscularFunctions.flexArmTest()
+const flexArmRating = neuromuscularFunctions.flexArmClassification(sexNumber, age, numberOfPushUps)
+
+// show results personalData
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+console.log(`Nome: ${name}`)
+console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
+console.log(`Idade: ${age} anos!`)
+console.log(`Sexo: ${sex}`)
+console.log(`Profissão: ${profession}`)
+console.log(`E-mail: ${userEmail}`)
+console.log(`Celular: ${phoneNumber}`)
+
+// show results anamnesisFunctions
+console.log(`===============================`) 
+headerFunctions.subTitle("Anamnese")
+
+console.log(`Questionário PAR-Q: ${questionnairePARQ}`)
+console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(currentPhysicalState)}`)
+console.log(`Doença Pregressa: ${pastIllness}`)
+console.log(`Doença Pregressa na Família: ${illnessesFamily}`)
+console.log(`Cirurgia: ${surgeryPerformed}`)
+console.log(`Uso de Medicamento: ${useMedication}`)
+console.log(`Lesão Desportiva: ${sportsInjuries}`)
+console.log(`Objetivo do treino: ${trainingObjective}`)
+console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining} dias.`)
+console.log(`Tempo disponível para treino: ${timeAvailablePerTraining} minutos.`)
+
+// show results cardiorespiratoryFunctions
+console.log(`===============================`) 
+headerFunctions.subTitle("Cardiorespiratório")
+console.log(`Frequência Cardíaca de Repouso: ${restingHeartRate} bpm.`)
+console.log(`Frequência Cardíaca Máxima: ${maximumHeartRate} bpm.`)
+cardiorespiratoryFunctions.workingHeartRate(Number(restingHeartRate), Number(maximumHeartRate))
+console.log(`Pressão Arterial de Repouso: ${restingBloodPressure.systolic}/${restingBloodPressure.diastolic} mmHg.`)
+console.log(`Classificação da Pressão Arterial`)
+console.log(`Sistólica: ${bloodPressureRating.systolicClassification}`)
+console.log(`Diastólica: ${bloodPressureRating.diastolicClassification}`)
+
+// show results anthropometryFunctions
+console.log(`===============================`) 
+headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${bodyStature} metros`)
+console.log(`Índice de Massa Corporal - IMC: ${bodyMassIndex}`)
+console.log(`Classificação IMC: ${bodyMassIndexClassification}`)
+anthropometryFunctions.showPerimeter(bodyPerimeter)
+console.log(`Relação Cintura Quadril- RCQ: ${hipWaistRatio}`)
+console.log(`Classificação RCQ: ${waistHipRatioClassification}`)
+console.log(`Circunfência cintura - Classificação: ${waistCircumference}`)
+anthropometryFunctions.showSubcutaneousFolds(skinFolds)
+console.log(`Percentual de gordura: ${fatPercentage}%`)
+console.log(`Classificação % Gordura: ${fatPercentageClassification}`)
+console.log(`Massa Corporal Gorda: ${fatBodyMass} kilos`)
+console.log(`Massa Corporal Magra: ${leanBodyMass} kilos`)
+console.log(`Massa Corporal Ideal Prevista: ${expectedIdealBodyMass} kilos`)
+
+// show results neuromuscularFunctions
+console.log(`===============================`) 
+headerFunctions.subTitle("Neuromuscular")
+console.log(`Resultado teste Flexibilidade Banco de Wells: ${wellsBenchTest} cm`)
+console.log(`Classificação Flexibilidade: ${flexibilityRating}`)
+console.log(`Quantidade de flexões abdominais: ${numberOfAbs}`)
+console.log(`Classificação Abdominais: ${abdominalRating}`)
+console.log(`Quantidade de flexões de braço: ${numberOfPushUps}`)
+console.log(`Classificação flexões de braço: ${flexArmRating}`)
+
+console.log(`===============================`)
+```
+
+Ao executar o progama:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Nome: Maria da Silva
+Data de nascimento: 15/06/1985
+Idade: 36 anos!
+Sexo: Feminino
+Profissão: Empresaria
+E-mail: maria@silva.com
+Celular: 13987651234
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Estado físico: Sedentário
+Doença Pregressa: Sem doença pregressa.
+Doença Pregressa na Família: Pais hipertensos
+Cirurgia: Nunca realizou procedimento cirúrgico.
+Uso de Medicamento: Não faz uso de medicamento.
+Lesão Desportiva: Nunca sofreu lesão desportiva.
+Objetivo do treino: Bem-estar e Saúde
+Dias disponíveis para treinar: 4 dias.
+Tempo disponível para treino: 45 minutos.
+===============================
+           Cardiorespiratório            
+===============================
+Frequência Cardíaca de Repouso: 60 bpm.
+Frequência Cardíaca Máxima: 184 bpm.
+Frequência Cardíaca de Treino:
+        40% = 110 bpm
+        45% = 116 bpm
+        50% = 122 bpm
+        55% = 128 bpm
+        60% = 134 bpm
+        65% = 141 bpm
+        70% = 147 bpm
+        75% = 153 bpm
+        80% = 159 bpm
+        85% = 165 bpm
+        90% = 172 bpm
+        95% = 178 bpm
+Pressão Arterial de Repouso: 120/80 mmHg.
+Classificação da Pressão Arterial
+Sistólica: Normal
+Diastólica: Normal
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 65.5 kilos
+Estatura Corporal: 1.62 metros
+Índice de Massa Corporal - IMC: 24.96
+Classificação IMC: Peso Normal
+Perimetria Corporal:
+Braço: 18.0 cm
+Antebraço: 15.3 cm
+Cintura: 65.4 cm
+Quadril: 82.5 cm
+Coxa: 45.7 cm
+Panturrilha: 38.7 cm
+Relação Cintura Quadril- RCQ: 0.79
+Classificação RCQ: Alto Risco
+Circunfência cintura - Classificação: Nenhum Risco
+Dobras Cutâneas:
+Triciptal: 14 mm
+Subescapular: 18 mm
+Peitoral: 8 mm
+SupraIliaca: 21 mm
+Abdominal: 23 mm
+Coxa: 19 mm
+Panturrilha: 13 mm
+Percentual de gordura: 21.25%
+Classificação % Gordura: Abaixo da média
+Massa Corporal Gorda: 13.9 kilos
+Massa Corporal Magra: 51.6 kilos
+Massa Corporal Ideal Prevista: 67 kilos
+===============================
+           Neuromuscular            
+===============================
+Resultado teste Flexibilidade Banco de Wells: 36 cm
+Classificação Flexibilidade: Boa
+Quantidade de flexões abdominais: 41
+Classificação Abdominais: Excelente
+Quantidade de flexões de braço: 15
+Classificação flexões de braço: Regular
+===============================
+```
+
 
 
 ## Testes Aeróbicos
