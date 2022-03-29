@@ -5507,6 +5507,54 @@ Classificação Flexibilidade: Regular
 
 ### Teste Abdominal
 
+**abdominalTest( )** function, determina a quantidade de repetições abdominais realizadas pelo usuário em 1 minuto. Deve aceitar apenas números de até 2 dígitos. Caso seja digitado qualquer outro valor diferente, a function **incorrectValue( )** deve ser chamada e o usuário deve digitar um valor correto. Retorna o valor alcançado no teste pelo o usuário. Logo, em **neuromuscularFunctions.js**:
+
+```js
+abdominalTest(){
+
+    let testResult = ''
+    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
+    let validNumber = true
+  
+    do{
+      console.log('Teste de Abdominais')
+      testResult = input.question('Digite a quantidade de repetições em 1 min [00]: ')
+      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
+      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+  
+    }while(!validNumber)
+    
+    return Number(testResult)
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável **numberOfAbs** e atribuir a ela a function **abdominalTest( )**. Depois mostramos o resultado:
+
+```js
+const numberOfAbs = neuromuscularFunctions.abdominalTest()
+```
+
+```js
+console.log(`Quantidade de flexões abdominais: ${numberOfAbs}`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Resultado teste Flexibilidade Banco de Wells: 15 cm
+Classificação Flexibilidade: Fraca
+Quantidade de flexões abdominais: 45
+===============================
+```
+
+### Teste Abdominal - Classificação
+
 
 
 

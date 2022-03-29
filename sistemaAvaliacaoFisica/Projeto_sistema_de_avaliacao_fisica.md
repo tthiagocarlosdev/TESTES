@@ -687,9 +687,9 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Teste Abdominal: (INPUT)**
-  - [ ] Número inteiro
-  - [ ] Validar vazio
+- [x] **Teste Abdominal: (INPUT)**
+  - [x] Número inteiro
+  - [x] Validar vazio
 
 
 
