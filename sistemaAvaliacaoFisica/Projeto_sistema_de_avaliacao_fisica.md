@@ -693,11 +693,11 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Teste Abdominal - Classificação: (SHOW)**
+- [x] **Teste Abdominal - Classificação: (SHOW)**
 
-  - [ ] se **homem**
+  - [x] se **homem**
 
-    - [ ] Com **idade** entre 20 e 29 anos
+    - [x] Com **idade** entre 20 e 29 anos
 
       Abdominal < 30 = "Muito Fraco"
 
@@ -709,7 +709,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Abdominal >= 45 = "Excelente"
 
-    - [ ] Com **idade** entre 30 e 39 anos
+    - [x] Com **idade** entre 30 e 39 anos
 
       Abdominal < 22 = "Muito Fraco"
 
@@ -721,7 +721,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Abdominal >= 37 = "Excelente"
 
-    - [ ] Com **idade** entre 40 e 49 anos
+    - [x] Com **idade** entre 40 e 49 anos
 
       Abdominal < 17 = "Muito Fraco"
 
@@ -733,7 +733,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Abdominal >= 32 = "Excelente"
 
-    - [ ] Com **idade** entre 50 e 59 anos
+    - [x] Com **idade** entre 50 e 59 anos
 
       Abdominal < 12 = "Muito Fraco"
 
@@ -745,7 +745,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Abdominal >= 29 = "Excelente"
 
-    - [ ] Com **idade** entre 60 e 69 anos
+    - [x] Com **idade** entre 60 e 69 anos
 
       Abdominal < 9 = "Muito Fraco"
 
@@ -757,9 +757,9 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Abdominal >= 25 = "Excelente"
 
-  - [ ] se **mulher**
+  - [x] se **mulher**
 
-    - [ ] Com **idade** entre 20 e 29 anos
+    - [x] Com **idade** entre 20 e 29 anos
 
       Abdominal < 26 = "Muito Fraco"
 
@@ -771,7 +771,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Abdominal >= 40 = "Excelente"
 
-    - [ ] Com **idade** entre 30 e 39 anos
+    - [x] Com **idade** entre 30 e 39 anos
 
       Abdominal < 21 = "Muito Fraco"
 
@@ -783,7 +783,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Abdominal >= 35 = "Excelente"
 
-    - [ ] Com **idade** entre 40 e 49 anos
+    - [x] Com **idade** entre 40 e 49 anos
 
       Abdominal < 16 = "Muito Fraco"
 
@@ -795,7 +795,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Abdominal >= 30 = "Excelente"
 
-    - [ ] Com **idade** entre 50 e 59 anos
+    - [x] Com **idade** entre 50 e 59 anos
 
       Abdominal < 11 = "Muito Fraco"
 
@@ -807,7 +807,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Abdominal >= 25 = "Excelente"
 
-    - [ ] Com **idade** entre 60 e 69 anos
+    - [x] Com **idade** entre 60 e 69 anos
 
       Abdominal < 6 = "Muito Fraco"
 

@@ -69,6 +69,7 @@ const expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(sexNu
 const wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
 const flexibilityRating = neuromuscularFunctions.flexibilityClassification(sexNumber, age, wellsBenchTest)
 const numberOfAbs = neuromuscularFunctions.abdominalTest()
+const abdominalRating = neuromuscularFunctions.abdominalClassification(sexNumber, age, numberOfAbs)
 
 // show results personalData
 /*console.clear()
@@ -135,6 +136,7 @@ headerFunctions.subTitle("Neuromuscular") //temporary
 console.log(`Resultado teste Flexibilidade Banco de Wells: ${wellsBenchTest} cm`)
 console.log(`Classificação Flexibilidade: ${flexibilityRating}`)
 console.log(`Quantidade de flexões abdominais: ${numberOfAbs}`)
+console.log(`Classificação Abdominais: ${abdominalRating}`)
 
 
 

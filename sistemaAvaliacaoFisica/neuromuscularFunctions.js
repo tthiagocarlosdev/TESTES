@@ -231,6 +231,193 @@ const neuromuscularFunctions = {
   
   },
 
+  abdominalClassification(sexNumber, ageValue, abdominalTestResult){
+  
+    let classification = ''
+    const unidentifiedSex = `[ERROR] Sexo não identificado!` 
+    const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
+    const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
+    const ageBetweenFortyAndFortyNine = ageValue >= 40 && ageValue <= 49
+    const ageBetweenFiftyAndFiftyNine = ageValue >= 50 && ageValue <= 59
+    const ageBetweenSixtyAndSixtyNine = ageValue >= 60 && ageValue <= 69
+    const veryPoorRating = `Muito Fraco`
+    const weakRating = `Fraco`
+    const regularRating = `Regular`
+    const goodRating = `Bom`
+    const excellentRating = `Excelente`
+    const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+  
+    switch (sexNumber) {
+      
+      // men
+      case 1:
+        
+        if(ageBetweenTwentyAndTwentyNine){
+          
+          if(abdominalTestResult < 30){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 35){
+            classification = weakRating
+          } else if(abdominalTestResult < 40){
+            classification = regularRating
+          } else if(abdominalTestResult < 45){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenThirtyAndThirtyNine){
+          
+          if(abdominalTestResult < 22){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 27){
+            classification = weakRating
+          } else if(abdominalTestResult < 32){
+            classification = regularRating
+          } else if(abdominalTestResult < 37){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFortyAndFortyNine){
+          
+          if(abdominalTestResult < 17){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 21){
+            classification = weakRating
+          } else if(abdominalTestResult < 26){
+            classification = regularRating
+          } else if(abdominalTestResult < 32){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFiftyAndFiftyNine){
+          
+          if(abdominalTestResult < 12){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 17){
+            classification = weakRating
+          } else if(abdominalTestResult < 23){
+            classification = regularRating
+          } else if(abdominalTestResult < 29){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenSixtyAndSixtyNine){
+          
+          if(abdominalTestResult < 9){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 13){
+            classification = weakRating
+          } else if(abdominalTestResult < 19){
+            classification = regularRating
+          } else if(abdominalTestResult < 25){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+      
+      // woman
+      case 2:
+  
+        if(ageBetweenTwentyAndTwentyNine){
+          
+          if(abdominalTestResult < 26){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 30){
+            classification = weakRating
+          } else if(abdominalTestResult < 35){
+            classification = regularRating
+          } else if(abdominalTestResult < 40){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenThirtyAndThirtyNine){
+          
+          if(abdominalTestResult < 21){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 25){
+            classification = weakRating
+          } else if(abdominalTestResult < 30){
+            classification = regularRating
+          } else if(abdominalTestResult < 35){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFortyAndFortyNine){
+          
+          if(abdominalTestResult < 16){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 20){
+            classification = weakRating
+          } else if(abdominalTestResult < 25){
+            classification = regularRating
+          } else if(abdominalTestResult < 30){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFiftyAndFiftyNine){
+          
+          if(abdominalTestResult < 11){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 15){
+            classification = weakRating
+          } else if(abdominalTestResult < 20){
+            classification = regularRating
+          } else if(abdominalTestResult < 25){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenSixtyAndSixtyNine){
+          
+          if(abdominalTestResult < 6){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 10){
+            classification = weakRating
+          } else if(abdominalTestResult < 15){
+            classification = regularRating
+          } else if(abdominalTestResult < 20){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+    
+      default:
+  
+        classification = unidentifiedSex
+  
+        break;
+    }
+  
+    return classification
+  
+  },
+
 }
 
 module.exports = {

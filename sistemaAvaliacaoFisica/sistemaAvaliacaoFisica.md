@@ -5555,6 +5555,259 @@ Quantidade de flexões abdominais: 45
 
 ### Teste Abdominal - Classificação
 
+**abdominalClassification( )** function determina a classificação da quantidade de abdominais realizadas pelo usuário. Recebe como parâmetro o  **sexo**, a **idade** e a **quantidade de abodominais** raelizada pelo usuário. Retorna a classificação de acordo com a tabela abaixo:
+
+| Teste Abdominal - Classificação - HOMEM | Teste Abdominal - Classificação - MULHER |
+| --------------------------------------- | ---------------------------------------- |
+| **Com idade entre 20 e 29 anos**        | **Com idade entre 20 e 29 anos**         |
+| Abdominal < 30 = "Muito Fraco"          | Abdominal < 26 = "Muito Fraco"           |
+| Abdominal < 35 = "Fraco"                | Abdominal < 30 = "Fraco"                 |
+| Abdominal < 40 = "Regular"              | Abdominal < 35 = "Regular"               |
+| Abdominal < 45 = "Bom"                  | Abdominal < 40 = "Bom"                   |
+| Abdominal >= 45 = "Excelente"           | Abdominal >= 40 = "Excelente"            |
+| **Com idade entre 30 e 39 anos**        | **Com idade entre 30 e 39 anos**         |
+| Abdominal < 22 = "Muito Fraco"          | Abdominal < 21 = "Muito Fraco"           |
+| Abdominal < 27 = "Fraco"                | Abdominal < 25 = "Fraco"                 |
+| Abdominal < 32 = "Regular"              | Abdominal < 30 = "Regular"               |
+| Abdominal < 37 = "Bom"                  | Abdominal < 35 = "Bom"                   |
+| Abdominal >= 37 = "Excelente"           | Abdominal >= 35 = "Excelente"            |
+| **Com idade entre 40 e 49 anos**        | **Com idade entre 40 e 49 anos**         |
+| Abdominal < 17 = "Muito Fraco"          | Abdominal < 16 = "Muito Fraco"           |
+| Abdominal < 21 = "Fraco"                | Abdominal < 20 = "Fraco"                 |
+| Abdominal < 26 = "Regular"              | Abdominal < 25 = "Regular"               |
+| Abdominal < 32 = "Bom"                  | Abdominal < 30 = "Bom"                   |
+| Abdominal >= 32 = "Excelente"           | Abdominal >= 30 = "Excelente"            |
+| **Com idade entre 50 e 59 anos**        | **Com idade entre 50 e 59 anos**         |
+| Abdominal < 12 = "Muito Fraco"          | Abdominal < 11 = "Muito Fraco"           |
+| Abdominal < 17 = "Fraco"                | Abdominal < 15 = "Fraco"                 |
+| Abdominal < 23 = "Regular"              | Abdominal < 20 = "Regular"               |
+| Abdominal < 29 = "Bom"                  | Abdominal < 25 = "Bom"                   |
+| Abdominal >= 29 = "Excelente"           | Abdominal >= 25 = "Excelente"            |
+| **Com idade entre 60 e 69 anos**        | **Com idade entre 60 e 69 anos**         |
+| Abdominal < 9 = "Muito Fraco"           | Abdominal < 6 = "Muito Fraco"            |
+| Abdominal < 13 = "Fraco"                | Abdominal < 10 = "Fraco"                 |
+| Abdominal < 19 = "Regular"              | Abdominal < 15 = "Regular"               |
+| Abdominal < 25 = "Bom"                  | Abdominal < 20 = "Bom"                   |
+| Abdominal >= 25 = "Excelente"           | Abdominal >= 20 = "Excelente"            |
+
+Logo, em **neuromuscularFunctions.js**:
+
+```js
+abdominalClassification(sexNumber, ageValue, abdominalTestResult){
+  
+    let classification = ''
+    const unidentifiedSex = `[ERROR] Sexo não identificado!` 
+    const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
+    const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
+    const ageBetweenFortyAndFortyNine = ageValue >= 40 && ageValue <= 49
+    const ageBetweenFiftyAndFiftyNine = ageValue >= 50 && ageValue <= 59
+    const ageBetweenSixtyAndSixtyNine = ageValue >= 60 && ageValue <= 69
+    const veryPoorRating = `Muito Fraco`
+    const weakRating = `Fraco`
+    const regularRating = `Regular`
+    const goodRating = `Bom`
+    const excellentRating = `Excelente`
+    const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+  
+    switch (sexNumber) {
+      
+      // men
+      case 1:
+        
+        if(ageBetweenTwentyAndTwentyNine){
+          
+          if(abdominalTestResult < 30){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 35){
+            classification = weakRating
+          } else if(abdominalTestResult < 40){
+            classification = regularRating
+          } else if(abdominalTestResult < 45){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenThirtyAndThirtyNine){
+          
+          if(abdominalTestResult < 22){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 27){
+            classification = weakRating
+          } else if(abdominalTestResult < 32){
+            classification = regularRating
+          } else if(abdominalTestResult < 37){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFortyAndFortyNine){
+          
+          if(abdominalTestResult < 17){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 21){
+            classification = weakRating
+          } else if(abdominalTestResult < 26){
+            classification = regularRating
+          } else if(abdominalTestResult < 32){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFiftyAndFiftyNine){
+          
+          if(abdominalTestResult < 12){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 17){
+            classification = weakRating
+          } else if(abdominalTestResult < 23){
+            classification = regularRating
+          } else if(abdominalTestResult < 29){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenSixtyAndSixtyNine){
+          
+          if(abdominalTestResult < 9){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 13){
+            classification = weakRating
+          } else if(abdominalTestResult < 19){
+            classification = regularRating
+          } else if(abdominalTestResult < 25){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+      
+      // woman
+      case 2:
+  
+        if(ageBetweenTwentyAndTwentyNine){
+          
+          if(abdominalTestResult < 26){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 30){
+            classification = weakRating
+          } else if(abdominalTestResult < 35){
+            classification = regularRating
+          } else if(abdominalTestResult < 40){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenThirtyAndThirtyNine){
+          
+          if(abdominalTestResult < 21){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 25){
+            classification = weakRating
+          } else if(abdominalTestResult < 30){
+            classification = regularRating
+          } else if(abdominalTestResult < 35){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFortyAndFortyNine){
+          
+          if(abdominalTestResult < 16){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 20){
+            classification = weakRating
+          } else if(abdominalTestResult < 25){
+            classification = regularRating
+          } else if(abdominalTestResult < 30){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFiftyAndFiftyNine){
+          
+          if(abdominalTestResult < 11){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 15){
+            classification = weakRating
+          } else if(abdominalTestResult < 20){
+            classification = regularRating
+          } else if(abdominalTestResult < 25){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenSixtyAndSixtyNine){
+          
+          if(abdominalTestResult < 6){
+            classification = veryPoorRating
+          } else if(abdominalTestResult < 10){
+            classification = weakRating
+          } else if(abdominalTestResult < 15){
+            classification = regularRating
+          } else if(abdominalTestResult < 20){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+    
+      default:
+  
+        classification = unidentifiedSex
+  
+        break;
+    }
+  
+    return classification
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável **abdominalRating** e atribuir a function **abdominalClassification( )** passasndo como parâmetro as variáveis **sexNumber**, **age** e **numberOfAbs**. Em seguida mostramos o resultado:
+
+```js
+const abdominalRating = neuromuscularFunctions.abdominalClassification(sexNumber, age, numberOfAbs)
+```
+
+ ```js
+ console.log(`Classificação Abdominais: ${abdominalRating}`)
+ ```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Resultado teste Flexibilidade Banco de Wells: 30 cm
+Classificação Flexibilidade: Boa
+Quantidade de flexões abdominais: 37
+Classificação Abdominais: Excelente
+===============================
+```
+
+### Flexão de Braço
+
 
 
 

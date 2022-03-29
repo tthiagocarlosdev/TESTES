@@ -2102,4 +2102,265 @@ function abdominalTest(){
 
 }
 
-console.log(abdominalTest())
+// console.log(abdominalTest())
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Abdominal Test - Classification == **/
+
+function abdominalClassification(sexNumber, ageValue, abdominalTestResult){
+  
+  let classification = ''
+  const unidentifiedSex = `[ERROR] Sexo não identificado!` 
+  const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
+  const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
+  const ageBetweenFortyAndFortyNine = ageValue >= 40 && ageValue <= 49
+  const ageBetweenFiftyAndFiftyNine = ageValue >= 50 && ageValue <= 59
+  const ageBetweenSixtyAndSixtyNine = ageValue >= 60 && ageValue <= 69
+  const veryPoorRating = `Muito Fraco`
+  const weakRating = `Fraco`
+  const regularRating = `Regular`
+  const goodRating = `Bom`
+  const excellentRating = `Excelente`
+  const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+
+  switch (sexNumber) {
+    
+    // men
+    case 1:
+      
+      if(ageBetweenTwentyAndTwentyNine){
+        
+        if(abdominalTestResult < 30){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 35){
+          classification = weakRating
+        } else if(abdominalTestResult < 40){
+          classification = regularRating
+        } else if(abdominalTestResult < 45){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenThirtyAndThirtyNine){
+        
+        if(abdominalTestResult < 22){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 27){
+          classification = weakRating
+        } else if(abdominalTestResult < 32){
+          classification = regularRating
+        } else if(abdominalTestResult < 37){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFortyAndFortyNine){
+        
+        if(abdominalTestResult < 17){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 21){
+          classification = weakRating
+        } else if(abdominalTestResult < 26){
+          classification = regularRating
+        } else if(abdominalTestResult < 32){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFiftyAndFiftyNine){
+        
+        if(abdominalTestResult < 12){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 17){
+          classification = weakRating
+        } else if(abdominalTestResult < 23){
+          classification = regularRating
+        } else if(abdominalTestResult < 29){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenSixtyAndSixtyNine){
+        
+        if(abdominalTestResult < 9){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 13){
+          classification = weakRating
+        } else if(abdominalTestResult < 19){
+          classification = regularRating
+        } else if(abdominalTestResult < 25){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else {
+        classification = classificationNotAppliedToAge
+      }
+
+      break;
+    
+    // woman
+    case 2:
+
+      if(ageBetweenTwentyAndTwentyNine){
+        
+        if(abdominalTestResult < 26){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 30){
+          classification = weakRating
+        } else if(abdominalTestResult < 35){
+          classification = regularRating
+        } else if(abdominalTestResult < 40){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenThirtyAndThirtyNine){
+        
+        if(abdominalTestResult < 21){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 25){
+          classification = weakRating
+        } else if(abdominalTestResult < 30){
+          classification = regularRating
+        } else if(abdominalTestResult < 35){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFortyAndFortyNine){
+        
+        if(abdominalTestResult < 16){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 20){
+          classification = weakRating
+        } else if(abdominalTestResult < 25){
+          classification = regularRating
+        } else if(abdominalTestResult < 30){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFiftyAndFiftyNine){
+        
+        if(abdominalTestResult < 11){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 15){
+          classification = weakRating
+        } else if(abdominalTestResult < 20){
+          classification = regularRating
+        } else if(abdominalTestResult < 25){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenSixtyAndSixtyNine){
+        
+        if(abdominalTestResult < 6){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 10){
+          classification = weakRating
+        } else if(abdominalTestResult < 15){
+          classification = regularRating
+        } else if(abdominalTestResult < 20){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else {
+        classification = classificationNotAppliedToAge
+      }
+
+      break;
+  
+    default:
+
+      classification = unidentifiedSex
+
+      break;
+  }
+
+  return classification
+
+}
+
+console.log(`MEN`)
+console.log(`idade entre 20 e 29 anos`)
+console.log(abdominalClassification(1, 29, 29))
+console.log(abdominalClassification(1, 29, 34))
+console.log(abdominalClassification(1, 29, 39))
+console.log(abdominalClassification(1, 29, 44))
+console.log(abdominalClassification(1, 29, 45))
+console.log(`idade entre 30 e 39 anos`)
+console.log(abdominalClassification(1, 39, 21))
+console.log(abdominalClassification(1, 39, 26))
+console.log(abdominalClassification(1, 39, 31))
+console.log(abdominalClassification(1, 39, 36))
+console.log(abdominalClassification(1, 39, 37))
+console.log(`idade entre 40 e 49 anos`)
+console.log(abdominalClassification(1, 49, 16))
+console.log(abdominalClassification(1, 49, 20))
+console.log(abdominalClassification(1, 49, 25))
+console.log(abdominalClassification(1, 49, 31))
+console.log(abdominalClassification(1, 49, 32))
+console.log(`idade entre 50 e 59 anos`)
+console.log(abdominalClassification(1, 59, 11))
+console.log(abdominalClassification(1, 59, 16))
+console.log(abdominalClassification(1, 59, 22))
+console.log(abdominalClassification(1, 59, 28))
+console.log(abdominalClassification(1, 59, 29))
+console.log(`idade entre 60 e 69 anos`)
+console.log(abdominalClassification(1, 69, 8))
+console.log(abdominalClassification(1, 69, 12))
+console.log(abdominalClassification(1, 69, 18))
+console.log(abdominalClassification(1, 69, 24))
+console.log(abdominalClassification(1, 69, 25))
+console.log(`=====================`)
+console.log(abdominalClassification(3, 69, 33))
+console.log(abdominalClassification(1, 70, 33))
+console.log(abdominalClassification(1, 19, 33))
+console.log(`WOMAN`)
+console.log(`idade entre 20 e 29 anos`)
+console.log(abdominalClassification(2, 29, 25))
+console.log(abdominalClassification(2, 29, 29))
+console.log(abdominalClassification(2, 29, 34))
+console.log(abdominalClassification(2, 29, 39))
+console.log(abdominalClassification(2, 29, 40))
+console.log(`idade entre 30 e 39 anos`)
+console.log(abdominalClassification(2, 39, 20))
+console.log(abdominalClassification(2, 39, 24))
+console.log(abdominalClassification(2, 39, 29))
+console.log(abdominalClassification(2, 39, 34))
+console.log(abdominalClassification(2, 39, 35))
+console.log(`idade entre 40 e 49 anos`)
+console.log(abdominalClassification(2, 49, 15))
+console.log(abdominalClassification(2, 49, 19))
+console.log(abdominalClassification(2, 49, 24))
+console.log(abdominalClassification(2, 49, 29))
+console.log(abdominalClassification(2, 49, 30))
+console.log(`idade entre 50 e 59 anos`)
+console.log(abdominalClassification(2, 59, 10))
+console.log(abdominalClassification(2, 59, 15))
+console.log(abdominalClassification(2, 59, 19))
+console.log(abdominalClassification(2, 59, 24))
+console.log(abdominalClassification(2, 59, 25))
+console.log(`idade entre 60 e 69 anos`)
+console.log(abdominalClassification(2, 69, 5))
+console.log(abdominalClassification(2, 69, 9))
+console.log(abdominalClassification(2, 69, 14))
+console.log(abdominalClassification(2, 69, 19))
+console.log(abdominalClassification(2, 69, 20))
+console.log(`=====================`)
+console.log(abdominalClassification(3, 69, 33))
+console.log(abdominalClassification(2, 70, 33))
+console.log(abdominalClassification(2, 19, 33))
