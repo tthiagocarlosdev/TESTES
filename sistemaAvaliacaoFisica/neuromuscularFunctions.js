@@ -418,6 +418,24 @@ const neuromuscularFunctions = {
   
   },
 
+  flexArmTest(){
+
+    let testResult = ''
+    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
+    let validNumber = true
+  
+    do{
+      console.log('Teste de Flexão de Braço')
+      testResult = input.question('Digite a quantidade de repetições [00]: ')
+      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
+      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+  
+    }while(!validNumber)
+    
+    return Number(testResult)
+  
+  },
+
 }
 
 module.exports = {

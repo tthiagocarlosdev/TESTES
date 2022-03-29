@@ -5808,6 +5808,56 @@ Classificação Abdominais: Excelente
 
 ### Flexão de Braço
 
+**flexArmTest( )** determina a quantidade de repetições de braço realizadas no teste. Deve aceitar apenas números de até 2 dígitos. Caso seja digitado qualquer outro valor diferente, a function **incorrectValue( )** deve ser chamada e o usuário deve digitar um valor correto. Retorna o valor alcançado no teste pelo o usuário. Logo, em **neuromuscularFunctions.js**:
+
+```js
+flexArmTest(){
+
+    let testResult = ''
+    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
+    let validNumber = true
+  
+    do{
+      console.log('Teste de Flexão de Braço')
+      testResult = input.question('Digite a quantidade de repetições [00]: ')
+      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
+      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+  
+    }while(!validNumber)
+    
+    return Number(testResult)
+  
+  },
+```
+
+Em **saf.js** criamos a variável **numberOfPushUps** que recebe a function **flexArmTest( )**. Em seguida mostramos o resultado:
+
+```js
+const numberOfPushUps = neuromuscularFunctions.flexArmTest()
+```
+
+```js
+console.log(`Quantidade de flexões de braço: ${numberOfPushUps}`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Resultado teste Flexibilidade Banco de Wells: 12 cm
+Classificação Flexibilidade: Fraca
+Quantidade de flexões abdominais: 15
+Classificação Abdominais: Muito Fraco
+Quantidade de flexões de braço: 26
+===============================
+```
+
+### Flexão de Braço - Classificação
+
 
 
 

@@ -821,9 +821,9 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Flexão de Braço: (INPUT)**
-  - [ ] Número inteiro
-  - [ ] Validar vazio
+- [x] **Flexão de Braço: (INPUT)**
+  - [x] Número inteiro
+  - [x] Validar vazio
 
 
 

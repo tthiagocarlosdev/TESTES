@@ -2293,7 +2293,7 @@ function abdominalClassification(sexNumber, ageValue, abdominalTestResult){
   return classification
 
 }
-
+/*
 console.log(`MEN`)
 console.log(`idade entre 20 e 29 anos`)
 console.log(abdominalClassification(1, 29, 29))
@@ -2364,3 +2364,26 @@ console.log(`=====================`)
 console.log(abdominalClassification(3, 69, 33))
 console.log(abdominalClassification(2, 70, 33))
 console.log(abdominalClassification(2, 19, 33))
+*/
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Arm flexion == **/
+
+function flexArmTest(){
+
+  let testResult = ''
+  const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
+  let validNumber = true
+
+  do{
+    console.log('Teste de Flexão de Braço')
+    testResult = input.question('Digite a quantidade de repetições [00]: ')
+    validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
+    validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+
+  }while(!validNumber)
+  
+  return Number(testResult)
+
+}
+
+console.log(flexArmTest())
