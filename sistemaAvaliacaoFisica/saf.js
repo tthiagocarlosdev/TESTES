@@ -71,6 +71,7 @@ const flexibilityRating = neuromuscularFunctions.flexibilityClassification(sexNu
 const numberOfAbs = neuromuscularFunctions.abdominalTest()
 const abdominalRating = neuromuscularFunctions.abdominalClassification(sexNumber, age, numberOfAbs)
 const numberOfPushUps = neuromuscularFunctions.flexArmTest()
+const flexArmRating = neuromuscularFunctions.flexArmClassification(sexNumber, age, numberOfPushUps)
 
 // show results personalData
 /*console.clear()
@@ -139,6 +140,7 @@ console.log(`Classificação Flexibilidade: ${flexibilityRating}`)
 console.log(`Quantidade de flexões abdominais: ${numberOfAbs}`)
 console.log(`Classificação Abdominais: ${abdominalRating}`)
 console.log(`Quantidade de flexões de braço: ${numberOfPushUps}`)
+console.log(`Classificação flexões de braço: ${flexArmRating}`)
 
 
 

@@ -827,11 +827,11 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Flexão de Braço - Classificação: (SHOW)**
+- [x] **Flexão de Braço - Classificação: (SHOW)**
 
-  - [ ] se **homem**
+  - [x] se **homem**
 
-    - [ ] Com **idade** entre 20 e 29 anos
+    - [x] Com **idade** entre 20 e 29 anos
 
       Flexão de Braço < 17 = "Muito Fraco"
 
@@ -843,7 +843,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexão de Braço >= 50 = "Excelente"
 
-    - [ ] Com **idade** entre 30 e 39 anos
+    - [x] Com **idade** entre 30 e 39 anos
 
       Flexão de Braço < 14 = "Muito Fraco"
 
@@ -855,7 +855,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexão de Braço >= 40 = "Excelente"
 
-    - [ ] Com **idade** entre 40 e 49 anos
+    - [x] Com **idade** entre 40 e 49 anos
 
       Flexão de Braço < 11 = "Muito Fraco"
 
@@ -867,7 +867,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexão de Braço >= 35 = "Excelente"
 
-    - [ ] Com **idade** entre 50 e 59 anos
+    - [x] Com **idade** entre 50 e 59 anos
 
       Flexão de Braço < 8 = "Muito Fraco"
 
@@ -879,7 +879,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexão de Braço >= 30 = "Excelente"
 
-    - [ ] Com **idade** entre 60 e 69 anos
+    - [x] Com **idade** entre 60 e 69 anos
 
       Flexão de Braço < 5 = "Muito Fraco"
 
@@ -891,9 +891,9 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexão de Braço >= 25 = "Excelente"
 
-  - [ ] se **mulher**
+  - [x] se **mulher**
 
-    - [ ] Com **idade** entre 20 e 29 anos
+    - [x] Com **idade** entre 20 e 29 anos
 
       Flexão de Braço < 7 = "Muito Fraco"
 
@@ -905,7 +905,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexão de Braço >= 38 = "Excelente"
 
-    - [ ] Com **idade** entre 30 e 39 anos
+    - [x] Com **idade** entre 30 e 39 anos
 
       Flexão de Braço < 5 = "Muito Fraco"
 
@@ -917,7 +917,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexão de Braço >= 35 = "Excelente"
 
-    - [ ] Com **idade** entre 40 e 49 anos
+    - [x] Com **idade** entre 40 e 49 anos
 
       Flexão de Braço < 4 = "Muito Fraco"
 
@@ -929,7 +929,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexão de Braço >= 32 = "Excelente"
 
-    - [ ] Com **idade** entre 50 e 59 anos
+    - [x] Com **idade** entre 50 e 59 anos
 
       Flexão de Braço < 3 = "Muito Fraco"
 
@@ -941,7 +941,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
       Flexão de Braço >= 29 = "Excelente"
 
-    - [ ] Com **idade** entre 60 e 69 anos
+    - [x] Com **idade** entre 60 e 69 anos
 
       Flexão de Braço < 2 = "Muito Fraco"
 

@@ -5555,7 +5555,7 @@ Quantidade de flexões abdominais: 45
 
 ### Teste Abdominal - Classificação
 
-**abdominalClassification( )** function determina a classificação da quantidade de abdominais realizadas pelo usuário. Recebe como parâmetro o  **sexo**, a **idade** e a **quantidade de abodominais** raelizada pelo usuário. Retorna a classificação de acordo com a tabela abaixo:
+**abdominalClassification( )** function determina a classificação da quantidade de abdominais realizadas pelo usuário. Recebe como parâmetro o  **sexo**, a **idade** e a **quantidade de abodominais** realizada pelo usuário. Retorna a classificação de acordo com a tabela abaixo:
 
 | Teste Abdominal - Classificação - HOMEM | Teste Abdominal - Classificação - MULHER |
 | --------------------------------------- | ---------------------------------------- |
@@ -5858,9 +5858,262 @@ Quantidade de flexões de braço: 26
 
 ### Flexão de Braço - Classificação
 
+**flexArmClassification( )** function determina a classificação da quantidade de flexões de braço realizadas pelo usuário. Recebe como parâmetro o  **sexo**, a **idade** e a **quantidade de flexões** realizada pelo usuário. Retorna a classificação de acordo com a tabela abaixo:
+
+| Flexão de Braço - Classificação - HOMEM | Flexão de Braço - Classificação - MULHER |
+| --------------------------------------- | ---------------------------------------- |
+| **Com idade entre 20 e 29 anos**        | **Com idade entre 20 e 29 anos**         |
+| Flexão de Braço < 17 = "Muito Fraco"    | Flexão de Braço < 7 = "Muito Fraco"      |
+| Flexão de Braço < 30 = "Fraco"          | Flexão de Braço < 16 = "Fraco"           |
+| Flexão de Braço < 40 = "Regular"        | Flexão de Braço < 27 = "Regular"         |
+| Flexão de Braço < 50 = "Bom"            | Flexão de Braço < 38 = "Bom"             |
+| Flexão de Braço >= 50 = "Excelente"     | Flexão de Braço >= 38 = "Excelente"      |
+| **Com idade entre 30 e 39 anos**        | **Com idade entre 30 e 39 anos**         |
+| Flexão de Braço < 14 = "Muito Fraco"    | Flexão de Braço < 5 = "Muito Fraco"      |
+| Flexão de Braço < 22 = "Fraco"          | Flexão de Braço < 13 = "Fraco"           |
+| Flexão de Braço < 31 = "Regular"        | Flexão de Braço < 24 = "Regular"         |
+| Flexão de Braço < 40 = "Bom"            | Flexão de Braço < 35 = "Bom"             |
+| Flexão de Braço >= 40 = "Excelente"     | Flexão de Braço >= 35 = "Excelente"      |
+| **Com idade entre 40 e 49 anos**        | **Com idade entre 40 e 49 anos**         |
+| Flexão de Braço < 11 = "Muito Fraco"    | Flexão de Braço < 4 = "Muito Fraco"      |
+| Flexão de Braço < 18 = "Fraco"          | Flexão de Braço < 10 = "Fraco"           |
+| Flexão de Braço < 27 = "Regular"        | Flexão de Braço < 21 = "Regular"         |
+| Flexão de Braço < 35 = "Bom"            | Flexão de Braço < 32 = "Bom"             |
+| Flexão de Braço >= 35 = "Excelente"     | Flexão de Braço >= 32 = "Excelente"      |
+| **Com idade entre 50 e 59 anos**        | **Com idade entre 50 e 59 anos**         |
+| Flexão de Braço < 8 = "Muito Fraco"     | Flexão de Braço < 3 = "Muito Fraco"      |
+| Flexão de Braço < 15 = "Fraco"          | Flexão de Braço < 8 = "Fraco"            |
+| Flexão de Braço < 24 = "Regular"        | Flexão de Braço < 18 = "Regular"         |
+| Flexão de Braço < 30 = "Bom"            | Flexão de Braço < 29 = "Bom"             |
+| Flexão de Braço >= 30 = "Excelente"     | Flexão de Braço >= 29 = "Excelente"      |
+| **Com idade entre 60 e 69 anos**        | **Com idade entre 60 e 69 anos**         |
+| Flexão de Braço < 5 = "Muito Fraco"     | Flexão de Braço < 2 = "Muito Fraco"      |
+| Flexão de Braço < 10 = "Fraco"          | Flexão de Braço < 6 = "Fraco"            |
+| Flexão de Braço < 17 = "Regular"        | Flexão de Braço < 13 = "Regular"         |
+| Flexão de Braço < 25 = "Bom"            | Flexão de Braço < 20 = "Bom"             |
+| Flexão de Braço >= 25 = "Excelente"     | Flexão de Braço >= 20 = "Excelente"      |
+
+Logo, em **neuromuscularFunctions.js**:
+
+```js
+flexArmClassification(sexNumber, ageValue, flexArmTestResult){
+  
+    let classification = ''
+    const unidentifiedSex = `[ERROR] Sexo não identificado!` 
+    const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
+    const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
+    const ageBetweenFortyAndFortyNine = ageValue >= 40 && ageValue <= 49
+    const ageBetweenFiftyAndFiftyNine = ageValue >= 50 && ageValue <= 59
+    const ageBetweenSixtyAndSixtyNine = ageValue >= 60 && ageValue <= 69
+    const veryPoorRating = `Muito Fraco`
+    const weakRating = `Fraco`
+    const regularRating = `Regular`
+    const goodRating = `Bom`
+    const excellentRating = `Excelente`
+    const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+  
+    switch (sexNumber) {
+      
+      // men
+      case 1:
+        
+        if(ageBetweenTwentyAndTwentyNine){
+          
+          if(flexArmTestResult < 17){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 30){
+            classification = weakRating
+          } else if(flexArmTestResult < 40){
+            classification = regularRating
+          } else if(flexArmTestResult < 50){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenThirtyAndThirtyNine){
+          
+          if(flexArmTestResult < 14){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 22){
+            classification = weakRating
+          } else if(flexArmTestResult < 31){
+            classification = regularRating
+          } else if(flexArmTestResult < 40){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFortyAndFortyNine){
+          
+          if(flexArmTestResult < 11){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 18){
+            classification = weakRating
+          } else if(flexArmTestResult < 27){
+            classification = regularRating
+          } else if(flexArmTestResult < 35){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFiftyAndFiftyNine){
+          
+          if(flexArmTestResult < 8){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 15){
+            classification = weakRating
+          } else if(flexArmTestResult < 24){
+            classification = regularRating
+          } else if(flexArmTestResult < 30){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenSixtyAndSixtyNine){
+          
+          if(flexArmTestResult < 5){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 10){
+            classification = weakRating
+          } else if(flexArmTestResult < 17){
+            classification = regularRating
+          } else if(flexArmTestResult < 25){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+      
+      // woman
+      case 2:
+  
+        if(ageBetweenTwentyAndTwentyNine){
+          
+          if(flexArmTestResult < 7){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 16){
+            classification = weakRating
+          } else if(flexArmTestResult < 27){
+            classification = regularRating
+          } else if(flexArmTestResult < 38){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenThirtyAndThirtyNine){
+          
+          if(flexArmTestResult < 5){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 13){
+            classification = weakRating
+          } else if(flexArmTestResult < 24){
+            classification = regularRating
+          } else if(flexArmTestResult < 35){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFortyAndFortyNine){
+          
+          if(flexArmTestResult < 4){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 10){
+            classification = weakRating
+          } else if(flexArmTestResult < 21){
+            classification = regularRating
+          } else if(flexArmTestResult < 32){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFiftyAndFiftyNine){
+          
+          if(flexArmTestResult < 3){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 8){
+            classification = weakRating
+          } else if(flexArmTestResult < 18){
+            classification = regularRating
+          } else if(flexArmTestResult < 29){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenSixtyAndSixtyNine){
+          
+          if(flexArmTestResult < 2){
+            classification = veryPoorRating
+          } else if(flexArmTestResult < 6){
+            classification = weakRating
+          } else if(flexArmTestResult < 13){
+            classification = regularRating
+          } else if(flexArmTestResult < 20){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+    
+      default:
+  
+        classification = unidentifiedSex
+  
+        break;
+    }
+  
+    return classification
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável **flexArmRating** que recebe a function **flexArmClassification( )** passando como parâmetro as variáveis **sexNumber**, **age** e **numberOfPushUps**. Em seguida mostramos o resultado:
+
+```js
+const flexArmRating = neuromuscularFunctions.flexArmClassification(sexNumber, age, numberOfPushUps)
+```
+
+```js
+console.log(`Classificação flexões de braço: ${flexArmRating}`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Resultado teste Flexibilidade Banco de Wells: 37 cm
+Classificação Flexibilidade: Boa
+Quantidade de flexões abdominais: 31
+Classificação Abdominais: Regular
+Quantidade de flexões de braço: 42
+Classificação flexões de braço: Excelente
+===============================
+```
 
 
 
+## Testes Aeróbicos
 
 
 
