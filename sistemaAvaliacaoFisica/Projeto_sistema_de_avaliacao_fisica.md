@@ -957,12 +957,12 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 ## Testes Aeróbicos
 
-- [ ] **Protocolo de Cicloergômetro - Astrand-Rhyming: (INPUT)**
-  - [ ] Frequencia cardíaca do 5º minuto de teste (bpm) (INPUT)
-  - [ ] Frequencia cardíaca do 6º minuto de teste (bpm) (INPUT)
-  - [ ] Carga (W) (INPUT)
-  - [ ] Validar vazio
-  - [ ] Apenas números
+- [x] **Protocolo de Cicloergômetro - Astrand-Rhyming: (INPUT)**
+  - [x] Frequencia cardíaca do 5º minuto de teste (bpm) (INPUT)
+  - [x] Frequencia cardíaca do 6º minuto de teste (bpm) (INPUT)
+  - [x] Carga (W) (INPUT)
+  - [x] Validar vazio
+  - [x] Apenas números
 
 
 
@@ -976,9 +976,9 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
     ​	VO2Carga = (0,129 + ( 0,014 * carga ))
 
-  - [ ] VO² máx.(mL(kg.min)
+  - [ ] VO² máx.(L.min)
 
-    ​	VO² máx.(mL(kg.min) = ((( frequencia cardíaca máxima - frequencia cardíaca de repouso ) / ( Frequência cardíaca de esforço - frequencia cardíaca de repouso )) * VO2 de Carga)
+    ​	VO² máx.(L.min) = ((( frequencia cardíaca máxima - frequencia cardíaca de repouso ) / ( Frequência cardíaca de esforço - frequencia cardíaca de repouso )) * VO2 de Carga)
 
   - [ ] VO² máx.(mL(kg.min)
 

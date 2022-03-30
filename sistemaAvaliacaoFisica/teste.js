@@ -2762,8 +2762,8 @@ function cycleErgometerAstrandRhyming(cycleErgometerObjectAstrandRhyming){
 }
 
 const cycleErgometerObjectAstrandRhyming = {
-  maximumHeartRate: 200,
   restingHeartRate: 55,
+  maximumHeartRate: 200,
   bodyWeight: 60,
 }
 

@@ -5,15 +5,18 @@ const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 const { anthropometryFunctions } = require('./anthropometryFunctions')
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
 const { aerobicFunctions } = require('./aerobicFunctions')
+
+const user = { }
+
 /*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
 // variables personalData
-const name = personalData.userName()
-const birthdayInBrazilianFormat =  personalData.dateOfBirth()
-const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
-const age = personalData.age(birthdayInISOFormat)
+user.name = personalData.userName()*/
+user.birthdayInBrazilianFormat =  personalData.dateOfBirth()
+user.birthdayInISOFormat = personalData.dateInISOFormat(user.birthdayInBrazilianFormat)
+user.age = personalData.age(user.birthdayInISOFormat)/*
 const sexNumber = personalData.sexNumber()
 const sex = personalData.showSex(sexNumber)
 const profession = personalData.userProfession()
@@ -38,20 +41,20 @@ const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
 
 console.clear()
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Cardiorrespiratório")
+headerFunctions.subTitle("Cardiorrespiratório")*/
 
 // variables cardiorespiratory
-const restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
-const maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(age)
+user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user.age)/*
 const restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
 const bloodPressureRating = cardiorespiratoryFunctions.classificationOfBloodPressure(restingBloodPressure)
 
 console.clear()
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Antropometria")
+headerFunctions.subTitle("Antropometria")*/
 
 // variables anthropometryFunctions
-const bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyWeight = anthropometryFunctions.bodyWeight()/*
 const bodyStature = anthropometryFunctions.stature()
 const bodyMassIndex = anthropometryFunctions.bodyMassIndex(bodyWeight, bodyStature)
 const bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(bodyMassIndex)
@@ -83,13 +86,13 @@ headerFunctions.systemHeader()
 headerFunctions.subTitle("Aeróbico")
 
 // variables aerobicFunctions
-console.log(aerobicFunctions.voTwoMax())
+user.voTwoMax = aerobicFunctions.voTwoMax(user)
 
 // show results personalData
 /*console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
-console.log(`Nome: ${name}`)
+console.log(`Nome: ${user.name}`)
 console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
 console.log(`Idade: ${age} anos!`)
 console.log(`Sexo: ${sex}`)
@@ -157,5 +160,7 @@ headerFunctions.subTitle("Aeróbico") //temporary
 // show results aerobicFunctions
 // console.log(`===============================`) 
 // headerFunctions.subTitle("Aeróbico")
+console.log(`VO² máx.(mL(kg.min): ${user.voTwoMax}`)
 
 console.log(`===============================`)
+console.log(user)

@@ -7020,11 +7020,11 @@ module.exports = {
 }
 ```
 
-Agora vamos começar criando as functions de **Testes Aeróbicos**. Esses teste irão determinar o VO² máx. do usuário, que nada mais é do que a sua capacidade cardiorespiratória para realizar exercícios físicos.
+Agora vamos começar criando as functions de **Testes Aeróbicos**. Esses testes irão determinar o VO² máx. do usuário, que nada mais é do que a sua capacidade cardiorespiratória para realizar exercícios físicos.
 
 ### VO² máx
 
-Aqui vamos criar a function **voTwoMax( )** que vai determinar o **VO² máx** do usuário. Nesta function o usuário irá escoher qual o protocolo de teste ele quer fazer, através de um menu que irá aparecer. Este menu será acionado através da function **menuVoTwoMax( )**. Este menu só aceitará números de 1 a 4 e caso o usuáio digite qualquer valor diferente, a function **incorrectValue( )** deve ser chamada e ele terá que escolher novamente. O menu terá como opções os seguintes protocolos:
+Aqui vamos criar a function **voTwoMax( )** que vai determinar o **VO² máx** do usuário. Esta function terá comoparâmetro o **objeto do usuário**, ***userObject***, que será usado nas functions dos testes. Nesta function o usuário irá escolher qual o protocolo de teste ele quer fazer, através de um menu que irá aparecer. Este menu será acionado através da function **menuVoTwoMax( )**. Este menu só aceitará números de 1 a 4 e caso o usuário digite qualquer valor diferente, a function **incorrectValue( )** deve ser chamada e ele terá que escolher novamente. O menu terá como opções os seguintes protocolos:
 
 - [1] Cicloergômetro - Astrand-Rhyming
 - [2] Cooper - 12 min
@@ -7060,7 +7060,7 @@ menuVoTwoMax(){
 ```
 
  ```js
- voTwoMax(){
+ voTwoMax(userObject){
  
      let voTwoMaxValue = 0
      let protocol = aerobicFunctions.menuVoTwoMax()
@@ -7068,7 +7068,7 @@ menuVoTwoMax(){
      switch (protocol) {
    
        case 1:
-         voTwoMaxValue = cycleErgometerAstrandRhyming()
+         voTwoMaxValue = aerobicFunctions.cycleErgometerAstrandRhyming(userObject)
          break;
        
        case 2:
@@ -7093,11 +7093,139 @@ menuVoTwoMax(){
    },
  ```
 
+### Observação:
+
+VAmos aprir um parênteses aqui para criar um **objeto usuário** no arquivo **saf.js**, o qual iremos utilizar em todas as function que possuem parâmetros. Logo, em **saf.js**:
+
+```js
+const user = { }
+```
+
+Em seguida, em vez de criar variáveis como vínhamos fazendo,  vamos atribuir algumas propriedades que vamos utilizar em **aerobicFunctions.js** no objeto **user**. Logo, em **saf.js**:
+
+```js
+user.birthdayInBrazilianFormat =  personalData.dateOfBirth()
+user.birthdayInISOFormat = personalData.dateInISOFormat(user.birthdayInBrazilianFormat)
+user.age = personalData.age(user.birthdayInISOFormat)
+user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user.age)
+user.bodyWeight = anthropometryFunctions.bodyWeight()
+```
+
+Por este momento, vamos fazer apenas estas alterações, porém, vamos colocar todas as variáveis já criadas como propriedades deste objeto **user** em outro momento. Agora vamos continuar a criar as functions de **aerobicFunctions**.
+
 ### Cicloergômetro - Astrand-Rhyming
 
+**cycleErgometerAstrandRhyming( )** function será o nosso primeiro protocolo. Ele recebe o **objeto _user_** como parâmetro. Deste objeto devemos pegar a **frequência cardíaca máxima**, a **frequência cardíaca de repouso** e o **peso corporal** do usuário. Dentro desta function vamos precisar da frequência cardíaca do usuário no 5º e 6º minuto de teste. Para isto vamos criar a function **validHeartRate( )** para validar as frequências digitadas pelo usuário. Esta function só aceitará números de 0 a 200. Caso qualquer outro valor seja digitado, a function **incorrectValue( )** deve ser chamada e o valor correto deve ser colocado. A function **validHeartRate( )** terá como parâmetro uma **Expressão Regular** e o **minuto** do teste e retorna a frequência cardíaca digitada pelo usuário. Logo, em **aerobicFunctions.js**:
 
+```js
+validHeartRate(regex, minute){
 
+    let heartRateValue = 0
+    let validHeartRate = false
+  
+    do{
+  
+      console.log(`Cicloergômetro - Astrand-Rhyming:`)
+      heartRateValue = input.question(`Digite a frequência cardíaca do ${minute}º minuto de teste (bpm): `)
+      validHeartRate = validationFunctions.isRegularExpression(heartRateValue, regex)
+      validationFunctions.incorrectValue(false, !validHeartRate, "Aeróbico")
+  
+    }while(!validHeartRate)
+  
+    return Number(heartRateValue)
+  },
+```
 
+Dentro da function **cycleErgometerAstrandRhyming( )** vamos precisar informar a **carga do teste**, para isto vamos criar a function **chargeCycleErgometerAstrandRhyming( )** que vai solicitar do usuário digitar o valor da carga, sendo aceito apenas números de 0 a 200. Caso qualquer outro valor seja digitado, a function **incorrectValue( )** deve ser chamada e o valor correto deve ser colocado. Esta function terá como parâmetro uma **expressão regular** e retorna o valor da carga digitada pelo usuário. Logo, em **aerobicFunctions.js**:
+
+```js
+chargeCycleErgometerAstrandRhyming(regex){
+
+    let charge = 0
+    let validCharge = false
+  
+    do{
+  
+      console.log(`Cicloergômetro - Astrand-Rhyming:`)
+      charge = input.question(`Digite a carga utilizada no teste (W): `)
+      validCharge = validationFunctions.isRegularExpression(charge, regex)
+      validationFunctions.incorrectValue(false, !validCharge, "Aeróbico")
+  
+    }while(!validCharge)
+  
+    return Number(charge)
+  },
+```
+
+Enfim vamos criar a function **cycleErgometerAstrandRhyming( )**. Primeiro vamos criar a **expressão regular** que será usada nas duas function anteriores: **regexFromOneToTwoHundred**. Em seguida vamos criar duas variáveis que vão receber as frequências cardíacas do 5º e 6º minuto de teste: **fifthMinuteValue** e **sixthMinuteValue**. Em seguida vamos criar a variável que vai receber a carga utilizada no teste: **chargeValue**. Com estes valores e também os valores do objeto passado como parâmetro, vamos determinar: 
+
+- Frequência cardíaca de esforço - **exertionalHeartRate**
+
+  Frequência cardíaca de esforço = (Frequência cardíaca do 5º minuto + Frequência cardíaca do 6º minuto) / 2
+
+- VO² de Carga - **loadVO2**
+
+  VO²Carga = (0,129 + ( 0,014 * carga do teste ))
+
+- VO² máx.(L.min) - **VO2max_L_min**
+
+  VO² máx.(L.min) = ((( frequencia cardíaca máxima - frequencia cardíaca de repouso ) / ( Frequência cardíaca de esforço - frequencia cardíaca de repouso )) * VO2 de Carga)
+
+- VO² máx.(mL(kg.min) - **VO2max_mL_Kg_min**
+
+  VO² máx.(mL(kg.min) = ((1000 * VO2 máximo (litro/minuto) ) / Peso Corporal)
+
+O valor retornado pela function **cycleErgometerAstrandRhyming( )** será o **VO² máx.(mL(kg.min)**. Logo, em **aerobicFunctions.js**:
+
+```js
+cycleErgometerAstrandRhyming(userObject){
+  
+    const regexFromOneToTwoHundred = /(^[0-9]$)|(^[0-9]{2}$)|(^[1][0-9]{2}$)|(^[2][0][0])/
+    const fifthMinuteValue = aerobicFunctions.validHeartRate(regexFromOneToTwoHundred, 5)
+    const sixthMinuteValue = aerobicFunctions.validHeartRate(regexFromOneToTwoHundred, 6)
+    const chargeValue = aerobicFunctions.chargeCycleErgometerAstrandRhyming(regexFromOneToTwoHundred)
+    const exertionalHeartRate = Number(((fifthMinuteValue + sixthMinuteValue) / 2))
+    const loadVO2 = Number((0.129 + ( 0.014 * chargeValue )))
+    const VO2max_L_min =  Number(((( userObject.maximumHeartRate - userObject.restingHeartRate ) / ( exertionalHeartRate - userObject.restingHeartRate )) * loadVO2))
+    const VO2max_mL_Kg_min = Number(((1000 * VO2max_L_min ) / userObject.bodyWeight).toFixed(2))
+  
+    return VO2max_mL_Kg_min
+  
+  },
+```
+
+Em **saf.js** vamos atribuir ao objeto ***user*** a propriedade **voTwoMax** que vai receber como valor a function **voTwoMax( )**:
+
+```js
+user.voTwoMax = aerobicFunctions.voTwoMax(user)
+```
+
+Em seguida, vamos mostrar o resultado:
+
+```js
+console.clear() // temporary
+headerFunctions.systemHeader() // temporary
+headerFunctions.subTitle("Aeróbico") //temporary
+// show results aerobicFunctions
+// console.log(`===============================`) 
+// headerFunctions.subTitle("Aeróbico")
+console.log(`VO² máx.(mL(kg.min): ${user.voTwoMax}`)
+```
+
+Ao executar o programa:
+
+```js
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO² máx.(mL(kg.min): 45.48
+===============================
+```
+
+### Cooper - 12 min
 
 
 

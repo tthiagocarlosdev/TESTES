@@ -30,7 +30,7 @@ const aerobicFunctions = {
   
   },
 
-  voTwoMax(){
+  voTwoMax(userObject){
 
     let voTwoMaxValue = 0
     let protocol = aerobicFunctions.menuVoTwoMax()
@@ -38,7 +38,7 @@ const aerobicFunctions = {
     switch (protocol) {
   
       case 1:
-        voTwoMaxValue = cycleErgometerAstrandRhyming()
+        voTwoMaxValue = aerobicFunctions.cycleErgometerAstrandRhyming(userObject)
         break;
       
       case 2:
@@ -62,6 +62,54 @@ const aerobicFunctions = {
   
   },
 
+  validHeartRate(regex, minute){
+
+    let heartRateValue = 0
+    let validHeartRate = false
+  
+    do{
+  
+      console.log(`Cicloergômetro - Astrand-Rhyming:`)
+      heartRateValue = input.question(`Digite a frequência cardíaca do ${minute}º minuto de teste (bpm): `)
+      validHeartRate = validationFunctions.isRegularExpression(heartRateValue, regex)
+      validationFunctions.incorrectValue(false, !validHeartRate, "Aeróbico")
+  
+    }while(!validHeartRate)
+  
+    return Number(heartRateValue)
+  },
+
+  chargeCycleErgometerAstrandRhyming(regex){
+
+    let charge = 0
+    let validCharge = false
+  
+    do{
+  
+      console.log(`Cicloergômetro - Astrand-Rhyming:`)
+      charge = input.question(`Digite a carga utilizada no teste (W): `)
+      validCharge = validationFunctions.isRegularExpression(charge, regex)
+      validationFunctions.incorrectValue(false, !validCharge, "Aeróbico")
+  
+    }while(!validCharge)
+  
+    return Number(charge)
+  },
+
+  cycleErgometerAstrandRhyming(userObject){
+  
+    const regexFromOneToTwoHundred = /(^[0-9]$)|(^[0-9]{2}$)|(^[1][0-9]{2}$)|(^[2][0][0])/
+    const fifthMinuteValue = aerobicFunctions.validHeartRate(regexFromOneToTwoHundred, 5)
+    const sixthMinuteValue = aerobicFunctions.validHeartRate(regexFromOneToTwoHundred, 6)
+    const chargeValue = aerobicFunctions.chargeCycleErgometerAstrandRhyming(regexFromOneToTwoHundred)
+    const exertionalHeartRate = Number(((fifthMinuteValue + sixthMinuteValue) / 2))
+    const loadVO2 = Number((0.129 + ( 0.014 * chargeValue )))
+    const VO2max_L_min =  Number(((( userObject.maximumHeartRate - userObject.restingHeartRate ) / ( exertionalHeartRate - userObject.restingHeartRate )) * loadVO2))
+    const VO2max_mL_Kg_min = Number(((1000 * VO2max_L_min ) / userObject.bodyWeight).toFixed(2))
+  
+    return VO2max_mL_Kg_min
+  
+  },
 
 }
 
