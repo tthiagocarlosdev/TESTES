@@ -42,15 +42,15 @@ const aerobicFunctions = {
         break;
       
       case 2:
-        voTwoMaxValue = cooperTwelveMin()
+        voTwoMaxValue = aerobicFunctions.cooperTwelveMin()
         break;
   
       case 3:
-        voTwoMaxValue = sixteenHundredWalkRockport()
+        voTwoMaxValue = aerobicFunctions.oneThousandSixHundredFromRockport() 
         break;
   
       case 4:
-        voTwoMaxValue = bankMcArdle()
+        voTwoMaxValue = aerobicFunctions.bankMcArdle()
         break;
     
       default:
@@ -106,6 +106,28 @@ const aerobicFunctions = {
     const loadVO2 = Number((0.129 + ( 0.014 * chargeValue )))
     const VO2max_L_min =  Number(((( userObject.maximumHeartRate - userObject.restingHeartRate ) / ( exertionalHeartRate - userObject.restingHeartRate )) * loadVO2))
     const VO2max_mL_Kg_min = Number(((1000 * VO2max_L_min ) / userObject.bodyWeight).toFixed(2))
+  
+    return VO2max_mL_Kg_min
+  
+  },
+
+  cooperTwelveMin(){
+
+    let distance = 0
+    let validDistance = false
+    let VO2max_mL_Kg_min = 0
+    let regexFourDigits = /(^[0-9]$)|(^[0-9]{2}$)|(^[0-9]{3}$)|(^[0-9]{4}$)/
+  
+    do{
+  
+      console.log(`Teste de Cooper - 12 min:`)
+      distance = input.question(`Digite a distância atingida pelo usuário (m): `)
+      validDistance = validationFunctions.isRegularExpression(distance, regexFourDigits)
+      validationFunctions.incorrectValue(false, !validDistance, "Aeróbico")
+  
+    }while(!validDistance)
+  
+    VO2max_mL_Kg_min = Number(((distance - 504.9) / 44.73).toFixed(2))
   
     return VO2max_mL_Kg_min
   

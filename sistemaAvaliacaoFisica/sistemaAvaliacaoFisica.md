@@ -7072,15 +7072,15 @@ menuVoTwoMax(){
          break;
        
        case 2:
-         voTwoMaxValue = cooperTwelveMin()
+         voTwoMaxValue = aerobicFunctions.cooperTwelveMin()
          break;
    
        case 3:
-         voTwoMaxValue = sixteenHundredWalkRockport()
+         voTwoMaxValue = aerobicFunctions.oneThousandSixHundredFromRockport() 
          break;
    
        case 4:
-         voTwoMaxValue = bankMcArdle()
+         voTwoMaxValue = aerobicFunctions.bankMcArdle()
          break;
      
        default:
@@ -7215,7 +7215,7 @@ console.log(`VO² máx.(mL(kg.min): ${user.voTwoMax}`)
 
 Ao executar o programa:
 
-```js
+```shell
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
@@ -7226,6 +7226,50 @@ VO² máx.(mL(kg.min): 45.48
 ```
 
 ### Cooper - 12 min
+
+**cooperTwelveMin( )** function, determina o VO² máx.(mL(kg.min) do usuário após ele inserir a distância que atingiu no teste, em metros. Esta function aceitará apenas números de até 4 dígitos. Caso outro valor seja digitado, a function **incorrectValue( )** deve ser chamada e o usuário precisa digitar a distância novamente. De posse da distância em metros, a function retorna o VO² máx.(mL(kg.min) determinado pela fórmula:
+
+VO² máx= ((Distância percorrida (metros) - 504.9) / 44.73)
+
+Logo, em **aerobicFunctions.js**:
+
+```js
+cooperTwelveMin(){
+
+    let distance = 0
+    let validDistance = false
+    let VO2max_mL_Kg_min = 0
+    let regexFourDigits = /(^[0-9]$)|(^[0-9]{2}$)|(^[0-9]{3}$)|(^[0-9]{4}$)/
+  
+    do{
+  
+      console.log(`Teste de Cooper - 12 min:`)
+      distance = input.question(`Digite a distância atingida pelo usuário (m): `)
+      validDistance = validationFunctions.isRegularExpression(distance, regexFourDigits)
+      validationFunctions.incorrectValue(false, !validDistance, "Aeróbico")
+  
+    }while(!validDistance)
+  
+    VO2max_mL_Kg_min = Number(((distance - 504.9) / 44.73).toFixed(2))
+  
+    return VO2max_mL_Kg_min
+  
+  },
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO² máx.(mL(kg.min): 44.6
+===============================
+```
+
+### Caminhada de 1600 - Rockport
 
 
 

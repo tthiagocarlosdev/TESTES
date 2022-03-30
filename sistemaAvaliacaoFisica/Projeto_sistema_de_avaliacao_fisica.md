@@ -966,45 +966,45 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Protocolo de Cicloergômetro - Astrand-Rhyming: (SHOW)**
+- [x] **Protocolo de Cicloergômetro - Astrand-Rhyming: (SHOW)**
 
-  - [ ] Frequência cardíaca de esforço
+  - [x] Frequência cardíaca de esforço
 
     ​	FCE = (FC5' + FC6') / 2
 
-  - [ ] VO2 de Carga
+  - [x] VO2 de Carga
 
     ​	VO2Carga = (0,129 + ( 0,014 * carga ))
 
-  - [ ] VO² máx.(L.min)
+  - [x] VO² máx.(L.min)
 
     ​	VO² máx.(L.min) = ((( frequencia cardíaca máxima - frequencia cardíaca de repouso ) / ( Frequência cardíaca de esforço - frequencia cardíaca de repouso )) * VO2 de Carga)
 
-  - [ ] VO² máx.(mL(kg.min)
+  - [x] VO² máx.(mL(kg.min)
 
     ​	VO² máx.(mL(kg.min) = ((1000 * VO2 máximo (litro/minuto) ) / PESO CORPORAL)
 
 
 
-- [ ] **Protocolo de corrida/caminha de 12min. - Cooper: (INPUT)**
+- [x] **Protocolo de corrida/caminha de 12min. - Cooper: (INPUT)**
 
   https://www.cdof.com.br/testes1.htm
 
-  - [ ] Distância (m)
-  - [ ] Apenas número
-  - [ ] Validar vazio
+  - [x] Distância (m)
+  - [x] Apenas número
+  - [x] Validar vazio
 
 
 
-- [ ] **Protocolo de corrida/caminha de 12min. - Cooper: (SHOW)**
+- [x] **Protocolo de corrida/caminha de 12min. - Cooper: (SHOW)**
 
-  - [ ] VO² máx.(mL(kg.min)
+  - [x] VO² máx.(mL(kg.min)
 
     VO² máx= (Dist. percorrida (metros) - 504.9) / 44.73 = VO² em ml 1/(kg.min)
 
 
 
-- [ ] **Protocolo Caminha de 1600 - Rockport: (INPUT)**
+- [ ] **Protocolo Caminhada de 1600 - Rockport: (INPUT)**
   - [ ] Tempo em minutos e segundos (INPUT)
   - [ ] Frequência cardíaca no final do teste (bpm) (INPUT)
   - [ ] Validar vazio

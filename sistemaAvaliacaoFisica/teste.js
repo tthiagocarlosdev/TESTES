@@ -2767,4 +2767,33 @@ const cycleErgometerObjectAstrandRhyming = {
   bodyWeight: 60,
 }
 
-console.log(voTwoMax())
+// console.log(voTwoMax())
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Cooper test == **/
+
+
+
+function cooperTwelveMin(){
+
+  let distance = 0
+  let validDistance = false
+  let VO2max_mL_Kg_min = 0
+  let regexFourDigits = /(^[0-9]$)|(^[0-9]{2}$)|(^[0-9]{3}$)|(^[0-9]{4}$)/
+
+  do{
+
+    console.log(`Teste de Cooper - 12 min:`)
+    distance = input.question(`Digite a distância atingida pelo usuário (m): `)
+    validDistance = validationFunctions.isRegularExpression(distance, regexFourDigits)
+    validationFunctions.incorrectValue(false, !validDistance, "Aeróbico")
+
+  }while(!validDistance)
+
+  VO2max_mL_Kg_min = Number(((distance - 504.9) / 44.73).toFixed(2))
+
+  return VO2max_mL_Kg_min
+
+}
+
+console.log(cooperTwelveMin())
