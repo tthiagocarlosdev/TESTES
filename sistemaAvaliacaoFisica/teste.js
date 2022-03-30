@@ -2577,7 +2577,7 @@ function flexArmClassification(sexNumber, ageValue, flexArmTestResult){
   return classification
 
 }
-
+/*
 console.log(`MEN`)
 console.log(`idade entre 20 e 29 anos`)
 console.log(flexArmClassification(1, 29, 16))
@@ -2647,4 +2647,124 @@ console.log(flexArmClassification(2, 69, 20))
 console.log(`=====================`)
 console.log(flexArmClassification(3, 69, 33))
 console.log(flexArmClassification(2, 70, 33))
-console.log(flexArmClassification(2, 19, 33))
+console.log(flexArmClassification(2, 19, 33))*/
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Aerobic Tests == **/
+/** == VO two max == **/
+
+function menuVoTwoMax(){
+  
+  let choise = 0
+  let validChoise = false
+  const regexFromOneToFour = /(^[1]$)|(^[2]$)|(^[3]$)|(^[4]$)/
+
+  do{
+    
+    console.log(`Escolha um teste: `)
+    console.log(`[1] Cicloergômetro - Astrand-Rhyming`)
+    console.log(`[2] Cooper - 12 min`)
+    console.log(`[3] Caminhada de 1600 - Rockport`)
+    console.log(`[4] Banco - McArdle`)
+    choise = input.question(``)
+
+    validChoise = validationFunctions.isRegularExpression(choise, regexFromOneToFour)
+    validationFunctions.incorrectValue(false, !validChoise, "Aeróbico")
+
+  }while(!validChoise)
+
+  return Number(choise)
+
+}
+
+function voTwoMax(){
+
+  let voTwoMaxValue = 0
+  let protocol = menuVoTwoMax()
+
+  switch (protocol) {
+
+    case 1:
+      voTwoMaxValue = cycleErgometerAstrandRhyming(cycleErgometerObjectAstrandRhyming)
+      break;
+    
+    case 2:
+      voTwoMaxValue = cooperTwelveMin()
+      break;
+
+    case 3:
+      voTwoMaxValue = sixteenHundredWalkRockport()
+      break;
+
+    case 4:
+      voTwoMaxValue = bankMcArdle()
+      break;
+  
+    default:
+      voTwoMaxValue = 0
+      break;
+  }
+
+  return Number(voTwoMaxValue)
+
+}
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Cycle ergometer - Astrand-Rhyming == **/
+
+function validHeartRate(regex, minute){
+
+  let heartRateValue = 0
+  let validHeartRate = false
+
+  do{
+
+    console.log(`Cicloergômetro - Astrand-Rhyming:`)
+    heartRateValue = input.question(`Digite a frequência cardíaca do ${minute}º minuto de teste (bpm): `)
+    validHeartRate = validationFunctions.isRegularExpression(heartRateValue, regex)
+    validationFunctions.incorrectValue(false, !validHeartRate, "Aeróbico")
+
+  }while(!validHeartRate)
+
+  return Number(heartRateValue)
+}
+
+function chargeCycleErgometerAstrandRhyming(regex){
+
+  let charge = 0
+  let validCharge = false
+
+  do{
+
+    console.log(`Cicloergômetro - Astrand-Rhyming:`)
+    charge = input.question(`Digite a carga utilizada no teste (W): `)
+    validCharge = validationFunctions.isRegularExpression(charge, regex)
+    validationFunctions.incorrectValue(false, !validCharge, "Aeróbico")
+
+  }while(!validCharge)
+
+  return Number(charge)
+}
+
+function cycleErgometerAstrandRhyming(cycleErgometerObjectAstrandRhyming){
+  
+  const regexFromOneToTwoHundred = /(^[0-9]$)|(^[0-9]{2}$)|(^[1][0-9]{2}$)|(^[2][0][0])/
+  const fifthMinuteValue = validHeartRate(regexFromOneToTwoHundred, 5)
+  const sixthMinuteValue = validHeartRate(regexFromOneToTwoHundred, 6)
+  const chargeValue = chargeCycleErgometerAstrandRhyming(regexFromOneToTwoHundred)
+  const exertionalHeartRate = Number(((fifthMinuteValue + sixthMinuteValue) / 2))
+  const loadVO2 = Number((0.129 + ( 0.014 * chargeValue )))
+  const VO2max_L_min =  Number(((( cycleErgometerObjectAstrandRhyming.maximumHeartRate - cycleErgometerObjectAstrandRhyming.restingHeartRate ) / ( exertionalHeartRate - cycleErgometerObjectAstrandRhyming.restingHeartRate )) * loadVO2))
+  const VO2max_mL_Kg_min = Number(((1000 * VO2max_L_min ) / cycleErgometerObjectAstrandRhyming.bodyWeight).toFixed(2))
+
+  return VO2max_mL_Kg_min
+
+}
+
+const cycleErgometerObjectAstrandRhyming = {
+  maximumHeartRate: 200,
+  restingHeartRate: 55,
+  bodyWeight: 60,
+}
+
+console.log(voTwoMax())

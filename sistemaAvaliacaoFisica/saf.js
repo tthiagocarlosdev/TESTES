@@ -4,7 +4,8 @@ const { anamnesisFunctions } = require('./anamnesisFunctions')
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 const { anthropometryFunctions } = require('./anthropometryFunctions')
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
-
+const { aerobicFunctions } = require('./aerobicFunctions')
+/*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
@@ -75,10 +76,17 @@ const flexibilityRating = neuromuscularFunctions.flexibilityClassification(sexNu
 const numberOfAbs = neuromuscularFunctions.abdominalTest()
 const abdominalRating = neuromuscularFunctions.abdominalClassification(sexNumber, age, numberOfAbs)
 const numberOfPushUps = neuromuscularFunctions.flexArmTest()
-const flexArmRating = neuromuscularFunctions.flexArmClassification(sexNumber, age, numberOfPushUps)
+const flexArmRating = neuromuscularFunctions.flexArmClassification(sexNumber, age, numberOfPushUps)*/
+
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Aeróbico")
+
+// variables aerobicFunctions
+console.log(aerobicFunctions.voTwoMax())
 
 // show results personalData
-console.clear()
+/*console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 console.log(`Nome: ${name}`)
@@ -141,6 +149,13 @@ console.log(`Classificação Flexibilidade: ${flexibilityRating}`)
 console.log(`Quantidade de flexões abdominais: ${numberOfAbs}`)
 console.log(`Classificação Abdominais: ${abdominalRating}`)
 console.log(`Quantidade de flexões de braço: ${numberOfPushUps}`)
-console.log(`Classificação flexões de braço: ${flexArmRating}`)
+console.log(`Classificação flexões de braço: ${flexArmRating}`)*/
+
+console.clear() // temporary
+headerFunctions.systemHeader() // temporary
+headerFunctions.subTitle("Aeróbico") //temporary
+// show results aerobicFunctions
+// console.log(`===============================`) 
+// headerFunctions.subTitle("Aeróbico")
 
 console.log(`===============================`)

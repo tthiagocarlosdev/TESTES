@@ -7020,9 +7020,82 @@ module.exports = {
 }
 ```
 
+Agora vamos começar criando as functions de **Testes Aeróbicos**. Esses teste irão determinar o VO² máx. do usuário, que nada mais é do que a sua capacidade cardiorespiratória para realizar exercícios físicos.
+
+### VO² máx
+
+Aqui vamos criar a function **voTwoMax( )** que vai determinar o **VO² máx** do usuário. Nesta function o usuário irá escoher qual o protocolo de teste ele quer fazer, através de um menu que irá aparecer. Este menu será acionado através da function **menuVoTwoMax( )**. Este menu só aceitará números de 1 a 4 e caso o usuáio digite qualquer valor diferente, a function **incorrectValue( )** deve ser chamada e ele terá que escolher novamente. O menu terá como opções os seguintes protocolos:
+
+- [1] Cicloergômetro - Astrand-Rhyming
+- [2] Cooper - 12 min
+- [3] Caminhada de 1600 - Rockport
+- [4] Banco - McArdle
+
+ Depois que o usuário escolher um protocolo, a function correspondente ao protocolo escolhido será chamada e o determina o **VO² máx**. Logo, em **aerobicFunctions.js**:
+
+```js
+menuVoTwoMax(){
+  
+    let choise = 0
+    let validChoise = false
+    const regexFromOneToFour = /(^[1]$)|(^[2]$)|(^[3]$)|(^[4]$)/
+  
+    do{
+      
+      console.log(`Escolha um teste: `)
+      console.log(`[1] Cicloergômetro - Astrand-Rhyming`)
+      console.log(`[2] Cooper - 12 min`)
+      console.log(`[3] Caminhada de 1600 - Rockport`)
+      console.log(`[4] Banco - McArdle`)
+      choise = input.question(``)
+  
+      validChoise = validationFunctions.isRegularExpression(choise, regexFromOneToFour)
+      validationFunctions.incorrectValue(false, !validChoise, "Aeróbico")
+  
+    }while(!validChoise)
+  
+    return Number(choise)
+  
+  },
+```
+
+ ```js
+ voTwoMax(){
+ 
+     let voTwoMaxValue = 0
+     let protocol = aerobicFunctions.menuVoTwoMax()
+   
+     switch (protocol) {
+   
+       case 1:
+         voTwoMaxValue = cycleErgometerAstrandRhyming()
+         break;
+       
+       case 2:
+         voTwoMaxValue = cooperTwelveMin()
+         break;
+   
+       case 3:
+         voTwoMaxValue = sixteenHundredWalkRockport()
+         break;
+   
+       case 4:
+         voTwoMaxValue = bankMcArdle()
+         break;
+     
+       default:
+         voTwoMaxValue = 0
+         break;
+     }
+   
+     return Number(voTwoMaxValue)
+   
+   },
+ ```
+
+### Cicloergômetro - Astrand-Rhyming
 
 
-VO² máx.
 
 
 
