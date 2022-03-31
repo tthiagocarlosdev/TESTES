@@ -7436,11 +7436,11 @@ vo2maxExpected(userObject){
 Em **saf.js** vamos adicionar como propriedado ao objeto usuário o **VO² máx.(mL(kg.min) Previsto** e depois mostrar o resultado:
 
 ```js
-user.vo2maxExpected = aerobicFunctions.vo2maxExpected(user)
+user.voTwoMaxExpected = aerobicFunctions.vo2maxExpected(user)
 ```
 
 ```js
-console.log(`VO²máx. Previsto(mL(kg.min): ${user.vo2maxExpected}`)
+console.log(`VO²máx. Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
 ```
 
 Ao executar o programa:
@@ -7457,6 +7457,258 @@ VO²máx. Previsto(mL(kg.min): 41.85
 ```
 
 ### VO² máx.(mL(kg.min) - Classificação
+
+**vo2maxClassification( )** function determina a classificação do **VO²máx (mL(kg.min)** usuário obtido no teste. Recebe como parâmetro o  objeto ***user***. Retorna a classificação de acordo com a tabela abaixo:
+
+| VO² máx.(mL(kg.min) - Classificação - HOMEM | VO² máx.(mL(kg.min) - Classificação - MULHER |
+| ------------------------------------------- | -------------------------------------------- |
+| **Com idade entre 20 e 29 anos**            | **Com idade entre 20 e 29 anos**             |
+| Flexão de Braço < 25 = "Muito Fraco"        | Flexão de Braço < 24 = "Muito Fraco"         |
+| Flexão de Braço < 34 = "Fraco"              | Flexão de Braço < 31 = "Fraco"               |
+| Flexão de Braço < 43 = "Regular"            | Flexão de Braço < 38 = "Regular"             |
+| Flexão de Braço < 54 = "Bom"                | Flexão de Braço < 49 = "Bom"                 |
+| Flexão de Braço >= 54 = "Excelente"         | Flexão de Braço >= 49 = "Excelente"          |
+| **Com idade entre 30 e 39 anos**            | **Com idade entre 30 e 39 anos**             |
+| Flexão de Braço < 23 = "Muito Fraco"        | Flexão de Braço < 20 = "Muito Fraco"         |
+| Flexão de Braço < 31 = "Fraco"              | Flexão de Braço < 28 = "Fraco"               |
+| Flexão de Braço < 39 = "Regular"            | Flexão de Braço < 34 = "Regular"             |
+| Flexão de Braço < 49 = "Bom"                | Flexão de Braço < 45 = "Bom"                 |
+| Flexão de Braço >= 49 = "Excelente"         | Flexão de Braço >= 45 = "Excelente"          |
+| **Com idade entre 40 e 49 anos**            | **Com idade entre 40 e 49 anos**             |
+| Flexão de Braço < 20 = "Muito Fraco"        | Flexão de Braço < 17 = "Muito Fraco"         |
+| Flexão de Braço < 27 = "Fraco"              | Flexão de Braço < 24 = "Fraco"               |
+| Flexão de Braço < 36 = "Regular"            | Flexão de Braço < 31 = "Regular"             |
+| Flexão de Braço < 45 = "Bom"                | Flexão de Braço < 42 = "Bom"                 |
+| Flexão de Braço >= 45 = "Excelente"         | Flexão de Braço >= 42 = "Excelente"          |
+| **Com idade entre 50 e 59 anos**            | **Com idade entre 50 e 59 anos**             |
+| Flexão de Braço < 18 = "Muito Fraco"        | Flexão de Braço < 15 = "Muito Fraco"         |
+| Flexão de Braço < 25 = "Fraco"              | Flexão de Braço < 21 = "Fraco"               |
+| Flexão de Braço < 34 = "Regular"            | Flexão de Braço < 28 = "Regular"             |
+| Flexão de Braço < 43 = "Bom"                | Flexão de Braço < 38 = "Bom"                 |
+| Flexão de Braço >= 43 = "Excelente"         | Flexão de Braço >= 38 = "Excelente"          |
+| **Com idade entre 60 e 69 anos**            | **Com idade entre 60 e 69 anos**             |
+| Flexão de Braço < 16 = "Muito Fraco"        | Flexão de Braço < 13 = "Muito Fraco"         |
+| Flexão de Braço < 23 = "Fraco"              | Flexão de Braço < 18 = "Fraco"               |
+| Flexão de Braço < 31 = "Regular"            | Flexão de Braço < 24 = "Regular"             |
+| Flexão de Braço < 41 = "Bom"                | Flexão de Braço < 35 = "Bom"                 |
+| Flexão de Braço >= 41 = "Excelente"         | Flexão de Braço >= 35 = "Excelente"          |
+
+Logo, em **aerobicFunctions.js**:
+
+```js
+vo2maxClassification(userObject){
+  
+    let classification = ''
+    const unidentifiedSex = `[ERROR] Sexo não identificado!` 
+    const ageBetweenTwentyAndTwentyNine = userObject.age >= 20 && userObject.age <= 29
+    const ageBetweenThirtyAndThirtyNine = userObject.age >= 30 && userObject.age <= 39
+    const ageBetweenFortyAndFortyNine = userObject.age >= 40 && userObject.age <= 49
+    const ageBetweenFiftyAndFiftyNine = userObject.age >= 50 && userObject.age <= 59
+    const ageBetweenSixtyAndSixtyNine = userObject.age >= 60 && userObject.age <= 69
+    const veryPoorRating = `Muito Fraco`
+    const weakRating = `Fraco`
+    const regularRating = `Regular`
+    const goodRating = `Bom`
+    const excellentRating = `Excelente`
+    const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+  
+    switch (userObject.sexNumber) {
+      
+      // men
+      case 1:
+        
+        if(ageBetweenTwentyAndTwentyNine){
+          
+          if(userObject.voTwoMax < 25){
+            classification = veryPoorRating
+          } else if(userObject.voTwoMax < 34){
+            classification = weakRating
+          } else if(userObject.voTwoMax < 43){
+            classification = regularRating
+          } else if(userObject.voTwoMax < 54){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenThirtyAndThirtyNine){
+          
+          if(userObject.voTwoMax < 23){
+            classification = veryPoorRating
+          } else if(userObject.voTwoMax < 31){
+            classification = weakRating
+          } else if(userObject.voTwoMax < 39){
+            classification = regularRating
+          } else if(userObject.voTwoMax < 49){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFortyAndFortyNine){
+          
+          if(userObject.voTwoMax < 20){
+            classification = veryPoorRating
+          } else if(userObject.voTwoMax < 27){
+            classification = weakRating
+          } else if(userObject.voTwoMax < 36){
+            classification = regularRating
+          } else if(userObject.voTwoMax < 45){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFiftyAndFiftyNine){
+          
+          if(userObject.voTwoMax < 18){
+            classification = veryPoorRating
+          } else if(userObject.voTwoMax < 25){
+            classification = weakRating
+          } else if(userObject.voTwoMax < 34){
+            classification = regularRating
+          } else if(userObject.voTwoMax < 43){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenSixtyAndSixtyNine){
+          
+          if(userObject.voTwoMax < 16){
+            classification = veryPoorRating
+          } else if(userObject.voTwoMax < 23){
+            classification = weakRating
+          } else if(userObject.voTwoMax < 31){
+            classification = regularRating
+          } else if(userObject.voTwoMax < 41){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+      
+      // woman
+      case 2:
+  
+        if(ageBetweenTwentyAndTwentyNine){
+          
+          if(userObject.voTwoMax < 24){
+            classification = veryPoorRating
+          } else if(userObject.voTwoMax < 31){
+            classification = weakRating
+          } else if(userObject.voTwoMax < 38){
+            classification = regularRating
+          } else if(userObject.voTwoMax < 49){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenThirtyAndThirtyNine){
+          
+          if(userObject.voTwoMax < 20){
+            classification = veryPoorRating
+          } else if(userObject.voTwoMax < 28){
+            classification = weakRating
+          } else if(userObject.voTwoMax < 34){
+            classification = regularRating
+          } else if(userObject.voTwoMax < 45){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFortyAndFortyNine){
+          
+          if(userObject.voTwoMax < 17){
+            classification = veryPoorRating
+          } else if(userObject.voTwoMax < 24){
+            classification = weakRating
+          } else if(userObject.voTwoMax < 31){
+            classification = regularRating
+          } else if(userObject.voTwoMax < 42){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenFiftyAndFiftyNine){
+          
+          if(userObject.voTwoMax < 15){
+            classification = veryPoorRating
+          } else if(userObject.voTwoMax < 21){
+            classification = weakRating
+          } else if(userObject.voTwoMax < 28){
+            classification = regularRating
+          } else if(userObject.voTwoMax < 38){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else if(ageBetweenSixtyAndSixtyNine){
+          
+          if(userObject.voTwoMax < 13){
+            classification = veryPoorRating
+          } else if(userObject.voTwoMax < 18){
+            classification = weakRating
+          } else if(userObject.voTwoMax < 24){
+            classification = regularRating
+          } else if(userObject.voTwoMax < 35){
+            classification = goodRating
+          } else {
+            classification = excellentRating
+          }
+          
+        } else {
+          classification = classificationNotAppliedToAge
+        }
+  
+        break;
+    
+      default:
+  
+        classification = unidentifiedSex
+  
+        break;
+    }
+  
+    return classification
+  
+  },
+```
+
+Em **saf.js** adicionamos a classificação do VO² máx. ao objeto ***user*** e em seguida mostramos o resultado:
+
+```js
+user.voTwoMaxClassification = aerobicFunctions.vo2maxClassification(user)
+```
+
+```js
+console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
+```
+
+Ao executar o programa:
+
+```js
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO²máx.(mL(kg.min): 44.13
+VO²máx. Previsto(mL(kg.min): 41.3
+Classificação do VO²máx: Bom
+===============================
+```
+
+### Velocidade de treino
 
 
 
