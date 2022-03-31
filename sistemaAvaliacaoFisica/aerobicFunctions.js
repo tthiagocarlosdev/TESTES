@@ -46,7 +46,7 @@ const aerobicFunctions = {
         break;
   
       case 3:
-        voTwoMaxValue = aerobicFunctions.oneThousandSixHundredFromRockport() 
+        voTwoMaxValue = aerobicFunctions.oneThousandSixHundredFromRockport(userObject) 
         break;
   
       case 4:
@@ -129,6 +129,67 @@ const aerobicFunctions = {
   
     VO2max_mL_Kg_min = Number(((distance - 504.9) / 44.73).toFixed(2))
   
+    return VO2max_mL_Kg_min
+  
+  },
+
+  rockportTestTime(){
+
+    let rockportTestTime = 0
+    let minutes = 0
+    let seconds = 0
+    let validMinutes = false
+    let validSeconds = false
+    let regexMinutesAndSeconds = /(^[0-9]$)|(^[0-5][0-9]$)/ 
+  
+    do{
+  
+      console.log(`Teste de Caminhada Rockport`)
+      minutes = input.question(`Tempo que levou para chegar (minutos): `)
+      seconds = input.question(`Tempo que levou para chegar (segundos): `)
+      validMinutes = validationFunctions.isRegularExpression(minutes, regexMinutesAndSeconds)
+      validSeconds = validationFunctions.isRegularExpression(seconds, regexMinutesAndSeconds)
+      validationFunctions.incorrectValue(!validMinutes, !validSeconds, "Aeróbico")
+  
+    }while(!validMinutes || !validSeconds)
+  
+    rockportTestTime = (Number(minutes) + (Number(seconds) / 60))
+    
+    return rockportTestTime
+  },
+
+  testHeartRate(){
+
+    let testHeartRate = 0
+    let validTestHeartRate = false
+    let isNumberFromZeroToTwoHundredAndTwenty = /(^[0-9]$)|(^[0-9]{2}$)|(^[1][0-9]{2}$)|(^[2][0-1][0-9]$)|(^[2][2][0]$)/ 
+  
+    do{
+  
+      console.log(`Teste de Caminhada Rockport`)
+      testHeartRate = input.question(`Frequência Cardíaca ao fim da Caminhada (bpm): `)
+      validTestHeartRate = validationFunctions.isRegularExpression(testHeartRate, isNumberFromZeroToTwoHundredAndTwenty)
+      validationFunctions.incorrectValue(false, !validTestHeartRate, "Aeróbico")
+  
+    }while(!validTestHeartRate)
+    
+    return Number(testHeartRate)
+  
+  },
+
+  oneThousandSixHundredFromRockport(userObject){
+
+    let testTime = aerobicFunctions.rockportTestTime()
+    let heartRate = aerobicFunctions.testHeartRate()
+    let weightInPounds = Number(userObject.bodyWeight / 0.454)
+    let VO2max_mL_Kg_min = 0
+  
+    if(userObject.sexNumber === 1){
+      VO2max_mL_Kg_min = Number((132.853 - (0.0769 * weightInPounds) - (0.3877 * userObject.age) + (6.315 * 1) - (3.2649 * testTime) - (0.1565 * heartRate)).toFixed(2))
+    } else {
+      VO2max_mL_Kg_min = Number((132.853 - (0.0769 * weightInPounds) - (0.3877 * userObject.age) + (6.315 * 0) - (3.2649 * testTime) - (0.1565 * heartRate)).toFixed(2))
+    }
+    
     return VO2max_mL_Kg_min
   
   },

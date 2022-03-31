@@ -16,8 +16,8 @@ headerFunctions.subTitle("Dados Pessoais")
 user.name = personalData.userName()*/
 user.birthdayInBrazilianFormat =  personalData.dateOfBirth()
 user.birthdayInISOFormat = personalData.dateInISOFormat(user.birthdayInBrazilianFormat)
-user.age = personalData.age(user.birthdayInISOFormat)/*
-const sexNumber = personalData.sexNumber()
+user.age = personalData.age(user.birthdayInISOFormat)
+user.sexNumber = personalData.sexNumber()/*
 const sex = personalData.showSex(sexNumber)
 const profession = personalData.userProfession()
 const userEmail = personalData.userEmail()
