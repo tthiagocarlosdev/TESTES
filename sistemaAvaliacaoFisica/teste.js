@@ -2893,4 +2893,38 @@ function bankMcArdle(userObject){
   return VO2max_mL_Kg_min
 }
 
-console.log(bankMcArdle(userObject))
+// console.log(bankMcArdle(userObject))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Expected max VO² == **/
+
+function vo2maxExpected(userObject){
+
+  let VO2max_mL_Kg_min_Expected = 0
+
+  if(userObject.sexNumber === 1){
+
+    VO2max_mL_Kg_min_Expected = Number(( 60 - ( 0.55 * userObject.age)).toFixed(2))
+
+  } else {
+
+    VO2max_mL_Kg_min_Expected = Number(( 48 - (0.37 * userObject.age)).toFixed(2))
+
+  }
+
+  return VO2max_mL_Kg_min_Expected
+
+}
+
+const userMan = {
+  sexNumber: 1,
+  age: 33,
+}
+
+const userWoman = {
+  sexNumber: 2,
+  age: 33,
+}
+
+console.log(vo2maxExpected(userWoman))
+console.log(vo2maxExpected(userMan))

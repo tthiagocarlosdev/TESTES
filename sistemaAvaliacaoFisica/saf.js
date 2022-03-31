@@ -87,6 +87,7 @@ headerFunctions.subTitle("Aeróbico")
 
 // variables aerobicFunctions
 user.voTwoMax = aerobicFunctions.voTwoMax(user)
+user.vo2maxExpected = aerobicFunctions.vo2maxExpected(user)
 
 // show results personalData
 /*console.clear()
@@ -160,7 +161,8 @@ headerFunctions.subTitle("Aeróbico") //temporary
 // show results aerobicFunctions
 // console.log(`===============================`) 
 // headerFunctions.subTitle("Aeróbico")
-console.log(`VO² máx.(mL(kg.min): ${user.voTwoMax}`)
+console.log(`VO²máx.(mL(kg.min): ${user.voTwoMax}`)
+console.log(`VO²máx. Previsto(mL(kg.min): ${user.vo2maxExpected}`)
 
 console.log(`===============================`)
 console.log(user)

@@ -7300,7 +7300,7 @@ rockportTestTime(){
   },
 ```
 
-O usuário também precisa informar a frequência cardíaca ao final do teste, para isto vamos criar a function **testHeartRate( )**. Está function aceitará apenas números de até três dígitos, sendo de 0 até 220. Caso outro valor seja digitado, a function **incorrectValue( )** deverá ser chamada e o usuário terá que digitar a frequência novamente. Retorna a frequêncioa cardíaca ao final do teste digitada pelo usuário. Logo, em **aerobicFunctions.js**:
+O usuário também precisa informar a frequência cardíaca ao final do teste, para isto vamos criar a function **testHeartRate( )**. Está function terá como **parâmetro** o **nome do teste** e aceitará apenas números de até três dígitos, sendo de 0 até 220. Caso outro valor seja digitado, a function **incorrectValue( )** deverá ser chamada e o usuário terá que digitar a frequência novamente. Retorna a frequêncioa cardíaca ao final do teste digitada pelo usuário. Logo, em **aerobicFunctions.js**:
 
 ```js
 testHeartRate(testName){
@@ -7401,7 +7401,62 @@ VO² máx.(mL(kg.min): 36.26
 
 ### VO² máx.(mL(kg.min) Previsto
 
+**vo2maxExpected( )** function, determina o **VO²máx Previsto (ml.kg-¹.min-¹)** do usuário. Recebe como parâmetro o objeto usuário (***userObject***) e retorna o VO²máx Previsto de acordo com as fórmulas abaixo:
 
+- Se homem:
+
+  VO² máx. Previsto (mL(kg.min) = ( 60 - ( 0,55 * idade ))
+
+- Se mulher:
+
+  VO² máx. Previsto (mL(kg.min) = ( 48 - (0,37 * idade))
+
+Logo, em **aerobicFunctions.js**:
+
+```js
+vo2maxExpected(userObject){
+
+    let VO2max_mL_Kg_min_Expected = 0
+  
+    if(userObject.sexNumber === 1){
+  
+      VO2max_mL_Kg_min_Expected = Number(( 60 - ( 0.55 * userObject.age)).toFixed(2))
+  
+    } else {
+  
+      VO2max_mL_Kg_min_Expected = Number(( 48 - (0.37 * userObject.age)).toFixed(2))
+  
+    }
+  
+    return VO2max_mL_Kg_min_Expected
+  
+  },
+```
+
+Em **saf.js** vamos adicionar como propriedado ao objeto usuário o **VO² máx.(mL(kg.min) Previsto** e depois mostrar o resultado:
+
+```js
+user.vo2maxExpected = aerobicFunctions.vo2maxExpected(user)
+```
+
+```js
+console.log(`VO²máx. Previsto(mL(kg.min): ${user.vo2maxExpected}`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO²máx.(mL(kg.min): 44.13
+VO²máx. Previsto(mL(kg.min): 41.85
+===============================
+```
+
+### VO² máx.(mL(kg.min) - Classificação
 
 
 

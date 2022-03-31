@@ -211,6 +211,24 @@ const aerobicFunctions = {
     return VO2max_mL_Kg_min
   },
 
+  vo2maxExpected(userObject){
+
+    let VO2max_mL_Kg_min_Expected = 0
+  
+    if(userObject.sexNumber === 1){
+  
+      VO2max_mL_Kg_min_Expected = Number(( 60 - ( 0.55 * userObject.age)).toFixed(2))
+  
+    } else {
+  
+      VO2max_mL_Kg_min_Expected = Number(( 48 - (0.37 * userObject.age)).toFixed(2))
+  
+    }
+  
+    return VO2max_mL_Kg_min_Expected
+  
+  },
+
 }
 
 module.exports = {

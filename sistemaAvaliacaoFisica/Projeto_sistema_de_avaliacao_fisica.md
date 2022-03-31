@@ -1054,13 +1054,13 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **VO² máx.(mL(kg.min) Previsto: (SHOW)**
+- [x] **VO² máx.(mL(kg.min) Previsto: (SHOW)**
 
-  - [ ] se **homem**
+  - [x] se **homem**
 
     VO² máx.(mL(kg.min) = ( 60 - ( 0,55 * idade ))
 
-  - [ ] se **mulher**
+  - [x] se **mulher**
 
     VO² máx.(mL(kg.min) = ( 48 - (0,37 * idade))
 
