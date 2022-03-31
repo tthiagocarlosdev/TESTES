@@ -1005,14 +1005,14 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 - [ ] **Protocolo Caminhada de 1600 - Rockport: (INPUT)**
-  - [ ] Tempo em minutos e segundos (INPUT)
-  - [ ] Frequência cardíaca no final do teste (bpm) (INPUT)
-  - [ ] Validar vazio
-  - [ ] Apenas números
+  - [x] Tempo em minutos e segundos (INPUT)
+  - [x] Frequência cardíaca no final do teste (bpm) (INPUT)
+  - [x] Validar vazio
+  - [x] Apenas números
 
 
 
-- [ ] **Protocolo Caminha de 1600 - Rockport: (SHOW)**
+- [x] **Protocolo Caminha de 1600 - Rockport: (SHOW)**
 
   https://www.verywellfit.com/rockport-fitness-walking-test-calculator-3952696
 
@@ -1032,23 +1032,23 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
   
 
-- [ ] **Protocolo de Banco - McArdle: (INPUT)**
+- [x] **Protocolo de Banco - McArdle: (INPUT)**
 
   https://www.cdof.com.br/testes10.htm
 
-  - [ ] Frequência Cardíaca de Esforço no final do teste (bpm) (INPUT)
-  - [ ] Apenas número
-  - [ ] Validar vazio
+  - [x] Frequência Cardíaca de Esforço no final do teste (bpm) (INPUT)
+  - [x] Apenas número
+  - [x] Validar vazio
 
 
 
-- [ ] **Protocolo de Banco - McArdle: (SHOW)**
+- [x] **Protocolo de Banco - McArdle: (SHOW)**
 
-  - [ ] se **Homem**
+  - [x] se **Homem**
 
   VO²máx (ml.kg-¹.min-¹) = ( 111,33 - ( 0,42 * Frequência cardíaca de esforço ))
 
-  - [ ] se **mulher**
+  - [x] se **mulher**
 
   VO²máx (ml.kg-¹.min-¹) = ( 65,81- ( 0,1847 * Frequência cardíaca de esforço))
 

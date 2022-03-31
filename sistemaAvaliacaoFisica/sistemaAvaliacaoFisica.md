@@ -7271,11 +7271,135 @@ VO² máx.(mL(kg.min): 44.6
 
 ### Caminhada de 1600 - Rockport
 
+**oneThousandSixHundredFromRockport( )** determina o VO²máx (ml.kg-¹.min-¹) do usuário a partir do teste de caminhada de 1600 metros de Rockport. Esta function recebe como parâmetro o objeto usuário (_**userObject**_). Dentro dela vamos precisar que o usuário digite o **tempo** que ele realizou o teste em **minutos** e **segundos**, para isto vamos usar a function **rockportTestTime( )** que vai validar este tempo. Esta function deve aceitar apenas números de no máximo dois dígitos, sendo de 0 até 59. Caso outro valor seja digitado, a function **incorrectValue( )** deverá ser chamada e o usuário terá que digitar o tempo novamente. Retorna o **tempo em minutos** digitado pelo usuário. Logo, em **aerobicFunctions.js**:
 
+```js
+rockportTestTime(){
 
+    let rockportTestTime = 0
+    let minutes = 0
+    let seconds = 0
+    let validMinutes = false
+    let validSeconds = false
+    let regexMinutesAndSeconds = /(^[0-9]$)|(^[0-5][0-9]$)/ 
+  
+    do{
+  
+      console.log(`Teste de Caminhada Rockport`)
+      minutes = input.question(`Tempo que levou para chegar (minutos): `)
+      seconds = input.question(`Tempo que levou para chegar (segundos): `)
+      validMinutes = validationFunctions.isRegularExpression(minutes, regexMinutesAndSeconds)
+      validSeconds = validationFunctions.isRegularExpression(seconds, regexMinutesAndSeconds)
+      validationFunctions.incorrectValue(!validMinutes, !validSeconds, "Aeróbico")
+  
+    }while(!validMinutes || !validSeconds)
+  
+    rockportTestTime = (Number(minutes) + (Number(seconds) / 60))
+    
+    return rockportTestTime
+  },
+```
 
+O usuário também precisa informar a frequência cardíaca ao final do teste, para isto vamos criar a function **testHeartRate( )**. Está function aceitará apenas números de até três dígitos, sendo de 0 até 220. Caso outro valor seja digitado, a function **incorrectValue( )** deverá ser chamada e o usuário terá que digitar a frequência novamente. Retorna a frequêncioa cardíaca ao final do teste digitada pelo usuário. Logo, em **aerobicFunctions.js**:
 
+```js
+testHeartRate(testName){
 
+    let testHeartRate = 0
+    let validTestHeartRate = false
+    let isNumberFromZeroToTwoHundredAndTwenty = /(^[0-9]$)|(^[0-9]{2}$)|(^[1][0-9]{2}$)|(^[2][0-1][0-9]$)|(^[2][2][0]$)/ 
+  
+    do{
+  
+      console.log(`${testName}`)
+      testHeartRate = input.question(`Frequência Cardíaca ao final do teste (bpm): `)
+      validTestHeartRate = validationFunctions.isRegularExpression(testHeartRate, isNumberFromZeroToTwoHundredAndTwenty)
+      validationFunctions.incorrectValue(false, !validTestHeartRate, "Aeróbico")
+  
+    }while(!validTestHeartRate)
+    
+    return Number(testHeartRate)
+  
+  },
+```
+
+Agora com o tempo do teste e com a frequência cardíaca ao final do teste, vamos construir a function **oneThousandSixHundredFromRockport( )**. Como sitado acima, ela recebe o ***userObject*** como parâmetro, de onde vamos extrair o peso em quilos e transfomá-lo em libras, vamos extrair a idade do usuário, se é homem ou mulher e usar estas variáveis para determinar o **VO²máx (ml.kg-¹.min-¹)** de acordo com as fórmulas abaixo:
+
+- Se homem:
+
+  VO²máx (ml.kg-¹.min-¹) = 132,853 - (0,0769 x Peso Corporal em Libras) - (0,3877 x Idade) + (6,315 x 1) - (3,2649 x Tempo do teste) - (0,1565 x Frequência Cardíaca ao Final do Teste)
+
+- Se mulher:
+
+  VO²máx (ml.kg-¹.min-¹) = 132,853 - (0,0769 x Peso Corporal em Libras) - (0,3877 x Idade) + (6,315 x 0) - (3,2649 x Tempo do teste) - (0,1565 x Frequência Cardíaca ao Final do Teste)
+
+Logo, em **aerobicFunctions.js**:
+
+```js
+oneThousandSixHundredFromRockport(userObject){
+
+    let testTime = aerobicFunctions.rockportTestTime()
+    let heartRate = aerobicFunctions.testHeartRate('Teste de Caminhada Rockport')
+    let weightInPounds = Number(userObject.bodyWeight / 0.454)
+    let VO2max_mL_Kg_min = 0
+  
+    if(userObject.sexNumber === 1){
+      VO2max_mL_Kg_min = Number((132.853 - (0.0769 * weightInPounds) - (0.3877 * userObject.age) + (6.315 * 1) - (3.2649 * testTime) - (0.1565 * heartRate)).toFixed(2))
+    } else {
+      VO2max_mL_Kg_min = Number((132.853 - (0.0769 * weightInPounds) - (0.3877 * userObject.age) + (6.315 * 0) - (3.2649 * testTime) - (0.1565 * heartRate)).toFixed(2))
+    }
+    
+    return VO2max_mL_Kg_min
+  
+  },
+```
+
+### Banco - McArdle
+
+**bankMcArdle( )** function, recebe o objeto usuário como parâmetro e determina o **VO²máx (ml.kg-¹.min-¹)** do usuário. Esta function precisa que o usuário digite a **Frequência Cardíaca de Esforço no final do teste (bpm)**. Para isto vamos usar a function **testHeartRate( )** para validar a frequência digitada pelo usuário. Depois vamos determinar o VO²máx (ml.kg-¹.min-¹) de acordo com as fórmulas abaixo:
+
+- Se homem:
+
+  VO²máx (ml.kg-¹.min-¹) = ( 111,33 - ( 0,42 * Frequência cardíaca de esforço ))
+
+- Se mulher:
+
+  VO²máx (ml.kg-¹.min-¹) = ( 65,81- ( 0,1847 * Frequência cardíaca de esforço))
+
+Logo, em **aerobicFunctions.js**:
+
+```js
+bankMcArdle(userObject){
+
+    let VO2max_mL_Kg_min = 0
+    let heartRate = aerobicFunctions.testHeartRate('Teste Banco - McArdle')
+    
+    if(userObject.sexNumber === 1){
+  
+      VO2max_mL_Kg_min = Number((111.33 - ( 0.42 * heartRate )).toFixed(2))
+  
+    } else {
+  
+      VO2max_mL_Kg_min = Number(( 65.81 - ( 0.1847 * heartRate)).toFixed(2))
+    }
+  
+    return VO2max_mL_Kg_min
+  },
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO² máx.(mL(kg.min): 36.26
+===============================
+```
+
+### VO² máx.(mL(kg.min) Previsto
 
 
 

@@ -50,7 +50,7 @@ const aerobicFunctions = {
         break;
   
       case 4:
-        voTwoMaxValue = aerobicFunctions.bankMcArdle()
+        voTwoMaxValue = aerobicFunctions.bankMcArdle(userObject)
         break;
     
       default:
@@ -158,7 +158,7 @@ const aerobicFunctions = {
     return rockportTestTime
   },
 
-  testHeartRate(){
+  testHeartRate(testName){
 
     let testHeartRate = 0
     let validTestHeartRate = false
@@ -166,8 +166,8 @@ const aerobicFunctions = {
   
     do{
   
-      console.log(`Teste de Caminhada Rockport`)
-      testHeartRate = input.question(`Frequência Cardíaca ao fim da Caminhada (bpm): `)
+      console.log(`${testName}`)
+      testHeartRate = input.question(`Frequência Cardíaca ao final do teste (bpm): `)
       validTestHeartRate = validationFunctions.isRegularExpression(testHeartRate, isNumberFromZeroToTwoHundredAndTwenty)
       validationFunctions.incorrectValue(false, !validTestHeartRate, "Aeróbico")
   
@@ -180,7 +180,7 @@ const aerobicFunctions = {
   oneThousandSixHundredFromRockport(userObject){
 
     let testTime = aerobicFunctions.rockportTestTime()
-    let heartRate = aerobicFunctions.testHeartRate()
+    let heartRate = aerobicFunctions.testHeartRate('Teste de Caminhada Rockport')
     let weightInPounds = Number(userObject.bodyWeight / 0.454)
     let VO2max_mL_Kg_min = 0
   
@@ -192,6 +192,23 @@ const aerobicFunctions = {
     
     return VO2max_mL_Kg_min
   
+  },
+
+  bankMcArdle(userObject){
+
+    let VO2max_mL_Kg_min = 0
+    let heartRate = aerobicFunctions.testHeartRate('Teste Banco - McArdle')
+    
+    if(userObject.sexNumber === 1){
+  
+      VO2max_mL_Kg_min = Number((111.33 - ( 0.42 * heartRate )).toFixed(2))
+  
+    } else {
+  
+      VO2max_mL_Kg_min = Number(( 65.81 - ( 0.1847 * heartRate)).toFixed(2))
+    }
+  
+    return VO2max_mL_Kg_min
   },
 
 }

@@ -2803,7 +2803,7 @@ function cooperTwelveMin(){
 const userObject = {
   bodyWeight: 72.5748,
   age: 33,
-  sexNumber: 1,
+  sexNumber: 2,
 }
 
 function rockportTestTime(){
@@ -2833,7 +2833,7 @@ function rockportTestTime(){
 
 // console.log(rockportTestTime())
 
-function testHeartRate(){
+function testHeartRate(testName){
 
   let testHeartRate = 0
   let validTestHeartRate = false
@@ -2841,8 +2841,8 @@ function testHeartRate(){
 
   do{
 
-    console.log(`Teste de Caminhada Rockport`)
-    testHeartRate = input.question(`Frequência Cardíaca ao fim da Caminhada (bpm): `)
+    console.log(`${testName}`)
+    testHeartRate = input.question(`Frequência Cardíaca ao final do teste (bpm): `)
     validTestHeartRate = validationFunctions.isRegularExpression(testHeartRate, isNumberFromZeroToTwoHundredAndTwenty)
     validationFunctions.incorrectValue(false, !validTestHeartRate, "Aeróbico")
 
@@ -2871,4 +2871,26 @@ function oneThousandSixHundredFromRockport(userObject){
 
 }
 
-console.log(oneThousandSixHundredFromRockport(userObject))
+// console.log(oneThousandSixHundredFromRockport(userObject))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Bank - McArdle == **/
+
+function bankMcArdle(userObject){
+
+  let VO2max_mL_Kg_min = 0
+  let heartRate = aerobicFunctions.testHeartRate('Teste Banco - McArdle')
+  
+  if(userObject.sexNumber === 1){
+
+    VO2max_mL_Kg_min = Number((111.33 - ( 0.42 * heartRate )).toFixed(2))
+
+  } else {
+
+    VO2max_mL_Kg_min = Number(( 65.81- ( 0.1847 * heartRate)).toFixed(2))
+  }
+
+  return VO2max_mL_Kg_min
+}
+
+console.log(bankMcArdle(userObject))
