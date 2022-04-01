@@ -42,7 +42,7 @@ const cardiorespiratoryFunctions = {
       
         console.log(`Frequência Cardíaca de Treino:`)
         for(let i = 0; i < workingHeartRate.length; i++){
-          console.log(`        ${percentage[i]}% = ${workingHeartRate[i]} bpm`)
+          console.log(`${percentage[i]}% = ${workingHeartRate[i]} bpm`)
         } 
       
       },

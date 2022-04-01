@@ -1194,25 +1194,25 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Velocidade de treino: (SHOW)**
+- [x] **Velocidade de treino: (SHOW)**
 
   Aqui vamos determinar a velocidade de treino na esteira.  Deve ser mostrado a velocidade de acordo com os percentuais de 40% até 90%, mostrando de 5% em 5%.
 
-  - [ ] MET's
+  - [x] MET's
 
     MET's = VO² máx.(mL(kg.min) / 3,5
 
-  - [ ] Estado físico sedentário
+  - [x] Estado físico sedentário
 
     Frequência de treino  = ( percentual de trabalho / 100 )
 
-  - [ ] Estado físico ativo
+  - [x] Estado físico ativo
 
     Frequência de treino = ((MET's + percentual de trabalho ) / 100))
 
-  - [ ] Intensidade de treino (velocidade)
+  - [x] Intensidade de treino (velocidade)
 
-  - [ ] Velocidade = ( MET's * Frequência de treino)
+  - [x] Velocidade = ( MET's * Frequência de treino)
 
 
 

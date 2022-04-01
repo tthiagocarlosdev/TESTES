@@ -28,8 +28,8 @@ headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
 // variables anamnesisFunctions
-const questionnairePARQ = anamnesisFunctions.questionnairePARQ()
-const currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+const questionnairePARQ = anamnesisFunctions.questionnairePARQ()*/
+user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()/*
 const pastIllness = anamnesisFunctions.pastIllness()
 const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
 const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
@@ -89,6 +89,7 @@ headerFunctions.subTitle("Aeróbico")
 user.voTwoMax = aerobicFunctions.voTwoMax(user)
 user.voTwoMaxExpected = aerobicFunctions.vo2maxExpected(user)
 user.voTwoMaxClassification = aerobicFunctions.vo2maxClassification(user)
+user.objectTrainingSpeed = aerobicFunctions.trainingSpeed(user)
 
 // show results personalData
 /*console.clear()
@@ -165,6 +166,8 @@ headerFunctions.subTitle("Aeróbico") //temporary
 console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
 console.log(`VO²máx Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
 console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
+headerFunctions.showArray(user.objectTrainingSpeed.titleTrainSpeed, user.objectTrainingSpeed.showTrainingSpeed)
 
-console.log(`===============================`)
+console.log(`===============================`) 
+// headerFunctions.baseboard()
 console.log(user)

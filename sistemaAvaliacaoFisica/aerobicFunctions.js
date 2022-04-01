@@ -416,6 +416,51 @@ const aerobicFunctions = {
   
   },
 
+  trainingSpeed(userObject){
+
+    let objectTrainingSpeed = {
+      METs: 0,
+      percentage: [],
+      trainingFrequency: [],
+      trainingSpeed: [],
+      titleTrainSpeed: `Velocidade de Treino:`, 
+      showTrainingSpeed: [],
+    }
+  
+    objectTrainingSpeed.METs = Number((userObject.voTwoMax / 3.5)) // Calculate METs
+  
+    // Calculate Percentage
+    for(let i = 40; i <= 95; i+=5){
+      objectTrainingSpeed.percentage.push(Number([i]))
+    }
+  
+    // Calculate Training Frequency
+    for(let i = 0; i < objectTrainingSpeed.percentage.length; i++){
+      
+      if(userObject.currentPhysicalState === 1){
+        objectTrainingSpeed.trainingFrequency.push(Number((objectTrainingSpeed.percentage[i] / 100)))
+      } else if(userObject.currentPhysicalState === 2){
+        objectTrainingSpeed.trainingFrequency.push(Number(((objectTrainingSpeed.METs + objectTrainingSpeed.percentage[i]) / 100)))
+      }
+  
+    }
+    
+    // Calculate Training Speed
+    for(let i = 0; i < objectTrainingSpeed.trainingFrequency.length; i++){
+  
+      objectTrainingSpeed.trainingSpeed.push(Number((objectTrainingSpeed.METs * objectTrainingSpeed.trainingFrequency[i]).toFixed(2)))
+  
+    }
+  
+    // Show Training Speed
+    for(let i = 0; i < objectTrainingSpeed.trainingSpeed.length; i++){
+      objectTrainingSpeed.showTrainingSpeed.push(`${objectTrainingSpeed.percentage[i]}% = ${objectTrainingSpeed.trainingSpeed[i]} km/h`)
+    }
+  
+    return objectTrainingSpeed
+  
+  },
+
 }
 
 module.exports = {

@@ -2784,7 +2784,7 @@ workingHeartRate(restingHeartRateValue, maximumHeartRateValue){
       
         console.log(`Frequência Cardíaca de Treino:`)
         for(let i = 0; i < workingHeartRate.length; i++){
-          console.log(`        ${percentage[i]}% = ${workingHeartRate[i]} bpm`)
+          console.log(`${percentage[i]}% = ${workingHeartRate[i]} bpm`)
         } 
       
       },
@@ -7709,6 +7709,126 @@ Classificação do VO²máx: Bom
 ```
 
 ### Velocidade de treino
+
+**trainingSpeed( )** function determinar a velocidade de treino do usuário, mostrado a velocidade de acordo com os percentuais de 40% até 95%, mostrando de 5% em 5%. Esta function recebe como parâmetro o objeto ***user***. Dentro desta function, vamos criar m objeto **(_objectTrainingSpeed_)** que vai receber algumas variáveis que vamos calcular dentro desta function. No final a function **trainingSpeed( )** retorna o objeto ***objectTrainingSpeed***.
+
+Dentro desta function, para chegarmos a velocidade de treino, primeiro precisamos determinar o **MET's** do usuário, que é obtido pela fórmula:
+
+MET's = VO² máx.(mL(kg.min) / 3,5
+
+Em seguida, vamos determinar os percentuais dentro de um array **(percentage)**.
+
+Em seguida, se determina a **Frequência de Treino (FT) - (trainingFrequency)**, que também é um array, do usuário que depende do seu estado físico:
+
+| Estado físico sedentário              | Estado físico ativo                             |
+| ------------------------------------- | ----------------------------------------------- |
+| FT = ( percentual de trabalho / 100 ) | FT = ((MET's + percentual de trabalho ) / 100)) |
+
+Por último a Velocidade de Treino **(_trainingSpeed_)** **[array]** que é determinada pela fórmula:
+
+Velocidade de Treino = ( MET's * Frequência de Treino)
+
+Para mostrar o resultado, vamos criar mais duas variáveis: **titleTrainSpeed** e **showTrainingSpeed** que também vão dentro do objeto ***objectTrainingSpeed***.
+
+Logo, em **aerobicFunctions.js**:
+
+```js
+trainingSpeed(userObject){
+
+    let objectTrainingSpeed = {
+      METs: 0,
+      percentage: [],
+      trainingFrequency: [],
+      trainingSpeed: [],
+      titleTrainSpeed: `Velocidade de Treino:`, 
+      showTrainingSpeed: [],
+    }
+  
+    objectTrainingSpeed.METs = Number((userObject.voTwoMax / 3.5)) // Calculate METs
+  
+    // Calculate Percentage
+    for(let i = 40; i <= 95; i+=5){
+      objectTrainingSpeed.percentage.push(Number([i]))
+    }
+  
+    // Calculate Training Frequency
+    for(let i = 0; i < objectTrainingSpeed.percentage.length; i++){
+      
+      if(userObject.currentPhysicalState === 1){
+        objectTrainingSpeed.trainingFrequency.push(Number((objectTrainingSpeed.percentage[i] / 100)))
+      } else if(userObject.currentPhysicalState === 2){
+        objectTrainingSpeed.trainingFrequency.push(Number(((objectTrainingSpeed.METs + objectTrainingSpeed.percentage[i]) / 100)))
+      }
+  
+    }
+    
+    // Calculate Training Speed
+    for(let i = 0; i < objectTrainingSpeed.trainingFrequency.length; i++){
+  
+      objectTrainingSpeed.trainingSpeed.push(Number((objectTrainingSpeed.METs * objectTrainingSpeed.trainingFrequency[i]).toFixed(2)))
+  
+    }
+  
+    // Show Training Speed
+    for(let i = 0; i < objectTrainingSpeed.trainingSpeed.length; i++){
+      objectTrainingSpeed.showTrainingSpeed.push(`${objectTrainingSpeed.percentage[i]}% = ${objectTrainingSpeed.trainingSpeed[i]} km/h`)
+    }
+  
+    return objectTrainingSpeed
+  
+  },
+```
+
+Em **saf.js** vamos criar a variável da velocidade de treino que recebe o retorno da function **trainingSpeed( )**:
+
+```js
+user.objectTrainingSpeed = aerobicFunctions.trainingSpeed(user)
+```
+
+Para exibir o resultado, em **headerFunctions.js** vamos criar a function **showArray** que recebe um título e um aray como parâmetros e exibe todo o conteúdo do array:
+
+```js
+showArray(title, array){
+    
+    console.log(`${title}`)
+    for(let i = 0; i < array.length; i++){
+      console.log(`${array[i]}`)
+    } 
+  },
+```
+
+Voltando para **saf.js** vamos chamar a function **showArray( )** para mostrar a velocidade de treino:
+
+```js
+headerFunctions.showArray(user.objectTrainingSpeed.titleTrainSpeed, user.objectTrainingSpeed.showTrainingSpeed)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO²máx (mL(kg.min): 44.13
+VO²máx Previsto(mL(kg.min): 41.3
+Classificação do VO²máx: Bom
+Velocidade de Treino:
+40% = 6.63 km/h
+45% = 7.26 km/h
+50% = 7.89 km/h
+55% = 8.52 km/h
+60% = 9.15 km/h
+65% = 9.79 km/h
+70% = 10.42 km/h
+75% = 11.05 km/h
+80% = 11.68 km/h
+85% = 12.31 km/h
+90% = 12.94 km/h
+95% = 13.57 km/h
+===============================
+```
 
 
 

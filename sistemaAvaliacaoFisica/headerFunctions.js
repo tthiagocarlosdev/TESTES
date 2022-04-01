@@ -12,6 +12,18 @@ const headerFunctions = {
     console.log("===============================")
   },
 
+  // baseboard(){
+  //   console.log("===============================")
+  // },
+
+  showArray(title, array){
+    
+    console.log(`${title}`)
+    for(let i = 0; i < array.length; i++){
+      console.log(`${array[i]}`)
+    } 
+  },
+
 }
 
 module.exports = {

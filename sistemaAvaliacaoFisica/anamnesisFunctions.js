@@ -70,7 +70,7 @@ const anamnesisFunctions = {
   
     }while(!itsNumberOneOrTwo)
   
-    return currentPhysicalState
+    return Number(currentPhysicalState)
   
   },
   
