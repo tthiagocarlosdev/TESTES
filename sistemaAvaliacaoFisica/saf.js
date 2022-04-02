@@ -90,6 +90,7 @@ user.voTwoMax = aerobicFunctions.voTwoMax(user)
 user.voTwoMaxExpected = aerobicFunctions.vo2maxExpected(user)
 user.voTwoMaxClassification = aerobicFunctions.vo2maxClassification(user)
 user.objectTrainingSpeed = aerobicFunctions.trainingSpeed(user)
+user.aerobicFunctionalDeficit = aerobicFunctions.aerobicFunctionalDeficit(user)
 
 // show results personalData
 /*console.clear()
@@ -167,6 +168,7 @@ console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
 console.log(`VO²máx Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
 console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
 headerFunctions.showArray(user.objectTrainingSpeed.titleTrainSpeed, user.objectTrainingSpeed.showTrainingSpeed)
+console.log(`Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficit.toFixed(2)}`)
 
 console.log(`===============================`) 
 // headerFunctions.baseboard()

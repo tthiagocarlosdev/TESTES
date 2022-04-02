@@ -3242,7 +3242,24 @@ const usuarioAtivo = {
   currentPhysicalState: 2,
 }
 
-console.log(`SEDENTÁRIO`)
-console.log(trainingSpeed(usuarioSedentario))
-console.log(`ATIVO`)
-console.log(trainingSpeed(usuarioAtivo))
+// console.log(`SEDENTÁRIO`)
+// console.log(trainingSpeed(usuarioSedentario))
+// console.log(`ATIVO`)
+// console.log(trainingSpeed(usuarioAtivo))
+
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Déficit Funcional Aeróbio - FAI == **/
+
+const usuario01 = {
+  voTwoMax: 44.13,
+  voTwoMaxExpected: 41.3,
+}
+
+function aerobicFunctionalDeficit(userObject){
+
+  return Number((( (userObject.voTwoMaxExpected  -  userObject.voTwoMax)  /  userObject.voTwoMaxExpected ) * 100))
+
+}
+
+console.log(aerobicFunctionalDeficit(usuario01))

@@ -461,6 +461,12 @@ const aerobicFunctions = {
   
   },
 
+  aerobicFunctionalDeficit(userObject){
+
+    return Number((( (userObject.voTwoMaxExpected  -  userObject.voTwoMax)  /  userObject.voTwoMaxExpected ) * 100))
+  
+  },
+
 }
 
 module.exports = {

@@ -1216,7 +1216,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 
 
-- [ ] **Déficit Funcional Aeróbio - FAI: (SHOW)**
+- [x] **Déficit Funcional Aeróbio - FAI: (SHOW)**
 
   FAI == (( VO² máx.(mL(kg.min) Previsto  -  VO² máx.(mL(kg.min) )  /  VO² máx.(mL(kg.min) Previsto ) * 100
 

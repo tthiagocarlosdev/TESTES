@@ -7830,6 +7830,62 @@ Velocidade de Treino:
 ===============================
 ```
 
+### Déficit Funcional Aeróbio - FAI
+
+***Déficit Funcional Aeróbio( )** function determina o **Déficit Funcional Aeróbio** do usuário. Recebe como parâmetro o objeto ***user*** e retorna o Déficit Funcional Aeróbio de acordo com a seguinte fórmula:
+
+FAI == ((( VO² máx.(mL(kg.min) Previsto  -  VO² máx.(mL(kg.min) )  /  VO² máx.(mL(kg.min) Previsto ) * 100)
+
+Logo, em **aerobicFunctions.js**:
+
+```js
+aerobicFunctionalDeficit(userObject){
+
+    return Number((( (userObject.voTwoMaxExpected  -  userObject.voTwoMax)  /  userObject.voTwoMaxExpected ) * 100))
+  
+  },
+```
+
+Em **saf.js** vamos atribuir o valor do **Déficit Funcional Aeróbio** ao objeto ***user*** e depois mostrar o resultado:
+
+```js
+user.aerobicFunctionalDeficit = aerobicFunctions.aerobicFunctionalDeficit(user)
+```
+
+```js
+console.log(`Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficit.toFixed(2)}`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO²máx (mL(kg.min): 44.13
+VO²máx Previsto(mL(kg.min): 41.3
+Classificação do VO²máx: Bom
+Velocidade de Treino:
+40% = 6.63 km/h
+45% = 7.26 km/h
+50% = 7.89 km/h
+55% = 8.52 km/h
+60% = 9.15 km/h
+65% = 9.79 km/h
+70% = 10.42 km/h
+75% = 11.05 km/h
+80% = 11.68 km/h
+85% = 12.31 km/h
+90% = 12.94 km/h
+95% = 13.57 km/h
+Déficit Funcional Aeróbio: -6.85
+===============================
+```
+
+### Déficit Funcional Aeróbio - FAI - Classificação
+
 
 
 
