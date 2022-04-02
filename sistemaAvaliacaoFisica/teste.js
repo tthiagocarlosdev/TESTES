@@ -3262,4 +3262,36 @@ function aerobicFunctionalDeficit(userObject){
 
 }
 
+usuario01.aerobicFunctionalDeficit = aerobicFunctionalDeficit(usuario01)
 console.log(aerobicFunctionalDeficit(usuario01))
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Aerobic Functional Deficit - FAI - Classification == **/
+
+function aerobicFunctionalDeficitClassification(userObject){
+
+  let classification = `` 
+  const veryLow = userObject.aerobicFunctionalDeficit > 25
+  const veryLowRating = `Muito Baixo`
+  const low = userObject.aerobicFunctionalDeficit >  9
+  const lowRating = `Baixo`
+  const good = userObject.aerobicFunctionalDeficit > 0
+  const goodRating = `Bom`
+  
+  const greatRating = `Ótimo`
+  
+  if(veryLow){
+    classification = veryLowRating
+  } else if(low){
+    classification = lowRating
+  } else if(good){
+    classification = goodRating
+  } else {
+    classification = greatRating
+  }
+
+  return classification
+
+}
+
+console.log(`Classificaćão: ${aerobicFunctionalDeficitClassification(usuario01)}`)

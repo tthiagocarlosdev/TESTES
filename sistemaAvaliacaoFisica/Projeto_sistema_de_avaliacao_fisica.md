@@ -1220,7 +1220,7 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
   FAI == (( VO² máx.(mL(kg.min) Previsto  -  VO² máx.(mL(kg.min) )  /  VO² máx.(mL(kg.min) Previsto ) * 100
 
-- [ ] **Déficit Funcional Aeróbio - FAI - Classificação: (SHOW)**
+- [x] **Déficit Funcional Aeróbio - FAI - Classificação: (SHOW)**
 
   FAI > 25 = "Muito Baixo"
 

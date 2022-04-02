@@ -467,6 +467,31 @@ const aerobicFunctions = {
   
   },
 
+  aerobicFunctionalDeficitClassification(userObject){
+
+    let classification = `` 
+    const veryLow = userObject.aerobicFunctionalDeficit > 25
+    const veryLowRating = `Muito Baixo`
+    const low = userObject.aerobicFunctionalDeficit >  9
+    const lowRating = `Baixo`
+    const good = userObject.aerobicFunctionalDeficit > 0
+    const goodRating = `Bom`
+    const greatRating = `Ótimo`
+    
+    if(veryLow){
+      classification = veryLowRating
+    } else if(low){
+      classification = lowRating
+    } else if(good){
+      classification = goodRating
+    } else {
+      classification = greatRating
+    }
+  
+    return classification
+  
+  },
+
 }
 
 module.exports = {

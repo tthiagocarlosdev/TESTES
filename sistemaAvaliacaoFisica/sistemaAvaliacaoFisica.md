@@ -7886,6 +7886,89 @@ Déficit Funcional Aeróbio: -6.85
 
 ### Déficit Funcional Aeróbio - FAI - Classificação
 
+**aerobicFunctionalDeficitClassification( )** function determina a **classificação** do **Déficit Funcional Aeróbio** do usuário. Recebe como parâmetro o objeto ***user***. A classificação é determinada de acordo com a tabela abaixo:
+
+| Déficit Funcional Aeróbio - FAI - Classificação |
+| ----------------------------------------------- |
+| FAI > 25 = "Muito Baixo"                        |
+| FAI > 9 = "Baixo"                               |
+| FAI > 0 = "Bom"                                 |
+| FAI <= 0 = "Ótimo"                              |
+
+Logo, em **aerobicFunctions.js**:
+
+```js
+aerobicFunctionalDeficitClassification(userObject){
+
+    let classification = `` 
+    const veryLow = userObject.aerobicFunctionalDeficit > 25
+    const veryLowRating = `Muito Baixo`
+    const low = userObject.aerobicFunctionalDeficit >  9
+    const lowRating = `Baixo`
+    const good = userObject.aerobicFunctionalDeficit > 0
+    const goodRating = `Bom`
+    const greatRating = `Ótimo`
+    
+    if(veryLow){
+      classification = veryLowRating
+    } else if(low){
+      classification = lowRating
+    } else if(good){
+      classification = goodRating
+    } else {
+      classification = greatRating
+    }
+  
+    return classification
+  
+  },
+```
+
+Em **saf.js** atribuímos a classficação no objeto ***user*** e depois mostramos o resultado:
+
+```js
+user.aerobicFunctionalDeficitClassification = aerobicFunctions.aerobicFunctionalDeficitClassification(user)
+```
+
+```js
+console.log(`Classificação do Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficitClassification}`)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO²máx (mL(kg.min): 47.31
+VO²máx Previsto(mL(kg.min): 41.3
+Classificação do VO²máx: Bom
+Velocidade de Treino:
+40% = 7.23 km/h
+45% = 7.91 km/h
+50% = 8.59 km/h
+55% = 9.26 km/h
+60% = 9.94 km/h
+65% = 10.61 km/h
+70% = 11.29 km/h
+75% = 11.96 km/h
+80% = 12.64 km/h
+85% = 13.32 km/h
+90% = 13.99 km/h
+95% = 14.67 km/h
+Déficit Funcional Aeróbio: -14.55
+Classificação do Déficit Funcional Aeróbio: Ótimo
+===============================
+```
+
+## Outros
+
+### Observações
+
+
+
 
 
 
