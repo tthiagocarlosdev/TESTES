@@ -205,20 +205,14 @@ module.exports = {
 
 Agora estamos prontos para colocar a mão na massa.
 
-## Personal Data Functions
+## Header Functions
 
-Vamos começar pelos dados pessoais do avaliado.
-
-### Cabeçalhos
-
-Antes, vamos fazer um cabeçalho para nossa aplicação.
-
-Agora vamos criar a nossa primeira function de cabeçalho, denominada **systemHeader**. Em **headerFunctions.js**, dentro da variável **headerFunctions** vamos colocar a function **systemHeader**, conforme  abaixo:
+A nossa primeira function de cabeçalho será denominada **systemHeader( )**. Em **headerFunctions.js**, dentro da variável **headerFunctions** vamos colocar a function **systemHeader( )**, conforme  abaixo:
 
 ```js
 const headerFunctions = {
   
-  systemHeader: function(){
+  systemHeader(){
     console.log("===============================")
     console.log("  SISTEMA DE AVALIAÇÃO FÍSICA  ")
     console.log("===============================")
@@ -227,29 +221,42 @@ const headerFunctions = {
 }
 ```
 
-Vamos criar também um function que irá mostrar os subtítulos. Ela recebe como parâmetro o subtítulo da avaliação:
+Vamos criar também a function **subTitle( )** que irá mostrar os subtítulos. Ela recebe como parâmetro o subtítulo da avaliação:
 
 ```js
-subTitle: function(title){
+subTitle(title){
     console.log(`           ${title}            `)
+    console.log("===============================")
+  },
+```
+
+Por último, vamos criar a function **baseboard( )** que mostra apenas uma linha tracejada dupla:
+
+```js
+baseboard(){
     console.log("===============================")
   },
 ```
 
 Arquivo **headerFunctions** completo, até o momento:
 
-```javascript
+```js
 /* header functions */
+
 const headerFunctions = {
   
-  systemHeader: function(){
+  systemHeader(){
     console.log("===============================")
     console.log("  SISTEMA DE AVALIAÇÃO FÍSICA  ")
     console.log("===============================")
   },
 
-  subTitle: function(title){
+  subTitle(title){
     console.log(`           ${title}            `)
+    console.log("===============================")
+  },
+
+  baseboard(){
     console.log("===============================")
   },
 
@@ -260,30 +267,40 @@ module.exports = {
 }
 ```
 
-No arquivo **saf.js** vamos chamar as functions **systemHeader( )** e **anamnesisHeader( )** para serem executadas:
+No arquivo **saf.js** vamos chamar as functions **systemHeader( )**, **subTitle( )**, passando "Dados Pessoais" como parâmetro, e **baseboard( )** para serem executadas:
 
 ```js
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
+headerFunctions.baseboard()
 ```
 
 ### Executar o programa
 
 Para executar o programa, no terminal, digite o comando abaixo:
 
-````shell
+```shell
 $ node saf.js
-````
+```
 
 Ao executar o programa:
 
-```tex
+```shell
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
-         Dados Pessoais            
+           Dados Pessoais            
+===============================
 ===============================
 ```
+
+
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+
+## Personal Data Functions
+
+Vamos começar pelos dados pessoais do avaliado.
 
 ### Nome do usuário
 

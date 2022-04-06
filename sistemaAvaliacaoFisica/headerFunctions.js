@@ -2,13 +2,13 @@
 
 const headerFunctions = {
   
-  systemHeader: function(){
+  systemHeader(){
     console.log("===============================")
     console.log("  SISTEMA DE AVALIAÇÃO FÍSICA  ")
     console.log("===============================")
   },
 
-  subTitle: function(title){
+  subTitle(title){
     console.log(`           ${title}            `)
     console.log("===============================")
   },

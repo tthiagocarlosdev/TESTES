@@ -9,10 +9,11 @@ const { neuromuscularFunctions } = require('./neuromuscularFunctions')
 const { aerobicFunctions } = require('./aerobicFunctions')*/
 
 const user = { }
-/*
+
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
-
+headerFunctions.baseboard()
+/*
 // variables personalDataFunctions
 user.name = personalDataFunctions.userName()
 user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
