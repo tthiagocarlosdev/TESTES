@@ -8,20 +8,22 @@ const { anamnesisFunctions } = require('./anamnesisFunctions')
 
 const personalDataFunctions = {
       
-  userName: function() {
+  userName(){
     
+    let name = ''
     let itsNumber = true
     let itsLetters = false
-    let name = ''
+    let regexNumber = /\d/gi
+    let regexLetters = /\D/gi
     
     while(itsNumber || !itsLetters){
-
+  
       name = input.question('Digite seu nome: ')
-      itsNumber = validationFunctions.itsNumber(name)
-      itsLetters = validationFunctions.itsLetters(name)
+      itsNumber = validationFunctions.isRegularExpression(name, regexNumber)
+      itsLetters = validationFunctions.isRegularExpression(name, regexLetters)
     
       validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
-
+  
     }
     
     return name

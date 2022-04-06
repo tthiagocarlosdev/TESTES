@@ -294,35 +294,58 @@ Ao executar o programa:
 ===============================
 ```
 
-
-
-/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
-
 ## Personal Data Functions
 
-Vamos começar pelos dados pessoais do avaliado.
+Agora vamos começar a criar as functions de dados pessoais do usuário.
 
 ### Nome do usuário
 
-Agora vamos criar uma function que vai receber o nome do usuário. Esta function receberá o nome do usuário que deverá ter apenas letras e acentos/sinais, caso tenha **número**, deverá informar ao usuário que o dado está incorreto e pedir novamente para o usuário inserir o nome. Para isto vamos criar também duas functions de validação que serão usadas dentro da function do nome. 
+**userName( )** function, recebe o nome do usuário. Esta function receberá o nome do usuário que deverá ter apenas letras e acentos/sinais, caso tenha **número**, deverá informar ao usuário que o dado está incorreto e pedir novamente para o usuário digitar o seu nome. Para isto vamos criar também duas functions de validação que serão usadas dentro da function do nome. 
 
-Em **personalData.js** dentro da variável que criamos, crie a function **userName**:
+Em **validationFunctions.js** vamos criar a function **isRegularExpression( )**. Esta function recebe uma **String** e uma **Expressão Regular** com parâmetro e retorna **true** se o valor estiver de acordo com a expressão regular, caso contrário, retorna **false**:
 
 ```js
-userName: function() {
+isRegularExpression(stringValue, regex){
     
+    return regex.test(stringValue) ? true : false
+    
+  },
+```
+
+Ainda em **validationFunctions.js**, vamos criar a function **incorrectValue( )** que terá duas variáveis de valor booleano como parâmetro e o subtítulo da parte da avaliação. Caso uma das duas variáveis seja _**true**_ a function irá retornar as functions **systemHeader( )** e **subTitle( )**, como também a mensagem **_"Dado incorreto!"_**:
+
+```js
+incorrectValue: function (valueA, valueB, title){
+    
+    if(valueA || valueB ){ 
+      console.clear()
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle(title)
+      console.log('Dado Incorreto!')
+    }
+
+  },
+```
+
+Em **personalDataFunctions.js** dentro da variável que criamos, colocamos a function **userName( )**:
+
+```js
+userName(){
+    
+    let name = ''
     let itsNumber = true
     let itsLetters = false
-    let name = ''
+    let regexNumber = /\d/gi
+    let regexLetters = /\D/gi
     
     while(itsNumber || !itsLetters){
-
+  
       name = input.question('Digite seu nome: ')
-      itsNumber = validationFunctions.itsNumber(name)
-      itsLetters = validationFunctions.itsLetters(name)
+      itsNumber = validationFunctions.isRegularExpression(name, regexNumber)
+      itsLetters = validationFunctions.isRegularExpression(name, regexLetters)
     
       validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
-
+  
     }
     
     return name
@@ -330,79 +353,56 @@ userName: function() {
   },
 ```
 
-### Validação de nome
-
-Em **validationFunctions.js** também dentro da variável que criamos, vamos criar a function **itsLetters( )** que receberá uma string como parâmetro e irá retornar **true** se dentro da _string_ contém letras e **false** se não tiver letras:
+Em **saf.js** vamos atribuir o nome do usuário ao objeto _**user**_, adicionando a propriedade **name**, que receberá a function **userName( )** e depois vamos mostrar o resultado:
 
 ```js
-itsLetters: function(stringValue){
-    letterOrSpaceRegExp = /\D/gi
-
-    return letterOrSpaceRegExp.test(stringValue) ? true : false
-    
-  },
-```
-
-Ainda em **validationFunctions.js** também vamos criar a function **itsNumber( )** que receberá uma string com parâmetro e verifica se nessa string contém número. Caso tenha numero retona **true**, caso não, retorna **false**:
-
-```js
-itsNumber: function(value){
-  
-    const regExp2 = /\d/g
-    let itsNumber = regExp2.test(value)
-   
-    return itsNumber ? true : false
-    
-  },
-```
-
-Ainda em **validationFunctions.js** a function **incorrectValue** terá dois valores booleanos como parâmetros e o subtítulo da parte da avaliação. Caso um dos dois valores booleanos seja _true_ a function irá retornar as functions **systemHeader( )** e **subTitle( )**, como também a mensagem _"Dado incorreto!"_:
-
-```js
-incorrectValue: function (valueA, valueB, title){
-    if(valueA || valueB ){ 
-      console.clear()
-      headerFunctions.systemHeader()
-      headerFunctions.subTitle(title)
-      console.log('Dado Incorreto!')
-    }
-  },
-```
-
-Em **saf.js** vamos criar uma variável **name**, que receberá a function **userName( )** e depois vamos fazer um **console.log** dessa variável:
-
-```js
-var input = require('readline-sync')
+/* physical assessment system */
 
 const { headerFunctions } = require('./headerFunctions')
-const { personalData } = require('./personalData')
+const { personalDataFunctions } = require('./personalDataFunctions')
+
+const user = { }
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
-// variables 
-const name = personalData.userName()
+// variables personalDataFunctions
+user.name = personalDataFunctions.userName()
+```
 
-// show results
+```js
+// show results personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
-console.log(`Nome: ${name}`)
-
-console.log(`===============================`)
+console.log(`Nome: ${user.name}`)
+headerFunctions.baseboard()
 ```
 
-Ao executar:
+Ao executar o programa:
 
-```tex
+```shell
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
-           Dados Pessoais             
+           Dados Pessoais            
 ===============================
-Nome: Fulano de Tal
+Digite seu nome: Fulano Cicrano
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Nome: Fulano Cicrano
 ===============================
 ```
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+
+
 
 ### Dia do nascimento
 
@@ -460,6 +460,8 @@ dateOfBirth: function(){
     
   },
 ```
+
+**ATENÇÃO, FUNCTION JÁ MENCIONADA**
 
 Em **validationFunctions.js** vamos criar a function **isRegularExpression**:
 

@@ -4,7 +4,7 @@ const { headerFunctions } = require('./headerFunctions')
 
 const validationFunctions = {
 
-  itsLetters: function(stringValue){
+  /*itsLetters: function(stringValue){
     letterOrSpaceRegExp = /\D/gi
 
     return letterOrSpaceRegExp.test(stringValue) ? true : false
@@ -19,8 +19,16 @@ const validationFunctions = {
    
     return itsNumber ? true : false
     
+  },*/
+
+  // recebe um valor e uma expressão regular. retorna true se o valor estiver de acordo com a expressão regular
+  isRegularExpression(stringValue, regex){
+    
+    return regex.test(stringValue) ? true : false
+    
   },
 
+  // recebe duas variáveis de valor booleano como parâmetro e o subtítulo da parte da avaliação. Caso uma das duas variáveis seja true a function é executada, caso as duas sejam false, a function não é executada.
   incorrectValue: function (valueA, valueB, title){
     
     if(valueA || valueB ){ 
@@ -32,12 +40,6 @@ const validationFunctions = {
 
   },
 
-  // recebe um valor e uma expressão regular. retorna true se o valor estiver de acordo com a expressão regular
-  isRegularExpression: function(stringValue, regex){
-    
-    return regex.test(stringValue) ? true : false
-    
-  },
 
     // recebe duas datas e valida se são iguais
   validDate: function(informedDate, realDate){

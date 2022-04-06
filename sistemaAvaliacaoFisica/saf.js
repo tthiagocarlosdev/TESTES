@@ -12,10 +12,10 @@ const user = { }
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
-headerFunctions.baseboard()
-/*
+
 // variables personalDataFunctions
 user.name = personalDataFunctions.userName()
+/*
 user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
 user.birthdayInISOFormat = personalDataFunctions.dateInISOFormat(user.birthdayInBrazilianFormat)
 user.age = personalDataFunctions.age(user.birthdayInISOFormat)
@@ -99,13 +99,14 @@ user.aerobicFunctionalDeficitClassification = aerobicFunctions.aerobicFunctional
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Observações")
-user.comments = personalDataFunctions.comments()
+user.comments = personalDataFunctions.comments()*/
 
 // show results personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 console.log(`Nome: ${user.name}`)
+headerFunctions.baseboard()/*
 console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
 console.log(`Idade: ${user.age} anos!`)
 console.log(`Sexo: ${user.sex}`)

@@ -22,7 +22,29 @@ const { aerobicFunctions } = require('./aerobicFunctions')
 //   console.log(data.match(dateREgExp))
 // }
 
+function userName(){
+    
+  let name = ''
+  let itsNumber = true
+  let itsLetters = false
+  let regexNumber = /\d/gi
+  let regexLetters = /\D/gi
+  
+  while(itsNumber || !itsLetters){
 
+    name = input.question('Digite seu nome: ')
+    itsNumber = validationFunctions.isRegularExpression(name, regexNumber)
+    itsLetters = validationFunctions.isRegularExpression(name, regexLetters)
+  
+    validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
+
+  }
+  
+  return name
+
+}
+
+console.log(userName())
 
 /*
 function birthDate(date){  
@@ -3338,4 +3360,4 @@ function comments(){
 
 }
 
-console.log(comments())
+// console.log(comments())
