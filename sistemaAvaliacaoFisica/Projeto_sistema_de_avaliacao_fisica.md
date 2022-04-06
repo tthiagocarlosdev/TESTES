@@ -1234,10 +1234,10 @@ Se a reposta for "1", mostrar "Sedentário", se for "2", mostrar "Ativo".
 
 # Outros
 
-- [ ] **Observações: (INPUT)**
-  - [ ] Caracteres alfa numérico
-  - [ ] Validar vazio
-  - [ ] Aqui o avaliador colocará alguma outra observação que achar pertinente durante a realização da avaliação.
+- [x] **Observações: (INPUT)**
+  - [x] Caracteres alfa numérico
+  - [x] Validar vazio
+  - [x] Aqui o avaliador colocará alguma outra observação que achar pertinente durante a realização da avaliação.
 
 
 

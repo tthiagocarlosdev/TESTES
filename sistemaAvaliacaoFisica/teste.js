@@ -3263,7 +3263,7 @@ function aerobicFunctionalDeficit(userObject){
 }
 
 usuario01.aerobicFunctionalDeficit = aerobicFunctionalDeficit(usuario01)
-console.log(aerobicFunctionalDeficit(usuario01))
+// console.log(aerobicFunctionalDeficit(usuario01))
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Aerobic Functional Deficit - FAI - Classification == **/
@@ -3294,4 +3294,48 @@ function aerobicFunctionalDeficitClassification(userObject){
 
 }
 
-console.log(`Classificaćão: ${aerobicFunctionalDeficitClassification(usuario01)}`)
+// console.log(`Classificação: ${aerobicFunctionalDeficitClassification(usuario01)}`)
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == others == **/
+/** == comments == **/
+
+function comments(){
+
+  let commentsNumber = 2
+  let commentsText = ''
+  let itsNumberOneOrTwo = true
+  let regexNumber = /^[1]$|^[2]$/
+  let itsLetters = true
+
+  do{
+
+    console.log(`Observações?`)
+    anamnesisFunctions.choice()
+    commentsNumber = Number(input.question(''))
+
+    itsNumberOneOrTwo = validationFunctions.isRegularExpression(commentsNumber, regexNumber)
+    validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Observações")
+
+    if(commentsNumber === 1){
+      
+      do{
+
+        console.log(`Digite a Observação:`)
+        commentsText = input.question('')
+        itsLetters = validationFunctions.itsLetters(commentsText)
+        validationFunctions.incorrectValue(false, !itsLetters, "Observações")
+
+      }while(!itsLetters)
+      
+    } else {
+      commentsText = `Sem Observações!`
+    }
+
+  }while(!itsNumberOneOrTwo)
+
+    return commentsText
+
+}
+
+console.log(comments())

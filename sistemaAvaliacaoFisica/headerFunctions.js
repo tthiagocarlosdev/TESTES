@@ -12,9 +12,9 @@ const headerFunctions = {
     console.log("===============================")
   },
 
-  // baseboard(){
-  //   console.log("===============================")
-  // },
+  baseboard(){
+    console.log("===============================")
+  },
 
   showArray(title, array){
     

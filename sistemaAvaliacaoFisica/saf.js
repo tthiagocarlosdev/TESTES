@@ -8,78 +8,77 @@ const { aerobicFunctions } = require('./aerobicFunctions')
 
 const user = { }
 
-/*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
 // variables personalData
-user.name = personalData.userName()*/
+user.name = personalData.userName()
 user.birthdayInBrazilianFormat =  personalData.dateOfBirth()
 user.birthdayInISOFormat = personalData.dateInISOFormat(user.birthdayInBrazilianFormat)
 user.age = personalData.age(user.birthdayInISOFormat)
-user.sexNumber = personalData.sexNumber()/*
-const sex = personalData.showSex(sexNumber)
-const profession = personalData.userProfession()
-const userEmail = personalData.userEmail()
-const phoneNumber = personalData.phoneNumber()
+user.sexNumber = personalData.sexNumber()
+user.sex = personalData.showSex(user.sexNumber)
+user.profession = personalData.userProfession()
+user.userEmail = personalData.userEmail()
+user.phoneNumber = personalData.phoneNumber()
 
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
 // variables anamnesisFunctions
-const questionnairePARQ = anamnesisFunctions.questionnairePARQ()*/
-user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()/*
-const pastIllness = anamnesisFunctions.pastIllness()
-const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
-const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
-const useMedication = anamnesisFunctions.useMedication()
-const sportsInjuries = anamnesisFunctions.sportsInjuries()
-const trainingObjective = anamnesisFunctions.trainingObjective()
-const daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
-const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
+user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+user.pastIllness = anamnesisFunctions.pastIllness()
+user.illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
+user.surgeryPerformed = anamnesisFunctions.surgeryPerformed()
+user.useMedication = anamnesisFunctions.useMedication()
+user.sportsInjuries = anamnesisFunctions.sportsInjuries()
+user.trainingObjective = anamnesisFunctions.trainingObjective()
+user.daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
+user.timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
 
 console.clear()
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Cardiorrespiratório")*/
+headerFunctions.subTitle("Cardiorrespiratório")
 
 // variables cardiorespiratory
 user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
-user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user.age)/*
-const restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
-const bloodPressureRating = cardiorespiratoryFunctions.classificationOfBloodPressure(restingBloodPressure)
+user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user.age)
+user.restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
+user.bloodPressureRating = cardiorespiratoryFunctions.classificationOfBloodPressure(user.restingBloodPressure)
 
 console.clear()
 headerFunctions.systemHeader()
-headerFunctions.subTitle("Antropometria")*/
+headerFunctions.subTitle("Antropometria")
 
 // variables anthropometryFunctions
-user.bodyWeight = anthropometryFunctions.bodyWeight()/*
-const bodyStature = anthropometryFunctions.stature()
-const bodyMassIndex = anthropometryFunctions.bodyMassIndex(bodyWeight, bodyStature)
-const bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(bodyMassIndex)
-const bodyPerimeter = anthropometryFunctions.bodyPerimetry()
-const hipWaistRatio = anthropometryFunctions.hipWaistRatio(bodyPerimeter.Cintura, bodyPerimeter.Quadril)
-const waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(sexNumber, age, hipWaistRatio)
-const waistCircumference = anthropometryFunctions.waistCircumferenceClassification(sexNumber, bodyPerimeter.Cintura)
-const skinFolds = anthropometryFunctions.subcutaneousMeasures()
-const fatPercentage = anthropometryFunctions.fatPercentage(age, sexNumber, skinFolds)
-const fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(sexNumber, fatPercentage)
-const fatBodyMass = anthropometryFunctions.fatBodyMass(bodyWeight, fatPercentage)
-const leanBodyMass = anthropometryFunctions.leanBodyMass(bodyWeight, fatBodyMass)
-const expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(sexNumber, leanBodyMass)
+user.bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyStature = anthropometryFunctions.stature()
+user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user.bodyWeight, user.bodyStature)
+user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user.bodyMassIndex)
+user.bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+user.hipWaistRatio = anthropometryFunctions.hipWaistRatio(user.bodyPerimeter.Cintura, user.bodyPerimeter.Quadril)
+user.waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(user.sexNumber, user.age, user.hipWaistRatio)
+user.waistCircumference = anthropometryFunctions.waistCircumferenceClassification(user.sexNumber, user.bodyPerimeter.Cintura)
+user.skinFolds = anthropometryFunctions.subcutaneousMeasures()
+user.fatPercentage = anthropometryFunctions.fatPercentage(user.age, user.sexNumber, user.skinFolds)
+user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(user.sexNumber, user.fatPercentage)
+user.fatBodyMass = anthropometryFunctions.fatBodyMass(user.bodyWeight, user.fatPercentage)
+user.leanBodyMass = anthropometryFunctions.leanBodyMass(user.bodyWeight, user.fatBodyMass)
+user.expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(user.sexNumber, user.leanBodyMass)
 
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Neuromuscular")
 
 // variables neuromuscularFunctions
-const wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
-const flexibilityRating = neuromuscularFunctions.flexibilityClassification(sexNumber, age, wellsBenchTest)
-const numberOfAbs = neuromuscularFunctions.abdominalTest()
-const abdominalRating = neuromuscularFunctions.abdominalClassification(sexNumber, age, numberOfAbs)
-const numberOfPushUps = neuromuscularFunctions.flexArmTest()
-const flexArmRating = neuromuscularFunctions.flexArmClassification(sexNumber, age, numberOfPushUps)*/
+user.wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
+user.flexibilityRating = neuromuscularFunctions.flexibilityClassification(user.sexNumber, user.age, user.wellsBenchTest)
+user.numberOfAbs = neuromuscularFunctions.abdominalTest()
+user.abdominalRating = neuromuscularFunctions.abdominalClassification(user.sexNumber, user.age, user.numberOfAbs)
+user.numberOfPushUps = neuromuscularFunctions.flexArmTest()
+user.flexArmRating = neuromuscularFunctions.flexArmClassification(user.sexNumber, user.age, user.numberOfPushUps)
 
 console.clear()
 headerFunctions.systemHeader()
@@ -93,78 +92,85 @@ user.objectTrainingSpeed = aerobicFunctions.trainingSpeed(user)
 user.aerobicFunctionalDeficit = aerobicFunctions.aerobicFunctionalDeficit(user)
 user.aerobicFunctionalDeficitClassification = aerobicFunctions.aerobicFunctionalDeficitClassification(user)
 
+// variables personalData
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Observações")
+user.comments = personalData.comments()
+
 // show results personalData
-/*console.clear()
+console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 console.log(`Nome: ${user.name}`)
-console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
-console.log(`Idade: ${age} anos!`)
-console.log(`Sexo: ${sex}`)
-console.log(`Profissão: ${profession}`)
-console.log(`E-mail: ${userEmail}`)
-console.log(`Celular: ${phoneNumber}`)
+console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
+console.log(`Idade: ${user.age} anos!`)
+console.log(`Sexo: ${user.sex}`)
+console.log(`Profissão: ${user.profession}`)
+console.log(`E-mail: ${user.userEmail}`)
+console.log(`Celular: ${user.phoneNumber}`)
 
 // show results anamnesisFunctions
-console.log(`===============================`) 
+headerFunctions.baseboard()
 headerFunctions.subTitle("Anamnese")
 
-console.log(`Questionário PAR-Q: ${questionnairePARQ}`)
-console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(currentPhysicalState)}`)
-console.log(`Doença Pregressa: ${pastIllness}`)
-console.log(`Doença Pregressa na Família: ${illnessesFamily}`)
-console.log(`Cirurgia: ${surgeryPerformed}`)
-console.log(`Uso de Medicamento: ${useMedication}`)
-console.log(`Lesão Desportiva: ${sportsInjuries}`)
-console.log(`Objetivo do treino: ${trainingObjective}`)
-console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining} dias.`)
-console.log(`Tempo disponível para treino: ${timeAvailablePerTraining} minutos.`)
+console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
+console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user.currentPhysicalState)}`)
+console.log(`Doença Pregressa: ${user.pastIllness}`)
+console.log(`Doença Pregressa na Família: ${user.illnessesFamily}`)
+console.log(`Cirurgia: ${user.surgeryPerformed}`)
+console.log(`Uso de Medicamento: ${user.useMedication}`)
+console.log(`Lesão Desportiva: ${user.sportsInjuries}`)
+console.log(`Objetivo do treino: ${user.trainingObjective}`)
+console.log(`Dias disponíveis para treinar: ${user.daysAvailableForTraining} dias.`)
+console.log(`Tempo disponível para treino: ${user.timeAvailablePerTraining} minutos.`)
 
 // show results cardiorespiratoryFunctions
-console.log(`===============================`) 
+headerFunctions.baseboard()
 headerFunctions.subTitle("Cardiorespiratório")
-console.log(`Frequência Cardíaca de Repouso: ${restingHeartRate} bpm.`)
-console.log(`Frequência Cardíaca Máxima: ${maximumHeartRate} bpm.`)
-cardiorespiratoryFunctions.workingHeartRate(Number(restingHeartRate), Number(maximumHeartRate))
-console.log(`Pressão Arterial de Repouso: ${restingBloodPressure.systolic}/${restingBloodPressure.diastolic} mmHg.`)
+
+console.log(`Frequência Cardíaca de Repouso: ${user.restingHeartRate} bpm.`)
+console.log(`Frequência Cardíaca Máxima: ${user.maximumHeartRate} bpm.`)
+cardiorespiratoryFunctions.workingHeartRate(Number(user.restingHeartRate), Number(user.maximumHeartRate))
+console.log(`Pressão Arterial de Repouso: ${user.restingBloodPressure.systolic}/${user.restingBloodPressure.diastolic} mmHg.`)
 console.log(`Classificação da Pressão Arterial`)
-console.log(`Sistólica: ${bloodPressureRating.systolicClassification}`)
-console.log(`Diastólica: ${bloodPressureRating.diastolicClassification}`)
+console.log(`Sistólica: ${user.bloodPressureRating.systolicClassification}`)
+console.log(`Diastólica: ${user.bloodPressureRating.diastolicClassification}`)
 
 // show results anthropometryFunctions
-console.log(`===============================`) 
+headerFunctions.baseboard()
 headerFunctions.subTitle("Antropometria")
-console.log(`Peso Corporal: ${bodyWeight} kilos`)
-console.log(`Estatura Corporal: ${bodyStature} metros`)
-console.log(`Índice de Massa Corporal - IMC: ${bodyMassIndex}`)
-console.log(`Classificação IMC: ${bodyMassIndexClassification}`)
-anthropometryFunctions.showPerimeter(bodyPerimeter)
-console.log(`Relação Cintura Quadril- RCQ: ${hipWaistRatio}`)
-console.log(`Classificação RCQ: ${waistHipRatioClassification}`)
-console.log(`Circunfência cintura - Classificação: ${waistCircumference}`)
-anthropometryFunctions.showSubcutaneousFolds(skinFolds)
-console.log(`Percentual de gordura: ${fatPercentage}%`)
-console.log(`Classificação % Gordura: ${fatPercentageClassification}`)
-console.log(`Massa Corporal Gorda: ${fatBodyMass} kilos`)
-console.log(`Massa Corporal Magra: ${leanBodyMass} kilos`)
-console.log(`Massa Corporal Ideal Prevista: ${expectedIdealBodyMass} kilos`)
+
+console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${user.bodyStature} metros`)
+console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
+console.log(`Classificação IMC: ${user.bodyMassIndexClassification}`)
+anthropometryFunctions.showPerimeter(user.bodyPerimeter)
+console.log(`Relação Cintura Quadril- RCQ: ${user.hipWaistRatio}`)
+console.log(`Classificação RCQ: ${user.waistHipRatioClassification}`)
+console.log(`Circunfência cintura - Classificação: ${user.waistCircumference}`)
+anthropometryFunctions.showSubcutaneousFolds(user.skinFolds)
+console.log(`Percentual de gordura: ${user.fatPercentage}%`)
+console.log(`Classificação % Gordura: ${user.fatPercentageClassification}`)
+console.log(`Massa Corporal Gorda: ${user.fatBodyMass} kilos`)
+console.log(`Massa Corporal Magra: ${user.leanBodyMass} kilos`)
+console.log(`Massa Corporal Ideal Prevista: ${user.expectedIdealBodyMass} kilos`)
 
 // show results neuromuscularFunctions
-console.log(`===============================`) 
+headerFunctions.baseboard()
 headerFunctions.subTitle("Neuromuscular")
-console.log(`Resultado teste Flexibilidade Banco de Wells: ${wellsBenchTest} cm`)
-console.log(`Classificação Flexibilidade: ${flexibilityRating}`)
-console.log(`Quantidade de flexões abdominais: ${numberOfAbs}`)
-console.log(`Classificação Abdominais: ${abdominalRating}`)
-console.log(`Quantidade de flexões de braço: ${numberOfPushUps}`)
-console.log(`Classificação flexões de braço: ${flexArmRating}`)*/
 
-console.clear() // temporary
-headerFunctions.systemHeader() // temporary
-headerFunctions.subTitle("Aeróbico") //temporary
+console.log(`Resultado teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
+console.log(`Classificação Flexibilidade: ${user.flexibilityRating}`)
+console.log(`Quantidade de flexões abdominais: ${user.numberOfAbs}`)
+console.log(`Classificação Abdominais: ${user.abdominalRating}`)
+console.log(`Quantidade de flexões de braço: ${user.numberOfPushUps}`)
+console.log(`Classificação flexões de braço: ${user.flexArmRating}`)
+
 // show results aerobicFunctions
-// console.log(`===============================`) 
-// headerFunctions.subTitle("Aeróbico")
+headerFunctions.baseboard()
+headerFunctions.subTitle("Aeróbico")
+
 console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
 console.log(`VO²máx Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
 console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
@@ -172,6 +178,9 @@ headerFunctions.showArray(user.objectTrainingSpeed.titleTrainSpeed, user.objectT
 console.log(`Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficit.toFixed(2)}`)
 console.log(`Classificação do Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficitClassification}`)
 
-console.log(`===============================`) 
-// headerFunctions.baseboard()
+headerFunctions.baseboard()
+headerFunctions.subTitle("Observações")
+console.log(user.comments)
+
+headerFunctions.baseboard()
 console.log(user)

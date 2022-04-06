@@ -7963,9 +7963,96 @@ Classificação do Déficit Funcional Aeróbio: Ótimo
 ===============================
 ```
 
+**Mostrar programa completo**
+
 ## Outros
 
 ### Observações
+
+**comments( )** function irá perguntar ao usuário se ele quer digitar algumas observação. Só aceita com resposta os numerais 1 e 2. Caso algum valor diferente seja digitado, a function **incorrectValue( )** deve ser chamada e o usuário deve digitar uma resposta correta. Digitado o número 1 (sim), o usuário deve digitar a observação em caracteres/texto. Caso seja constatado que a observação não possue caractere/texto, a function **incorrectValue( )** deverá ser chamada e o usuário deverá digitar a observação. Caso o usuário digite 2, a mensagem **"Sem Observações!"** deverá ser retornada. A function **comments( )** retorna a observação digitada pelo usuário.
+
+Logo, em **personalData.js**:
+
+```js
+comments(){
+
+    let commentsNumber = 2
+    let commentsText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Observações?`)
+      anamnesisFunctions.choice()
+      commentsNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(commentsNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Observações")
+  
+      if(commentsNumber === 1){
+        
+        do{
+  
+          console.log(`Digite a Observação:`)
+          commentsText = input.question('')
+          itsLetters = validationFunctions.itsLetters(commentsText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Observações")
+  
+        }while(!itsLetters)
+        
+      } else {
+        commentsText = `Sem Observações!`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return commentsText
+  
+  },
+```
+
+Em **saf.js** vamos atribuir o retorno da function **comments( )** ao objeto ***user*** e depois mostrar o resultado:
+
+```js
+// variables personalData
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Observações")
+user.comments = personalData.comments()
+```
+
+```js
+headerFunctions.baseboard()
+headerFunctions.subTitle("Observações")
+console.log(user.comments)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Observações            
+===============================
+Observações?
+Escolha:
+[1] Sim
+[2] Não
+1
+Digite a Observação:
+Teste
+```
+
+```shell
+===============================
+           Observações            
+===============================
+Teste
+===============================
+```
 
 
 

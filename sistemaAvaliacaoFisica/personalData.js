@@ -3,6 +3,7 @@
 var input = require('readline-sync')
 
 const { validationFunctions } = require('./validationFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
 
 
 const personalData = {
@@ -187,6 +188,44 @@ const personalData = {
     }while(!istPhoneNumber)
     
     return phoneNumber
+  },
+
+  comments(){
+
+    let commentsNumber = 2
+    let commentsText = ''
+    let itsNumberOneOrTwo = true
+    let regexNumber = /^[1]$|^[2]$/
+    let itsLetters = true
+  
+    do{
+  
+      console.log(`Observações?`)
+      anamnesisFunctions.choice()
+      commentsNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(commentsNumber, regexNumber)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Observações")
+  
+      if(commentsNumber === 1){
+        
+        do{
+  
+          console.log(`Digite a Observação:`)
+          commentsText = input.question('')
+          itsLetters = validationFunctions.itsLetters(commentsText)
+          validationFunctions.incorrectValue(false, !itsLetters, "Observações")
+  
+        }while(!itsLetters)
+        
+      } else {
+        commentsText = `Sem Observações!`
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return commentsText
+  
   },
 
 }
