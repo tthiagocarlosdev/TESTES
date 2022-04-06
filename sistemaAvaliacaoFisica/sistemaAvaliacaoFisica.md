@@ -1,6 +1,121 @@
 # Sistema de Avaliação Física
 
-Olá dev's! Para praticar lógica de programação com JavaScript e Node.js, vamos criar um sistema de avaliação física igual ao que encontramos em academias. O detalhe é que vamos desevolver apenas em JavaScript e Node.js, nada de HTML e CSS. Vamos rodar essa aplicação pelo terminal com interação do usuário. Vamos lá?!
+Olá dev's! Neste repositório vamos criar um sistema de avaliação física igual ao que encontramos em academias usando **JavaScript** e executar no terminal usando **Node.js**. Logo, não teremos nada de **HTML** e **CSS**. o resultado final desta aplicação está logo abaixo. Não vamos nos preocupar com o visual, mas sim, com a funcionalidade do sistema. Vamos lá?!
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Nome: Fulano Cicrano
+Data de nascimento: 01/01/2000
+Idade: 22 anos!
+Sexo: Masculino
+Profissão: Programador
+E-mail: fulano@cicrano.com
+Celular: 81912348765
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Estado físico: Sedentário
+Doença Pregressa: Sem doença pregressa.
+Doença Pregressa na Família: Avos diabeticos
+Cirurgia: Nunca realizou procedimento cirúrgico.
+Uso de Medicamento: Não faz uso de medicamento.
+Lesão Desportiva: Nunca sofreu lesão desportiva.
+Objetivo do treino: Bem-estar e Saúde
+Dias disponíveis para treinar: 5 dias.
+Tempo disponível para treino: 60 minutos.
+===============================
+           Cardiorespiratório            
+===============================
+Frequência Cardíaca de Repouso: 60 bpm.
+Frequência Cardíaca Máxima: 198 bpm.
+Frequência Cardíaca de Treino:
+40% = 115 bpm
+45% = 122 bpm
+50% = 129 bpm
+55% = 136 bpm
+60% = 143 bpm
+65% = 150 bpm
+70% = 157 bpm
+75% = 164 bpm
+80% = 170 bpm
+85% = 177 bpm
+90% = 184 bpm
+95% = 191 bpm
+Pressão Arterial de Repouso: 120/80 mmHg.
+Classificação da Pressão Arterial
+Sistólica: Normal
+Diastólica: Normal
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 85.5 kilos
+Estatura Corporal: 1.86 metros
+Índice de Massa Corporal - IMC: 24.71
+Classificação IMC: Peso Normal
+Perimetria Corporal:
+Braço: 35.0 cm
+Antebraço: 29.8 cm
+Cintura: 85.0 cm
+Quadril: 90.0 cm
+Coxa: 55.8 cm
+Panturrilha: 45.0 cm
+Relação Cintura Quadril- RCQ: 0.94
+Classificação RCQ: Alto Risco
+Circunfência cintura - Classificação: Nenhum Risco
+Dobras Cutâneas:
+Triciptal: 10 mm
+Subescapular: 15 mm
+Peitoral: 5 mm
+SupraIliaca: 20 mm
+Abdominal: 25 mm
+Coxa: 18 mm
+Panturrilha: 13 mm
+Percentual de gordura: 13.60%
+Classificação % Gordura: Abaixo da média
+Massa Corporal Gorda: 11.6 kilos
+Massa Corporal Magra: 73.9 kilos
+Massa Corporal Ideal Prevista: 86.9 kilos
+===============================
+           Neuromuscular            
+===============================
+Resultado teste Flexibilidade Banco de Wells: 25 cm
+Classificação Flexibilidade: Regular
+Quantidade de flexões abdominais: 36
+Classificação Abdominais: Regular
+Quantidade de flexões de braço: 30
+Classificação flexões de braço: Regular
+===============================
+           Aeróbico            
+===============================
+VO²máx (mL(kg.min): 33.42
+VO²máx Previsto(mL(kg.min): 47.9
+Classificação do VO²máx: Fraco
+Velocidade de Treino:
+40% = 3.82 km/h
+45% = 4.3 km/h
+50% = 4.77 km/h
+55% = 5.25 km/h
+60% = 5.73 km/h
+65% = 6.21 km/h
+70% = 6.68 km/h
+75% = 7.16 km/h
+80% = 7.64 km/h
+85% = 8.12 km/h
+90% = 8.59 km/h
+95% = 9.07 km/h
+Déficit Funcional Aeróbio: 30.23
+Classificação do Déficit Funcional Aeróbio: Muito Baixo
+===============================
+           Observações            
+===============================
+Sem Observações!
+===============================
+```
 
 ## Preparing
 
@@ -24,13 +139,18 @@ $ npm install readline-sync
   -  **saf.js**. Esse será o arquivo principal do nosso projeto;
   - **headerFunctions.js**. Vamos colocar as funções de cabeçalho;
   - **validationFunctions.js**. Vamos colocar funções de validação;
-  - **personalData.js**. Vamos colocar as funções dos dados pessoais.
+  - **personalDataFunctions.js**. Vamos colocar as funções dos dados pessoais.
 - Em **saf.js** vamos:
-  - Importar os arquivos **headerFunctions.js** e **personalData.js**.
+  - Importar os arquivos **headerFunctions.js** e **personalDataFunctions.js**;
+  - Criar uma variável objeto ***user*** :
 
 ```js
 const { headerFunctions } = require('./headerFunctions')
-const { personalData } = require('./personalData')
+const { personalDataFunctions } = require('./personalDataFunctions')
+```
+
+```js
+const user = { }
 ```
 
 - Em **headerFunctions.js** vamos:
@@ -63,29 +183,29 @@ module.exports = {
 }
 ```
 
-- Em **personalData.js** vamos:
+- Em **personalDataFunctions.js** vamos:
   - Criar a variável de **input** com o módulo **readline-sync**;
   - Criar a variável de importação de **validationFunctions.js**;
-  - Criar uma variável objeto, **personalData**, que vai guardar as funções dos dados pessoais;
+  - Criar uma variável objeto, **personalDataFunctions**, que vai guardar as funções dos dados pessoais;
   - Exportar essa variável.
 
 ```js
-/* Personal Data Functions */
+/* personal data functions */
 
 var input = require('readline-sync')
 
 const { validationFunctions } = require('./validationFunctions')
 
-const personalData = {}
+const personalDataFunctions = {}
 
 module.exports = {
-  personalData
+  personalDataFunctions
 }
 ```
 
 Agora estamos prontos para colocar a mão na massa.
 
-## Personal Data
+## Personal Data Functions
 
 Vamos começar pelos dados pessoais do avaliado.
 

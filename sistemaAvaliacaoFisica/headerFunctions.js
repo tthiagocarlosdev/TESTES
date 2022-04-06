@@ -1,4 +1,5 @@
 /* header functions */
+
 const headerFunctions = {
   
   systemHeader: function(){

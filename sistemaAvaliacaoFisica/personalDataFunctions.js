@@ -1,4 +1,4 @@
-/* Personal Data Functions */
+/* personal data functions */
 
 var input = require('readline-sync')
 
@@ -6,7 +6,7 @@ const { validationFunctions } = require('./validationFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 
 
-const personalData = {
+const personalDataFunctions = {
       
   userName: function() {
     
@@ -42,11 +42,11 @@ const personalData = {
       
       dateEqualExpressionRegex = validationFunctions.isRegularExpression(typedDate, dateRegExp)
       
-      dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
+      dateInBrazilianFormat = personalDataFunctions.dateInBrazilFormat(typedDate)
   
       dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
   
-      let dateISO = personalData.dateInISOFormat(dateInBrazilianFormat)
+      let dateISO = personalDataFunctions.dateInISOFormat(dateInBrazilianFormat)
       
       birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
 
@@ -231,5 +231,5 @@ const personalData = {
 }
 
 module.exports = {
-  personalData
+  personalDataFunctions
 }

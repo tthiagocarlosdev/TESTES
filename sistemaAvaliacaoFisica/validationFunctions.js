@@ -1,4 +1,4 @@
-/* Validation Functions */
+/* validation functions */
 
 const { headerFunctions } = require('./headerFunctions')
 

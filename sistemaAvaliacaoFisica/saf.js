@@ -1,26 +1,28 @@
+/* physical assessment system */
+
 const { headerFunctions } = require('./headerFunctions')
-const { personalData } = require('./personalData')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { personalDataFunctions } = require('./personalDataFunctions')
+/*const { anamnesisFunctions } = require('./anamnesisFunctions')
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 const { anthropometryFunctions } = require('./anthropometryFunctions')
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
-const { aerobicFunctions } = require('./aerobicFunctions')
+const { aerobicFunctions } = require('./aerobicFunctions')*/
 
 const user = { }
-
+/*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
-// variables personalData
-user.name = personalData.userName()
-user.birthdayInBrazilianFormat =  personalData.dateOfBirth()
-user.birthdayInISOFormat = personalData.dateInISOFormat(user.birthdayInBrazilianFormat)
-user.age = personalData.age(user.birthdayInISOFormat)
-user.sexNumber = personalData.sexNumber()
-user.sex = personalData.showSex(user.sexNumber)
-user.profession = personalData.userProfession()
-user.userEmail = personalData.userEmail()
-user.phoneNumber = personalData.phoneNumber()
+// variables personalDataFunctions
+user.name = personalDataFunctions.userName()
+user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
+user.birthdayInISOFormat = personalDataFunctions.dateInISOFormat(user.birthdayInBrazilianFormat)
+user.age = personalDataFunctions.age(user.birthdayInISOFormat)
+user.sexNumber = personalDataFunctions.sexNumber()
+user.sex = personalDataFunctions.showSex(user.sexNumber)
+user.profession = personalDataFunctions.userProfession()
+user.userEmail = personalDataFunctions.userEmail()
+user.phoneNumber = personalDataFunctions.phoneNumber()
 
 console.clear()
 headerFunctions.systemHeader()
@@ -92,13 +94,13 @@ user.objectTrainingSpeed = aerobicFunctions.trainingSpeed(user)
 user.aerobicFunctionalDeficit = aerobicFunctions.aerobicFunctionalDeficit(user)
 user.aerobicFunctionalDeficitClassification = aerobicFunctions.aerobicFunctionalDeficitClassification(user)
 
-// variables personalData
+// variables personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Observações")
-user.comments = personalData.comments()
+user.comments = personalDataFunctions.comments()
 
-// show results personalData
+// show results personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
@@ -182,5 +184,5 @@ headerFunctions.baseboard()
 headerFunctions.subTitle("Observações")
 console.log(user.comments)
 
-headerFunctions.baseboard()
+headerFunctions.baseboard()*/
 console.log(user)
