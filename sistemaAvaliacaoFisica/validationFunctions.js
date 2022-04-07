@@ -29,7 +29,7 @@ const validationFunctions = {
   },
 
   // recebe duas variáveis de valor booleano como parâmetro e o subtítulo da parte da avaliação. Caso uma das duas variáveis seja true a function é executada, caso as duas sejam false, a function não é executada.
-  incorrectValue: function (valueA, valueB, title){
+  incorrectValue(valueA, valueB, title){
     
     if(valueA || valueB ){ 
       console.clear()
@@ -42,14 +42,14 @@ const validationFunctions = {
 
 
     // recebe duas datas e valida se são iguais
-  validDate: function(informedDate, realDate){
+  validDate(informedDate, realDate){
     
     return informedDate === realDate ? true : false
     
   },
 
     // recebe a data de nascimento em formato ISO e retorna se é maior do que a data atual
-  dateOfBirthHighestCurrentDate: function(dateOfBirth){
+  dateOfBirthHighestCurrentDate(dateOfBirth){
     var currentDate = new Date()
 
     // O método getTime() retorna o valor numérico correspondente ao horário da data especificada de acordo com o horário universal.

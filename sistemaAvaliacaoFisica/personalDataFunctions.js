@@ -31,7 +31,7 @@ const personalDataFunctions = {
   },
 
   // cria a data de nascimento do usuário
-  dateOfBirth: function(){
+  dateOfBirth(){
     let dateInBrazilianFormat = ''
     let typedDate = ''
     const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
@@ -61,8 +61,8 @@ const personalDataFunctions = {
     
   },
 
-   // recebe a data como string e retorna a data no formato brasileiro criada pelo Objeto Date()
-   dateInBrazilFormat: function(dateInString){
+   // recebe a data em formato string e retorna a data no formato brasileiro criada pelo Objeto Date()
+  dateInBrazilFormat(dateInString){
 
     //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
     let arrayNumber = dateInString.split('/')
@@ -83,8 +83,8 @@ const personalDataFunctions = {
     
   },
 
-  // recebe uma data no formato brasleiro como string. Retorna a data no formato ISO
-  dateInISOFormat: function(dateInString){
+  // recebe uma data no formato brasileiro como string. Retorna a data no formato ISO
+  dateInISOFormat(dateInString){
     
     //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
     let arrayNumber = dateInString.split('/')
@@ -97,20 +97,20 @@ const personalDataFunctions = {
   },
   
   // Recebe a data em formato ISO e retorna a idade em anos.
-  age: function(birthDate) {
+  age(userObject) {
 
-      let currentDay = new Date()
-      let dateInMilliseconds = Math.abs(currentDay.getTime() - birthDate.getTime())
-      let age = Math.floor(dateInMilliseconds / (1000 * 60 * 60 * 24 * 365))
-      
-      return age
+    let currentDay = new Date()
+    let dateInMilliseconds = Math.abs(currentDay.getTime() - userObject.birthdayInISOFormat.getTime())
+    let age = Math.floor(dateInMilliseconds / (1000 * 60 * 60 * 24 * 365))
     
+    return age
+  
   },
 
-  sexNumber: function(){
+  sexNumber(){
     
-    let istNumber = false
-    let isLessThanMinimumOrGreaterThanMaximum = true
+    let itsNumberOneOrTwo = true
+    const regexNumberOneOrTwo = /^[1]$|^[2]$/
     let sexNumber = 0
   
     do{
@@ -119,20 +119,19 @@ const personalDataFunctions = {
       console.log('[2] Feminino')
       sexNumber = input.question('')
   
-      istNumber = validationFunctions.itsNumber(sexNumber)
-  
-      isLessThanMinimumOrGreaterThanMaximum = validationFunctions.isLessThanMinimumOrGreaterThanMaximum(1, 2, Number(sexNumber))
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(sexNumber, regexNumberOneOrTwo)
       
-      validationFunctions.incorrectValue(!istNumber, isLessThanMinimumOrGreaterThanMaximum, "Dados pessoais")
+      validationFunctions.incorrectValue(false, !itsNumberOneOrTwo, "Dados pessoais")
   
-    }while(!istNumber || isLessThanMinimumOrGreaterThanMaximum)
+    }while(!itsNumberOneOrTwo)
     
     return Number(sexNumber)
+
   },
 
-  showSex: function(numberSex){
+  showSex(userObject){
 
-    return numberSex == 1 ? 'Masculino': 'Feminino'
+    return userObject.sexNumber === 1 ? 'Masculino': 'Feminino'
     
   },
 
