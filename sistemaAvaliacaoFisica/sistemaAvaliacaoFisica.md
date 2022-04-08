@@ -887,31 +887,27 @@ Sexo: Masculino
 ===============================
 ```
 
-
-
-/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
-
 ### Profissão
 
-Agora vamos criar a function  **userProfession( )** que retornará a profissão do usuário. Esta function deve aceitar apenas letras e símbolos. Também não pode aceitar se não for digitado a profissão (vazio).
-
-Em **personalData.js** criamos esta function e usamos nela as functions **itsNumber( )** e **itsLetters( )** e as validações já estão realizadas.
+Agora vamos criar a function **userProfession( )** que retornará a profissão do usuário. Esta function deve aceitar apenas letras e símbolos. Caso qualquer outro valor seja digitado, a function **incorrectValue( )** deverá ser chamada e o usuário deve informar a sua profissão corretamente. Para fazer a validação, vamos usar expressões regular com a function **isRegularExpression( )**. Logo, em **personalData.js**:
 
 ```js
-userProfession: function() {
+userProfession() {
     
+    let profession = ''
     let itsNumber = true
     let itsLetters = false
-    let profession = ''
+    let regexNumber = /\d/gi
+    let regexLetters = /\D/gi
     
     while(itsNumber || !itsLetters){
-
+  
       profession = input.question('Digite sua profissão: ')
-      itsNumber = validationFunctions.itsNumber(profession)
-      itsLetters = validationFunctions.itsLetters(profession)
+      itsNumber = validationFunctions.isRegularExpression(profession, regexNumber)
+      itsLetters = validationFunctions.isRegularExpression(profession, regexLetters)
     
       validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
-
+  
     }
     
     return profession
@@ -919,50 +915,71 @@ userProfession: function() {
   },
 ```
 
-Em **saf.js** criamos a variável **profession** recebendo a function **userProfession( )**:
+Em **saf.js** atribuímos a propriedade **profession** ao objeto _**user**_ recebendo como valor o retorno da function **userProfession( )** e em seguida mostramos o resultado:
 
 ```js
+/* physical assessment system */
+
 const { headerFunctions } = require('./headerFunctions')
-const { personalData } = require('./personalData')
+const { personalDataFunctions } = require('./personalDataFunctions')
+
+const user = { }
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
-// variables 
-const name = personalData.userName()
-const birthdayInBrazilianFormat = personalData.dateOfBirth()
-const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
-const age = personalData.age(birthdayInISOFormat)
-const sexNumber = personalData.sexNumber()
-const sex = personalData.showSex(sexNumber)
-const profession = personalData.userProfession()
+// variables personalDataFunctions
+user.name = personalDataFunctions.userName()
 
-// show results
+user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
+user.birthdayInISOFormat = personalDataFunctions.dateInISOFormat(user.birthdayInBrazilianFormat)
+user.age = personalDataFunctions.age(user)
+user.sexNumber = personalDataFunctions.sexNumber()
+user.sex = personalDataFunctions.showSex(user)
+user.profession = personalDataFunctions.userProfession()
+```
+
+```js
+// show results personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
-console.log(`Nome: ${name}`)
-console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
-console.log(`Idade: ${age} anos!`)
-console.log(`Sexo: ${sex}`)
-console.log(`Profissão: ${profession}`)
-
-console.log(`===============================`)
+console.log(`Nome: ${user.name}`)
+console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
+console.log(`Idade: ${user.age} anos`)
+console.log(`Sexo: ${user.sex}`)
+console.log(`Profissão: ${user.profession}`)
+headerFunctions.baseboard()
 ```
 
-Ao executar:
+Ao executar o programa:
 
-```tex
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Digite seu nome: Fulano Cicrano
+Digite sua data de nascimento (DD/MM/AAAA): 01/01/2000
+Escolha Sexo:
+[1] Masculino
+[2] Feminino
+1
+Digite sua profissão: Programador
+```
+
+```shell
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Dados Pessoais            
 ===============================
 Nome: Fulano Cicrano
-Data de nascimento: 10/03/1999
-Idade: 23 anos!
+Data de nascimento: 01/01/2000
+Idade: 22 anos
 Sexo: Masculino
-Profissão: Administrador
+Profissão: Programador
 ===============================
 ```
 
@@ -981,10 +998,10 @@ Dentro desta function iremos usar outra function de validação do email, **vali
 
 A function **validEmail( )**, recebe o  email como parâmetro e separa em duas partes:
 
-- user = antes do @
-- domain = depois do @
+- **user** = antes do @
+- **domain** = depois do @
 
-Após começamos as validações que já haviam sido definidas acima no if na sequencia abaixo:
+Após começamos as validações que já haviam sido definidas acima no **if** na sequencia abaixo:
 
 - Tamanho de user maior ou igual a 1 caracter.
 - Tamanho do domain maior ou igual a 3 caracteres.
@@ -996,12 +1013,12 @@ Após começamos as validações que já haviam sido definidas acima no if na se
 - A posição do primeiro ponto tem que ser maior ou igual a 1, lembrando a posição 0 deve ser ocupado por algum caracter após o @.
 - A posição do ultimo ponto tem que ser menor que o ultimo caracter, deve ser finalizado o domínio por um caracter.
 
-Caso o email digitado pelo usuário não atenda a qualquer uma destas condições, uma mensagem de erro deve ser apresentada, e o usuário deve digitar seu email novamente. Feitas essas considerações, vamos aos códigos abaixo:
+Caso o email digitado pelo usuário não atenda a qualquer uma destas condições, uma mensagem de erro deve ser apresentada (**incorrectValue( )** é chamada), e o usuário deve digitar seu email novamente. Feitas essas considerações, vamos aos códigos abaixo:
 
 Em **validationFunctions.js**:
 
 ```js
-validEmail: function(userEmail){
+validEmail(userEmail){
 
     let user = userEmail.substring(0, userEmail.indexOf("@"))
     let domain = userEmail.substring(userEmail.indexOf("@")+ 1, userEmail.length)
@@ -1023,7 +1040,7 @@ validEmail: function(userEmail){
 Em **personalData.js**:
 
 ```js
-userEmail: function() {
+userEmail() {
     
     let email = ''
     let itsEmail = false
@@ -1043,64 +1060,84 @@ userEmail: function() {
   },
 ```
 
-Em **saf.js** criamos a variável **userEmail** que vai receber a function **userEmail( )**. Depois apresentamos o resultado:
+Em **saf.js** atribuímos ao objeto _**user**_ a propriedade **userEmail** que vai receber como valor o retorno da function **userEmail( )**. Depois apresentamos o resultado:
 
 ```js
+/* physical assessment system */
+
 const { headerFunctions } = require('./headerFunctions')
-const { personalData } = require('./personalData')
+const { personalDataFunctions } = require('./personalDataFunctions')
+
+const user = { }
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
-// variables 
-const name = personalData.userName()
-const birthdayInBrazilianFormat = personalData.dateOfBirth()
-const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
-const age = personalData.age(birthdayInISOFormat)
-const sexNumber = personalData.sexNumber()
-const sex = personalData.showSex(sexNumber)
-const profession = personalData.userProfession()
-const userEmail = personalData.userEmail()
+// variables personalDataFunctions
+user.name = personalDataFunctions.userName()
 
-// show results
+user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
+user.birthdayInISOFormat = personalDataFunctions.dateInISOFormat(user.birthdayInBrazilianFormat)
+user.age = personalDataFunctions.age(user)
+user.sexNumber = personalDataFunctions.sexNumber()
+user.sex = personalDataFunctions.showSex(user)
+user.profession = personalDataFunctions.userProfession()
+user.userEmail = personalDataFunctions.userEmail()
+```
+
+```js
+// show results personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
-console.log(`Nome: ${name}`)
-console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
-console.log(`Idade: ${age} anos!`)
-console.log(`Sexo: ${sex}`)
-console.log(`Profissão: ${profession}`)
-console.log(`E-mail: ${userEmail}`)
-
-console.log(`===============================`)
+console.log(`Nome: ${user.name}`)
+console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
+console.log(`Idade: ${user.age} anos`)
+console.log(`Sexo: ${user.sex}`)
+console.log(`Profissão: ${user.profession}`)
+console.log(`E-mail: ${user.userEmail}`)
+headerFunctions.baseboard()
 ```
 
-Ao executar:
+Ao executar o programa:
 
-```tex
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Digite seu nome: Fulano Cicrano
+Digite sua data de nascimento (DD/MM/AAAA): 01/01/2000
+Escolha Sexo:
+[1] Masculino
+[2] Feminino
+1
+Digite sua profissão: Programador
+Digite seu email: fulano@cicrano.com
+```
+
+```shell
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Dados Pessoais            
 ===============================
 Nome: Fulano Cicrano
-Data de nascimento: 10/03/1999
-Idade: 23 anos!
+Data de nascimento: 01/01/2000
+Idade: 22 anos
 Sexo: Masculino
-Profissão: Administrador
+Profissão: Programador
 E-mail: fulano@cicrano.com
 ===============================
 ```
 
 ### Número de telefone
 
-Agora vamos criar a function **phoneNumber( )** que orá retornar um número de celular válido. Está function só pode receber números, em formato de número de celular, DDD + número de celular (nove dígitos). Caso o número não esteja de acordo, uma mensagem de erro deverá aparecer e solicitar que o usuário digite o número de celular novamente.
-
-Em **personalData.js**:
+Agora vamos criar a function **phoneNumber( )** que irá retornar um número de telefone válido. Está function só pode receber números, em formato de número de celular, **DDD + número de celular (nove dígitos)**. Caso o número não esteja de acordo, uma mensagem de erro deverá aparecer e solicitar que o usuário digite o número de celular novamente (**incorrectValue( )**). Esta validação será realizada com Expressão Regular com o uso da function **isRegularExpression( )**. Logo, em **personalData.js**:
 
 ```js
-phoneNumber: function(){
+phoneNumber(){
   
     let phoneNumber = 0
     let regexPhone = /^([0-9]{2})[0-9]{9}$/
@@ -1118,312 +1155,102 @@ phoneNumber: function(){
   },
 ```
 
-Em **saf.js** vamos criar a variável **phoneNumber** que receberá a function **phoneNumber( )** e depois mostrar o número do telefone:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **phoneNumber** que receberá como valor o retorno da function **phoneNumber( )** e depois mostrar o número do telefone:
 
 ```js
+/* physical assessment system */
+
 const { headerFunctions } = require('./headerFunctions')
-const { personalData } = require('./personalData')
+const { personalDataFunctions } = require('./personalDataFunctions')
+
+const user = { }
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
-// variables 
-const name = personalData.userName()
-const birthdayInBrazilianFormat = personalData.dateOfBirth()
-const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
-const age = personalData.age(birthdayInISOFormat)
-const sexNumber = personalData.sexNumber()
-const sex = personalData.showSex(sexNumber)
-const profession = personalData.userProfession()
-const userEmail = personalData.userEmail()
-const phoneNumber = personalData.phoneNumber()
+// variables personalDataFunctions
+user.name = personalDataFunctions.userName()
 
-// show results
+user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
+user.birthdayInISOFormat = personalDataFunctions.dateInISOFormat(user.birthdayInBrazilianFormat)
+user.age = personalDataFunctions.age(user)
+user.sexNumber = personalDataFunctions.sexNumber()
+user.sex = personalDataFunctions.showSex(user)
+user.profession = personalDataFunctions.userProfession()
+user.userEmail = personalDataFunctions.userEmail()
+user.phoneNumber = personalDataFunctions.phoneNumber()
+```
+
+```js
+// show results personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
-console.log(`Nome: ${name}`)
-console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
-console.log(`Idade: ${age} anos!`)
-console.log(`Sexo: ${sex}`)
-console.log(`Profissão: ${profession}`)
-console.log(`E-mail: ${userEmail}`)
-console.log(`Celular: ${phoneNumber}`)
-
-console.log(`===============================`)
-
+console.log(`Nome: ${user.name}`)
+console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
+console.log(`Idade: ${user.age} anos`)
+console.log(`Sexo: ${user.sex}`)
+console.log(`Profissão: ${user.profession}`)
+console.log(`E-mail: ${user.userEmail}`)
+console.log(`Celular: ${user.phoneNumber}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
 
-```tex
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Digite seu nome: Fulano Cicrano
+Digite sua data de nascimento (DD/MM/AAAA): 01/01/2000
+Escolha Sexo:
+[1] Masculino
+[2] Feminino
+1
+Digite sua profissão: Programador
+Digite seu email: fulano@cicrano.com
+Digite seu número de celular com DDD: 81912348765
+```
+
+```shell
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Dados Pessoais            
 ===============================
 Nome: Fulano Cicrano
-Data de nascimento: 10/03/1999
-Idade: 23 anos!
+Data de nascimento: 01/01/2000
+Idade: 22 anos
 Sexo: Masculino
-Profissão: Administrador
+Profissão: Programador
 E-mail: fulano@cicrano.com
-Celular: 61917166613
+Celular: 81912348765
 ===============================
 ```
 
-Arquivo **personalData.js** completo:
-
-```js
-/* Personal Data Functions */
-
-var input = require('readline-sync')
-
-const { validationFunctions } = require('./validationFunctions')
-
-
-const personalData = {
-      
-  userName: function() {
-    
-    let itsNumber = true
-    let itsLetters = false
-    let name = ''
-    
-    while(itsNumber || !itsLetters){
-
-      name = input.question('Digite seu nome: ')
-      itsNumber = validationFunctions.itsNumber(name)
-      itsLetters = validationFunctions.itsLetters(name)
-    
-      validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
-
-    }
-    
-    return name
-  
-  },
-
-  // cria a data de nascimento do usuário
-  dateOfBirth: function(){
-    let dateInBrazilianFormat = ''
-    let typedDate = ''
-    const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
-    let dateEqualExpressionRegex = false
-    let dateValid = false
-    let birthHighestCurrentDate = true
-  
-    do{
-      typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
-      
-      dateEqualExpressionRegex = validationFunctions.isRegularExpression(typedDate, dateRegExp)
-      
-      dateInBrazilianFormat = personalData.dateInBrazilFormat(typedDate)
-  
-      dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
-  
-      let dateISO = personalData.dateInISOFormat(dateInBrazilianFormat)
-      
-      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
-
-      validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Dados Pessoais")
-      validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Dados Pessoais")
-  
-    }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
-    
-    return dateInBrazilianFormat
-    
-  },
-
-   // recebe a data como string e retorna a data no formato brasileiro criada pelo Objeto Date()
-   dateInBrazilFormat: function(dateInString){
-
-    //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
-    let arrayNumber = dateInString.split('/')
-    let day = Number(arrayNumber[0])
-    let month = Number(arrayNumber[1])
-    let year = Number(arrayNumber[2])
-
-    const options = {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-    }
-    
-    let dateInBrazilianFormat = new Date(year, month-1, day)
-    
-    // O método toLocaleDateString() retorna uma string com a representação de parte da data baseando-se no idioma. Os novos argumentos locales e options deixam as aplicações especificarem o idioma cujas convenções de formatação devem ser usadas e permitem customizar o comportamento da função.
-    return dateInBrazilianFormat.toLocaleDateString("pt-br", options)
-    
-  },
-
-  // recebe uma data no formato brasleiro como string. Retorna a data no formato ISO
-  dateInISOFormat: function(dateInString){
-    
-    //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
-    let arrayNumber = dateInString.split('/')
-    let day = Number(arrayNumber[0])
-    let month = Number(arrayNumber[1])
-    let year = Number(arrayNumber[2])
-
-    return new Date(year, month-1, day)
-
-  },
-  
-  // Recebe a data em formato ISO e retorna a idade em anos.
-  age: function(birthDate) {
-
-      let currentDay = new Date()
-      let dateInMilliseconds = Math.abs(currentDay.getTime() - birthDate.getTime())
-      let age = Math.floor(dateInMilliseconds / (1000 * 60 * 60 * 24 * 365))
-      
-      return age
-    
-  },
-
-  sexNumber: function(){
-    
-    let istNumber = false
-    let isLessThanMinimumOrGreaterThanMaximum = true
-    let sexNumber = 0
-  
-    do{
-      console.log('Escolha Sexo:')
-      console.log('[1] Masculino')
-      console.log('[2] Feminino')
-      sexNumber = input.question('')
-  
-      istNumber = validationFunctions.itsNumber(sexNumber)
-  
-      isLessThanMinimumOrGreaterThanMaximum = validationFunctions.isLessThanMinimumOrGreaterThanMaximum(1, 2, Number(sexNumber))
-      
-      validationFunctions.incorrectValue(!istNumber, isLessThanMinimumOrGreaterThanMaximum, "Anamnese")
-  
-    }while(!istNumber || isLessThanMinimumOrGreaterThanMaximum)
-    
-    return sexNumber
-  },
-
-  showSex: function(numberSex){
-
-    return numberSex == 1 ? 'Masculino': 'Feminino'
-    
-  },
-
-  userProfession: function() {
-    
-    let itsNumber = true
-    let itsLetters = false
-    let profession = ''
-    
-    while(itsNumber || !itsLetters){
-
-      profession = input.question('Digite sua profissão: ')
-      itsNumber = validationFunctions.itsNumber(profession)
-      itsLetters = validationFunctions.itsLetters(profession)
-    
-      validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
-
-    }
-    
-    return profession
-  
-  },
-
-  userEmail: function() {
-    
-    let email = ''
-    let itsEmail = false
-
-    do{
-      
-      email = input.question('Digite seu email: ')
-
-      itsEmail = validationFunctions.validEmail(email)
-      
-      validationFunctions.incorrectValue(!itsEmail, false, "Dados Pessoais")
-
-    }while(!itsEmail)
-    
-    return email
-
-  },
-
-  phoneNumber: function(){
-  
-    let phoneNumber = 0
-    let regexPhone = /^([0-9]{2})[0-9]{9}$/
-    let istPhoneNumber = true
-  
-    do{
-      
-      phoneNumber = input.question('Digite seu número de celular com DDD: ')
-      istPhoneNumber = validationFunctions.isRegularExpression(phoneNumber, regexPhone)
-      validationFunctions.incorrectValue(false, !istPhoneNumber, "Dados Pessoais")
-  
-    }while(!istPhoneNumber)
-    
-    return phoneNumber
-  },
-
-}
-
-module.exports = {
-  personalData
-}
-```
-
-Arquivo **headerFunctions.js** completo:
-
-```js
-/* header functions */
-const headerFunctions = {
-  
-  systemHeader: function(){
-    console.log("===============================")
-    console.log("  SISTEMA DE AVALIAÇÃO FÍSICA  ")
-    console.log("===============================")
-  },
-
-  subTitle: function(title){
-    console.log(`           ${title}            `)
-    console.log("===============================")
-  },
-
-}
-
-module.exports = {
-  headerFunctions
-}
-```
+Aqui encerramos por enquanto a etapa de **personal data functions**, vamos mostrar os arquivos completos até o moemento de **validationFunctions.js**, **personalDataFunctions.js** e **saf.js**:
 
 Arquivo **validationFunctions.js** completo:
 
 ```js
-/* Validation Functions */
+/* validation functions */
 
 const { headerFunctions } = require('./headerFunctions')
 
 const validationFunctions = {
 
-  itsLetters: function(stringValue){
-    letterOrSpaceRegExp = /\D/gi
-
-    return letterOrSpaceRegExp.test(stringValue) ? true : false
+  // recebe um valor e uma expressão regular. retorna true se o valor estiver de acordo com a expressão regular
+  isRegularExpression(stringValue, regex){
+    
+    return regex.test(stringValue) ? true : false
     
   },
 
-  // verifica se o valor passado é apenas um número
-  itsNumber: function(value){
-  
-    const regExp2 = /\d/g
-    let itsNumber = regExp2.test(value)
-   
-    return itsNumber ? true : false
-    
-  },
-
-  incorrectValue: function (valueA, valueB, title){
+  // recebe duas variáveis de valor booleano como parâmetro e o subtítulo da parte da avaliação. Caso uma das duas variáveis seja true a function é executada, caso as duas sejam false, a function não é executada.
+  incorrectValue(valueA, valueB, title){
     
     if(valueA || valueB ){ 
       console.clear()
@@ -1434,24 +1261,16 @@ const validationFunctions = {
 
   },
 
-  // recebe um valor e uma expressão regular. retorna true se o valor estiver de acordo com a expressão regular  
-  // retorna true se a data digitada pelo usuário está no formato da Regex Expression
-  
-  isRegularExpression: function(stringValue, regex){
-    
-    return regex.test(stringValue) ? true : false
-    
-  },
 
     // recebe duas datas e valida se são iguais
-  validDate: function(informedDate, realDate){
+  validDate(informedDate, realDate){
     
     return informedDate === realDate ? true : false
     
   },
 
     // recebe a data de nascimento em formato ISO e retorna se é maior do que a data atual
-  dateOfBirthHighestCurrentDate: function(dateOfBirth){
+  dateOfBirthHighestCurrentDate(dateOfBirth){
     var currentDate = new Date()
 
     // O método getTime() retorna o valor numérico correspondente ao horário da data especificada de acordo com o horário universal.
@@ -1459,13 +1278,7 @@ const validationFunctions = {
 
   },
 
-  isLessThanMinimumOrGreaterThanMaximum: function(minimum, maximum, givenAway){
-    
-    return givenAway < minimum || givenAway > maximum ? true : false
-    
-  },
-
-  validEmail: function(userEmail){
+  validEmail(userEmail){
 
     let user = userEmail.substring(0, userEmail.indexOf("@"))
     let domain = userEmail.substring(userEmail.indexOf("@")+ 1, userEmail.length)
@@ -1490,7 +1303,252 @@ module.exports = {
 }
 ```
 
+Arquivo **personalDataFunctions.js** completo:
+
+```js
+/* personal data functions */
+
+var input = require('readline-sync')
+
+const { validationFunctions } = require('./validationFunctions')
+
+const personalDataFunctions = {
+      
+  userName(){
+    
+    let name = ''
+    let itsNumber = true
+    let itsLetters = false
+    let regexNumber = /\d/gi
+    let regexLetters = /\D/gi
+    
+    while(itsNumber || !itsLetters){
+  
+      name = input.question('Digite seu nome: ')
+      itsNumber = validationFunctions.isRegularExpression(name, regexNumber)
+      itsLetters = validationFunctions.isRegularExpression(name, regexLetters)
+    
+      validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
+  
+    }
+    
+    return name
+  
+  },
+
+  // cria a data de nascimento do usuário
+  dateOfBirth(){
+    let dateInBrazilianFormat = ''
+    let typedDate = ''
+    const dateRegExp = /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/
+    let dateEqualExpressionRegex = false
+    let dateValid = false
+    let birthHighestCurrentDate = true
+  
+    do{
+      typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
+      
+      dateEqualExpressionRegex = validationFunctions.isRegularExpression(typedDate, dateRegExp)
+      
+      dateInBrazilianFormat = personalDataFunctions.dateInBrazilFormat(typedDate)
+  
+      dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
+  
+      let dateISO = personalDataFunctions.dateInISOFormat(dateInBrazilianFormat)
+      
+      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
+
+      validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Dados Pessoais")
+      validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Dados Pessoais")
+  
+    }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
+    
+    return dateInBrazilianFormat
+    
+  },
+
+   // recebe a data em formato string e retorna a data no formato brasileiro criada pelo Objeto Date()
+  dateInBrazilFormat(dateInString){
+
+    //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
+    let arrayNumber = dateInString.split('/')
+    let day = Number(arrayNumber[0])
+    let month = Number(arrayNumber[1])
+    let year = Number(arrayNumber[2])
+
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    }
+    
+    let dateInBrazilianFormat = new Date(year, month-1, day)
+    
+    // O método toLocaleDateString() retorna uma string com a representação de parte da data baseando-se no idioma. Os novos argumentos locales e options deixam as aplicações especificarem o idioma cujas convenções de formatação devem ser usadas e permitem customizar o comportamento da função.
+    return dateInBrazilianFormat.toLocaleDateString("pt-br", options)
+    
+  },
+
+  // recebe uma data no formato brasileiro como string. Retorna a data no formato ISO
+  dateInISOFormat(dateInString){
+    
+    //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
+    let arrayNumber = dateInString.split('/')
+    let day = Number(arrayNumber[0])
+    let month = Number(arrayNumber[1])
+    let year = Number(arrayNumber[2])
+
+    return new Date(year, month-1, day)
+
+  },
+  
+  // Recebe a data em formato ISO e retorna a idade em anos.
+  age(userObject) {
+
+    let currentDay = new Date()
+    let dateInMilliseconds = Math.abs(currentDay.getTime() - userObject.birthdayInISOFormat.getTime())
+    let age = Math.floor(dateInMilliseconds / (1000 * 60 * 60 * 24 * 365))
+    
+    return age
+  
+  },
+
+  sexNumber(){
+    
+    let itsNumberOneOrTwo = true
+    const regexNumberOneOrTwo = /^[1]$|^[2]$/
+    let sexNumber = 0
+  
+    do{
+      console.log('Escolha Sexo:')
+      console.log('[1] Masculino')
+      console.log('[2] Feminino')
+      sexNumber = input.question('')
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(sexNumber, regexNumberOneOrTwo)
+      
+      validationFunctions.incorrectValue(false, !itsNumberOneOrTwo, "Dados pessoais")
+  
+    }while(!itsNumberOneOrTwo)
+    
+    return Number(sexNumber)
+
+  },
+
+  showSex(userObject){
+
+    return userObject.sexNumber === 1 ? 'Masculino': 'Feminino'
+    
+  },
+
+  userProfession() {
+    
+    let profession = ''
+    let itsNumber = true
+    let itsLetters = false
+    let regexNumber = /\d/gi
+    let regexLetters = /\D/gi
+    
+    while(itsNumber || !itsLetters){
+  
+      profession = input.question('Digite sua profissão: ')
+      itsNumber = validationFunctions.isRegularExpression(profession, regexNumber)
+      itsLetters = validationFunctions.isRegularExpression(profession, regexLetters)
+    
+      validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
+  
+    }
+    
+    return profession
+  
+  },
+
+  userEmail() {
+    
+    let email = ''
+    let itsEmail = false
+
+    do{
+      
+      email = input.question('Digite seu email: ')
+
+      itsEmail = validationFunctions.validEmail(email)
+      
+      validationFunctions.incorrectValue(!itsEmail, false, "Dados Pessoais")
+
+    }while(!itsEmail)
+    
+    return email
+
+  },
+
+  phoneNumber(){
+  
+    let phoneNumber = 0
+    let regexPhone = /^([0-9]{2})[0-9]{9}$/
+    let istPhoneNumber = true
+  
+    do{
+      
+      phoneNumber = input.question('Digite seu número de celular com DDD: ')
+      istPhoneNumber = validationFunctions.isRegularExpression(phoneNumber, regexPhone)
+      validationFunctions.incorrectValue(false, !istPhoneNumber, "Dados Pessoais")
+  
+    }while(!istPhoneNumber)
+    
+    return phoneNumber
+  },
+
+}
+
+module.exports = {
+  personalDataFunctions
+}
+
+```
+
+Arquivo **saf.js** completo:
+
+```js
+/* physical assessment system */
+
+const { headerFunctions } = require('./headerFunctions')
+const { personalDataFunctions } = require('./personalDataFunctions')
+
+const user = { }
+
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+
+// variables personalDataFunctions
+user.name = personalDataFunctions.userName()
+
+user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
+user.birthdayInISOFormat = personalDataFunctions.dateInISOFormat(user.birthdayInBrazilianFormat)
+user.age = personalDataFunctions.age(user)
+user.sexNumber = personalDataFunctions.sexNumber()
+user.sex = personalDataFunctions.showSex(user)
+user.profession = personalDataFunctions.userProfession()
+user.userEmail = personalDataFunctions.userEmail()
+user.phoneNumber = personalDataFunctions.phoneNumber()
+
+// show results personalDataFunctions
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Dados Pessoais")
+console.log(`Nome: ${user.name}`)
+console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
+console.log(`Idade: ${user.age} anos`)
+console.log(`Sexo: ${user.sex}`)
+console.log(`Profissão: ${user.profession}`)
+console.log(`E-mail: ${user.userEmail}`)
+console.log(`Celular: ${user.phoneNumber}`)
+headerFunctions.baseboard()
+```
+
 Chegamos ao fim da parte de **Dados Pessoais**. Agora vamos entrar na próxima etapa, **Anamnese**, Let's Go!
+
+PAREI
 
 ## Anamnesis
 

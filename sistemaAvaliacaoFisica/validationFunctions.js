@@ -4,23 +4,6 @@ const { headerFunctions } = require('./headerFunctions')
 
 const validationFunctions = {
 
-  /*itsLetters: function(stringValue){
-    letterOrSpaceRegExp = /\D/gi
-
-    return letterOrSpaceRegExp.test(stringValue) ? true : false
-    
-  },
-
-  // verifica se o valor passado é apenas um número
-  itsNumber: function(value){
-  
-    const regExp2 = /\d/g
-    let itsNumber = regExp2.test(value)
-   
-    return itsNumber ? true : false
-    
-  },*/
-
   // recebe um valor e uma expressão regular. retorna true se o valor estiver de acordo com a expressão regular
   isRegularExpression(stringValue, regex){
     
@@ -57,13 +40,7 @@ const validationFunctions = {
 
   },
 
-  isLessThanMinimumOrGreaterThanMaximum: function(minimum, maximum, givenAway){
-    
-    return givenAway < minimum || givenAway > maximum ? true : false
-    
-  },
-
-  validEmail: function(userEmail){
+  validEmail(userEmail){
 
     let user = userEmail.substring(0, userEmail.indexOf("@"))
     let domain = userEmail.substring(userEmail.indexOf("@")+ 1, userEmail.length)

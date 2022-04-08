@@ -3,8 +3,6 @@
 var input = require('readline-sync')
 
 const { validationFunctions } = require('./validationFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
-
 
 const personalDataFunctions = {
       
@@ -135,27 +133,29 @@ const personalDataFunctions = {
     
   },
 
-  userProfession: function() {
+  userProfession() {
     
+    let profession = ''
     let itsNumber = true
     let itsLetters = false
-    let profession = ''
+    let regexNumber = /\d/gi
+    let regexLetters = /\D/gi
     
     while(itsNumber || !itsLetters){
-
+  
       profession = input.question('Digite sua profissão: ')
-      itsNumber = validationFunctions.itsNumber(profession)
-      itsLetters = validationFunctions.itsLetters(profession)
+      itsNumber = validationFunctions.isRegularExpression(profession, regexNumber)
+      itsLetters = validationFunctions.isRegularExpression(profession, regexLetters)
     
       validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
-
+  
     }
     
     return profession
   
   },
 
-  userEmail: function() {
+  userEmail() {
     
     let email = ''
     let itsEmail = false
@@ -174,7 +174,7 @@ const personalDataFunctions = {
 
   },
 
-  phoneNumber: function(){
+  phoneNumber(){
   
     let phoneNumber = 0
     let regexPhone = /^([0-9]{2})[0-9]{9}$/

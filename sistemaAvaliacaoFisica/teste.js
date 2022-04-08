@@ -1,9 +1,9 @@
 var input = require('readline-sync')
 
-const { validationFunctions } = require('./validationFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')
-const { aerobicFunctions } = require('./aerobicFunctions')
-const { personalDataFunctions } = require('./personalDataFunctions')
+// const { validationFunctions } = require('./validationFunctions')
+// const { anamnesisFunctions } = require('./anamnesisFunctions')
+// const { aerobicFunctions } = require('./aerobicFunctions')
+// const { personalDataFunctions } = require('./personalDataFunctions')
 const { headerFunctions } = require('./headerFunctions')
 
 const user= {}
@@ -11,6 +11,23 @@ const user= {}
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /* personal data functions */
 /** == user name == **/
+
+function  incorrectValue(valueA, valueB, title){
+    
+  if(valueA || valueB ){ 
+    console.clear()
+    headerFunctions.systemHeader()
+    headerFunctions.subTitle(title)
+    console.log('Dado Incorreto!')
+  }
+
+}
+
+function isRegularExpression(stringValue, regex){
+    
+  return regex.test(stringValue) ? true : false
+  
+}
 
 function userName(){
     
@@ -23,10 +40,10 @@ function userName(){
   while(itsNumber || !itsLetters){
 
     name = input.question('Digite seu nome: ')
-    itsNumber = validationFunctions.isRegularExpression(name, regexNumber)
-    itsLetters = validationFunctions.isRegularExpression(name, regexLetters)
+    itsNumber = isRegularExpression(name, regexNumber)
+    itsLetters = isRegularExpression(name, regexLetters)
   
-    validationFunctions.incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
+    incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
 
   }
   
@@ -40,6 +57,20 @@ function userName(){
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == date of birth == **/
 
+function validDate(informedDate, realDate){
+    
+  return informedDate === realDate ? true : false
+  
+}
+
+function dateOfBirthHighestCurrentDate(dateOfBirth){
+  var currentDate = new Date()
+
+  // O método getTime() retorna o valor numérico correspondente ao horário da data especificada de acordo com o horário universal.
+  return dateOfBirth.getTime() > currentDate.getTime() ? true : false
+
+}
+
 function dateOfBirth(){
   let dateInBrazilianFormat = ''
   let typedDate = ''
@@ -51,18 +82,18 @@ function dateOfBirth(){
   do{
     typedDate = input.question('Digite sua data de nascimento (DD/MM/AAAA): ')
     
-    dateEqualExpressionRegex = validationFunctions.isRegularExpression(typedDate, dateRegExp)
+    dateEqualExpressionRegex = isRegularExpression(typedDate, dateRegExp)
     
-    dateInBrazilianFormat = personalDataFunctions.dateInBrazilFormat(typedDate)
+    dateInBrazilianFormat = dateInBrazilFormat(typedDate)
 
-    dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
+    dateValid = validDate(typedDate, dateInBrazilianFormat)
 
-    let dateISO = personalDataFunctions.dateInISOFormat(dateInBrazilianFormat)
+    let dateISO = dateInISOFormat(dateInBrazilianFormat)
     
-    birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
+    birthHighestCurrentDate = dateOfBirthHighestCurrentDate(dateISO)
 
-    validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Dados Pessoais")
-    validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Dados Pessoais")
+    incorrectValue(!dateEqualExpressionRegex, !dateValid, "Dados Pessoais")
+    incorrectValue(false, birthHighestCurrentDate, "Dados Pessoais")
 
   }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
   
@@ -101,10 +132,10 @@ function dateInBrazilFormat(dateInString){
 /** == date in ISO format == **/
 
 // recebe uma data no formato brasileiro como string. Retorna a data no formato ISO
-function dateInISOFormat(userObject){
-  
+function dateInISOFormat(dateInString){
+    
   //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
-  let arrayNumber = userObject.dateOfBirth.split('/')
+  let arrayNumber = dateInString.split('/')
   let day = Number(arrayNumber[0])
   let month = Number(arrayNumber[1])
   let year = Number(arrayNumber[2])
@@ -148,9 +179,9 @@ function sexNumber(){
     console.log('[2] Feminino')
     sexNumber = input.question('')
 
-    itsNumberOneOrTwo = validationFunctions.isRegularExpression(sexNumber, regexNumberOneOrTwo)
+    itsNumberOneOrTwo = isRegularExpression(sexNumber, regexNumberOneOrTwo)
     
-    validationFunctions.incorrectValue(false, !itsNumberOneOrTwo, "Dados pessoais")
+    incorrectValue(false, !itsNumberOneOrTwo, "Dados pessoais")
 
   }while(!itsNumberOneOrTwo)
   
@@ -171,139 +202,41 @@ function showSex(userObject){
 }
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
-/* physical assessment system */
-headerFunctions.systemHeader()
-user.name = userName()
-user.dateOfBirth = dateOfBirth()
-user.dateInISOFormat = dateInISOFormat(user)
-user.age = age(user)
-user.sexNumber = sexNumber()
-user.sex = showSex(user)
+/** == profession == **/
 
-console.log(`NOME: ${user.name}`)
-console.log(`DATA ANIVERSÁRIO: ${user.dateOfBirth}`)
-console.log(`DATA ISO: ${user.dateInISOFormat}`)
-console.log(`Idade: ${user.age}`)
-console.log(`NÚMERO SEXO: ${user.sexNumber}`)
-console.log(`SEXO: ${user.sex}`)
-headerFunctions.baseboard()
-console.log(user)
-
-
-/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
-
-// function sex(){
-
-//   let istNumber = false
-//   let isLessThanMinimumOrGreaterThanMaximum = true
-//   let sex = 0
-
-//   do{
-//     console.log('Escolha:')
-//     console.log('[1] Masculino')
-//     console.log('[2] Feminino')
-//     sex = input.question('')
-//     // console.log(sex)
-
-//     istNumber = validationFunctions.itsNumber(sex)
-//     // console.log(istNumber)
-
-//     isLessThanMinimumOrGreaterThanMaximum = validationFunctions.isLessThanMinimumOrGreaterThanMaximum(1, 2, Number(sex))
-//     // console.log(isLessThanMinimumOrGreaterThanMaximum)
-//     validationFunctions.incorrectValue(!istNumber, isLessThanMinimumOrGreaterThanMaximum, "Anamnese")
-
-//   }while(!istNumber || isLessThanMinimumOrGreaterThanMaximum)
-  
-//   return sex
-// }
-// let sexoNumber = sex()
-// let genre = anamnesisFunctions.showGenre(sexoNumber)
-// console.log(`Sexo: ${genre}`)
-
-// let name = input.question('Digite se nome: ')
-
-// function espace(nameValue){
-//   let regexEscape = /[\s]/gi
-
-//   return regexEscape.test(nameValue) ? true : false
-  
-// }
-
-// function itsLetters(nameValue){
-//   let regexLetters = /[A-z]/gi 
-
-//   return regexLetters.test(nameValue) ? true : false
-// }
-
-// function hasCaracter(nameValue){
-//   let regexCaracter = /\W/gi
-
-//   return regexCaracter.test(nameValue)
-// }
-
-// console.log(espace(name))
-// console.log(itsLetters(name))
-// console.log(hasCaracter(name))
-
-/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
-/* == Email == */
-
-/*userEmail
-function validEmail(email){
-  let temEspaco = email.search(/[ ]/g) != -1
-  let temArroba = email.search(/[@]/g) != -1
-
-  if(!temEspaco && temArroba){
-
-    const arrayString = email.split(/[@]/g)
-    const usuario = arrayString[0]
-    const dominio = arrayString[1]
-    let caracterAntesArroba = usuario.length > 0
-    let caracterAposArroba = dominio.length > 2
-    let pontoAposArroba = dominio.search(/[.]/g) != -1
-    let arrayPonto = dominio.split(/[.]/g)
+function userProfession() {
     
-
-    if(caracterAntesArroba && caracterAposArroba && pontoAposArroba){
-      
-      let caracterAposPonto = arrayPonto[1].length > 0
-      
-
-      if(caracterAposPonto){
+  let profession = ''
+  let itsNumber = true
+  let itsLetters = false
+  let regexNumber = /\d/gi
+  let regexLetters = /\D/gi
   
-        console.log(`Tem espaço: ${temEspaco}`)
-        console.log(`Tem arroba: ${temArroba}`)
-        console.log(`Caracter antes arroba: ${caracterAntesArroba}`)
-        console.log(`Caracter após arroba: ${caracterAposArroba}`)
-        console.log(`Ponto após arroba: ${pontoAposArroba}`)
-        console.log(`Caracter: ${caracterAposPonto}`)
+  while(itsNumber || !itsLetters){
 
-      }
-      
-      
-    } else {
-      console.log('ERROR')
-    }
+    profession = input.question('Digite sua profissão: ')
+    itsNumber = isRegularExpression(profession, regexNumber)
+    itsLetters = isRegularExpression(profession, regexLetters)
+  
+    incorrectValue(!itsLetters, itsNumber, "Dados Pessoais")
 
-    } else {
-      console.log('ERROR')
+  }
+  
+  return profession
 
-    }
 }
 
-const emails = ["thiago@carlos.com", "andre@java.com", "andre@java.com.br", "andre@.m"]
+// user.profession = userProfession()
+// console.log(`PROFISSÃO: ${user.profession}`)
 
-for(let email of emails){
-  validEmail(email)
-  console.log('=======================')
-}
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == email == **/
 
+function validEmail(userEmail){
 
-function validEmail(userEmail) {
-
-  user = userEmail.substring(0, userEmail.indexOf("@"))
-  domain = userEmail.substring(userEmail.indexOf("@")+ 1, userEmail.length)
-  let = validations = ((user.length >=1) && 
+  let user = userEmail.substring(0, userEmail.indexOf("@"))
+  let domain = userEmail.substring(userEmail.indexOf("@")+ 1, userEmail.length)
+  let validations = ((user.length >=1) && 
                       (domain.length >=3) && 
                       (user.search("@")==-1) && 
                       (domain.search("@")==-1) && 
@@ -313,23 +246,34 @@ function validEmail(userEmail) {
                       (domain.indexOf(".") >=1)&& 
                       (domain.lastIndexOf(".") < domain.length - 1))
 
-  if (validations) {
-     return true
-  }
-  else{
-    return false
-  }
-}
+    return validations ? true : false
   
-const emails = ["thiago@carlos.com", "andre@.m", "andrejava.com.br", "andre@java.net"]
-
-for(let email of emails){
-  console.log(validEmail(email))
-  console.log('=======================')
 }
+
+function userEmail(){
+    
+  let email = ''
+  let itsEmail = false
+
+  do{
+    
+    email = input.question('Digite seu email: ')
+
+    itsEmail = validEmail(email)
+    
+    incorrectValue(!itsEmail, false, "Dados Pessoais")
+
+  }while(!itsEmail)
+  
+  return email
+
+}
+
+// user.userEmail = userEmail()
+// console.log(`EMAIL: ${user.userEmail}`)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
-/* == phone number == */
+/** == email == **/
 
 function phoneNumber(){
   
@@ -340,15 +284,47 @@ function phoneNumber(){
   do{
     
     phoneNumber = input.question('Digite seu número de celular com DDD: ')
-    istPhoneNumber = validationFunctions.isRegularExpression(phoneNumber, regexPhone)
-    validationFunctions.incorrectValue(false, !istPhoneNumber, "Dados Pessoais")
+    istPhoneNumber = isRegularExpression(phoneNumber, regexPhone)
+    incorrectValue(false, !istPhoneNumber, "Dados Pessoais")
 
   }while(!istPhoneNumber)
   
   return phoneNumber
+
 }
 
-// console.log(`Número de telefone: ${phoneNumber()}`)
+// user.phoneNumber = phoneNumber()
+// console.log(`TELEFONE: ${user.phoneNumber}`)
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/* physical assessment system */
+headerFunctions.systemHeader()
+user.name = userName()
+user.dateOfBirth = dateOfBirth()
+user.dateInISOFormat = dateInISOFormat(user.dateOfBirth)
+user.age = age(user)
+user.sexNumber = sexNumber()
+user.sex = showSex(user)
+user.profession = userProfession()
+user.userEmail = userEmail()
+user.phoneNumber = phoneNumber()
+
+
+console.log(`NOME: ${user.name}`)
+console.log(`DATA ANIVERSÁRIO: ${user.dateOfBirth}`)
+console.log(`DATA ISO: ${user.dateInISOFormat}`)
+console.log(`Idade: ${user.age}`)
+console.log(`NÚMERO SEXO: ${user.sexNumber}`)
+console.log(`SEXO: ${user.sex}`)
+console.log(`PROFISSÃO: ${user.profession}`)
+console.log(`EMAIL: ${user.userEmail}`)
+console.log(`TELEFONE: ${user.phoneNumber}`)
+headerFunctions.baseboard()
+console.log(user)
+
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+
 
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */

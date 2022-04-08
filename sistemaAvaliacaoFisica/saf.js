@@ -20,11 +20,11 @@ user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
 user.birthdayInISOFormat = personalDataFunctions.dateInISOFormat(user.birthdayInBrazilianFormat)
 user.age = personalDataFunctions.age(user)
 user.sexNumber = personalDataFunctions.sexNumber()
-user.sex = personalDataFunctions.showSex(user)/*
+user.sex = personalDataFunctions.showSex(user)
 user.profession = personalDataFunctions.userProfession()
 user.userEmail = personalDataFunctions.userEmail()
 user.phoneNumber = personalDataFunctions.phoneNumber()
-
+/*
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
@@ -109,11 +109,12 @@ console.log(`Nome: ${user.name}`)
 console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
 console.log(`Idade: ${user.age} anos`)
 console.log(`Sexo: ${user.sex}`)
-headerFunctions.baseboard()
-/*
 console.log(`Profissão: ${user.profession}`)
 console.log(`E-mail: ${user.userEmail}`)
 console.log(`Celular: ${user.phoneNumber}`)
+headerFunctions.baseboard()
+
+/*
 
 // show results anamnesisFunctions
 headerFunctions.baseboard()
