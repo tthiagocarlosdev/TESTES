@@ -1548,8 +1548,6 @@ headerFunctions.baseboard()
 
 Chegamos ao fim da parte de **Dados Pessoais**. Agora vamos entrar na próxima etapa, **Anamnese**, Let's Go!
 
-PAREI
-
 ## Anamnesis
 
 Vamos começar criando o arquivo **anamnesisFunctions.js** e dentro dele vamos colocar:
@@ -1589,7 +1587,7 @@ choice(){
   },
 ```
 
-Vamos agora criar a function **questionnairePARQ( )**. Esta function deverá apresentar 7 perguntas para o usuário, aceitando apenas como resposta, "sim", ou "não". Caso alguma resposta seja "sim", a mensagem "Você deverá realizar um exame médico antes de iniciar suas atividades!" deverá ser apresentada. Caso todas as repostas seja "não", a mensagem "Todas as respostas do questionário foram 'Sim'!" deverá ser apresentada. Na validação das respostas, só serão aceitos os numerais 1 e 2, caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta.
+Vamos agora criar a function **questionnairePARQ( )**. Esta function deverá apresentar 7 perguntas para o usuário, aceitando apenas como resposta, "sim", ou "não". Caso alguma resposta seja **"sim"**, a mensagem **"Você deverá realizar um exame médico antes de iniciar suas atividades!"** deverá ser apresentada. Caso todas as repostas seja **"não"**, a mensagem **"Todas as respostas do questionário foram 'Não'!"** deverá ser apresentada. Na validação das respostas, só serão aceitos os numerais 1 e 2, caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta.
 
 Questionário PAR-Q:
 
@@ -1634,7 +1632,7 @@ questionnairePARQ(){
     if(questionnairePARQAnswer.includes("1")){
       return "Você deverá realizar um exame médico antes de iniciar suas atividades!"
     } else {
-      return "Todas as respostas do questionário foram 'Sim'!"
+      return "Todas as respostas do questionário foram 'Não'!"
     }
 
   },
@@ -1646,69 +1644,119 @@ Em **saf.js** vamos requerer o arquivo **anamnesisFunctions**:
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 ```
 
-Em seguida vamos criar a sessão de **variables anamnesisFunctions** e **show results anamnesisFunctions** declarando a variável **questionnairePARQ** que receberá a function **questionnairePARQ( )**. Em seguida apresentamos o resultado. Logo, em **saf.js**:
+Em seguida vamos criar a sessão de **variables anamnesisFunctions** e **show results anamnesisFunctions** adicionando ao objeto _**user**_ a propriedade **questionnairePARQ** que receberá como valor o retorno da a function **questionnairePARQ( )**. Em seguida apresentamos o resultado. Logo, em **saf.js**:
 
 ```js
+/* physical assessment system */
+
 const { headerFunctions } = require('./headerFunctions')
-const { personalData } = require('./personalData')
+const { personalDataFunctions } = require('./personalDataFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
+
+const user = { }
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
-// variables personalData
-const name = personalData.userName()
-const birthdayInBrazilianFormat = personalData.dateOfBirth()
-const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
-const age = personalData.age(birthdayInISOFormat)
-const sexNumber = personalData.sexNumber()
-const sex = personalData.showSex(sexNumber)
-const profession = personalData.userProfession()
-const userEmail = personalData.userEmail()
-const phoneNumber = personalData.phoneNumber()
+// variables personalDataFunctions
+user.name = personalDataFunctions.userName()
+
+user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
+user.birthdayInISOFormat = personalDataFunctions.dateInISOFormat(user.birthdayInBrazilianFormat)
+user.age = personalDataFunctions.age(user)
+user.sexNumber = personalDataFunctions.sexNumber()
+user.sex = personalDataFunctions.showSex(user)
+user.profession = personalDataFunctions.userProfession()
+user.userEmail = personalDataFunctions.userEmail()
+user.phoneNumber = personalDataFunctions.phoneNumber()
 
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
 // variables anamnesisFunctions
-const questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+```
 
-// show results personalData
+```js
+// show results personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
-console.log(`Nome: ${name}`)
-console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
-console.log(`Idade: ${age} anos!`)
-console.log(`Sexo: ${sex}`)
-console.log(`Profissão: ${profession}`)
-console.log(`E-mail: ${userEmail}`)
-console.log(`Celular: ${phoneNumber}`)
+console.log(`Nome: ${user.name}`)
+console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
+console.log(`Idade: ${user.age} anos`)
+console.log(`Sexo: ${user.sex}`)
+console.log(`Profissão: ${user.profession}`)
+console.log(`E-mail: ${user.userEmail}`)
+console.log(`Celular: ${user.phoneNumber}`)
 
 // show results anamnesisFunctions
-console.log(`===============================`)
+headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
-console.log(`Questionário PAR-Q: ${questionnairePARQ}`)
-
-console.log(`===============================`)
-
+console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
+headerFunctions.baseboard()
 ```
 
 Esta parte da execução, iremos apenas mostrar a parte da Anamnese, no final de todo o programa mostramos ele completo, logo ao executar:
 
-```tex
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Anamnese            
 ===============================
-Questionário PAR-Q: Você deverá realizar um exame médico antes de iniciar suas atividades!
+1 - Seu médico já mencionou alguma vez que você tem uma condição cardíaca e que você só deve realizar atividade física recomendada por um médico?
+Escolha:
+[1] Sim
+[2] Não
+2
+2 - Você sente dor no tórax quando realiza atividade física?
+Escolha:
+[1] Sim
+[2] Não
+2
+3 - No mês passado, você teve dor torácica quando não estava realizando atividade física?
+Escolha:
+[1] Sim
+[2] Não
+2
+4 - Você perdeu o equilíbrio por causa de tontura ou alguma vez perdeu a consciência?
+Escolha:
+[1] Sim
+[2] Não
+2
+5 - Você tem algum problema ósseo ou de articulação que poderia piorar em conseqüência de uma alteração em sua atividade física?
+Escolha:
+[1] Sim
+[2] Não
+2
+6 - Seu médico está prescrevendo medicamentos para sua pressão ou condição cardíaca?
+Escolha:
+[1] Sim
+[2] Não
+2
+7 - Você teria alguma razão para não praticar exercício físico ou outro problema que impeça?
+Escolha:
+[1] Sim
+[2] Não
+2 
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Não'!
 ===============================
 ```
 
 ### Estado Físico Atual
 
-AGora vamos criar a function **currentPhysicalState( )** que vai pedir para o usuário informar qual é o seu estado físico atual a partir do menu de escolha **[1]** para **Sedentário** e **[2]** para **Ativo**. Esta function deve aceitar apenas um dígito, sendo apenas o numeral 1 ou 2. Caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Está function retorna o valor digitado pelo usuário.
+Agora vamos criar a function **currentPhysicalState( )** que vai pedir para o usuário informar qual é o seu estado físico atual a partir do menu de escolha **[1]** para **Sedentário** e **[2]** para **Ativo**. Esta function deve aceitar apenas um dígito, sendo apenas o numeral 1 ou 2. Caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Esta function retorna o valor digitado pelo usuário.
 
 ```js
 currentPhysicalState(){
@@ -1723,51 +1771,112 @@ currentPhysicalState(){
       console.log(`[1] Sedentário`)
       console.log(`[2] Ativo`)
       currentPhysicalState = input.question('')
-      
+     
       itsNumberOneOrTwo = validationFunctions.isRegularExpression(currentPhysicalState, regexNumber)
       validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
   
     }while(!itsNumberOneOrTwo)
   
-    return currentPhysicalState
+    return Number(currentPhysicalState)
   
   },
 ```
 
-Em **saf.js** criamos a variável **currentPhysicalState** que recebe o retorno da function **currentPhysicalState( )**.
+Em **saf.js** adicionamos ao objeto _**user**_ a propriedade **currentPhysicalState** que recebe como valor o retorno da function **currentPhysicalState( )**.
 
 ```js
-const currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
+
+// variables anamnesisFunctions
+user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()/*
 ```
 
-Em **anamnesisFunctions.js** criamos a function **showPhysicalState( )** que irá mostrar se o usuário é sedentário ou ativo. Está function terá como parâmetro um valor numérico:
+Em **anamnesisFunctions.js** criamos a function **showPhysicalState( )** que irá mostrar se o usuário é sedentário ou ativo. Está function terá como parâmetro o objeto _**user**_:
 
 ```js
-showPhysicalState(numericValue){
-  
-    return Number(numericValue) === 1 ? 'Sedentário' : 'Ativo'
+showPhysicalState(user){
+
+    return user.currentPhysicalState === 1 ? 'Sedentário' : 'Ativo'
   
   },
 ```
 
-E em **saf.js** vamos mostrar o resultado chamando a function **showPhysicalState( )** e pasando como parâmetro a variável **currentPhysicalState**.
+E em **saf.js** vamos mostrar o resultado chamando a function **showPhysicalState( )** e passando como parâmetro o objeto _**user**_:
 
 ```js
-console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(currentPhysicalState)}`)
+// show results anamnesisFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
+
+console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
+console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
 
-```tex
+```shell
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Anamnese            
 ===============================
-Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+1 - Seu médico já mencionou alguma vez que você tem uma condição cardíaca e que você só deve realizar atividade física recomendada por um médico?
+Escolha:
+[1] Sim
+[2] Não
+2
+2 - Você sente dor no tórax quando realiza atividade física?
+Escolha:
+[1] Sim
+[2] Não
+2
+3 - No mês passado, você teve dor torácica quando não estava realizando atividade física?
+Escolha:
+[1] Sim
+[2] Não
+1
+4 - Você perdeu o equilíbrio por causa de tontura ou alguma vez perdeu a consciência?
+Escolha:
+[1] Sim
+[2] Não
+2
+5 - Você tem algum problema ósseo ou de articulação que poderia piorar em conseqüência de uma alteração em sua atividade física?
+Escolha:
+[1] Sim
+[2] Não
+2
+6 - Seu médico está prescrevendo medicamentos para sua pressão ou condição cardíaca?
+Escolha:
+[1] Sim
+[2] Não
+2
+7 - Você teria alguma razão para não praticar exercício físico ou outro problema que impeça?
+Escolha:
+[1] Sim
+[2] Não
+2
+Qual seu estado físico atualmente? 
+[1] Sedentário
+[2] Ativo
+2
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Não'!
 Estado físico: Ativo
 ===============================
 ```
+
+PAREI
 
 ### Doença Pregressa
 

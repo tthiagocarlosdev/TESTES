@@ -297,39 +297,7 @@ function phoneNumber(){
 // console.log(`TELEFONE: ${user.phoneNumber}`)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
-/* physical assessment system */
-headerFunctions.systemHeader()
-user.name = userName()
-user.dateOfBirth = dateOfBirth()
-user.dateInISOFormat = dateInISOFormat(user.dateOfBirth)
-user.age = age(user)
-user.sexNumber = sexNumber()
-user.sex = showSex(user)
-user.profession = userProfession()
-user.userEmail = userEmail()
-user.phoneNumber = phoneNumber()
-
-
-console.log(`NOME: ${user.name}`)
-console.log(`DATA ANIVERSÁRIO: ${user.dateOfBirth}`)
-console.log(`DATA ISO: ${user.dateInISOFormat}`)
-console.log(`Idade: ${user.age}`)
-console.log(`NÚMERO SEXO: ${user.sexNumber}`)
-console.log(`SEXO: ${user.sex}`)
-console.log(`PROFISSÃO: ${user.profession}`)
-console.log(`EMAIL: ${user.userEmail}`)
-console.log(`TELEFONE: ${user.phoneNumber}`)
-headerFunctions.baseboard()
-console.log(user)
-
-
-/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
-
-
-
-/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Questionnaire - PAR-Q == **/
-
 
 function questionnairePARQ(){
 
@@ -344,7 +312,7 @@ function questionnairePARQ(){
   ]
   let questionnairePARQAnswer = []
   let itsNumberOneOrTwo = true
-  let regexNumber = /[1]|[2]/
+  let regexNumber = /^[1]$|^[2]$/
 
   for(let i = 0; i < questionnairePARQ.length; i++){
     
@@ -355,9 +323,8 @@ function questionnairePARQ(){
       console.log('[1] Sim')
       console.log('[2] Não')
       questionnairePARQAnswer[i] = input.question("")
-      console.clear()
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(questionnairePARQAnswer[i], regexNumber)
-      validationFunctions.incorrectValue(false, !itsNumberOneOrTwo, "Anamnese")
+      itsNumberOneOrTwo = isRegularExpression(questionnairePARQAnswer[i], regexNumber)
+      incorrectValue(false, !itsNumberOneOrTwo, "Anamnese")
 
     }while(!itsNumberOneOrTwo)
     
@@ -366,13 +333,13 @@ function questionnairePARQ(){
   if(questionnairePARQAnswer.includes("1")){
      return "Você deverá realizar um exame médico antes de iniciar suas atividades!"
   } else {
-    return "Todas as respostas do questionário foram 'Sim'!"
+    return "Todas as respostas do questionário foram 'Não'!"
   }
 
 }
 
-// questionnairePARQ()
-
+// user.questionnairePARQ = questionnairePARQ()
+// console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Current Physical State == **/
@@ -389,22 +356,62 @@ function currentPhysicalState(){
     console.log(`[1] Sedentário`)
     console.log(`[2] Ativo`)
     currentPhysicalState = input.question('')
-    itsNumberOneOrTwo = validationFunctions.isRegularExpression(currentPhysicalState, regexNumber)
-    validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+    itsNumberOneOrTwo = isRegularExpression(currentPhysicalState, regexNumber)
+    incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
 
   }while(!itsNumberOneOrTwo)
 
-  return currentPhysicalState
+  return Number(currentPhysicalState)
 
 }
 
-function showPhysicalState(numericValue){
+function showPhysicalState(user){
 
-  return Number(numericValue) === 1 ? 'Sedentário' : 'Ativo'
+  return user.currentPhysicalState === 1 ? 'Sedentário' : 'Ativo'
 
 }
 
-// console.log(`Estado físico: ${showPhysicalState(currentPhysicalState())}`)
+// user.currentPhysicalState = currentPhysicalState()
+// console.log(`ESTADO FÍSICO: ${showPhysicalState(user)}`)
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/* physical assessment system */
+headerFunctions.systemHeader()
+// user.name = userName()
+// user.dateOfBirth = dateOfBirth()
+// user.dateInISOFormat = dateInISOFormat(user.dateOfBirth)
+// user.age = age(user)
+// user.sexNumber = sexNumber()
+// user.sex = showSex(user)
+// user.profession = userProfession()
+// user.userEmail = userEmail()
+// user.phoneNumber = phoneNumber()
+
+// console.log(`NOME: ${user.name}`)
+// console.log(`DATA ANIVERSÁRIO: ${user.dateOfBirth}`)
+// console.log(`DATA ISO: ${user.dateInISOFormat}`)
+// console.log(`Idade: ${user.age}`)
+// console.log(`NÚMERO SEXO: ${user.sexNumber}`)
+// console.log(`SEXO: ${user.sex}`)
+// console.log(`PROFISSÃO: ${user.profession}`)
+// console.log(`EMAIL: ${user.userEmail}`)
+// console.log(`TELEFONE: ${user.phoneNumber}`)
+
+user.questionnairePARQ = questionnairePARQ()
+user.currentPhysicalState = currentPhysicalState()
+
+console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
+console.log(`ESTADO FÍSICO: ${showPhysicalState(user)}`)
+headerFunctions.baseboard()
+console.log(user)
+
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+
+
+
+
+
 
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */

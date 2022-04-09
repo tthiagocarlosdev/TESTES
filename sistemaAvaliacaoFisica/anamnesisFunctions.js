@@ -36,7 +36,6 @@ const anamnesisFunctions = {
         console.log(`${[i+1]} - ${questionnairePARQ[i]}`)
         anamnesisFunctions.choice()
         questionnairePARQAnswer[i] = input.question("")
-        
         itsNumberOneOrTwo = validationFunctions.isRegularExpression(questionnairePARQAnswer[i], regexNumber)
         validationFunctions.incorrectValue(false, !itsNumberOneOrTwo, "Anamnese")
 
@@ -47,7 +46,7 @@ const anamnesisFunctions = {
     if(questionnairePARQAnswer.includes("1")){
       return "Você deverá realizar um exame médico antes de iniciar suas atividades!"
     } else {
-      return "Todas as respostas do questionário foram 'Sim'!"
+      return "Todas as respostas do questionário foram 'Não'!"
     }
 
   },
@@ -74,9 +73,9 @@ const anamnesisFunctions = {
   
   },
   
-  showPhysicalState(numericValue){
-  
-    return Number(numericValue) === 1 ? 'Sedentário' : 'Ativo'
+  showPhysicalState(user){
+
+    return user.currentPhysicalState === 1 ? 'Sedentário' : 'Ativo'
   
   },
 

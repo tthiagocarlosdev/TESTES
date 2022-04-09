@@ -2,14 +2,14 @@
 
 const { headerFunctions } = require('./headerFunctions')
 const { personalDataFunctions } = require('./personalDataFunctions')
-/*const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')/*
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 const { anthropometryFunctions } = require('./anthropometryFunctions')
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
 const { aerobicFunctions } = require('./aerobicFunctions')*/
 
 const user = { }
-
+/*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
@@ -24,14 +24,14 @@ user.sex = personalDataFunctions.showSex(user)
 user.profession = personalDataFunctions.userProfession()
 user.userEmail = personalDataFunctions.userEmail()
 user.phoneNumber = personalDataFunctions.phoneNumber()
-/*
+*/
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
 // variables anamnesisFunctions
 user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
-user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()/*
 user.pastIllness = anamnesisFunctions.pastIllness()
 user.illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
 user.surgeryPerformed = anamnesisFunctions.surgeryPerformed()
@@ -100,7 +100,7 @@ console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Observações")
 user.comments = personalDataFunctions.comments()*/
-
+/*
 // show results personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
@@ -111,17 +111,16 @@ console.log(`Idade: ${user.age} anos`)
 console.log(`Sexo: ${user.sex}`)
 console.log(`Profissão: ${user.profession}`)
 console.log(`E-mail: ${user.userEmail}`)
-console.log(`Celular: ${user.phoneNumber}`)
-headerFunctions.baseboard()
-
-/*
+console.log(`Celular: ${user.phoneNumber}`)*/
 
 // show results anamnesisFunctions
-headerFunctions.baseboard()
+headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
 console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
-console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user.currentPhysicalState)}`)
+console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
+headerFunctions.baseboard()/*
+
 console.log(`Doença Pregressa: ${user.pastIllness}`)
 console.log(`Doença Pregressa na Família: ${user.illnessesFamily}`)
 console.log(`Cirurgia: ${user.surgeryPerformed}`)
