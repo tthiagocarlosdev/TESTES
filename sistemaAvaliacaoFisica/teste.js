@@ -375,6 +375,61 @@ function showPhysicalState(user){
 // console.log(`ESTADO FÍSICO: ${showPhysicalState(user)}`)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == choice == **/
+
+function choice(){
+
+  console.log('Escolha:')
+  console.log('[1] Sim')
+  console.log('[2] Não')
+
+}
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Past Illness == **/
+
+function pastIllness(){
+
+  let pastIllnessNumber = 2
+  let pastIllnessText = ''
+  let itsNumberOneOrTwo = true
+  let regexNumber = /^[1]$|^[2]$/
+  let isAlphanumericCharacters = true
+  const regexAlphanumericCharacters = /\D|\d/ 
+
+  do{
+
+    console.log(`Avaliado possue doença pregressa?`)
+    choice()
+    pastIllnessNumber = Number(input.question(''))
+
+    itsNumberOneOrTwo = isRegularExpression(pastIllnessNumber, regexNumber)
+    incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+
+    if(pastIllnessNumber === 1){
+      
+      do{
+
+        console.log(`Qual doença?`)
+        pastIllnessText = input.question('')
+        isAlphanumericCharacters = isRegularExpression(pastIllnessText, regexAlphanumericCharacters)
+        incorrectValue(false, !isAlphanumericCharacters, "Anamnese")
+
+      }while(!isAlphanumericCharacters)
+      
+    } else {
+      pastIllnessText = `Sem doença pregressa.`
+    }
+
+  }while(!itsNumberOneOrTwo)
+
+    return pastIllnessText
+
+}
+
+// user.pastIllness = pastIllness()
+// console.log(`DOENÇA PREGRESSA: ${user.pastIllness}`)
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /* physical assessment system */
 headerFunctions.systemHeader()
 // user.name = userName()
@@ -399,9 +454,12 @@ headerFunctions.systemHeader()
 
 user.questionnairePARQ = questionnairePARQ()
 user.currentPhysicalState = currentPhysicalState()
+user.pastIllness = pastIllness()
 
+headerFunctions.baseboard()
 console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
 console.log(`ESTADO FÍSICO: ${showPhysicalState(user)}`)
+console.log(`DOENÇA PREGRESSA: ${user.pastIllness}`)
 headerFunctions.baseboard()
 console.log(user)
 
@@ -414,51 +472,7 @@ console.log(user)
 
 
 
-/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
-/** == Past Illness == **/
 
-function pastIllness(){
-
-  let pastIllnessNumber = 2
-  let pastIllnessText = ''
-  let itsNumberOneOrTwo = true
-  let regexNumber = /^[1]$|^[2]$/
-  let itsLetters = true
-
-  do{
-
-    console.log(`Avaliado possue doença pregressa?`)
-    anamnesisFunctions.choice()
-    pastIllnessNumber = Number(input.question(''))
-
-    itsNumberOneOrTwo = validationFunctions.isRegularExpression(pastIllnessNumber, regexNumber)
-    validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
-
-    if(pastIllnessNumber === 1){
-      
-      do{
-
-        console.log(`Qual doença?`)
-        pastIllnessText = input.question('')
-        itsLetters = validationFunctions.itsLetters(pastIllnessText)
-        validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
-
-      }while(!itsLetters)
-      
-    } else {
-      pastIllnessText = `Sem doença pregressa.`
-    }
-
-  }while(!itsNumberOneOrTwo)
-
-    return pastIllnessText
-
-}
-
-// let x = pastIllness()
-// console.clear()
-// // console.log(x.pastIllnessNumber)
-// console.log(x)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Illnesses in the Family == **/
@@ -2994,8 +3008,9 @@ function comments(){
   let commentsNumber = 2
   let commentsText = ''
   let itsNumberOneOrTwo = true
-  let regexNumber = /^[1]$|^[2]$/
-  let itsLetters = true
+  const regexNumber = /^[1]$|^[2]$/
+  let isAlphanumericCharacters = true
+  const regexAlphanumericCharacters = /\D|\d/ 
 
   do{
 
@@ -3012,10 +3027,10 @@ function comments(){
 
         console.log(`Digite a Observação:`)
         commentsText = input.question('')
-        itsLetters = validationFunctions.itsLetters(commentsText)
-        validationFunctions.incorrectValue(false, !itsLetters, "Observações")
-
-      }while(!itsLetters)
+        isAlphanumericCharacters = validationFunctions.isRegularExpression(commentsText, regexAlphanumericCharacters)
+        validationFunctions.incorrectValue(false, !isAlphanumericCharacters, "Observações")
+        
+      }while(!isAlphanumericCharacters)
       
     } else {
       commentsText = `Sem Observações!`

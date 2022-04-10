@@ -85,7 +85,8 @@ const anamnesisFunctions = {
     let pastIllnessText = ''
     let itsNumberOneOrTwo = true
     let regexNumber = /^[1]$|^[2]$/
-    let itsLetters = true
+    let isAlphanumericCharacters = true
+    const regexAlphanumericCharacters = /\D|\d/ 
   
     do{
   
@@ -102,10 +103,10 @@ const anamnesisFunctions = {
   
           console.log(`Qual doença?`)
           pastIllnessText = input.question('')
-          itsLetters = validationFunctions.itsLetters(pastIllnessText)
-          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+          isAlphanumericCharacters = validationFunctions.isRegularExpression(pastIllnessText, regexAlphanumericCharacters)
+          validationFunctions.incorrectValue(false, !isAlphanumericCharacters, "Anamnese")
   
-        }while(!itsLetters)
+        }while(!isAlphanumericCharacters)
         
       } else {
         pastIllnessText = `Sem doença pregressa.`

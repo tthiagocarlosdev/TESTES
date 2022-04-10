@@ -31,8 +31,8 @@ headerFunctions.subTitle("Anamnese")
 
 // variables anamnesisFunctions
 user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
-user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()/*
-user.pastIllness = anamnesisFunctions.pastIllness()
+user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+user.pastIllness = anamnesisFunctions.pastIllness()/*
 user.illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
 user.surgeryPerformed = anamnesisFunctions.surgeryPerformed()
 user.useMedication = anamnesisFunctions.useMedication()
@@ -119,9 +119,10 @@ headerFunctions.subTitle("Anamnese")
 
 console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
 console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
+console.log(`Doença Pregressa: ${user.pastIllness}`)
 headerFunctions.baseboard()/*
 
-console.log(`Doença Pregressa: ${user.pastIllness}`)
+
 console.log(`Doença Pregressa na Família: ${user.illnessesFamily}`)
 console.log(`Cirurgia: ${user.surgeryPerformed}`)
 console.log(`Uso de Medicamento: ${user.useMedication}`)

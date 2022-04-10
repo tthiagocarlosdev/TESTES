@@ -1876,11 +1876,9 @@ Estado físico: Ativo
 ===============================
 ```
 
-PAREI
-
 ### Doença Pregressa
 
-Agora vamos criar a function **pastIllness( )** que irá retornar se o avaliado possue doença pregressa ou não. Esta function deve aceitar apenas um dígito, sendo apenas  **[1]** para **Sim** e **[2]** para **Não**. Caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Caso a resposta seja **sim** o usuário deve informar qual doença ele teve/tem. Vamos chamar a function **itsLetters( )** para validar o que será digitado pelo o usuário, pois não será aceito apenas número, espaço ou vazio, o usuáriotem ue digitar um texto. Caso o usuário não digite texto a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Sobre o retorno desta function: Caso o usuário digite **não**, será retornado a mensagem **"Sem doença pregressa."**, porém se ele digitar **sim**, deverá ser retornado a doença informada pelo o mesmo.
+Agora vamos criar a function **pastIllness( )** que irá retornar se o avaliado possue doença pregressa ou não. Esta function deve aceitar apenas um dígito, sendo apenas  **[1]** para **Sim** e **[2]** para **Não**. Caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Caso a resposta seja **sim** o usuário deve informar qual doença ele teve/tem. Neste campo o usuário deve digitar algum caracter alfanumérico. Caso digite apenas espaço, ou deixe m branco, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Para vazer esta validação, vamos usar expressão regular, com a function **isRegularExpression( )**. Sobre o retorno desta function: Caso o usuário digite **não**, será retornado a mensagem **"Sem doença pregressa."**, porém se ele digitar **sim**, deverá ser retornado a doença informada pelo o mesmo.
 
 Em **anamnesisFunctions.js**:
 
@@ -1891,7 +1889,8 @@ pastIllness(){
     let pastIllnessText = ''
     let itsNumberOneOrTwo = true
     let regexNumber = /^[1]$|^[2]$/
-    let itsLetters = true
+    let isAlphanumericCharacters = true
+    const regexAlphanumericCharacters = /\D|\d/ 
   
     do{
   
@@ -1908,10 +1907,10 @@ pastIllness(){
   
           console.log(`Qual doença?`)
           pastIllnessText = input.question('')
-          itsLetters = validationFunctions.itsLetters(pastIllnessText)
-          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
+          isAlphanumericCharacters = validationFunctions.isRegularExpression(pastIllnessText, regexAlphanumericCharacters)
+          validationFunctions.incorrectValue(false, !isAlphanumericCharacters, "Anamnese")
   
-        }while(!itsLetters)
+        }while(!isAlphanumericCharacters)
         
       } else {
         pastIllnessText = `Sem doença pregressa.`
@@ -1924,29 +1923,99 @@ pastIllness(){
   },
 ```
 
-Em **saf.js** vamos criar a variável **pastIllness** que receberá a function **pastIllness( )** e depois vamos mostrar o resultado.
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **pastIllness** que receberá como valor o retorno da function **pastIllness( )** e depois vamos mostrar o resultado.
 
 ```js
-const pastIllness = anamnesisFunctions.pastIllness()
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
+
+// variables anamnesisFunctions
+user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+user.pastIllness = anamnesisFunctions.pastIllness()
 ```
 
 ```js
-console.log(`Doença Pregressa: ${pastIllness}`)
+// show results anamnesisFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Anamnese")
+
+console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
+console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
+console.log(`Doença Pregressa: ${user.pastIllness}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
 
-```tex
+```shell
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Anamnese            
 ===============================
-Questionário PAR-Q: Você deverá realizar um exame médico antes de iniciar suas atividades!
+1 - Seu médico já mencionou alguma vez que você tem uma condição cardíaca e que você só deve realizar atividade física recomendada por um médico?
+Escolha:
+[1] Sim
+[2] Não
+2
+2 - Você sente dor no tórax quando realiza atividade física?
+Escolha:
+[1] Sim
+[2] Não
+2
+3 - No mês passado, você teve dor torácica quando não estava realizando atividade física?
+Escolha:
+[1] Sim
+[2] Não
+2
+4 - Você perdeu o equilíbrio por causa de tontura ou alguma vez perdeu a consciência?
+Escolha:
+[1] Sim
+[2] Não
+2
+5 - Você tem algum problema ósseo ou de articulação que poderia piorar em conseqüência de uma alteração em sua atividade física?
+Escolha:
+[1] Sim
+[2] Não
+2
+6 - Seu médico está prescrevendo medicamentos para sua pressão ou condição cardíaca?
+Escolha:
+[1] Sim
+[2] Não
+2
+7 - Você teria alguma razão para não praticar exercício físico ou outro problema que impeça?
+Escolha:
+[1] Sim
+[2] Não
+2
+Qual seu estado físico atualmente? 
+[1] Sedentário
+[2] Ativo
+1
+Avaliado possue doença pregressa?
+Escolha:
+[1] Sim
+[2] Não
+1
+Qual doença?
+Diabetes
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Não'!
 Estado físico: Sedentário
-Doença Pregressa: Sem doença pregressa.
+Doença Pregressa: Diabetes
 ===============================
 ```
+
+PAREI
 
 ### Doenças na Família
 
