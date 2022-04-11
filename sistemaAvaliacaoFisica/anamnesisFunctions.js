@@ -79,12 +79,51 @@ const anamnesisFunctions = {
   
   },
 
+  questions(object){
+  
+    let pastIllnessNumber = 2
+    let pastIllnessText = ''
+    let itsNumberOneOrTwo = true
+    const regexNumberOneOrTwo = /^[1]$|^[2]$/
+    let isAlphanumericCharacters = true
+    const regexAlphanumericCharacters = /\D|\d/ 
+  
+    do{
+  
+      console.log(object.question)
+      anamnesisFunctions.choice()
+      pastIllnessNumber = Number(input.question(''))
+  
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(pastIllnessNumber, regexNumberOneOrTwo)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, object.title)
+  
+      if(pastIllnessNumber === 1){
+        
+        do{
+  
+          console.log(object.whatQuestion)
+          pastIllnessText = input.question('')
+          isAlphanumericCharacters = validationFunctions.isRegularExpression(pastIllnessText, regexAlphanumericCharacters)
+          validationFunctions.incorrectValue(false, !isAlphanumericCharacters, object.title)
+  
+        }while(!isAlphanumericCharacters)
+        
+      } else {
+        pastIllnessText = object.noQuestion
+      }
+  
+    }while(!itsNumberOneOrTwo)
+  
+      return pastIllnessText
+  
+  },
+
   pastIllness(){
 
     let pastIllnessNumber = 2
     let pastIllnessText = ''
     let itsNumberOneOrTwo = true
-    let regexNumber = /^[1]$|^[2]$/
+    const regexNumberOneOrTwo = /^[1]$|^[2]$/
     let isAlphanumericCharacters = true
     const regexAlphanumericCharacters = /\D|\d/ 
   
@@ -94,7 +133,7 @@ const anamnesisFunctions = {
       anamnesisFunctions.choice()
       pastIllnessNumber = Number(input.question(''))
   
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(pastIllnessNumber, regexNumber)
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(pastIllnessNumber, regexNumberOneOrTwo)
       validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
   
       if(pastIllnessNumber === 1){
@@ -351,6 +390,39 @@ const anamnesisFunctions = {
 
 }
 
+const pastIllness = {
+  question: `Avaliado possue doença pregressa?`,
+  title: "Anamnese",
+  whatQuestion: `Qual doença?`,
+  noQuestion: `Sem doença pregressa.`,
+}
+const illnessesInTheFamily = {
+  question: `Avaliado possue alguém da família com doença pregressa?`,
+  title: "Anamnese",
+  whatQuestion: `Qual doença?`,
+  noQuestion: `Sem doença pregressa na família.`,
+}
+const surgeryPerformed = {
+  question: `Avaliado já realizou precedimento cirúrgico?`,
+  title: "Anamnese",
+  whatQuestion: `Qual cirurgia?`,
+  noQuestion: `Nunca realizou procedimento cirúrgico.`,
+}
+const useMedication = {
+  question: `Avaliado faz uso de medicamentos?`,
+  title: "Anamnese",
+  whatQuestion: `Qual medicamento?`,
+  noQuestion: `Não faz uso de medicamento.`,
+}
+const sportsInjuries = {
+  question: `Avaliado já sofreu alguma lesão desportiva?`,
+  title: "Anamnese",
+  whatQuestion: `Qual lesão?`,
+  noQuestion: `Nunca sofreu lesão desportiva.`,
+}
+
+const questions = {pastIllness, illnessesInTheFamily, surgeryPerformed, useMedication, sportsInjuries}
+
 module.exports = {
-  anamnesisFunctions
+  anamnesisFunctions, questions
 }

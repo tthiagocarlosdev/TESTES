@@ -2,7 +2,9 @@
 
 const { headerFunctions } = require('./headerFunctions')
 const { personalDataFunctions } = require('./personalDataFunctions')
-const { anamnesisFunctions } = require('./anamnesisFunctions')/*
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { questions } = require('./anamnesisFunctions')
+/*
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 const { anthropometryFunctions } = require('./anthropometryFunctions')
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
@@ -30,13 +32,16 @@ headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
 // variables anamnesisFunctions
-user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
-user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
-user.pastIllness = anamnesisFunctions.pastIllness()/*
-user.illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
-user.surgeryPerformed = anamnesisFunctions.surgeryPerformed()
-user.useMedication = anamnesisFunctions.useMedication()
-user.sportsInjuries = anamnesisFunctions.sportsInjuries()
+// user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+// user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+
+user.questions = questions
+user.pastIllness = anamnesisFunctions.questions(user.questions.pastIllness)
+user.illnessesFamily = anamnesisFunctions.questions(user.questions.illnessesInTheFamily)
+user.surgeryPerformed = anamnesisFunctions.questions(user.questions.surgeryPerformed)
+user.useMedication = anamnesisFunctions.questions(user.questions.useMedication)
+user.sportsInjuries = anamnesisFunctions.questions(user.questions.sportsInjuries)
+/*
 user.trainingObjective = anamnesisFunctions.trainingObjective()
 user.daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
 user.timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
@@ -117,16 +122,17 @@ console.log(`Celular: ${user.phoneNumber}`)*/
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
-console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
-console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
+// console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
+// console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
 console.log(`Doença Pregressa: ${user.pastIllness}`)
-headerFunctions.baseboard()/*
-
-
 console.log(`Doença Pregressa na Família: ${user.illnessesFamily}`)
 console.log(`Cirurgia: ${user.surgeryPerformed}`)
 console.log(`Uso de Medicamento: ${user.useMedication}`)
 console.log(`Lesão Desportiva: ${user.sportsInjuries}`)
+headerFunctions.baseboard()/*
+
+
+
 console.log(`Objetivo do treino: ${user.trainingObjective}`)
 console.log(`Dias disponíveis para treinar: ${user.daysAvailableForTraining} dias.`)
 console.log(`Tempo disponível para treino: ${user.timeAvailablePerTraining} minutos.`)
