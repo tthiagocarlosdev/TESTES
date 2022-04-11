@@ -1876,54 +1876,98 @@ Estado físico: Ativo
 ===============================
 ```
 
-### Doença Pregressa
+### Doença Pregressa / Doenças na Família / Cirurgia Realizada / Usa medicamentos / Lesões desportivas
 
-Agora vamos criar a function **pastIllness( )** que irá retornar se o avaliado possue doença pregressa ou não. Esta function deve aceitar apenas um dígito, sendo apenas  **[1]** para **Sim** e **[2]** para **Não**. Caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Caso a resposta seja **sim** o usuário deve informar qual doença ele teve/tem. Neste campo o usuário deve digitar algum caracter alfanumérico. Caso digite apenas espaço, ou deixe m branco, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Para vazer esta validação, vamos usar expressão regular, com a function **isRegularExpression( )**. Sobre o retorno desta function: Caso o usuário digite **não**, será retornado a mensagem **"Sem doença pregressa."**, porém se ele digitar **sim**, deverá ser retornado a doença informada pelo o mesmo.
+Vamos criar o objeto _**anamnesisQuestions**_ que terá dentro dele, outros objetos de acordo com cada tópico:
+
+- Doença Pregressa - _**pastIllness**_
+- Doenças na Família - _**illnessesInTheFamily**_
+- Cirurgia Realizada - _**surgeryPerformed**_
+- Usa medicamentos - _**useMedication**_
+- Lesões desportivas - _**sportsInjuries**_
+
+Cada tópico terá uma pergunta, um título, uma segunda pergunta e uma mensagem. Logo, em **anamnesisFunctions.js** vamos criar o objeto _**anamnesisQuestions**_:
+
+```js
+const anamnesisQuestions = { pastIllness: {
+                                            firstQuestion: `Avaliado possue doença pregressa?`,
+                                            title: "Anamnese",
+                                            secondQuestion: `Qual doença?`,
+                                            message: `Sem doença pregressa.`,
+                                          },
+                              illnessesInTheFamily: {
+                                            firstQuestion: `Avaliado possue alguém da família com doença pregressa?`,
+                                            title: "Anamnese",
+                                            secondQuestion: `Qual doença?`,
+                                            message: `Sem doença pregressa na família.`,
+                                          },
+                              surgeryPerformed: {
+                                            firstQuestion: `Avaliado já realizou precedimento cirúrgico?`,
+                                            title: "Anamnese",
+                                            secondQuestion: `Qual cirurgia?`,
+                                            message: `Nunca realizou procedimento cirúrgico.`,
+                                          },
+                              useMedication: {
+                                            firstQuestion: `Avaliado faz uso de medicamentos?`,
+                                            title: "Anamnese",
+                                            secondQuestion: `Qual medicamento?`,
+                                            message: `Não faz uso de medicamento.`,
+                                          },
+                              sportsInjuries: {
+                                            firstQuestion: `Avaliado já sofreu alguma lesão desportiva?`,
+                                            title: "Anamnese",
+                                            secondQuestion: `Qual lesão?`,
+                                            message: `Nunca sofreu lesão desportiva.`,
+                                          },
+}
+```
+
+Agora vamos criar a function **questions( )** que vai receber um objeto como parâmetro e vai realizar as perguntas para o usuário, de acordo com o objeto que foi passado. Esta function irá fazer uma primeira pergunta e deve aceitar como resposta apenas um dígito, sendo **[1]** para **Sim** e **[2]** para **Não**. Caso a resposta seja qualquer outro valor diferente disso, até mesmo vazio, a function **incorrectValue( )** deverá ser chamada e o usuário terá que responder novamente com a resposta correta. Caso a resposta seja **sim**, uma segunda pergunta será realizada e o usuário deve digitar em texto a resposta. Neste campo o usuário deve digitar algum caracter alfanumérico. Caso digite apenas espaço, ou deixe em branco, a function **incorrectValue( )** será chamada e o usuário terá que responder novamente com valores corretos. Para fazer as validações, vamos usar **expressões regulares**, com a function **isRegularExpression( )**. Sobre o retorno desta function: Caso o usuário digite **não**, será retornada a **mensagem** pré-determinada no objeto que foi passado como parâmetro, porém se ele digitar **sim**, deverá ser retornado a resposta da segunda pergunta que foi digitado pelo o mesmo.
 
 Em **anamnesisFunctions.js**:
 
 ```js
-pastIllness(){
-
-    let pastIllnessNumber = 2
-    let pastIllnessText = ''
+questions(object){
+  
+    let answerNumber = 2
+    let textAnswer = ''
     let itsNumberOneOrTwo = true
-    let regexNumber = /^[1]$|^[2]$/
+    const regexNumberOneOrTwo = /^[1]$|^[2]$/
     let isAlphanumericCharacters = true
     const regexAlphanumericCharacters = /\D|\d/ 
   
     do{
   
-      console.log(`Avaliado possue doença pregressa?`)
+      console.log(object.firstQuestion)
       anamnesisFunctions.choice()
-      pastIllnessNumber = Number(input.question(''))
+      answerNumber = Number(input.question(''))
   
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(pastIllnessNumber, regexNumber)
-      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(answerNumber, regexNumberOneOrTwo)
+      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, object.title)
   
-      if(pastIllnessNumber === 1){
+      if(answerNumber === 1){
         
         do{
   
-          console.log(`Qual doença?`)
-          pastIllnessText = input.question('')
-          isAlphanumericCharacters = validationFunctions.isRegularExpression(pastIllnessText, regexAlphanumericCharacters)
-          validationFunctions.incorrectValue(false, !isAlphanumericCharacters, "Anamnese")
+          console.log(object.secondQuestion)
+          textAnswer = input.question('')
+          isAlphanumericCharacters = validationFunctions.isRegularExpression(textAnswer, regexAlphanumericCharacters)
+          validationFunctions.incorrectValue(false, !isAlphanumericCharacters, object.title)
   
         }while(!isAlphanumericCharacters)
         
       } else {
-        pastIllnessText = `Sem doença pregressa.`
+        textAnswer = object.message
       }
   
     }while(!itsNumberOneOrTwo)
   
-      return pastIllnessText
+      return textAnswer
   
   },
 ```
 
-Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **pastIllness** que receberá como valor o retorno da function **pastIllness( )** e depois vamos mostrar o resultado.
+Em **saf.js** vamos atribuir ao objeto _**user**_ as propriedades **pastIllness**, **illnessesFamily**, **surgeryPerformed**, **useMedication** e **sportsInjuries** que receberão como valor o retorno da function **questions( )** passando como parâmetro os objetos dentro do objeto _**anamnesisQuestions**_. Em seguida, vamos mostrar os resultados.
 
 ```js
 console.clear()
@@ -1933,7 +1977,11 @@ headerFunctions.subTitle("Anamnese")
 // variables anamnesisFunctions
 user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
 user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
-user.pastIllness = anamnesisFunctions.pastIllness()
+user.pastIllness = anamnesisFunctions.questions(anamnesisQuestions.pastIllness)
+user.illnessesFamily = anamnesisFunctions.questions(anamnesisQuestions.illnessesInTheFamily)
+user.surgeryPerformed = anamnesisFunctions.questions(anamnesisQuestions.surgeryPerformed)
+user.useMedication = anamnesisFunctions.questions(anamnesisQuestions.useMedication)
+user.sportsInjuries = anamnesisFunctions.questions(anamnesisQuestions.sportsInjuries)
 ```
 
 ```js
@@ -1944,6 +1992,10 @@ headerFunctions.subTitle("Anamnese")
 console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
 console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
 console.log(`Doença Pregressa: ${user.pastIllness}`)
+console.log(`Doença Pregressa na Família: ${user.illnessesFamily}`)
+console.log(`Cirurgia: ${user.surgeryPerformed}`)
+console.log(`Uso de Medicamento: ${user.useMedication}`)
+console.log(`Lesão Desportiva: ${user.sportsInjuries}`)
 headerFunctions.baseboard()
 ```
 
@@ -1998,9 +2050,31 @@ Avaliado possue doença pregressa?
 Escolha:
 [1] Sim
 [2] Não
+2
+Avaliado possue alguém da família com doença pregressa?
+Escolha:
+[1] Sim
+[2] Não
 1
 Qual doença?
-Diabetes
+Avos hipertensos
+Avaliado já realizou precedimento cirúrgico?
+Escolha:
+[1] Sim
+[2] Não
+1
+Qual cirurgia?
+Artroscopia de ombro
+Avaliado faz uso de medicamentos?
+Escolha:
+[1] Sim
+[2] Não
+2
+Avaliado já sofreu alguma lesão desportiva?
+Escolha:
+[1] Sim
+[2] Não
+2
 ```
 
 ```shell
@@ -2011,293 +2085,15 @@ Diabetes
 ===============================
 Questionário PAR-Q: Todas as respostas do questionário foram 'Não'!
 Estado físico: Sedentário
-Doença Pregressa: Diabetes
+Doença Pregressa: Sem doença pregressa.
+Doença Pregressa na Família: Avos hipertensos
+Cirurgia: Artroscopia de ombro
+Uso de Medicamento: Não faz uso de medicamento.
+Lesão Desportiva: Nunca sofreu lesão desportiva.
 ===============================
 ```
 
 PAREI
-
-### Doenças na Família
-
-Agora vamos criar a function **illnessesInTheFamily( )** que será do mesmo jeito, com os mesmos requisitos da function **pastIllness( )**. Vamos mudar apenas os nomes de algumas variáveis (illnessesFamilyNumber e illnessesFamilyText) dentro da function e algumas frases ('Avaliado possue alguém da família com doença pregressa?', 'Sem doença pregressa na família.'). Logo, em **anamnesisFunctions.js** colocamos:
-
-```js
-illnessesInTheFamily(){
-
-    let illnessesFamilyNumber = 2
-    let illnessesFamilyText = ''
-    let itsNumberOneOrTwo = true
-    let regexNumber = /^[1]$|^[2]$/
-    let itsLetters = true
-  
-    do{
-  
-      console.log(`Avaliado possue alguém da família com doença pregressa?`)
-      anamnesisFunctions.choice()
-      illnessesFamilyNumber = Number(input.question(''))
-  
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(illnessesFamilyNumber, regexNumber)
-      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
-  
-      if(illnessesFamilyNumber === 1){
-        
-        do{
-  
-          console.log(`Qual doença?`)
-          illnessesFamilyText = input.question('')
-          itsLetters = validationFunctions.itsLetters(illnessesFamilyText)
-          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
-  
-        }while(!itsLetters)
-        
-      } else {
-        illnessesFamilyText = `Sem doença pregressa na família.`
-      }
-  
-    }while(!itsNumberOneOrTwo)
-  
-      return illnessesFamilyText
-  
-  },
-```
-
-Em **saf.js** adicionamos a variável **illnessesFamily** e depois mostramos ela:
-
-```js
-const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
-```
-
-```js
-console.log(`Doença Pregressa na Família: ${illnessesFamily}`)
-```
-
-Ao executar o programa:
-
-```tex
-===============================
-  SISTEMA DE AVALIAÇÃO FÍSICA  
-===============================
-           Anamnese            
-===============================
-Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
-Estado físico: Ativo
-Doença Pregressa: Sem doença pregressa.
-Doença Pregressa na Família: Avo hipertensao
-===============================
-```
-
-### Cirurgia Realizada
-
-Agora vamos criar a function **surgeryPerformed( )** que será do mesmo jeito, com os mesmos requisitos da function **illnessesInTheFamily( )**. Vamos mudar apenas os nomes de algumas variáveis (surgeryPerformedNumber e surgeryPerformedText) dentro da function e algumas frases ('Avaliado já realizou precedimento cirúrgico?', 'Qual cirurgia?', 'Nunca realizou procedimento cirúrgico.'). Logo, em **anamnesisFunctions.js** colocamos:
-
-```js
-surgeryPerformed(){
-
-    let surgeryPerformedNumber = 2
-    let surgeryPerformedText = ''
-    let itsNumberOneOrTwo = true
-    let regexNumber = /^[1]$|^[2]$/
-    let itsLetters = true
-  
-    do{
-  
-      console.log(`Avaliado já realizou precedimento cirúrgico?`)
-      anamnesisFunctions.choice()
-      surgeryPerformedNumber = Number(input.question(''))
-  
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(surgeryPerformedNumber, regexNumber)
-      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
-  
-      if(surgeryPerformedNumber === 1){
-        
-        do{
-  
-          console.log(`Qual cirurgia?`)
-          surgeryPerformedText = input.question('')
-          itsLetters = validationFunctions.itsLetters(surgeryPerformedText)
-          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
-  
-        }while(!itsLetters)
-        
-      } else {
-        surgeryPerformedText = `Nunca realizou procedimento cirúrgico.`
-      }
-  
-    }while(!itsNumberOneOrTwo)
-  
-      return surgeryPerformedText
-  
-  },
-```
-
-Em **saf.js** adicionamos a variável **surgeryPerformed** e depois mostramos ela:
-
-```js
-const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
-```
-
-```js
-console.log(`Cirurgia: ${surgeryPerformed}`)
-```
-
-Ao executar o programa:
-
-```tex
-===============================
-  SISTEMA DE AVALIAÇÃO FÍSICA  
-===============================
-           Anamnese            
-===============================
-Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
-Estado físico: Ativo
-Doença Pregressa: Sem doença pregressa.
-Doença Pregressa na Família: Sem doença pregressa na família.
-Cirurgia: Nunca realizou procedimento cirúrgico.
-===============================
-```
-
-### Usa medicamentos
-
-Agora vamos criar a function **useMedication( )** que será do mesmo jeito, com os mesmos requisitos da function **surgeryPerformed( )**. Vamos mudar apenas os nomes de algumas variáveis (useMedicationNumber e useMedicationText) dentro da function e algumas frases ('Avaliado faz uso de medicamentos?', 'Qual medicamento?', 'Não faz uso de medicamento.'). Logo, em **anamnesisFunctions.js** colocamos:
-
-```js
-useMedication(){
-
-    let useMedicationNumber = 2
-    let useMedicationText = ''
-    let itsNumberOneOrTwo = true
-    let regexNumber = /^[1]$|^[2]$/
-    let itsLetters = true
-  
-    do{
-  
-      console.log(`Avaliado faz uso de medicamentos?`)
-      anamnesisFunctions.choice()
-      useMedicationNumber = Number(input.question(''))
-  
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(useMedicationNumber, regexNumber)
-      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
-  
-      if(useMedicationNumber === 1){
-        
-        do{
-  
-          console.log(`Qual medicamento?`)
-          useMedicationText = input.question('')
-          itsLetters = validationFunctions.itsLetters(useMedicationText)
-          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
-  
-        }while(!itsLetters)
-        
-      } else {
-        useMedicationText = `Não faz uso de medicamento.`
-      }
-  
-    }while(!itsNumberOneOrTwo)
-  
-      return useMedicationText
-  
-  },
-```
-
-Em **saf.js** adicionamos a variável **useMedication** e depois mostramos ela:
-
-```js
-const useMedication = anamnesisFunctions.useMedication()
-```
-
-```js
-console.log(`Uso de Medicamento: ${useMedication}`)
-```
-
-Ao executar o programa:
-
-```tex
-===============================
-  SISTEMA DE AVALIAÇÃO FÍSICA  
-===============================
-           Anamnese            
-===============================
-Questionário PAR-Q: Você deverá realizar um exame médico antes de iniciar suas atividades!
-Estado físico: Sedentário
-Doença Pregressa: Alergia
-Doença Pregressa na Família: Sem doença pregressa na família.
-Cirurgia: Artroscopia de ombro
-Uso de Medicamento: Não faz uso de medicamento.
-===============================
-```
-
-### Lesões desportivas
-
-Agora vamos criar a function **sportsInjuries( )** que será do mesmo jeito, com os mesmos requisitos da function **useMedication( )**. Vamos mudar apenas os nomes de algumas variáveis (sportsInjuriesNumber e sportsInjuriesText) dentro da function e algumas frases ('Avaliado já sofreu alguma lesão desportiva?', 'Qual lesão?', 'Nunca sofreu lesão desportiva.'). Logo, em **anamnesisFunctions.js** colocamos:
-
-```js
-sportsInjuries(){
-  
-    let sportsInjuriesNumber = 2
-    let sportsInjuriesText = ''
-    let itsNumberOneOrTwo = true
-    let regexNumber = /^[1]$|^[2]$/
-    let itsLetters = true
-  
-    do{
-  
-      console.log(`Avaliado já sofreu alguma lesão desportiva?`)
-      anamnesisFunctions.choice()
-      sportsInjuriesNumber = Number(input.question(''))
-  
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(sportsInjuriesNumber, regexNumber)
-      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
-  
-      if(sportsInjuriesNumber === 1){
-        
-        do{
-  
-          console.log(`Qual lesão?`)
-          sportsInjuriesText = input.question('')
-          itsLetters = validationFunctions.itsLetters(sportsInjuriesText)
-          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
-  
-        }while(!itsLetters)
-        
-      } else {
-        sportsInjuriesText = `Nunca sofreu lesão desportiva.`
-      }
-  
-    }while(!itsNumberOneOrTwo)
-  
-      return sportsInjuriesText
-  
-  },
-```
-
-Em **saf.js** adicionamos a variável **sportsInjuries** e depois mostramos ela:
-
-```js
-const sportsInjuries = anamnesisFunctions.sportsInjuries()
-```
-
-```js
-console.log(`Lesão Desportiva: ${sportsInjuries}`)
-```
-
-Ao executar o programa:
-
-```tex
-===============================
-  SISTEMA DE AVALIAÇÃO FÍSICA  
-===============================
-           Anamnese            
-===============================
-Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
-Estado físico: Sedentário
-Doença Pregressa: Sem doença pregressa.
-Doença Pregressa na Família: Sem doença pregressa na família.
-Cirurgia: Nunca realizou procedimento cirúrgico.
-Uso de Medicamento: Não faz uso de medicamento.
-Lesão Desportiva: Ruptura de ligamento do ombro direito.
-===============================
-```
 
 ### Objetivo do treino
 

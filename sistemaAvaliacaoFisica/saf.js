@@ -3,7 +3,7 @@
 const { headerFunctions } = require('./headerFunctions')
 const { personalDataFunctions } = require('./personalDataFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
-const { questions } = require('./anamnesisFunctions')
+const { anamnesisQuestions } = require('./anamnesisFunctions')
 /*
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 const { anthropometryFunctions } = require('./anthropometryFunctions')
@@ -11,6 +11,7 @@ const { neuromuscularFunctions } = require('./neuromuscularFunctions')
 const { aerobicFunctions } = require('./aerobicFunctions')*/
 
 const user = { }
+
 /*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
@@ -32,15 +33,13 @@ headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
 // variables anamnesisFunctions
-// user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
-// user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
-
-user.questions = questions
-user.pastIllness = anamnesisFunctions.questions(user.questions.pastIllness)
-user.illnessesFamily = anamnesisFunctions.questions(user.questions.illnessesInTheFamily)
-user.surgeryPerformed = anamnesisFunctions.questions(user.questions.surgeryPerformed)
-user.useMedication = anamnesisFunctions.questions(user.questions.useMedication)
-user.sportsInjuries = anamnesisFunctions.questions(user.questions.sportsInjuries)
+user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+user.pastIllness = anamnesisFunctions.questions(anamnesisQuestions.pastIllness)
+user.illnessesFamily = anamnesisFunctions.questions(anamnesisQuestions.illnessesInTheFamily)
+user.surgeryPerformed = anamnesisFunctions.questions(anamnesisQuestions.surgeryPerformed)
+user.useMedication = anamnesisFunctions.questions(anamnesisQuestions.useMedication)
+user.sportsInjuries = anamnesisFunctions.questions(anamnesisQuestions.sportsInjuries)
 /*
 user.trainingObjective = anamnesisFunctions.trainingObjective()
 user.daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
@@ -122,8 +121,8 @@ console.log(`Celular: ${user.phoneNumber}`)*/
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
-// console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
-// console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
+console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
+console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
 console.log(`Doença Pregressa: ${user.pastIllness}`)
 console.log(`Doença Pregressa na Família: ${user.illnessesFamily}`)
 console.log(`Cirurgia: ${user.surgeryPerformed}`)

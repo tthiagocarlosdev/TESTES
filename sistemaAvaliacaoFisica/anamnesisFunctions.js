@@ -81,8 +81,8 @@ const anamnesisFunctions = {
 
   questions(object){
   
-    let pastIllnessNumber = 2
-    let pastIllnessText = ''
+    let answerNumber = 2
+    let textAnswer = ''
     let itsNumberOneOrTwo = true
     const regexNumberOneOrTwo = /^[1]$|^[2]$/
     let isAlphanumericCharacters = true
@@ -90,222 +90,31 @@ const anamnesisFunctions = {
   
     do{
   
-      console.log(object.question)
+      console.log(object.firstQuestion)
       anamnesisFunctions.choice()
-      pastIllnessNumber = Number(input.question(''))
+      answerNumber = Number(input.question(''))
   
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(pastIllnessNumber, regexNumberOneOrTwo)
+      itsNumberOneOrTwo = validationFunctions.isRegularExpression(answerNumber, regexNumberOneOrTwo)
       validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, object.title)
   
-      if(pastIllnessNumber === 1){
+      if(answerNumber === 1){
         
         do{
   
-          console.log(object.whatQuestion)
-          pastIllnessText = input.question('')
-          isAlphanumericCharacters = validationFunctions.isRegularExpression(pastIllnessText, regexAlphanumericCharacters)
+          console.log(object.secondQuestion)
+          textAnswer = input.question('')
+          isAlphanumericCharacters = validationFunctions.isRegularExpression(textAnswer, regexAlphanumericCharacters)
           validationFunctions.incorrectValue(false, !isAlphanumericCharacters, object.title)
   
         }while(!isAlphanumericCharacters)
         
       } else {
-        pastIllnessText = object.noQuestion
+        textAnswer = object.message
       }
   
     }while(!itsNumberOneOrTwo)
   
-      return pastIllnessText
-  
-  },
-
-  pastIllness(){
-
-    let pastIllnessNumber = 2
-    let pastIllnessText = ''
-    let itsNumberOneOrTwo = true
-    const regexNumberOneOrTwo = /^[1]$|^[2]$/
-    let isAlphanumericCharacters = true
-    const regexAlphanumericCharacters = /\D|\d/ 
-  
-    do{
-  
-      console.log(`Avaliado possue doença pregressa?`)
-      anamnesisFunctions.choice()
-      pastIllnessNumber = Number(input.question(''))
-  
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(pastIllnessNumber, regexNumberOneOrTwo)
-      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
-  
-      if(pastIllnessNumber === 1){
-        
-        do{
-  
-          console.log(`Qual doença?`)
-          pastIllnessText = input.question('')
-          isAlphanumericCharacters = validationFunctions.isRegularExpression(pastIllnessText, regexAlphanumericCharacters)
-          validationFunctions.incorrectValue(false, !isAlphanumericCharacters, "Anamnese")
-  
-        }while(!isAlphanumericCharacters)
-        
-      } else {
-        pastIllnessText = `Sem doença pregressa.`
-      }
-  
-    }while(!itsNumberOneOrTwo)
-  
-      return pastIllnessText
-  
-  },
-
-  illnessesInTheFamily(){
-
-    let illnessesFamilyNumber = 2
-    let illnessesFamilyText = ''
-    let itsNumberOneOrTwo = true
-    let regexNumber = /^[1]$|^[2]$/
-    let itsLetters = true
-  
-    do{
-  
-      console.log(`Avaliado possue alguém da família com doença pregressa?`)
-      anamnesisFunctions.choice()
-      illnessesFamilyNumber = Number(input.question(''))
-  
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(illnessesFamilyNumber, regexNumber)
-      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
-  
-      if(illnessesFamilyNumber === 1){
-        
-        do{
-  
-          console.log(`Qual doença?`)
-          illnessesFamilyText = input.question('')
-          itsLetters = validationFunctions.itsLetters(illnessesFamilyText)
-          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
-  
-        }while(!itsLetters)
-        
-      } else {
-        illnessesFamilyText = `Sem doença pregressa na família.`
-      }
-  
-    }while(!itsNumberOneOrTwo)
-  
-      return illnessesFamilyText
-  
-  },
-
-  surgeryPerformed(){
-
-    let surgeryPerformedNumber = 2
-    let surgeryPerformedText = ''
-    let itsNumberOneOrTwo = true
-    let regexNumber = /^[1]$|^[2]$/
-    let itsLetters = true
-  
-    do{
-  
-      console.log(`Avaliado já realizou precedimento cirúrgico?`)
-      anamnesisFunctions.choice()
-      surgeryPerformedNumber = Number(input.question(''))
-  
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(surgeryPerformedNumber, regexNumber)
-      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
-  
-      if(surgeryPerformedNumber === 1){
-        
-        do{
-  
-          console.log(`Qual cirurgia?`)
-          surgeryPerformedText = input.question('')
-          itsLetters = validationFunctions.itsLetters(surgeryPerformedText)
-          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
-  
-        }while(!itsLetters)
-        
-      } else {
-        surgeryPerformedText = `Nunca realizou procedimento cirúrgico.`
-      }
-  
-    }while(!itsNumberOneOrTwo)
-  
-      return surgeryPerformedText
-  
-  },
-
-  useMedication(){
-
-    let useMedicationNumber = 2
-    let useMedicationText = ''
-    let itsNumberOneOrTwo = true
-    let regexNumber = /^[1]$|^[2]$/
-    let itsLetters = true
-  
-    do{
-  
-      console.log(`Avaliado faz uso de medicamentos?`)
-      anamnesisFunctions.choice()
-      useMedicationNumber = Number(input.question(''))
-  
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(useMedicationNumber, regexNumber)
-      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
-  
-      if(useMedicationNumber === 1){
-        
-        do{
-  
-          console.log(`Qual medicamento?`)
-          useMedicationText = input.question('')
-          itsLetters = validationFunctions.itsLetters(useMedicationText)
-          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
-  
-        }while(!itsLetters)
-        
-      } else {
-        useMedicationText = `Não faz uso de medicamento.`
-      }
-  
-    }while(!itsNumberOneOrTwo)
-  
-      return useMedicationText
-  
-  },
-
-  sportsInjuries(){
-  
-    let sportsInjuriesNumber = 2
-    let sportsInjuriesText = ''
-    let itsNumberOneOrTwo = true
-    let regexNumber = /^[1]$|^[2]$/
-    let itsLetters = true
-  
-    do{
-  
-      console.log(`Avaliado já sofreu alguma lesão desportiva?`)
-      anamnesisFunctions.choice()
-      sportsInjuriesNumber = Number(input.question(''))
-  
-      itsNumberOneOrTwo = validationFunctions.isRegularExpression(sportsInjuriesNumber, regexNumber)
-      validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Anamnese")
-  
-      if(sportsInjuriesNumber === 1){
-        
-        do{
-  
-          console.log(`Qual lesão?`)
-          sportsInjuriesText = input.question('')
-          itsLetters = validationFunctions.itsLetters(sportsInjuriesText)
-          validationFunctions.incorrectValue(false, !itsLetters, "Anamnese")
-  
-        }while(!itsLetters)
-        
-      } else {
-        sportsInjuriesText = `Nunca sofreu lesão desportiva.`
-      }
-  
-    }while(!itsNumberOneOrTwo)
-  
-      return sportsInjuriesText
+      return textAnswer
   
   },
 
@@ -390,39 +199,38 @@ const anamnesisFunctions = {
 
 }
 
-const pastIllness = {
-  question: `Avaliado possue doença pregressa?`,
-  title: "Anamnese",
-  whatQuestion: `Qual doença?`,
-  noQuestion: `Sem doença pregressa.`,
+const anamnesisQuestions = { pastIllness: {
+                                            firstQuestion: `Avaliado possue doença pregressa?`,
+                                            title: "Anamnese",
+                                            secondQuestion: `Qual doença?`,
+                                            message: `Sem doença pregressa.`,
+                                          },
+                              illnessesInTheFamily: {
+                                            firstQuestion: `Avaliado possue alguém da família com doença pregressa?`,
+                                            title: "Anamnese",
+                                            secondQuestion: `Qual doença?`,
+                                            message: `Sem doença pregressa na família.`,
+                                          },
+                              surgeryPerformed: {
+                                            firstQuestion: `Avaliado já realizou precedimento cirúrgico?`,
+                                            title: "Anamnese",
+                                            secondQuestion: `Qual cirurgia?`,
+                                            message: `Nunca realizou procedimento cirúrgico.`,
+                                          },
+                              useMedication: {
+                                            firstQuestion: `Avaliado faz uso de medicamentos?`,
+                                            title: "Anamnese",
+                                            secondQuestion: `Qual medicamento?`,
+                                            message: `Não faz uso de medicamento.`,
+                                          },
+                              sportsInjuries: {
+                                            firstQuestion: `Avaliado já sofreu alguma lesão desportiva?`,
+                                            title: "Anamnese",
+                                            secondQuestion: `Qual lesão?`,
+                                            message: `Nunca sofreu lesão desportiva.`,
+                                          },
 }
-const illnessesInTheFamily = {
-  question: `Avaliado possue alguém da família com doença pregressa?`,
-  title: "Anamnese",
-  whatQuestion: `Qual doença?`,
-  noQuestion: `Sem doença pregressa na família.`,
-}
-const surgeryPerformed = {
-  question: `Avaliado já realizou precedimento cirúrgico?`,
-  title: "Anamnese",
-  whatQuestion: `Qual cirurgia?`,
-  noQuestion: `Nunca realizou procedimento cirúrgico.`,
-}
-const useMedication = {
-  question: `Avaliado faz uso de medicamentos?`,
-  title: "Anamnese",
-  whatQuestion: `Qual medicamento?`,
-  noQuestion: `Não faz uso de medicamento.`,
-}
-const sportsInjuries = {
-  question: `Avaliado já sofreu alguma lesão desportiva?`,
-  title: "Anamnese",
-  whatQuestion: `Qual lesão?`,
-  noQuestion: `Nunca sofreu lesão desportiva.`,
-}
-
-const questions = {pastIllness, illnessesInTheFamily, surgeryPerformed, useMedication, sportsInjuries}
 
 module.exports = {
-  anamnesisFunctions, questions
+  anamnesisFunctions, anamnesisQuestions
 }
