@@ -174,7 +174,7 @@ const anamnesisFunctions = {
    
     }while(!isNumberOneToSeven)
    
-    return daysAvailableForTraining
+    return Number(daysAvailableForTraining)
    
    },
 
@@ -193,7 +193,7 @@ const anamnesisFunctions = {
     }while(!isNumberFromOneToThreeHundred)
      
   
-    return timeAvailablePerTraining
+    return Number(timeAvailablePerTraining)
   
   },
 

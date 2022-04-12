@@ -12,7 +12,6 @@ const { aerobicFunctions } = require('./aerobicFunctions')*/
 
 const user = { }
 
-/*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
@@ -27,7 +26,7 @@ user.sex = personalDataFunctions.showSex(user)
 user.profession = personalDataFunctions.userProfession()
 user.userEmail = personalDataFunctions.userEmail()
 user.phoneNumber = personalDataFunctions.phoneNumber()
-*/
+
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
@@ -40,10 +39,11 @@ user.illnessesFamily = anamnesisFunctions.questions(anamnesisQuestions.illnesses
 user.surgeryPerformed = anamnesisFunctions.questions(anamnesisQuestions.surgeryPerformed)
 user.useMedication = anamnesisFunctions.questions(anamnesisQuestions.useMedication)
 user.sportsInjuries = anamnesisFunctions.questions(anamnesisQuestions.sportsInjuries)
-/*
 user.trainingObjective = anamnesisFunctions.trainingObjective()
 user.daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
 user.timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
+/*
+
 
 console.clear()
 headerFunctions.systemHeader()
@@ -104,7 +104,7 @@ console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Observações")
 user.comments = personalDataFunctions.comments()*/
-/*
+
 // show results personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
@@ -115,12 +115,11 @@ console.log(`Idade: ${user.age} anos`)
 console.log(`Sexo: ${user.sex}`)
 console.log(`Profissão: ${user.profession}`)
 console.log(`E-mail: ${user.userEmail}`)
-console.log(`Celular: ${user.phoneNumber}`)*/
+console.log(`Celular: ${user.phoneNumber}`)
 
 // show results anamnesisFunctions
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
-
 console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
 console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
 console.log(`Doença Pregressa: ${user.pastIllness}`)
@@ -128,13 +127,10 @@ console.log(`Doença Pregressa na Família: ${user.illnessesFamily}`)
 console.log(`Cirurgia: ${user.surgeryPerformed}`)
 console.log(`Uso de Medicamento: ${user.useMedication}`)
 console.log(`Lesão Desportiva: ${user.sportsInjuries}`)
-headerFunctions.baseboard()/*
-
-
-
 console.log(`Objetivo do treino: ${user.trainingObjective}`)
 console.log(`Dias disponíveis para treinar: ${user.daysAvailableForTraining} dias.`)
 console.log(`Tempo disponível para treino: ${user.timeAvailablePerTraining} minutos.`)
+headerFunctions.baseboard()/*
 
 // show results cardiorespiratoryFunctions
 headerFunctions.baseboard()
