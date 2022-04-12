@@ -1,4 +1,4 @@
-/* cardiorespiratory */
+/* cardiorespiratory functions */
 
 var input = require('readline-sync')
 
@@ -20,13 +20,13 @@ const cardiorespiratoryFunctions = {
        
         }while(!isANumberFromZeroToTwoHundredAndTwenty)
          
-        return restingHeartRate
+        return Number(restingHeartRate)
       
     },
 
-    maximumHeartRate(ageValue){
+    maximumHeartRate(userObject){
 
-        return 220 - Number(ageValue)
+        return Number(220 - userObject.age)
       
     },
 

@@ -2998,7 +2998,7 @@ Vamos para a próxima etapa onde vamos construir a parte do **Cardiorrespiratór
 - Exportar essa variável.
 
 ```js
-/* cardiorespiratory */
+/* cardiorespiratory functions */
 
 var input = require('readline-sync')
 
@@ -3016,8 +3016,16 @@ module.exports = {
 No arquivo **saf.js** vamos fazer a requisição do arquivo **cardiorespiratory.js**:
 
 ```js
+/* physical assessment system */
+
+const { headerFunctions } = require('./headerFunctions')
+const { personalDataFunctions } = require('./personalDataFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { anamnesisQuestions } = require('./anamnesisFunctions')
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 ```
+
+Vamos comentar as partes de **personalDataFunctions** e **anamnesisFunctions** no arquivo **saf.js** e começar a desenvolver a parte de **cardiorespiratoryFunctions**.
 
 ### Frequência Cardíaca de Repouso
 
@@ -3038,64 +3046,102 @@ restingHeartRate(){
        
         }while(!isANumberFromZeroToTwoHundredAndTwenty)
          
-        return restingHeartRate
+        return Number(restingHeartRate)
       
-    
- },
+    },
 ```
 
-Em **saf.js** vamos criar a variável **restingHeartRate** que recebe como valor a function **restingHeartRate( )** e depois vamos mostrar o resultado;
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **restingHeartRate** que recebe como valor o retorno da function **restingHeartRate( )** e depois vamos mostrar o resultado;
 
 ```js
-// variables cardiorespiratory
-const restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Cardiorrespiratório")
+
+// variables cardiorespiratoryFunctions
+user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
 ```
 
 ```js
 // show results cardiorespiratoryFunctions
-console.clear()
+console.clear() //temporay
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Cardiorespiratório")
-console.log(`Frequência Cardíaca de Repouso(bpm): ${restingHeartRate}`)
+console.log(`Frequência Cardíaca de Repouso: ${user.restingHeartRate} bpm.`)
+headerFunctions.baseboard()
 ```
 
-Ao executar o programa vamos comentar as partes de variáveis e mostrar o resutado de **personalData** e **anamnesisFunctions**, deixano apenas funcionando a parte de **cardiorespiratory**.
+Ao executar o programa:
 
-```tex
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Cardiorrespiratório            
+===============================
+Digite a Frequência Cardíaca de Repouso (bpm): 60
+```
+
+```shell
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Cardiorespiratório            
 ===============================
-Frequência Cardíaca de Repouso(bpm): 55
+Frequência Cardíaca de Repouso: 60 bpm.
 ===============================
 ```
 
 ### Frequência Cardíaca Máxima
 
-Agora vamos criar a function **maximumHeartRate( )** que vai determinar a frequência cardíaca máxima do usuário a partir da idade do mesmo. Esta function recebe como parâmetro o valor da idade do usuário e retorna a frequência cardíaca máxima calculada pela fórmula Karvonen (1957) **FCM = 220 - IDADE**. Logo em **cardiorespiratoryFunctions.js**:
+Agora vamos criar a function **maximumHeartRate( )** que vai determinar a frequência cardíaca máxima do usuário a partir da **idade** do mesmo. Esta function recebe como parâmetro o objeto _**user**_ e retorna a frequência cardíaca máxima calculada pela fórmula Karvonen (1957) **FCM = 220 - IDADE**. Logo em **cardiorespiratoryFunctions.js**:
 
 ```js
-maximumHeartRate(ageValue){
+maximumHeartRate(userObject){
 
-        return 220 - Number(ageValue)
+        return Number(220 - userObject.age)
       
- },
+    },
 ```
 
- Em **saf.js** criamos variável **maximumHeartRate** que recebe a function **maximumHeartRate( )** e depois mostramos o resultado. Lembre de passa a idade do usuário como parâmetro nesta function:
+ Em **saf.js** vamos adicionar a propriedade **age** ao objeto _**user**_, pelo menos por enquanto, para executar esta parte do **cardiorrespiratório** e depois vamos adicionar ao objeto _**user**_ a propriedade **maximumHeartRate** que recebe como valor o retorno da function **maximumHeartRate( )** e depois mostramos o resultado. Lembre de passar o objeto _**user**_ como parâmetro nesta function:
 
 ```js
-const maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(age)
+const user = { }
+user.age = 34 // temporary
 ```
 
 ```js
-console.log(`Frequência Cardíaca Máxima: ${maximumHeartRate} bpm.`)
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Cardiorrespiratório")
+
+// variables cardiorespiratoryFunctions
+user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user)
+```
+
+```js
+// show results cardiorespiratoryFunctions
+console.clear() //temporay
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Cardiorespiratório")
+console.log(`Frequência Cardíaca de Repouso: ${user.restingHeartRate} bpm.`)
+console.log(`Frequência Cardíaca Máxima: ${user.maximumHeartRate} bpm.`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
 
-```tex
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Cardiorrespiratório            
+===============================
+Digite a Frequência Cardíaca de Repouso (bpm): 60
+```
+
+```shell
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
@@ -3105,6 +3151,8 @@ Frequência Cardíaca de Repouso: 60 bpm.
 Frequência Cardíaca Máxima: 186 bpm.
 ===============================
 ```
+
+PAREI
 
 ### Frequência Cardíaca de trabalho
 

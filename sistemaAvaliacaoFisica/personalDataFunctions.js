@@ -101,7 +101,7 @@ const personalDataFunctions = {
     let dateInMilliseconds = Math.abs(currentDay.getTime() - userObject.birthdayInISOFormat.getTime())
     let age = Math.floor(dateInMilliseconds / (1000 * 60 * 60 * 24 * 365))
     
-    return age
+    return Number(age)
   
   },
 
