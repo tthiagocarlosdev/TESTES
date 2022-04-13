@@ -46,9 +46,9 @@ const personalDataFunctions = {
   
       dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
   
-      let dateISO = personalDataFunctions.dateInISOFormat(dateInBrazilianFormat)
+      let dateFullFormat = personalDataFunctions.dateInFullFormat(dateInBrazilianFormat)
       
-      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
+      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateFullFormat)
 
       validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Dados Pessoais")
       validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Dados Pessoais")
@@ -80,9 +80,9 @@ const personalDataFunctions = {
     return dateInBrazilianFormat.toLocaleDateString("pt-br", options)
     
   },
-
+  
   // recebe uma data no formato brasileiro como string. Retorna a data no formato ISO
-  dateInISOFormat(dateInString){
+  dateInFullFormat(dateInString){
     
     //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array.
     let arrayNumber = dateInString.split('/')
@@ -98,7 +98,7 @@ const personalDataFunctions = {
   age(userObject) {
 
     let currentDay = new Date()
-    let dateInMilliseconds = Math.abs(currentDay.getTime() - userObject.birthdayInISOFormat.getTime())
+    let dateInMilliseconds = Math.abs(currentDay.getTime() - userObject.birthdayInFullFormat.getTime())
     let age = Math.floor(dateInMilliseconds / (1000 * 60 * 60 * 24 * 365))
     
     return Number(age)

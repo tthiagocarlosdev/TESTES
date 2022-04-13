@@ -18,9 +18,8 @@ headerFunctions.subTitle("Dados Pessoais")
 
 // variables personalDataFunctions
 user.name = personalDataFunctions.userName()
-
 user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
-user.birthdayInISOFormat = personalDataFunctions.dateInISOFormat(user.birthdayInBrazilianFormat)
+user.birthdayInFullFormat = personalDataFunctions.dateInFullFormat(user.birthdayInBrazilianFormat)
 user.age = personalDataFunctions.age(user)
 user.sexNumber = personalDataFunctions.sexNumber()
 user.sex = personalDataFunctions.showSex(user)

@@ -407,8 +407,8 @@ Agora vamos criar a function **dateOfBirth** que vai criar o **dia de nascimento
 * **isRegularExpression( )** - Para confirmar se a data digitada pelo usuário está no formato brasileiro. Recebe a data como string digitada pelo usuário e uma Expressão Regular. Retorna um valor booleano;
 *  **dateInBrazilFormat( )** - Recebe a data digitada pelo usuário como string e retorna uma data criada pelo objeto Date( ). Está function foi criada, pois caso o usuário digite uma data inválida, a function retorna uma data qualquer e no momento de comparar com a próxima function, como ela não é válida, dá um erro, pedindo para o usuário digitar novamente a data;
 * **validDate( )** - Vai receber a data digitada pelo usuário e a data criada pela function **dateInBrazilFormat( )** e compara se são iguais. Retorna um valor booleano;
-* **dateInISOFormat( )** - Recebe a data no formato brasileiro como string. Retorna a data no formato ISO;
-* **dateOfBirthHighestCurrentDate( )** - Recebe a data em formato ISO e verifica se ela é posterior a data atual. Retorna um valor booleano.
+* **dateInFullFormat( )** - Recebe a data no formato brasileiro como string. Retorna a data no formato completo;
+* **dateOfBirthHighestCurrentDate( )** - Recebe a data em formato completo e verifica se ela é posterior a data atual. Retorna um valor booleano.
 
 Em **personalData.js** vamos começar criando a function **dateOfBirth( )** que terá a seguinte estrutura:
 
@@ -543,10 +543,10 @@ validDate(informedDate, realDate){
   },
 ```
 
-Em **personalData.js** vamos criar a function **dateInISOFormat( )** e atribuir o seu retorno a variável **dateISO** na funtion **dateOfBirth( )**:
+Em **personalData.js** vamos criar a function **dateInFullFormat( )** e atribuir o seu retorno a variável **dateFullFormat** na funtion **dateOfBirth( )**:
 
 ```js
-dateInISOFormat(dateInString){
+dateInFullFormat(dateInString){
     
     let arrayNumber = dateInString.split('/')
     let day = Number(arrayNumber[0])
@@ -576,7 +576,7 @@ dateOfBirth(){
   
       dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
   
-      let dateISO = personalData.dateInISOFormat(dateInBrazilianFormat)
+      let dateFullFormat = personalData.dateInFullFormat(dateInBrazilianFormat)
   
     }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
     
@@ -585,7 +585,7 @@ dateOfBirth(){
   },
 ```
 
-Agora em **personalData.js** vamos verificar se a data é posterior a data atual, passando a data em formato ISO pela function **dateOfBirthHighestCurrentDate( )** e armazenando o resultado em **birthHighestCurrentDate**:
+Agora em **personalData.js** vamos verificar se a data é posterior a data atual, passando a data em formato completo pela function **dateOfBirthHighestCurrentDate( )** e armazenando o resultado em **birthHighestCurrentDate**:
 
 ```js
 dateOfBirth(){
@@ -605,9 +605,9 @@ dateOfBirth(){
   
       dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
   
-      let dateISO = personalData.dateInISOFormat(dateInBrazilianFormat)
+      let dateFullFormat = personalData.dateInFullFormat(dateInBrazilianFormat)
       
-      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
+      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateFullFormat)
   
     }while(!dateEqualExpressionRegex || !dateValid || birthHighestCurrentDate)
     
@@ -647,9 +647,9 @@ dateOfBirth(){
   
       dateValid = validationFunctions.validDate(typedDate, dateInBrazilianFormat)
   
-      let dateISO = personalData.dateInISOFormat(dateInBrazilianFormat)
+      let dateFullFormat = personalData.dateInFullFormat(dateInBrazilianFormat)
       
-      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateISO)
+      birthHighestCurrentDate = validationFunctions.dateOfBirthHighestCurrentDate(dateFullFormat)
 
       validationFunctions.incorrectValue(!dateEqualExpressionRegex, !dateValid, "Dados Pessoais")
       validationFunctions.incorrectValue(false, birthHighestCurrentDate, "Dados Pessoais")
@@ -747,7 +747,7 @@ headerFunctions.subTitle("Dados Pessoais")
 user.name = personalDataFunctions.userName()
 
 user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
-user.birthdayInISOFormat = personalDataFunctions.dateInISOFormat(user.birthdayInBrazilianFormat)
+user.birthdayInFullFormat = personalDataFunctions.dateInFullFormat(user.birthdayInBrazilianFormat)
 user.age = personalDataFunctions.age(user)
 ```
 
