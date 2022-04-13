@@ -1,10 +1,11 @@
 var input = require('readline-sync')
 
-// const { validationFunctions } = require('./validationFunctions')
-// const { anamnesisFunctions } = require('./anamnesisFunctions')
-// const { aerobicFunctions } = require('./aerobicFunctions')
-// const { personalDataFunctions } = require('./personalDataFunctions')
+const { validationFunctions } = require('./validationFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { aerobicFunctions } = require('./aerobicFunctions')
+const { personalDataFunctions } = require('./personalDataFunctions')
 const { headerFunctions } = require('./headerFunctions')
+const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 
 const user= {}
 
@@ -536,7 +537,7 @@ const sportsInjuries = {
   whatQuestion: `Qual lesão?`,
   noQuestion: `Nunca sofreu lesão desportiva.`,
 }
-
+/*
 user.questions = {pastIllness, illnessesInTheFamily, surgeryPerformed, useMedication, sportsInjuries}
 console.log(user)
 
@@ -551,7 +552,7 @@ console.log(`DOENÇAS PREGRESSAS NA FAMÍLIA: ${user.illnessesInTheFamily}`)
 console.log(`CIRURGIAS: ${user.surgeryPerformed}`)
 console.log(`USA MEDICAMENTOS: ${user.useMedication}`)
 console.log(`LESÕES ESPORTIVAS: ${user.sportsInjuries}`)
-
+*/
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Illnesses in the Family == **/
 
@@ -845,41 +846,89 @@ function restingHeartRate(){
 }
 
 // console.log(restingHeartRate())
-
+// user.restingHeartRate = restingHeartRate()
+user.restingHeartRate = 60
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == maximum heart rate == **/
 
-function maximumHeartRate(ageValue){
+function maximumHeartRate(userObject){
 
-  return 220 - Number(ageValue)
+  return Number(220 - userObject.age)
 
 }
-
+user.age = 34
 // console.log(maximumHeartRate(34))
+user.maximumHeartRate = maximumHeartRate(user)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == working heart rate == **/
+const { percentageValues } = require('./cardiorespiratoryFunctions')
 
-function workingHeartRate(restingHeartRateValue, maximumHeartRateValue){
+user.percentageValues = percentageValues
+// console.log(user.percentageValues)
 
-  let workingHeartRate = []
-  let percentage = []
+function testWorkingHeartRate(userObject){
 
-  for(let i = 40; i <= 95; i+=5){
-    workingHeartRate.push(Math.round(((( maximumHeartRateValue - restingHeartRateValue )* (i / 100) ) + restingHeartRateValue)))
-    percentage.push(i)
+  let restingHeartRate = userObject.restingHeartRate
+  let maximumHeartRate = userObject.maximumHeartRate
+  let workingHeartRateValues = []
+
+  for(let percentage of userObject.percentageValues){
+    workingHeartRateValues.push(Math.round(((( maximumHeartRate - restingHeartRate )* (percentage / 100) ) + restingHeartRate)))
   }
+
+  return workingHeartRateValues
+}
+
+function testShowWorkingHeartRate(userObject){
+  
+  let percentage = userObject.percentageValues
+  let workingHeartRate = userObject.workingHeartRate
 
   console.log(`Frequência Cardíaca de Treino:`)
   for(let i = 0; i < workingHeartRate.length; i++){
-    console.log(`        ${percentage[i]}% = ${workingHeartRate[i]} bpm`)
-  } 
+    console.log(`       ${percentage[i]}% = ${workingHeartRate[i]} bpm`)
+  }
 
 }
 
-// workingHeartRate(60, 186)
+user.workingHeartRate = testWorkingHeartRate(user)
+console.log(user.workingHeartRate)
+testShowWorkingHeartRate(user)
 
+function workingHeartRate(userObject){
+
+  let workingHeartRateValues = []
+  let percentageValues = []
+
+  for(let i = 40; i <= 95; i+=5){
+    workingHeartRateValues.push(Math.round(((( userObject.maximumHeartRate - userObject.restingHeartRate )* (i / 100) ) + userObject.restingHeartRate)))
+    percentageValues.push(i)
+  }
+
+  return {workingHeartRateValues, percentageValues}
+
+}
+
+function showWorkingHeartRate(userObject){
+
+  console.log(`Frequência Cardíaca de Treino:`)
+  for(let i = 0; i < userObject.workingHeartRate.workingHeartRateValues.length; i++){
+    console.log(`        ${userObject.workingHeartRate.percentageValues[i]}% = ${userObject.workingHeartRate.workingHeartRateValues[i]} bpm`)
+  }
+
+}
+
+
+// workingHeartRate(60, 186)
+// headerFunctions.subTitle("Cardiorespiratório")
+// console.log(`Frequência Cardíaca de Repouso: ${user.restingHeartRate} bpm.`)
+// console.log(`Frequência Cardíaca Máxima: ${user.maximumHeartRate} bpm.`)
+// user.workingHeartRate = workingHeartRate(user)
+// console.log(user)
+// showWorkingHeartRate(user)
+// headerFunctions.baseboard()
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Resting Blood Pressure == **/

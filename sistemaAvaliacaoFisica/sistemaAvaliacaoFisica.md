@@ -405,7 +405,7 @@ Nome: Fulano Cicrano
 Agora vamos criar a function **dateOfBirth** que vai criar o **dia de nascimento** do usuário. Essa function vai solicitar ao usuário para digitar sua **data de nascimento** no formato brasileiro (**dia / mês  / ano**), sendo (2 dígitos / 2 dígitos / 4 dígitos). Essa function terá três validações e duas functions de criação de data pelo objeto **Date( )**:
 
 * **isRegularExpression( )** - Para confirmar se a data digitada pelo usuário está no formato brasileiro. Recebe a data como string digitada pelo usuário e uma Expressão Regular. Retorna um valor booleano;
-*  **dateInBrazilFormat( )** - Recebe a data digitada pelo usuário como string e retorna uma data criada pelo objeto Date( ). Está function foi criada, pois caso o usuário digite uma data inválida, a function retorna uma data qualquer e no momento de comparar com a próxima function, como ela não é válida, dá um erro, pedindo para o usuário digitar novamente a data;
+*  **dateInBrazilFormat( )** - Recebe a data digitada pelo usuário como string e retorna uma data criada pelo objeto Date( ). Está function foi criada, pois caso o usuário digite uma data inválida, a function retorna uma data qualquer e no momento de comparar com a próxima function, como ela não é válida, apresenta um erro, pedindo para o usuário digitar novamente a data;
 * **validDate( )** - Vai receber a data digitada pelo usuário e a data criada pela function **dateInBrazilFormat( )** e compara se são iguais. Retorna um valor booleano;
 * **dateInFullFormat( )** - Recebe a data no formato brasileiro como string. Retorna a data no formato completo;
 * **dateOfBirthHighestCurrentDate( )** - Recebe a data em formato completo e verifica se ela é posterior a data atual. Retorna um valor booleano.
@@ -3152,44 +3152,92 @@ Frequência Cardíaca Máxima: 186 bpm.
 ===============================
 ```
 
-PAREI
-
 ### Frequência Cardíaca de trabalho
 
-Agora vamos criar a function **workingHeartRate( )** que vai mostrar a **Frequência Cardíaca de Treino** de acordo com os percentuais de 40% até 95%. Esta function terá como parâmetro a **Frequência Cardíaca de Repouso** (**restingHeartRate**) e a **Frequência Cardíaca Máxima** (**maximumHeartRate**). Para os cálculos, vamos usar a fórmula: 
-
-Frequência Cardíaca de Treino = ((( Frequência Cardíaca Máxima - Frequência Cardíaca de Repouso) * Percentual Ddesejado) + Frequência Cardíaca de Repouso)
-
-Logo, em **cardiorespiratoryFunctions.js**:
+Antes de começar esta function, vamos criar uma variável do tipo _**array**_ que vai receber os valores dos percentuais, para utilizarmos nesta function e em outras mais a frente. Logo, em **cardiorespiratoryFunctions.js**:
 
 ```js
-workingHeartRate(restingHeartRateValue, maximumHeartRateValue){
-
-        let workingHeartRate = []
-        let percentage = []
-      
-        for(let i = 40; i <= 95; i+=5){
-          workingHeartRate.push(Math.round(((( maximumHeartRateValue - restingHeartRateValue )* (i / 100) ) + restingHeartRateValue)))
-          percentage.push(i)
-        }
-      
-        console.log(`Frequência Cardíaca de Treino:`)
-        for(let i = 0; i < workingHeartRate.length; i++){
-          console.log(`${percentage[i]}% = ${workingHeartRate[i]} bpm`)
-        } 
-      
-      },
+const percentageValues = [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
 ```
 
-Em **saf.js** chamamos a function **workingHeartRate( )** passando como parâmetro **restingHeartRate** e **maximumHeartRate**:
+Faça também a exportacão dessa variável:
 
 ```js
-cardiorespiratoryFunctions.workingHeartRate(Number(restingHeartRate), Number(maximumHeartRate))
+module.exports = {
+    cardiorespiratoryFunctions, percentageValues
+}
+```
+
+Em **saf.js**, vamos requerer esta variável e atribuir como propriedade no objeto _**user**_:
+
+```js
+/* physical assessment system */
+
+const { headerFunctions } = require('./headerFunctions')
+const { personalDataFunctions } = require('./personalDataFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { anamnesisQuestions } = require('./anamnesisFunctions')
+const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
+const { percentageValues } = require('./cardiorespiratoryFunctions')
+```
+
+```js
+// variables cardiorespiratoryFunctions
+user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user)
+user.percentageValues = percentageValues
+```
+
+Agora vamos criar a function **workingHeartRate( )** que vai calcular a **Frequência Cardíaca de Treino** de acordo com os **percentuais**. Esta function terá como parâmetro o objeto _**user**_, sendo usado oos **percentuais**,  a **Frequência Cardíaca de Repouso** (**restingHeartRate**) e a **Frequência Cardíaca Máxima** (**maximumHeartRate**). Para os cálculos, vamos usar a fórmula: 
+
+Frequência Cardíaca de Treino = ((( Frequência Cardíaca Máxima - Frequência Cardíaca de Repouso) * Percentual Desejado) + Frequência Cardíaca de Repouso)
+
+Esta function retorna os valores da **Frequência Cardíaca de Treino** em um _**array**_ (**workingHeartRateValues**). Logo, em **cardiorespiratoryFunctions.js**:
+
+```js
+workingHeartRate(userObject){
+
+      let restingHeartRate = userObject.restingHeartRate
+      let maximumHeartRate = userObject.maximumHeartRate
+      let workingHeartRateValues = []
+    
+      for(let percentage of userObject.percentageValues){
+        workingHeartRateValues.push(Math.round(((( maximumHeartRate - restingHeartRate )* (percentage / 100) ) + restingHeartRate)))
+      }
+    
+      return workingHeartRateValues
+    },
+```
+
+Em **saf.js** atrobuímos ao objeto _**user**_ a propriedade **workingHeartRate** recebendo como valor o retorno da function **workingHeartRate( )** e passando como parâmetro o objeto _**user**_:
+
+```js
+// variables cardiorespiratoryFunctions
+user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user)
+user.percentageValues = percentageValues
+user.workingHeartRate = cardiorespiratoryFunctions.workingHeartRate(user)
+```
+
+Para mostrar os resultados, vamos criar a function **showWorkingHeartRate( )** que recebe como parâmetro o objeto _**user**_ e exibe os valores da **Frequência Cardíaca de Treino**. Logo, em **cardiorespiratoryFunctions.js**:
+
+```js
+showWorkingHeartRate(userObject){
+  
+      let percentage = userObject.percentageValues
+      let workingHeartRate = userObject.workingHeartRate
+    
+      console.log(`Frequência Cardíaca de Treino:`)
+      for(let i = 0; i < workingHeartRate.length; i++){
+        console.log(`       ${percentage[i]}% = ${workingHeartRate[i]} bpm`)
+      }
+    
+    },
 ```
 
 Ao executar o programa:
 
-```sh
+```shell
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
@@ -3198,20 +3246,22 @@ Ao executar o programa:
 Frequência Cardíaca de Repouso: 60 bpm.
 Frequência Cardíaca Máxima: 186 bpm.
 Frequência Cardíaca de Treino:
-        40% = 110 bpm
-        45% = 117 bpm
-        50% = 123 bpm
-        55% = 129 bpm
-        60% = 136 bpm
-        65% = 142 bpm
-        70% = 148 bpm
-        75% = 155 bpm
-        80% = 161 bpm
-        85% = 167 bpm
-        90% = 173 bpm
-        95% = 180 bpm
+       40% = 110 bpm
+       45% = 117 bpm
+       50% = 123 bpm
+       55% = 129 bpm
+       60% = 136 bpm
+       65% = 142 bpm
+       70% = 148 bpm
+       75% = 155 bpm
+       80% = 161 bpm
+       85% = 167 bpm
+       90% = 173 bpm
+       95% = 180 bpm
 ===============================
 ```
+
+PAREI
 
 ### Pressão Arterial de Repouso (mmHg)
 

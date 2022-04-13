@@ -30,23 +30,32 @@ const cardiorespiratoryFunctions = {
       
     },
 
-    workingHeartRate(restingHeartRateValue, maximumHeartRateValue){
+    workingHeartRate(userObject){
 
-        let workingHeartRate = []
-        let percentage = []
-      
-        for(let i = 40; i <= 95; i+=5){
-          workingHeartRate.push(Math.round(((( maximumHeartRateValue - restingHeartRateValue )* (i / 100) ) + restingHeartRateValue)))
-          percentage.push(i)
-        }
-      
-        console.log(`Frequência Cardíaca de Treino:`)
-        for(let i = 0; i < workingHeartRate.length; i++){
-          console.log(`${percentage[i]}% = ${workingHeartRate[i]} bpm`)
-        } 
-      
-      },
+      let restingHeartRate = userObject.restingHeartRate
+      let maximumHeartRate = userObject.maximumHeartRate
+      let workingHeartRateValues = []
+    
+      for(let percentage of userObject.percentageValues){
+        workingHeartRateValues.push(Math.round(((( maximumHeartRate - restingHeartRate )* (percentage / 100) ) + restingHeartRate)))
+      }
+    
+      return workingHeartRateValues
+    },
 
+    showWorkingHeartRate(userObject){
+  
+      let percentage = userObject.percentageValues
+      let workingHeartRate = userObject.workingHeartRate
+    
+      console.log(`Frequência Cardíaca de Treino:`)
+      for(let i = 0; i < workingHeartRate.length; i++){
+        console.log(`       ${percentage[i]}% = ${workingHeartRate[i]} bpm`)
+      }
+    
+    },
+
+    
       restingBloodPressure(){
 
         let bloodPressure = {
@@ -115,6 +124,8 @@ const cardiorespiratoryFunctions = {
 
 }
 
+const percentageValues = [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+
 module.exports = {
-    cardiorespiratoryFunctions
+    cardiorespiratoryFunctions, percentageValues
 }

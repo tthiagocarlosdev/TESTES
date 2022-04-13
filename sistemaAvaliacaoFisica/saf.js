@@ -5,6 +5,8 @@ const { personalDataFunctions } = require('./personalDataFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
 const { anamnesisQuestions } = require('./anamnesisFunctions')
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
+const { percentageValues } = require('./cardiorespiratoryFunctions')
+
 /*
 const { anthropometryFunctions } = require('./anthropometryFunctions')
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
@@ -52,7 +54,8 @@ headerFunctions.subTitle("Cardiorrespiratório")
 // variables cardiorespiratoryFunctions
 user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
 user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user)
-
+user.percentageValues = percentageValues
+user.workingHeartRate = cardiorespiratoryFunctions.workingHeartRate(user)
 /*
 
 
@@ -141,11 +144,12 @@ headerFunctions.systemHeader()
 headerFunctions.subTitle("Cardiorespiratório")
 console.log(`Frequência Cardíaca de Repouso: ${user.restingHeartRate} bpm.`)
 console.log(`Frequência Cardíaca Máxima: ${user.maximumHeartRate} bpm.`)
+cardiorespiratoryFunctions.showWorkingHeartRate(user)
 headerFunctions.baseboard()
 /*
 
 
-cardiorespiratoryFunctions.workingHeartRate(Number(user.restingHeartRate), Number(user.maximumHeartRate))
+
 console.log(`Pressão Arterial de Repouso: ${user.restingBloodPressure.systolic}/${user.restingBloodPressure.diastolic} mmHg.`)
 console.log(`Classificação da Pressão Arterial`)
 console.log(`Sistólica: ${user.bloodPressureRating.systolicClassification}`)
