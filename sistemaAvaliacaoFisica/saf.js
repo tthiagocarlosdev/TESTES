@@ -13,8 +13,8 @@ const { neuromuscularFunctions } = require('./neuromuscularFunctions')
 const { aerobicFunctions } = require('./aerobicFunctions')*/
 
 const user = { }
-user.age = 34 // temporary
-/*
+// user.age = 34 // temporary
+
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
@@ -44,8 +44,6 @@ user.sportsInjuries = anamnesisFunctions.questions(anamnesisQuestions.sportsInju
 user.trainingObjective = anamnesisFunctions.trainingObjective()
 user.daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
 user.timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
-*/
-
 
 console.clear()
 headerFunctions.systemHeader()
@@ -56,11 +54,9 @@ user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
 user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user)
 user.percentageValues = percentageValues
 user.workingHeartRate = cardiorespiratoryFunctions.workingHeartRate(user)
+user.restingBloodPressure = cardiorespiratoryFunctions.bloodPressure()
+user.classificationBloodPressure = cardiorespiratoryFunctions.classificationOfBloodPressure(user)
 /*
-
-
-user.restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
-user.bloodPressureRating = cardiorespiratoryFunctions.classificationOfBloodPressure(user.restingBloodPressure)
 
 console.clear()
 headerFunctions.systemHeader()
@@ -111,7 +107,7 @@ console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Observações")
 user.comments = personalDataFunctions.comments()*/
-/*
+
 // show results personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
@@ -136,24 +132,19 @@ console.log(`Uso de Medicamento: ${user.useMedication}`)
 console.log(`Lesão Desportiva: ${user.sportsInjuries}`)
 console.log(`Objetivo do treino: ${user.trainingObjective}`)
 console.log(`Dias disponíveis para treinar: ${user.daysAvailableForTraining} dias.`)
-console.log(`Tempo disponível para treino: ${user.timeAvailablePerTraining} minutos.`)*/
+console.log(`Tempo disponível para treino: ${user.timeAvailablePerTraining} minutos.`)
 
 // show results cardiorespiratoryFunctions
-console.clear() //temporay
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Cardiorespiratório")
 console.log(`Frequência Cardíaca de Repouso: ${user.restingHeartRate} bpm.`)
 console.log(`Frequência Cardíaca Máxima: ${user.maximumHeartRate} bpm.`)
 cardiorespiratoryFunctions.showWorkingHeartRate(user)
+console.log(`Pressão Arterial de Repouso: ${user.restingBloodPressure.bloodPressureString} mmHg.`)
+console.log(`Classificação da Pressão Arterial`)
+console.log(`Sistólica: ${user.classificationBloodPressure.systolicClassification} / Diastólica: ${user.classificationBloodPressure.diastolicClassification}`)
 headerFunctions.baseboard()
 /*
-
-
-
-console.log(`Pressão Arterial de Repouso: ${user.restingBloodPressure.systolic}/${user.restingBloodPressure.diastolic} mmHg.`)
-console.log(`Classificação da Pressão Arterial`)
-console.log(`Sistólica: ${user.bloodPressureRating.systolicClassification}`)
-console.log(`Diastólica: ${user.bloodPressureRating.diastolicClassification}`)
 
 // show results anthropometryFunctions
 headerFunctions.baseboard()

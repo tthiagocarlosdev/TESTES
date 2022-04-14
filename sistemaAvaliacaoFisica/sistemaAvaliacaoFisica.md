@@ -3261,47 +3261,56 @@ Frequência Cardíaca de Treino:
 ===============================
 ```
 
-PAREI
-
 ### Pressão Arterial de Repouso (mmHg)
 
-Agora vamos criar a function **restingBloodPressure( )** que vai determinar a **Pressão Arterial de Repouso em mmHg**. Está function pedirá para o usuário digitar a **pressão sistólica** e a **pressão diastólica**. Só serão aceitos números e qualquer valor diferente disso, inclusive vazio, a function **incorrectValue( )** deverá ser chamada e o usuário deverá digitar os dois valores novamente. A function retorna os valores da pressão **sistólica** e **diastólica** e para isto, vamos retorna estes dois valores dentro de um objeto, **bloodPressure**. Logo, em **cardiorespiratoryFunctions.js**:
+Agora vamos criar a function **bloodPressure( )** que vai determinar a **Pressão Arterial de Repouso em mmHg**. Está function pedirá para o usuário digitar a **pressão arterial** (**sistólica / diastólica**). O formato aceito é até três dígitos para a sitólica, uma barra e até mais três dígitos, sendo o valor de 0 até 300. Caso qualquer valor diferente disso seja digitado ou fique vazio a function **incorrectValue( )** deverá ser chamada e o usuário deverá o valor novamente. A function retorna um objeto _**fullBloodPressure**_ com os valores da pressão **sistólica** e **diastólica** e o **formato completo** em **string**. Logo, em **cardiorespiratoryFunctions.js**:
 
 ```js
-restingBloodPressure(){
+bloodPressure(){
 
-        let bloodPressure = {
-          systolic: 0, 
-          diastolic: 0
-        }
-        let systolicIsNumber = true
-        let diastolicIsNumber = true
-      
-      
-        do{
-      
-          bloodPressure.systolic = input.question('Digite a pressão sistólica (mmHg): ')
-          bloodPressure.diastolic = input.question('Digite a pressão diastólica (mmHg): ')
-      
-          systolicIsNumber = validationFunctions.itsNumber(bloodPressure.systolic)
-          diastolicIsNumber = validationFunctions.itsNumber(bloodPressure.diastolic)
-          validationFunctions.incorrectValue(!systolicIsNumber, !diastolicIsNumber, "Cardiorrespiratório")
-      
-        }while(!systolicIsNumber || !diastolicIsNumber)
-      
-         return bloodPressure
-      
-      },
+      let fullBloodPressure = { }
+      let bloodPressure = 0
+      const regexBloodPressure = /^(([0-9])|([1-9][0-9])|([1-2][0-9]{2})|([3][0][0]))\/(([0-9])|([1-9][0-9])|([1-2][0-9]{2})|([3][0][0]))$/
+      let itsRegexBloodPressure = true
+    
+      do{
+    
+        bloodPressure = input.question('Digite a pressão arterial [000/000] (mmHg): ')
+        itsRegexBloodPressure = validationFunctions.isRegularExpression(bloodPressure, regexBloodPressure)
+        validationFunctions.incorrectValue(false, !itsRegexBloodPressure, "Cardiorrespiratório")
+    
+      }while(!itsRegexBloodPressure)
+    
+      fullBloodPressure.systolic = Number(bloodPressure.substring(0, bloodPressure.indexOf("/")))
+      fullBloodPressure.diastolic = Number(bloodPressure.substring(bloodPressure.indexOf("/")+ 1, bloodPressure.length))
+      fullBloodPressure.bloodPressureString = bloodPressure
+    
+       return fullBloodPressure
+    
+    },
 ```
 
-Em **saf.js** vamos criar a variável **restingBloodPressure** que receberá a function **restingBloodPressure( )** e depois vamos mostrar o valor da **Pressão Arterial de Reposuo**:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **restingBloodPressure** que receberá o retorno da function **restingBloodPressure( )** como valor e depois vamos mostrar o valor da **Pressão Arterial de Repouso**:
 
 ```js
-const restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
+// variables cardiorespiratoryFunctions
+user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user)
+user.percentageValues = percentageValues
+user.workingHeartRate = cardiorespiratoryFunctions.workingHeartRate(user)
+user.restingBloodPressure = cardiorespiratoryFunctions.bloodPressure()
 ```
 
 ```js
-console.log(`Pressão Arterial de Repouso: ${restingBloodPressure.systolic}/${restingBloodPressure.diastolic} mmHg.`)
+// show results cardiorespiratoryFunctions
+console.clear() //temporay
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Cardiorespiratório")
+console.log(`Frequência Cardíaca de Repouso: ${user.restingHeartRate} bpm.`)
+console.log(`Frequência Cardíaca Máxima: ${user.maximumHeartRate} bpm.`)
+cardiorespiratoryFunctions.showWorkingHeartRate(user)
+console.log(`Pressão Arterial de Repouso: ${user.restingBloodPressure.bloodPressureString} mmHg.`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -3310,30 +3319,40 @@ Ao executar o programa:
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
+           Cardiorrespiratório            
+===============================
+Digite a Frequência Cardíaca de Repouso (bpm): 60
+Digite a pressão arterial [000/000] (mmHg): 120/80
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
            Cardiorespiratório            
 ===============================
 Frequência Cardíaca de Repouso: 60 bpm.
-Frequência Cardíaca Máxima: 198 bpm.
+Frequência Cardíaca Máxima: 186 bpm.
 Frequência Cardíaca de Treino:
-        40% = 115 bpm
-        45% = 122 bpm
-        50% = 129 bpm
-        55% = 136 bpm
-        60% = 143 bpm
-        65% = 150 bpm
-        70% = 157 bpm
-        75% = 164 bpm
-        80% = 170 bpm
-        85% = 177 bpm
-        90% = 184 bpm
-        95% = 191 bpm
+       40% = 110 bpm
+       45% = 117 bpm
+       50% = 123 bpm
+       55% = 129 bpm
+       60% = 136 bpm
+       65% = 142 bpm
+       70% = 148 bpm
+       75% = 155 bpm
+       80% = 161 bpm
+       85% = 167 bpm
+       90% = 173 bpm
+       95% = 180 bpm
 Pressão Arterial de Repouso: 120/80 mmHg.
 ===============================
 ```
 
 ### Pressão Arterial - Classificação 
 
-Agora vamos criar a function **classificationOfBloodPressure( )** que vai retornar a classificação da pressão arterial. Esta function recebe como parâmetro o **objeto** contendo os valores da pressão arterial sistólica e diastólica. Em seguida retorna a classificação de acordo com a tabela abaixo:
+Agora vamos criar a function **classificationOfBloodPressure( )** que vai retornar a classificação da pressão arterial. Esta function recebe como parâmetro o objeto _**user**_ e retorna a classificação de acordo com a tabela abaixo:
 
 | Pressão Arterial Sistólica - Classificação                 | Pressão Arterial Diastólica - Classificação                 |
 | ---------------------------------------------------------- | :---------------------------------------------------------- |
@@ -3349,56 +3368,81 @@ O retorno desta function também será um objeto. Logo, em **cardiorespiratoryFu
 ```js
 classificationOfBloodPressure(objectValue){
 
-        let classification = {
-          systolicClassification: '',
-          diastolicClassification: '',
-        }
+      let classification = { }
+      const systolic = objectValue.restingBloodPressure.systolic
+      const diastolic = objectValue.restingBloodPressure.diastolic
+    
+      /* Systolic Classification */
+      const greatSystolic = systolic < 120
+      const normalSystolic = systolic < 130
+      const borderlineSystolic = systolic < 140
+      const systolicHypertensionStageOne = systolic < 160
+      const systolicHypertensionStageTwo = systolic < 180
+    
+      if(greatSystolic){
+        classification.systolicClassification = 'Ótima'
+      } else if(normalSystolic){
+        classification.systolicClassification = 'Normal'
+      } else if(borderlineSystolic){
+        classification.systolicClassification = 'Limítrofe'
+      } else if(systolicHypertensionStageOne){
+        classification.systolicClassification = 'Hipertensão Estágio 1'
+      } else if(systolicHypertensionStageTwo){
+        classification.systolicClassification = 'Hipertensão Estágio 2'
+      } else{
+        classification.systolicClassification = 'Hipertensão Estágio 3'
+      }
+    
+      /* Diastolic Classification */
+      const greatDiastolic = diastolic < 80
+      const normalDiastolic = diastolic < 85
+      const borderlineDiastolic = diastolic < 90
+      const diastolicHypertensionStageOne = diastolic < 100
+      const diastolicHypertensionStageTwo = diastolic < 110
       
-        /* Systolic Classification */
-        if(objectValue.systolic < 120){
-          classification.systolicClassification = 'Ótima'
-        } else if(objectValue.systolic < 130){
-          classification.systolicClassification = 'Normal'
-        } else if(objectValue.systolic < 140){
-          classification.systolicClassification = 'Limítrofe'
-        } else if(objectValue.systolic < 160){
-          classification.systolicClassification = 'Hipertensão Estágio 1'
-        } else if(objectValue.systolic < 180){
-          classification.systolicClassification = 'Hipertensão Estágio 2'
-        } else{
-          classification.systolicClassification = 'Hipertensão Estágio 3'
-        }
-      
-        /* Diastolic Classification */
-        if(objectValue.diastolic < 80){
-          classification.diastolicClassification = 'Ótima'
-        } else if(objectValue.diastolic < 85){
-          classification.diastolicClassification = 'Normal'
-        } else if(objectValue.diastolic < 90){
-          classification.diastolicClassification = 'Limítrofe'
-        } else if(objectValue.diastolic < 100){
-          classification.diastolicClassification = 'Hipertensão Estágio 1'
-        } else if(objectValue.diastolic < 110){
-          classification.diastolicClassification = 'Hipertensão Estágio 2'
-        } else{
-          classification.diastolicClassification = 'Hipertensão Estágio 3'
-        }
-      
-        return classification
-      
-      },
+      if(greatDiastolic){
+        classification.diastolicClassification = 'Ótima'
+      } else if(normalDiastolic){
+        classification.diastolicClassification = 'Normal'
+      } else if(borderlineDiastolic){
+        classification.diastolicClassification = 'Limítrofe'
+      } else if(diastolicHypertensionStageOne){
+        classification.diastolicClassification = 'Hipertensão Estágio 1'
+      } else if(diastolicHypertensionStageTwo){
+        classification.diastolicClassification = 'Hipertensão Estágio 2'
+      } else{
+        classification.diastolicClassification = 'Hipertensão Estágio 3'
+      }
+    
+      return classification
+    
+    },
 ```
 
-Em **saf.js** criamos a variável **bloodPressureRating** que recebe a function **classificationOfBloodPressure( )** passando a variável **restingBloodPressure** como parâmetro. Depois mostramos os resultados:
+Em **saf.js** atribuímos ao objeto _**user**_ a propriedade **classificationBloodPressure** que recebe como valor o retorno da function **classificationOfBloodPressure( )** passando o objeto _**user**_ como parâmetro. Depois mostramos os resultados:
 
 ```js
-const bloodPressureRating = cardiorespiratoryFunctions.classificationOfBloodPressure(restingBloodPressure)
+// variables cardiorespiratoryFunctions
+user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user)
+user.percentageValues = percentageValues
+user.workingHeartRate = cardiorespiratoryFunctions.workingHeartRate(user)
+user.restingBloodPressure = cardiorespiratoryFunctions.bloodPressure()
+user.classificationBloodPressure = cardiorespiratoryFunctions.classificationOfBloodPressure(user)
 ```
 
 ```js
+// show results cardiorespiratoryFunctions
+console.clear() //temporay
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Cardiorespiratório")
+console.log(`Frequência Cardíaca de Repouso: ${user.restingHeartRate} bpm.`)
+console.log(`Frequência Cardíaca Máxima: ${user.maximumHeartRate} bpm.`)
+cardiorespiratoryFunctions.showWorkingHeartRate(user)
+console.log(`Pressão Arterial de Repouso: ${user.restingBloodPressure.bloodPressureString} mmHg.`)
 console.log(`Classificação da Pressão Arterial`)
-console.log(`Sistólica: ${bloodPressureRating.systolicClassification}`)
-console.log(`Diastólica: ${bloodPressureRating.diastolicClassification}`)
+console.log(`Sistólica: ${user.classificationBloodPressure.systolicClassification} / Diastólica: ${user.classificationBloodPressure.diastolicClassification}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -3407,36 +3451,45 @@ Ao executar o programa:
 ===============================
   SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
+           Cardiorrespiratório            
+===============================
+Digite a Frequência Cardíaca de Repouso (bpm): 60
+Digite a pressão arterial [000/000] (mmHg): 120/80
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
            Cardiorespiratório            
 ===============================
 Frequência Cardíaca de Repouso: 60 bpm.
-Frequência Cardíaca Máxima: 198 bpm.
+Frequência Cardíaca Máxima: 186 bpm.
 Frequência Cardíaca de Treino:
-        40% = 115 bpm
-        45% = 122 bpm
-        50% = 129 bpm
-        55% = 136 bpm
-        60% = 143 bpm
-        65% = 150 bpm
-        70% = 157 bpm
-        75% = 164 bpm
-        80% = 170 bpm
-        85% = 177 bpm
-        90% = 184 bpm
-        95% = 191 bpm
+       40% = 110 bpm
+       45% = 117 bpm
+       50% = 123 bpm
+       55% = 129 bpm
+       60% = 136 bpm
+       65% = 142 bpm
+       70% = 148 bpm
+       75% = 155 bpm
+       80% = 161 bpm
+       85% = 167 bpm
+       90% = 173 bpm
+       95% = 180 bpm
 Pressão Arterial de Repouso: 120/80 mmHg.
 Classificação da Pressão Arterial
-Sistólica: Normal
-Diastólica: Normal
+Sistólica: Normal / Diastólica: Normal
 ===============================
 ```
 
 Com isto chega ao final a parte **Cardiorrespiratório** do projeto. Como ficaram os arquivos do programa até esta etapa:
 
-**cardiorespiratoryFunctions.js**
+Arquivo **cardiorespiratoryFunctions.js** completo:
 
 ```js
-/* cardiorespiratory */
+/* cardiorespiratory functions */
 
 var input = require('readline-sync')
 
@@ -3458,194 +3511,180 @@ const cardiorespiratoryFunctions = {
        
         }while(!isANumberFromZeroToTwoHundredAndTwenty)
          
-        return restingHeartRate
+        return Number(restingHeartRate)
       
     },
 
-    maximumHeartRate(ageValue){
+    maximumHeartRate(userObject){
 
-        return 220 - Number(ageValue)
+        return Number(220 - userObject.age)
       
     },
 
-    workingHeartRate(restingHeartRateValue, maximumHeartRateValue){
+    workingHeartRate(userObject){
 
-        let workingHeartRate = []
-        let percentage = []
-      
-        for(let i = 40; i <= 95; i+=5){
-          workingHeartRate.push(Math.round(((( maximumHeartRateValue - restingHeartRateValue )* (i / 100) ) + restingHeartRateValue)))
-          percentage.push(i)
-        }
-      
-        console.log(`Frequência Cardíaca de Treino:`)
-        for(let i = 0; i < workingHeartRate.length; i++){
-          console.log(`        ${percentage[i]}% = ${workingHeartRate[i]} bpm`)
-        } 
-      
-      },
+      let restingHeartRate = userObject.restingHeartRate
+      let maximumHeartRate = userObject.maximumHeartRate
+      let workingHeartRateValues = []
+    
+      for(let percentage of userObject.percentageValues){
+        workingHeartRateValues.push(Math.round(((( maximumHeartRate - restingHeartRate )* (percentage / 100) ) + restingHeartRate)))
+      }
+    
+      return workingHeartRateValues
+    },
 
-      restingBloodPressure(){
+    showWorkingHeartRate(userObject){
+  
+      let percentage = userObject.percentageValues
+      let workingHeartRate = userObject.workingHeartRate
+    
+      console.log(`Frequência Cardíaca de Treino:`)
+      for(let i = 0; i < workingHeartRate.length; i++){
+        console.log(`       ${percentage[i]}% = ${workingHeartRate[i]} bpm`)
+      }
+    
+    },
 
-        let bloodPressure = {
-          systolic: 0, 
-          diastolic: 0
-        }
-        let systolicIsNumber = true
-        let diastolicIsNumber = true
-      
-      
-        do{
-      
-          bloodPressure.systolic = input.question('Digite a pressão sistólica (mmHg): ')
-          bloodPressure.diastolic = input.question('Digite a pressão diastólica (mmHg): ')
-      
-          systolicIsNumber = validationFunctions.itsNumber(bloodPressure.systolic)
-          diastolicIsNumber = validationFunctions.itsNumber(bloodPressure.diastolic)
-          validationFunctions.incorrectValue(!systolicIsNumber, !diastolicIsNumber, "Cardiorrespiratório")
-      
-        }while(!systolicIsNumber || !diastolicIsNumber)
-      
-         return bloodPressure
-      
-      },
-      
-      classificationOfBloodPressure(objectValue){
+    bloodPressure(){
 
-        let classification = {
-          systolicClassification: '',
-          diastolicClassification: '',
-        }
+      let fullBloodPressure = { }
+      let bloodPressure = 0
+      const regexBloodPressure = /^(([0-9])|([1-9][0-9])|([1-2][0-9]{2})|([3][0][0]))\/(([0-9])|([1-9][0-9])|([1-2][0-9]{2})|([3][0][0]))$/
+      let itsRegexBloodPressure = true
+    
+      do{
+    
+        bloodPressure = input.question('Digite a pressão arterial [000/000] (mmHg): ')
+        itsRegexBloodPressure = validationFunctions.isRegularExpression(bloodPressure, regexBloodPressure)
+        validationFunctions.incorrectValue(false, !itsRegexBloodPressure, "Cardiorrespiratório")
+    
+      }while(!itsRegexBloodPressure)
+    
+      fullBloodPressure.systolic = Number(bloodPressure.substring(0, bloodPressure.indexOf("/")))
+      fullBloodPressure.diastolic = Number(bloodPressure.substring(bloodPressure.indexOf("/")+ 1, bloodPressure.length))
+      fullBloodPressure.bloodPressureString = bloodPressure
+    
+       return fullBloodPressure
+    
+    },
+
+    classificationOfBloodPressure(objectValue){
+
+      let classification = { }
+      const systolic = objectValue.restingBloodPressure.systolic
+      const diastolic = objectValue.restingBloodPressure.diastolic
+    
+      /* Systolic Classification */
+      const greatSystolic = systolic < 120
+      const normalSystolic = systolic < 130
+      const borderlineSystolic = systolic < 140
+      const systolicHypertensionStageOne = systolic < 160
+      const systolicHypertensionStageTwo = systolic < 180
+    
+      if(greatSystolic){
+        classification.systolicClassification = 'Ótima'
+      } else if(normalSystolic){
+        classification.systolicClassification = 'Normal'
+      } else if(borderlineSystolic){
+        classification.systolicClassification = 'Limítrofe'
+      } else if(systolicHypertensionStageOne){
+        classification.systolicClassification = 'Hipertensão Estágio 1'
+      } else if(systolicHypertensionStageTwo){
+        classification.systolicClassification = 'Hipertensão Estágio 2'
+      } else{
+        classification.systolicClassification = 'Hipertensão Estágio 3'
+      }
+    
+      /* Diastolic Classification */
+      const greatDiastolic = diastolic < 80
+      const normalDiastolic = diastolic < 85
+      const borderlineDiastolic = diastolic < 90
+      const diastolicHypertensionStageOne = diastolic < 100
+      const diastolicHypertensionStageTwo = diastolic < 110
       
-        /* Systolic Classification */
-        if(objectValue.systolic < 120){
-          classification.systolicClassification = 'Ótima'
-        } else if(objectValue.systolic < 130){
-          classification.systolicClassification = 'Normal'
-        } else if(objectValue.systolic < 140){
-          classification.systolicClassification = 'Limítrofe'
-        } else if(objectValue.systolic < 160){
-          classification.systolicClassification = 'Hipertensão Estágio 1'
-        } else if(objectValue.systolic < 180){
-          classification.systolicClassification = 'Hipertensão Estágio 2'
-        } else{
-          classification.systolicClassification = 'Hipertensão Estágio 3'
-        }
-      
-        /* Diastolic Classification */
-        if(objectValue.diastolic < 80){
-          classification.diastolicClassification = 'Ótima'
-        } else if(objectValue.diastolic < 85){
-          classification.diastolicClassification = 'Normal'
-        } else if(objectValue.diastolic < 90){
-          classification.diastolicClassification = 'Limítrofe'
-        } else if(objectValue.diastolic < 100){
-          classification.diastolicClassification = 'Hipertensão Estágio 1'
-        } else if(objectValue.diastolic < 110){
-          classification.diastolicClassification = 'Hipertensão Estágio 2'
-        } else{
-          classification.diastolicClassification = 'Hipertensão Estágio 3'
-        }
-      
-        return classification
-      
-      },
+      if(greatDiastolic){
+        classification.diastolicClassification = 'Ótima'
+      } else if(normalDiastolic){
+        classification.diastolicClassification = 'Normal'
+      } else if(borderlineDiastolic){
+        classification.diastolicClassification = 'Limítrofe'
+      } else if(diastolicHypertensionStageOne){
+        classification.diastolicClassification = 'Hipertensão Estágio 1'
+      } else if(diastolicHypertensionStageTwo){
+        classification.diastolicClassification = 'Hipertensão Estágio 2'
+      } else{
+        classification.diastolicClassification = 'Hipertensão Estágio 3'
+      }
+    
+      return classification
+    
+    },
 
 }
 
+const percentageValues = [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+
 module.exports = {
-    cardiorespiratoryFunctions
+    cardiorespiratoryFunctions, percentageValues
 }
 ```
 
-**saf.js**
+Arquivo **saf.js** completo:
 
 ```js
+/* physical assessment system */
+
 const { headerFunctions } = require('./headerFunctions')
-const { personalData } = require('./personalData')
+const { personalDataFunctions } = require('./personalDataFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { anamnesisQuestions } = require('./anamnesisFunctions')
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
+const { percentageValues } = require('./cardiorespiratoryFunctions')
+
+const user = { }
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
-// variables personalData
-const name = personalData.userName()
-const birthdayInBrazilianFormat =  personalData.dateOfBirth()
-const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
-const age = personalData.age(birthdayInISOFormat)
-const sexNumber = personalData.sexNumber()
-const sex = personalData.showSex(sexNumber)
-const profession = personalData.userProfession()
-const userEmail = personalData.userEmail()
-const phoneNumber = personalData.phoneNumber()
+// variables personalDataFunctions
+user.name = personalDataFunctions.userName()
+user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
+user.birthdayInFullFormat = personalDataFunctions.dateInFullFormat(user.birthdayInBrazilianFormat)
+user.age = personalDataFunctions.age(user)
+user.sexNumber = personalDataFunctions.sexNumber()
+user.sex = personalDataFunctions.showSex(user)
+user.profession = personalDataFunctions.userProfession()
+user.userEmail = personalDataFunctions.userEmail()
+user.phoneNumber = personalDataFunctions.phoneNumber()
 
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
 // variables anamnesisFunctions
-const questionnairePARQ = anamnesisFunctions.questionnairePARQ()
-const currentPhysicalState = anamnesisFunctions.currentPhysicalState()
-const pastIllness = anamnesisFunctions.pastIllness()
-const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
-const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
-const useMedication = anamnesisFunctions.useMedication()
-const sportsInjuries = anamnesisFunctions.sportsInjuries()
-const trainingObjective = anamnesisFunctions.trainingObjective()
-const daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
-const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
+user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+user.pastIllness = anamnesisFunctions.questions(anamnesisQuestions.pastIllness)
+user.illnessesFamily = anamnesisFunctions.questions(anamnesisQuestions.illnessesInTheFamily)
+user.surgeryPerformed = anamnesisFunctions.questions(anamnesisQuestions.surgeryPerformed)
+user.useMedication = anamnesisFunctions.questions(anamnesisQuestions.useMedication)
+user.sportsInjuries = anamnesisFunctions.questions(anamnesisQuestions.sportsInjuries)
+user.trainingObjective = anamnesisFunctions.trainingObjective()
+user.daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
+user.timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
 
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Cardiorrespiratório")
 
-// variables cardiorespiratory
-const restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
-const maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(age)
-const restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
-const bloodPressureRating = cardiorespiratoryFunctions.classificationOfBloodPressure(restingBloodPressure)
-
-// show results personalData
-console.clear()
-headerFunctions.systemHeader()
-headerFunctions.subTitle("Dados Pessoais")
-console.log(`Nome: ${name}`)
-console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
-console.log(`Idade: ${age} anos!`)
-console.log(`Sexo: ${sex}`)
-console.log(`Profissão: ${profession}`)
-console.log(`E-mail: ${userEmail}`)
-console.log(`Celular: ${phoneNumber}`)
-
-// show results anamnesisFunctions
-console.log(`===============================`) 
-headerFunctions.subTitle("Anamnese")
-
-console.log(`Questionário PAR-Q: ${questionnairePARQ}`)
-console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(currentPhysicalState)}`)
-console.log(`Doença Pregressa: ${pastIllness}`)
-console.log(`Doença Pregressa na Família: ${illnessesFamily}`)
-console.log(`Cirurgia: ${surgeryPerformed}`)
-console.log(`Uso de Medicamento: ${useMedication}`)
-console.log(`Lesão Desportiva: ${sportsInjuries}`)
-console.log(`Objetivo do treino: ${trainingObjective}`)
-console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining} dias.`)
-console.log(`Tempo disponível para treino: ${timeAvailablePerTraining} minutos.`)
-
-// show results cardiorespiratoryFunctions
-console.log(`===============================`) 
-headerFunctions.subTitle("Cardiorespiratório")
-console.log(`Frequência Cardíaca de Repouso: ${restingHeartRate} bpm.`)
-console.log(`Frequência Cardíaca Máxima: ${maximumHeartRate} bpm.`)
-cardiorespiratoryFunctions.workingHeartRate(Number(restingHeartRate), Number(maximumHeartRate))
-console.log(`Pressão Arterial de Repouso: ${restingBloodPressure.systolic}/${restingBloodPressure.diastolic} mmHg.`)
-console.log(`Classificação da Pressão Arterial`)
-console.log(`Sistólica: ${bloodPressureRating.systolicClassification}`)
-console.log(`Diastólica: ${bloodPressureRating.diastolicClassification}`)
-
-console.log(`===============================`)
-
+// variables cardiorespiratoryFunctions
+user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user)
+user.percentageValues = percentageValues
+user.workingHeartRate = cardiorespiratoryFunctions.workingHeartRate(user)
+user.restingBloodPressure = cardiorespiratoryFunctions.bloodPressure()
+user.classificationBloodPressure = cardiorespiratoryFunctions.classificationOfBloodPressure(user)
 ```
 
 Ao executar o programa:
@@ -3656,52 +3695,57 @@ Ao executar o programa:
 ===============================
            Dados Pessoais            
 ===============================
-Nome: Joao Antonio
-Data de nascimento: 25/08/2003
-Idade: 18 anos!
+Nome: Fulano Cicrano
+Data de nascimento: 04/12/1994
+Idade: 27 anos
 Sexo: Masculino
-Profissão: Atleta
-E-mail: joao@antonio.com
-Celular: 87912344321
+Profissão: Médico
+E-mail: fulano@cicrano.com
+Celular: 17981726354
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Anamnese            
 ===============================
-Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
-Estado físico: Ativo
+Questionário PAR-Q: Todas as respostas do questionário foram 'Não'!
+Estado físico: Sedentário
 Doença Pregressa: Sem doença pregressa.
-Doença Pregressa na Família: Sem doença pregressa na família.
-Cirurgia: Artroscopia de ombro
+Doença Pregressa na Família: Avos hipertensos
+Cirurgia: Nunca realizou procedimento cirúrgico.
 Uso de Medicamento: Não faz uso de medicamento.
-Lesão Desportiva: torcao de tornozelo
-Objetivo do treino: Desportivo
-Dias disponíveis para treinar: 5 dias.
-Tempo disponível para treino: 90 minutos.
+Lesão Desportiva: Nunca sofreu lesão desportiva.
+Objetivo do treino: Terapêutico
+Dias disponíveis para treinar: 4 dias.
+Tempo disponível para treino: 45 minutos.
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Cardiorespiratório            
 ===============================
 Frequência Cardíaca de Repouso: 60 bpm.
-Frequência Cardíaca Máxima: 202 bpm.
+Frequência Cardíaca Máxima: 193 bpm.
 Frequência Cardíaca de Treino:
-        40% = 117 bpm
-        45% = 124 bpm
-        50% = 131 bpm
-        55% = 138 bpm
-        60% = 145 bpm
-        65% = 152 bpm
-        70% = 159 bpm
-        75% = 167 bpm
-        80% = 174 bpm
-        85% = 181 bpm
-        90% = 188 bpm
-        95% = 195 bpm
+       40% = 113 bpm
+       45% = 120 bpm
+       50% = 127 bpm
+       55% = 133 bpm
+       60% = 140 bpm
+       65% = 146 bpm
+       70% = 153 bpm
+       75% = 160 bpm
+       80% = 166 bpm
+       85% = 173 bpm
+       90% = 180 bpm
+       95% = 186 bpm
 Pressão Arterial de Repouso: 120/80 mmHg.
 Classificação da Pressão Arterial
-Sistólica: Normal
-Diastólica: Normal
+Sistólica: Normal / Diastólica: Normal
 ===============================
 ```
 
+Chegamos ao fim da parte de **Cardiorrespiratório**. Agora vamos entrar na próxima etapa, **Antropometria**, Let's Go!
 
+PAREI
 
 ## Antropometria
 

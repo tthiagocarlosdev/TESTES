@@ -859,7 +859,7 @@ function maximumHeartRate(userObject){
 }
 user.age = 34
 // console.log(maximumHeartRate(34))
-user.maximumHeartRate = maximumHeartRate(user)
+// user.maximumHeartRate = maximumHeartRate(user)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == working heart rate == **/
@@ -893,9 +893,9 @@ function testShowWorkingHeartRate(userObject){
 
 }
 
-user.workingHeartRate = testWorkingHeartRate(user)
-console.log(user.workingHeartRate)
-testShowWorkingHeartRate(user)
+// user.workingHeartRate = testWorkingHeartRate(user)
+// console.log(user.workingHeartRate)
+// testShowWorkingHeartRate(user)
 
 function workingHeartRate(userObject){
 
@@ -933,6 +933,32 @@ function showWorkingHeartRate(userObject){
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Resting Blood Pressure == **/
 
+
+function bloodPressure(){
+
+  let fullBloodPressure = { }
+  let bloodPressure = 0
+  const regexBloodPressure = /^(([0-9])|([1-9][0-9])|([1-2][0-9]{2})|([3][0][0]))\/(([0-9])|([1-9][0-9])|([1-2][0-9]{2})|([3][0][0]))$/
+  let itsRegexBloodPressure = true
+
+  do{
+
+    bloodPressure = input.question('Digite a pressão arterial [000/000] (mmHg): ')
+    itsRegexBloodPressure = validationFunctions.isRegularExpression(bloodPressure, regexBloodPressure)
+    validationFunctions.incorrectValue(false, !itsRegexBloodPressure, "Cardiorrespiratório")
+
+  }while(!itsRegexBloodPressure)
+
+  fullBloodPressure.systolic = Number(bloodPressure.substring(0, bloodPressure.indexOf("/")))
+  fullBloodPressure.diastolic = Number(bloodPressure.substring(bloodPressure.indexOf("/")+ 1, bloodPressure.length))
+  fullBloodPressure.bloodPressureString = bloodPressure
+
+   return fullBloodPressure
+
+}
+
+// console.log(bloodPressure())
+
 function restingBloodPressure(){
 
   let bloodPressure = {
@@ -963,6 +989,7 @@ function restingBloodPressure(){
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Blood Pressure - Classification == **/
 
+// deleted
 function classificationOfBloodPressure(objectValue){
 
   let classification = {
@@ -1004,13 +1031,73 @@ function classificationOfBloodPressure(objectValue){
 
 }
 
-
-let bloodPressure = {
-  systolic: 120, 
-  diastolic: 80
-}
+// let bloodPressure = {
+//   systolic: 120, 
+//   diastolic: 80
+// }
 
 // console.log(classificationOfBloodPressure(bloodPressure))
+
+function classificationOfBloodPressure(objectValue){
+
+  let classification = { }
+  const systolic = objectValue.restingBloodPressure.systolic
+  const diastolic = objectValue.restingBloodPressure.diastolic
+
+  /* Systolic Classification */
+  const greatSystolic = systolic < 120
+  const normalSystolic = systolic < 130
+  const borderlineSystolic = systolic < 140
+  const systolicHypertensionStageOne = systolic < 160
+  const systolicHypertensionStageTwo = systolic < 180
+
+  if(greatSystolic){
+    classification.systolicClassification = 'Ótima'
+  } else if(normalSystolic){
+    classification.systolicClassification = 'Normal'
+  } else if(borderlineSystolic){
+    classification.systolicClassification = 'Limítrofe'
+  } else if(systolicHypertensionStageOne){
+    classification.systolicClassification = 'Hipertensão Estágio 1'
+  } else if(systolicHypertensionStageTwo){
+    classification.systolicClassification = 'Hipertensão Estágio 2'
+  } else{
+    classification.systolicClassification = 'Hipertensão Estágio 3'
+  }
+
+  /* Diastolic Classification */
+  const greatDiastolic = diastolic < 80
+  const normalDiastolic = diastolic < 85
+  const borderlineDiastolic = diastolic < 90
+  const diastolicHypertensionStageOne = diastolic < 100
+  const diastolicHypertensionStageTwo = diastolic < 110
+  
+  if(greatDiastolic){
+    classification.diastolicClassification = 'Ótima'
+  } else if(normalDiastolic){
+    classification.diastolicClassification = 'Normal'
+  } else if(borderlineDiastolic){
+    classification.diastolicClassification = 'Limítrofe'
+  } else if(diastolicHypertensionStageOne){
+    classification.diastolicClassification = 'Hipertensão Estágio 1'
+  } else if(diastolicHypertensionStageTwo){
+    classification.diastolicClassification = 'Hipertensão Estágio 2'
+  } else{
+    classification.diastolicClassification = 'Hipertensão Estágio 3'
+  }
+
+  return classification
+
+}
+
+user.restingBloodPressure = bloodPressure()
+user.classificationBloodPressure = classificationOfBloodPressure(user)
+console.log(user.classificationBloodPressure)
+
+console.log(`Classificação da Pressão Arterial`)
+console.log(`Sistólica: ${user.classificationBloodPressure.systolicClassification} / Diastólica: ${user.classificationBloodPressure.diastolicClassification}`)
+
+
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == anthropometryFunctions == **/
