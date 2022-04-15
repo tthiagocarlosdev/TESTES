@@ -3745,8 +3745,6 @@ Sistólica: Normal / Diastólica: Normal
 
 Chegamos ao fim da parte de **Cardiorrespiratório**. Agora vamos entrar na próxima etapa, **Antropometria**, Let's Go!
 
-PAREI
-
 ## Antropometria
 
 Vamos para a próxima etapa, onde vamos construir a parte de **Antropometria**. Para isto vamos criar o arquivo **anthropometryFunctions.js**. Dentro deste arquivo vamos:
@@ -3776,51 +3774,61 @@ module.exports = {
 No arquivo **saf.js** vamos fazer a requisição do arquivo **anthropometryFunctions.js**:
 
 ```js
-const  { anthropometryFunctions } = require('./anthropometryFunctions')
+/* physical assessment system */
+
+const { headerFunctions } = require('./headerFunctions')
+const { personalDataFunctions } = require('./personalDataFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { anamnesisQuestions } = require('./anamnesisFunctions')
+const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
+const { percentageValues } = require('./cardiorespiratoryFunctions')
+const { anthropometryFunctions } = require('./anthropometryFunctions')
 ```
 
 ### Peso Corporal
 
-Agora vamos criar a function **bodyWeight( )** que vai solicitar do usuário o seu peso corporal. Esta function só poderá aceitar número real, com uma casa decimal. Então, vamos fazer com que ela aceite de **0.0** até **1000.0** usando expressões regulares. Caso o usuário digite qualquer coisa diferente disso, a function **incorrectValue( )** deverá ser chamada e o usuário deverá colocar um valor de peso correto. Com o usuário inserindo o valor correto, a function retorna o valor do peso corporal inserido pelo usuário. Logo, em **anthropometryFunctions.js**:
+Agora vamos criar a function **bodyWeight( )** que vai solicitar do usuário o seu peso corporal. Esta function só poderá aceitar números (inteiro/real), com uma casa decimal. Então, vamos fazer com que ela aceite de **0.0** até **1000.0** usando expressões regulares. Caso o usuário digite qualquer coisa diferente disso, a function **incorrectValue( )** deverá ser chamada e o usuário deverá colocar um valor de peso correto. Com o usuário inserindo o valor correto, a function retorna o valor do peso corporal inserido pelo usuário. Logo, em **anthropometryFunctions.js**:
 
 ```js
 bodyWeight(){
 
     let bodyWeight = 0
-    let itsRealNumber = true
-    let regularExpressionFromZeroToThousand = /(^[0-9]\.[0-9]$)|(^[1-9][0-9]\.[0-9]$)|(^[1-9][0-9]{2}\.[0-9]$)|(^[1][0]{3}\.[0-9]$)/
+    let itsRegexNumber = true
+    let regexFromZeroToThousand = /(^[0-9]\.[0-9]$)|(^[1-9][0-9]\.[0-9]$)|(^[1-9][0-9]{2}\.[0-9]$)|(^[1][0]{3}\.[0]$)|(^[0-9]$)|(^[1-9][0-9]$)|(^[1-9][0-9]{2}$)|(^[1][0]{3}$)/
   
     do{
   
-      bodyWeight = input.question('Digite seu peso (kg)[00.0]: ')
-      itsRealNumber = validationFunctions.isRegularExpression(bodyWeight, regularExpressionFromZeroToThousand)
-      validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+      bodyWeight = input.question('Digite seu peso [0000.0](kg): ')
+      itsRegexNumber = validationFunctions.isRegularExpression(bodyWeight, regexFromZeroToThousand)
+      validationFunctions.incorrectValue(false, !itsRegexNumber, "Antropometria")
   
-    }while(!itsRealNumber)
+    }while(!itsRegexNumber)
   
-    return bodyWeight
+    return Number(bodyWeight)
     
   },
 ```
 
-Em **saf.js** vamos criar a variável **bodyWeight** que receberá como valor o retorno da function **bodyWeight( )**, em seguinda mostramos o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **bodyWeight** que receberá como valor o retorno da function **bodyWeight( )**, em seguinda mostramos o resultado:
 
 ```js
+console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
+
 // variables anthropometryFunctions
-const bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyWeight = anthropometryFunctions.bodyWeight()
 ```
 
 ```js
-console.clear() // temporary
-headerFunctions.systemHeader() // temporary
-headerFunctions.subTitle("Antropometria") // temporary
 // show results anthropometryFunctions
-// console.log(`===============================`) 
-// headerFunctions.subTitle("Antropometria")
-console.log(`Peso Corporal: ${bodyWeight} kilos.`)
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+headerFunctions.baseboard()
 ```
 
-Para executar, avamos comentar as outras partes, deixando apenas **variables anthropometryFunctions** e **show results anthropometryFunctions** ativos, logo:
+Para executar, vamos comentar as outras partes, deixando apenas **variables anthropometryFunctions** e **show results anthropometryFunctions** ativos, logo:
 
 ```shell
 ===============================
@@ -3828,42 +3836,58 @@ Para executar, avamos comentar as outras partes, deixando apenas **variables ant
 ===============================
            Antropometria            
 ===============================
-Peso Corporal: 95.0 kilos.
+Digite seu peso [0000.0](kg): 94.3
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 94.3 kilos
 ===============================
 ```
 
 ### Estatura
 
-Agora vamos criar a function **stature( )** que vai solicitar do usuário a sua estatura corporal. Esta function só poderá aceitar número real, com duas casas decimais. Então, vamos fazer com que ela aceite de **0.00** até **9.99** usando expressões regulares. Caso o usuário digite qualquer coisa diferente disso, a function **incorrectValue( )** deverá ser chamada e o usuário deverá colocar um valor de estatura correto. Com o usuário inserindo o valor correto, a function retorna o valor da estatura corporal inserida pelo usuário. Logo, em **anthropometryFunctions.js**:
+Agora vamos criar a function **stature( )** que vai solicitar do usuário a sua estatura corporal. Esta function só poderá aceitar números com duas casas decimais. Então, vamos fazer com que ela aceite de **0.00** até **9.99** usando expressões regulares. Caso o usuário digite qualquer coisa diferente disso, a function **incorrectValue( )** deverá ser chamada e o usuário deverá colocar um valor de estatura correto. Com o usuário inserindo o valor correto, a function retorna o valor da estatura corporal inserida pelo usuário. Logo, em **anthropometryFunctions.js**:
 
 ```js
 stature(){
 
     let bodyStature = 0
-    let itsRealNumber = true
-    let regularExpressionZeroToNinePointNinetyNine = /(^[0-9]\.([0-9]){2}$)/
+    let itsRegexNumber = true
+    let regexZeroToNinePointNinetyNine = /(^[0-9]\.([0-9]){2}$)/
   
     do{
   
-      bodyStature =input.question('Digite sua estatura (m)[0.00]: ')
-      itsRealNumber = validationFunctions.isRegularExpression(bodyStature, regularExpressionZeroToNinePointNinetyNine)
-      validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+      bodyStature =input.question('Digite sua estatura [0.00](m): ')
+      itsRegexNumber = validationFunctions.isRegularExpression(bodyStature, regexZeroToNinePointNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRegexNumber, "Antropometria")
   
-    }while(!itsRealNumber)
+    }while(!itsRegexNumber)
     
-    return bodyStature
+    return Number(bodyStature)
   
   },
 ```
 
-Em **saf.js** vamos criar a variável **bodyStature** que receberá como valor o retorno da function **stature( )**, em seguinda mostramos o resultado:
+Em **saf.js** vamos inserir no objeto _**user**_ a propriedade **bodyStature** que receberá como valor o retorno da function **stature( )**, em seguinda mostramos o resultado:
 
 ```js
-const bodyStature = anthropometryFunctions.stature()
+// variables anthropometryFunctions
+user.bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyStature = anthropometryFunctions.stature()
 ```
 
 ```js
-console.log(`Estatura Corporal: ${bodyStature} metros.`)
+// show results anthropometryFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${user.bodyStature} metros`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -3874,32 +3898,53 @@ Ao executar o programa:
 ===============================
            Antropometria            
 ===============================
-Peso Corporal: 85.5 kilos.
-Estatura Corporal: 1.86 metros.
+Digite seu peso [0000.0](kg): 94.4
+Digite sua estatura [0.00](m): 1.86
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 94.4 kilos
+Estatura Corporal: 1.86 metros
 ===============================
 ```
 
 ### Índice de Massa Corporal - IMC
 
-Function **bodyMassIndex( )** que vai determinar o **Índice de Massa Corporal - IMC** do usuário. Esta function recebe como parâmetro o **peso** e a **estatura** do usuário e retorna o **IMC** com duas casa decimais. A fórmula para determinar o IMC é ` IMC = (peso / (estatura * estatura))`. Logo, em **anthropometryFunctions.js**:
+Function **bodyMassIndex( )** que vai determinar o **Índice de Massa Corporal - IMC** do usuário. Esta function recebe o objeto _**user**_ como parâmetro e retorna o **IMC** com duas casa decimais. A fórmula para determinar o IMC é ` IMC = (peso / (estatura * estatura))`. Logo, em **anthropometryFunctions.js**:
 
 ```js
-bodyMassIndex(weightValue, heightValue){
+bodyMassIndex(objectValue){
 
+    const weight = objectValue.bodyWeight
+    const height = objectValue.bodyStature
     // IMC = peso / estatura * estatura
-    return (weightValue / (heightValue * heightValue)).toFixed(2)
+    return Number((weight / (height * height)).toFixed(2))
   
   },
 ```
 
-Em **saf.js** vamos criar a variável **bodyMassIndex** para receber a function **bodyMassIndex( )** passando como parâmetro as variáveis **bodyWeight** e **bodyStature**:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **bodyMassIndex** que vai receber como valor o retorno da function **bodyMassIndex( )** passando como parâmetro o objeto _**user**_:
 
 ```js
-const bodyMassIndex = anthropometryFunctions.bodyMassIndex(bodyWeight, bodyStature)
+// variables anthropometryFunctions
+user.bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyStature = anthropometryFunctions.stature()
+user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user)
 ```
 
 ```js
-console.log(`Índice de Massa Corporal - IMC: ${bodyMassIndex}`)
+// show results anthropometryFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${user.bodyStature} metros`)
+console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -3910,15 +3955,25 @@ Ao executar o programa:
 ===============================
            Antropometria            
 ===============================
-Peso Corporal: 95.0 kilos.
-Estatura Corporal: 1.86 metros.
+Digite seu peso [0000.0](kg): 95
+Digite sua estatura [0.00](m): 1.86
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95 kilos
+Estatura Corporal: 1.86 metros
 Índice de Massa Corporal - IMC: 27.46
 ===============================
 ```
 
 ### Índice de Massa Corporal - IMC - Classificação
 
-Agora vamos criar a function **bodyMassIndexClassification( )** que vai retornar a classificação do IMC. Esta function recebe como parâmetro o **IMC** do usuário. Em seguida retorna a classificação de acordo com a tabela abaixo:
+Agora vamos criar a function **bodyMassIndexClassification( )** que vai retornar a **classificação do IMC**. Esta function recebe como parâmetro o objeto _**user**_. Em seguida retorna a classificação de acordo com a tabela abaixo:
 
 | Índice de Massa Corporal - IMC - Classificação |
 | :--------------------------------------------: |
@@ -3933,21 +3988,28 @@ Agora vamos criar a function **bodyMassIndexClassification( )** que vai retornar
 Em **anthropometryFunctions.js**:
 
 ```js
-bodyMassIndexClassification(bodyMassIndexValue){
+bodyMassIndexClassification(objectValue){
 
+    const bodyMassIndexValue = objectValue.bodyMassIndex
     let classification = ``
+    const gradeTwoThinness = bodyMassIndexValue < 17
+    const underWeight = bodyMassIndexValue < 18.5
+    const normalWeight = bodyMassIndexValue < 25
+    const overweight = bodyMassIndexValue < 30
+    const levelOneObesity = bodyMassIndexValue < 35
+    const levelTwoObesity = bodyMassIndexValue < 40
   
-    if(bodyMassIndexValue < 17){
+    if(gradeTwoThinness){
       classification = `Magreza Grau 2`
-    } else if(bodyMassIndexValue < 18.5){
+    } else if(underWeight){
       classification = `Abaixo do peso`
-    } else if(bodyMassIndexValue < 25){
+    } else if(normalWeight){
       classification = `Peso Normal`
-    } else if(bodyMassIndexValue < 30){
+    } else if(overweight){
       classification = `Sobrepeso`
-    } else if(bodyMassIndexValue < 35){
+    } else if(levelOneObesity){
       classification = `Obesidade nível 1`
-    } else if(bodyMassIndexValue < 40){
+    } else if(levelTwoObesity){
       classification = `Obesidade nível 2`
     } else{
       classification = `Obesidade Morbida`
@@ -3958,14 +4020,25 @@ bodyMassIndexClassification(bodyMassIndexValue){
   },
 ```
 
-Em **saf.js** vamos criar a variável **bodyMassIndexClassification** que recebe a function **bodyMassIndexClassification( )**. Devemos passar a variável **bodyMassIndex** na function **bodyMassIndexClassification( )**. Depois vamos mostrar o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **bodyMassIndexClassification** que recebe como valor o retorno da function **bodyMassIndexClassification( )**. Devemos passar como parâmetro o objeto _**user**_ na function **bodyMassIndexClassification( )**. Depois vamos mostrar o resultado:
 
 ```js
-const bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(bodyMassIndex)
+// variables anthropometryFunctions
+user.bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyStature = anthropometryFunctions.stature()
+user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user)
+user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user)
 ```
 
 ```js
-console.log(`Classificação IMC: ${bodyMassIndexClassification}`)
+// show results anthropometryFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${user.bodyStature} metros`)
+console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
+console.log(`Classificação IMC: ${user.bodyMassIndexClassification}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -3976,8 +4049,18 @@ Ao executar o programa:
 ===============================
            Antropometria            
 ===============================
-Peso Corporal: 95.0 kilos.
-Estatura Corporal: 1.86 metros.
+Digite seu peso [0000.0](kg): 95
+Digite sua estatura [0.00](m): 1.86
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95 kilos
+Estatura Corporal: 1.86 metros
 Índice de Massa Corporal - IMC: 27.46
 Classificação IMC: Sobrepeso
 ===============================
@@ -3985,7 +4068,7 @@ Classificação IMC: Sobrepeso
 
 ### Perimetria
 
-Function **bodyPerimetry( )** vai solicitar para o usuário digitar as medidas perimétricas de algumas partes do seu corpo em centímetros, como: **Braço**, **Antebraço**, **Cintura**, **Quadril**, **Coxa** e **Panturrilha**. Está function aceitará apenas números de um dígito e uma casa decimal até três dígitos e uma casa decimal. Qualquer valor diferente disso, a function **incorrectValue( )** deverá ser chamada e o usuário deverá digitar o valor correto. Esta function terá como retorno um **objeto** contendo como propriedades as partes do corpo listada acima e seus respectivos valores. Logo em **anthropometryFunctions.js**:
+Function **bodyPerimetry( )** vai solicitar para o usuário digitar as medidas perimétricas de algumas partes do seu corpo em centímetros, como: **Braço**, **Antebraço**, **Cintura**, **Quadril**, **Coxa** e **Panturrilha**. Esta function só poderá aceitar números (inteiro/real), com uma casa decimal. Então, vamos fazer com que ela aceite de **0.0** até **1000.0** usando expressões regulares. Caso seja digitado algum valor diferente disso, a function **incorrectValue( )** deverá ser chamada e o usuário deverá digitar o valor correto. Esta function terá como retorno um objeto (_**measurementPoints**_) contendo como propriedades as partes do corpo listada acima e seus respectivos valores. Logo em **anthropometryFunctions.js**:
 
 ```js
 bodyPerimetry(){
@@ -3998,19 +4081,19 @@ bodyPerimetry(){
       Coxa: 0,
       Panturrilha: 0
     } 
-    let itsRealNumber = true
-    let regexThreeWholeDigitsAndOneDecimalPlace = /(^[0-9]\.[0-9]$)|(^[0-9]{2}\.[0-9]$)|(^[0-9]{3}\.[0-9]$)/
+    let itsRegexNumber = true
+    const regexFromZeroToThousand = /(^[0-9]\.[0-9]$)|(^[1-9][0-9]\.[0-9]$)|(^[1-9][0-9]{2}\.[0-9]$)|(^[1][0]{3}$)|(^[0-9]$)|(^[1-9][0-9]$)|(^[1-9][0-9]{2}$)|(^[1][0]{3}$)/
   
     for(let bodyPart in measurementPoints){
   
       do{
   
-        measurementPoints[bodyPart] = input.question(`Digite a perimetria - ${bodyPart} (cm)[000.0]: `)
+        measurementPoints[bodyPart] = input.question(`Digite a perimetria - ${bodyPart} [000.0](cm): `)
   
-        itsRealNumber = validationFunctions.isRegularExpression(measurementPoints[bodyPart], regexThreeWholeDigitsAndOneDecimalPlace)
-        validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+        itsRegexNumber = validationFunctions.isRegularExpression(measurementPoints[bodyPart], regexFromZeroToThousand)
+        validationFunctions.incorrectValue(false, !itsRegexNumber, "Antropometria")
   
-      }while(!itsRealNumber)
+      }while(!itsRegexNumber)
       
     }
   
@@ -4019,21 +4102,27 @@ bodyPerimetry(){
   },
 ```
 
-Em **saf.js** vamos criar a variável **bodyPerimeter** que vai receber o objeto retornado da function **bodyPerimetry( )**.
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade**bodyPerimeter** que vai receber o objeto retornado da function **bodyPerimetry( )**.
 
 ```js
-const bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+// variables anthropometryFunctions
+user.bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyStature = anthropometryFunctions.stature()
+user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user)
+user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user)
+user.bodyPerimeter = anthropometryFunctions.bodyPerimetry()
 ```
 
-Para mostrar o resultado, vamos criar outra function, **showPerimeter( )**. Esta funcion receberá como parâmetro o um objeto e mostrará as propriedades e seus repectivos valores. Log, em **anthropometryFunctions.js**:
+Para mostrar o resultado, vamos criar outra function, **showPerimeter( )**. Esta funcion receberá como parâmetro o objeto _**user**_ e mostrará cada parte do corpo e seus repectivos valores. Logo, em **anthropometryFunctions.js**:
 
-```javascript
+```js
 showPerimeter(objectValue){
   
+    const perimeters = objectValue.bodyPerimeter
     console.log('Perimetria Corporal:')
     
-    for(let property in objectValue){
-      console.log(`${property}: ${objectValue[property]} cm`) 
+    for(let property in perimeters){
+      console.log(`${property}: ${perimeters[property]} cm`) 
     }
   
   },
@@ -4041,29 +4130,57 @@ showPerimeter(objectValue){
 
 Em **saf.js** chamamos a function **showPerimeter( )** e passamos como parâmetro a variável **bodyPerimeter**:
 
-```javascript
-anthropometryFunctions.showPerimeter(bodyPerimeter)
+```js
+// show results anthropometryFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${user.bodyStature} metros`)
+console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
+console.log(`Classificação IMC: ${user.bodyMassIndexClassification}`)
+anthropometryFunctions.showPerimeter(user)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
 
 ```shell
 ===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
            Antropometria            
 ===============================
-Peso Corporal: 95.0 kilos.
-Estatura Corporal: 1.86 metros.
-Índice de Massa Corporal - IMC: 27.46
+Digite seu peso [0000.0](kg): 95.5
+Digite sua estatura [0.00](m): 1.86
+Digite a perimetria - Braço [000.0](cm): 30.2
+Digite a perimetria - Antebraço [000.0](cm): 30
+Digite a perimetria - Cintura [000.0](cm): 85.7
+Digite a perimetria - Quadril [000.0](cm): 90
+Digite a perimetria - Coxa [000.0](cm): 56.7
+Digite a perimetria - Panturrilha [000.0](cm): 45
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 95.5 kilos
+Estatura Corporal: 1.86 metros
+Índice de Massa Corporal - IMC: 27.6
 Classificação IMC: Sobrepeso
 Perimetria Corporal:
-Braço: 40.0 cm
-Antebraço: 30.0 cm
-Cintura: 85.0 cm
-Quadril: 95.0 cm
-Coxa: 60.0 cm
-Panturrilha: 40.0 cm
+Braço: 30.2 cm
+Antebraço: 30 cm
+Cintura: 85.7 cm
+Quadril: 90 cm
+Coxa: 56.7 cm
+Panturrilha: 45 cm
 ===============================
 ```
+
+PAREI
 
 ### Relação Cintura Quadril
 

@@ -1090,12 +1090,12 @@ function classificationOfBloodPressure(objectValue){
 
 }
 
-user.restingBloodPressure = bloodPressure()
-user.classificationBloodPressure = classificationOfBloodPressure(user)
-console.log(user.classificationBloodPressure)
+// user.restingBloodPressure = bloodPressure()
+// user.classificationBloodPressure = classificationOfBloodPressure(user)
+// console.log(user.classificationBloodPressure)
 
-console.log(`Classificação da Pressão Arterial`)
-console.log(`Sistólica: ${user.classificationBloodPressure.systolicClassification} / Diastólica: ${user.classificationBloodPressure.diastolicClassification}`)
+// console.log(`Classificação da Pressão Arterial`)
+// console.log(`Sistólica: ${user.classificationBloodPressure.systolicClassification} / Diastólica: ${user.classificationBloodPressure.diastolicClassification}`)
 
 
 
@@ -1103,17 +1103,16 @@ console.log(`Sistólica: ${user.classificationBloodPressure.systolicClassificati
 /** == anthropometryFunctions == **/
 /** == Body Weight == **/
 
+// deleted
 function bodyWeight(){
 
   let bodyWeight = 0
   let itsRealNumber = true
   let regularExpressionFromZeroToThousand = /(^[0-9]\.[0-9]$)|(^[1-9][0-9]\.[0-9]$)|(^[1-9][0-9]{2}\.[0-9]$)|(^[1][0]{3}\.[0-9]$)/
-  
-  
 
   do{
 
-    bodyWeight = input.question('Digite seu peso (kg)[0000.0]: ')
+    bodyWeight = input.question('Digite seu peso (kg)[00.0]: ')
     itsRealNumber = validationFunctions.isRegularExpression(bodyWeight, regularExpressionFromZeroToThousand)
     validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
 
@@ -1123,26 +1122,62 @@ function bodyWeight(){
   
 }
 
+function bodyWeight(){
+
+  let bodyWeight = 0
+  let itsRegexNumber = true
+  let regexFromZeroToThousand = /(^[0-9]\.[0-9]$)|(^[1-9][0-9]\.[0-9]$)|(^[1-9][0-9]{2}\.[0-9]$)|(^[1][0]{3}\.[0]$)|(^[0-9]$)|(^[1-9][0-9]$)|(^[1-9][0-9]{2}$)|(^[1][0]{3}$)/
+
+  do{
+
+    bodyWeight = input.question('Digite seu peso [0000.0](kg): ')
+    itsRegexNumber = validationFunctions.isRegularExpression(bodyWeight, regexFromZeroToThousand)
+    validationFunctions.incorrectValue(false, !itsRegexNumber, "Antropometria")
+
+  }while(!itsRegexNumber)
+
+  return Number(bodyWeight)
+  
+}
+
 // console.log(bodyWeight())
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Stature == **/
 
+// function stature(){
+
+//   let bodyStature = 0
+//   let itsRealNumber = true
+//   let regularExpressionZeroToNinePointNinetyNine = /(^[0-9]\.([0-9]){2}$)/
+
+//   do{
+
+//     bodyStature =input.question('Digite sua estatura (m)[0.00]: ')
+//     itsRealNumber = validationFunctions.isRegularExpression(bodyStature, regularExpressionZeroToNinePointNinetyNine)
+//     validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+
+//   }while(!itsRealNumber)
+  
+//   return bodyStature
+
+// }
+
 function stature(){
 
   let bodyStature = 0
-  let itsRealNumber = true
-  let regularExpressionZeroToNinePointNinetyNine = /(^[0-9]\.([0-9]){2}$)/
+  let itsRegexNumber = true
+  let regexZeroToNinePointNinetyNine = /(^[0-9]\.([0-9]){2}$)/
 
   do{
 
-    bodyStature =input.question('Digite sua estatura (m)[0.00]: ')
-    itsRealNumber = validationFunctions.isRegularExpression(bodyStature, regularExpressionZeroToNinePointNinetyNine)
-    validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+    bodyStature =input.question('Digite sua estatura [0.00](m): ')
+    itsRegexNumber = validationFunctions.isRegularExpression(bodyStature, regexZeroToNinePointNinetyNine)
+    validationFunctions.incorrectValue(false, !itsRegexNumber, "Antropometria")
 
-  }while(!itsRealNumber)
+  }while(!itsRegexNumber)
   
-  return bodyStature
+  return Number(bodyStature)
 
 }
 
@@ -1151,21 +1186,28 @@ function stature(){
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Body Mass Index - BMI == **/
 
-function bodyMassIndex(weightValue, heightValue){
+function bodyMassIndex(objectValue){
 
+  const weight = objectValue.bodyWeight
+  const height = objectValue.bodyStature
   // IMC = peso / estatura * estatura
-  return (weightValue / (heightValue * heightValue)).toFixed(2)
+  return Number((weight / (height * height)).toFixed(2))
 
 }
+
+user.bodyWeight = 95.0
+user.bodyStature = 1.86
 
 let peso = 95.0
 let altura = 1.86
 
-// console.log(bodyMassIndex(peso, altura))
+// user.bodyMassIndex = bodyMassIndex(user)
+// console.log(user.bodyMassIndex)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Body Mass Index Classification == **/
 
+// deleted
 function bodyMassIndexClassification(bodyMassIndexValue){
 
   let classification = ``
@@ -1198,9 +1240,44 @@ function bodyMassIndexClassification(bodyMassIndexValue){
 // console.log(bodyMassIndexClassification(38.9))
 // console.log(bodyMassIndexClassification(40))
 
+function bodyMassIndexClassification(objectValue){
+
+  const bodyMassIndexValue = objectValue.bodyMassIndex
+  let classification = ``
+  const gradeTwoThinness = bodyMassIndexValue < 17
+  const underWeight = bodyMassIndexValue < 18.5
+  const normalWeight = bodyMassIndexValue < 25
+  const overweight = bodyMassIndexValue < 30
+  const levelOneObesity = bodyMassIndexValue < 35
+  const levelTwoObesity = bodyMassIndexValue < 40
+
+  if(gradeTwoThinness){
+    classification = `Magreza Grau 2`
+  } else if(underWeight){
+    classification = `Abaixo do peso`
+  } else if(normalWeight){
+    classification = `Peso Normal`
+  } else if(overweight){
+    classification = `Sobrepeso`
+  } else if(levelOneObesity){
+    classification = `Obesidade nível 1`
+  } else if(levelTwoObesity){
+    classification = `Obesidade nível 2`
+  } else{
+    classification = `Obesidade Morbida`
+  }
+
+  return classification
+
+}
+
+// console.log(bodyMassIndexClassification(user))
+
+
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Body Perimetry == **/
 
+// deleted
 function bodyPerimetry(){
 
   let measurementPoints = {
@@ -1230,24 +1307,56 @@ function bodyPerimetry(){
   return measurementPoints
 
 }
-
 // let perimetriaCoporporal = bodyPerimetry()
 
+function bodyPerimetry(){
+
+  let measurementPoints = {
+    Braço: 0,
+    Antebraço: 0,
+    Cintura: 0,
+    Quadril: 0,
+    Coxa: 0,
+    Panturrilha: 0
+  } 
+  let itsRegexNumber = true
+  const regularExpressionFromZeroToThousand = /(^[0-9]\.[0-9]$)|(^[1-9][0-9]\.[0-9]$)|(^[1-9][0-9]{2}\.[0-9]$)|(^[1][0]{3}$)|(^[0-9]$)|(^[1-9][0-9]$)|(^[1-9][0-9]{2}$)|(^[1][0]{3}$)/
+
+  for(let bodyPart in measurementPoints){
+
+    do{
+
+      measurementPoints[bodyPart] = input.question(`Digite a perimetria - ${bodyPart} [000.0](cm): `)
+
+      itsRegexNumber = validationFunctions.isRegularExpression(measurementPoints[bodyPart], regularExpressionFromZeroToThousand)
+      validationFunctions.incorrectValue(false, !itsRegexNumber, "Antropometria")
+
+    }while(!itsRegexNumber)
+    
+  }
+
+  return measurementPoints
+
+}
+
+user.bodyPerimeter = bodyPerimetry()
+console.log(user.bodyPerimeter)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Show Perimeter == **/
 
 function showPerimeter(objectValue){
   
+  const perimeters = objectValue.bodyPerimeter
   console.log('Perimetria Corporal:')
   
-  for(let property in objectValue){
-    console.log(`${property}: ${objectValue[property]} cm`) 
+  for(let property in perimeters){
+    console.log(`${property}: ${perimeters[property]} cm`) 
   }
 
 }
 
-// console.log(showPerimeter(perimetriaCoporporal))
+console.log(showPerimeter(user))
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Hip Waist Ratio == **/

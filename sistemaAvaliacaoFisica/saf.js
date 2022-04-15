@@ -6,15 +6,16 @@ const { anamnesisFunctions } = require('./anamnesisFunctions')
 const { anamnesisQuestions } = require('./anamnesisFunctions')
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 const { percentageValues } = require('./cardiorespiratoryFunctions')
+const { anthropometryFunctions } = require('./anthropometryFunctions')
 
 /*
-const { anthropometryFunctions } = require('./anthropometryFunctions')
+
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
 const { aerobicFunctions } = require('./aerobicFunctions')*/
 
 const user = { }
-// user.age = 34 // temporary
-
+user.age = 34 // temporary
+/*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
@@ -56,7 +57,7 @@ user.percentageValues = percentageValues
 user.workingHeartRate = cardiorespiratoryFunctions.workingHeartRate(user)
 user.restingBloodPressure = cardiorespiratoryFunctions.bloodPressure()
 user.classificationBloodPressure = cardiorespiratoryFunctions.classificationOfBloodPressure(user)
-/*
+*/
 
 console.clear()
 headerFunctions.systemHeader()
@@ -65,9 +66,13 @@ headerFunctions.subTitle("Antropometria")
 // variables anthropometryFunctions
 user.bodyWeight = anthropometryFunctions.bodyWeight()
 user.bodyStature = anthropometryFunctions.stature()
-user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user.bodyWeight, user.bodyStature)
-user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user.bodyMassIndex)
+user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user)
+user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user)
 user.bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+/*
+
+
+
 user.hipWaistRatio = anthropometryFunctions.hipWaistRatio(user.bodyPerimeter.Cintura, user.bodyPerimeter.Quadril)
 user.waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(user.sexNumber, user.age, user.hipWaistRatio)
 user.waistCircumference = anthropometryFunctions.waistCircumferenceClassification(user.sexNumber, user.bodyPerimeter.Cintura)
@@ -106,7 +111,7 @@ user.aerobicFunctionalDeficitClassification = aerobicFunctions.aerobicFunctional
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Observações")
-user.comments = personalDataFunctions.comments()*/
+user.comments = personalDataFunctions.comments()
 
 // show results personalDataFunctions
 console.clear()
@@ -143,18 +148,21 @@ cardiorespiratoryFunctions.showWorkingHeartRate(user)
 console.log(`Pressão Arterial de Repouso: ${user.restingBloodPressure.bloodPressureString} mmHg.`)
 console.log(`Classificação da Pressão Arterial`)
 console.log(`Sistólica: ${user.classificationBloodPressure.systolicClassification} / Diastólica: ${user.classificationBloodPressure.diastolicClassification}`)
-headerFunctions.baseboard()
-/*
+*/
 
 // show results anthropometryFunctions
-headerFunctions.baseboard()
+headerFunctions.systemHeader()
 headerFunctions.subTitle("Antropometria")
-
 console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
 console.log(`Estatura Corporal: ${user.bodyStature} metros`)
 console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
 console.log(`Classificação IMC: ${user.bodyMassIndexClassification}`)
-anthropometryFunctions.showPerimeter(user.bodyPerimeter)
+anthropometryFunctions.showPerimeter(user)
+headerFunctions.baseboard()
+
+/*
+
+
 console.log(`Relação Cintura Quadril- RCQ: ${user.hipWaistRatio}`)
 console.log(`Classificação RCQ: ${user.waistHipRatioClassification}`)
 console.log(`Circunfência cintura - Classificação: ${user.waistCircumference}`)
