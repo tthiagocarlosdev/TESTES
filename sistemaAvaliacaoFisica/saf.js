@@ -15,6 +15,7 @@ const { aerobicFunctions } = require('./aerobicFunctions')*/
 
 const user = { }
 user.age = 34 // temporary
+user.sexNumber = 1 // temporary
 /*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
@@ -69,15 +70,16 @@ user.bodyStature = anthropometryFunctions.stature()
 user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user)
 user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user)
 user.bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+user.hipWaistRatio = anthropometryFunctions.hipWaistRatio(user)
+user.waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(user)
+user.waistCircumference = anthropometryFunctions.waistCircumferenceClassification(user)
+user.subcutaneousFolds = anthropometryFunctions.subcutaneousMeasures()
+user.fatPercentage = anthropometryFunctions.fatPercentage(user)
+
 /*
 
 
 
-user.hipWaistRatio = anthropometryFunctions.hipWaistRatio(user.bodyPerimeter.Cintura, user.bodyPerimeter.Quadril)
-user.waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(user.sexNumber, user.age, user.hipWaistRatio)
-user.waistCircumference = anthropometryFunctions.waistCircumferenceClassification(user.sexNumber, user.bodyPerimeter.Cintura)
-user.skinFolds = anthropometryFunctions.subcutaneousMeasures()
-user.fatPercentage = anthropometryFunctions.fatPercentage(user.age, user.sexNumber, user.skinFolds)
 user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(user.sexNumber, user.fatPercentage)
 user.fatBodyMass = anthropometryFunctions.fatBodyMass(user.bodyWeight, user.fatPercentage)
 user.leanBodyMass = anthropometryFunctions.leanBodyMass(user.bodyWeight, user.fatBodyMass)
@@ -158,16 +160,15 @@ console.log(`Estatura Corporal: ${user.bodyStature} metros`)
 console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
 console.log(`Classificação IMC: ${user.bodyMassIndexClassification}`)
 anthropometryFunctions.showPerimeter(user)
+console.log(`Relação Cintura Quadril- RCQ: ${user.hipWaistRatio}`)
+console.log(`Classificação RCQ: ${user.waistHipRatioClassification}`)
+console.log(`Circunfência Cintura - Classificação: ${user.waistCircumference}`)
+anthropometryFunctions.showSubcutaneousFolds(user)
+console.log(`Percentual de Gordura: ${user.fatPercentage}%`)
 headerFunctions.baseboard()
 
 /*
 
-
-console.log(`Relação Cintura Quadril- RCQ: ${user.hipWaistRatio}`)
-console.log(`Classificação RCQ: ${user.waistHipRatioClassification}`)
-console.log(`Circunfência cintura - Classificação: ${user.waistCircumference}`)
-anthropometryFunctions.showSubcutaneousFolds(user.skinFolds)
-console.log(`Percentual de gordura: ${user.fatPercentage}%`)
 console.log(`Classificação % Gordura: ${user.fatPercentageClassification}`)
 console.log(`Massa Corporal Gorda: ${user.fatBodyMass} kilos`)
 console.log(`Massa Corporal Magra: ${user.leanBodyMass} kilos`)

@@ -1339,8 +1339,8 @@ function bodyPerimetry(){
 
 }
 
-user.bodyPerimeter = bodyPerimetry()
-console.log(user.bodyPerimeter)
+// user.bodyPerimeter = bodyPerimetry()
+// console.log(user.bodyPerimeter)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Show Perimeter == **/
@@ -1356,7 +1356,7 @@ function showPerimeter(objectValue){
 
 }
 
-console.log(showPerimeter(user))
+// console.log(showPerimeter(user))
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Hip Waist Ratio == **/
@@ -1369,9 +1369,260 @@ function hipWaistRatio(waistPerimetry, hipPerimetry){
 
 // console.log(hipWaistRatio(perimetriaCoporporal.Cintura, perimetriaCoporporal.Quadril))
 
-/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
-/** == Waist Hip Ratio - Classification == **/
+function hipWaistRatio(objectValue){
 
+  const waistPerimetry = objectValue.bodyPerimeter.Cintura
+  const hipPerimetry = objectValue.bodyPerimeter.Quadril
+
+  return Number((waistPerimetry/ hipPerimetry).toFixed(2))
+
+}
+
+// user.hipWaistRatio = hipWaistRatio(user)
+// console.log(user.hipWaistRatio)
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Waist Hip Ratio - Classification == **/  
+
+function waistHipRatioClassification(objectValue){
+
+  const sexValue = objectValue.sexNumber
+  const ageValue = objectValue.age
+  const waistHipRatioValue = objectValue.hipWaistRatio
+
+  let classification = ``
+  const unidentifiedSex = `[ERROR] Sexo não identificado!` 
+  const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
+  const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
+  const ageBetweenFortyAndFortyNine = ageValue >= 40 && ageValue <= 49
+  const ageBetweenFiftyAndFiftyNine = ageValue >= 50 && ageValue <= 59
+  const ageBetweenSixtyAndSixtyNine = ageValue >= 60 && ageValue <= 69
+  const Lowrisk = `Baixo Risco`
+  const ModerateRisk = `Moderado Risco`
+  const Highrisk = `Alto Risco`
+  const VeryHighRisk = `Muito Alto Risco`
+  const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+
+  switch (sexValue) {
+
+    // masculine - masculine - masculine - masculine - masculine
+    case 1:
+      
+      if(ageBetweenTwentyAndTwentyNine){
+        
+        if(waistHipRatioValue < 0.83){
+          classification = Lowrisk
+        } else if(waistHipRatioValue < 0.89){
+          classification = ModerateRisk
+        } else if(waistHipRatioValue < 0.95){
+          classification = Highrisk
+        } else {
+          classification = VeryHighRisk
+        }
+        
+      } else if(ageBetweenThirtyAndThirtyNine){
+        
+        if(waistHipRatioValue < 0.84){
+          classification = Lowrisk
+        } else if(waistHipRatioValue < 0.92){
+          classification = ModerateRisk
+        } else if(waistHipRatioValue < 0.97){
+          classification = Highrisk
+        } else {
+          classification = VeryHighRisk
+        }
+        
+      } else if(ageBetweenFortyAndFortyNine){
+        
+        if(waistHipRatioValue < 0.88){
+          classification = Lowrisk
+        } else if(waistHipRatioValue < 0.96){
+          classification = ModerateRisk
+        } else if(waistHipRatioValue < 1){
+          classification = Highrisk
+        } else {
+          classification = VeryHighRisk
+        }
+        
+      } else if(ageBetweenFiftyAndFiftyNine){
+        
+        if(waistHipRatioValue < 0.90){
+          classification = Lowrisk
+        } else if(waistHipRatioValue < 0.97){
+          classification = ModerateRisk
+        } else if(waistHipRatioValue < 1.02){
+          classification = Highrisk
+        } else {
+          classification = VeryHighRisk
+        }
+        
+      } else if(ageBetweenSixtyAndSixtyNine){
+        
+        if(waistHipRatioValue < 0.91){
+          classification = Lowrisk
+        } else if(waistHipRatioValue < 0.99){
+          classification = ModerateRisk
+        } else if(waistHipRatioValue < 1.03){
+          classification = Highrisk
+        } else {
+          classification = VeryHighRisk
+        }
+        
+      } else{
+        classification = classificationNotAppliedToAge
+      }
+
+      break;
+    
+    // feminine - feminine - feminine - feminine - feminine
+    case 2:
+      if(ageBetweenTwentyAndTwentyNine){
+        
+        if(waistHipRatioValue < 0.71){
+          classification = Lowrisk
+        } else if(waistHipRatioValue < 0.78){
+          classification = ModerateRisk
+        } else if(waistHipRatioValue < 0.82){
+          classification = Highrisk
+        } else {
+          classification = VeryHighRisk
+        }
+        
+      } else if(ageBetweenThirtyAndThirtyNine){
+        
+        if(waistHipRatioValue < 0.72){
+          classification = Lowrisk
+        } else if(waistHipRatioValue < 0.79){
+          classification = ModerateRisk
+        } else if(waistHipRatioValue < 0.84){
+          classification = Highrisk
+        } else {
+          classification = VeryHighRisk
+        }
+        
+      } else if(ageBetweenFortyAndFortyNine){
+        
+        if(waistHipRatioValue < 0.73){
+          classification = Lowrisk
+        } else if(waistHipRatioValue < 0.80){
+          classification = ModerateRisk
+        } else if(waistHipRatioValue < 0.87){
+          classification = Highrisk
+        } else {
+          classification = VeryHighRisk
+        }
+        
+      } else if(ageBetweenFiftyAndFiftyNine){
+        
+        if(waistHipRatioValue < 0.74){
+          classification = Lowrisk
+        } else if(waistHipRatioValue < 0.82){
+          classification = ModerateRisk
+        } else if(waistHipRatioValue < 0.88){
+          classification = Highrisk
+        } else {
+          classification = VeryHighRisk
+        }
+        
+      } else if(ageBetweenSixtyAndSixtyNine){
+        
+        if(waistHipRatioValue < 0.76){
+          classification = Lowrisk
+        } else if(waistHipRatioValue < 0.84){
+          classification = ModerateRisk
+        } else if(waistHipRatioValue < 0.90){
+          classification = Highrisk
+        } else {
+          classification = VeryHighRisk
+        }
+        
+      } else{
+        classification = classificationNotAppliedToAge
+      }
+
+      break;
+
+    default:
+      classification = unidentifiedSex
+      break;
+  }
+  
+
+  return classification
+
+}
+
+// Test Waist Hip Ration Classification
+const testManWaistHipRatio = {
+  sexNumber: 1,
+  arrayAge: [29, 39, 49, 59, 69, 18, 70],
+  arrayHipWaistRatio: [
+    arrayMen20To29 = [0.82, 0.88, 0.94, 0.95],
+    arrayMen30To39 = [0.83, 0.91, 0.96, 0.97],
+    arrayMen40To49 = [0.87, 0.95, 0.99, 1],
+    arrayMen50To59 = [0.89, 0.96, 1.01, 1.02],
+    arrayMen60To69 = [0.90, 0.98, 1.02, 1.03],
+    arrayMenLessThan20 = [0.82, 0.88, 0.94, 0.95],
+    arrayMenGreaterThan69 = [0.89, 0.96, 1.01, 1.02],
+  ],
+  arrayTitle: [
+    `idade entre 20 e 29 anos`,
+    `idade entre 30 e 39 anos`,
+    `idade entre 40 e 49 anos`,
+    `idade entre 50 e 59 anos`,
+    `idade entre 60 e 69 anos`,
+    `idade menor que 20 anos`,
+    `idade maior que 69 anos`,
+  ]                  
+}
+
+const testWomanWaistHipRatio = {
+  sexNumber: 2,
+  arrayAge: [29, 39, 49, 59, 69, 19, 70],
+  arrayHipWaistRatio: [
+    arrayWoman20To29 = [0.70, 0.77, 0.81, 0.82],
+    arrayWoman30To39 = [0.71, 0.78, 0.83, 0.84],
+    arrayWoman40To49 = [0.72, 0.79, 0.86, 0.87],
+    arrayWoman50To59 = [0.73, 0.81, 0.87, 0.88],
+    arrayWoman60To69 = [0.75, 0.83, 0.89, 0.90],
+    arrayWomanLessThan20 = [0.75, 0.83, 0.89, 0.90],
+    arrayWomanGreaterThan69 = [0.70, 0.77, 0.81, 0.82],
+  ],
+  arrayTitle: [
+    `idade entre 20 e 29 anos`,
+    `idade entre 30 e 39 anos`,
+    `idade entre 40 e 49 anos`,
+    `idade entre 50 e 59 anos`,
+    `idade entre 60 e 69 anos`,
+    `idade menor que 20 anos`,
+    `idade maior que 69 anos`,
+  ]                 
+}
+
+function testClassificationWaistHipRatio(object){
+
+  for(let i = 0; i < object.arrayAge.length; i++){
+    object.age = object.arrayAge[i]
+    console.log(object.arrayTitle[i])
+    for(let j = 0; j < object.arrayHipWaistRatio[i].length; j++){
+      object.hipWaistRatio = object.arrayHipWaistRatio[i][j]
+      // console.log(object.age)
+      // console.log(object.hipWaistRatio)
+      console.log(`RCQ = ${object.hipWaistRatio} - Classificacão = ${waistHipRatioClassification(object)}`)
+    }
+  }
+
+}
+
+// console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
+// testClassificationWaistHipRatio(testManWaistHipRatio)
+// console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
+// testClassificationWaistHipRatio(testWomanWaistHipRatio)
+
+user.sexNumber = 1
+// console.log(waistHipRatioClassification(user))
+
+// deleted
 function waistHipRatioClassification(sexValue, ageValue, waistHipRatioValue){
 
   let classification = ``
@@ -1553,7 +1804,6 @@ function waistHipRatioClassification(sexValue, ageValue, waistHipRatioValue){
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Waist Circumference - Classification == **/
 
-
 function waistCircumferenceClassification(sexValue, waistValue){
 
   classification = ``
@@ -1601,9 +1851,94 @@ function waistCircumferenceClassification(sexValue, waistValue){
 // console.log(waistCircumferenceClassification(2, 87))
 // console.log(waistCircumferenceClassification(2, 88))
 
+
+function waistCircumferenceClassification(objectValue){
+
+  // const waistValue = objectValue.bodyPerimeter.Cintura
+  const waistValue = objectValue.WaistCircumference
+  const sexValue = objectValue.sexNumber
+  const unidentifiedSex = `[ERROR] Sexo não identificado!`
+  const noRisk = `Nenhum Risco`
+  const moderateRisk = `Risco Moderado`
+  const highRisk = `Risco Alto`
+
+  classification = ``
+
+  switch (sexValue) {
+    
+    case 1:
+      
+      if(waistValue < 94){
+        classification = noRisk
+      } else if(waistValue < 102){
+        classification = moderateRisk
+      } else {
+        classification = highRisk
+      }
+
+      break;
+
+    case 2:
+
+      if(waistValue < 80){
+        classification = noRisk
+      } else if(waistValue < 88){
+        classification = moderateRisk
+      } else {
+        classification = highRisk
+      }
+
+      break;
+
+    default:
+      classification = unidentifiedSex
+      break;
+  }
+
+  return classification
+
+}
+
+const testManWaistCircumferenceClassification = {
+  sexNumber: 1,
+  arrayAge: [34],
+  arrayWaistCircumference: [93, 101, 102],
+  arrayTitle: [`Homens`]                  
+}
+const testWomanWaistCircumferenceClassification = {
+  sexNumber: 2,
+  arrayAge: [54],
+  arrayWaistCircumference: [79, 87, 88],
+  arrayTitle: [`Mulheres`]                  
+}
+
+// Test Waist Circumference Classification
+function testWaistCircumferenceClassification(object){
+
+  console.log(object)
+  for(let i = 0; i < object.arrayAge.length; i++){
+    object.age = object.arrayAge[i]
+    console.log(object.arrayTitle[i])
+    for(let j = 0; j < object.arrayWaistCircumference.length; j++){
+      object.WaistCircumference = object.arrayWaistCircumference[j]
+      // console.log(object.age)
+      // console.log(object.WaistCircumference)
+      console.log(`Circunferência = ${object.WaistCircumference} - Classificacão = ${waistCircumferenceClassification(object)}`)
+    }
+  }
+
+}
+
+// console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
+// console.log(testWaistCircumferenceClassification(testManWaistCircumferenceClassification))
+// console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
+// console.log(testWaistCircumferenceClassification(testWomanWaistCircumferenceClassification))
+
+
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Subcutaneous Measures == **/
 
+//deleted
 function subcutaneousMeasures(){
 
   let subcutaneousFolds = {
@@ -1637,6 +1972,39 @@ function subcutaneousMeasures(){
 
 // console.log(subcutaneousMeasures())
 
+function TESTsubcutaneousMeasures(){
+
+  let subcutaneousFolds = {
+    Triciptal: 0,
+    Subescapular: 0,
+    Peitoral: 0,
+    SupraIliaca: 0,
+    Abdominal: 0,
+    Coxa: 0,
+    Panturrilha: 0
+  } 
+  let itsRegexNumber = true
+  let regexFromZeroToNinetyNine = /(^[0-9]$)|(^[0-9]{2}$)/
+  
+  for(let folds in subcutaneousFolds){
+
+    do{
+
+      subcutaneousFolds[folds] = input.question(`Digite a dobra cutânea - ${folds} [00](mm): `)
+
+      itsRegexNumber = validationFunctions.isRegularExpression(subcutaneousFolds[folds], regexFromZeroToNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRegexNumber, "Antropometria")
+
+    }while(!itsRegexNumber)
+
+  }
+
+  return subcutaneousFolds
+
+}
+
+// user.skinFolds = TESTsubcutaneousMeasures()
+// console.log(user.skinFolds)
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == show Subcutaneous Folds == **/
 
@@ -1655,7 +2023,8 @@ function showSubcutaneousFolds(objectValue){
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Fat Percentage == **/
 
-let subcutaneousFolds = {
+let user2 = { }
+const subcutaneousFolds = {
   Triciptal: 7,
   Subescapular: 15,
   Peitoral: 5,
@@ -1663,7 +2032,55 @@ let subcutaneousFolds = {
   Abdominal: 24,
   Coxa: 14,
   Panturrilha: 10
-} 
+}
+user2.subcutaneousFolds = subcutaneousFolds
+user2.age = 34
+user2.sexNumber = 1
+
+function TESTfatPercentage(objectValue){
+
+  const ageValue = objectValue.age
+  const sexValue = objectValue.sexNumber
+  const skinFoldObject = objectValue.subcutaneousFolds
+
+  let sumOfFolds = 0
+  let bodyDensity = 0
+  let fatPercentage = 0
+
+  switch (sexValue) {
+    
+    case 1:
+      
+      sumOfFolds = Number((skinFoldObject.Peitoral + skinFoldObject.Abdominal + skinFoldObject.Coxa))
+      console.log(sumOfFolds)
+      bodyDensity = ((1.10938 - (0.0008267 * sumOfFolds )) + ((0.0000016 * (sumOfFolds * sumOfFolds)) - (0.0002574 * ageValue)))
+      fatPercentage = (((4.95 / bodyDensity) - 4.5 ) * 100).toFixed(2)
+
+      return fatPercentage
+
+      break;
+    
+    case 2:
+
+      sumOfFolds = Number((skinFoldObject.Triciptal + skinFoldObject.SupraIliaca + skinFoldObject.Coxa))
+      bodyDensity = ((1.0994921-(0.0009929 * sumOfFolds)) + ((0.0000023 * (sumOfFolds * sumOfFolds)) - (0.0001392 * ageValue)))
+      fatPercentage = (((5.01 / bodyDensity) - 4.57) * 100).toFixed(2)
+
+      return fatPercentage
+
+      break;
+  
+    default:
+
+      return `[ERROR] Sexo não identificado!`
+
+      break;
+
+  }
+
+}
+
+console.log(TESTfatPercentage(user2))
 
 function sumElements(array){
 
