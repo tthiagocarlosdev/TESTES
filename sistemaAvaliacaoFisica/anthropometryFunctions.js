@@ -433,46 +433,65 @@ const anthropometryFunctions = {
   
   },
 
-  fatPercentageClassification(sexValue, fatPercentageValue){
+  fatPercentageClassification(objectValue){
 
+    const sexValue = objectValue.sexNumber
+    const fatPercentageValue = objectValue.fatPercentage
+  
     let classification = ``
+    const malnutritionClassification = `Desnutrição`
+    const belowAverageClassification = `Abaixo da média`
+    const averageClassification = `Média`
+    const overweightClassification = `Sobrepeso`
+    const obesityClassification = `Obesidade`
+    const unidentifiedSex = `[ERROR] Sexo não identificado!`
+    // male conditions
+    const malnutritionMan = fatPercentageValue < 6
+    const belowAverageMan = fatPercentageValue < 15
+    const averageMan = fatPercentageValue < 16
+    const overweightMan = fatPercentageValue < 25
+    // female conditions
+    const malnutritionWoman = fatPercentageValue < 9
+    const belowAverageWoman = fatPercentageValue < 23
+    const averageWoman = fatPercentageValue < 24
+    const overweightWoman = fatPercentageValue < 32
   
     switch (sexValue) {
       
       case 1:
         
-        if(fatPercentageValue < 6){
-          classification = `Desnutrição`
-        } else if(fatPercentageValue < 15){
-          classification = `Abaixo da média`
-        } else if(fatPercentageValue < 16){
-          classification = `Média`
-        } else if(fatPercentageValue < 25){
-          classification = `Sobrepeso`
+        if(malnutritionMan){
+          classification = malnutritionClassification
+        } else if(belowAverageMan){
+          classification = belowAverageClassification
+        } else if(averageMan){
+          classification = averageClassification
+        } else if(overweightMan){
+          classification = overweightClassification
         } else{
-          classification = `Obesidade`
+          classification = obesityClassification
         }
   
         break;
   
       case 2:
   
-        if(fatPercentageValue < 9){
-          classification = `Desnutrição`
-        } else if(fatPercentageValue < 23){
-          classification = `Abaixo da média`
-        } else if(fatPercentageValue < 24){
-          classification = `Média`
-        } else if(fatPercentageValue < 32){
-          classification = `Sobrepeso`
+        if(malnutritionWoman){
+          classification = malnutritionClassification
+        } else if(belowAverageWoman){
+          classification = belowAverageClassification
+        } else if(averageWoman){
+          classification = averageClassification
+        } else if(overweightWoman){
+          classification = overweightClassification
         } else{
-          classification = `Obesidade`
+          classification = obesityClassification
         }
   
         break;
   
       default:
-        classification = `[ERROR] Sexo não identificado!`
+        classification = unidentifiedSex
         break;
     }
     
@@ -480,21 +499,38 @@ const anthropometryFunctions = {
   
   },
 
-  fatBodyMass(bodyWeight, fatPercentage){
+  fatBodyMass(objectValue){
 
+    const bodyWeight = Number(objectValue.bodyWeight)
+    const fatPercentage = Number(objectValue.fatPercentage)
+  
     return Number(((bodyWeight * fatPercentage) / 100).toFixed(1))
   
   },
 
-  leanBodyMass(bodyWeight, fatBodyMass){
+  leanBodyMass(objectValue){
 
+    const bodyWeight = Number(objectValue.bodyWeight)
+    const fatBodyMass = Number(objectValue.fatBodyMass)
+  
     return Number(bodyWeight - fatBodyMass)
   
   },
 
-  expectedIdealBodyMass(sexNumber, leanBodyMass){
+  expectedIdealBodyMass(objectValue){
 
-    return Number(sexNumber === 1 ? (leanBodyMass / (1 - 0.15)).toFixed(1) : (leanBodyMass / (1 - 0.23)).toFixed(1))
+    const sexNumber = Number(objectValue.sexNumber)
+    const leanBodyMass = Number(objectValue.leanBodyMass)
+    let expectedIdealBodyMass = 0
+    const men = sexNumber === 1
+  
+    if(men){
+      expectedIdealBodyMass = Number((leanBodyMass / (1 - 0.15)).toFixed(1)) 
+    } else {
+      expectedIdealBodyMass =  Number((leanBodyMass / (1 - 0.23)).toFixed(1))
+    }
+    
+    return expectedIdealBodyMass
   
   },
 

@@ -2080,7 +2080,7 @@ function TESTfatPercentage(objectValue){
 
 }
 
-console.log(TESTfatPercentage(user2))
+// console.log(TESTfatPercentage(user2))
 
 function sumElements(array){
 
@@ -2143,52 +2143,52 @@ function fatPercentage(ageValue, sexValue, skinFoldObject){
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Fat percentage - Classification == **/
 
-function fatPercentageClassification(sexValue, fatPercentageValue){
+// function fatPercentageClassification(sexValue, fatPercentageValue){
 
-  let classification = ``
+//   let classification = ``
 
-  switch (sexValue) {
+//   switch (sexValue) {
     
-    case 1:
+//     case 1:
       
-      if(fatPercentageValue < 6){
-        classification = `Desnutrição`
-      } else if(fatPercentageValue < 15){
-        classification = `Abaixo da média`
-      } else if(fatPercentageValue < 16){
-        classification = `Média`
-      } else if(fatPercentageValue < 25){
-        classification = `Sobrepeso`
-      } else{
-        classification = `Obesidade`
-      }
+//       if(fatPercentageValue < 6){
+//         classification = `Desnutrição`
+//       } else if(fatPercentageValue < 15){
+//         classification = `Abaixo da média`
+//       } else if(fatPercentageValue < 16){
+//         classification = `Média`
+//       } else if(fatPercentageValue < 25){
+//         classification = `Sobrepeso`
+//       } else{
+//         classification = `Obesidade`
+//       }
 
-      break;
+//       break;
 
-    case 2:
+//     case 2:
 
-      if(fatPercentageValue < 9){
-        classification = `Desnutrição`
-      } else if(fatPercentageValue < 23){
-        classification = `Abaixo da média`
-      } else if(fatPercentageValue < 24){
-        classification = `Média`
-      } else if(fatPercentageValue < 32){
-        classification = `Sobrepeso`
-      } else{
-        classification = `Obesidade`
-      }
+//       if(fatPercentageValue < 9){
+//         classification = `Desnutrição`
+//       } else if(fatPercentageValue < 23){
+//         classification = `Abaixo da média`
+//       } else if(fatPercentageValue < 24){
+//         classification = `Média`
+//       } else if(fatPercentageValue < 32){
+//         classification = `Sobrepeso`
+//       } else{
+//         classification = `Obesidade`
+//       }
 
-      break;
+//       break;
 
-    default:
-      classification = `[ERROR] Sexo não identificado!`
-      break;
-  }
+//     default:
+//       classification = `[ERROR] Sexo não identificado!`
+//       break;
+//   }
   
-  return classification
+//   return classification
 
-}
+// }
 
 // console.log(fatPercentageClassification(1, 5.99))
 // console.log(fatPercentageClassification(1, 14.99))
@@ -2202,41 +2202,195 @@ function fatPercentageClassification(sexValue, fatPercentageValue){
 // console.log(fatPercentageClassification(2, 31.99))
 // console.log(fatPercentageClassification(2, 32))
 
+function fatPercentageClassification(objectValue){
+
+  const sexValue = objectValue.sexNumber
+  const fatPercentageValue = objectValue.fatPercentage
+
+  let classification = ``
+  const malnutritionClassification = `Desnutrição`
+  const belowAverageClassification = `Abaixo da média`
+  const averageClassification = `Média`
+  const overweightClassification = `Sobrepeso`
+  const obesityClassification = `Obesidade`
+  const unidentifiedSex = `[ERROR] Sexo não identificado!`
+  // male conditions
+  const malnutritionMan = fatPercentageValue < 6
+  const belowAverageMan = fatPercentageValue < 15
+  const averageMan = fatPercentageValue < 16
+  const overweightMan = fatPercentageValue < 25
+  // female conditions
+  const malnutritionWoman = fatPercentageValue < 9
+  const belowAverageWoman = fatPercentageValue < 23
+  const averageWoman = fatPercentageValue < 24
+  const overweightWoman = fatPercentageValue < 32
+
+  switch (sexValue) {
+    
+    case 1:
+      
+      if(malnutritionMan){
+        classification = malnutritionClassification
+      } else if(belowAverageMan){
+        classification = belowAverageClassification
+      } else if(averageMan){
+        classification = averageClassification
+      } else if(overweightMan){
+        classification = overweightClassification
+      } else{
+        classification = obesityClassification
+      }
+
+      break;
+
+    case 2:
+
+      if(malnutritionWoman){
+        classification = malnutritionClassification
+      } else if(belowAverageWoman){
+        classification = belowAverageClassification
+      } else if(averageWoman){
+        classification = averageClassification
+      } else if(overweightWoman){
+        classification = overweightClassification
+      } else{
+        classification = obesityClassification
+      }
+
+      break;
+
+    default:
+      classification = unidentifiedSex
+      break;
+  }
+  
+  return classification
+
+}
+
+// Test Fat Percentage Classification
+const testManFatPercentageClassification = {
+  sexNumber: 1,
+  arrayAge: [34],
+  arrayFatPercentageClassification: [5, 14, 15, 24, 25],
+  arrayTitle: [`Homens`]                  
+}
+const testWomanFatPercentageClassification = {
+  sexNumber: 2,
+  arrayAge: [54],
+  arrayFatPercentageClassification: [8, 22, 23, 31, 32],
+  arrayTitle: [`Mulheres`]                  
+}
+
+// Test Fat Percentage Classification
+function testFatPercentageClassification(object){
+
+  // console.log(object)
+  for(let i = 0; i < object.arrayAge.length; i++){
+    object.age = object.arrayAge[i]
+    console.log(object.arrayTitle[i])
+    for(let j = 0; j < object.arrayFatPercentageClassification.length; j++){
+      object.fatPercentage = object.arrayFatPercentageClassification[j]
+      // console.log(object.age)
+      // console.log(object.WaistCircumference)
+      console.log(`Percentual = ${object.fatPercentage} - Classificacão = ${fatPercentageClassification(object)}`)
+    }
+  }
+
+}
+
+// console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
+// console.log(testFatPercentageClassification(testManFatPercentageClassification))
+// console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
+// console.log(testFatPercentageClassification(testWomanFatPercentageClassification))
+
+
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Fat Body Mass == **/
-
+// deleted
 function fatBodyMass(bodyWeight, fatPercentage){
 
   return Number(((bodyWeight * fatPercentage) / 100).toFixed(1))
 
 }
 
-// console.log(fatBodyMass(95.5, 15.5))
+function fatBodyMass(objectValue){
+
+  const bodyWeight = Number(objectValue.bodyWeight)
+  const fatPercentage = Number(objectValue.fatPercentage)
+
+  return Number(((bodyWeight * fatPercentage) / 100).toFixed(1))
+
+}
+
+// teste function fatBodyMass
+const user3 = {}
+user3.bodyWeight = 94
+user3.fatPercentage = 13.47
+user3.fatBodyMass = fatBodyMass(user3)
+
+console.log(`PESO DE GORDURA: ${user3.fatBodyMass}`)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Lean Body Mass == **/
 
-function leanBodyMass(bodyWeight, fatBodyMass){
+/* deleted
+leanBodyMass(bodyWeight, fatBodyMass){
+
+    return Number(bodyWeight - fatBodyMass)
+  
+  },
+*/
+
+function leanBodyMass(objectValue){
+
+  const bodyWeight = Number(objectValue.bodyWeight)
+  const fatBodyMass = Number(objectValue.fatBodyMass)
 
   return Number(bodyWeight - fatBodyMass)
 
 }
 
-// console.log(leanBodyMass(95.0, 16.13))
+user3.leanBodyMass = leanBodyMass(user3)
+console.log(`MASSA CORPORAL MAGRA: ${user3.leanBodyMass}`)
+
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Expected Ideal Body Mass == **/
 
-function expectedIdealBodyMass(sexNumber, leanBodyMass){
+/* deleted
+expectedIdealBodyMass(sexNumber, leanBodyMass){
 
-  return Number(sexNumber === 1 ? (leanBodyMass / (1 - 0.15)).toFixed(1) : (leanBodyMass / (1 - 0.23)).toFixed(1))
-
-}
-
+    return Number(sexNumber === 1 ? (leanBodyMass / (1 - 0.15)).toFixed(1) : (leanBodyMass / (1 - 0.23)).toFixed(1))
+  
+  },
+*/
 // console.log(expectedIdealBodyMass(1, 78.9))
 // console.log(expectedIdealBodyMass(2, 78.9))
 // console.log(expectedIdealBodyMass(3, 78.9))
 
+function expectedIdealBodyMass(objectValue){
+
+  const sexNumber = Number(objectValue.sexNumber)
+  const leanBodyMass = Number(objectValue.leanBodyMass)
+  let expectedIdealBodyMass = 0
+  const men = sexNumber === 1
+
+  if(men){
+    expectedIdealBodyMass = Number((leanBodyMass / (1 - 0.15)).toFixed(1)) 
+  } else {
+    expectedIdealBodyMass =  Number((leanBodyMass / (1 - 0.23)).toFixed(1))
+  }
+  
+  return expectedIdealBodyMass
+
+}
+
+
+user3.sexNumber = 2
+user.expectedIdealBodyMass = expectedIdealBodyMass(user3)
+console.log(`MASSA IDEAL PREVISTA: ${user.expectedIdealBodyMass}`)
+console.log(user3)
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Neuromuscular Functions == **/
 /** == Flexibility Test == **/

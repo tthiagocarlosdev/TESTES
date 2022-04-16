@@ -4971,11 +4971,9 @@ Percentual de Gordura: 13.47%
 ===============================
 ```
 
-PAREI
-
 ### Percentual de gordura - Classificação
 
-Function **fatPercentageClassification( )** determina a classificação do percentual de gordura do usuário. Esta function recebe como parâmetro o **sexo** e o **percentual de gordura** do usuário. Retorna a classificação de acordo com a tabela abaixo:
+Function **fatPercentageClassification( )** determina a classificação do percentual de gordura do usuário. Esta function recebe como parâmetro o objeto _**user**_, sendo usado os valores das propriedades **sexo** e **percentual de gordura** do usuário. Retorna a classificação de acordo com a tabela abaixo:
 
 | homem                                          | mulher                                         |
 | ---------------------------------------------- | ---------------------------------------------- |
@@ -4988,46 +4986,65 @@ Function **fatPercentageClassification( )** determina a classificação do perce
 Logo em **anthropometryFunctions.js**:
 
 ```js
-fatPercentageClassification(sexValue, fatPercentageValue){
+fatPercentageClassification(objectValue){
 
+    const sexValue = objectValue.sexNumber
+    const fatPercentageValue = objectValue.fatPercentage
+  
     let classification = ``
+    const malnutritionClassification = `Desnutrição`
+    const belowAverageClassification = `Abaixo da média`
+    const averageClassification = `Média`
+    const overweightClassification = `Sobrepeso`
+    const obesityClassification = `Obesidade`
+    const unidentifiedSex = `[ERROR] Sexo não identificado!`
+    // male conditions
+    const malnutritionMan = fatPercentageValue < 6
+    const belowAverageMan = fatPercentageValue < 15
+    const averageMan = fatPercentageValue < 16
+    const overweightMan = fatPercentageValue < 25
+    // female conditions
+    const malnutritionWoman = fatPercentageValue < 9
+    const belowAverageWoman = fatPercentageValue < 23
+    const averageWoman = fatPercentageValue < 24
+    const overweightWoman = fatPercentageValue < 32
   
     switch (sexValue) {
       
       case 1:
         
-        if(fatPercentageValue < 6){
-          classification = `Desnutrição`
-        } else if(fatPercentageValue < 15){
-          classification = `Abaixo da média`
-        } else if(fatPercentageValue < 16){
-          classification = `Média`
-        } else if(fatPercentageValue < 25){
-          classification = `Sobrepeso`
+        if(malnutritionMan){
+          classification = malnutritionClassification
+        } else if(belowAverageMan){
+          classification = belowAverageClassification
+        } else if(averageMan){
+          classification = averageClassification
+        } else if(overweightMan){
+          classification = overweightClassification
         } else{
-          classification = `Obesidade`
+          classification = obesityClassification
         }
   
         break;
   
       case 2:
   
-        if(fatPercentageValue < 9){
-          classification = `Desnutrição`
-        } else if(fatPercentageValue < 23){
-          classification = `Abaixo da média`
-        } else if(fatPercentageValue < 24){
-          classification = `Média`
-        } else if(fatPercentageValue < 32){
-          classification = `Sobrepeso`
+        if(malnutritionWoman){
+          classification = malnutritionClassification
+        } else if(belowAverageWoman){
+          classification = belowAverageClassification
+        } else if(averageWoman){
+          classification = averageClassification
+        } else if(overweightWoman){
+          classification = overweightClassification
         } else{
-          classification = `Obesidade`
+          classification = obesityClassification
         }
   
         break;
   
       default:
-        classification = `[ERROR] Sexo não identificado!`
+        classification = unidentifiedSex
         break;
     }
     
@@ -5036,14 +5053,39 @@ fatPercentageClassification(sexValue, fatPercentageValue){
   },
 ```
 
-Em **saf.js** criar a variável **fatPercentageClassification** que recebe a function **fatPercentageClassification( )** passando como parâmetro **sexNumber** e **fatPercentage**. Em seguinda mostramos o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **fatPercentageClassification** que recebe como valor o retorno  da function **fatPercentageClassification( )** passando como parâmetro o objeto _**user**_. Em seguinda mostramos o resultado:
 
 ```js
-const fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(sexNumber, fatPercentage)
+// variables anthropometryFunctions
+user.bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyStature = anthropometryFunctions.stature()
+user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user)
+user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user)
+user.bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+user.hipWaistRatio = anthropometryFunctions.hipWaistRatio(user)
+user.waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(user)
+user.waistCircumference = anthropometryFunctions.waistCircumferenceClassification(user)
+user.subcutaneousFolds = anthropometryFunctions.subcutaneousMeasures()
+user.fatPercentage = anthropometryFunctions.fatPercentage(user)
+user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(user)
 ```
 
 ```js
-console.log(`Classificaćão % Gordura: ${fatPercentageClassification}`)
+// show results anthropometryFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${user.bodyStature} metros`)
+console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
+console.log(`Classificação IMC: ${user.bodyMassIndexClassification}`)
+anthropometryFunctions.showPerimeter(user)
+console.log(`Relação Cintura Quadril- RCQ: ${user.hipWaistRatio}`)
+console.log(`Classificação RCQ: ${user.waistHipRatioClassification}`)
+console.log(`Circunfência Cintura - Classificação: ${user.waistCircumference}`)
+anthropometryFunctions.showSubcutaneousFolds(user)
+console.log(`Percentual de Gordura: ${user.fatPercentage}%`)
+console.log(`Classificação % Gordura: ${user.fatPercentageClassification}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -5054,57 +5096,112 @@ Ao executar o programa:
 ===============================
            Antropometria            
 ===============================
-Peso Corporal: 95.0 kilos
+Digite seu peso [0000.0](kg): 94
+Digite sua estatura [0.00](m): 1.86
+ - Perimetria Corporal - 
+Digite a perimetria - Braço [000.0](cm): 12
+Digite a perimetria - Antebraço [000.0](cm): 23
+Digite a perimetria - Cintura [000.0](cm): 34
+Digite a perimetria - Quadril [000.0](cm): 45
+Digite a perimetria - Coxa [000.0](cm): 56
+Digite a perimetria - Panturrilha [000.0](cm): 67
+ - Dobras Cutâneas - 
+Digite a dobra cutânea - Triciptal [00](mm): 7
+Digite a dobra cutânea - Subescapular [00](mm): 15
+Digite a dobra cutânea - Peitoral [00](mm): 5
+Digite a dobra cutânea - SupraIliaca [00](mm): 18
+Digite a dobra cutânea - Abdominal [00](mm): 24
+Digite a dobra cutânea - Coxa [00](mm): 14
+Digite a dobra cutânea - Panturrilha [00](mm): 10
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 94 kilos
 Estatura Corporal: 1.86 metros
-Índice de Massa Corporal - IMC: 27.46
+Índice de Massa Corporal - IMC: 27.17
 Classificação IMC: Sobrepeso
-Perimetria Corporal:
-Braço: 38.8 cm
-Antebraço: 30.0 cm
-Cintura: 85.7 cm
-Quadril: 96.8 cm
-Coxa: 50.4 cm
-Panturrilha: 42.3 cm
-Relação Cintura Quadril- RCQ: 0.89
-Classificação RCQ: Moderado Risco
-Circunfência cintura - Classificação: Nenhum Risco
-Dobras Cutâneas:
-Triciptal: 12 mm
-Subescapular: 15 mm
-Peitoral: 6 mm
-SupraIliaca: 19 mm
-Abdominal: 24 mm
-Coxa: 25 mm
-Panturrilha: 7 mm
-Percentual de gordura: 16.98%
-Classificação % Gordura: Sobrepeso
+ - Perimetria Corporal - 
+   Braço: 12 cm
+   Antebraço: 23 cm
+   Cintura: 34 cm
+   Quadril: 45 cm
+   Coxa: 56 cm
+   Panturrilha: 67 cm
+Relação Cintura Quadril- RCQ: 0.76
+Classificação RCQ: Baixo Risco
+Circunfência Cintura - Classificação: Nenhum Risco
+ - Dobras Cutâneas - 
+   Triciptal: 7 mm
+   Subescapular: 15 mm
+   Peitoral: 5 mm
+   SupraIliaca: 18 mm
+   Abdominal: 24 mm
+   Coxa: 14 mm
+   Panturrilha: 10 mm
+Percentual de Gordura: 13.47%
+Classificação % Gordura: Abaixo da média
 ===============================
 ```
 
 ### Massa Corporal Gorda
 
-Function **fatBodyMass( )**, determina a massa corporal de gordura do usuário. Esta function recebe como parâmetro o **peso** e o **percentual de gordura** do indivíduo. Retorna o peso em kilos de gordura corporal do usuário de acordo com a fóruma abaixo:
+Function **fatBodyMass( )**, determina a massa corporal de gordura do usuário. Esta function recebe como parâmetro o objeto _**user**_, usando os valores das propriedades **peso** e o **percentual de gordura** do indivíduo. Retorna o peso em kilos de gordura corporal do usuário de acordo com a fóruma abaixo:
 
 Massa Corporal Gorda = ((PESO * Percentual de gordura) / 100)
 
 Logo em **anthropometryFunctions.js**:
 
 ```js
-fatBodyMass(bodyWeight, fatPercentage){
+fatBodyMass(objectValue){
 
+    const bodyWeight = Number(objectValue.bodyWeight)
+    const fatPercentage = Number(objectValue.fatPercentage)
+  
     return Number(((bodyWeight * fatPercentage) / 100).toFixed(1))
   
   },
 ```
 
-Em **saf.js** vamos criar a variável **fatBodyMass** que recebe a function **fatBodyMass( )** passando como parâmetro **bodyWeight** e **fatPercentage**. Em seguida mostramos o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **fatBodyMass** que recebe como valor o retorno da function **fatBodyMass( )** passando como parâmetro o objeto _**user**_, usando os valores das propriedades **bodyWeight** e **fatPercentage**. Em seguida mostramos o resultado:
 
 ```js
-const fatBodyMass = anthropometryFunctions.fatBodyMass(bodyWeight, fatPercentage)
+// variables anthropometryFunctions
+user.bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyStature = anthropometryFunctions.stature()
+user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user)
+user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user)
+user.bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+user.hipWaistRatio = anthropometryFunctions.hipWaistRatio(user)
+user.waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(user)
+user.waistCircumference = anthropometryFunctions.waistCircumferenceClassification(user)
+user.subcutaneousFolds = anthropometryFunctions.subcutaneousMeasures()
+user.fatPercentage = anthropometryFunctions.fatPercentage(user)
+user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(user)
+user.fatBodyMass = anthropometryFunctions.fatBodyMass(user)
 ```
 
 ```js
-console.log(`Massa Corporal Gorda: ${fatBodyMass} kilos`)
+// show results anthropometryFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${user.bodyStature} metros`)
+console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
+console.log(`Classificação IMC: ${user.bodyMassIndexClassification}`)
+anthropometryFunctions.showPerimeter(user)
+console.log(`Relação Cintura Quadril- RCQ: ${user.hipWaistRatio}`)
+console.log(`Classificação RCQ: ${user.waistHipRatioClassification}`)
+console.log(`Circunfência Cintura - Classificação: ${user.waistCircumference}`)
+anthropometryFunctions.showSubcutaneousFolds(user)
+console.log(`Percentual de Gordura: ${user.fatPercentage}%`)
+console.log(`Classificação % Gordura: ${user.fatPercentageClassification}`)
+console.log(`Massa Corporal Gorda: ${user.fatBodyMass} kilos`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -5115,54 +5212,111 @@ Ao executar o programa:
 ===============================
            Antropometria            
 ===============================
-Peso Corporal: 95.0 kilos
+Digite seu peso [0000.0](kg): 94
+Digite sua estatura [0.00](m): 1.86
+ - Perimetria Corporal - 
+Digite a perimetria - Braço [000.0](cm): 12
+Digite a perimetria - Antebraço [000.0](cm): 23
+Digite a perimetria - Cintura [000.0](cm): 34
+Digite a perimetria - Quadril [000.0](cm): 45
+Digite a perimetria - Coxa [000.0](cm): 56
+Digite a perimetria - Panturrilha [000.0](cm): 67
+ - Dobras Cutâneas - 
+Digite a dobra cutânea - Triciptal [00](mm): 7
+Digite a dobra cutânea - Subescapular [00](mm): 15
+Digite a dobra cutânea - Peitoral [00](mm): 5
+Digite a dobra cutânea - SupraIliaca [00](mm): 18
+Digite a dobra cutânea - Abdominal [00](mm): 24
+Digite a dobra cutânea - Coxa [00](mm): 14
+Digite a dobra cutânea - Panturrilha [00](mm): 10
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 94 kilos
 Estatura Corporal: 1.86 metros
-Índice de Massa Corporal - IMC: 27.46
+Índice de Massa Corporal - IMC: 27.17
 Classificação IMC: Sobrepeso
-Perimetria Corporal:
-Braço: 38.8 cm
-Antebraço: 30.0 cm
-Cintura: 85.7 cm
-Quadril: 96.8 cm
-Coxa: 50.4 cm
-Panturrilha: 42.3 cm
-Relação Cintura Quadril- RCQ: 0.89
-Classificação RCQ: Moderado Risco
-Circunfência cintura - Classificação: Nenhum Risco
-Dobras Cutâneas:
-Triciptal: 12 mm
-Subescapular: 15 mm
-Peitoral: 6 mm
-SupraIliaca: 19 mm
-Abdominal: 24 mm
-Coxa: 25 mm
-Panturrilha: 7 mm
-Percentual de gordura: 16.98%
-Classificação % Gordura: Sobrepeso
-Massa Corporal Gorda: 16.13kilos
+ - Perimetria Corporal - 
+   Braço: 12 cm
+   Antebraço: 23 cm
+   Cintura: 34 cm
+   Quadril: 45 cm
+   Coxa: 56 cm
+   Panturrilha: 67 cm
+Relação Cintura Quadril- RCQ: 0.76
+Classificação RCQ: Baixo Risco
+Circunfência Cintura - Classificação: Nenhum Risco
+ - Dobras Cutâneas - 
+   Triciptal: 7 mm
+   Subescapular: 15 mm
+   Peitoral: 5 mm
+   SupraIliaca: 18 mm
+   Abdominal: 24 mm
+   Coxa: 14 mm
+   Panturrilha: 10 mm
+Percentual de Gordura: 13.47%
+Classificação % Gordura: Abaixo da média
+Massa Corporal Gorda: 12.7 kilos
 ===============================
 ```
 
 ### Massa Corporal Magra
 
-Function **leanBodyMass( )**, determina o peso da massa magra do indivíduo. Recebe como parâmetro o **peso corporal**  e o **peso da massa corporal gorda** do indivíduo. A function retorna a subtração desses valores, log, em **anthropometryFunctions.js**:
+Function **leanBodyMass( )**, determina o peso da massa magra do indivíduo. Recebe como parâmetro o objeto _**user**_, usando os valores das propriedades **peso corporal**  e **peso da massa corporal gorda** do indivíduo. A function retorna a subtração desses valores, logo, em **anthropometryFunctions.js**:
 
 ```js
-leanBodyMass(bodyWeight, fatBodyMass){
+leanBodyMass(objectValue){
 
+    const bodyWeight = Number(objectValue.bodyWeight)
+    const fatBodyMass = Number(objectValue.fatBodyMass)
+  
     return Number(bodyWeight - fatBodyMass)
   
   },
 ```
 
-Em **saf.js** criamos a variável **leanBodyMass** que recebe a function **leanBodyMass( )** passando como parâmetro **bodyWeight** e **fatBodyMass**. em seguida mostramos o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **leanBodyMass** que recebe como valor o retorno da function **leanBodyMass( )** passando como parâmetro o objeto _**user**_, usando os valores das propriedades **bodyWeight** e **fatBodyMass**. em seguida mostramos o resultado:
 
 ```js
-const leanBodyMass = anthropometryFunctions.leanBodyMass(bodyWeight, fatBodyMass)
+// variables anthropometryFunctions
+user.bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyStature = anthropometryFunctions.stature()
+user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user)
+user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user)
+user.bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+user.hipWaistRatio = anthropometryFunctions.hipWaistRatio(user)
+user.waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(user)
+user.waistCircumference = anthropometryFunctions.waistCircumferenceClassification(user)
+user.subcutaneousFolds = anthropometryFunctions.subcutaneousMeasures()
+user.fatPercentage = anthropometryFunctions.fatPercentage(user)
+user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(user)
+user.fatBodyMass = anthropometryFunctions.fatBodyMass(user)
+user.leanBodyMass = anthropometryFunctions.leanBodyMass(user)
 ```
 
 ```js
-console.log(`Massa Corporal Magra: ${leanBodyMass} kilos`)
+// show results anthropometryFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${user.bodyStature} metros`)
+console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
+console.log(`Classificação IMC: ${user.bodyMassIndexClassification}`)
+anthropometryFunctions.showPerimeter(user)
+console.log(`Relação Cintura Quadril- RCQ: ${user.hipWaistRatio}`)
+console.log(`Classificação RCQ: ${user.waistHipRatioClassification}`)
+console.log(`Circunfência Cintura - Classificação: ${user.waistCircumference}`)
+anthropometryFunctions.showSubcutaneousFolds(user)
+console.log(`Percentual de Gordura: ${user.fatPercentage}%`)
+console.log(`Classificação % Gordura: ${user.fatPercentageClassification}`)
+console.log(`Massa Corporal Gorda: ${user.fatBodyMass} kilos`)
+console.log(`Massa Corporal Magra: ${user.leanBodyMass} kilos`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -5173,38 +5327,63 @@ Ao executar o programa:
 ===============================
            Antropometria            
 ===============================
-Peso Corporal: 95.0 kilos
+Digite seu peso [0000.0](kg): 94
+Digite sua estatura [0.00](m): 1.86
+ - Perimetria Corporal - 
+Digite a perimetria - Braço [000.0](cm): 12
+Digite a perimetria - Antebraço [000.0](cm): 23
+Digite a perimetria - Cintura [000.0](cm): 34
+Digite a perimetria - Quadril [000.0](cm): 45
+Digite a perimetria - Coxa [000.0](cm): 56
+Digite a perimetria - Panturrilha [000.0](cm): 67
+ - Dobras Cutâneas - 
+Digite a dobra cutânea - Triciptal [00](mm): 7
+Digite a dobra cutânea - Subescapular [00](mm): 15
+Digite a dobra cutânea - Peitoral [00](mm): 5
+Digite a dobra cutânea - SupraIliaca [00](mm): 18
+Digite a dobra cutânea - Abdominal [00](mm): 24
+Digite a dobra cutânea - Coxa [00](mm): 14
+Digite a dobra cutânea - Panturrilha [00](mm): 10
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 94 kilos
 Estatura Corporal: 1.86 metros
-Índice de Massa Corporal - IMC: 27.46
+Índice de Massa Corporal - IMC: 27.17
 Classificação IMC: Sobrepeso
-Perimetria Corporal:
-Braço: 38.8 cm
-Antebraço: 30.0 cm
-Cintura: 85.7 cm
-Quadril: 96.8 cm
-Coxa: 50.4 cm
-Panturrilha: 42.3 cm
-Relação Cintura Quadril- RCQ: 0.89
-Classificação RCQ: Moderado Risco
-Circunfência cintura - Classificação: Nenhum Risco
-Dobras Cutâneas:
-Triciptal: 12 mm
-Subescapular: 15 mm
-Peitoral: 6 mm
-SupraIliaca: 19 mm
-Abdominal: 24 mm
-Coxa: 25 mm
-Panturrilha: 7 mm
-Percentual de gordura: 16.98%
-Classificação % Gordura: Sobrepeso
-Massa Corporal Gorda: 16.1 kilos
-Massa Corporal Magra: 78.9 kilos
+ - Perimetria Corporal - 
+   Braço: 12 cm
+   Antebraço: 23 cm
+   Cintura: 34 cm
+   Quadril: 45 cm
+   Coxa: 56 cm
+   Panturrilha: 67 cm
+Relação Cintura Quadril- RCQ: 0.76
+Classificação RCQ: Baixo Risco
+Circunfência Cintura - Classificação: Nenhum Risco
+ - Dobras Cutâneas - 
+   Triciptal: 7 mm
+   Subescapular: 15 mm
+   Peitoral: 5 mm
+   SupraIliaca: 18 mm
+   Abdominal: 24 mm
+   Coxa: 14 mm
+   Panturrilha: 10 mm
+Percentual de Gordura: 13.47%
+Classificação % Gordura: Abaixo da média
+Massa Corporal Gorda: 12.7 kilos
+Massa Corporal Magra: 81.3 kilos
 ===============================
 ```
 
 ### Massa Corporal Ideal Prevista
 
-Function **expectedIdealBodyMass( )** determina  **Massa Corporal Ideal Prevista** do usuário. Recebe como parâmetro o **sexo** e a **massa corporal magra** do indivíduo. Retorna Massa Corporal Ideal Prevista de acordo com as fórmulas:
+Function **expectedIdealBodyMass( )** determina  **Massa Corporal Ideal Prevista** do usuário. Recebe como parâmetro o objeto _**user**_, usando os valores das propriedades **sexo** e a **massa corporal magra** do indivíduo. Retorna **Massa Corporal Ideal Prevista** de acordo com as fórmulas:
 
 - Se homem:
 
@@ -5217,21 +5396,63 @@ Massa Corporal Ideal Prevista = (Masssa Corporal Magra / (1 - 0,23))
 Logo, em **anthropometryFunctions.js**:
 
 ```js
-expectedIdealBodyMass(sexNumber, leanBodyMass){
+expectedIdealBodyMass(objectValue){
 
-    return Number(sexNumber === 1 ? (leanBodyMass / (1 - 0.15)).toFixed(1) : (leanBodyMass / (1 - 0.23)).toFixed(1))
+    const sexNumber = Number(objectValue.sexNumber)
+    const leanBodyMass = Number(objectValue.leanBodyMass)
+    let expectedIdealBodyMass = 0
+    const men = sexNumber === 1
+  
+    if(men){
+      expectedIdealBodyMass = Number((leanBodyMass / (1 - 0.15)).toFixed(1)) 
+    } else {
+      expectedIdealBodyMass =  Number((leanBodyMass / (1 - 0.23)).toFixed(1))
+    }
+    
+    return expectedIdealBodyMass
   
   },
 ```
 
-Em **saf.js** criamos a variável **expectedIdealBodyMass** que recebe a function **expectedIdealBodyMass( )** passando como parâmetro **sexNumber** e **leanBodyMass**. Em seguida mostramos o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **expectedIdealBodyMass** que recebe como valor o retorno da function **expectedIdealBodyMass( )** passando como parâmetro o objeto _**user**_, usando os valores das propriedades **sexNumber** e **leanBodyMass**. Em seguida mostramos o resultado:
 
 ```js
-const expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(sexNumber, leanBodyMass)
+// variables anthropometryFunctions
+user.bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyStature = anthropometryFunctions.stature()
+user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user)
+user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user)
+user.bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+user.hipWaistRatio = anthropometryFunctions.hipWaistRatio(user)
+user.waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(user)
+user.waistCircumference = anthropometryFunctions.waistCircumferenceClassification(user)
+user.subcutaneousFolds = anthropometryFunctions.subcutaneousMeasures()
+user.fatPercentage = anthropometryFunctions.fatPercentage(user)
+user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(user)
+user.fatBodyMass = anthropometryFunctions.fatBodyMass(user)
+user.leanBodyMass = anthropometryFunctions.leanBodyMass(user)
+user.expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(user)
 ```
 
 ```js
-console.log(`Massa Corporal Ideal Prevista: ${expectedIdealBodyMass} kilos`)
+// show results anthropometryFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Antropometria")
+console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${user.bodyStature} metros`)
+console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
+console.log(`Classificação IMC: ${user.bodyMassIndexClassification}`)
+anthropometryFunctions.showPerimeter(user)
+console.log(`Relação Cintura Quadril- RCQ: ${user.hipWaistRatio}`)
+console.log(`Classificação RCQ: ${user.waistHipRatioClassification}`)
+console.log(`Circunfência Cintura - Classificação: ${user.waistCircumference}`)
+anthropometryFunctions.showSubcutaneousFolds(user)
+console.log(`Percentual de Gordura: ${user.fatPercentage}%`)
+console.log(`Classificação % Gordura: ${user.fatPercentageClassification}`)
+console.log(`Massa Corporal Gorda: ${user.fatBodyMass} kilos`)
+console.log(`Massa Corporal Magra: ${user.leanBodyMass} kilos`)
+console.log(`Massa Corporal Ideal Prevista: ${user.expectedIdealBodyMass} kilos`)
+headerFunctions.baseboard()
 ```
 
 Ao executar  o programa:
@@ -5242,39 +5463,62 @@ Ao executar  o programa:
 ===============================
            Antropometria            
 ===============================
-Peso Corporal: 95.0 kilos
+Digite seu peso [0000.0](kg): 94
+Digite sua estatura [0.00](m): 1.86
+ - Perimetria Corporal - 
+Digite a perimetria - Braço [000.0](cm): 12
+Digite a perimetria - Antebraço [000.0](cm): 23
+Digite a perimetria - Cintura [000.0](cm): 34
+Digite a perimetria - Quadril [000.0](cm): 45
+Digite a perimetria - Coxa [000.0](cm): 56
+Digite a perimetria - Panturrilha [000.0](cm): 67
+ - Dobras Cutâneas - 
+Digite a dobra cutânea - Triciptal [00](mm): 7
+Digite a dobra cutânea - Subescapular [00](mm): 15
+Digite a dobra cutânea - Peitoral [00](mm): 5
+Digite a dobra cutânea - SupraIliaca [00](mm): 18
+Digite a dobra cutânea - Abdominal [00](mm): 24
+Digite a dobra cutânea - Coxa [00](mm): 14
+Digite a dobra cutânea - Panturrilha [00](mm): 10
+```
+
+```shell
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 94 kilos
 Estatura Corporal: 1.86 metros
-Índice de Massa Corporal - IMC: 27.46
+Índice de Massa Corporal - IMC: 27.17
 Classificação IMC: Sobrepeso
-Perimetria Corporal:
-Braço: 38.8 cm
-Antebraço: 30.0 cm
-Cintura: 85.7 cm
-Quadril: 96.8 cm
-Coxa: 50.4 cm
-Panturrilha: 42.3 cm
-Relação Cintura Quadril- RCQ: 0.89
-Classificação RCQ: Moderado Risco
-Circunfência cintura - Classificação: Nenhum Risco
-Dobras Cutâneas:
-Triciptal: 12 mm
-Subescapular: 15 mm
-Peitoral: 6 mm
-SupraIliaca: 19 mm
-Abdominal: 24 mm
-Coxa: 25 mm
-Panturrilha: 7 mm
-Percentual de gordura: 16.98%
-Classificação % Gordura: Sobrepeso
-Massa Corporal Gorda: 16.1 kilos
-Massa Corporal Magra: 78.9 kilos
-Massa Corporal Ideal Prevista: 92.8 kilos
+ - Perimetria Corporal - 
+   Braço: 12 cm
+   Antebraço: 23 cm
+   Cintura: 34 cm
+   Quadril: 45 cm
+   Coxa: 56 cm
+   Panturrilha: 67 cm
+Relação Cintura Quadril- RCQ: 0.76
+Classificação RCQ: Baixo Risco
+Circunfência Cintura - Classificação: Nenhum Risco
+ - Dobras Cutâneas - 
+   Triciptal: 7 mm
+   Subescapular: 15 mm
+   Peitoral: 5 mm
+   SupraIliaca: 18 mm
+   Abdominal: 24 mm
+   Coxa: 14 mm
+   Panturrilha: 10 mm
+Percentual de Gordura: 13.47%
+Classificação % Gordura: Abaixo da média
+Massa Corporal Gorda: 12.7 kilos
+Massa Corporal Magra: 81.3 kilos
+Massa Corporal Ideal Prevista: 95.6 kilos
 ===============================
 ```
 
 Com isto chega ao final a parte **Antropometria** do projeto. Como ficaram os arquivos do programa até esta etapa:
 
-**anthropometryFunctions.js**:
+Arquivo **anthropometryFunctions.js** completo:
 
 ```js
 /* anthropometryFunctions */
@@ -5288,61 +5532,70 @@ const anthropometryFunctions = {
   bodyWeight(){
 
     let bodyWeight = 0
-    let itsRealNumber = true
-    let regularExpressionFromZeroToThousand = /(^[0-9]\.[0-9]$)|(^[1-9][0-9]\.[0-9]$)|(^[1-9][0-9]{2}\.[0-9]$)|(^[1][0]{3}\.[0-9]$)/
+    let itsRegexNumber = true
+    let regexFromZeroToThousand = /(^[0-9]\.[0-9]$)|(^[1-9][0-9]\.[0-9]$)|(^[1-9][0-9]{2}\.[0-9]$)|(^[1][0]{3}\.[0]$)|(^[0-9]$)|(^[1-9][0-9]$)|(^[1-9][0-9]{2}$)|(^[1][0]{3}$)/
   
     do{
   
-      bodyWeight = input.question('Digite seu peso (kg)[00.0]: ')
-      itsRealNumber = validationFunctions.isRegularExpression(bodyWeight, regularExpressionFromZeroToThousand)
-      validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+      bodyWeight = input.question('Digite seu peso [0000.0](kg): ')
+      itsRegexNumber = validationFunctions.isRegularExpression(bodyWeight, regexFromZeroToThousand)
+      validationFunctions.incorrectValue(false, !itsRegexNumber, "Antropometria")
   
-    }while(!itsRealNumber)
+    }while(!itsRegexNumber)
   
-    return bodyWeight
+    return Number(bodyWeight)
     
   },
 
   stature(){
 
     let bodyStature = 0
-    let itsRealNumber = true
-    let regularExpressionZeroToNinePointNinetyNine = /(^[0-9]\.([0-9]){2}$)/
+    let itsRegexNumber = true
+    let regexZeroToNinePointNinetyNine = /(^[0-9]\.([0-9]){2}$)/
   
     do{
   
-      bodyStature =input.question('Digite sua estatura (m)[0.00]: ')
-      itsRealNumber = validationFunctions.isRegularExpression(bodyStature, regularExpressionZeroToNinePointNinetyNine)
-      validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+      bodyStature =input.question('Digite sua estatura [0.00](m): ')
+      itsRegexNumber = validationFunctions.isRegularExpression(bodyStature, regexZeroToNinePointNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRegexNumber, "Antropometria")
   
-    }while(!itsRealNumber)
+    }while(!itsRegexNumber)
     
-    return bodyStature
+    return Number(bodyStature)
   
   },
 
-  bodyMassIndex(weightValue, heightValue){
+  bodyMassIndex(objectValue){
 
+    const weight = objectValue.bodyWeight
+    const height = objectValue.bodyStature
     // IMC = peso / estatura * estatura
-    return (weightValue / (heightValue * heightValue)).toFixed(2)
+    return Number((weight / (height * height)).toFixed(2))
   
   },
 
-  bodyMassIndexClassification(bodyMassIndexValue){
+  bodyMassIndexClassification(objectValue){
 
+    const bodyMassIndexValue = objectValue.bodyMassIndex
     let classification = ``
+    const gradeTwoThinness = bodyMassIndexValue < 17
+    const underWeight = bodyMassIndexValue < 18.5
+    const normalWeight = bodyMassIndexValue < 25
+    const overweight = bodyMassIndexValue < 30
+    const levelOneObesity = bodyMassIndexValue < 35
+    const levelTwoObesity = bodyMassIndexValue < 40
   
-    if(bodyMassIndexValue < 17){
+    if(gradeTwoThinness){
       classification = `Magreza Grau 2`
-    } else if(bodyMassIndexValue < 18.5){
+    } else if(underWeight){
       classification = `Abaixo do peso`
-    } else if(bodyMassIndexValue < 25){
+    } else if(normalWeight){
       classification = `Peso Normal`
-    } else if(bodyMassIndexValue < 30){
+    } else if(overweight){
       classification = `Sobrepeso`
-    } else if(bodyMassIndexValue < 35){
+    } else if(levelOneObesity){
       classification = `Obesidade nível 1`
-    } else if(bodyMassIndexValue < 40){
+    } else if(levelTwoObesity){
       classification = `Obesidade nível 2`
     } else{
       classification = `Obesidade Morbida`
@@ -5362,19 +5615,20 @@ const anthropometryFunctions = {
       Coxa: 0,
       Panturrilha: 0
     } 
-    let itsRealNumber = true
-    let regexThreeWholeDigitsAndOneDecimalPlace = /(^[0-9]\.[0-9]$)|(^[0-9]{2}\.[0-9]$)|(^[0-9]{3}\.[0-9]$)/
+    let itsRegexNumber = true
+    const regexFromZeroToThousand = /(^[0-9]\.[0-9]$)|(^[1-9][0-9]\.[0-9]$)|(^[1-9][0-9]{2}\.[0-9]$)|(^[1][0]{3}$)|(^[0-9]$)|(^[1-9][0-9]$)|(^[1-9][0-9]{2}$)|(^[1][0]{3}$)/
   
+    console.log(` - Perimetria Corporal - `)
     for(let bodyPart in measurementPoints){
   
       do{
   
-        measurementPoints[bodyPart] = input.question(`Digite a perimetria - ${bodyPart} (cm)[000.0]: `)
+        measurementPoints[bodyPart] = input.question(`Digite a perimetria - ${bodyPart} [000.0](cm): `)
   
-        itsRealNumber = validationFunctions.isRegularExpression(measurementPoints[bodyPart], regexThreeWholeDigitsAndOneDecimalPlace)
-        validationFunctions.incorrectValue(false, !itsRealNumber, "Antropometria")
+        itsRegexNumber = validationFunctions.isRegularExpression(measurementPoints[bodyPart], regexFromZeroToThousand)
+        validationFunctions.incorrectValue(false, !itsRegexNumber, "Antropometria")
   
-      }while(!itsRealNumber)
+      }while(!itsRegexNumber)
       
     }
   
@@ -5384,165 +5638,184 @@ const anthropometryFunctions = {
 
   showPerimeter(objectValue){
   
-    console.log('Perimetria Corporal:')
+    const perimeters = objectValue.bodyPerimeter
+    console.log(' - Perimetria Corporal - ')
     
-    for(let property in objectValue){
-      console.log(`${property}: ${objectValue[property]} cm`) 
+    for(let property in perimeters){
+      console.log(`   ${property}: ${perimeters[property]} cm`) 
     }
   
   },
 
-  hipWaistRatio(waistPerimetry, hipPerimetry){
+  hipWaistRatio(objectValue){
 
-    return (waistPerimetry/ hipPerimetry).toFixed(2)
+    const waistPerimetry = objectValue.bodyPerimeter.Cintura
+    const hipPerimetry = objectValue.bodyPerimeter.Quadril
+  
+    return Number((waistPerimetry/ hipPerimetry).toFixed(2))
   
   },
 
-  waistHipRatioClassification(sexValue, ageValue, waistHipRatioValue){
+  waistHipRatioClassification(objectValue){
 
+    const sexValue = objectValue.sexNumber
+    const ageValue = objectValue.age
+    const waistHipRatioValue = objectValue.hipWaistRatio
+  
     let classification = ``
+    const unidentifiedSex = `[ERROR] Sexo não identificado!` 
+    const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
+    const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
+    const ageBetweenFortyAndFortyNine = ageValue >= 40 && ageValue <= 49
+    const ageBetweenFiftyAndFiftyNine = ageValue >= 50 && ageValue <= 59
+    const ageBetweenSixtyAndSixtyNine = ageValue >= 60 && ageValue <= 69
+    const Lowrisk = `Baixo Risco`
+    const ModerateRisk = `Moderado Risco`
+    const Highrisk = `Alto Risco`
+    const VeryHighRisk = `Muito Alto Risco`
+    const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
   
     switch (sexValue) {
   
       // masculine - masculine - masculine - masculine - masculine
       case 1:
         
-        if(ageValue > 19 && ageValue < 30){
+        if(ageBetweenTwentyAndTwentyNine){
           
           if(waistHipRatioValue < 0.83){
-            classification = `Baixo Risco`
+            classification = Lowrisk
           } else if(waistHipRatioValue < 0.89){
-            classification = `Moderado Risco`
+            classification = ModerateRisk
           } else if(waistHipRatioValue < 0.95){
-            classification = `Alto Risco`
+            classification = Highrisk
           } else {
-            classification = `Muito Alto Risco`
+            classification = VeryHighRisk
           }
           
-        } else if(ageValue < 40){
+        } else if(ageBetweenThirtyAndThirtyNine){
           
           if(waistHipRatioValue < 0.84){
-            classification = `Baixo Risco`
+            classification = Lowrisk
           } else if(waistHipRatioValue < 0.92){
-            classification = `Moderado Risco`
+            classification = ModerateRisk
           } else if(waistHipRatioValue < 0.97){
-            classification = `Alto Risco`
+            classification = Highrisk
           } else {
-            classification = `Muito Alto Risco`
+            classification = VeryHighRisk
           }
           
-        } else if(ageValue < 50){
+        } else if(ageBetweenFortyAndFortyNine){
           
           if(waistHipRatioValue < 0.88){
-            classification = `Baixo Risco`
+            classification = Lowrisk
           } else if(waistHipRatioValue < 0.96){
-            classification = `Moderado Risco`
+            classification = ModerateRisk
           } else if(waistHipRatioValue < 1){
-            classification = `Alto Risco`
+            classification = Highrisk
           } else {
-            classification = `Muito Alto Risco`
+            classification = VeryHighRisk
           }
           
-        } else if(ageValue < 60){
+        } else if(ageBetweenFiftyAndFiftyNine){
           
           if(waistHipRatioValue < 0.90){
-            classification = `Baixo Risco`
+            classification = Lowrisk
           } else if(waistHipRatioValue < 0.97){
-            classification = `Moderado Risco`
+            classification = ModerateRisk
           } else if(waistHipRatioValue < 1.02){
-            classification = `Alto Risco`
+            classification = Highrisk
           } else {
-            classification = `Muito Alto Risco`
+            classification = VeryHighRisk
           }
           
-        } else if(ageValue < 70){
+        } else if(ageBetweenSixtyAndSixtyNine){
           
           if(waistHipRatioValue < 0.91){
-            classification = `Baixo Risco`
+            classification = Lowrisk
           } else if(waistHipRatioValue < 0.99){
-            classification = `Moderado Risco`
+            classification = ModerateRisk
           } else if(waistHipRatioValue < 1.03){
-            classification = `Alto Risco`
+            classification = Highrisk
           } else {
-            classification = `Muito Alto Risco`
+            classification = VeryHighRisk
           }
           
         } else{
-          classification = `Esta classificação não se aplica a sua idade!`
+          classification = classificationNotAppliedToAge
         }
   
         break;
       
       // feminine - feminine - feminine - feminine - feminine
       case 2:
-        if(ageValue > 19 && ageValue < 30){
+        if(ageBetweenTwentyAndTwentyNine){
           
           if(waistHipRatioValue < 0.71){
-            classification = `Baixo Risco`
+            classification = Lowrisk
           } else if(waistHipRatioValue < 0.78){
-            classification = `Moderado Risco`
+            classification = ModerateRisk
           } else if(waistHipRatioValue < 0.82){
-            classification = `Alto Risco`
+            classification = Highrisk
           } else {
-            classification = `Muito Alto Risco`
+            classification = VeryHighRisk
           }
           
-        } else if(ageValue < 40){
+        } else if(ageBetweenThirtyAndThirtyNine){
           
           if(waistHipRatioValue < 0.72){
-            classification = `Baixo Risco`
+            classification = Lowrisk
           } else if(waistHipRatioValue < 0.79){
-            classification = `Moderado Risco`
+            classification = ModerateRisk
           } else if(waistHipRatioValue < 0.84){
-            classification = `Alto Risco`
+            classification = Highrisk
           } else {
-            classification = `Muito Alto Risco`
+            classification = VeryHighRisk
           }
           
-        } else if(ageValue < 50){
+        } else if(ageBetweenFortyAndFortyNine){
           
           if(waistHipRatioValue < 0.73){
-            classification = `Baixo Risco`
+            classification = Lowrisk
           } else if(waistHipRatioValue < 0.80){
-            classification = `Moderado Risco`
+            classification = ModerateRisk
           } else if(waistHipRatioValue < 0.87){
-            classification = `Alto Risco`
+            classification = Highrisk
           } else {
-            classification = `Muito Alto Risco`
+            classification = VeryHighRisk
           }
           
-        } else if(ageValue < 60){
+        } else if(ageBetweenFiftyAndFiftyNine){
           
           if(waistHipRatioValue < 0.74){
-            classification = `Baixo Risco`
+            classification = Lowrisk
           } else if(waistHipRatioValue < 0.82){
-            classification = `Moderado Risco`
+            classification = ModerateRisk
           } else if(waistHipRatioValue < 0.88){
-            classification = `Alto Risco`
+            classification = Highrisk
           } else {
-            classification = `Muito Alto Risco`
+            classification = VeryHighRisk
           }
           
-        } else if(ageValue < 70){
+        } else if(ageBetweenSixtyAndSixtyNine){
           
           if(waistHipRatioValue < 0.76){
-            classification = `Baixo Risco`
+            classification = Lowrisk
           } else if(waistHipRatioValue < 0.84){
-            classification = `Moderado Risco`
+            classification = ModerateRisk
           } else if(waistHipRatioValue < 0.90){
-            classification = `Alto Risco`
+            classification = Highrisk
           } else {
-            classification = `Muito Alto Risco`
+            classification = VeryHighRisk
           }
           
         } else{
-          classification = `Esta classificação não se aplica a sua idade!`
+          classification = classificationNotAppliedToAge
         }
   
         break;
   
       default:
-        classification = `[ERROR] Sexo não identificado!`
+        classification = unidentifiedSex
         break;
     }
     
@@ -5551,8 +5824,15 @@ const anthropometryFunctions = {
   
   },
 
-  waistCircumferenceClassification(sexValue, waistValue){
+  waistCircumferenceClassification(objectValue){
 
+    const waistValue = objectValue.bodyPerimeter.Cintura
+    const sexValue = objectValue.sexNumber
+    const unidentifiedSex = `[ERROR] Sexo não identificado!`
+    const noRisk = `Nenhum Risco`
+    const moderateRisk = `Risco Moderado`
+    const highRisk = `Risco Alto`
+  
     classification = ``
   
     switch (sexValue) {
@@ -5560,11 +5840,11 @@ const anthropometryFunctions = {
       case 1:
         
         if(waistValue < 94){
-          classification = `Nenhum Risco`
+          classification = noRisk
         } else if(waistValue < 102){
-          classification = `Risco Moderado`
+          classification = moderateRisk
         } else {
-          classification = `Risco Alto`
+          classification = highRisk
         }
   
         break;
@@ -5572,17 +5852,17 @@ const anthropometryFunctions = {
       case 2:
   
         if(waistValue < 80){
-          classification = `Nenhum Risco`
+          classification = noRisk
         } else if(waistValue < 88){
-          classification = `Risco Moderado`
+          classification = moderateRisk
         } else {
-          classification = `Risco Alto`
+          classification = highRisk
         }
   
         break;
   
       default:
-        classification = `[ERROR] Sexo não identificado!`
+        classification = unidentifiedSex
         break;
     }
   
@@ -5601,19 +5881,20 @@ const anthropometryFunctions = {
       Coxa: 0,
       Panturrilha: 0
     } 
-    let validNumber = true
-    let regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
-  
+    let itsRegexNumber = true
+    let regexFromZeroToNinetyNine = /(^[0-9]$)|(^[0-9]{2}$)/
+    
+    console.log(` - Dobras Cutâneas - `)
     for(let folds in subcutaneousFolds){
   
       do{
   
-        subcutaneousFolds[folds] = input.question(`Digite a dobra cutânea - ${folds} (mm)[00]: `)
+        subcutaneousFolds[folds] = input.question(`Digite a dobra cutânea - ${folds} [00](mm): `)
   
-        validNumber = validationFunctions.isRegularExpression(subcutaneousFolds[folds], regexTwoDigits)
-        validationFunctions.incorrectValue(false, !validNumber, "Antropometria")
+        itsRegexNumber = validationFunctions.isRegularExpression(subcutaneousFolds[folds], regexFromZeroToNinetyNine)
+        validationFunctions.incorrectValue(false, !itsRegexNumber, "Antropometria")
   
-      }while(!validNumber)
+      }while(!itsRegexNumber)
   
     }
   
@@ -5623,29 +5904,22 @@ const anthropometryFunctions = {
 
   showSubcutaneousFolds(objectValue){
   
-    console.log('Dobras Cutâneas:')
+    const subcutaneousMeasures = objectValue.subcutaneousFolds
+    console.log(' - Dobras Cutâneas - ')
     
-    for(let property in objectValue){
-      console.log(`${property}: ${objectValue[property]} mm`) 
+    for(let property in subcutaneousMeasures){
+      console.log(`   ${property}: ${subcutaneousMeasures[property]} mm`) 
     }
   
   },
 
-  sumElements(array){
+  fatPercentage(objectValue){
 
-    let sumElements = 0
-    
-    for(let element in array){
-      sumElements += Number(array[element])
-    }
+    const ageValue = objectValue.age
+    const sexValue = objectValue.sexNumber
+    const skinFoldObject = objectValue.subcutaneousFolds
+    const unidentifiedSex = `[ERROR] Sexo não identificado!`
   
-    return sumElements
-  
-  },
-
-  fatPercentage(ageValue, sexValue, skinFoldObject){
-
-    let = skinfoldArray = []
     let sumOfFolds = 0
     let bodyDensity = 0
     let fatPercentage = 0
@@ -5654,29 +5928,27 @@ const anthropometryFunctions = {
       
       case 1:
         
-        skinfoldArray.push(skinFoldObject.Peitoral, skinFoldObject.Abdominal, skinFoldObject.Coxa)
-        sumOfFolds = anthropometryFunctions.sumElements(skinfoldArray)
+        sumOfFolds = (Number(skinFoldObject.Peitoral) + Number(skinFoldObject.Abdominal) + Number(skinFoldObject.Coxa))
         bodyDensity = ((1.10938 - (0.0008267 * sumOfFolds )) + ((0.0000016 * (sumOfFolds * sumOfFolds)) - (0.0002574 * ageValue)))
         fatPercentage = (((4.95 / bodyDensity) - 4.5 ) * 100).toFixed(2)
   
-        return fatPercentage
+        return Number(fatPercentage)
   
         break;
       
       case 2:
   
-        skinfoldArray.push(skinFoldObject.Triciptal, skinFoldObject.SupraIliaca, skinFoldObject.Coxa)
-        sumOfFolds = anthropometryFunctions.sumElements(skinfoldArray)
+        sumOfFolds = (Number(skinFoldObject.Triciptal) + Number(skinFoldObject.SupraIliaca) + Number(skinFoldObject.Coxa))
         bodyDensity = ((1.0994921-(0.0009929 * sumOfFolds)) + ((0.0000023 * (sumOfFolds * sumOfFolds)) - (0.0001392 * ageValue)))
         fatPercentage = (((5.01 / bodyDensity) - 4.57) * 100).toFixed(2)
   
-        return fatPercentage
+        return Number(fatPercentage)
   
         break;
     
       default:
   
-        return `[ERROR] Sexo não identificado!`
+        return unidentifiedSex
   
         break;
   
@@ -5684,46 +5956,65 @@ const anthropometryFunctions = {
   
   },
 
-  fatPercentageClassification(sexValue, fatPercentageValue){
+  fatPercentageClassification(objectValue){
 
+    const sexValue = objectValue.sexNumber
+    const fatPercentageValue = objectValue.fatPercentage
+  
     let classification = ``
+    const malnutritionClassification = `Desnutrição`
+    const belowAverageClassification = `Abaixo da média`
+    const averageClassification = `Média`
+    const overweightClassification = `Sobrepeso`
+    const obesityClassification = `Obesidade`
+    const unidentifiedSex = `[ERROR] Sexo não identificado!`
+    // male conditions
+    const malnutritionMan = fatPercentageValue < 6
+    const belowAverageMan = fatPercentageValue < 15
+    const averageMan = fatPercentageValue < 16
+    const overweightMan = fatPercentageValue < 25
+    // female conditions
+    const malnutritionWoman = fatPercentageValue < 9
+    const belowAverageWoman = fatPercentageValue < 23
+    const averageWoman = fatPercentageValue < 24
+    const overweightWoman = fatPercentageValue < 32
   
     switch (sexValue) {
       
       case 1:
         
-        if(fatPercentageValue < 6){
-          classification = `Desnutrição`
-        } else if(fatPercentageValue < 15){
-          classification = `Abaixo da média`
-        } else if(fatPercentageValue < 16){
-          classification = `Média`
-        } else if(fatPercentageValue < 25){
-          classification = `Sobrepeso`
+        if(malnutritionMan){
+          classification = malnutritionClassification
+        } else if(belowAverageMan){
+          classification = belowAverageClassification
+        } else if(averageMan){
+          classification = averageClassification
+        } else if(overweightMan){
+          classification = overweightClassification
         } else{
-          classification = `Obesidade`
+          classification = obesityClassification
         }
   
         break;
   
       case 2:
   
-        if(fatPercentageValue < 9){
-          classification = `Desnutrição`
-        } else if(fatPercentageValue < 23){
-          classification = `Abaixo da média`
-        } else if(fatPercentageValue < 24){
-          classification = `Média`
-        } else if(fatPercentageValue < 32){
-          classification = `Sobrepeso`
+        if(malnutritionWoman){
+          classification = malnutritionClassification
+        } else if(belowAverageWoman){
+          classification = belowAverageClassification
+        } else if(averageWoman){
+          classification = averageClassification
+        } else if(overweightWoman){
+          classification = overweightClassification
         } else{
-          classification = `Obesidade`
+          classification = obesityClassification
         }
   
         break;
   
       default:
-        classification = `[ERROR] Sexo não identificado!`
+        classification = unidentifiedSex
         break;
     }
     
@@ -5731,21 +6022,38 @@ const anthropometryFunctions = {
   
   },
 
-  fatBodyMass(bodyWeight, fatPercentage){
+  fatBodyMass(objectValue){
 
+    const bodyWeight = Number(objectValue.bodyWeight)
+    const fatPercentage = Number(objectValue.fatPercentage)
+  
     return Number(((bodyWeight * fatPercentage) / 100).toFixed(1))
   
   },
 
-  leanBodyMass(bodyWeight, fatBodyMass){
+  leanBodyMass(objectValue){
 
+    const bodyWeight = Number(objectValue.bodyWeight)
+    const fatBodyMass = Number(objectValue.fatBodyMass)
+  
     return Number(bodyWeight - fatBodyMass)
   
   },
 
-  expectedIdealBodyMass(sexNumber, leanBodyMass){
+  expectedIdealBodyMass(objectValue){
 
-    return Number(sexNumber === 1 ? (leanBodyMass / (1 - 0.15)).toFixed(1) : (leanBodyMass / (1 - 0.23)).toFixed(1))
+    const sexNumber = Number(objectValue.sexNumber)
+    const leanBodyMass = Number(objectValue.leanBodyMass)
+    let expectedIdealBodyMass = 0
+    const men = sexNumber === 1
+  
+    if(men){
+      expectedIdealBodyMass = Number((leanBodyMass / (1 - 0.15)).toFixed(1)) 
+    } else {
+      expectedIdealBodyMass =  Number((leanBodyMass / (1 - 0.23)).toFixed(1))
+    }
+    
+    return expectedIdealBodyMass
   
   },
 
@@ -5756,134 +6064,137 @@ module.exports = {
 }
 ```
 
-**saf.js**:
+Arquivo **saf.js** completo:
 
 ```js
+/* physical assessment system */
+
 const { headerFunctions } = require('./headerFunctions')
-const { personalData } = require('./personalData')
+const { personalDataFunctions } = require('./personalDataFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { anamnesisQuestions } = require('./anamnesisFunctions')
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
-const  { anthropometryFunctions } = require('./anthropometryFunctions')
+const { percentageValues } = require('./cardiorespiratoryFunctions')
+const { anthropometryFunctions } = require('./anthropometryFunctions')
+
+const user = { }
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
-// variables personalData
-const name = personalData.userName()
-const birthdayInBrazilianFormat =  personalData.dateOfBirth()
-const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
-const age = personalData.age(birthdayInISOFormat)
-const sexNumber = personalData.sexNumber()
-const sex = personalData.showSex(sexNumber)
-const profession = personalData.userProfession()
-const userEmail = personalData.userEmail()
-const phoneNumber = personalData.phoneNumber()
+// variables personalDataFunctions
+user.name = personalDataFunctions.userName()
+user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
+user.birthdayInFullFormat = personalDataFunctions.dateInFullFormat(user.birthdayInBrazilianFormat)
+user.age = personalDataFunctions.age(user)
+user.sexNumber = personalDataFunctions.sexNumber()
+user.sex = personalDataFunctions.showSex(user)
+user.profession = personalDataFunctions.userProfession()
+user.userEmail = personalDataFunctions.userEmail()
+user.phoneNumber = personalDataFunctions.phoneNumber()
 
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
 // variables anamnesisFunctions
-const questionnairePARQ = anamnesisFunctions.questionnairePARQ()
-const currentPhysicalState = anamnesisFunctions.currentPhysicalState()
-const pastIllness = anamnesisFunctions.pastIllness()
-const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
-const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
-const useMedication = anamnesisFunctions.useMedication()
-const sportsInjuries = anamnesisFunctions.sportsInjuries()
-const trainingObjective = anamnesisFunctions.trainingObjective()
-const daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
-const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
+user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+user.pastIllness = anamnesisFunctions.questions(anamnesisQuestions.pastIllness)
+user.illnessesFamily = anamnesisFunctions.questions(anamnesisQuestions.illnessesInTheFamily)
+user.surgeryPerformed = anamnesisFunctions.questions(anamnesisQuestions.surgeryPerformed)
+user.useMedication = anamnesisFunctions.questions(anamnesisQuestions.useMedication)
+user.sportsInjuries = anamnesisFunctions.questions(anamnesisQuestions.sportsInjuries)
+user.trainingObjective = anamnesisFunctions.trainingObjective()
+user.daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
+user.timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
 
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Cardiorrespiratório")
 
-// variables cardiorespiratory
-const restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
-const maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(age)
-const restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
-const bloodPressureRating = cardiorespiratoryFunctions.classificationOfBloodPressure(restingBloodPressure)
+// variables cardiorespiratoryFunctions
+user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user)
+user.percentageValues = percentageValues
+user.workingHeartRate = cardiorespiratoryFunctions.workingHeartRate(user)
+user.restingBloodPressure = cardiorespiratoryFunctions.bloodPressure()
+user.classificationBloodPressure = cardiorespiratoryFunctions.classificationOfBloodPressure(user)
 
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Antropometria")
 
 // variables anthropometryFunctions
-const bodyWeight = anthropometryFunctions.bodyWeight()
-const bodyStature = anthropometryFunctions.stature()
-const bodyMassIndex = anthropometryFunctions.bodyMassIndex(bodyWeight, bodyStature)
-const bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(bodyMassIndex)
-const bodyPerimeter = anthropometryFunctions.bodyPerimetry()
-const hipWaistRatio = anthropometryFunctions.hipWaistRatio(bodyPerimeter.Cintura, bodyPerimeter.Quadril)
-const waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(sexNumber, age, hipWaistRatio)
-const waistCircumference = anthropometryFunctions.waistCircumferenceClassification(sexNumber, bodyPerimeter.Cintura)
-const skinFolds = anthropometryFunctions.subcutaneousMeasures()
-const fatPercentage = anthropometryFunctions.fatPercentage(age, sexNumber, skinFolds)
-const fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(sexNumber, fatPercentage)
-const fatBodyMass = anthropometryFunctions.fatBodyMass(bodyWeight, fatPercentage)
-const leanBodyMass = anthropometryFunctions.leanBodyMass(bodyWeight, fatBodyMass)
-const expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(sexNumber, leanBodyMass)
+user.bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyStature = anthropometryFunctions.stature()
+user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user)
+user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user)
+user.bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+user.hipWaistRatio = anthropometryFunctions.hipWaistRatio(user)
+user.waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(user)
+user.waistCircumference = anthropometryFunctions.waistCircumferenceClassification(user)
+user.subcutaneousFolds = anthropometryFunctions.subcutaneousMeasures()
+user.fatPercentage = anthropometryFunctions.fatPercentage(user)
+user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(user)
+user.fatBodyMass = anthropometryFunctions.fatBodyMass(user)
+user.leanBodyMass = anthropometryFunctions.leanBodyMass(user)
+user.expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(user)
 
-
-// show results personalData
-console.clear()
+// show results personalDataFunctions
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
-console.log(`Nome: ${name}`)
-console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
-console.log(`Idade: ${age} anos!`)
-console.log(`Sexo: ${sex}`)
-console.log(`Profissão: ${profession}`)
-console.log(`E-mail: ${userEmail}`)
-console.log(`Celular: ${phoneNumber}`)
+console.log(`Nome: ${user.name}`)
+console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
+console.log(`Idade: ${user.age} anos`)
+console.log(`Sexo: ${user.sex}`)
+console.log(`Profissão: ${user.profession}`)
+console.log(`E-mail: ${user.userEmail}`)
+console.log(`Celular: ${user.phoneNumber}`)
 
 // show results anamnesisFunctions
-console.log(`===============================`) 
+headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
-
-console.log(`Questionário PAR-Q: ${questionnairePARQ}`)
-console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(currentPhysicalState)}`)
-console.log(`Doença Pregressa: ${pastIllness}`)
-console.log(`Doença Pregressa na Família: ${illnessesFamily}`)
-console.log(`Cirurgia: ${surgeryPerformed}`)
-console.log(`Uso de Medicamento: ${useMedication}`)
-console.log(`Lesão Desportiva: ${sportsInjuries}`)
-console.log(`Objetivo do treino: ${trainingObjective}`)
-console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining} dias.`)
-console.log(`Tempo disponível para treino: ${timeAvailablePerTraining} minutos.`)
+console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
+console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
+console.log(`Doença Pregressa: ${user.pastIllness}`)
+console.log(`Doença Pregressa na Família: ${user.illnessesFamily}`)
+console.log(`Cirurgia: ${user.surgeryPerformed}`)
+console.log(`Uso de Medicamento: ${user.useMedication}`)
+console.log(`Lesão Desportiva: ${user.sportsInjuries}`)
+console.log(`Objetivo do treino: ${user.trainingObjective}`)
+console.log(`Dias disponíveis para treinar: ${user.daysAvailableForTraining} dias.`)
+console.log(`Tempo disponível para treino: ${user.timeAvailablePerTraining} minutos.`)
 
 // show results cardiorespiratoryFunctions
-console.log(`===============================`) 
+headerFunctions.systemHeader()
 headerFunctions.subTitle("Cardiorespiratório")
-console.log(`Frequência Cardíaca de Repouso: ${restingHeartRate} bpm.`)
-console.log(`Frequência Cardíaca Máxima: ${maximumHeartRate} bpm.`)
-cardiorespiratoryFunctions.workingHeartRate(Number(restingHeartRate), Number(maximumHeartRate))
-console.log(`Pressão Arterial de Repouso: ${restingBloodPressure.systolic}/${restingBloodPressure.diastolic} mmHg.`)
+console.log(`Frequência Cardíaca de Repouso: ${user.restingHeartRate} bpm.`)
+console.log(`Frequência Cardíaca Máxima: ${user.maximumHeartRate} bpm.`)
+cardiorespiratoryFunctions.showWorkingHeartRate(user)
+console.log(`Pressão Arterial de Repouso: ${user.restingBloodPressure.bloodPressureString} mmHg.`)
 console.log(`Classificação da Pressão Arterial`)
-console.log(`Sistólica: ${bloodPressureRating.systolicClassification}`)
-console.log(`Diastólica: ${bloodPressureRating.diastolicClassification}`)
+console.log(`Sistólica: ${user.classificationBloodPressure.systolicClassification} / Diastólica: ${user.classificationBloodPressure.diastolicClassification}`)
 
 // show results anthropometryFunctions
-console.log(`===============================`) 
+headerFunctions.systemHeader()
 headerFunctions.subTitle("Antropometria")
-console.log(`Peso Corporal: ${bodyWeight} kilos`)
-console.log(`Estatura Corporal: ${bodyStature} metros`)
-console.log(`Índice de Massa Corporal - IMC: ${bodyMassIndex}`)
-console.log(`Classificação IMC: ${bodyMassIndexClassification}`)
-anthropometryFunctions.showPerimeter(bodyPerimeter)
-console.log(`Relação Cintura Quadril- RCQ: ${hipWaistRatio}`)
-console.log(`Classificação RCQ: ${waistHipRatioClassification}`)
-console.log(`Circunfência cintura - Classificação: ${waistCircumference}`)
-anthropometryFunctions.showSubcutaneousFolds(skinFolds)
-console.log(`Percentual de gordura: ${fatPercentage}%`)
-console.log(`Classificação % Gordura: ${fatPercentageClassification}`)
-console.log(`Massa Corporal Gorda: ${fatBodyMass} kilos`)
-console.log(`Massa Corporal Magra: ${leanBodyMass} kilos`)
-console.log(`Massa Corporal Ideal Prevista: ${expectedIdealBodyMass} kilos`)
-
-console.log(`===============================`)
-
+console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${user.bodyStature} metros`)
+console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
+console.log(`Classificação IMC: ${user.bodyMassIndexClassification}`)
+anthropometryFunctions.showPerimeter(user)
+console.log(`Relação Cintura Quadril- RCQ: ${user.hipWaistRatio}`)
+console.log(`Classificação RCQ: ${user.waistHipRatioClassification}`)
+console.log(`Circunfência Cintura - Classificação: ${user.waistCircumference}`)
+anthropometryFunctions.showSubcutaneousFolds(user)
+console.log(`Percentual de Gordura: ${user.fatPercentage}%`)
+console.log(`Classificação % Gordura: ${user.fatPercentageClassification}`)
+console.log(`Massa Corporal Gorda: ${user.fatBodyMass} kilos`)
+console.log(`Massa Corporal Magra: ${user.leanBodyMass} kilos`)
+console.log(`Massa Corporal Ideal Prevista: ${user.expectedIdealBodyMass} kilos`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o progama:
@@ -5895,81 +6206,86 @@ Ao executar o progama:
            Dados Pessoais            
 ===============================
 Nome: Maria Severina
-Data de nascimento: 28/02/2001
-Idade: 21 anos!
+Data de nascimento: 28/02/1998
+Idade: 24 anos
 Sexo: Feminino
-Profissão: Recepcionista
+Profissão: Secretaria
 E-mail: maria@severina.com
-Celular: 13958674132
+Celular: 82910293847
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Anamnese            
 ===============================
-Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Questionário PAR-Q: Todas as respostas do questionário foram 'Não'!
 Estado físico: Sedentário
 Doença Pregressa: Sem doença pregressa.
-Doença Pregressa na Família: Pais hipertensos
+Doença Pregressa na Família: Sem doença pregressa na família.
 Cirurgia: Nunca realizou procedimento cirúrgico.
 Uso de Medicamento: Não faz uso de medicamento.
 Lesão Desportiva: Nunca sofreu lesão desportiva.
 Objetivo do treino: Bem-estar e Saúde
-Dias disponíveis para treinar: 3 dias.
+Dias disponíveis para treinar: 5 dias.
 Tempo disponível para treino: 60 minutos.
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Cardiorespiratório            
 ===============================
 Frequência Cardíaca de Repouso: 60 bpm.
-Frequência Cardíaca Máxima: 199 bpm.
+Frequência Cardíaca Máxima: 196 bpm.
 Frequência Cardíaca de Treino:
-        40% = 116 bpm
-        45% = 123 bpm
-        50% = 130 bpm
-        55% = 136 bpm
-        60% = 143 bpm
-        65% = 150 bpm
-        70% = 157 bpm
-        75% = 164 bpm
-        80% = 171 bpm
-        85% = 178 bpm
-        90% = 185 bpm
-        95% = 192 bpm
-Pressão Arterial de Repouso: 130/85 mmHg.
+       40% = 114 bpm
+       45% = 121 bpm
+       50% = 128 bpm
+       55% = 135 bpm
+       60% = 142 bpm
+       65% = 148 bpm
+       70% = 155 bpm
+       75% = 162 bpm
+       80% = 169 bpm
+       85% = 176 bpm
+       90% = 182 bpm
+       95% = 189 bpm
+Pressão Arterial de Repouso: 125/80 mmHg.
 Classificação da Pressão Arterial
-Sistólica: Limítrofe
-Diastólica: Limítrofe
+Sistólica: Normal / Diastólica: Normal
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Antropometria            
 ===============================
-Peso Corporal: 65.8 kilos
-Estatura Corporal: 1.62 metros
-Índice de Massa Corporal - IMC: 25.07
+Peso Corporal: 65 kilos
+Estatura Corporal: 1.6 metros
+Índice de Massa Corporal - IMC: 25.39
 Classificação IMC: Sobrepeso
-Perimetria Corporal:
-Braço: 28.2 cm
-Antebraço: 19.8 cm
-Cintura: 60.0 cm
-Quadril: 81.5 cm
-Coxa: 53.4 cm
-Panturrilha: 41.2 cm
-Relação Cintura Quadril- RCQ: 0.74
-Classificação RCQ: Moderado Risco
-Circunfência cintura - Classificação: Nenhum Risco
-Dobras Cutâneas:
-Triciptal: 15 mm
-Subescapular: 18 mm
-Peitoral: 11 mm
-SupraIliaca: 22 mm
-Abdominal: 24 mm
-Coxa: 19 mm
-Panturrilha: 8 mm
-Percentual de gordura: 20.97%
+ - Perimetria Corporal - 
+   Braço: 12 cm
+   Antebraço: 23 cm
+   Cintura: 66 cm
+   Quadril: 75 cm
+   Coxa: 45 cm
+   Panturrilha: 32 cm
+Relação Cintura Quadril- RCQ: 0.88
+Classificação RCQ: Muito Alto Risco
+Circunfência Cintura - Classificação: Nenhum Risco
+ - Dobras Cutâneas - 
+   Triciptal: 7 mm
+   Subescapular: 18 mm
+   Peitoral: 5 mm
+   SupraIliaca: 15 mm
+   Abdominal: 24 mm
+   Coxa: 14 mm
+   Panturrilha: 7 mm
+Percentual de Gordura: 14.14%
 Classificação % Gordura: Abaixo da média
-Massa Corporal Gorda: 13.8 kilos
-Massa Corporal Magra: 52 kilos
-Massa Corporal Ideal Prevista: 67.5 kilos
+Massa Corporal Gorda: 9.2 kilos
+Massa Corporal Magra: 55.8 kilos
+Massa Corporal Ideal Prevista: 72.5 kilos
 ===============================
 ```
 
-
+PAREI
 
 ## Testes Neuromuscular
 

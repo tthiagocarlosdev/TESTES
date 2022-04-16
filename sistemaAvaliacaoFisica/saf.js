@@ -9,14 +9,13 @@ const { percentageValues } = require('./cardiorespiratoryFunctions')
 const { anthropometryFunctions } = require('./anthropometryFunctions')
 
 /*
-
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
 const { aerobicFunctions } = require('./aerobicFunctions')*/
 
 const user = { }
-user.age = 34 // temporary
-user.sexNumber = 1 // temporary
-/*
+// user.age = 34 // temporary
+// user.sexNumber = 1 // temporary
+
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
@@ -31,7 +30,7 @@ user.profession = personalDataFunctions.userProfession()
 user.userEmail = personalDataFunctions.userEmail()
 user.phoneNumber = personalDataFunctions.phoneNumber()
 
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
@@ -47,7 +46,7 @@ user.trainingObjective = anamnesisFunctions.trainingObjective()
 user.daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
 user.timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
 
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Cardiorrespiratório")
 
@@ -58,9 +57,8 @@ user.percentageValues = percentageValues
 user.workingHeartRate = cardiorespiratoryFunctions.workingHeartRate(user)
 user.restingBloodPressure = cardiorespiratoryFunctions.bloodPressure()
 user.classificationBloodPressure = cardiorespiratoryFunctions.classificationOfBloodPressure(user)
-*/
 
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Antropometria")
 
@@ -75,16 +73,12 @@ user.waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassific
 user.waistCircumference = anthropometryFunctions.waistCircumferenceClassification(user)
 user.subcutaneousFolds = anthropometryFunctions.subcutaneousMeasures()
 user.fatPercentage = anthropometryFunctions.fatPercentage(user)
+user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(user)
+user.fatBodyMass = anthropometryFunctions.fatBodyMass(user)
+user.leanBodyMass = anthropometryFunctions.leanBodyMass(user)
+user.expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(user)
 
 /*
-
-
-
-user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(user.sexNumber, user.fatPercentage)
-user.fatBodyMass = anthropometryFunctions.fatBodyMass(user.bodyWeight, user.fatPercentage)
-user.leanBodyMass = anthropometryFunctions.leanBodyMass(user.bodyWeight, user.fatBodyMass)
-user.expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(user.sexNumber, user.leanBodyMass)
-
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Neuromuscular")
@@ -114,9 +108,9 @@ console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Observações")
 user.comments = personalDataFunctions.comments()
-
+*/
 // show results personalDataFunctions
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 console.log(`Nome: ${user.name}`)
@@ -150,7 +144,6 @@ cardiorespiratoryFunctions.showWorkingHeartRate(user)
 console.log(`Pressão Arterial de Repouso: ${user.restingBloodPressure.bloodPressureString} mmHg.`)
 console.log(`Classificação da Pressão Arterial`)
 console.log(`Sistólica: ${user.classificationBloodPressure.systolicClassification} / Diastólica: ${user.classificationBloodPressure.diastolicClassification}`)
-*/
 
 // show results anthropometryFunctions
 headerFunctions.systemHeader()
@@ -165,14 +158,13 @@ console.log(`Classificação RCQ: ${user.waistHipRatioClassification}`)
 console.log(`Circunfência Cintura - Classificação: ${user.waistCircumference}`)
 anthropometryFunctions.showSubcutaneousFolds(user)
 console.log(`Percentual de Gordura: ${user.fatPercentage}%`)
-headerFunctions.baseboard()
-
-/*
-
 console.log(`Classificação % Gordura: ${user.fatPercentageClassification}`)
 console.log(`Massa Corporal Gorda: ${user.fatBodyMass} kilos`)
 console.log(`Massa Corporal Magra: ${user.leanBodyMass} kilos`)
 console.log(`Massa Corporal Ideal Prevista: ${user.expectedIdealBodyMass} kilos`)
+headerFunctions.baseboard()
+
+/*
 
 // show results neuromuscularFunctions
 headerFunctions.baseboard()
