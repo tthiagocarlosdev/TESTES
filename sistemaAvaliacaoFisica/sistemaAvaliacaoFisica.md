@@ -6322,10 +6322,10 @@ wellsBenchTest(){
     let itsRegexNumber = true
     
     do{
-  
-      testResult = input.question('Teste de flexibilidade banco de Wells [00](cm) : ')
+      console.log(`Teste de flexibilidade banco de Wells`)
+      testResult = input.question(`Digite a distância alcaçada [00](cm) : `)
       itsRegexNumber = validationFunctions.isRegularExpression(testResult, regexFromZeroToNinetyNine)
-      validationFunctions.incorrectValue(false, !itsRegexNumber,'Neuromuscular' )
+      validationFunctions.incorrectValue(false, !itsRegexNumber, `Neuromuscular`)
   
     }while(!itsRegexNumber)
     
@@ -6375,7 +6375,8 @@ Ao executar o programa:
 ===============================
            Neuromuscular            
 ===============================
-Teste de flexibilidade banco de Wells [00](cm) : 45
+Teste de flexibilidade banco de Wells
+Digite a distância alcaçada [00](cm) : 45
 ```
 
 ```shell
@@ -6647,7 +6648,8 @@ Ao executar o programa:
 ===============================
            Neuromuscular            
 ===============================
-Teste de flexibilidade banco de Wells [00](cm) : 29
+Teste de flexibilidade banco de Wells
+Digite a distância alcaçada [00](cm) : 29
 ```
 
 ```shell
@@ -6661,40 +6663,47 @@ Classificação Flexibilidade: Boa
 ===============================
 ```
 
-PAREI
-
 ### Teste Abdominal
 
-**abdominalTest( )** function, determina a quantidade de repetições abdominais realizadas pelo usuário em 1 minuto. Deve aceitar apenas números de até 2 dígitos. Caso seja digitado qualquer outro valor diferente, a function **incorrectValue( )** deve ser chamada e o usuário deve digitar um valor correto. Retorna o valor alcançado no teste pelo o usuário. Logo, em **neuromuscularFunctions.js**:
+**abdominalTest( )** function, determina a quantidade de repetições abdominais realizadas pelo usuário em 1 minuto. Deve aceitar apenas números inteiros de até 2 dígitos. Caso seja digitado qualquer outro valor diferente, a function **incorrectValue( )** deve ser chamada e o usuário deve digitar um valor correto. Retorna o valor alcançado no teste pelo o usuário. Logo, em **neuromuscularFunctions.js**:
 
 ```js
 abdominalTest(){
 
-    let testResult = ''
-    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
-    let validNumber = true
+    let testResult = 0
+    const regexFromZeroToNinetyNine = /(^[0-9]$)|(^[0-9]{2}$)/
+    let itsRegexNumber = true
   
     do{
       console.log('Teste de Abdominais')
       testResult = input.question('Digite a quantidade de repetições em 1 min [00]: ')
-      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
-      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+      itsRegexNumber = validationFunctions.isRegularExpression(testResult, regexFromZeroToNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRegexNumber,'Neuromuscular' )
   
-    }while(!validNumber)
+    }while(!itsRegexNumber)
     
     return Number(testResult)
   
   },
 ```
 
-Em **saf.js** vamos criar a variável **numberOfAbs** e atribuir a ela a function **abdominalTest( )**. Depois mostramos o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **numberOfAbs** que recebe como valor o retorno da function **abdominalTest( )**. Depois mostramos o resultado:
 
 ```js
-const numberOfAbs = neuromuscularFunctions.abdominalTest()
+// variables neuromuscularFunctions
+user.wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
+user.flexibilityClassification = neuromuscularFunctions.flexibilityClassification(user)
+user.numberOfAbs = neuromuscularFunctions.abdominalTest()
 ```
 
 ```js
-console.log(`Quantidade de flexões abdominais: ${numberOfAbs}`)
+// show results neuromuscularFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Neuromuscular")
+console.log(`Resultado Teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
+console.log(`Classificação Flexibilidade: ${user.flexibilityClassification}`)
+console.log(`Quantidade de flexões abdominais: ${user.numberOfAbs}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -6705,9 +6714,21 @@ Ao executar o programa:
 ===============================
            Neuromuscular            
 ===============================
-Resultado teste Flexibilidade Banco de Wells: 15 cm
+Teste de flexibilidade banco de Wells
+Digite a distância alcaçada [00](cm) : 10
+Teste de Abdominais
+Digite a quantidade de repetições em 1 min [00]: 32
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Resultado Teste Flexibilidade Banco de Wells: 10 cm
 Classificação Flexibilidade: Fraca
-Quantidade de flexões abdominais: 45
+Quantidade de flexões abdominais: 32
 ===============================
 ```
 
@@ -6751,9 +6772,13 @@ Quantidade de flexões abdominais: 45
 Logo, em **neuromuscularFunctions.js**:
 
 ```js
-abdominalClassification(sexNumber, ageValue, abdominalTestResult){
+abdominalClassification(objectValue){
   
-    let classification = ''
+    const sexNumber = objectValue.sexNumber
+    const ageValue = objectValue.age
+    const abdominalTestResult = objectValue.numberOfAbs
+  
+    let classification = ``
     const unidentifiedSex = `[ERROR] Sexo não identificado!` 
     const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
     const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
@@ -6939,14 +6964,25 @@ abdominalClassification(sexNumber, ageValue, abdominalTestResult){
   },
 ```
 
-Em **saf.js** vamos criar a variável **abdominalRating** e atribuir a function **abdominalClassification( )** passasndo como parâmetro as variáveis **sexNumber**, **age** e **numberOfAbs**. Em seguida mostramos o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **abdominalClassification** que recebe como valor o retorno da function **abdominalClassification( )** passando o objeto _**user**_como parâmetro, sendo usado as propriedades **sexo**, **idade** e **quantidade de abdominais** realizadas no teste. Em seguida mostramos o resultado:
 
 ```js
-const abdominalRating = neuromuscularFunctions.abdominalClassification(sexNumber, age, numberOfAbs)
+// variables neuromuscularFunctions
+user.wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
+user.flexibilityClassification = neuromuscularFunctions.flexibilityClassification(user)
+user.numberOfAbs = neuromuscularFunctions.abdominalTest()
+user.abdominalClassification = neuromuscularFunctions.abdominalClassification(user)
 ```
 
  ```js
- console.log(`Classificação Abdominais: ${abdominalRating}`)
+ // show results neuromuscularFunctions
+ headerFunctions.systemHeader()
+ headerFunctions.subTitle("Neuromuscular")
+ console.log(`Resultado Teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
+ console.log(`Classificação Flexibilidade: ${user.flexibilityClassification}`)
+ console.log(`Quantidade de flexões abdominais: ${user.numberOfAbs}`)
+ console.log(`Classificação Abdominais: ${user.abdominalClassification}`)
+ headerFunctions.baseboard()
  ```
 
 Ao executar o programa:
@@ -6957,45 +6993,70 @@ Ao executar o programa:
 ===============================
            Neuromuscular            
 ===============================
-Resultado teste Flexibilidade Banco de Wells: 30 cm
-Classificação Flexibilidade: Boa
-Quantidade de flexões abdominais: 37
+Teste de flexibilidade banco de Wells
+Digite a distância alcaçada [00](cm) : 26
+Teste de Abdominais
+Digite a quantidade de repetições em 1 min [00]: 39
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Resultado Teste Flexibilidade Banco de Wells: 26 cm
+Classificação Flexibilidade: Regular
+Quantidade de flexões abdominais: 39
 Classificação Abdominais: Excelente
 ===============================
 ```
 
 ### Flexão de Braço
 
-**flexArmTest( )** determina a quantidade de repetições de braço realizadas no teste. Deve aceitar apenas números de até 2 dígitos. Caso seja digitado qualquer outro valor diferente, a function **incorrectValue( )** deve ser chamada e o usuário deve digitar um valor correto. Retorna o valor alcançado no teste pelo o usuário. Logo, em **neuromuscularFunctions.js**:
+**flexArmTest( )** determina a quantidade de flexões de braço realizadas no teste. Deve aceitar apenas números inteiros de até 2 dígitos. Caso seja digitado qualquer outro valor diferente, a function **incorrectValue( )** deve ser chamada e o usuário deve digitar um valor correto. Retorna o valor alcançado no teste pelo o usuário. Logo, em **neuromuscularFunctions.js**:
 
 ```js
 flexArmTest(){
 
-    let testResult = ''
-    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
-    let validNumber = true
+    let testResult = 0
+    const regexFromZeroToNinetyNine = /(^[0-9]$)|(^[0-9]{2}$)/
+    let itsRegexNumber = true
   
     do{
       console.log('Teste de Flexão de Braço')
       testResult = input.question('Digite a quantidade de repetições [00]: ')
-      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
-      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+      itsRegexNumber = validationFunctions.isRegularExpression(testResult, regexFromZeroToNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRegexNumber,'Neuromuscular' )
   
-    }while(!validNumber)
+    }while(!itsRegexNumber)
     
     return Number(testResult)
   
   },
 ```
 
-Em **saf.js** criamos a variável **numberOfPushUps** que recebe a function **flexArmTest( )**. Em seguida mostramos o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **numberOfPushUps** que recebe como valor o retorno da function **flexArmTest( )**. Em seguida mostramos o resultado:
 
 ```js
-const numberOfPushUps = neuromuscularFunctions.flexArmTest()
+// variables neuromuscularFunctions
+user.wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
+user.flexibilityClassification = neuromuscularFunctions.flexibilityClassification(user)
+user.numberOfAbs = neuromuscularFunctions.abdominalTest()
+user.abdominalClassification = neuromuscularFunctions.abdominalClassification(user)
+user.numberOfPushUps = neuromuscularFunctions.flexArmTest()
 ```
 
 ```js
-console.log(`Quantidade de flexões de braço: ${numberOfPushUps}`)
+// show results neuromuscularFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Neuromuscular")
+console.log(`Resultado Teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
+console.log(`Classificação Flexibilidade: ${user.flexibilityClassification}`)
+console.log(`Quantidade de flexões abdominais: ${user.numberOfAbs}`)
+console.log(`Classificação Abdominais: ${user.abdominalClassification}`)
+console.log(`Quantidade de flexões de braço: ${user.numberOfPushUps}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -7006,13 +7067,29 @@ Ao executar o programa:
 ===============================
            Neuromuscular            
 ===============================
-Resultado teste Flexibilidade Banco de Wells: 12 cm
-Classificação Flexibilidade: Fraca
-Quantidade de flexões abdominais: 15
-Classificação Abdominais: Muito Fraco
+Teste de flexibilidade banco de Wells
+Digite a distância alcaçada [00](cm) : 31
+Teste de Abdominais
+Digite a quantidade de repetições em 1 min [00]: 38
+Teste de Flexão de Braço
+Digite a quantidade de repetições [00]: 26
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Resultado Teste Flexibilidade Banco de Wells: 31 cm
+Classificação Flexibilidade: Boa
+Quantidade de flexões abdominais: 38
+Classificação Abdominais: Excelente
 Quantidade de flexões de braço: 26
 ===============================
 ```
+
+P
 
 ### Flexão de Braço - Classificação
 

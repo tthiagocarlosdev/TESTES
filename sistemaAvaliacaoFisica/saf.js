@@ -85,12 +85,15 @@ headerFunctions.subTitle("Neuromuscular")
 // variables neuromuscularFunctions
 user.wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
 user.flexibilityClassification = neuromuscularFunctions.flexibilityClassification(user)
+user.numberOfAbs = neuromuscularFunctions.abdominalTest()
+user.abdominalClassification = neuromuscularFunctions.abdominalClassification(user)
+user.numberOfPushUps = neuromuscularFunctions.flexArmTest()
 
 /*
 
-user.numberOfAbs = neuromuscularFunctions.abdominalTest()
-user.abdominalRating = neuromuscularFunctions.abdominalClassification(user.sexNumber, user.age, user.numberOfAbs)
-user.numberOfPushUps = neuromuscularFunctions.flexArmTest()
+
+
+
 user.flexArmRating = neuromuscularFunctions.flexArmClassification(user.sexNumber, user.age, user.numberOfPushUps)
 
 console.clear()
@@ -173,14 +176,13 @@ headerFunctions.systemHeader()
 headerFunctions.subTitle("Neuromuscular")
 console.log(`Resultado Teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
 console.log(`Classificação Flexibilidade: ${user.flexibilityClassification}`)
+console.log(`Quantidade de flexões abdominais: ${user.numberOfAbs}`)
+console.log(`Classificação Abdominais: ${user.abdominalClassification}`)
+console.log(`Quantidade de flexões de braço: ${user.numberOfPushUps}`)
 headerFunctions.baseboard()
 
 /*
 
-
-console.log(`Quantidade de flexões abdominais: ${user.numberOfAbs}`)
-console.log(`Classificação Abdominais: ${user.abdominalRating}`)
-console.log(`Quantidade de flexões de braço: ${user.numberOfPushUps}`)
 console.log(`Classificação flexões de braço: ${user.flexArmRating}`)
 
 // show results aerobicFunctions

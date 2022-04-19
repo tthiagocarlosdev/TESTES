@@ -13,10 +13,10 @@ const neuromuscularFunctions = {
     let itsRegexNumber = true
     
     do{
-  
-      testResult = input.question('Teste de flexibilidade banco de Wells [00](cm) : ')
+      console.log(`Teste de flexibilidade banco de Wells`)
+      testResult = input.question(`Digite a distância alcaçada [00](cm) : `)
       itsRegexNumber = validationFunctions.isRegularExpression(testResult, regexFromZeroToNinetyNine)
-      validationFunctions.incorrectValue(false, !itsRegexNumber,'Neuromuscular' )
+      validationFunctions.incorrectValue(false, !itsRegexNumber, `Neuromuscular`)
   
     }while(!itsRegexNumber)
     
@@ -219,25 +219,29 @@ const neuromuscularFunctions = {
   
   abdominalTest(){
 
-    let testResult = ''
-    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
-    let validNumber = true
+    let testResult = 0
+    const regexFromZeroToNinetyNine = /(^[0-9]$)|(^[0-9]{2}$)/
+    let itsRegexNumber = true
   
     do{
       console.log('Teste de Abdominais')
       testResult = input.question('Digite a quantidade de repetições em 1 min [00]: ')
-      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
-      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+      itsRegexNumber = validationFunctions.isRegularExpression(testResult, regexFromZeroToNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRegexNumber,'Neuromuscular' )
   
-    }while(!validNumber)
+    }while(!itsRegexNumber)
     
     return Number(testResult)
   
   },
 
-  abdominalClassification(sexNumber, ageValue, abdominalTestResult){
+  abdominalClassification(objectValue){
   
-    let classification = ''
+    const sexNumber = objectValue.sexNumber
+    const ageValue = objectValue.age
+    const abdominalTestResult = objectValue.numberOfAbs
+  
+    let classification = ``
     const unidentifiedSex = `[ERROR] Sexo não identificado!` 
     const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
     const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
@@ -424,17 +428,17 @@ const neuromuscularFunctions = {
 
   flexArmTest(){
 
-    let testResult = ''
-    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
-    let validNumber = true
+    let testResult = 0
+    const regexFromZeroToNinetyNine = /(^[0-9]$)|(^[0-9]{2}$)/
+    let itsRegexNumber = true
   
     do{
       console.log('Teste de Flexão de Braço')
       testResult = input.question('Digite a quantidade de repetições [00]: ')
-      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
-      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+      itsRegexNumber = validationFunctions.isRegularExpression(testResult, regexFromZeroToNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRegexNumber,'Neuromuscular' )
   
-    }while(!validNumber)
+    }while(!itsRegexNumber)
     
     return Number(testResult)
   

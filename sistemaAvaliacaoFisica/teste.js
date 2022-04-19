@@ -2970,10 +2970,10 @@ function testflexibilityClassification(objectTest){
 
 }
 
-console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
-testflexibilityClassification(testManflexibilityClassification)
-console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
-testflexibilityClassification(testWomanflexibilityClassification)
+// console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
+// testflexibilityClassification(testManflexibilityClassification)
+// console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
+// testflexibilityClassification(testWomanflexibilityClassification)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Abdominal Test == **/
@@ -3000,7 +3000,7 @@ function abdominalTest(){
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Abdominal Test - Classification == **/
-
+/*
 function abdominalClassification(sexNumber, ageValue, abdominalTestResult){
   
   let classification = ''
@@ -3187,7 +3187,7 @@ function abdominalClassification(sexNumber, ageValue, abdominalTestResult){
   return classification
 
 }
-/*
+
 console.log(`MEN`)
 console.log(`idade entre 20 e 29 anos`)
 console.log(abdominalClassification(1, 29, 29))
@@ -3259,6 +3259,269 @@ console.log(abdominalClassification(3, 69, 33))
 console.log(abdominalClassification(2, 70, 33))
 console.log(abdominalClassification(2, 19, 33))
 */
+
+function abdominalClassification(objectValue){
+  
+  const sexNumber = objectValue.sexNumber
+  const ageValue = objectValue.age
+  const abdominalTestResult = objectValue.numberOfAbs
+
+  let classification = ``
+  const unidentifiedSex = `[ERROR] Sexo não identificado!` 
+  const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
+  const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
+  const ageBetweenFortyAndFortyNine = ageValue >= 40 && ageValue <= 49
+  const ageBetweenFiftyAndFiftyNine = ageValue >= 50 && ageValue <= 59
+  const ageBetweenSixtyAndSixtyNine = ageValue >= 60 && ageValue <= 69
+  const veryPoorRating = `Muito Fraco`
+  const weakRating = `Fraco`
+  const regularRating = `Regular`
+  const goodRating = `Bom`
+  const excellentRating = `Excelente`
+  const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+
+  switch (sexNumber) {
+    
+    // men
+    case 1:
+      
+      if(ageBetweenTwentyAndTwentyNine){
+        
+        if(abdominalTestResult < 30){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 35){
+          classification = weakRating
+        } else if(abdominalTestResult < 40){
+          classification = regularRating
+        } else if(abdominalTestResult < 45){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenThirtyAndThirtyNine){
+        
+        if(abdominalTestResult < 22){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 27){
+          classification = weakRating
+        } else if(abdominalTestResult < 32){
+          classification = regularRating
+        } else if(abdominalTestResult < 37){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFortyAndFortyNine){
+        
+        if(abdominalTestResult < 17){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 21){
+          classification = weakRating
+        } else if(abdominalTestResult < 26){
+          classification = regularRating
+        } else if(abdominalTestResult < 32){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFiftyAndFiftyNine){
+        
+        if(abdominalTestResult < 12){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 17){
+          classification = weakRating
+        } else if(abdominalTestResult < 23){
+          classification = regularRating
+        } else if(abdominalTestResult < 29){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenSixtyAndSixtyNine){
+        
+        if(abdominalTestResult < 9){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 13){
+          classification = weakRating
+        } else if(abdominalTestResult < 19){
+          classification = regularRating
+        } else if(abdominalTestResult < 25){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else {
+        classification = classificationNotAppliedToAge
+      }
+
+      break;
+    
+    // woman
+    case 2:
+
+      if(ageBetweenTwentyAndTwentyNine){
+        
+        if(abdominalTestResult < 26){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 30){
+          classification = weakRating
+        } else if(abdominalTestResult < 35){
+          classification = regularRating
+        } else if(abdominalTestResult < 40){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenThirtyAndThirtyNine){
+        
+        if(abdominalTestResult < 21){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 25){
+          classification = weakRating
+        } else if(abdominalTestResult < 30){
+          classification = regularRating
+        } else if(abdominalTestResult < 35){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFortyAndFortyNine){
+        
+        if(abdominalTestResult < 16){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 20){
+          classification = weakRating
+        } else if(abdominalTestResult < 25){
+          classification = regularRating
+        } else if(abdominalTestResult < 30){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFiftyAndFiftyNine){
+        
+        if(abdominalTestResult < 11){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 15){
+          classification = weakRating
+        } else if(abdominalTestResult < 20){
+          classification = regularRating
+        } else if(abdominalTestResult < 25){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenSixtyAndSixtyNine){
+        
+        if(abdominalTestResult < 6){
+          classification = veryPoorRating
+        } else if(abdominalTestResult < 10){
+          classification = weakRating
+        } else if(abdominalTestResult < 15){
+          classification = regularRating
+        } else if(abdominalTestResult < 20){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else {
+        classification = classificationNotAppliedToAge
+      }
+
+      break;
+  
+    default:
+
+      classification = unidentifiedSex
+
+      break;
+  }
+
+  return classification
+
+}
+
+// Test Abdominal Classification
+const testManAbdominalClassification = {
+  sexNumber: 1,
+  arrayAge: [19, 29, 39, 49, 59, 69, 70],
+  arrayAbdominalClassification: [
+    arrayMen0To19 = [30, 35, 39, 40, 48], 
+    arrayMen20To29 = [29, 34, 39, 44, 45],
+    arrayMen30To39 = [21, 26, 31, 36, 37],
+    arrayMen40To49 = [16, 20, 25, 31, 32],
+    arrayMen50To59 = [11, 16, 22, 28, 29],
+    arrayMen60To69 = [8, 12, 18, 24, 25],
+    arrayMenGreaterThan69 = [0.89, 0.96, 1.01, 1.02, 10],
+  ],
+  arrayTitle: [
+    `idade entre 0 e 19 anos`,
+    `idade entre 20 e 29 anos`,
+    `idade entre 30 e 39 anos`,
+    `idade entre 40 e 49 anos`,
+    `idade entre 50 e 59 anos`,
+    `idade entre 60 e 69 anos`,
+    `idade maior que 69 anos`,
+  ]                  
+}
+
+const testWomanAbdominalClassification = {
+  sexNumber: 2,
+  arrayAge: [19, 29, 39, 49, 59, 69, 70],
+  arrayAbdominalClassification: [
+    arrayWoman0To19 = [28, 33, 42, 43, 46],
+    arrayWoman20To29 = [25, 29, 34, 39, 40],
+    arrayWoman30To39 = [20, 24, 29, 34, 35],
+    arrayWoman40To49 = [15, 19, 24, 29, 30],
+    arrayWoman50To59 = [10, 14, 19, 24, 25],
+    arrayWoman60To69 = [5, 9, 14, 19, 20],
+    arrayWomanGreaterThan69 = [22, 26, 34, 35, 10],
+  ],
+  arrayTitle: [
+    `idade entre 0 e 19 anos`,
+    `idade entre 20 e 29 anos`,
+    `idade entre 30 e 39 anos`,
+    `idade entre 40 e 49 anos`,
+    `idade entre 50 e 59 anos`,
+    `idade entre 60 e 69 anos`,
+    `idade maior que 69 anos`,
+  ]                 
+}
+
+function testAbdominalClassification(objectTest){
+
+  let object = {}
+  object.sexNumber = objectTest.sexNumber 
+  const age = objectTest.arrayAge
+  const title = objectTest.arrayTitle
+  const arrayValues = objectTest.arrayAbdominalClassification
+
+  for(let i = 0; i < age.length; i++){
+    object.age = age[i]
+    console.log(title[i])
+    for(let j = 0; j < arrayValues[i].length; j++){
+      object.numberOfAbs = arrayValues[i][j]
+      console.log(`ABDOMINAIS = ${object.numberOfAbs} - Classificacão = ${abdominalClassification(object)}`)
+    }
+  }
+
+}
+
+console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
+testAbdominalClassification(testManAbdominalClassification)
+console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
+testAbdominalClassification(testWomanAbdominalClassification)
+
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Arm flexion == **/
 
