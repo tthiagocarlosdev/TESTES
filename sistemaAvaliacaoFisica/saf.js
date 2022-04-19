@@ -8,12 +8,15 @@ const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 const { percentageValues } = require('./cardiorespiratoryFunctions')
 const { anthropometryFunctions } = require('./anthropometryFunctions')
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
-
-/* const { aerobicFunctions } = require('./aerobicFunctions') */
+const { aerobicFunctions } = require('./aerobicFunctions')
 
 const user = { }
 user.age = 34 // temporary
 user.sexNumber = 1 // temporary
+user.restingHeartRate = 60 // temporary
+user.maximumHeartRate = 186 // temporary
+user.bodyWeight = 94 // temporary
+
 /*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
@@ -76,7 +79,6 @@ user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassific
 user.fatBodyMass = anthropometryFunctions.fatBodyMass(user)
 user.leanBodyMass = anthropometryFunctions.leanBodyMass(user)
 user.expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(user)
-*/
 
 // console.clear()
 headerFunctions.systemHeader()
@@ -88,15 +90,10 @@ user.flexibilityClassification = neuromuscularFunctions.flexibilityClassificatio
 user.numberOfAbs = neuromuscularFunctions.abdominalTest()
 user.abdominalClassification = neuromuscularFunctions.abdominalClassification(user)
 user.numberOfPushUps = neuromuscularFunctions.flexArmTest()
+user.flexArmClassification = neuromuscularFunctions.flexArmClassification(user)
+*/
 
-/*
-
-
-
-
-user.flexArmRating = neuromuscularFunctions.flexArmClassification(user.sexNumber, user.age, user.numberOfPushUps)
-
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Aeróbico")
 
@@ -104,6 +101,10 @@ headerFunctions.subTitle("Aeróbico")
 user.voTwoMax = aerobicFunctions.voTwoMax(user)
 user.voTwoMaxExpected = aerobicFunctions.vo2maxExpected(user)
 user.voTwoMaxClassification = aerobicFunctions.vo2maxClassification(user)
+
+/*
+
+
 user.objectTrainingSpeed = aerobicFunctions.trainingSpeed(user)
 user.aerobicFunctionalDeficit = aerobicFunctions.aerobicFunctionalDeficit(user)
 user.aerobicFunctionalDeficitClassification = aerobicFunctions.aerobicFunctionalDeficitClassification(user)
@@ -112,8 +113,8 @@ user.aerobicFunctionalDeficitClassification = aerobicFunctions.aerobicFunctional
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Observações")
-user.comments = personalDataFunctions.comments()
-*/
+user.comments = personalDataFunctions.comments()*/
+
 /*
 // show results personalDataFunctions
 // console.clear()
@@ -168,8 +169,6 @@ console.log(`Classificação % Gordura: ${user.fatPercentageClassification}`)
 console.log(`Massa Corporal Gorda: ${user.fatBodyMass} kilos`)
 console.log(`Massa Corporal Magra: ${user.leanBodyMass} kilos`)
 console.log(`Massa Corporal Ideal Prevista: ${user.expectedIdealBodyMass} kilos`)
-*/
-
 
 // show results neuromuscularFunctions
 headerFunctions.systemHeader()
@@ -179,19 +178,21 @@ console.log(`Classificação Flexibilidade: ${user.flexibilityClassification}`)
 console.log(`Quantidade de flexões abdominais: ${user.numberOfAbs}`)
 console.log(`Classificação Abdominais: ${user.abdominalClassification}`)
 console.log(`Quantidade de flexões de braço: ${user.numberOfPushUps}`)
+console.log(`Classificação flexões de braço: ${user.flexArmClassification}`)
+*/
+
+// show results aerobicFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Aeróbico")
+console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
+console.log(`VO²máx Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
+console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
 headerFunctions.baseboard()
 
 /*
 
-console.log(`Classificação flexões de braço: ${user.flexArmRating}`)
 
-// show results aerobicFunctions
-headerFunctions.baseboard()
-headerFunctions.subTitle("Aeróbico")
 
-console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
-console.log(`VO²máx Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
-console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
 headerFunctions.showArray(user.objectTrainingSpeed.titleTrainSpeed, user.objectTrainingSpeed.showTrainingSpeed)
 console.log(`Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficit.toFixed(2)}`)
 console.log(`Classificação do Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficitClassification}`)

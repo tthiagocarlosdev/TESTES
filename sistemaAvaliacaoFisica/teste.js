@@ -3517,10 +3517,10 @@ function testAbdominalClassification(objectTest){
 
 }
 
-console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
-testAbdominalClassification(testManAbdominalClassification)
-console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
-testAbdominalClassification(testWomanAbdominalClassification)
+// console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
+// testAbdominalClassification(testManAbdominalClassification)
+// console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
+// testAbdominalClassification(testWomanAbdominalClassification)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Arm flexion == **/
@@ -3806,6 +3806,269 @@ console.log(flexArmClassification(3, 69, 33))
 console.log(flexArmClassification(2, 70, 33))
 console.log(flexArmClassification(2, 19, 33))*/
 
+
+function flexArmClassification(objectValue){
+
+  const sexNumber = objectValue.sexNumber
+  const ageValue = objectValue.age
+  const flexArmTestResult = objectValue.numberOfPushUps
+  
+  let classification = ''
+  const unidentifiedSex = `[ERROR] Sexo não identificado!` 
+  const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
+  const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
+  const ageBetweenFortyAndFortyNine = ageValue >= 40 && ageValue <= 49
+  const ageBetweenFiftyAndFiftyNine = ageValue >= 50 && ageValue <= 59
+  const ageBetweenSixtyAndSixtyNine = ageValue >= 60 && ageValue <= 69
+  const veryPoorRating = `Muito Fraco`
+  const weakRating = `Fraco`
+  const regularRating = `Regular`
+  const goodRating = `Bom`
+  const excellentRating = `Excelente`
+  const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+
+  switch (sexNumber) {
+    
+    // men
+    case 1:
+      
+      if(ageBetweenTwentyAndTwentyNine){
+        
+        if(flexArmTestResult < 17){
+          classification = veryPoorRating
+        } else if(flexArmTestResult < 30){
+          classification = weakRating
+        } else if(flexArmTestResult < 40){
+          classification = regularRating
+        } else if(flexArmTestResult < 50){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenThirtyAndThirtyNine){
+        
+        if(flexArmTestResult < 14){
+          classification = veryPoorRating
+        } else if(flexArmTestResult < 22){
+          classification = weakRating
+        } else if(flexArmTestResult < 31){
+          classification = regularRating
+        } else if(flexArmTestResult < 40){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFortyAndFortyNine){
+        
+        if(flexArmTestResult < 11){
+          classification = veryPoorRating
+        } else if(flexArmTestResult < 18){
+          classification = weakRating
+        } else if(flexArmTestResult < 27){
+          classification = regularRating
+        } else if(flexArmTestResult < 35){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFiftyAndFiftyNine){
+        
+        if(flexArmTestResult < 8){
+          classification = veryPoorRating
+        } else if(flexArmTestResult < 15){
+          classification = weakRating
+        } else if(flexArmTestResult < 24){
+          classification = regularRating
+        } else if(flexArmTestResult < 30){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenSixtyAndSixtyNine){
+        
+        if(flexArmTestResult < 5){
+          classification = veryPoorRating
+        } else if(flexArmTestResult < 10){
+          classification = weakRating
+        } else if(flexArmTestResult < 17){
+          classification = regularRating
+        } else if(flexArmTestResult < 25){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else {
+        classification = classificationNotAppliedToAge
+      }
+
+      break;
+    
+    // woman
+    case 2:
+
+      if(ageBetweenTwentyAndTwentyNine){
+        
+        if(flexArmTestResult < 7){
+          classification = veryPoorRating
+        } else if(flexArmTestResult < 16){
+          classification = weakRating
+        } else if(flexArmTestResult < 27){
+          classification = regularRating
+        } else if(flexArmTestResult < 38){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenThirtyAndThirtyNine){
+        
+        if(flexArmTestResult < 5){
+          classification = veryPoorRating
+        } else if(flexArmTestResult < 13){
+          classification = weakRating
+        } else if(flexArmTestResult < 24){
+          classification = regularRating
+        } else if(flexArmTestResult < 35){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFortyAndFortyNine){
+        
+        if(flexArmTestResult < 4){
+          classification = veryPoorRating
+        } else if(flexArmTestResult < 10){
+          classification = weakRating
+        } else if(flexArmTestResult < 21){
+          classification = regularRating
+        } else if(flexArmTestResult < 32){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFiftyAndFiftyNine){
+        
+        if(flexArmTestResult < 3){
+          classification = veryPoorRating
+        } else if(flexArmTestResult < 8){
+          classification = weakRating
+        } else if(flexArmTestResult < 18){
+          classification = regularRating
+        } else if(flexArmTestResult < 29){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenSixtyAndSixtyNine){
+        
+        if(flexArmTestResult < 2){
+          classification = veryPoorRating
+        } else if(flexArmTestResult < 6){
+          classification = weakRating
+        } else if(flexArmTestResult < 13){
+          classification = regularRating
+        } else if(flexArmTestResult < 20){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else {
+        classification = classificationNotAppliedToAge
+      }
+
+      break;
+  
+    default:
+
+      classification = unidentifiedSex
+
+      break;
+  }
+
+  return classification
+
+}
+
+// Test Abdominal Classification
+const testManFlexArmClassification = {
+  sexNumber: 1,
+  arrayAge: [19, 29, 39, 49, 59, 69, 70],
+  arrayFlexArmClassification: [
+    arrayMen0To19  = [16, 29, 39, 49, 50], 
+    arrayMen20To29 = [16, 29, 39, 49, 50],
+    arrayMen30To39 = [13, 21, 30, 39, 40],
+    arrayMen40To49 = [10, 17, 26, 34, 35],
+    arrayMen50To59 = [7, 14, 23, 29, 30],
+    arrayMen60To69 = [4, 9, 16, 24, 25],
+    arrayMenGreaterThan69 = [0.89, 0.96, 1.01, 1.02, 10],
+  ],
+  arrayTitle: [
+    `idade entre 0 e 19 anos`,
+    `idade entre 20 e 29 anos`,
+    `idade entre 30 e 39 anos`,
+    `idade entre 40 e 49 anos`,
+    `idade entre 50 e 59 anos`,
+    `idade entre 60 e 69 anos`,
+    `idade maior que 69 anos`,
+  ]                  
+}
+
+const testWomanFlexArmClassification = {
+  sexNumber: 2,
+  arrayAge: [19, 29, 39, 49, 59, 69, 70],
+  arrayFlexArmClassification: [
+    arrayWoman0To19  = [6, 15, 26, 37, 38],
+    arrayWoman20To29 = [6, 15, 26, 37, 38],
+    arrayWoman30To39 = [4, 12, 23, 34, 35],
+    arrayWoman40To49 = [3, 9, 20, 31, 32],
+    arrayWoman50To59 = [2, 7, 17, 28, 29],
+    arrayWoman60To69 = [1, 5, 12, 19, 20],
+    arrayWomanGreaterThan69 = [22, 26, 34, 35, 10],
+  ],
+  arrayTitle: [
+    `idade entre 0 e 19 anos`,
+    `idade entre 20 e 29 anos`,
+    `idade entre 30 e 39 anos`,
+    `idade entre 40 e 49 anos`,
+    `idade entre 50 e 59 anos`,
+    `idade entre 60 e 69 anos`,
+    `idade maior que 69 anos`,
+  ]                 
+}
+
+function testFlexArmClassification(objectTest){
+
+  let object = {}
+  object.sexNumber = objectTest.sexNumber 
+  const age = objectTest.arrayAge
+  const title = objectTest.arrayTitle
+  const arrayValues = objectTest.arrayFlexArmClassification
+
+  for(let i = 0; i < age.length; i++){
+    object.age = age[i]
+    console.log(title[i])
+    for(let j = 0; j < arrayValues[i].length; j++){
+      object.numberOfPushUps = arrayValues[i][j]
+      console.log(`FLEXÃO DE BRAÇO = ${object.numberOfPushUps} - Classificacão = ${flexArmClassification(object)}`)
+    }
+  }
+
+}
+
+// console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
+// testFlexArmClassification(testManFlexArmClassification)
+// console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
+// testFlexArmClassification(testWomanFlexArmClassification)
+
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Aerobic Tests == **/
 /** == VO two max == **/
@@ -4088,7 +4351,7 @@ const userWoman = {
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == VO² max.(mL(kg.min) - Classification == **/
 
-
+/* deleted
 function vo2maxClassification(userObject){
   
   let classification = ''
@@ -4275,6 +4538,198 @@ function vo2maxClassification(userObject){
   return classification
 
 }
+*/
+
+function vo2maxClassification(objectValue){
+  
+  const sex = objectValue.sexNumber
+  const age = objectValue.age
+  const voTwoMax = objectValue.voTwoMax
+
+  let classification = ''
+  const unidentifiedSex = `[ERROR] Sexo não identificado!` 
+  const ageBetweenTwentyAndTwentyNine = age >= 20 && age <= 29
+  const ageBetweenThirtyAndThirtyNine = age >= 30 && age <= 39
+  const ageBetweenFortyAndFortyNine = age >= 40 && age <= 49
+  const ageBetweenFiftyAndFiftyNine = age >= 50 && age <= 59
+  const ageBetweenSixtyAndSixtyNine = age >= 60 && age <= 69
+  const veryPoorRating = `Muito Fraco`
+  const weakRating = `Fraco`
+  const regularRating = `Regular`
+  const goodRating = `Bom`
+  const excellentRating = `Excelente`
+  const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+
+  switch (sex) {
+    
+    // men
+    case 1:
+      
+      if(ageBetweenTwentyAndTwentyNine){
+        
+        if(voTwoMax < 25){
+          classification = veryPoorRating
+        } else if(voTwoMax < 34){
+          classification = weakRating
+        } else if(voTwoMax < 43){
+          classification = regularRating
+        } else if(voTwoMax < 54){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenThirtyAndThirtyNine){
+        
+        if(voTwoMax < 23){
+          classification = veryPoorRating
+        } else if(voTwoMax < 31){
+          classification = weakRating
+        } else if(voTwoMax < 39){
+          classification = regularRating
+        } else if(voTwoMax < 49){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFortyAndFortyNine){
+        
+        if(voTwoMax < 20){
+          classification = veryPoorRating
+        } else if(voTwoMax < 27){
+          classification = weakRating
+        } else if(voTwoMax < 36){
+          classification = regularRating
+        } else if(voTwoMax < 45){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFiftyAndFiftyNine){
+        
+        if(voTwoMax < 18){
+          classification = veryPoorRating
+        } else if(voTwoMax < 25){
+          classification = weakRating
+        } else if(voTwoMax < 34){
+          classification = regularRating
+        } else if(voTwoMax < 43){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenSixtyAndSixtyNine){
+        
+        if(voTwoMax < 16){
+          classification = veryPoorRating
+        } else if(voTwoMax < 23){
+          classification = weakRating
+        } else if(voTwoMax < 31){
+          classification = regularRating
+        } else if(voTwoMax < 41){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else {
+        classification = classificationNotAppliedToAge
+      }
+
+      break;
+    
+    // woman
+    case 2:
+
+      if(ageBetweenTwentyAndTwentyNine){
+        
+        if(voTwoMax < 24){
+          classification = veryPoorRating
+        } else if(voTwoMax < 31){
+          classification = weakRating
+        } else if(voTwoMax < 38){
+          classification = regularRating
+        } else if(voTwoMax < 49){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenThirtyAndThirtyNine){
+        
+        if(voTwoMax < 20){
+          classification = veryPoorRating
+        } else if(voTwoMax < 28){
+          classification = weakRating
+        } else if(voTwoMax < 34){
+          classification = regularRating
+        } else if(voTwoMax < 45){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFortyAndFortyNine){
+        
+        if(voTwoMax < 17){
+          classification = veryPoorRating
+        } else if(voTwoMax < 24){
+          classification = weakRating
+        } else if(voTwoMax < 31){
+          classification = regularRating
+        } else if(voTwoMax < 42){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenFiftyAndFiftyNine){
+        
+        if(voTwoMax < 15){
+          classification = veryPoorRating
+        } else if(voTwoMax < 21){
+          classification = weakRating
+        } else if(voTwoMax < 28){
+          classification = regularRating
+        } else if(voTwoMax < 38){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageBetweenSixtyAndSixtyNine){
+        
+        if(voTwoMax < 13){
+          classification = veryPoorRating
+        } else if(voTwoMax < 18){
+          classification = weakRating
+        } else if(voTwoMax < 24){
+          classification = regularRating
+        } else if(voTwoMax < 35){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else {
+        classification = classificationNotAppliedToAge
+      }
+
+      break;
+  
+    default:
+
+      classification = unidentifiedSex
+
+      break;
+  }
+
+  return classification
+
+}
 
 const objectTestMen = {
   sexNumber: 1,
@@ -4322,6 +4777,29 @@ const objectTestWoman = {
   ]                 
 }
 
+const objectUnidentifiedSex = {
+  sexNumber: 3,
+  arrayAge: [29, 39, 49, 59, 69, 19, 70],
+  arrayVoTwoMax: [
+    arrayWoman20To29 = [23],
+    arrayWoman30To39 = [19],
+    arrayWoman40To49 = [16],
+    arrayWoman50To59 = [14],
+    arrayWoman60To69 = [12],
+    arrayWomanLessThan20 = [24],
+    arrayWomanGreaterThan69 = [22],
+  ],
+  arrayTitle: [
+    `idade entre 20 e 29 anos`,
+    `idade entre 30 e 39 anos`,
+    `idade entre 40 e 49 anos`,
+    `idade entre 50 e 59 anos`,
+    `idade entre 60 e 69 anos`,
+    `idade menor que 20 anos`,
+    `idade maior que 69 anos`,
+  ]                 
+}
+
 function testClassification(object){
 
   for(let i = 0; i < object.arrayAge.length; i++){
@@ -4335,10 +4813,12 @@ function testClassification(object){
 
 }
 
-// console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
-// testClassification(objectTestMen)
-// console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
-// testClassification(objectTestWoman)
+console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
+testClassification(objectTestMen)
+console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
+testClassification(objectTestWoman)
+console.log(`UNIDENTIFIED SEX - UNIDENTIFIED SEX - UNIDENTIFIED SEX`)
+testClassification(objectUnidentifiedSex)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == training speed == **/

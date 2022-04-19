@@ -7089,11 +7089,9 @@ Quantidade de flexões de braço: 26
 ===============================
 ```
 
-P
-
 ### Flexão de Braço - Classificação
 
-**flexArmClassification( )** function determina a classificação da quantidade de flexões de braço realizadas pelo usuário. Recebe como parâmetro o  **sexo**, a **idade** e a **quantidade de flexões** realizada pelo usuário. Retorna a classificação de acordo com a tabela abaixo:
+**flexArmClassification( )** function determina a classificação da quantidade de flexões de braço realizadas pelo usuário. Recebe como parâmetro o o objeto _**user**_ usando as propriedades **sexo**, a **idade** e a **quantidade de flexões** realizada pelo usuário. Retorna a classificação de acordo com a tabela abaixo:
 
 | Flexão de Braço - Classificação - HOMEM | Flexão de Braço - Classificação - MULHER |
 | --------------------------------------- | ---------------------------------------- |
@@ -7131,8 +7129,12 @@ P
 Logo, em **neuromuscularFunctions.js**:
 
 ```js
-flexArmClassification(sexNumber, ageValue, flexArmTestResult){
-  
+flexArmClassification(objectValue){
+
+    const sexNumber = objectValue.sexNumber
+    const ageValue = objectValue.age
+    const flexArmTestResult = objectValue.numberOfPushUps
+    
     let classification = ''
     const unidentifiedSex = `[ERROR] Sexo não identificado!` 
     const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
@@ -7319,14 +7321,29 @@ flexArmClassification(sexNumber, ageValue, flexArmTestResult){
   },
 ```
 
-Em **saf.js** vamos criar a variável **flexArmRating** que recebe a function **flexArmClassification( )** passando como parâmetro as variáveis **sexNumber**, **age** e **numberOfPushUps**. Em seguida mostramos o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **flexArmClassification** que recebe como valor o retorno da function **flexArmClassification( )** passando como parâmetro o objeto _**user**_, usando as propriedades **sexo**, **idade** e **quantidade de flexões** realizadas no teste. Em seguida mostramos o resultado:
 
 ```js
-const flexArmRating = neuromuscularFunctions.flexArmClassification(sexNumber, age, numberOfPushUps)
+// variables neuromuscularFunctions
+user.wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
+user.flexibilityClassification = neuromuscularFunctions.flexibilityClassification(user)
+user.numberOfAbs = neuromuscularFunctions.abdominalTest()
+user.abdominalClassification = neuromuscularFunctions.abdominalClassification(user)
+user.numberOfPushUps = neuromuscularFunctions.flexArmTest()
+user.flexArmClassification = neuromuscularFunctions.flexArmClassification(user)
 ```
 
 ```js
-console.log(`Classificação flexões de braço: ${flexArmRating}`)
+// show results neuromuscularFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Neuromuscular")
+console.log(`Resultado Teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
+console.log(`Classificação Flexibilidade: ${user.flexibilityClassification}`)
+console.log(`Quantidade de flexões abdominais: ${user.numberOfAbs}`)
+console.log(`Classificação Abdominais: ${user.abdominalClassification}`)
+console.log(`Quantidade de flexões de braço: ${user.numberOfPushUps}`)
+console.log(`Classificação flexões de braço: ${user.flexArmClassification}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -7337,18 +7354,32 @@ Ao executar o programa:
 ===============================
            Neuromuscular            
 ===============================
-Resultado teste Flexibilidade Banco de Wells: 37 cm
-Classificação Flexibilidade: Boa
-Quantidade de flexões abdominais: 31
+Teste de flexibilidade banco de Wells
+Digite a distância alcaçada [00](cm) : 26
+Teste de Abdominais
+Digite a quantidade de repetições em 1 min [00]: 30
+Teste de Flexão de Braço
+Digite a quantidade de repetições [00]: 24
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Resultado Teste Flexibilidade Banco de Wells: 26 cm
+Classificação Flexibilidade: Regular
+Quantidade de flexões abdominais: 30
 Classificação Abdominais: Regular
-Quantidade de flexões de braço: 42
-Classificação flexões de braço: Excelente
+Quantidade de flexões de braço: 24
+Classificação flexões de braço: Regular
 ===============================
 ```
 
 Com isto chega ao final a parte **Testes Neuromuscular** do projeto. Como ficaram os arquivos do programa até esta etapa:
 
-**neuromuscularFunctions.js**
+Arquivo **neuromuscularFunctions.js** completo:
 
 ```js
 /* neuromuscular functions */
@@ -7361,26 +7392,30 @@ const neuromuscularFunctions = {
 
   wellsBenchTest(){
   
-    let testResult = ''
-    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
-    let validNumber = true
-  
+    let testResult = 0
+    const regexFromZeroToNinetyNine = /(^[0-9]$)|(^[0-9]{2}$)/
+    let itsRegexNumber = true
+    
     do{
+      console.log(`Teste de flexibilidade banco de Wells`)
+      testResult = input.question(`Digite a distância alcaçada [00](cm) : `)
+      itsRegexNumber = validationFunctions.isRegularExpression(testResult, regexFromZeroToNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRegexNumber, `Neuromuscular`)
   
-      testResult = input.question('Teste de flexibilidade banco de Wells (cm)[00]: ')
-      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
-      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
-  
-    }while(!validNumber)
+    }while(!itsRegexNumber)
     
     return Number(testResult)
   
   },
 
-  flexibilityClassification(sexNumber, ageValue, flexibilityTestResult){
+  flexibilityClassification(objectValue){
 
-    let classification = ''
-    const UnidentifiedSex = `[ERROR] Sexo não identificado!`
+    const sexNumber = objectValue.sexNumber
+    const ageValue = objectValue.age
+    const flexibilityTestResult = objectValue.wellsBenchTest
+  
+    let classification = ``
+    const unidentifiedSex = `[ERROR] Sexo não identificado!`
     const ageLessThanTwenty = ageValue > 0 && ageValue < 20
     const ageLessThanThirty = ageValue < 30
     const ageLessThanForty = ageValue < 40
@@ -7559,7 +7594,7 @@ const neuromuscularFunctions = {
         break;
     
       default:
-        classification = UnidentifiedSex
+        classification = unidentifiedSex
         break;
     }
   
@@ -7568,25 +7603,29 @@ const neuromuscularFunctions = {
   
   abdominalTest(){
 
-    let testResult = ''
-    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
-    let validNumber = true
+    let testResult = 0
+    const regexFromZeroToNinetyNine = /(^[0-9]$)|(^[0-9]{2}$)/
+    let itsRegexNumber = true
   
     do{
       console.log('Teste de Abdominais')
       testResult = input.question('Digite a quantidade de repetições em 1 min [00]: ')
-      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
-      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+      itsRegexNumber = validationFunctions.isRegularExpression(testResult, regexFromZeroToNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRegexNumber,'Neuromuscular' )
   
-    }while(!validNumber)
+    }while(!itsRegexNumber)
     
     return Number(testResult)
   
   },
 
-  abdominalClassification(sexNumber, ageValue, abdominalTestResult){
+  abdominalClassification(objectValue){
   
-    let classification = ''
+    const sexNumber = objectValue.sexNumber
+    const ageValue = objectValue.age
+    const abdominalTestResult = objectValue.numberOfAbs
+  
+    let classification = ``
     const unidentifiedSex = `[ERROR] Sexo não identificado!` 
     const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
     const ageBetweenThirtyAndThirtyNine = ageValue >= 30 && ageValue <= 39
@@ -7773,24 +7812,28 @@ const neuromuscularFunctions = {
 
   flexArmTest(){
 
-    let testResult = ''
-    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
-    let validNumber = true
+    let testResult = 0
+    const regexFromZeroToNinetyNine = /(^[0-9]$)|(^[0-9]{2}$)/
+    let itsRegexNumber = true
   
     do{
       console.log('Teste de Flexão de Braço')
       testResult = input.question('Digite a quantidade de repetições [00]: ')
-      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
-      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+      itsRegexNumber = validationFunctions.isRegularExpression(testResult, regexFromZeroToNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRegexNumber,'Neuromuscular' )
   
-    }while(!validNumber)
+    }while(!itsRegexNumber)
     
     return Number(testResult)
   
   },
 
-  flexArmClassification(sexNumber, ageValue, flexArmTestResult){
-  
+  flexArmClassification(objectValue){
+
+    const sexNumber = objectValue.sexNumber
+    const ageValue = objectValue.age
+    const flexArmTestResult = objectValue.numberOfPushUps
+    
     let classification = ''
     const unidentifiedSex = `[ERROR] Sexo não identificado!` 
     const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
@@ -7983,157 +8026,160 @@ module.exports = {
 }
 ```
 
-
-
-**saf.js**
+Arquivo **saf.js** completo:
 
 ```js
+/* physical assessment system */
+
 const { headerFunctions } = require('./headerFunctions')
-const { personalData } = require('./personalData')
+const { personalDataFunctions } = require('./personalDataFunctions')
 const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { anamnesisQuestions } = require('./anamnesisFunctions')
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
+const { percentageValues } = require('./cardiorespiratoryFunctions')
 const { anthropometryFunctions } = require('./anthropometryFunctions')
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
+
+const user = { }
 
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
-// variables personalData
-const name = personalData.userName()
-const birthdayInBrazilianFormat =  personalData.dateOfBirth()
-const birthdayInISOFormat = personalData.dateInISOFormat(birthdayInBrazilianFormat)
-const age = personalData.age(birthdayInISOFormat)
-const sexNumber = personalData.sexNumber()
-const sex = personalData.showSex(sexNumber)
-const profession = personalData.userProfession()
-const userEmail = personalData.userEmail()
-const phoneNumber = personalData.phoneNumber()
+// variables personalDataFunctions
+user.name = personalDataFunctions.userName()
+user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
+user.birthdayInFullFormat = personalDataFunctions.dateInFullFormat(user.birthdayInBrazilianFormat)
+user.age = personalDataFunctions.age(user)
+user.sexNumber = personalDataFunctions.sexNumber()
+user.sex = personalDataFunctions.showSex(user)
+user.profession = personalDataFunctions.userProfession()
+user.userEmail = personalDataFunctions.userEmail()
+user.phoneNumber = personalDataFunctions.phoneNumber()
 
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
 // variables anamnesisFunctions
-const questionnairePARQ = anamnesisFunctions.questionnairePARQ()
-const currentPhysicalState = anamnesisFunctions.currentPhysicalState()
-const pastIllness = anamnesisFunctions.pastIllness()
-const illnessesFamily = anamnesisFunctions.illnessesInTheFamily()
-const surgeryPerformed = anamnesisFunctions.surgeryPerformed()
-const useMedication = anamnesisFunctions.useMedication()
-const sportsInjuries = anamnesisFunctions.sportsInjuries()
-const trainingObjective = anamnesisFunctions.trainingObjective()
-const daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
-const timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
+user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+user.pastIllness = anamnesisFunctions.questions(anamnesisQuestions.pastIllness)
+user.illnessesFamily = anamnesisFunctions.questions(anamnesisQuestions.illnessesInTheFamily)
+user.surgeryPerformed = anamnesisFunctions.questions(anamnesisQuestions.surgeryPerformed)
+user.useMedication = anamnesisFunctions.questions(anamnesisQuestions.useMedication)
+user.sportsInjuries = anamnesisFunctions.questions(anamnesisQuestions.sportsInjuries)
+user.trainingObjective = anamnesisFunctions.trainingObjective()
+user.daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
+user.timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
 
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Cardiorrespiratório")
 
-// variables cardiorespiratory
-const restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
-const maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(age)
-const restingBloodPressure = cardiorespiratoryFunctions.restingBloodPressure()
-const bloodPressureRating = cardiorespiratoryFunctions.classificationOfBloodPressure(restingBloodPressure)
+// variables cardiorespiratoryFunctions
+user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user)
+user.percentageValues = percentageValues
+user.workingHeartRate = cardiorespiratoryFunctions.workingHeartRate(user)
+user.restingBloodPressure = cardiorespiratoryFunctions.bloodPressure()
+user.classificationBloodPressure = cardiorespiratoryFunctions.classificationOfBloodPressure(user)
 
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Antropometria")
 
 // variables anthropometryFunctions
-const bodyWeight = anthropometryFunctions.bodyWeight()
-const bodyStature = anthropometryFunctions.stature()
-const bodyMassIndex = anthropometryFunctions.bodyMassIndex(bodyWeight, bodyStature)
-const bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(bodyMassIndex)
-const bodyPerimeter = anthropometryFunctions.bodyPerimetry()
-const hipWaistRatio = anthropometryFunctions.hipWaistRatio(bodyPerimeter.Cintura, bodyPerimeter.Quadril)
-const waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(sexNumber, age, hipWaistRatio)
-const waistCircumference = anthropometryFunctions.waistCircumferenceClassification(sexNumber, bodyPerimeter.Cintura)
-const skinFolds = anthropometryFunctions.subcutaneousMeasures()
-const fatPercentage = anthropometryFunctions.fatPercentage(age, sexNumber, skinFolds)
-const fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(sexNumber, fatPercentage)
-const fatBodyMass = anthropometryFunctions.fatBodyMass(bodyWeight, fatPercentage)
-const leanBodyMass = anthropometryFunctions.leanBodyMass(bodyWeight, fatBodyMass)
-const expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(sexNumber, leanBodyMass)
+user.bodyWeight = anthropometryFunctions.bodyWeight()
+user.bodyStature = anthropometryFunctions.stature()
+user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user)
+user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user)
+user.bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+user.hipWaistRatio = anthropometryFunctions.hipWaistRatio(user)
+user.waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(user)
+user.waistCircumference = anthropometryFunctions.waistCircumferenceClassification(user)
+user.subcutaneousFolds = anthropometryFunctions.subcutaneousMeasures()
+user.fatPercentage = anthropometryFunctions.fatPercentage(user)
+user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(user)
+user.fatBodyMass = anthropometryFunctions.fatBodyMass(user)
+user.leanBodyMass = anthropometryFunctions.leanBodyMass(user)
+user.expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(user)
 
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Neuromuscular")
 
 // variables neuromuscularFunctions
-const wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
-const flexibilityRating = neuromuscularFunctions.flexibilityClassification(sexNumber, age, wellsBenchTest)
-const numberOfAbs = neuromuscularFunctions.abdominalTest()
-const abdominalRating = neuromuscularFunctions.abdominalClassification(sexNumber, age, numberOfAbs)
-const numberOfPushUps = neuromuscularFunctions.flexArmTest()
-const flexArmRating = neuromuscularFunctions.flexArmClassification(sexNumber, age, numberOfPushUps)
+user.wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
+user.flexibilityClassification = neuromuscularFunctions.flexibilityClassification(user)
+user.numberOfAbs = neuromuscularFunctions.abdominalTest()
+user.abdominalClassification = neuromuscularFunctions.abdominalClassification(user)
+user.numberOfPushUps = neuromuscularFunctions.flexArmTest()
+user.flexArmClassification = neuromuscularFunctions.flexArmClassification(user)
 
-// show results personalData
-console.clear()
+// show results personalDataFunctions
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
-console.log(`Nome: ${name}`)
-console.log(`Data de nascimento: ${birthdayInBrazilianFormat}`)
-console.log(`Idade: ${age} anos!`)
-console.log(`Sexo: ${sex}`)
-console.log(`Profissão: ${profession}`)
-console.log(`E-mail: ${userEmail}`)
-console.log(`Celular: ${phoneNumber}`)
+console.log(`Nome: ${user.name}`)
+console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
+console.log(`Idade: ${user.age} anos`)
+console.log(`Sexo: ${user.sex}`)
+console.log(`Profissão: ${user.profession}`)
+console.log(`E-mail: ${user.userEmail}`)
+console.log(`Celular: ${user.phoneNumber}`)
 
 // show results anamnesisFunctions
-console.log(`===============================`) 
+headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
-
-console.log(`Questionário PAR-Q: ${questionnairePARQ}`)
-console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(currentPhysicalState)}`)
-console.log(`Doença Pregressa: ${pastIllness}`)
-console.log(`Doença Pregressa na Família: ${illnessesFamily}`)
-console.log(`Cirurgia: ${surgeryPerformed}`)
-console.log(`Uso de Medicamento: ${useMedication}`)
-console.log(`Lesão Desportiva: ${sportsInjuries}`)
-console.log(`Objetivo do treino: ${trainingObjective}`)
-console.log(`Dias disponíveis para treinar: ${daysAvailableForTraining} dias.`)
-console.log(`Tempo disponível para treino: ${timeAvailablePerTraining} minutos.`)
+console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
+console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
+console.log(`Doença Pregressa: ${user.pastIllness}`)
+console.log(`Doença Pregressa na Família: ${user.illnessesFamily}`)
+console.log(`Cirurgia: ${user.surgeryPerformed}`)
+console.log(`Uso de Medicamento: ${user.useMedication}`)
+console.log(`Lesão Desportiva: ${user.sportsInjuries}`)
+console.log(`Objetivo do treino: ${user.trainingObjective}`)
+console.log(`Dias disponíveis para treinar: ${user.daysAvailableForTraining} dias.`)
+console.log(`Tempo disponível para treino: ${user.timeAvailablePerTraining} minutos.`)
 
 // show results cardiorespiratoryFunctions
-console.log(`===============================`) 
+headerFunctions.systemHeader()
 headerFunctions.subTitle("Cardiorespiratório")
-console.log(`Frequência Cardíaca de Repouso: ${restingHeartRate} bpm.`)
-console.log(`Frequência Cardíaca Máxima: ${maximumHeartRate} bpm.`)
-cardiorespiratoryFunctions.workingHeartRate(Number(restingHeartRate), Number(maximumHeartRate))
-console.log(`Pressão Arterial de Repouso: ${restingBloodPressure.systolic}/${restingBloodPressure.diastolic} mmHg.`)
+console.log(`Frequência Cardíaca de Repouso: ${user.restingHeartRate} bpm.`)
+console.log(`Frequência Cardíaca Máxima: ${user.maximumHeartRate} bpm.`)
+cardiorespiratoryFunctions.showWorkingHeartRate(user)
+console.log(`Pressão Arterial de Repouso: ${user.restingBloodPressure.bloodPressureString} mmHg.`)
 console.log(`Classificação da Pressão Arterial`)
-console.log(`Sistólica: ${bloodPressureRating.systolicClassification}`)
-console.log(`Diastólica: ${bloodPressureRating.diastolicClassification}`)
+console.log(`Sistólica: ${user.classificationBloodPressure.systolicClassification} / Diastólica: ${user.classificationBloodPressure.diastolicClassification}`)
 
 // show results anthropometryFunctions
-console.log(`===============================`) 
+headerFunctions.systemHeader()
 headerFunctions.subTitle("Antropometria")
-console.log(`Peso Corporal: ${bodyWeight} kilos`)
-console.log(`Estatura Corporal: ${bodyStature} metros`)
-console.log(`Índice de Massa Corporal - IMC: ${bodyMassIndex}`)
-console.log(`Classificação IMC: ${bodyMassIndexClassification}`)
-anthropometryFunctions.showPerimeter(bodyPerimeter)
-console.log(`Relação Cintura Quadril- RCQ: ${hipWaistRatio}`)
-console.log(`Classificação RCQ: ${waistHipRatioClassification}`)
-console.log(`Circunfência cintura - Classificação: ${waistCircumference}`)
-anthropometryFunctions.showSubcutaneousFolds(skinFolds)
-console.log(`Percentual de gordura: ${fatPercentage}%`)
-console.log(`Classificação % Gordura: ${fatPercentageClassification}`)
-console.log(`Massa Corporal Gorda: ${fatBodyMass} kilos`)
-console.log(`Massa Corporal Magra: ${leanBodyMass} kilos`)
-console.log(`Massa Corporal Ideal Prevista: ${expectedIdealBodyMass} kilos`)
+console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+console.log(`Estatura Corporal: ${user.bodyStature} metros`)
+console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
+console.log(`Classificação IMC: ${user.bodyMassIndexClassification}`)
+anthropometryFunctions.showPerimeter(user)
+console.log(`Relação Cintura Quadril- RCQ: ${user.hipWaistRatio}`)
+console.log(`Classificação RCQ: ${user.waistHipRatioClassification}`)
+console.log(`Circunfência Cintura - Classificação: ${user.waistCircumference}`)
+anthropometryFunctions.showSubcutaneousFolds(user)
+console.log(`Percentual de Gordura: ${user.fatPercentage}%`)
+console.log(`Classificação % Gordura: ${user.fatPercentageClassification}`)
+console.log(`Massa Corporal Gorda: ${user.fatBodyMass} kilos`)
+console.log(`Massa Corporal Magra: ${user.leanBodyMass} kilos`)
+console.log(`Massa Corporal Ideal Prevista: ${user.expectedIdealBodyMass} kilos`)
 
 // show results neuromuscularFunctions
-console.log(`===============================`) 
+headerFunctions.systemHeader()
 headerFunctions.subTitle("Neuromuscular")
-console.log(`Resultado teste Flexibilidade Banco de Wells: ${wellsBenchTest} cm`)
-console.log(`Classificação Flexibilidade: ${flexibilityRating}`)
-console.log(`Quantidade de flexões abdominais: ${numberOfAbs}`)
-console.log(`Classificação Abdominais: ${abdominalRating}`)
-console.log(`Quantidade de flexões de braço: ${numberOfPushUps}`)
-console.log(`Classificação flexões de braço: ${flexArmRating}`)
-
-console.log(`===============================`)
+console.log(`Resultado Teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
+console.log(`Classificação Flexibilidade: ${user.flexibilityClassification}`)
+console.log(`Quantidade de flexões abdominais: ${user.numberOfAbs}`)
+console.log(`Classificação Abdominais: ${user.abdominalClassification}`)
+console.log(`Quantidade de flexões de braço: ${user.numberOfPushUps}`)
+console.log(`Classificação flexões de braço: ${user.flexArmClassification}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o progama:
@@ -8145,19 +8191,21 @@ Ao executar o progama:
            Dados Pessoais            
 ===============================
 Nome: Maria da Silva
-Data de nascimento: 15/06/1985
-Idade: 36 anos!
+Data de nascimento: 14/08/2001
+Idade: 20 anos
 Sexo: Feminino
-Profissão: Empresaria
+Profissão: Arquiteta
 E-mail: maria@silva.com
-Celular: 13987651234
+Celular: 27909182736
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Anamnese            
 ===============================
-Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
+Questionário PAR-Q: Todas as respostas do questionário foram 'Não'!
 Estado físico: Sedentário
 Doença Pregressa: Sem doença pregressa.
-Doença Pregressa na Família: Pais hipertensos
+Doença Pregressa na Família: Sem doença pregressa na família.
 Cirurgia: Nunca realizou procedimento cirúrgico.
 Uso de Medicamento: Não faz uso de medicamento.
 Lesão Desportiva: Nunca sofreu lesão desportiva.
@@ -8165,70 +8213,73 @@ Objetivo do treino: Bem-estar e Saúde
 Dias disponíveis para treinar: 4 dias.
 Tempo disponível para treino: 45 minutos.
 ===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
            Cardiorespiratório            
 ===============================
 Frequência Cardíaca de Repouso: 60 bpm.
-Frequência Cardíaca Máxima: 184 bpm.
+Frequência Cardíaca Máxima: 200 bpm.
 Frequência Cardíaca de Treino:
-        40% = 110 bpm
-        45% = 116 bpm
-        50% = 122 bpm
-        55% = 128 bpm
-        60% = 134 bpm
-        65% = 141 bpm
-        70% = 147 bpm
-        75% = 153 bpm
-        80% = 159 bpm
-        85% = 165 bpm
-        90% = 172 bpm
-        95% = 178 bpm
+       40% = 116 bpm
+       45% = 123 bpm
+       50% = 130 bpm
+       55% = 137 bpm
+       60% = 144 bpm
+       65% = 151 bpm
+       70% = 158 bpm
+       75% = 165 bpm
+       80% = 172 bpm
+       85% = 179 bpm
+       90% = 186 bpm
+       95% = 193 bpm
 Pressão Arterial de Repouso: 120/80 mmHg.
 Classificação da Pressão Arterial
-Sistólica: Normal
-Diastólica: Normal
+Sistólica: Normal / Diastólica: Normal
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Antropometria            
 ===============================
-Peso Corporal: 65.5 kilos
-Estatura Corporal: 1.62 metros
-Índice de Massa Corporal - IMC: 24.96
+Peso Corporal: 63 kilos
+Estatura Corporal: 1.63 metros
+Índice de Massa Corporal - IMC: 23.71
 Classificação IMC: Peso Normal
-Perimetria Corporal:
-Braço: 18.0 cm
-Antebraço: 15.3 cm
-Cintura: 65.4 cm
-Quadril: 82.5 cm
-Coxa: 45.7 cm
-Panturrilha: 38.7 cm
-Relação Cintura Quadril- RCQ: 0.79
-Classificação RCQ: Alto Risco
-Circunfência cintura - Classificação: Nenhum Risco
-Dobras Cutâneas:
-Triciptal: 14 mm
-Subescapular: 18 mm
-Peitoral: 8 mm
-SupraIliaca: 21 mm
-Abdominal: 23 mm
-Coxa: 19 mm
-Panturrilha: 13 mm
-Percentual de gordura: 21.25%
+ - Perimetria Corporal - 
+   Braço: 12 cm
+   Antebraço: 23 cm
+   Cintura: 34 cm
+   Quadril: 45 cm
+   Coxa: 56 cm
+   Panturrilha: 67 cm
+Relação Cintura Quadril- RCQ: 0.76
+Classificação RCQ: Moderado Risco
+Circunfência Cintura - Classificação: Nenhum Risco
+ - Dobras Cutâneas - 
+   Triciptal: 10 mm
+   Subescapular: 18 mm
+   Peitoral: 7 mm
+   SupraIliaca: 21 mm
+   Abdominal: 24 mm
+   Coxa: 17 mm
+   Panturrilha: 9 mm
+Percentual de Gordura: 18.18%
 Classificação % Gordura: Abaixo da média
-Massa Corporal Gorda: 13.9 kilos
-Massa Corporal Magra: 51.6 kilos
-Massa Corporal Ideal Prevista: 67 kilos
+Massa Corporal Gorda: 11.5 kilos
+Massa Corporal Magra: 51.5 kilos
+Massa Corporal Ideal Prevista: 66.9 kilos
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
 ===============================
            Neuromuscular            
 ===============================
-Resultado teste Flexibilidade Banco de Wells: 36 cm
-Classificação Flexibilidade: Boa
-Quantidade de flexões abdominais: 41
-Classificação Abdominais: Excelente
-Quantidade de flexões de braço: 15
-Classificação flexões de braço: Regular
+Resultado Teste Flexibilidade Banco de Wells: 32 cm
+Classificação Flexibilidade: Regular
+Quantidade de flexões abdominais: 30
+Classificação Abdominais: Regular
+Quantidade de flexões de braço: 8
+Classificação flexões de braço: Fraco
 ===============================
 ```
-
-
 
 ## Testes Aeróbicos
 
@@ -8259,7 +8310,7 @@ Agora vamos começar criando as functions de **Testes Aeróbicos**. Esses testes
 
 ### VO² máx
 
-Aqui vamos criar a function **voTwoMax( )** que vai determinar o **VO² máx** do usuário. Esta function terá comoparâmetro o **objeto do usuário**, ***userObject***, que será usado nas functions dos testes. Nesta function o usuário irá escolher qual o protocolo de teste ele quer fazer, através de um menu que irá aparecer. Este menu será acionado através da function **menuVoTwoMax( )**. Este menu só aceitará números de 1 a 4 e caso o usuário digite qualquer valor diferente, a function **incorrectValue( )** deve ser chamada e ele terá que escolher novamente. O menu terá como opções os seguintes protocolos:
+Aqui vamos criar a function **voTwoMax( )** que vai determinar o **VO² máx** do usuário. Esta function terá como parâmetro o objeto **user**, _**objectValue**_, que será usado nas functions dos testes. Nesta function o usuário irá escolher qual o protocolo de teste ele quer fazer, através de um menu que irá aparecer. Este menu será acionado através da function **menuVoTwoMax( )**. Este menu só aceitará números de 1 a 4 e caso o usuário digite qualquer valor diferente, a function **incorrectValue( )** deve ser chamada e ele terá que escolher novamente. O menu terá como opções os seguintes protocolos:
 
 - [1] Cicloergômetro - Astrand-Rhyming
 - [2] Cooper - 12 min
@@ -8295,7 +8346,7 @@ menuVoTwoMax(){
 ```
 
  ```js
- voTwoMax(userObject){
+ voTwoMax(objectValue){
  
      let voTwoMaxValue = 0
      let protocol = aerobicFunctions.menuVoTwoMax()
@@ -8303,7 +8354,7 @@ menuVoTwoMax(){
      switch (protocol) {
    
        case 1:
-         voTwoMaxValue = aerobicFunctions.cycleErgometerAstrandRhyming(userObject)
+         voTwoMaxValue = aerobicFunctions.cycleErgometerAstrandRhyming(objectValue)
          break;
        
        case 2:
@@ -8311,11 +8362,11 @@ menuVoTwoMax(){
          break;
    
        case 3:
-         voTwoMaxValue = aerobicFunctions.oneThousandSixHundredFromRockport() 
+         voTwoMaxValue = aerobicFunctions.oneThousandSixHundredFromRockport(objectValue) 
          break;
    
        case 4:
-         voTwoMaxValue = aerobicFunctions.bankMcArdle()
+         voTwoMaxValue = aerobicFunctions.bankMcArdle(objectValue)
          break;
      
        default:
@@ -8328,30 +8379,9 @@ menuVoTwoMax(){
    },
  ```
 
-### Observação:
-
-VAmos aprir um parênteses aqui para criar um **objeto usuário** no arquivo **saf.js**, o qual iremos utilizar em todas as function que possuem parâmetros. Logo, em **saf.js**:
-
-```js
-const user = { }
-```
-
-Em seguida, em vez de criar variáveis como vínhamos fazendo,  vamos atribuir algumas propriedades que vamos utilizar em **aerobicFunctions.js** no objeto **user**. Logo, em **saf.js**:
-
-```js
-user.birthdayInBrazilianFormat =  personalData.dateOfBirth()
-user.birthdayInISOFormat = personalData.dateInISOFormat(user.birthdayInBrazilianFormat)
-user.age = personalData.age(user.birthdayInISOFormat)
-user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
-user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user.age)
-user.bodyWeight = anthropometryFunctions.bodyWeight()
-```
-
-Por este momento, vamos fazer apenas estas alterações, porém, vamos colocar todas as variáveis já criadas como propriedades deste objeto **user** em outro momento. Agora vamos continuar a criar as functions de **aerobicFunctions**.
-
 ### Cicloergômetro - Astrand-Rhyming
 
-**cycleErgometerAstrandRhyming( )** function será o nosso primeiro protocolo. Ele recebe o **objeto _user_** como parâmetro. Deste objeto devemos pegar a **frequência cardíaca máxima**, a **frequência cardíaca de repouso** e o **peso corporal** do usuário. Dentro desta function vamos precisar da frequência cardíaca do usuário no 5º e 6º minuto de teste. Para isto vamos criar a function **validHeartRate( )** para validar as frequências digitadas pelo usuário. Esta function só aceitará números de 0 a 200. Caso qualquer outro valor seja digitado, a function **incorrectValue( )** deve ser chamada e o valor correto deve ser colocado. A function **validHeartRate( )** terá como parâmetro uma **Expressão Regular** e o **minuto** do teste e retorna a frequência cardíaca digitada pelo usuário. Logo, em **aerobicFunctions.js**:
+**cycleErgometerAstrandRhyming( )** function será o nosso primeiro protocolo. Ele recebe o objeto _**user**_ como parâmetro, usando as propriedades **frequência cardíaca máxima**, a **frequência cardíaca de repouso** e o **peso corporal** do usuário. Dentro desta function vamos precisar da frequência cardíaca do usuário no 5º e 6º minuto de teste. Para isto vamos criar a function **validHeartRate( )** para validar as frequências digitadas pelo usuário. Esta function só aceitará números de 0 a 200. Caso qualquer outro valor seja digitado, a function **incorrectValue( )** deve ser chamada e o valor correto deve ser colocado. A function **validHeartRate( )** terá como parâmetro uma **Expressão Regular** e o **minuto** do teste e retorna a frequência cardíaca digitada pelo usuário. Logo, em **aerobicFunctions.js**:
 
 ```js
 validHeartRate(regex, minute){
@@ -8414,7 +8444,11 @@ Enfim vamos criar a function **cycleErgometerAstrandRhyming( )**. Primeiro vamos
 O valor retornado pela function **cycleErgometerAstrandRhyming( )** será o **VO² máx.(mL(kg.min)**. Logo, em **aerobicFunctions.js**:
 
 ```js
-cycleErgometerAstrandRhyming(userObject){
+cycleErgometerAstrandRhyming(objectValue){
+
+    const maximumHeartRate = objectValue.maximumHeartRate
+    const restingHeartRate = objectValue.restingHeartRate
+    const bodyWeight = objectValue.bodyWeight
   
     const regexFromOneToTwoHundred = /(^[0-9]$)|(^[0-9]{2}$)|(^[1][0-9]{2}$)|(^[2][0][0])/
     const fifthMinuteValue = aerobicFunctions.validHeartRate(regexFromOneToTwoHundred, 5)
@@ -8422,8 +8456,8 @@ cycleErgometerAstrandRhyming(userObject){
     const chargeValue = aerobicFunctions.chargeCycleErgometerAstrandRhyming(regexFromOneToTwoHundred)
     const exertionalHeartRate = Number(((fifthMinuteValue + sixthMinuteValue) / 2))
     const loadVO2 = Number((0.129 + ( 0.014 * chargeValue )))
-    const VO2max_L_min =  Number(((( userObject.maximumHeartRate - userObject.restingHeartRate ) / ( exertionalHeartRate - userObject.restingHeartRate )) * loadVO2))
-    const VO2max_mL_Kg_min = Number(((1000 * VO2max_L_min ) / userObject.bodyWeight).toFixed(2))
+    const VO2max_L_min =  Number(((( maximumHeartRate - restingHeartRate ) / ( exertionalHeartRate - restingHeartRate )) * loadVO2))
+    const VO2max_mL_Kg_min = Number(((1000 * VO2max_L_min ) / bodyWeight).toFixed(2))
   
     return VO2max_mL_Kg_min
   
@@ -8433,22 +8467,45 @@ cycleErgometerAstrandRhyming(userObject){
 Em **saf.js** vamos atribuir ao objeto ***user*** a propriedade **voTwoMax** que vai receber como valor a function **voTwoMax( )**:
 
 ```js
+// console.clear()
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Aeróbico")
+
+// variables aerobicFunctions
 user.voTwoMax = aerobicFunctions.voTwoMax(user)
 ```
 
 Em seguida, vamos mostrar o resultado:
 
 ```js
-console.clear() // temporary
-headerFunctions.systemHeader() // temporary
-headerFunctions.subTitle("Aeróbico") //temporary
 // show results aerobicFunctions
-// console.log(`===============================`) 
-// headerFunctions.subTitle("Aeróbico")
-console.log(`VO² máx.(mL(kg.min): ${user.voTwoMax}`)
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Aeróbico")
+console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
+
+ ```shell
+ ===============================
+   SISTEMA DE AVALIAÇÃO FÍSICA  
+ ===============================
+            Aeróbico            
+ ===============================
+ Escolha um teste: 
+ [1] Cicloergômetro - Astrand-Rhyming
+ [2] Cooper - 12 min
+ [3] Caminhada de 1600 - Rockport
+ [4] Banco - McArdle
+ 1
+ Cicloergômetro - Astrand-Rhyming:
+ Digite a frequência cardíaca do 5º minuto de teste (bpm): 130
+ Cicloergômetro - Astrand-Rhyming:
+ Digite a frequência cardíaca do 6º minuto de teste (bpm): 140
+ Cicloergômetro - Astrand-Rhyming:
+ Digite a carga utilizada no teste (W): 150
+ ```
 
 ```shell
 ===============================
@@ -8456,13 +8513,13 @@ Ao executar o programa:
 ===============================
            Aeróbico            
 ===============================
-VO² máx.(mL(kg.min): 45.48
+VO²máx (mL(kg.min): 39.84
 ===============================
 ```
 
 ### Cooper - 12 min
 
-**cooperTwelveMin( )** function, determina o VO² máx.(mL(kg.min) do usuário após ele inserir a distância que atingiu no teste, em metros. Esta function aceitará apenas números de até 4 dígitos. Caso outro valor seja digitado, a function **incorrectValue( )** deve ser chamada e o usuário precisa digitar a distância novamente. De posse da distância em metros, a function retorna o VO² máx.(mL(kg.min) determinado pela fórmula:
+**cooperTwelveMin( )** function, determina o VO² máx.(mL(kg.min) do usuário após ele inserir a distância que atingiu no teste, em metros. Esta function aceitará apenas números inteiros de até 4 dígitos, 0 até 9999. Caso outro valor seja digitado, a function **incorrectValue( )** deve ser chamada e o usuário precisa digitar a distância novamente. De posse da distância em metros, a function retorna o VO² máx.(mL(kg.min) determinado pela fórmula:
 
 VO² máx= ((Distância percorrida (metros) - 504.9) / 44.73)
 
@@ -8474,13 +8531,13 @@ cooperTwelveMin(){
     let distance = 0
     let validDistance = false
     let VO2max_mL_Kg_min = 0
-    let regexFourDigits = /(^[0-9]$)|(^[0-9]{2}$)|(^[0-9]{3}$)|(^[0-9]{4}$)/
+    let regexFrom0To9999 = /(^[0-9]$)|(^[0-9]{2}$)|(^[0-9]{3}$)|(^[0-9]{4}$)/
   
     do{
   
       console.log(`Teste de Cooper - 12 min:`)
       distance = input.question(`Digite a distância atingida pelo usuário (m): `)
-      validDistance = validationFunctions.isRegularExpression(distance, regexFourDigits)
+      validDistance = validationFunctions.isRegularExpression(distance, regexFrom0To9999)
       validationFunctions.incorrectValue(false, !validDistance, "Aeróbico")
   
     }while(!validDistance)
@@ -8500,16 +8557,32 @@ Ao executar o programa:
 ===============================
            Aeróbico            
 ===============================
-VO² máx.(mL(kg.min): 44.6
+Escolha um teste: 
+[1] Cicloergômetro - Astrand-Rhyming
+[2] Cooper - 12 min
+[3] Caminhada de 1600 - Rockport
+[4] Banco - McArdle
+2
+Teste de Cooper - 12 min:
+Digite a distância atingida pelo usuário (m): 2500
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO²máx (mL(kg.min): 44.6
 ===============================
 ```
 
 ### Caminhada de 1600 - Rockport
 
-**oneThousandSixHundredFromRockport( )** determina o VO²máx (ml.kg-¹.min-¹) do usuário a partir do teste de caminhada de 1600 metros de Rockport. Esta function recebe como parâmetro o objeto usuário (_**userObject**_). Dentro dela vamos precisar que o usuário digite o **tempo** que ele realizou o teste em **minutos** e **segundos**, para isto vamos usar a function **rockportTestTime( )** que vai validar este tempo. Esta function deve aceitar apenas números de no máximo dois dígitos, sendo de 0 até 59. Caso outro valor seja digitado, a function **incorrectValue( )** deverá ser chamada e o usuário terá que digitar o tempo novamente. Retorna o **tempo em minutos** digitado pelo usuário. Logo, em **aerobicFunctions.js**:
+**oneThousandSixHundredFromRockport( )** determina o VO²máx (ml.kg-¹.min-¹) do usuário a partir do teste de caminhada de 1600 metros de Rockport. Esta function recebe como parâmetro o objeto _**user**_, usando as propriedades **idade** e **peso coporal**. Dentro dela vamos precisar que o usuário digite o **tempo** que ele realizou o teste em **minutos** e **segundos**, para isto vamos usar a function **rockportTestTime( )** que vai validar este tempo. Esta function recebe como parâmetro oo **nome do teste** e deve aceitar apenas números inteiros de no máximo dois dígitos, sendo de 0 até 59. Caso outro valor seja digitado, a function **incorrectValue( )** deverá ser chamada e o usuário terá que digitar o tempo novamente. Retorna o **tempo em minutos** digitado pelo usuário. Logo, em **aerobicFunctions.js**:
 
 ```js
-rockportTestTime(){
+rockportTestTime(testName){
 
     let rockportTestTime = 0
     let minutes = 0
@@ -8520,7 +8593,7 @@ rockportTestTime(){
   
     do{
   
-      console.log(`Teste de Caminhada Rockport`)
+      console.log(`${testName}`)
       minutes = input.question(`Tempo que levou para chegar (minutos): `)
       seconds = input.question(`Tempo que levou para chegar (segundos): `)
       validMinutes = validationFunctions.isRegularExpression(minutes, regexMinutesAndSeconds)
@@ -8535,7 +8608,7 @@ rockportTestTime(){
   },
 ```
 
-O usuário também precisa informar a frequência cardíaca ao final do teste, para isto vamos criar a function **testHeartRate( )**. Está function terá como **parâmetro** o **nome do teste** e aceitará apenas números de até três dígitos, sendo de 0 até 220. Caso outro valor seja digitado, a function **incorrectValue( )** deverá ser chamada e o usuário terá que digitar a frequência novamente. Retorna a frequêncioa cardíaca ao final do teste digitada pelo usuário. Logo, em **aerobicFunctions.js**:
+O usuário também precisa informar a frequência cardíaca ao final do teste, para isto vamos criar a function **testHeartRate( )**. Está function terá como **parâmetro** o **nome do teste** e aceitará apenas números inteiros de até três dígitos, sendo de 0 até 220. Caso outro valor seja digitado, a function **incorrectValue( )** deverá ser chamada e o usuário terá que digitar a frequência novamente. Retorna a frequêncioa cardíaca ao final do teste digitada pelo usuário. Logo, em **aerobicFunctions.js**:
 
 ```js
 testHeartRate(testName){
@@ -8558,7 +8631,7 @@ testHeartRate(testName){
   },
 ```
 
-Agora com o tempo do teste e com a frequência cardíaca ao final do teste, vamos construir a function **oneThousandSixHundredFromRockport( )**. Como sitado acima, ela recebe o ***userObject*** como parâmetro, de onde vamos extrair o peso em quilos e transfomá-lo em libras, vamos extrair a idade do usuário, se é homem ou mulher e usar estas variáveis para determinar o **VO²máx (ml.kg-¹.min-¹)** de acordo com as fórmulas abaixo:
+Agora com o tempo do teste e com a frequência cardíaca ao final do teste, vamos construir a function **oneThousandSixHundredFromRockport( )**. Como citado acima, ela recebe o objeto _**user**_ como parâmetro, usando a propriedade **peso** em quilos e transfomá-lo em **libras**, a propriedade **idade** e **sexo** do usuário para determinar o **VO²máx (ml.kg-¹.min-¹)** de acordo com as fórmulas abaixo:
 
 - Se homem:
 
@@ -8571,17 +8644,22 @@ Agora com o tempo do teste e com a frequência cardíaca ao final do teste, vamo
 Logo, em **aerobicFunctions.js**:
 
 ```js
-oneThousandSixHundredFromRockport(userObject){
+oneThousandSixHundredFromRockport(objectValue){
 
-    let testTime = aerobicFunctions.rockportTestTime()
-    let heartRate = aerobicFunctions.testHeartRate('Teste de Caminhada Rockport')
-    let weightInPounds = Number(userObject.bodyWeight / 0.454)
+    const bodyWeight = objectValue.bodyWeight
+    const age = objectValue.age
+    const sex = objectValue.sexNumber
+    
+    const testName = `Teste de Caminhada Rockport`
+    const testTime = aerobicFunctions.rockportTestTime(testName)
+    const heartRate = aerobicFunctions.testHeartRate(testName)
+    const weightInPounds = Number(bodyWeight / 0.454)
     let VO2max_mL_Kg_min = 0
   
-    if(userObject.sexNumber === 1){
-      VO2max_mL_Kg_min = Number((132.853 - (0.0769 * weightInPounds) - (0.3877 * userObject.age) + (6.315 * 1) - (3.2649 * testTime) - (0.1565 * heartRate)).toFixed(2))
+    if(sex === 1){
+      VO2max_mL_Kg_min = Number((132.853 - (0.0769 * weightInPounds) - (0.3877 * age) + (6.315 * 1) - (3.2649 * testTime) - (0.1565 * heartRate)).toFixed(2))
     } else {
-      VO2max_mL_Kg_min = Number((132.853 - (0.0769 * weightInPounds) - (0.3877 * userObject.age) + (6.315 * 0) - (3.2649 * testTime) - (0.1565 * heartRate)).toFixed(2))
+      VO2max_mL_Kg_min = Number((132.853 - (0.0769 * weightInPounds) - (0.3877 * age) + (6.315 * 0) - (3.2649 * testTime) - (0.1565 * heartRate)).toFixed(2))
     }
     
     return VO2max_mL_Kg_min
@@ -8589,9 +8667,40 @@ oneThousandSixHundredFromRockport(userObject){
   },
 ```
 
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+Escolha um teste: 
+[1] Cicloergômetro - Astrand-Rhyming
+[2] Cooper - 12 min
+[3] Caminhada de 1600 - Rockport
+[4] Banco - McArdle
+3
+Teste de Caminhada Rockport
+Tempo que levou para chegar (minutos): 11
+Tempo que levou para chegar (segundos): 30
+Teste de Caminhada Rockport
+Frequência Cardíaca ao final do teste (bpm): 160
+```
+
+```
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO²máx (mL(kg.min): 47.48
+===============================
+```
+
 ### Banco - McArdle
 
-**bankMcArdle( )** function, recebe o objeto usuário como parâmetro e determina o **VO²máx (ml.kg-¹.min-¹)** do usuário. Esta function precisa que o usuário digite a **Frequência Cardíaca de Esforço no final do teste (bpm)**. Para isto vamos usar a function **testHeartRate( )** para validar a frequência digitada pelo usuário. Depois vamos determinar o VO²máx (ml.kg-¹.min-¹) de acordo com as fórmulas abaixo:
+**bankMcArdle( )** function, recebe o objeto _**user**_ como parâmetro usando a propriedade **sexo** e determina o **VO²máx (ml.kg-¹.min-¹)** do usuário. Esta function precisa que o usuário digite a **Frequência Cardíaca de Esforço no final do teste (bpm)**. Para isto vamos usar a function **testHeartRate( )** para validar a frequência digitada pelo usuário. Depois vamos determinar o VO²máx (ml.kg-¹.min-¹) de acordo com as fórmulas abaixo:
 
 - Se homem:
 
@@ -8604,12 +8713,13 @@ oneThousandSixHundredFromRockport(userObject){
 Logo, em **aerobicFunctions.js**:
 
 ```js
-bankMcArdle(userObject){
+bankMcArdle(objectValue){
 
+    const sex = objectValue.sexNumber
+    const heartRate = aerobicFunctions.testHeartRate('Teste Banco - McArdle')
     let VO2max_mL_Kg_min = 0
-    let heartRate = aerobicFunctions.testHeartRate('Teste Banco - McArdle')
-    
-    if(userObject.sexNumber === 1){
+
+    if(sex === 1){
   
       VO2max_mL_Kg_min = Number((111.33 - ( 0.42 * heartRate )).toFixed(2))
   
@@ -8630,13 +8740,29 @@ Ao executar o programa:
 ===============================
            Aeróbico            
 ===============================
-VO² máx.(mL(kg.min): 36.26
+Escolha um teste: 
+[1] Cicloergômetro - Astrand-Rhyming
+[2] Cooper - 12 min
+[3] Caminhada de 1600 - Rockport
+[4] Banco - McArdle
+4
+Teste Banco - McArdle
+Frequência Cardíaca ao final do teste (bpm): 160
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO²máx (mL(kg.min): 44.13
 ===============================
 ```
 
 ### VO² máx.(mL(kg.min) Previsto
 
-**vo2maxExpected( )** function, determina o **VO²máx Previsto (ml.kg-¹.min-¹)** do usuário. Recebe como parâmetro o objeto usuário (***userObject***) e retorna o VO²máx Previsto de acordo com as fórmulas abaixo:
+**vo2maxExpected( )** function, determina o **VO²máx Previsto (ml.kg-¹.min-¹)** do usuário. Recebe como parâmetro o objeto _**user**_ usando as propriedades idade e sexo do usuário. Retorna o VO²máx Previsto de acordo com as fórmulas abaixo:
 
 - Se homem:
 
@@ -8649,17 +8775,19 @@ VO² máx.(mL(kg.min): 36.26
 Logo, em **aerobicFunctions.js**:
 
 ```js
-vo2maxExpected(userObject){
+vo2maxExpected(objectValue){
 
+    const sex = objectValue.sexNumber
+    const age = objectValue.age
     let VO2max_mL_Kg_min_Expected = 0
   
-    if(userObject.sexNumber === 1){
+    if(sex === 1){
   
-      VO2max_mL_Kg_min_Expected = Number(( 60 - ( 0.55 * userObject.age)).toFixed(2))
+      VO2max_mL_Kg_min_Expected = Number(( 60 - ( 0.55 * age)).toFixed(2))
   
     } else {
   
-      VO2max_mL_Kg_min_Expected = Number(( 48 - (0.37 * userObject.age)).toFixed(2))
+      VO2max_mL_Kg_min_Expected = Number(( 48 - (0.37 * age)).toFixed(2))
   
     }
   
@@ -8668,14 +8796,22 @@ vo2maxExpected(userObject){
   },
 ```
 
-Em **saf.js** vamos adicionar como propriedado ao objeto usuário o **VO² máx.(mL(kg.min) Previsto** e depois mostrar o resultado:
+Em **saf.js** vamos adicionar ao objeto _**user**_ a propriedade **voTwoMaxExpected** que recebe como valor o retorno da function **vo2maxExpected( )** e depois mostrar o resultado:
 
 ```js
+// variables aerobicFunctions
+user.voTwoMax = aerobicFunctions.voTwoMax(user)
 user.voTwoMaxExpected = aerobicFunctions.vo2maxExpected(user)
 ```
 
 ```js
-console.log(`VO²máx. Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
+// show results aerobicFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Aeróbico")
+console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
+console.log(`VO²máx Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
+headerFunctions.baseboard()
+
 ```
 
 Ao executar o programa:
@@ -8686,14 +8822,14 @@ Ao executar o programa:
 ===============================
            Aeróbico            
 ===============================
-VO²máx.(mL(kg.min): 44.13
-VO²máx. Previsto(mL(kg.min): 41.85
+VO²máx (mL(kg.min): 44.6
+VO²máx Previsto(mL(kg.min): 41.3
 ===============================
 ```
 
 ### VO² máx.(mL(kg.min) - Classificação
 
-**vo2maxClassification( )** function determina a classificação do **VO²máx (mL(kg.min)** usuário obtido no teste. Recebe como parâmetro o  objeto ***user***. Retorna a classificação de acordo com a tabela abaixo:
+**vo2maxClassification( )** function determina a classificação do **VO²máx (mL(kg.min)** do usuário obtido no teste. Recebe como parâmetro o objeto ***user***. Retorna a classificação de acordo com a tabela abaixo:
 
 | VO² máx.(mL(kg.min) - Classificação - HOMEM | VO² máx.(mL(kg.min) - Classificação - MULHER |
 | ------------------------------------------- | -------------------------------------------- |
@@ -8731,15 +8867,19 @@ VO²máx. Previsto(mL(kg.min): 41.85
 Logo, em **aerobicFunctions.js**:
 
 ```js
-vo2maxClassification(userObject){
+vo2maxClassification(objectValue){
   
+    const sex = objectValue.sexNumber
+    const age = objectValue.age
+    const voTwoMax = objectValue.voTwoMax
+
     let classification = ''
     const unidentifiedSex = `[ERROR] Sexo não identificado!` 
-    const ageBetweenTwentyAndTwentyNine = userObject.age >= 20 && userObject.age <= 29
-    const ageBetweenThirtyAndThirtyNine = userObject.age >= 30 && userObject.age <= 39
-    const ageBetweenFortyAndFortyNine = userObject.age >= 40 && userObject.age <= 49
-    const ageBetweenFiftyAndFiftyNine = userObject.age >= 50 && userObject.age <= 59
-    const ageBetweenSixtyAndSixtyNine = userObject.age >= 60 && userObject.age <= 69
+    const ageBetweenTwentyAndTwentyNine = age >= 20 && age <= 29
+    const ageBetweenThirtyAndThirtyNine = age >= 30 && age <= 39
+    const ageBetweenFortyAndFortyNine = age >= 40 && age <= 49
+    const ageBetweenFiftyAndFiftyNine = age >= 50 && age <= 59
+    const ageBetweenSixtyAndSixtyNine = age >= 60 && age <= 69
     const veryPoorRating = `Muito Fraco`
     const weakRating = `Fraco`
     const regularRating = `Regular`
@@ -8747,20 +8887,20 @@ vo2maxClassification(userObject){
     const excellentRating = `Excelente`
     const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
   
-    switch (userObject.sexNumber) {
+    switch (sex) {
       
       // men
       case 1:
         
         if(ageBetweenTwentyAndTwentyNine){
           
-          if(userObject.voTwoMax < 25){
+          if(voTwoMax < 25){
             classification = veryPoorRating
-          } else if(userObject.voTwoMax < 34){
+          } else if(voTwoMax < 34){
             classification = weakRating
-          } else if(userObject.voTwoMax < 43){
+          } else if(voTwoMax < 43){
             classification = regularRating
-          } else if(userObject.voTwoMax < 54){
+          } else if(voTwoMax < 54){
             classification = goodRating
           } else {
             classification = excellentRating
@@ -8768,13 +8908,13 @@ vo2maxClassification(userObject){
           
         } else if(ageBetweenThirtyAndThirtyNine){
           
-          if(userObject.voTwoMax < 23){
+          if(voTwoMax < 23){
             classification = veryPoorRating
-          } else if(userObject.voTwoMax < 31){
+          } else if(voTwoMax < 31){
             classification = weakRating
-          } else if(userObject.voTwoMax < 39){
+          } else if(voTwoMax < 39){
             classification = regularRating
-          } else if(userObject.voTwoMax < 49){
+          } else if(voTwoMax < 49){
             classification = goodRating
           } else {
             classification = excellentRating
@@ -8782,13 +8922,13 @@ vo2maxClassification(userObject){
           
         } else if(ageBetweenFortyAndFortyNine){
           
-          if(userObject.voTwoMax < 20){
+          if(voTwoMax < 20){
             classification = veryPoorRating
-          } else if(userObject.voTwoMax < 27){
+          } else if(voTwoMax < 27){
             classification = weakRating
-          } else if(userObject.voTwoMax < 36){
+          } else if(voTwoMax < 36){
             classification = regularRating
-          } else if(userObject.voTwoMax < 45){
+          } else if(voTwoMax < 45){
             classification = goodRating
           } else {
             classification = excellentRating
@@ -8796,13 +8936,13 @@ vo2maxClassification(userObject){
           
         } else if(ageBetweenFiftyAndFiftyNine){
           
-          if(userObject.voTwoMax < 18){
+          if(voTwoMax < 18){
             classification = veryPoorRating
-          } else if(userObject.voTwoMax < 25){
+          } else if(voTwoMax < 25){
             classification = weakRating
-          } else if(userObject.voTwoMax < 34){
+          } else if(voTwoMax < 34){
             classification = regularRating
-          } else if(userObject.voTwoMax < 43){
+          } else if(voTwoMax < 43){
             classification = goodRating
           } else {
             classification = excellentRating
@@ -8810,13 +8950,13 @@ vo2maxClassification(userObject){
           
         } else if(ageBetweenSixtyAndSixtyNine){
           
-          if(userObject.voTwoMax < 16){
+          if(voTwoMax < 16){
             classification = veryPoorRating
-          } else if(userObject.voTwoMax < 23){
+          } else if(voTwoMax < 23){
             classification = weakRating
-          } else if(userObject.voTwoMax < 31){
+          } else if(voTwoMax < 31){
             classification = regularRating
-          } else if(userObject.voTwoMax < 41){
+          } else if(voTwoMax < 41){
             classification = goodRating
           } else {
             classification = excellentRating
@@ -8833,13 +8973,13 @@ vo2maxClassification(userObject){
   
         if(ageBetweenTwentyAndTwentyNine){
           
-          if(userObject.voTwoMax < 24){
+          if(voTwoMax < 24){
             classification = veryPoorRating
-          } else if(userObject.voTwoMax < 31){
+          } else if(voTwoMax < 31){
             classification = weakRating
-          } else if(userObject.voTwoMax < 38){
+          } else if(voTwoMax < 38){
             classification = regularRating
-          } else if(userObject.voTwoMax < 49){
+          } else if(voTwoMax < 49){
             classification = goodRating
           } else {
             classification = excellentRating
@@ -8847,13 +8987,13 @@ vo2maxClassification(userObject){
           
         } else if(ageBetweenThirtyAndThirtyNine){
           
-          if(userObject.voTwoMax < 20){
+          if(voTwoMax < 20){
             classification = veryPoorRating
-          } else if(userObject.voTwoMax < 28){
+          } else if(voTwoMax < 28){
             classification = weakRating
-          } else if(userObject.voTwoMax < 34){
+          } else if(voTwoMax < 34){
             classification = regularRating
-          } else if(userObject.voTwoMax < 45){
+          } else if(voTwoMax < 45){
             classification = goodRating
           } else {
             classification = excellentRating
@@ -8861,13 +9001,13 @@ vo2maxClassification(userObject){
           
         } else if(ageBetweenFortyAndFortyNine){
           
-          if(userObject.voTwoMax < 17){
+          if(voTwoMax < 17){
             classification = veryPoorRating
-          } else if(userObject.voTwoMax < 24){
+          } else if(voTwoMax < 24){
             classification = weakRating
-          } else if(userObject.voTwoMax < 31){
+          } else if(voTwoMax < 31){
             classification = regularRating
-          } else if(userObject.voTwoMax < 42){
+          } else if(voTwoMax < 42){
             classification = goodRating
           } else {
             classification = excellentRating
@@ -8875,13 +9015,13 @@ vo2maxClassification(userObject){
           
         } else if(ageBetweenFiftyAndFiftyNine){
           
-          if(userObject.voTwoMax < 15){
+          if(voTwoMax < 15){
             classification = veryPoorRating
-          } else if(userObject.voTwoMax < 21){
+          } else if(voTwoMax < 21){
             classification = weakRating
-          } else if(userObject.voTwoMax < 28){
+          } else if(voTwoMax < 28){
             classification = regularRating
-          } else if(userObject.voTwoMax < 38){
+          } else if(voTwoMax < 38){
             classification = goodRating
           } else {
             classification = excellentRating
@@ -8889,13 +9029,13 @@ vo2maxClassification(userObject){
           
         } else if(ageBetweenSixtyAndSixtyNine){
           
-          if(userObject.voTwoMax < 13){
+          if(voTwoMax < 13){
             classification = veryPoorRating
-          } else if(userObject.voTwoMax < 18){
+          } else if(voTwoMax < 18){
             classification = weakRating
-          } else if(userObject.voTwoMax < 24){
+          } else if(voTwoMax < 24){
             classification = regularRating
-          } else if(userObject.voTwoMax < 35){
+          } else if(voTwoMax < 35){
             classification = goodRating
           } else {
             classification = excellentRating
@@ -8919,14 +9059,23 @@ vo2maxClassification(userObject){
   },
 ```
 
-Em **saf.js** adicionamos a classificação do VO² máx. ao objeto ***user*** e em seguida mostramos o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **voTwoMaxClassification** que recebe como valor o retorno da function **vo2maxClassification( )**. Em seguida, mostramos o resultado:
 
 ```js
+// variables aerobicFunctions
+user.voTwoMax = aerobicFunctions.voTwoMax(user)
+user.voTwoMaxExpected = aerobicFunctions.vo2maxExpected(user)
 user.voTwoMaxClassification = aerobicFunctions.vo2maxClassification(user)
 ```
 
 ```js
+// show results aerobicFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Aeróbico")
+console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
+console.log(`VO²máx Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
 console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -8937,13 +9086,13 @@ Ao executar o programa:
 ===============================
            Aeróbico            
 ===============================
-VO²máx.(mL(kg.min): 44.13
-VO²máx. Previsto(mL(kg.min): 41.3
+VO²máx (mL(kg.min): 44.6
+VO²máx Previsto(mL(kg.min): 41.3
 Classificação do VO²máx: Bom
 ===============================
 ```
 
-### Velocidade de treino
+### Velocidade de treino - PAREI
 
 **trainingSpeed( )** function determinar a velocidade de treino do usuário, mostrado a velocidade de acordo com os percentuais de 40% até 95%, mostrando de 5% em 5%. Esta function recebe como parâmetro o objeto ***user***. Dentro desta function, vamos criar m objeto **(_objectTrainingSpeed_)** que vai receber algumas variáveis que vamos calcular dentro desta function. No final a function **trainingSpeed( )** retorna o objeto ***objectTrainingSpeed***.
 

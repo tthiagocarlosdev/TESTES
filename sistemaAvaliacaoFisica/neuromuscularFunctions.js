@@ -444,8 +444,12 @@ const neuromuscularFunctions = {
   
   },
 
-  flexArmClassification(sexNumber, ageValue, flexArmTestResult){
-  
+  flexArmClassification(objectValue){
+
+    const sexNumber = objectValue.sexNumber
+    const ageValue = objectValue.age
+    const flexArmTestResult = objectValue.numberOfPushUps
+    
     let classification = ''
     const unidentifiedSex = `[ERROR] Sexo não identificado!` 
     const ageBetweenTwentyAndTwentyNine = ageValue >= 20 && ageValue <= 29
