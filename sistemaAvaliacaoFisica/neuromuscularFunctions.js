@@ -8,26 +8,30 @@ const neuromuscularFunctions = {
 
   wellsBenchTest(){
   
-    let testResult = ''
-    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
-    let validNumber = true
-  
+    let testResult = 0
+    const regexFromZeroToNinetyNine = /(^[0-9]$)|(^[0-9]{2}$)/
+    let itsRegexNumber = true
+    
     do{
   
-      testResult = input.question('Teste de flexibilidade banco de Wells (cm)[00]: ')
-      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
-      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+      testResult = input.question('Teste de flexibilidade banco de Wells [00](cm) : ')
+      itsRegexNumber = validationFunctions.isRegularExpression(testResult, regexFromZeroToNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRegexNumber,'Neuromuscular' )
   
-    }while(!validNumber)
+    }while(!itsRegexNumber)
     
     return Number(testResult)
   
   },
 
-  flexibilityClassification(sexNumber, ageValue, flexibilityTestResult){
+  flexibilityClassification(objectValue){
 
-    let classification = ''
-    const UnidentifiedSex = `[ERROR] Sexo não identificado!`
+    const sexNumber = objectValue.sexNumber
+    const ageValue = objectValue.age
+    const flexibilityTestResult = objectValue.wellsBenchTest
+  
+    let classification = ``
+    const unidentifiedSex = `[ERROR] Sexo não identificado!`
     const ageLessThanTwenty = ageValue > 0 && ageValue < 20
     const ageLessThanThirty = ageValue < 30
     const ageLessThanForty = ageValue < 40
@@ -206,7 +210,7 @@ const neuromuscularFunctions = {
         break;
     
       default:
-        classification = UnidentifiedSex
+        classification = unidentifiedSex
         break;
     }
   

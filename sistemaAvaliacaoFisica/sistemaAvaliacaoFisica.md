@@ -6285,11 +6285,9 @@ Massa Corporal Ideal Prevista: 72.5 kilos
 ===============================
 ```
 
-PAREI
-
 ## Testes Neuromuscular
 
-Vamos para a próxima etapa onde vamos construir a parte dos **testes neuromuscular**. Para isto vamos criar o arquivo **neuromuscularFunctions.js**. Dentro deste arquivo vamos:
+Vamos para a próxima etapa onde vamos construir a parte dos **testes neuromusculares**. Para isto vamos criar o arquivo **neuromuscularFunctions.js**. Dentro deste arquivo vamos:
 
 - Criar a variável **input**;
 - Requerer a variável **validationFunctions**;
@@ -6314,47 +6312,59 @@ module.exports = {
 
 ### Teste de Flexibilidade Banco de Wells
 
-Teste para medir a flexibilidade do usuário. Function **wellsBenchTest( )**, deve ser inserido um número, com no máximo dois dígitos, de 0 a 99. Caso seja digitado qualquer outro valor diferente, a function **incorrectValue( )** deve ser chamada e o usuário deve digitar um valor correto. Retorna o valor alcançado no teste pelo o usuário. Logo, em **neuromuscularFunctions.js**:
+Teste para medir a flexibilidade do usuário. Function **wellsBenchTest( )**, deve ser inserido um número, com no máximo dois dígitos, de **0 a 99**. Caso seja digitado qualquer outro valor diferente, a function **incorrectValue( )** deve ser chamada e o usuário deve digitar um valor correto. Retorna o valor alcançado no teste pelo o usuário. Logo, em **neuromuscularFunctions.js**:
 
 ```js
 wellsBenchTest(){
   
-    let testResult = ''
-    const regexTwoDigits = /(^[0-9]$)|(^[0-9]{2}$)/
-    let validNumber = true
-  
+    let testResult = 0
+    const regexFromZeroToNinetyNine = /(^[0-9]$)|(^[0-9]{2}$)/
+    let itsRegexNumber = true
+    
     do{
   
-      testResult = input.question('Teste de flexibilidade banco de Wells (cm)[00]: ')
-      validNumber = validationFunctions.isRegularExpression(testResult, regexTwoDigits)
-      validationFunctions.incorrectValue(false, !validNumber,'Neuromuscular' )
+      testResult = input.question('Teste de flexibilidade banco de Wells [00](cm) : ')
+      itsRegexNumber = validationFunctions.isRegularExpression(testResult, regexFromZeroToNinetyNine)
+      validationFunctions.incorrectValue(false, !itsRegexNumber,'Neuromuscular' )
   
-    }while(!validNumber)
+    }while(!itsRegexNumber)
     
     return Number(testResult)
   
   },
 ```
 
-Em **saf.js** vamos desativar as outras etapas, deixando apenas a variável **sexNumber** de **personalData** e construíndo a parte de variáveis e mostrar os resultados de **testes neuromulares**. Deve ser feito a requisição do arquivo **neuromuscularFunctions.js** também:
+Em **saf.js** vamos fazer a requisição do arquivo **neuromuscularFunctions.js**:
 
 ```js
+/* physical assessment system */
+
+const { headerFunctions } = require('./headerFunctions')
+const { personalDataFunctions } = require('./personalDataFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { anamnesisQuestions } = require('./anamnesisFunctions')
+const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
+const { percentageValues } = require('./cardiorespiratoryFunctions')
+const { anthropometryFunctions } = require('./anthropometryFunctions')
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
 ```
 
+Ainda em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **wellsBenchTest** que recebe como valor o retorno da function **wellsBenchTest( )**. Em seguida, mostramos o resultado:
+
 ```js
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Neuromuscular")
+
 // variables neuromuscularFunctions
-const wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
+user.wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
 ```
 
 ```js
-console.clear() // temporary
-headerFunctions.systemHeader() // temporary
-headerFunctions.subTitle("Neuromuscular") //temporary
 // show results neuromuscularFunctions
-// console.log(`===============================`) 
-// headerFunctions.subTitle("Neuromuscular")
-console.log(`Resultado teste Flexibilidade Banco de Wells: ${wellsBenchTest} cm`)
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Neuromuscular")
+console.log(`Resultado Teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -6365,249 +6375,268 @@ Ao executar o programa:
 ===============================
            Neuromuscular            
 ===============================
-Resultado teste Flexibilidade Banco de Wells: 23 cm
+Teste de flexibilidade banco de Wells [00](cm) : 45
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Resultado teste Flexibilidade Banco de Wells: 45 cm
 ===============================
 ```
 
 ### Flexibilidade - Classificação
 
-**flexibilityClassification( )** function, determina a classificação da flexibilidade do usuário. Recebe como parâmetro o **sexo**, a **idade** e o **valor** do resultado do **teste de flexibilidade**. A classificação será determinada de acordo com a tabela abaixo:
+**flexibilityClassification( )** function, determina a classificação da flexibilidade do usuário. Recebe como parâmetro o objeto _**user**_, usando os valores das propriedades **sexo**, **idade** e o **teste de flexibilidade**. A classificação será determinada de acordo com a tabela abaixo:
 
-| Flexibilidade - Classificação - HOMEM      | Flexibilidade - Classificação - HOMEM      |
-| ------------------------------------------ | ------------------------------------------ |
-| **Com idade entre 0 e 19 anos**            | **Com idade entre 20 e 29 anos**           |
-| Flexibilidade < 24 = "Fraca"               | Flexibilidade < 25 = "Fraca"               |
-| Flexibilidade < 29 = "Regular"             | Flexibilidade < 30 = "Regular"             |
-| Flexibilidade < 39 = "Boa"                 | Flexibilidade < 40 = "Boa"                 |
-| Flexibilidade >= 39 = "Excelente"          | Flexibilidade >= 40 = "Excelente"          |
-| **Com idade entre 30 e 39 anos**           | **Com idade entre 40 e 49 anos**           |
-| Flexibilidade < 23 = "Fraca"               | Flexibilidade < 18 = "Fraca"               |
-| Flexibilidade < 28 = "Regular"             | Flexibilidade < 24 = "Regular"             |
-| Flexibilidade < 38 = "Boa"                 | Flexibilidade < 35 = "Boa"                 |
-| Flexibilidade >= 38 = "Excelente"          | Flexibilidade >= 35 = "Excelente"          |
-| **Com idade entre 50 e 59 anos**           | **Com idade entre 60 e 69 anos**           |
-| Flexibilidade < 16 = "Fraca"               | Flexibilidade < 15 = "Fraca"               |
-| Flexibilidade < 24 = "Regular"             | Flexibilidade < 20 = "Regular"             |
-| Flexibilidade < 35 = "Boa"                 | Flexibilidade < 33 = "Boa"                 |
-| Flexibilidade >= 35 = "Excelente"          | Flexibilidade >= 33 = "Excelente"          |
-| **Flexibilidade - Classificação - MULHER** | **Flexibilidade - Classificação - MULHER** |
-| **Com idade entre 0 e 19 anos**            | **Com idade entre 20 e 29 anos**           |
-| Flexibilidade < 29 = "Fraca"               | Flexibilidade < 28 = "Fraca"               |
-| Flexibilidade < 34 = "Regular"             | Flexibilidade < 33 = "Regular"             |
-| Flexibilidade < 43 = "Boa"                 | Flexibilidade < 41 = "Boa"                 |
-| Flexibilidade >= 43 = "Excelente"          | Flexibilidade >= 41 = "Excelente"          |
-| **Com idade entre 30 e 39 anos**           | **Com idade entre 40 e 49 anos**           |
-| Flexibilidade < 27 = "Fraca"               | Flexibilidade < 25 = "Fraca"               |
-| Flexibilidade < 32 = "Regular"             | Flexibilidade < 30 = "Regular"             |
-| Flexibilidade < 41 = "Boa"                 | Flexibilidade < 38 = "Boa"                 |
-| Flexibilidade >= 41 = "Excelente"          | Flexibilidade >= 38 = "Excelente"          |
-| **Com idade entre 50 e 59 anos**           | **Com idade entre 60 e 69 anos**           |
-| Flexibilidade < 25 = "Fraca"               | Flexibilidade < 23 = "Fraca"               |
-| Flexibilidade < 30 = "Regular"             | Flexibilidade < 27 = "Regular"             |
-| Flexibilidade < 39 = "Boa"                 | Flexibilidade < 35 = "Boa"                 |
-| Flexibilidade >= 39 = "Excelente"          | Flexibilidade >= 35 = "Excelente"          |
+| Flexibilidade - Classificação - HOMEM | Flexibilidade - Classificação - MULHER |
+| ------------------------------------- | -------------------------------------- |
+| **Com idade entre 0 e 19 anos**       | **Com idade entre 0 e 19 anos**        |
+| Flexibilidade < 24 = "Fraca"          | Flexibilidade < 29 = "Fraca"           |
+| Flexibilidade < 29 = "Regular"        | Flexibilidade < 34 = "Regular"         |
+| Flexibilidade < 39 = "Boa"            | Flexibilidade < 43 = "Boa"             |
+| Flexibilidade >= 39 = "Excelente"     | Flexibilidade >= 43 = "Excelente"      |
+| **Com idade entre 20 e 29 anos**      | **Com idade entre 20 e 29 anos**       |
+| Flexibilidade < 25 = "Fraca"          | Flexibilidade < 28 = "Fraca"           |
+| Flexibilidade < 30 = "Regular"        | Flexibilidade < 33 = "Regular"         |
+| Flexibilidade < 40 = "Boa"            | Flexibilidade < 41 = "Boa"             |
+| Flexibilidade >= 40 = "Excelente"     | Flexibilidade >= 41 = "Excelente"      |
+| **Com idade entre 30 e 39 anos**      | **Com idade entre 30 e 39 anos**       |
+| Flexibilidade < 23 = "Fraca"          | Flexibilidade < 27 = "Fraca"           |
+| Flexibilidade < 28 = "Regular"        | Flexibilidade < 32 = "Regular"         |
+| Flexibilidade < 38 = "Boa"            | Flexibilidade < 41 = "Boa"             |
+| Flexibilidade >= 38 = "Excelente"     | Flexibilidade >= 41 = "Excelente"      |
+| **Com idade entre 40 e 49 anos**      | **Com idade entre 40 e 49 anos**       |
+| Flexibilidade < 18 = "Fraca"          | Flexibilidade < 25 = "Fraca"           |
+| Flexibilidade < 24 = "Regular"        | Flexibilidade < 30 = "Regular"         |
+| Flexibilidade < 35 = "Boa"            | Flexibilidade < 38 = "Boa"             |
+| Flexibilidade >= 35 = "Excelente"     | Flexibilidade >= 38 = "Excelente"      |
+| **Com idade entre 50 e 59 anos**      | **Com idade entre 50 e 59 anos**       |
+| Flexibilidade < 16 = "Fraca"          | Flexibilidade < 25 = "Fraca"           |
+| Flexibilidade < 24 = "Regular"        | Flexibilidade < 30 = "Regular"         |
+| Flexibilidade < 35 = "Boa"            | Flexibilidade < 39 = "Boa"             |
+| Flexibilidade >= 35 = "Excelente"     | Flexibilidade >= 39 = "Excelente"      |
+| **Com idade entre 60 e 69 anos**      | **Com idade entre 60 e 69 anos**       |
+| Flexibilidade < 15 = "Fraca"          | Flexibilidade < 23 = "Fraca"           |
+| Flexibilidade < 20 = "Regular"        | Flexibilidade < 27 = "Regular"         |
+| Flexibilidade < 33 = "Boa"            | Flexibilidade < 35 = "Boa"             |
+| Flexibilidade >= 33 = "Excelente"     | Flexibilidade >= 35 = "Excelente"      |
 
 Logo, em **neuromuscularFunctions.js**:
 
 ```js
-flexibilityClassification(sexNumber, ageValue, flexibilityTestResult){
+flexibilityClassification(objectValue){
 
-    let classification = ''
-    const UnidentifiedSex = `[ERROR] Sexo não identificado!`
-    const ageLessThanTwenty = ageValue > 0 && ageValue < 20
-    const ageLessThanThirty = ageValue < 30
-    const ageLessThanForty = ageValue < 40
-    const ageLessThanFifty = ageValue < 50
-    const ageLessThanSixty = ageValue < 60
-    const ageLessThanSeventy = ageValue < 70
-    const weakRating = `Fraca`
-    const regularRating = `Regular`
-    const goodRating = `Boa`
-    const excellentRating = `Excelente`
-    const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
-  
-  
-    switch (sexNumber) {
-      
-      // men
-      case 1:
-        
-        if(ageLessThanTwenty){
-          
-          if(flexibilityTestResult < 24){
-            classification = weakRating
-          } else if(flexibilityTestResult < 29){
-            classification = regularRating
-          } else if(flexibilityTestResult < 39){
-            classification = goodRating
-          } else {
-            classification = excellentRating
-          }
-          
-        } else if(ageLessThanThirty){
-          
-          if(flexibilityTestResult < 25){
-            classification = weakRating
-          } else if(flexibilityTestResult < 30){
-            classification = regularRating
-          } else if(flexibilityTestResult < 40){
-            classification = goodRating
-          } else {
-            classification = excellentRating
-          }
-          
-        } else if(ageLessThanForty){
-          
-          if(flexibilityTestResult < 23){
-            classification = weakRating
-          } else if(flexibilityTestResult < 28){
-            classification = regularRating
-          } else if(flexibilityTestResult < 38){
-            classification = goodRating
-          } else {
-            classification = excellentRating
-          }
-          
-        } else if(ageLessThanFifty){
-          
-          if(flexibilityTestResult < 18){
-            classification = weakRating
-          } else if(flexibilityTestResult < 24){
-            classification = regularRating
-          } else if(flexibilityTestResult < 35){
-            classification = goodRating
-          } else {
-            classification = excellentRating
-          }
-          
-        } else if(ageLessThanSixty){
-          
-          if(flexibilityTestResult < 16){
-            classification = weakRating
-          } else if(flexibilityTestResult < 24){
-            classification = regularRating
-          } else if(flexibilityTestResult < 35){
-            classification = goodRating
-          } else {
-            classification = excellentRating
-          }
-          
-        } else if(ageLessThanSeventy){
-          
-          if(flexibilityTestResult < 15){
-            classification = weakRating
-          } else if(flexibilityTestResult < 20){
-            classification = regularRating
-          } else if(flexibilityTestResult < 33){
-            classification = goodRating
-          } else {
-            classification = excellentRating
-          }
-          
-        } else {
-          classification = classificationNotAppliedToAge
-        }
-  
-        break;
-      
-      // woman
-      case 2:
-  
-        if(ageLessThanTwenty){
-          
-          if(flexibilityTestResult < 29){
-            classification = weakRating
-          } else if(flexibilityTestResult < 34){
-            classification = regularRating
-          } else if(flexibilityTestResult < 43){
-            classification = goodRating
-          } else {
-            classification = excellentRating
-          }
-          
-        } else if(ageLessThanThirty){
-          
-          if(flexibilityTestResult < 28){
-            classification = weakRating
-          } else if(flexibilityTestResult < 33){
-            classification = regularRating
-          } else if(flexibilityTestResult < 41){
-            classification = goodRating
-          } else {
-            classification = excellentRating
-          }
-          
-        } else if(ageLessThanForty){
-          
-          if(flexibilityTestResult < 27){
-            classification = weakRating
-          } else if(flexibilityTestResult < 32){
-            classification = regularRating
-          } else if(flexibilityTestResult < 41){
-            classification = goodRating
-          } else {
-            classification = excellentRating
-          }
-          
-        } else if(ageLessThanFifty){
-          
-          if(flexibilityTestResult < 25){
-            classification = weakRating
-          } else if(flexibilityTestResult < 30){
-            classification = regularRating
-          } else if(flexibilityTestResult < 38){
-            classification = goodRating
-          } else {
-            classification = excellentRating
-          }
-          
-        } else if(ageLessThanSixty){
-          
-          if(flexibilityTestResult < 25){
-            classification = weakRating
-          } else if(flexibilityTestResult < 30){
-            classification = regularRating
-          } else if(flexibilityTestResult < 39){
-            classification = goodRating
-          } else {
-            classification = excellentRating
-          }
-          
-        } else if(ageLessThanSeventy){
-          
-          if(flexibilityTestResult < 23){
-            classification = weakRating
-          } else if(flexibilityTestResult < 27){
-            classification = regularRating
-          } else if(flexibilityTestResult < 35){
-            classification = goodRating
-          } else {
-            classification = excellentRating
-          }
-          
-        } else {
-          classification = classificationNotAppliedToAge
-        }
-  
-        break;
+  const sexNumber = objectValue.sexNumber
+  const ageValue = objectValue.age
+  const flexibilityTestResult = objectValue.wellsBenchTest
+
+  let classification = ``
+  const unidentifiedSex = `[ERROR] Sexo não identificado!`
+  const ageLessThanTwenty = ageValue > 0 && ageValue < 20
+  const ageLessThanThirty = ageValue < 30
+  const ageLessThanForty = ageValue < 40
+  const ageLessThanFifty = ageValue < 50
+  const ageLessThanSixty = ageValue < 60
+  const ageLessThanSeventy = ageValue < 70
+  const weakRating = `Fraca`
+  const regularRating = `Regular`
+  const goodRating = `Boa`
+  const excellentRating = `Excelente`
+  const classificationNotAppliedToAge = `Esta classificação não se aplica a sua idade!`
+
+
+  switch (sexNumber) {
     
-      default:
-        classification = UnidentifiedSex
-        break;
-    }
+    // men
+    case 1:
+      
+      if(ageLessThanTwenty){
+        
+        if(flexibilityTestResult < 24){
+          classification = weakRating
+        } else if(flexibilityTestResult < 29){
+          classification = regularRating
+        } else if(flexibilityTestResult < 39){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageLessThanThirty){
+        
+        if(flexibilityTestResult < 25){
+          classification = weakRating
+        } else if(flexibilityTestResult < 30){
+          classification = regularRating
+        } else if(flexibilityTestResult < 40){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageLessThanForty){
+        
+        if(flexibilityTestResult < 23){
+          classification = weakRating
+        } else if(flexibilityTestResult < 28){
+          classification = regularRating
+        } else if(flexibilityTestResult < 38){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageLessThanFifty){
+        
+        if(flexibilityTestResult < 18){
+          classification = weakRating
+        } else if(flexibilityTestResult < 24){
+          classification = regularRating
+        } else if(flexibilityTestResult < 35){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageLessThanSixty){
+        
+        if(flexibilityTestResult < 16){
+          classification = weakRating
+        } else if(flexibilityTestResult < 24){
+          classification = regularRating
+        } else if(flexibilityTestResult < 35){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageLessThanSeventy){
+        
+        if(flexibilityTestResult < 15){
+          classification = weakRating
+        } else if(flexibilityTestResult < 20){
+          classification = regularRating
+        } else if(flexibilityTestResult < 33){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else {
+        classification = classificationNotAppliedToAge
+      }
+
+      break;
+    
+    // woman
+    case 2:
+
+      if(ageLessThanTwenty){
+        
+        if(flexibilityTestResult < 29){
+          classification = weakRating
+        } else if(flexibilityTestResult < 34){
+          classification = regularRating
+        } else if(flexibilityTestResult < 43){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageLessThanThirty){
+        
+        if(flexibilityTestResult < 28){
+          classification = weakRating
+        } else if(flexibilityTestResult < 33){
+          classification = regularRating
+        } else if(flexibilityTestResult < 41){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageLessThanForty){
+        
+        if(flexibilityTestResult < 27){
+          classification = weakRating
+        } else if(flexibilityTestResult < 32){
+          classification = regularRating
+        } else if(flexibilityTestResult < 41){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageLessThanFifty){
+        
+        if(flexibilityTestResult < 25){
+          classification = weakRating
+        } else if(flexibilityTestResult < 30){
+          classification = regularRating
+        } else if(flexibilityTestResult < 38){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageLessThanSixty){
+        
+        if(flexibilityTestResult < 25){
+          classification = weakRating
+        } else if(flexibilityTestResult < 30){
+          classification = regularRating
+        } else if(flexibilityTestResult < 39){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else if(ageLessThanSeventy){
+        
+        if(flexibilityTestResult < 23){
+          classification = weakRating
+        } else if(flexibilityTestResult < 27){
+          classification = regularRating
+        } else if(flexibilityTestResult < 35){
+          classification = goodRating
+        } else {
+          classification = excellentRating
+        }
+        
+      } else {
+        classification = classificationNotAppliedToAge
+      }
+
+      break;
   
-    return classification
-  },
+    default:
+      classification = unidentifiedSex
+      break;
+  }
+
+  return classification
+},
 ```
 
-Em **saf.js** vamos criar a variável **flexibilityRating** que recebe a function **flexibilityClassification( )** passando como parâmetro as variáveis **sexNumber**, **age** e **wellsBenchTest**. Depois mostramos o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **flexibilityClassification** que recebe como valor o retorno da function **flexibilityClassification( )** passando como parâmetro as variáveis **sexNumber**, **age** e **wellsBenchTest**. Depois mostramos o resultado:
 
 ```js
-const flexibilityRating = neuromuscularFunctions.flexibilityClassification(sexNumber, age, wellsBenchTest)
+// variables neuromuscularFunctions
+user.wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
+user.flexibilityClassification = neuromuscularFunctions.flexibilityClassification(user)
 ```
 
 ```js
-console.log(`Classificação Flexibilidade: ${flexibilityRating}`)
+// show results neuromuscularFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Neuromuscular")
+console.log(`Resultado Teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
+console.log(`Classificação Flexibilidade: ${user.flexibilityClassification}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -6618,10 +6647,21 @@ Ao executar o programa:
 ===============================
            Neuromuscular            
 ===============================
-Resultado teste Flexibilidade Banco de Wells: 23 cm
-Classificação Flexibilidade: Regular
+Teste de flexibilidade banco de Wells [00](cm) : 29
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Resultado Teste Flexibilidade Banco de Wells: 29 cm
+Classificação Flexibilidade: Boa
 ===============================
 ```
+
+PAREI
 
 ### Teste Abdominal
 

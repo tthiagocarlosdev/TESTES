@@ -7,15 +7,14 @@ const { anamnesisQuestions } = require('./anamnesisFunctions')
 const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
 const { percentageValues } = require('./cardiorespiratoryFunctions')
 const { anthropometryFunctions } = require('./anthropometryFunctions')
-
-/*
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
-const { aerobicFunctions } = require('./aerobicFunctions')*/
+
+/* const { aerobicFunctions } = require('./aerobicFunctions') */
 
 const user = { }
-// user.age = 34 // temporary
-// user.sexNumber = 1 // temporary
-
+user.age = 34 // temporary
+user.sexNumber = 1 // temporary
+/*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
@@ -77,15 +76,18 @@ user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassific
 user.fatBodyMass = anthropometryFunctions.fatBodyMass(user)
 user.leanBodyMass = anthropometryFunctions.leanBodyMass(user)
 user.expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(user)
+*/
 
-/*
-console.clear()
+// console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Neuromuscular")
 
 // variables neuromuscularFunctions
 user.wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
-user.flexibilityRating = neuromuscularFunctions.flexibilityClassification(user.sexNumber, user.age, user.wellsBenchTest)
+user.flexibilityClassification = neuromuscularFunctions.flexibilityClassification(user)
+
+/*
+
 user.numberOfAbs = neuromuscularFunctions.abdominalTest()
 user.abdominalRating = neuromuscularFunctions.abdominalClassification(user.sexNumber, user.age, user.numberOfAbs)
 user.numberOfPushUps = neuromuscularFunctions.flexArmTest()
@@ -109,6 +111,7 @@ headerFunctions.systemHeader()
 headerFunctions.subTitle("Observações")
 user.comments = personalDataFunctions.comments()
 */
+/*
 // show results personalDataFunctions
 // console.clear()
 headerFunctions.systemHeader()
@@ -162,16 +165,19 @@ console.log(`Classificação % Gordura: ${user.fatPercentageClassification}`)
 console.log(`Massa Corporal Gorda: ${user.fatBodyMass} kilos`)
 console.log(`Massa Corporal Magra: ${user.leanBodyMass} kilos`)
 console.log(`Massa Corporal Ideal Prevista: ${user.expectedIdealBodyMass} kilos`)
+*/
+
+
+// show results neuromuscularFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Neuromuscular")
+console.log(`Resultado Teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
+console.log(`Classificação Flexibilidade: ${user.flexibilityClassification}`)
 headerFunctions.baseboard()
 
 /*
 
-// show results neuromuscularFunctions
-headerFunctions.baseboard()
-headerFunctions.subTitle("Neuromuscular")
 
-console.log(`Resultado teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
-console.log(`Classificação Flexibilidade: ${user.flexibilityRating}`)
 console.log(`Quantidade de flexões abdominais: ${user.numberOfAbs}`)
 console.log(`Classificação Abdominais: ${user.abdominalRating}`)
 console.log(`Quantidade de flexões de braço: ${user.numberOfPushUps}`)
