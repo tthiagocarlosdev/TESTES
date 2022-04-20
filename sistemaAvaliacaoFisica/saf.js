@@ -16,6 +16,8 @@ user.sexNumber = 1 // temporary
 user.restingHeartRate = 60 // temporary
 user.maximumHeartRate = 186 // temporary
 user.bodyWeight = 94 // temporary
+user.currentPhysicalState = 1 // temporary
+user.percentageValues = percentageValues
 
 /*
 headerFunctions.systemHeader()
@@ -101,14 +103,11 @@ headerFunctions.subTitle("Aeróbico")
 user.voTwoMax = aerobicFunctions.voTwoMax(user)
 user.voTwoMaxExpected = aerobicFunctions.vo2maxExpected(user)
 user.voTwoMaxClassification = aerobicFunctions.vo2maxClassification(user)
-
-/*
-
-
-user.objectTrainingSpeed = aerobicFunctions.trainingSpeed(user)
+user.trainingSpeed = aerobicFunctions.trainingSpeed(user)
 user.aerobicFunctionalDeficit = aerobicFunctions.aerobicFunctionalDeficit(user)
 user.aerobicFunctionalDeficitClassification = aerobicFunctions.aerobicFunctionalDeficitClassification(user)
 
+/*
 // variables personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
@@ -187,16 +186,12 @@ headerFunctions.subTitle("Aeróbico")
 console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
 console.log(`VO²máx Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
 console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
+aerobicFunctions.showTrainingSpeed(user)
+console.log(`Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficit}`)
+console.log(`Classificação do Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficitClassification}`)
 headerFunctions.baseboard()
 
 /*
-
-
-
-headerFunctions.showArray(user.objectTrainingSpeed.titleTrainSpeed, user.objectTrainingSpeed.showTrainingSpeed)
-console.log(`Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficit.toFixed(2)}`)
-console.log(`Classificação do Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficitClassification}`)
-
 headerFunctions.baseboard()
 headerFunctions.subTitle("Observações")
 console.log(user.comments)

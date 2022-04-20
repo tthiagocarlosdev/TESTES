@@ -432,65 +432,70 @@ const aerobicFunctions = {
   
   },
 
-  trainingSpeed(userObject){
+  trainingSpeed(objectValue){
 
-    let objectTrainingSpeed = {
-      METs: 0,
-      percentage: [],
-      trainingFrequency: [],
-      trainingSpeed: [],
-      titleTrainSpeed: `Velocidade de Treino:`, 
-      showTrainingSpeed: [],
-    }
+    const voTwoMax = objectValue.voTwoMax
+    const percentageValues = objectValue.percentageValues
+    const currentPhysicalState = objectValue.currentPhysicalState
   
-    objectTrainingSpeed.METs = Number((userObject.voTwoMax / 3.5)) // Calculate METs
+    let METs = 0
+    let trainingFrequency = []
+    let trainingSpeed = []
   
-    // Calculate Percentage
-    for(let i = 40; i <= 95; i+=5){
-      objectTrainingSpeed.percentage.push(Number([i]))
-    }
+    // Calculate METs
+    METs = Number((voTwoMax / 3.5))
   
     // Calculate Training Frequency
-    for(let i = 0; i < objectTrainingSpeed.percentage.length; i++){
-      
-      if(userObject.currentPhysicalState === 1){
-        objectTrainingSpeed.trainingFrequency.push(Number((objectTrainingSpeed.percentage[i] / 100)))
-      } else if(userObject.currentPhysicalState === 2){
-        objectTrainingSpeed.trainingFrequency.push(Number(((objectTrainingSpeed.METs + objectTrainingSpeed.percentage[i]) / 100)))
-      }
+    for(let percentage of percentageValues){
   
+      if(currentPhysicalState === 1){
+        trainingFrequency.push(Number((percentage / 100)))
+      } else if(currentPhysicalState === 2){
+        trainingFrequency.push(Number(((METs + percentage) / 100)))
+      }
     }
     
     // Calculate Training Speed
-    for(let i = 0; i < objectTrainingSpeed.trainingFrequency.length; i++){
-  
-      objectTrainingSpeed.trainingSpeed.push(Number((objectTrainingSpeed.METs * objectTrainingSpeed.trainingFrequency[i]).toFixed(2)))
-  
+    for(let frequency of trainingFrequency){
+    
+      trainingSpeed.push(Number((METs * frequency).toFixed(2)))
     }
   
-    // Show Training Speed
-    for(let i = 0; i < objectTrainingSpeed.trainingSpeed.length; i++){
-      objectTrainingSpeed.showTrainingSpeed.push(`${objectTrainingSpeed.percentage[i]}% = ${objectTrainingSpeed.trainingSpeed[i]} km/h`)
-    }
-  
-    return objectTrainingSpeed
+    return trainingSpeed
   
   },
 
-  aerobicFunctionalDeficit(userObject){
+  showTrainingSpeed(objectValue){
+  
+    const percentage = objectValue.percentageValues
+    const trainingSpeed = objectValue.trainingSpeed
+  
+    console.log(` - Velocidade de Treino - `)
+    for(let i = 0; i < trainingSpeed.length; i++){
+      console.log(`       ${percentage[i]}% = ${trainingSpeed[i]} km/h`)
+    }
+  },
 
-    return Number((( (userObject.voTwoMaxExpected  -  userObject.voTwoMax)  /  userObject.voTwoMaxExpected ) * 100))
+  aerobicFunctionalDeficit(objectValue){
+
+    const voTwoMaxExpected = objectValue.voTwoMaxExpected
+    const voTwoMax = objectValue.voTwoMax
+
+    let aerobicFunctionalDeficit = Number((((voTwoMaxExpected - voTwoMax)  /  voTwoMaxExpected) * 100).toFixed(2))
+
+    return aerobicFunctionalDeficit
   
   },
 
-  aerobicFunctionalDeficitClassification(userObject){
+  aerobicFunctionalDeficitClassification(objectValue){
 
-    let classification = `` 
-    const veryLow = userObject.aerobicFunctionalDeficit > 25
+    let classification = ``
+    const aerobicFunctionalDeficit = objectValue.aerobicFunctionalDeficit
+    const veryLow = aerobicFunctionalDeficit > 25
     const veryLowRating = `Muito Baixo`
-    const low = userObject.aerobicFunctionalDeficit >  9
+    const low = aerobicFunctionalDeficit >  9
     const lowRating = `Baixo`
-    const good = userObject.aerobicFunctionalDeficit > 0
+    const good = aerobicFunctionalDeficit > 0
     const goodRating = `Bom`
     const greatRating = `Ótimo`
     

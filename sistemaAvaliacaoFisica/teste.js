@@ -4813,17 +4813,17 @@ function testClassification(object){
 
 }
 
-console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
-testClassification(objectTestMen)
-console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
-testClassification(objectTestWoman)
-console.log(`UNIDENTIFIED SEX - UNIDENTIFIED SEX - UNIDENTIFIED SEX`)
-testClassification(objectUnidentifiedSex)
+// console.log(`HOMENS - HOMENS - HOMENS - HOMENS - HOMENS`)
+// testClassification(objectTestMen)
+// console.log(`MULHERES - MULHERES - MULHERES - MULHERES - MULHERES`)
+// testClassification(objectTestWoman)
+// console.log(`UNIDENTIFIED SEX - UNIDENTIFIED SEX - UNIDENTIFIED SEX`)
+// testClassification(objectUnidentifiedSex)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == training speed == **/
 
-function trainingSpeed(userObject){
+function TESTtrainingSpeed(userObject){
 
   let objectTrainingSpeed = {
     METs: 0,
@@ -4868,12 +4868,12 @@ function trainingSpeed(userObject){
 
 }
 
-const usuarioSedentario = {
+const TESTusuarioSedentario = {
   voTwoMax: 44.13,
   currentPhysicalState: 1,
 }
 
-const usuarioAtivo = {
+const TESTusuarioAtivo = {
   voTwoMax: 44.13,
   currentPhysicalState: 2,
 }
@@ -4883,6 +4883,72 @@ const usuarioAtivo = {
 // console.log(`ATIVO`)
 // console.log(trainingSpeed(usuarioAtivo))
 
+const usuarioSedentario = {
+  voTwoMax: 44.13,
+  currentPhysicalState: 1,
+  percentageValues: [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95],
+}
+
+const usuarioAtivo = {
+  voTwoMax: 44.13,
+  currentPhysicalState: 2,
+  percentageValues: [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95],
+}
+
+function trainingSpeed(objectValue){
+
+  const voTwoMax = objectValue.voTwoMax
+  const percentageValues = objectValue.percentageValues
+  const currentPhysicalState = objectValue.currentPhysicalState
+
+  let METs = 0
+  let trainingFrequency = []
+  let trainingSpeed = []
+
+  // Calculate METs
+  METs = Number((voTwoMax / 3.5))
+
+  // Calculate Training Frequency
+  for(let percentage of percentageValues){
+
+    if(currentPhysicalState === 1){
+      trainingFrequency.push(Number((percentage / 100)))
+    } else if(currentPhysicalState === 2){
+      trainingFrequency.push(Number(((METs + percentage) / 100)))
+    }
+  }
+  
+  // Calculate Training Speed
+  for(let frequency of trainingFrequency){
+  
+    trainingSpeed.push(Number((METs * frequency).toFixed(2)))
+  }
+
+  return trainingSpeed
+
+}
+
+usuarioSedentario.trainingSpeed =  trainingSpeed(usuarioSedentario)
+usuarioAtivo.trainingSpeed = trainingSpeed(usuarioAtivo)
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == Show Training Speed== **/
+
+function showTrainingSpeed(objectValue){
+  
+  const percentage = objectValue.percentageValues
+  const trainingSpeed = objectValue.trainingSpeed
+
+  console.log(` - Velocidade de Treino - `)
+  for(let i = 0; i < trainingSpeed.length; i++){
+    console.log(`       ${percentage[i]}% = ${trainingSpeed[i]} km/h`)
+  }
+}
+
+// console.log(`SEDENTÁRIO`)
+// showTrainingSpeed(usuarioSedentario)
+// console.log(`ATIVO`)
+// showTrainingSpeed(usuarioAtivo)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Déficit Funcional Aeróbio - FAI == **/
@@ -4894,7 +4960,7 @@ const usuario01 = {
 
 function aerobicFunctionalDeficit(userObject){
 
-  return Number((( (userObject.voTwoMaxExpected  -  userObject.voTwoMax)  /  userObject.voTwoMaxExpected ) * 100))
+  return Number((( (userObject.voTwoMaxExpected  -  userObject.voTwoMax)  /  userObject.voTwoMaxExpected ) * 100).toFixed(2))
 
 }
 
@@ -4904,7 +4970,7 @@ usuario01.aerobicFunctionalDeficit = aerobicFunctionalDeficit(usuario01)
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == Aerobic Functional Deficit - FAI - Classification == **/
 
-function aerobicFunctionalDeficitClassification(userObject){
+function TESTaerobicFunctionalDeficitClassification(userObject){
 
   let classification = `` 
   const veryLow = userObject.aerobicFunctionalDeficit > 25
@@ -4931,6 +4997,55 @@ function aerobicFunctionalDeficitClassification(userObject){
 }
 
 // console.log(`Classificação: ${aerobicFunctionalDeficitClassification(usuario01)}`)
+
+function aerobicFunctionalDeficitClassification(objectValue){
+
+  let classification = ``
+  const aerobicFunctionalDeficit = objectValue.aerobicFunctionalDeficit
+  const veryLow = aerobicFunctionalDeficit > 25
+  const veryLowRating = `Muito Baixo`
+  const low = aerobicFunctionalDeficit >  9
+  const lowRating = `Baixo`
+  const good = aerobicFunctionalDeficit > 0
+  const goodRating = `Bom`
+  const greatRating = `Ótimo`
+  
+  if(veryLow){
+    classification = veryLowRating
+  } else if(low){
+    classification = lowRating
+  } else if(good){
+    classification = goodRating
+  } else {
+    classification = greatRating
+  }
+
+  return classification
+
+}
+
+// Test Aerobic Functional Deficit Classification
+const usuario02 = {
+  voTwoMax: [25, 31, 34, 37],
+  voTwoMaxExpected: [35, 35, 35, 35],
+}
+
+function testAerobicFunctionalDeficitClassification(object){
+
+  const voTwoMax = object.voTwoMax
+  const voTwoMaxExpected = object.voTwoMaxExpected
+  let user = {}
+
+  for(let i = 0; i < voTwoMax.length; i++){
+    user.voTwoMax = voTwoMax[i]
+    user.voTwoMaxExpected = voTwoMaxExpected[i]
+    user.aerobicFunctionalDeficit = aerobicFunctionalDeficit(user)
+    console.log(`FAI: ${user.aerobicFunctionalDeficit} - Classificação: ${aerobicFunctionalDeficitClassification(user)}`)
+  }
+
+}
+
+testAerobicFunctionalDeficitClassification(usuario02)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == others == **/

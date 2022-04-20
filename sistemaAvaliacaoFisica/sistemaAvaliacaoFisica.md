@@ -9092,17 +9092,15 @@ Classificação do VO²máx: Bom
 ===============================
 ```
 
-### Velocidade de treino - PAREI
+### Velocidade de treino 
 
-**trainingSpeed( )** function determinar a velocidade de treino do usuário, mostrado a velocidade de acordo com os percentuais de 40% até 95%, mostrando de 5% em 5%. Esta function recebe como parâmetro o objeto ***user***. Dentro desta function, vamos criar m objeto **(_objectTrainingSpeed_)** que vai receber algumas variáveis que vamos calcular dentro desta function. No final a function **trainingSpeed( )** retorna o objeto ***objectTrainingSpeed***.
+**trainingSpeed( )** function determinar a velocidade de treino do usuário, mostrado a velocidade de acordo com os percentuais de 40% até 95%, mostrando de 5% em 5%. Esta function recebe como parâmetro o objeto ***user***, sendo usado as propriedades **VO²máx (mL(kg.min)**, **valores dos percentuais** e **estado físico atual**. Retorna um _array_ contendo as velocidades de treino.
 
 Dentro desta function, para chegarmos a velocidade de treino, primeiro precisamos determinar o **MET's** do usuário, que é obtido pela fórmula:
 
 MET's = VO² máx.(mL(kg.min) / 3,5
 
-Em seguida, vamos determinar os percentuais dentro de um array **(percentage)**.
-
-Em seguida, se determina a **Frequência de Treino (FT) - (trainingFrequency)**, que também é um array, do usuário que depende do seu estado físico:
+Em seguida, se determina a **Frequência de Treino (FT) - (trainingFrequency)**, colocando-a dentro de um array. Para determinar a frequência de treino do usuário, será usado as fórmulas abaixo, de acordo com seu estado físico atual:
 
 | Estado físico sedentário              | Estado físico ativo                             |
 | ------------------------------------- | ----------------------------------------------- |
@@ -9112,79 +9110,79 @@ Por último a Velocidade de Treino **(_trainingSpeed_)** **[array]** que é dete
 
 Velocidade de Treino = ( MET's * Frequência de Treino)
 
-Para mostrar o resultado, vamos criar mais duas variáveis: **titleTrainSpeed** e **showTrainingSpeed** que também vão dentro do objeto ***objectTrainingSpeed***.
-
 Logo, em **aerobicFunctions.js**:
 
 ```js
-trainingSpeed(userObject){
+trainingSpeed(objectValue){
 
-    let objectTrainingSpeed = {
-      METs: 0,
-      percentage: [],
-      trainingFrequency: [],
-      trainingSpeed: [],
-      titleTrainSpeed: `Velocidade de Treino:`, 
-      showTrainingSpeed: [],
-    }
+    const voTwoMax = objectValue.voTwoMax
+    const percentageValues = objectValue.percentageValues
+    const currentPhysicalState = objectValue.currentPhysicalState
   
-    objectTrainingSpeed.METs = Number((userObject.voTwoMax / 3.5)) // Calculate METs
+    let METs = 0
+    let trainingFrequency = []
+    let trainingSpeed = []
   
-    // Calculate Percentage
-    for(let i = 40; i <= 95; i+=5){
-      objectTrainingSpeed.percentage.push(Number([i]))
-    }
+    // Calculate METs
+    METs = Number((voTwoMax / 3.5))
   
     // Calculate Training Frequency
-    for(let i = 0; i < objectTrainingSpeed.percentage.length; i++){
-      
-      if(userObject.currentPhysicalState === 1){
-        objectTrainingSpeed.trainingFrequency.push(Number((objectTrainingSpeed.percentage[i] / 100)))
-      } else if(userObject.currentPhysicalState === 2){
-        objectTrainingSpeed.trainingFrequency.push(Number(((objectTrainingSpeed.METs + objectTrainingSpeed.percentage[i]) / 100)))
-      }
+    for(let percentage of percentageValues){
   
+      if(currentPhysicalState === 1){
+        trainingFrequency.push(Number((percentage / 100)))
+      } else if(currentPhysicalState === 2){
+        trainingFrequency.push(Number(((METs + percentage) / 100)))
+      }
     }
     
     // Calculate Training Speed
-    for(let i = 0; i < objectTrainingSpeed.trainingFrequency.length; i++){
-  
-      objectTrainingSpeed.trainingSpeed.push(Number((objectTrainingSpeed.METs * objectTrainingSpeed.trainingFrequency[i]).toFixed(2)))
-  
-    }
-  
-    // Show Training Speed
-    for(let i = 0; i < objectTrainingSpeed.trainingSpeed.length; i++){
-      objectTrainingSpeed.showTrainingSpeed.push(`${objectTrainingSpeed.percentage[i]}% = ${objectTrainingSpeed.trainingSpeed[i]} km/h`)
-    }
-  
-    return objectTrainingSpeed
-  
-  },
-```
-
-Em **saf.js** vamos criar a variável da velocidade de treino que recebe o retorno da function **trainingSpeed( )**:
-
-```js
-user.objectTrainingSpeed = aerobicFunctions.trainingSpeed(user)
-```
-
-Para exibir o resultado, em **headerFunctions.js** vamos criar a function **showArray** que recebe um título e um aray como parâmetros e exibe todo o conteúdo do array:
-
-```js
-showArray(title, array){
+    for(let frequency of trainingFrequency){
     
-    console.log(`${title}`)
-    for(let i = 0; i < array.length; i++){
-      console.log(`${array[i]}`)
-    } 
+      trainingSpeed.push(Number((METs * frequency).toFixed(2)))
+    }
+  
+    return trainingSpeed
+  
   },
 ```
 
-Voltando para **saf.js** vamos chamar a function **showArray( )** para mostrar a velocidade de treino:
+Para mostrar os resultados, vamos criar a function **showTrainingSpeed( )** que recebe como parâmetro o objeto ***user***, usando as propriedades **percentuais** e **velocidade de treino** e exibe os valores da **Velocidade de Treino**. Logo, em **aerobicFunctions.js**:
 
 ```js
-headerFunctions.showArray(user.objectTrainingSpeed.titleTrainSpeed, user.objectTrainingSpeed.showTrainingSpeed)
+showTrainingSpeed(objectValue){
+  
+    const percentage = objectValue.percentageValues
+    const trainingSpeed = objectValue.trainingSpeed
+  
+    console.log(` - Velocidade de Treino - `)
+    for(let i = 0; i < trainingSpeed.length; i++){
+      console.log(`       ${percentage[i]}% = ${trainingSpeed[i]} km/h`)
+    }
+  },
+```
+
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **trainingSpeed** que recebe como valor o retorno da function **trainingSpeed( )**:
+
+```js
+// variables aerobicFunctions
+user.voTwoMax = aerobicFunctions.voTwoMax(user)
+user.voTwoMaxExpected = aerobicFunctions.vo2maxExpected(user)
+user.voTwoMaxClassification = aerobicFunctions.vo2maxClassification(user)
+user.trainingSpeed = aerobicFunctions.trainingSpeed(user)
+```
+
+Para exibir o resultado, basta apenas chamar a function **showTrainingSpeed( )**:
+
+```js
+// show results aerobicFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Aeróbico")
+console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
+console.log(`VO²máx Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
+console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
+aerobicFunctions.showTrainingSpeed(user)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -9195,49 +9193,83 @@ Ao executar o programa:
 ===============================
            Aeróbico            
 ===============================
-VO²máx (mL(kg.min): 44.13
+Escolha um teste: 
+[1] Cicloergômetro - Astrand-Rhyming
+[2] Cooper - 12 min
+[3] Caminhada de 1600 - Rockport
+[4] Banco - McArdle
+2
+Teste de Cooper - 12 min:
+Digite a distância atingida pelo usuário (m): 2500
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO²máx (mL(kg.min): 44.6
 VO²máx Previsto(mL(kg.min): 41.3
 Classificação do VO²máx: Bom
-Velocidade de Treino:
-40% = 6.63 km/h
-45% = 7.26 km/h
-50% = 7.89 km/h
-55% = 8.52 km/h
-60% = 9.15 km/h
-65% = 9.79 km/h
-70% = 10.42 km/h
-75% = 11.05 km/h
-80% = 11.68 km/h
-85% = 12.31 km/h
-90% = 12.94 km/h
-95% = 13.57 km/h
+ - Velocidade de Treino - 
+       40% = 5.1 km/h
+       45% = 5.73 km/h
+       50% = 6.37 km/h
+       55% = 7.01 km/h
+       60% = 7.65 km/h
+       65% = 8.28 km/h
+       70% = 8.92 km/h
+       75% = 9.56 km/h
+       80% = 10.19 km/h
+       85% = 10.83 km/h
+       90% = 11.47 km/h
+       95% = 12.11 km/h
 ===============================
 ```
 
 ### Déficit Funcional Aeróbio - FAI
 
-***Déficit Funcional Aeróbio( )** function determina o **Déficit Funcional Aeróbio** do usuário. Recebe como parâmetro o objeto ***user*** e retorna o Déficit Funcional Aeróbio de acordo com a seguinte fórmula:
+**Déficit Funcional Aeróbio( )** function determina o **Déficit Funcional Aeróbio** do usuário. Recebe como parâmetro o objeto _**user**_, usando as propriedades **VO² máx.(mL(kg.min) Previsto** e **VO² máx.(mL(kg.min) )** obtido no teste pelo usuário. Retorna o Déficit Funcional Aeróbio de acordo com a seguinte fórmula:
 
 FAI == ((( VO² máx.(mL(kg.min) Previsto  -  VO² máx.(mL(kg.min) )  /  VO² máx.(mL(kg.min) Previsto ) * 100)
 
 Logo, em **aerobicFunctions.js**:
 
 ```js
-aerobicFunctionalDeficit(userObject){
+aerobicFunctionalDeficit(objectValue){
 
-    return Number((( (userObject.voTwoMaxExpected  -  userObject.voTwoMax)  /  userObject.voTwoMaxExpected ) * 100))
+    const voTwoMaxExpected = objectValue.voTwoMaxExpected
+    const voTwoMax = objectValue.voTwoMax
+
+    let aerobicFunctionalDeficit = Number((((voTwoMaxExpected - voTwoMax)  /  voTwoMaxExpected) * 100).toFixed(2))
+
+    return aerobicFunctionalDeficit
   
   },
 ```
 
-Em **saf.js** vamos atribuir o valor do **Déficit Funcional Aeróbio** ao objeto ***user*** e depois mostrar o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **aerobicFunctionalDeficit** que recebe como valor o retorno da function **aerobicFunctionalDeficit( )**. em seguida, mostramos o resultado:
 
 ```js
+// variables aerobicFunctions
+user.voTwoMax = aerobicFunctions.voTwoMax(user)
+user.voTwoMaxExpected = aerobicFunctions.vo2maxExpected(user)
+user.voTwoMaxClassification = aerobicFunctions.vo2maxClassification(user)
+user.trainingSpeed = aerobicFunctions.trainingSpeed(user)
 user.aerobicFunctionalDeficit = aerobicFunctions.aerobicFunctionalDeficit(user)
 ```
 
 ```js
-console.log(`Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficit.toFixed(2)}`)
+// show results aerobicFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Aeróbico")
+console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
+console.log(`VO²máx Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
+console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
+aerobicFunctions.showTrainingSpeed(user)
+console.log(`Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficit}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -9248,29 +9280,45 @@ Ao executar o programa:
 ===============================
            Aeróbico            
 ===============================
-VO²máx (mL(kg.min): 44.13
+Escolha um teste: 
+[1] Cicloergômetro - Astrand-Rhyming
+[2] Cooper - 12 min
+[3] Caminhada de 1600 - Rockport
+[4] Banco - McArdle
+2
+Teste de Cooper - 12 min:
+Digite a distância atingida pelo usuário (m): 2500
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO²máx (mL(kg.min): 44.6
 VO²máx Previsto(mL(kg.min): 41.3
 Classificação do VO²máx: Bom
-Velocidade de Treino:
-40% = 6.63 km/h
-45% = 7.26 km/h
-50% = 7.89 km/h
-55% = 8.52 km/h
-60% = 9.15 km/h
-65% = 9.79 km/h
-70% = 10.42 km/h
-75% = 11.05 km/h
-80% = 11.68 km/h
-85% = 12.31 km/h
-90% = 12.94 km/h
-95% = 13.57 km/h
-Déficit Funcional Aeróbio: -6.85
+ - Velocidade de Treino - 
+       40% = 5.1 km/h
+       45% = 5.73 km/h
+       50% = 6.37 km/h
+       55% = 7.01 km/h
+       60% = 7.65 km/h
+       65% = 8.28 km/h
+       70% = 8.92 km/h
+       75% = 9.56 km/h
+       80% = 10.19 km/h
+       85% = 10.83 km/h
+       90% = 11.47 km/h
+       95% = 12.11 km/h
+Déficit Funcional Aeróbio: -7.99
 ===============================
 ```
 
 ### Déficit Funcional Aeróbio - FAI - Classificação
 
-**aerobicFunctionalDeficitClassification( )** function determina a **classificação** do **Déficit Funcional Aeróbio** do usuário. Recebe como parâmetro o objeto ***user***. A classificação é determinada de acordo com a tabela abaixo:
+**aerobicFunctionalDeficitClassification( )** function determina a **classificação** do **Déficit Funcional Aeróbio** do usuário. Recebe como parâmetro o objeto ***user***, usando a propriedade **Déficit Funcional Aeróbio**. A classificação é determinada de acordo com a tabela abaixo:
 
 | Déficit Funcional Aeróbio - FAI - Classificação |
 | ----------------------------------------------- |
@@ -9282,14 +9330,15 @@ Déficit Funcional Aeróbio: -6.85
 Logo, em **aerobicFunctions.js**:
 
 ```js
-aerobicFunctionalDeficitClassification(userObject){
+aerobicFunctionalDeficitClassification(objectValue){
 
-    let classification = `` 
-    const veryLow = userObject.aerobicFunctionalDeficit > 25
+    let classification = ``
+    const aerobicFunctionalDeficit = objectValue.aerobicFunctionalDeficit
+    const veryLow = aerobicFunctionalDeficit > 25
     const veryLowRating = `Muito Baixo`
-    const low = userObject.aerobicFunctionalDeficit >  9
+    const low = aerobicFunctionalDeficit >  9
     const lowRating = `Baixo`
-    const good = userObject.aerobicFunctionalDeficit > 0
+    const good = aerobicFunctionalDeficit > 0
     const goodRating = `Bom`
     const greatRating = `Ótimo`
     
@@ -9308,14 +9357,29 @@ aerobicFunctionalDeficitClassification(userObject){
   },
 ```
 
-Em **saf.js** atribuímos a classficação no objeto ***user*** e depois mostramos o resultado:
+Em **saf.js** vamos atribuir ao objeto _**user**_ a propriedade **aerobicFunctionalDeficitClassification** que recebe como valor o retorno da function **aerobicFunctionalDeficitClassification( )**. Em seguida, mostramos o resultado:
 
 ```js
+// variables aerobicFunctions
+user.voTwoMax = aerobicFunctions.voTwoMax(user)
+user.voTwoMaxExpected = aerobicFunctions.vo2maxExpected(user)
+user.voTwoMaxClassification = aerobicFunctions.vo2maxClassification(user)
+user.trainingSpeed = aerobicFunctions.trainingSpeed(user)
+user.aerobicFunctionalDeficit = aerobicFunctions.aerobicFunctionalDeficit(user)
 user.aerobicFunctionalDeficitClassification = aerobicFunctions.aerobicFunctionalDeficitClassification(user)
 ```
 
 ```js
+// show results aerobicFunctions
+headerFunctions.systemHeader()
+headerFunctions.subTitle("Aeróbico")
+console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
+console.log(`VO²máx Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
+console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
+aerobicFunctions.showTrainingSpeed(user)
+console.log(`Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficit}`)
 console.log(`Classificação do Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficitClassification}`)
+headerFunctions.baseboard()
 ```
 
 Ao executar o programa:
@@ -9326,28 +9390,44 @@ Ao executar o programa:
 ===============================
            Aeróbico            
 ===============================
-VO²máx (mL(kg.min): 47.31
+Escolha um teste: 
+[1] Cicloergômetro - Astrand-Rhyming
+[2] Cooper - 12 min
+[3] Caminhada de 1600 - Rockport
+[4] Banco - McArdle
+2
+Teste de Cooper - 12 min:
+Digite a distância atingida pelo usuário (m): 2500
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO²máx (mL(kg.min): 44.6
 VO²máx Previsto(mL(kg.min): 41.3
 Classificação do VO²máx: Bom
-Velocidade de Treino:
-40% = 7.23 km/h
-45% = 7.91 km/h
-50% = 8.59 km/h
-55% = 9.26 km/h
-60% = 9.94 km/h
-65% = 10.61 km/h
-70% = 11.29 km/h
-75% = 11.96 km/h
-80% = 12.64 km/h
-85% = 13.32 km/h
-90% = 13.99 km/h
-95% = 14.67 km/h
-Déficit Funcional Aeróbio: -14.55
+ - Velocidade de Treino - 
+       40% = 5.1 km/h
+       45% = 5.73 km/h
+       50% = 6.37 km/h
+       55% = 7.01 km/h
+       60% = 7.65 km/h
+       65% = 8.28 km/h
+       70% = 8.92 km/h
+       75% = 9.56 km/h
+       80% = 10.19 km/h
+       85% = 10.83 km/h
+       90% = 11.47 km/h
+       95% = 12.11 km/h
+Déficit Funcional Aeróbio: -7.99
 Classificação do Déficit Funcional Aeróbio: Ótimo
 ===============================
 ```
 
-**Mostrar programa completo**
+**Mostrar programa completo** - PAREI
 
 ## Outros
 
