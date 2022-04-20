@@ -3,6 +3,7 @@
 var input = require('readline-sync')
 
 const { validationFunctions } = require('./validationFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
 
 const personalDataFunctions = {
       
@@ -196,8 +197,10 @@ const personalDataFunctions = {
     let commentsNumber = 2
     let commentsText = ''
     let itsNumberOneOrTwo = true
-    let regexNumber = /^[1]$|^[2]$/
     let itsLetters = true
+    let regexNumber = /^[1]$|^[2]$/
+    let regexLetters = /\D/gi
+    
   
     do{
   
@@ -214,7 +217,7 @@ const personalDataFunctions = {
   
           console.log(`Digite a Observação:`)
           commentsText = input.question('')
-          itsLetters = validationFunctions.itsLetters(commentsText)
+          itsLetters = validationFunctions.isRegularExpression(commentsText, regexLetters)
           validationFunctions.incorrectValue(false, !itsLetters, "Observações")
   
         }while(!itsLetters)

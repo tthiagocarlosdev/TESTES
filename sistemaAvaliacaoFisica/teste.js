@@ -4964,7 +4964,7 @@ function aerobicFunctionalDeficit(userObject){
 
 }
 
-usuario01.aerobicFunctionalDeficit = aerobicFunctionalDeficit(usuario01)
+// usuario01.aerobicFunctionalDeficit = aerobicFunctionalDeficit(usuario01)
 // console.log(aerobicFunctionalDeficit(usuario01))
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
@@ -5045,13 +5045,13 @@ function testAerobicFunctionalDeficitClassification(object){
 
 }
 
-testAerobicFunctionalDeficitClassification(usuario02)
+// testAerobicFunctionalDeficitClassification(usuario02)
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == others == **/
 /** == comments == **/
 
-function comments(){
+function DELETEDcomments(){
 
   let commentsNumber = 2
   let commentsText = ''
@@ -5092,8 +5092,73 @@ function comments(){
 
 // console.log(comments())
 
+function comments(){
+
+  let commentsNumber = 2
+  let commentsText = ''
+  let itsNumberOneOrTwo = true
+  let itsLetters = true
+  let regexNumber = /^[1]$|^[2]$/
+  let regexLetters = /\D/gi
+  
+
+  do{
+
+    console.log(`Observações?`)
+    anamnesisFunctions.choice()
+    commentsNumber = Number(input.question(''))
+
+    itsNumberOneOrTwo = validationFunctions.isRegularExpression(commentsNumber, regexNumber)
+    validationFunctions.incorrectValue(!itsNumberOneOrTwo, false, "Observações")
+
+    if(commentsNumber === 1){
+      
+      do{
+
+        console.log(`Digite a Observação:`)
+        commentsText = input.question('')
+        itsLetters = validationFunctions.isRegularExpression(commentsText, regexLetters)
+        validationFunctions.incorrectValue(false, !itsLetters, "Observações")
+
+      }while(!itsLetters)
+      
+    } else {
+      commentsText = `Sem Observações!`
+    }
+
+  }while(!itsNumberOneOrTwo)
+
+    return commentsText
+
+}
+
+// user.comments = comments()
+// console.log(user.comments)
+
+
 /*=======================================================================*/
 
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
+/** == physical assessment system == **/ // PAREI
+
+function welcome(){
+  console.log(`Seja bem-vindo ao Sistema de Avaliação física!`)
+}
+
+let choise = 0
+
+do{
+  console.clear()
+  headerFunctions.systemHeader()
+  welcome()
+  console.log(`Iniciar a avaliação?`)
+  anamnesisFunctions.choice()
+  choise = input.question(``)
+
+}while(choise != 1)
+
+
+/*=======================================================================*/
 /* Anamnesis Functions */
 /*
 var input = require('readline-sync')

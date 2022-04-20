@@ -11,15 +11,7 @@ const { neuromuscularFunctions } = require('./neuromuscularFunctions')
 const { aerobicFunctions } = require('./aerobicFunctions')
 
 const user = { }
-user.age = 34 // temporary
-user.sexNumber = 1 // temporary
-user.restingHeartRate = 60 // temporary
-user.maximumHeartRate = 186 // temporary
-user.bodyWeight = 94 // temporary
-user.currentPhysicalState = 1 // temporary
-user.percentageValues = percentageValues
 
-/*
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 
@@ -34,7 +26,7 @@ user.profession = personalDataFunctions.userProfession()
 user.userEmail = personalDataFunctions.userEmail()
 user.phoneNumber = personalDataFunctions.phoneNumber()
 
-// console.clear()
+console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
 
@@ -50,7 +42,7 @@ user.trainingObjective = anamnesisFunctions.trainingObjective()
 user.daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
 user.timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
 
-// console.clear()
+console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Cardiorrespiratório")
 
@@ -62,7 +54,7 @@ user.workingHeartRate = cardiorespiratoryFunctions.workingHeartRate(user)
 user.restingBloodPressure = cardiorespiratoryFunctions.bloodPressure()
 user.classificationBloodPressure = cardiorespiratoryFunctions.classificationOfBloodPressure(user)
 
-// console.clear()
+console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Antropometria")
 
@@ -82,7 +74,7 @@ user.fatBodyMass = anthropometryFunctions.fatBodyMass(user)
 user.leanBodyMass = anthropometryFunctions.leanBodyMass(user)
 user.expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(user)
 
-// console.clear()
+console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Neuromuscular")
 
@@ -93,9 +85,8 @@ user.numberOfAbs = neuromuscularFunctions.abdominalTest()
 user.abdominalClassification = neuromuscularFunctions.abdominalClassification(user)
 user.numberOfPushUps = neuromuscularFunctions.flexArmTest()
 user.flexArmClassification = neuromuscularFunctions.flexArmClassification(user)
-*/
 
-// console.clear()
+console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Aeróbico")
 
@@ -107,16 +98,15 @@ user.trainingSpeed = aerobicFunctions.trainingSpeed(user)
 user.aerobicFunctionalDeficit = aerobicFunctions.aerobicFunctionalDeficit(user)
 user.aerobicFunctionalDeficitClassification = aerobicFunctions.aerobicFunctionalDeficitClassification(user)
 
-/*
-// variables personalDataFunctions
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Observações")
-user.comments = personalDataFunctions.comments()*/
 
-/*
+// variables personalDataFunctions
+user.comments = personalDataFunctions.comments()
+
 // show results personalDataFunctions
-// console.clear()
+console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Dados Pessoais")
 console.log(`Nome: ${user.name}`)
@@ -174,11 +164,10 @@ headerFunctions.systemHeader()
 headerFunctions.subTitle("Neuromuscular")
 console.log(`Resultado Teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
 console.log(`Classificação Flexibilidade: ${user.flexibilityClassification}`)
-console.log(`Quantidade de flexões abdominais: ${user.numberOfAbs}`)
+console.log(`Quantidade de Flexões Abdominais: ${user.numberOfAbs}`)
 console.log(`Classificação Abdominais: ${user.abdominalClassification}`)
-console.log(`Quantidade de flexões de braço: ${user.numberOfPushUps}`)
-console.log(`Classificação flexões de braço: ${user.flexArmClassification}`)
-*/
+console.log(`Quantidade de Flexões de Braço: ${user.numberOfPushUps}`)
+console.log(`Classificação Flexões de Braço: ${user.flexArmClassification}`)
 
 // show results aerobicFunctions
 headerFunctions.systemHeader()
@@ -189,12 +178,11 @@ console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
 aerobicFunctions.showTrainingSpeed(user)
 console.log(`Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficit}`)
 console.log(`Classificação do Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficitClassification}`)
-headerFunctions.baseboard()
 
-/*
-headerFunctions.baseboard()
+// show results personalDataFunctions
+headerFunctions.systemHeader()
 headerFunctions.subTitle("Observações")
 console.log(user.comments)
+headerFunctions.baseboard()
 
-headerFunctions.baseboard()*/
 console.log(user)
