@@ -436,7 +436,7 @@ function choice(){
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /* physical assessment system */
-headerFunctions.systemHeader()
+// headerFunctions.systemHeader()
 // user.name = userName()
 // user.dateOfBirth = dateOfBirth()
 // user.dateInISOFormat = dateInISOFormat(user.dateOfBirth)
@@ -5141,22 +5141,145 @@ function comments(){
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
 /** == physical assessment system == **/ // PAREI
 
-function welcome(){
-  console.log(`Seja bem-vindo ao Sistema de Avaliação física!`)
+function delay(n){
+  return new Promise(function(resolve){
+      setTimeout(resolve,n*1000);
+  });
 }
 
-let choise = 0
+function syncDelay(milliseconds){
+  var start = new Date().getTime();
+  var end=0;
+  while( (end-start) < milliseconds){
+      end = new Date().getTime();
+  }
+ }
 
-do{
+function test(){
+  return new Promise(()=>{
+    setTimeout(function(){
+      welcome()
+      console.log(`[1] Iniciar a avaliação!`)
+      console.log(`[2] Sair do sistema!`)
+      choise = input.question(``)
+    },5000)
+  }) 
+}
+  
+async function cabecalho(){
+
   console.clear()
   headerFunctions.systemHeader()
-  welcome()
-  console.log(`Iniciar a avaliação?`)
-  anamnesisFunctions.choice()
-  choise = input.question(``)
+  await test()
+  console.log(`FIM`)
+}
+// let choise = 0
+// do{
+// }while(choise != 2)
 
-}while(choise != 1)
+  // cabecalho()
 
+  function testAsync(){
+    return new Promise((resolve,reject)=>{
+        //here our function should be implemented 
+        setTimeout(()=>{
+            console.log("Hello from inside the testAsync function");
+            resolve();
+        ;} , 5000
+        );
+    });
+}
+
+async function callerFun(){
+    console.log("Caller");
+    await testAsync();
+    console.log("After waiting");
+}
+
+// callerFun();
+
+function load(){
+  let load = `..`
+  for(let i = 0; i <= 5; i++){
+    setTimeout(console.log(load), 1000)
+    load += load + `..`
+  }
+
+}
+// load()
+// let label = 0
+// do{
+//   console.time(label)
+//   console.log(label)
+//   console.timeEnd(label)
+//   console.log(label)
+// }while(label < 1)
+
+function welcome(){
+  console.log(`\nSeja bem-vindo ao Sistema de Avaliação física!\n`)
+}
+
+function theAnd(){
+  console.log(`Sistema Encerrado!`)
+}
+// function load
+ function load(title){
+  
+  function syncDelay(milliseconds){
+    var start = new Date().getTime();
+    var end=0;
+    while( (end-start) < milliseconds){
+        end = new Date().getTime();
+    }
+   }  
+  
+  let carregar = `..`
+  let percentual = 20
+  for(i = 1; i <= 5; i++){
+    console.log(`${title}${carregar}${percentual}%`)
+    syncDelay(1000);
+    carregar += `..`
+    percentual += 20
+    console.clear()
+  }
+  
+ }
+
+let choise = 0
+const userTEST = {}
+do{
+  headerFunctions.systemHeader()
+  choise == 0 ? welcome() : ``
+  console.log(`[1] Iniciar a avaliação!`)
+  console.log(`[2] Sair do sistema!`)
+  choise == 0 ? `` : console.log(`[3] Mostrar resultados!`)
+  choise = Number(input.question(``))
+  
+  switch (choise) {
+    case 1:
+      load(`Carregando`)
+      console.log(`Avaliação START`)
+      userTEST.name = input.question(`Digite seu nome: `)
+      console.clear()
+      break
+    case 3:
+      load(`Carregando`)
+      console.log(`MOSTRAR RESULTADOS`)
+      console.log(`NOME: ${userTEST.name}`)
+      break
+    default:
+      load(`Finalizando`)
+      theAnd()
+      break
+  }
+
+}while(choise != 2)
+  
+
+  
+
+
+ 
 
 /*=======================================================================*/
 /* Anamnesis Functions */

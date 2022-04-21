@@ -10,22 +10,63 @@ const { anthropometryFunctions } = require('./anthropometryFunctions')
 const { neuromuscularFunctions } = require('./neuromuscularFunctions')
 const { aerobicFunctions } = require('./aerobicFunctions')
 
+
 const user = { }
+var choise = 0
+var input = require('readline-sync')
 
-headerFunctions.systemHeader()
-headerFunctions.subTitle("Dados Pessoais")
+do{
+  headerFunctions.systemHeader()
+  choise == 0 ? headerFunctions.welcome() : ``
+  console.log(`[1] Iniciar a avaliação!`)
+  console.log(`[2] Sair do sistema!`)
+  choise == 0 ? `` : console.log(`[3] Mostrar resultados!`)
+  choise = Number(input.question(``))
+  
+  switch (choise) {
+    case 1:
+      headerFunctions.load(`Carregando`)
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Dados Pessoais")
 
-// variables personalDataFunctions
-user.name = personalDataFunctions.userName()
-user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
-user.birthdayInFullFormat = personalDataFunctions.dateInFullFormat(user.birthdayInBrazilianFormat)
-user.age = personalDataFunctions.age(user)
-user.sexNumber = personalDataFunctions.sexNumber()
-user.sex = personalDataFunctions.showSex(user)
-user.profession = personalDataFunctions.userProfession()
-user.userEmail = personalDataFunctions.userEmail()
-user.phoneNumber = personalDataFunctions.phoneNumber()
+      // variables personalDataFunctions
+      user.name = personalDataFunctions.userName()
+      user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
+      user.birthdayInFullFormat = personalDataFunctions.dateInFullFormat(user.birthdayInBrazilianFormat)
+      user.age = personalDataFunctions.age(user)
+      user.sexNumber = personalDataFunctions.sexNumber()
+      user.sex = personalDataFunctions.showSex(user)
+      user.profession = personalDataFunctions.userProfession()
+      user.userEmail = personalDataFunctions.userEmail()
+      user.phoneNumber = personalDataFunctions.phoneNumber()
+      console.clear()
+      break
+    case 3:
+      headerFunctions.load(`Carregando`)
+      // show results personalDataFunctions
+      console.clear()
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Dados Pessoais")
+      console.log(`Nome: ${user.name}`)
+      console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
+      console.log(`Idade: ${user.age} anos`)
+      console.log(`Sexo: ${user.sex}`)
+      console.log(`Profissão: ${user.profession}`)
+      console.log(`E-mail: ${user.userEmail}`)
+      console.log(`Celular: ${user.phoneNumber}`)
+      break
+    default:
+      headerFunctions.load(`Finalizando`)
+      headerFunctions.systemHeader()
+      headerFunctions.theAnd()
+      headerFunctions.baseboard()
+      break
+  }
 
+}while(choise != 2)
+
+
+/*
 console.clear()
 headerFunctions.systemHeader()
 headerFunctions.subTitle("Anamnese")
@@ -105,17 +146,8 @@ headerFunctions.subTitle("Observações")
 // variables personalDataFunctions
 user.comments = personalDataFunctions.comments()
 
-// show results personalDataFunctions
-console.clear()
-headerFunctions.systemHeader()
-headerFunctions.subTitle("Dados Pessoais")
-console.log(`Nome: ${user.name}`)
-console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
-console.log(`Idade: ${user.age} anos`)
-console.log(`Sexo: ${user.sex}`)
-console.log(`Profissão: ${user.profession}`)
-console.log(`E-mail: ${user.userEmail}`)
-console.log(`Celular: ${user.phoneNumber}`)
+
+
 
 // show results anamnesisFunctions
 headerFunctions.systemHeader()
@@ -184,5 +216,5 @@ headerFunctions.systemHeader()
 headerFunctions.subTitle("Observações")
 console.log(user.comments)
 headerFunctions.baseboard()
-
+*/
 console.log(user)
