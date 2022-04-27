@@ -5216,7 +5216,7 @@ function load(){
 // }while(label < 1)
 
 function welcome(){
-  console.log(`\nSeja bem-vindo ao Sistema de Avaliação física!\n`)
+  console.log(`\nBem-vindo ao Sistema de Avaliação Física!\n`)
 }
 
 function theAnd(){
@@ -5236,28 +5236,47 @@ function theAnd(){
   let carregar = `..`
   let percentual = 20
   for(i = 1; i <= 5; i++){
+    console.clear()
+    headerFunctions.systemHeader()
     console.log(`${title}${carregar}${percentual}%`)
     syncDelay(1000);
     carregar += `..`
     percentual += 20
-    console.clear()
   }
-  
+   console.clear()
  }
 
 let choise = 0
 const userTEST = {}
+
 do{
-  headerFunctions.systemHeader()
-  choise == 0 ? welcome() : ``
-  console.log(`[1] Iniciar a avaliação!`)
-  console.log(`[2] Sair do sistema!`)
-  choise == 0 ? `` : console.log(`[3] Mostrar resultados!`)
-  choise = Number(input.question(``))
+
+  let itsRegexNumber = false
+  let regexFromOneToThree = /^[1]$|^[2]$|^[3]$/
+  let regexFromOneToTwo = /^[1]$|^[2]$/
+  let objectSize = Object.keys(userTEST).length == 0
+
+  do{
+
+    choise == 3 ? `` : console.clear()
+    headerFunctions.systemHeader()
+    objectSize ? welcome() : ``
+    console.log(`[1] Iniciar a avaliação!`)
+    console.log(`[2] Sair do sistema!`)
+    objectSize ? `` : console.log(`[3] Mostrar resultados!`)
+    choise = input.question(``)
+    if(objectSize){
+      itsRegexNumber = validationFunctions.isRegularExpression(choise, regexFromOneToTwo)
+      console.clear()  
+    } else {
+      itsRegexNumber = validationFunctions.isRegularExpression(choise, regexFromOneToThree)
+    }
+    
+  }while(!itsRegexNumber)
   
-  switch (choise) {
+  switch (Number(choise)) {
     case 1:
-      load(`Carregando`)
+      load(`Iniciando`)
       console.log(`Avaliação START`)
       userTEST.name = input.question(`Digite seu nome: `)
       console.clear()
@@ -5269,7 +5288,9 @@ do{
       break
     default:
       load(`Finalizando`)
+      headerFunctions.systemHeader()
       theAnd()
+      headerFunctions.baseboard()
       break
   }
 

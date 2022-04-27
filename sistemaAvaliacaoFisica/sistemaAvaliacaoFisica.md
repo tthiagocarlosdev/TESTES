@@ -10611,9 +10611,9 @@ module.exports = {
 
 ```
 
-P
+PAREI
 
-
+https://www.delftstack.com/pt/howto/javascript/javascript-wait-for-x-seconds/
 
 Arquivo **saf.js** completo:
 
