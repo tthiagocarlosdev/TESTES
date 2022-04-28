@@ -11,22 +11,22 @@ const { neuromuscularFunctions } = require('./neuromuscularFunctions')
 const { aerobicFunctions } = require('./aerobicFunctions')
 const { validationFunctions } = require('./validationFunctions')
 
+const user = { }
 var input = require('readline-sync')
 var choiseMenu = 0
-const user = { }
 
 do{
 
   let itsRegexNumber = false
-  let regexFromOneToThree = /^[1]$|^[2]$|^[3]$/
-  let regexFromOneToTwo = /^[1]$|^[2]$/
+  let regexFromOneToThree = /^[1-3]$/
+  let regexFromOneToTwo = /^[1-2]$/
   let objectSize = Object.keys(user).length == 0
 
   do{
 
     choiseMenu == 3 ? `` : console.clear()
     headerFunctions.systemHeader()
-    objectSize ? headerFunctions.welcome : ``
+    objectSize ? headerFunctions.welcome() : ``
     console.log(`[1] Iniciar a avaliação!`)
     console.log(`[2] Sair do sistema!`)
     objectSize ? `` : console.log(`[3] Mostrar resultados!`)
@@ -141,11 +141,13 @@ do{
       break
 
     case 3:
-      // show results personalDataFunctions
+      
       console.clear()
       headerFunctions.load(`Carregando`)
       headerFunctions.systemHeader()
       headerFunctions.subTitle("Dados Pessoais")
+
+      // show results personalDataFunctions
       console.log(`Nome: ${user.name}`)
       console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
       console.log(`Idade: ${user.age} anos`)

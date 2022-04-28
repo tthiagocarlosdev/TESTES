@@ -17,6 +17,10 @@ const headerFunctions = {
     console.log("===============================")
   },
 
+  welcome(){
+    console.log(`\nBem-vindo ao Sistema de Avaliação Física!\n`)
+  },
+
   // function load
   load(title){
   
@@ -40,10 +44,6 @@ const headerFunctions = {
     }
      console.clear()
    },
-
-  welcome(){
-    console.log(`\nBem-vindo ao Sistema de Avaliação Física!\n`)
-  },
 
   theAnd(){
     console.log(`Sistema Encerrado!`)

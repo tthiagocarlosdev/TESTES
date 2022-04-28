@@ -1,121 +1,19 @@
 # Sistema de Avaliação Física
 
-Olá dev's! Neste repositório vamos criar um sistema de avaliação física igual ao que encontramos em academias usando **JavaScript** e executar no terminal usando **Node.js**. Logo, não teremos nada de **HTML** e **CSS**. o resultado final desta aplicação está logo abaixo. Não vamos nos preocupar com o visual, mas sim, com a funcionalidade do sistema. Vamos lá?!
+Olá dev's! Neste repositório vamos criar um **sistema de avaliação física**, igual ao que encontramos em academias usando **JavaScript** e executar no terminal usando **Node.js**. Logo, não teremos nada de **HTML** e **CSS**. Não vamos nos preocupar com o visual, mas sim, com a funcionalidade do sistema. O sistema será dividido em 6 partes para inserção de dados e depois os resultados serão apresentados conforme os tópicos abaixo:
 
-```shell
-===============================
-  SISTEMA DE AVALIAÇÃO FÍSICA  
-===============================
-           Dados Pessoais            
-===============================
-Nome: Fulano Cicrano
-Data de nascimento: 01/01/2000
-Idade: 22 anos!
-Sexo: Masculino
-Profissão: Programador
-E-mail: fulano@cicrano.com
-Celular: 81912348765
-===============================
-           Anamnese            
-===============================
-Questionário PAR-Q: Todas as respostas do questionário foram 'Sim'!
-Estado físico: Sedentário
-Doença Pregressa: Sem doença pregressa.
-Doença Pregressa na Família: Avos diabeticos
-Cirurgia: Nunca realizou procedimento cirúrgico.
-Uso de Medicamento: Não faz uso de medicamento.
-Lesão Desportiva: Nunca sofreu lesão desportiva.
-Objetivo do treino: Bem-estar e Saúde
-Dias disponíveis para treinar: 5 dias.
-Tempo disponível para treino: 60 minutos.
-===============================
-           Cardiorespiratório            
-===============================
-Frequência Cardíaca de Repouso: 60 bpm.
-Frequência Cardíaca Máxima: 198 bpm.
-Frequência Cardíaca de Treino:
-40% = 115 bpm
-45% = 122 bpm
-50% = 129 bpm
-55% = 136 bpm
-60% = 143 bpm
-65% = 150 bpm
-70% = 157 bpm
-75% = 164 bpm
-80% = 170 bpm
-85% = 177 bpm
-90% = 184 bpm
-95% = 191 bpm
-Pressão Arterial de Repouso: 120/80 mmHg.
-Classificação da Pressão Arterial
-Sistólica: Normal
-Diastólica: Normal
-===============================
-           Antropometria            
-===============================
-Peso Corporal: 85.5 kilos
-Estatura Corporal: 1.86 metros
-Índice de Massa Corporal - IMC: 24.71
-Classificação IMC: Peso Normal
-Perimetria Corporal:
-Braço: 35.0 cm
-Antebraço: 29.8 cm
-Cintura: 85.0 cm
-Quadril: 90.0 cm
-Coxa: 55.8 cm
-Panturrilha: 45.0 cm
-Relação Cintura Quadril- RCQ: 0.94
-Classificação RCQ: Alto Risco
-Circunfência cintura - Classificação: Nenhum Risco
-Dobras Cutâneas:
-Triciptal: 10 mm
-Subescapular: 15 mm
-Peitoral: 5 mm
-SupraIliaca: 20 mm
-Abdominal: 25 mm
-Coxa: 18 mm
-Panturrilha: 13 mm
-Percentual de gordura: 13.60%
-Classificação % Gordura: Abaixo da média
-Massa Corporal Gorda: 11.6 kilos
-Massa Corporal Magra: 73.9 kilos
-Massa Corporal Ideal Prevista: 86.9 kilos
-===============================
-           Neuromuscular            
-===============================
-Resultado teste Flexibilidade Banco de Wells: 25 cm
-Classificação Flexibilidade: Regular
-Quantidade de flexões abdominais: 36
-Classificação Abdominais: Regular
-Quantidade de flexões de braço: 30
-Classificação flexões de braço: Regular
-===============================
-           Aeróbico            
-===============================
-VO²máx (mL(kg.min): 33.42
-VO²máx Previsto(mL(kg.min): 47.9
-Classificação do VO²máx: Fraco
-Velocidade de Treino:
-40% = 3.82 km/h
-45% = 4.3 km/h
-50% = 4.77 km/h
-55% = 5.25 km/h
-60% = 5.73 km/h
-65% = 6.21 km/h
-70% = 6.68 km/h
-75% = 7.16 km/h
-80% = 7.64 km/h
-85% = 8.12 km/h
-90% = 8.59 km/h
-95% = 9.07 km/h
-Déficit Funcional Aeróbio: 30.23
-Classificação do Déficit Funcional Aeróbio: Muito Baixo
-===============================
-           Observações            
-===============================
-Sem Observações!
-===============================
-```
+1. Dados pessoais
+2. Anamnese
+3. Cardiorrespiratório
+4. Antropometria
+5. Testes Neuromuscular
+6. Testes Aeróbicos
+
+[![Sistema Avaliação Física]({https://www.pexels.com/pt-br/foto/computador-laptop-preto-e-cinza-546819/})]({https://www.youtube.com/watch?v=0mHEuja3c_Y&list=PLHqoKScEn2PuAxQBubqmXHKbnAkrkHFIy} "Sistema Avaliação Física")
+
+<a href="{https://www.youtube.com/watch?v=0mHEuja3c_Y&list=PLHqoKScEn2PuAxQBubqmXHKbnAkrkHFIy}" title="Sistema Avaliação Física"><img src="{image-url}" alt="Alternate Text" /></a>
+
+Vamos começar?! 
 
 ## Preparing
 
@@ -10611,15 +10509,884 @@ module.exports = {
 
 ```
 
-PAREI
+Antes de mostrar como ficou o arquivo **saf.js** vamos fazer algumas alterções neste arquivo e dá funcioalidade ao programa.
 
-https://www.delftstack.com/pt/howto/javascript/javascript-wait-for-x-seconds/
+Vamos fazer a importar o objeto **validationFunctions**:
 
-Arquivo **saf.js** completo:
+```js
+const { headerFunctions } = require('./headerFunctions')
+const { personalDataFunctions } = require('./personalDataFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { anamnesisQuestions } = require('./anamnesisFunctions')
+const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
+const { percentageValues } = require('./cardiorespiratoryFunctions')
+const { anthropometryFunctions } = require('./anthropometryFunctions')
+const { neuromuscularFunctions } = require('./neuromuscularFunctions')
+const { aerobicFunctions } = require('./aerobicFunctions')
+const { validationFunctions } = require('./validationFunctions')
+```
 
-Antes de mostrar como ficou
+  Agora vamos criar a variável **input** e uma variável chamada **choiseMenu**. Esta variável será usada na funcionalidade de menu que iremos criar. Ao iniciar o programa, um menu deve ser apresentado ao usuário mostrando as opções:
 
-Com isto chegamos ao final do projeto. Como ficaram os arquivos do programa até esta etapa:
+```shell
+[1] Iniciar a avaliação!
+[2] Sair do sistema!
+```
+
+Caso o usuário digite **[1]** a avaliação deverá ser iniciada e ao finalizar a inserção de todos os dados, o menu deve retornar da seguinte forma:
+
+```shell
+[1] Iniciar a avaliação!
+[2] Sair do sistema!
+[3] Mostrar resultados!
+```
+
+Digitando o número **[1]** a avaliação irá começar novamente, digitando **[2]** o sistema será encerrado e digitando **[3]** os resultados serão apresentados e depois destes, o menu aparece novamente. Este menu assim que iniciado o sistema só poderá receber números de 1 a 2 e após a inserção dos dados, apenas números de 1 a 3. Caso qualquer outro valor seja digitado, o sistema não aceitará e o menu continua sendo apresentado até que o usuário digite um dos valores aceitos.
+
+Outro fator é que de acordo com a opção escolhida pelo usuário, o cabeçalho do sistema e uma mensagem de carregamento de 20% até 100% será apresentada conforme a baixo:
+
+Digitando **[1]**:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+Iniciando..20%
+```
+
+Digitando **[2]**:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+Finalizando..20%
+```
+
+Digitando **[3]**:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+Carregando..20%
+```
+
+Outro detalhe é que ao iniciar o programa, uma mensagem de boas vindas deve ser apresentada antes do menu. Para isto, vamos criar a function **welcome( )** e executá-la antes do menu. Atenção, esta mensagem deverá aparecer apenas ao iniciar o programa. Após o usuário inserir os dados da avalição, esta mensagem não pode aparecer. Logo, em **headerFunctions.js**:
+
+```js
+welcome(){
+    console.log(`\nBem-vindo ao Sistema de Avaliação Física!\n`)
+  },
+```
+
+Para criar o sistema de carregamento, vamos criar a function **load( )** que recebe como parâmetro um título, de acordo com a opção escoliha pelo uisuário. Logo, em **headerFunctions.js**:
+
+```js
+load(title){
+  
+    function syncDelay(milliseconds){
+      var start = new Date().getTime();
+      var end=0;
+      while( (end-start) < milliseconds){
+          end = new Date().getTime();
+      }
+     }  
+    
+    let carregar = `..`
+    let percentual = 20
+    for(i = 1; i <= 5; i++){
+      console.clear()
+      headerFunctions.systemHeader()
+      console.log(`${title}${carregar}${percentual}%`)
+      syncDelay(1000);
+      carregar += `..`
+      percentual += 20
+    }
+     console.clear()
+   },
+```
+
+Quando o sistema for encerrado, deverá ser apresentado a mensagem `Sistema Encerrado!`. Para isto, vamos criar a function **theAnd( )**. Logo, em **headerFunctions.js**:
+
+```js
+theAnd(){
+    console.log(`Sistema Encerrado!`)
+  },
+```
+
+Agora em **saf.js** vamos criar este sistema:
+
+```js
+const user = { }
+var input = require('readline-sync')
+var choiseMenu = 0
+
+do{
+
+  let itsRegexNumber = false
+  let regexFromOneToThree = /^[1-3]$/
+  let regexFromOneToTwo = /^[1-2]$/
+  let objectSize = Object.keys(user).length == 0
+
+  do{
+
+    choiseMenu == 3 ? `` : console.clear()
+    headerFunctions.systemHeader()
+    objectSize ? headerFunctions.welcome() : ``
+    console.log(`[1] Iniciar a avaliação!`)
+    console.log(`[2] Sair do sistema!`)
+    objectSize ? `` : console.log(`[3] Mostrar resultados!`)
+    choiseMenu = input.question(``)
+    if(objectSize){
+      itsRegexNumber = validationFunctions.isRegularExpression(choiseMenu, regexFromOneToTwo)
+      console.clear()  
+    } else {
+      itsRegexNumber = validationFunctions.isRegularExpression(choiseMenu, regexFromOneToThree)
+    }
+    
+  }while(!itsRegexNumber)
+  
+  switch (Number(choiseMenu)) {
+
+    case 1:
+      headerFunctions.load(`Iniciando`)
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Dados Pessoais")
+
+      // variables personalDataFunctions
+      
+      break
+
+    case 3:
+     
+      console.clear()
+      headerFunctions.load(`Carregando`)
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Dados Pessoais")
+      
+      // show results personalDataFunctions
+      
+      break
+
+    default:
+
+      console.clear()
+      headerFunctions.load(`Finalizando`)
+      headerFunctions.systemHeader()
+      headerFunctions.theAnd()
+      headerFunctions.baseboard()
+
+      break
+  }
+
+}while(choiseMenu != 2)
+```
+
+Dentro do sistema **switch** em **case 1** vamos colocar todas as partes de inserção de dados que já criamos. Dentro de **case 3** vamos colocar todas as partes de mostrar os resultados. Ao final do programa, vamos fazer um **console.log** do objeto _**user**_. Logo, o arquivo **saf.js** completo:
+
+```js
+/* physical assessment system */
+
+const { headerFunctions } = require('./headerFunctions')
+const { personalDataFunctions } = require('./personalDataFunctions')
+const { anamnesisFunctions } = require('./anamnesisFunctions')
+const { anamnesisQuestions } = require('./anamnesisFunctions')
+const { cardiorespiratoryFunctions } = require('./cardiorespiratoryFunctions')
+const { percentageValues } = require('./cardiorespiratoryFunctions')
+const { anthropometryFunctions } = require('./anthropometryFunctions')
+const { neuromuscularFunctions } = require('./neuromuscularFunctions')
+const { aerobicFunctions } = require('./aerobicFunctions')
+const { validationFunctions } = require('./validationFunctions')
+
+const user = { }
+var input = require('readline-sync')
+var choiseMenu = 0
+
+do{
+
+  let itsRegexNumber = false
+  let regexFromOneToThree = /^[1-3]$/
+  let regexFromOneToTwo = /^[1-2]$/
+  let objectSize = Object.keys(user).length == 0
+
+  do{
+
+    choiseMenu == 3 ? `` : console.clear()
+    headerFunctions.systemHeader()
+    objectSize ? headerFunctions.welcome() : ``
+    console.log(`[1] Iniciar a avaliação!`)
+    console.log(`[2] Sair do sistema!`)
+    objectSize ? `` : console.log(`[3] Mostrar resultados!`)
+    choiseMenu = input.question(``)
+    if(objectSize){
+      itsRegexNumber = validationFunctions.isRegularExpression(choiseMenu, regexFromOneToTwo)
+      console.clear()  
+    } else {
+      itsRegexNumber = validationFunctions.isRegularExpression(choiseMenu, regexFromOneToThree)
+    }
+    
+  }while(!itsRegexNumber)
+  
+  switch (Number(choiseMenu)) {
+
+    case 1:
+      headerFunctions.load(`Iniciando`)
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Dados Pessoais")
+
+      // variables personalDataFunctions
+      user.name = personalDataFunctions.userName()
+      user.birthdayInBrazilianFormat =  personalDataFunctions.dateOfBirth()
+      user.birthdayInFullFormat = personalDataFunctions.dateInFullFormat(user.birthdayInBrazilianFormat)
+      user.age = personalDataFunctions.age(user)
+      user.sexNumber = personalDataFunctions.sexNumber()
+      user.sex = personalDataFunctions.showSex(user)
+      user.profession = personalDataFunctions.userProfession()
+      user.userEmail = personalDataFunctions.userEmail()
+      user.phoneNumber = personalDataFunctions.phoneNumber()
+      console.clear()
+
+      console.clear()
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Anamnese")
+
+      // variables anamnesisFunctions
+      user.questionnairePARQ = anamnesisFunctions.questionnairePARQ()
+      user.currentPhysicalState = anamnesisFunctions.currentPhysicalState()
+      user.pastIllness = anamnesisFunctions.questions(anamnesisQuestions.pastIllness)
+      user.illnessesFamily = anamnesisFunctions.questions(anamnesisQuestions.illnessesInTheFamily)
+      user.surgeryPerformed = anamnesisFunctions.questions(anamnesisQuestions.surgeryPerformed)
+      user.useMedication = anamnesisFunctions.questions(anamnesisQuestions.useMedication)
+      user.sportsInjuries = anamnesisFunctions.questions(anamnesisQuestions.sportsInjuries)
+      user.trainingObjective = anamnesisFunctions.trainingObjective()
+      user.daysAvailableForTraining = anamnesisFunctions.daysAvailableForTraining()
+      user.timeAvailablePerTraining = anamnesisFunctions.timeAvailablePerTraining()
+
+      console.clear()
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Cardiorrespiratório")
+
+      // variables cardiorespiratoryFunctions
+      user.restingHeartRate = cardiorespiratoryFunctions.restingHeartRate()
+      user.maximumHeartRate = cardiorespiratoryFunctions.maximumHeartRate(user)
+      user.percentageValues = percentageValues
+      user.workingHeartRate = cardiorespiratoryFunctions.workingHeartRate(user)
+      user.restingBloodPressure = cardiorespiratoryFunctions.bloodPressure()
+      user.classificationBloodPressure = cardiorespiratoryFunctions.classificationOfBloodPressure(user)
+
+      console.clear()
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Antropometria")
+
+      // variables anthropometryFunctions
+      user.bodyWeight = anthropometryFunctions.bodyWeight()
+      user.bodyStature = anthropometryFunctions.stature()
+      user.bodyMassIndex = anthropometryFunctions.bodyMassIndex(user)
+      user.bodyMassIndexClassification = anthropometryFunctions.bodyMassIndexClassification(user)
+      user.bodyPerimeter = anthropometryFunctions.bodyPerimetry()
+      user.hipWaistRatio = anthropometryFunctions.hipWaistRatio(user)
+      user.waistHipRatioClassification = anthropometryFunctions.waistHipRatioClassification(user)
+      user.waistCircumference = anthropometryFunctions.waistCircumferenceClassification(user)
+      user.subcutaneousFolds = anthropometryFunctions.subcutaneousMeasures()
+      user.fatPercentage = anthropometryFunctions.fatPercentage(user)
+      user.fatPercentageClassification = anthropometryFunctions.fatPercentageClassification(user)
+      user.fatBodyMass = anthropometryFunctions.fatBodyMass(user)
+      user.leanBodyMass = anthropometryFunctions.leanBodyMass(user)
+      user.expectedIdealBodyMass = anthropometryFunctions.expectedIdealBodyMass(user)
+
+      console.clear()
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Neuromuscular")
+
+      // variables neuromuscularFunctions
+      user.wellsBenchTest = neuromuscularFunctions.wellsBenchTest()
+      user.flexibilityClassification = neuromuscularFunctions.flexibilityClassification(user)
+      user.numberOfAbs = neuromuscularFunctions.abdominalTest()
+      user.abdominalClassification = neuromuscularFunctions.abdominalClassification(user)
+      user.numberOfPushUps = neuromuscularFunctions.flexArmTest()
+      user.flexArmClassification = neuromuscularFunctions.flexArmClassification(user)
+
+      console.clear()
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Aeróbico")
+
+      // variables aerobicFunctions
+      user.voTwoMax = aerobicFunctions.voTwoMax(user)
+      user.voTwoMaxExpected = aerobicFunctions.vo2maxExpected(user)
+      user.voTwoMaxClassification = aerobicFunctions.vo2maxClassification(user)
+      user.trainingSpeed = aerobicFunctions.trainingSpeed(user)
+      user.aerobicFunctionalDeficit = aerobicFunctions.aerobicFunctionalDeficit(user)
+      user.aerobicFunctionalDeficitClassification = aerobicFunctions.aerobicFunctionalDeficitClassification(user)
+
+      console.clear()
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Observações")
+
+      // variables personalDataFunctions
+      user.comments = personalDataFunctions.comments()
+
+      break
+
+    case 3:
+      
+      console.clear()
+      headerFunctions.load(`Carregando`)
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Dados Pessoais")
+
+      // show results personalDataFunctions
+      console.log(`Nome: ${user.name}`)
+      console.log(`Data de nascimento: ${user.birthdayInBrazilianFormat}`)
+      console.log(`Idade: ${user.age} anos`)
+      console.log(`Sexo: ${user.sex}`)
+      console.log(`Profissão: ${user.profession}`)
+      console.log(`E-mail: ${user.userEmail}`)
+      console.log(`Celular: ${user.phoneNumber}`)
+
+      // show results anamnesisFunctions
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Anamnese")
+      console.log(`Questionário PAR-Q: ${user.questionnairePARQ}`)
+      console.log(`Estado físico: ${anamnesisFunctions.showPhysicalState(user)}`)
+      console.log(`Doença Pregressa: ${user.pastIllness}`)
+      console.log(`Doença Pregressa na Família: ${user.illnessesFamily}`)
+      console.log(`Cirurgia: ${user.surgeryPerformed}`)
+      console.log(`Uso de Medicamento: ${user.useMedication}`)
+      console.log(`Lesão Desportiva: ${user.sportsInjuries}`)
+      console.log(`Objetivo do treino: ${user.trainingObjective}`)
+      console.log(`Dias disponíveis para treinar: ${user.daysAvailableForTraining} dias.`)
+      console.log(`Tempo disponível para treino: ${user.timeAvailablePerTraining} minutos.`)
+
+      // show results cardiorespiratoryFunctions
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Cardiorespiratório")
+      console.log(`Frequência Cardíaca de Repouso: ${user.restingHeartRate} bpm.`)
+      console.log(`Frequência Cardíaca Máxima: ${user.maximumHeartRate} bpm.`)
+      cardiorespiratoryFunctions.showWorkingHeartRate(user)
+      console.log(`Pressão Arterial de Repouso: ${user.restingBloodPressure.bloodPressureString} mmHg.`)
+      console.log(`Classificação da Pressão Arterial`)
+      console.log(`Sistólica: ${user.classificationBloodPressure.systolicClassification} / Diastólica: ${user.classificationBloodPressure.diastolicClassification}`)
+
+      // show results anthropometryFunctions
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Antropometria")
+      console.log(`Peso Corporal: ${user.bodyWeight} kilos`)
+      console.log(`Estatura Corporal: ${user.bodyStature} metros`)
+      console.log(`Índice de Massa Corporal - IMC: ${user.bodyMassIndex}`)
+      console.log(`Classificação IMC: ${user.bodyMassIndexClassification}`)
+      anthropometryFunctions.showPerimeter(user)
+      console.log(`Relação Cintura Quadril- RCQ: ${user.hipWaistRatio}`)
+      console.log(`Classificação RCQ: ${user.waistHipRatioClassification}`)
+      console.log(`Circunfência Cintura - Classificação: ${user.waistCircumference}`)
+      anthropometryFunctions.showSubcutaneousFolds(user)
+      console.log(`Percentual de Gordura: ${user.fatPercentage}%`)
+      console.log(`Classificação % Gordura: ${user.fatPercentageClassification}`)
+      console.log(`Massa Corporal Gorda: ${user.fatBodyMass} kilos`)
+      console.log(`Massa Corporal Magra: ${user.leanBodyMass} kilos`)
+      console.log(`Massa Corporal Ideal Prevista: ${user.expectedIdealBodyMass} kilos`)
+
+      // show results neuromuscularFunctions
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Neuromuscular")
+      console.log(`Resultado Teste Flexibilidade Banco de Wells: ${user.wellsBenchTest} cm`)
+      console.log(`Classificação Flexibilidade: ${user.flexibilityClassification}`)
+      console.log(`Quantidade de Flexões Abdominais: ${user.numberOfAbs}`)
+      console.log(`Classificação Abdominais: ${user.abdominalClassification}`)
+      console.log(`Quantidade de Flexões de Braço: ${user.numberOfPushUps}`)
+      console.log(`Classificação Flexões de Braço: ${user.flexArmClassification}`)
+
+      // show results aerobicFunctions
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Aeróbico")
+      console.log(`VO²máx (mL(kg.min): ${user.voTwoMax}`)
+      console.log(`VO²máx Previsto(mL(kg.min): ${user.voTwoMaxExpected}`)
+      console.log(`Classificação do VO²máx: ${user.voTwoMaxClassification}`)
+      aerobicFunctions.showTrainingSpeed(user)
+      console.log(`Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficit}`)
+      console.log(`Classificação do Déficit Funcional Aeróbio: ${user.aerobicFunctionalDeficitClassification}`)
+
+      // show results personalDataFunctions
+      headerFunctions.systemHeader()
+      headerFunctions.subTitle("Observações")
+      console.log(user.comments)
+      headerFunctions.baseboard()
+
+      break
+
+    default:
+
+      console.clear()
+      headerFunctions.load(`Finalizando`)
+      headerFunctions.systemHeader()
+      headerFunctions.theAnd()
+      headerFunctions.baseboard()
+
+      break
+  }
+
+}while(choiseMenu != 2)
+
+console.log(user)
+```
+
+Ao executar o programa:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+
+Bem-vindo ao Sistema de Avaliação Física!
+
+[1] Iniciar a avaliação!
+[2] Sair do sistema!
+```
+
+Ao iniciar a avaliação:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+Iniciando..20%
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Digite seu nome: Fulano Cicrano
+Digite sua data de nascimento (DD/MM/AAAA): 02/09/2000
+Escolha Sexo:
+[1] Masculino
+[2] Feminino
+1
+Digite sua profissão: Engenheiro
+Digite seu email: fulano@cicrano.com
+Digite seu número de celular com DDD: 13987651234
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+1 - Seu médico já mencionou alguma vez que você tem uma condição cardíaca e que você só deve realizar atividade física recomendada por um médico?
+Escolha:
+[1] Sim
+[2] Não
+2
+2 - Você sente dor no tórax quando realiza atividade física?
+Escolha:
+[1] Sim
+[2] Não
+2
+3 - No mês passado, você teve dor torácica quando não estava realizando atividade física?
+Escolha:
+[1] Sim
+[2] Não
+2
+4 - Você perdeu o equilíbrio por causa de tontura ou alguma vez perdeu a consciência?
+Escolha:
+[1] Sim
+[2] Não
+2
+5 - Você tem algum problema ósseo ou de articulação que poderia piorar em conseqüência de uma alteração em sua atividade física?
+Escolha:
+[1] Sim
+[2] Não
+2
+6 - Seu médico está prescrevendo medicamentos para sua pressão ou condição cardíaca?
+Escolha:
+[1] Sim
+[2] Não
+2
+7 - Você teria alguma razão para não praticar exercício físico ou outro problema que impeça?
+Escolha:
+[1] Sim
+[2] Não
+2
+Qual seu estado físico atualmente? 
+[1] Sedentário
+[2] Ativo
+2
+Avaliado possue doença pregressa?
+Escolha:
+[1] Sim
+[2] Não
+2
+Avaliado possue alguém da família com doença pregressa?
+Escolha:
+[1] Sim
+[2] Não
+2
+Avaliado já realizou precedimento cirúrgico?
+Escolha:
+[1] Sim
+[2] Não
+2
+Avaliado faz uso de medicamentos?
+Escolha:
+[1] Sim
+[2] Não
+2
+Avaliado já sofreu alguma lesão desportiva?
+Escolha:
+[1] Sim
+[2] Não
+2
+Qual é o objetivo do seu treino?
+[1] Estético
+[2] Bem-estar e Saúde
+[3] Terapêutico
+[4] Recreativo
+[5] Desportivo
+2
+Digite a quantidade de dias disponíveis para treinar: 5
+Digite o tempo disponível para treino (min): 60
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Cardiorrespiratório            
+===============================
+Digite a Frequência Cardíaca de Repouso (bpm): 60
+Digite a pressão arterial [000/000] (mmHg): 120/80
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Digite seu peso [0000.0](kg): 85.5
+Digite sua estatura [0.00](m): 1.86
+ - Perimetria Corporal - 
+Digite a perimetria - Braço [000.0](cm): 35
+Digite a perimetria - Antebraço [000.0](cm): 29
+Digite a perimetria - Cintura [000.0](cm): 85
+Digite a perimetria - Quadril [000.0](cm): 90
+Digite a perimetria - Coxa [000.0](cm): 55.8
+Digite a perimetria - Panturrilha [000.0](cm): 45
+ - Dobras Cutâneas - 
+Digite a dobra cutânea - Triciptal [00](mm): 10
+Digite a dobra cutânea - Subescapular [00](mm): 15
+Digite a dobra cutânea - Peitoral [00](mm): 5
+Digite a dobra cutânea - SupraIliaca [00](mm): 20
+Digite a dobra cutânea - Abdominal [00](mm): 25
+Digite a dobra cutânea - Coxa [00](mm): 18
+Digite a dobra cutânea - Panturrilha [00](mm): 13
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Teste de flexibilidade banco de Wells
+Digite a distância alcaçada [00](cm) : 25
+Teste de Abdominais
+Digite a quantidade de repetições em 1 min [00]: 36
+Teste de Flexão de Braço
+Digite a quantidade de repetições [00]: 30
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+Escolha um teste: 
+[1] Cicloergômetro - Astrand-Rhyming
+[2] Cooper - 12 min
+[3] Caminhada de 1600 - Rockport
+[4] Banco - McArdle
+2
+Teste de Cooper - 12 min:
+Digite a distância atingida pelo usuário (m): 2500
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Observações            
+===============================
+Observações?
+Escolha:
+[1] Sim
+[2] Não
+2
+```
+
+Ao mostrar resultados:
+
+```
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+[1] Iniciar a avaliação!
+[2] Sair do sistema!
+[3] Mostrar resultados!
+3
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+Carregando........80%
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Dados Pessoais            
+===============================
+Nome: Fulano Cicrano
+Data de nascimento: 02/09/2000
+Idade: 21 anos
+Sexo: Masculino
+Profissão: Engenheiro
+E-mail: fulano@cicrano.com
+Celular: 13987651234
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Anamnese            
+===============================
+Questionário PAR-Q: Todas as respostas do questionário foram 'Não'!
+Estado físico: Ativo
+Doença Pregressa: Sem doença pregressa.
+Doença Pregressa na Família: Sem doença pregressa na família.
+Cirurgia: Nunca realizou procedimento cirúrgico.
+Uso de Medicamento: Não faz uso de medicamento.
+Lesão Desportiva: Nunca sofreu lesão desportiva.
+Objetivo do treino: Bem-estar e Saúde
+Dias disponíveis para treinar: 5 dias.
+Tempo disponível para treino: 60 minutos.
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Cardiorespiratório            
+===============================
+Frequência Cardíaca de Repouso: 60 bpm.
+Frequência Cardíaca Máxima: 199 bpm.
+Frequência Cardíaca de Treino:
+       40% = 116 bpm
+       45% = 123 bpm
+       50% = 130 bpm
+       55% = 136 bpm
+       60% = 143 bpm
+       65% = 150 bpm
+       70% = 157 bpm
+       75% = 164 bpm
+       80% = 171 bpm
+       85% = 178 bpm
+       90% = 185 bpm
+       95% = 192 bpm
+Pressão Arterial de Repouso: 120/80 mmHg.
+Classificação da Pressão Arterial
+Sistólica: Normal / Diastólica: Normal
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Antropometria            
+===============================
+Peso Corporal: 85.5 kilos
+Estatura Corporal: 1.86 metros
+Índice de Massa Corporal - IMC: 24.71
+Classificação IMC: Peso Normal
+ - Perimetria Corporal - 
+   Braço: 35 cm
+   Antebraço: 29 cm
+   Cintura: 85 cm
+   Quadril: 90 cm
+   Coxa: 55.8 cm
+   Panturrilha: 45 cm
+Relação Cintura Quadril- RCQ: 0.94
+Classificação RCQ: Alto Risco
+Circunfência Cintura - Classificação: Nenhum Risco
+ - Dobras Cutâneas - 
+   Triciptal: 10 mm
+   Subescapular: 15 mm
+   Peitoral: 5 mm
+   SupraIliaca: 20 mm
+   Abdominal: 25 mm
+   Coxa: 18 mm
+   Panturrilha: 13 mm
+Percentual de Gordura: 13.49%
+Classificação % Gordura: Abaixo da média
+Massa Corporal Gorda: 11.5 kilos
+Massa Corporal Magra: 74 kilos
+Massa Corporal Ideal Prevista: 87.1 kilos
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Neuromuscular            
+===============================
+Resultado Teste Flexibilidade Banco de Wells: 25 cm
+Classificação Flexibilidade: Regular
+Quantidade de Flexões Abdominais: 36
+Classificação Abdominais: Regular
+Quantidade de Flexões de Braço: 30
+Classificação Flexões de Braço: Regular
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Aeróbico            
+===============================
+VO²máx (mL(kg.min): 44.6
+VO²máx Previsto(mL(kg.min): 48.45
+Classificação do VO²máx: Bom
+ - Velocidade de Treino - 
+       40% = 6.72 km/h
+       45% = 7.36 km/h
+       50% = 8 km/h
+       55% = 8.63 km/h
+       60% = 9.27 km/h
+       65% = 9.91 km/h
+       70% = 10.54 km/h
+       75% = 11.18 km/h
+       80% = 11.82 km/h
+       85% = 12.46 km/h
+       90% = 13.09 km/h
+       95% = 13.73 km/h
+Déficit Funcional Aeróbio: 7.95
+Classificação do Déficit Funcional Aeróbio: Bom
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+           Observações            
+===============================
+Sem Observações!
+===============================
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+[1] Iniciar a avaliação!
+[2] Sair do sistema!
+[3] Mostrar resultados!
+2
+```
+
+Ao sair do sistema:
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+Finalizando..20%
+```
+
+```shell
+===============================
+  SISTEMA DE AVALIAÇÃO FÍSICA  
+===============================
+Sistema Encerrado!
+===============================
+{
+  name: 'Fulano Cicrano',
+  birthdayInBrazilianFormat: '02/09/2000',
+  birthdayInFullFormat: 2000-09-02T03:00:00.000Z,
+  age: 21,
+  sexNumber: 1,
+  sex: 'Masculino',
+  profession: 'Engenheiro',
+  userEmail: 'fulano@cicrano.com',
+  phoneNumber: '13987651234',
+  questionnairePARQ: "Todas as respostas do questionário foram 'Não'!",
+  currentPhysicalState: 2,
+  pastIllness: 'Sem doença pregressa.',
+  illnessesFamily: 'Sem doença pregressa na família.',
+  surgeryPerformed: 'Nunca realizou procedimento cirúrgico.',
+  useMedication: 'Não faz uso de medicamento.',
+  sportsInjuries: 'Nunca sofreu lesão desportiva.',
+  trainingObjective: 'Bem-estar e Saúde',
+  daysAvailableForTraining: 5,
+  timeAvailablePerTraining: 60,
+  restingHeartRate: 60,
+  maximumHeartRate: 199,
+  percentageValues: [
+    40, 45, 50, 55, 60,
+    65, 70, 75, 80, 85,
+    90, 95
+  ],
+  workingHeartRate: [
+    116, 123, 130, 136,
+    143, 150, 157, 164,
+    171, 178, 185, 192
+  ],
+  restingBloodPressure: { systolic: 120, diastolic: 80, bloodPressureString: '120/80' },
+  classificationBloodPressure: {
+    systolicClassification: 'Normal',
+    diastolicClassification: 'Normal'
+  },
+  bodyWeight: 85.5,
+  bodyStature: 1.86,
+  bodyMassIndex: 24.71,
+  bodyMassIndexClassification: 'Peso Normal',
+  bodyPerimeter: {
+    'Braço': '35',
+    'Antebraço': '29',
+    Cintura: '85',
+    Quadril: '90',
+    Coxa: '55.8',
+    Panturrilha: '45'
+  },
+  hipWaistRatio: 0.94,
+  waistHipRatioClassification: 'Alto Risco',
+  waistCircumference: 'Nenhum Risco',
+  subcutaneousFolds: {
+    Triciptal: '10',
+    Subescapular: '15',
+    Peitoral: '5',
+    SupraIliaca: '20',
+    Abdominal: '25',
+    Coxa: '18',
+    Panturrilha: '13'
+  },
+  fatPercentage: 13.49,
+  fatPercentageClassification: 'Abaixo da média',
+  fatBodyMass: 11.5,
+  leanBodyMass: 74,
+  expectedIdealBodyMass: 87.1,
+  wellsBenchTest: 25,
+  flexibilityClassification: 'Regular',
+  numberOfAbs: 36,
+  abdominalClassification: 'Regular',
+  numberOfPushUps: 30,
+  flexArmClassification: 'Regular',
+  voTwoMax: 44.6,
+  voTwoMaxExpected: 48.45,
+  voTwoMaxClassification: 'Bom',
+  trainingSpeed: [
+     6.72,  7.36,     8,
+     8.63,  9.27,  9.91,
+    10.54, 11.18, 11.82,
+    12.46, 13.09, 13.73
+  ],
+  aerobicFunctionalDeficit: 7.95,
+  aerobicFunctionalDeficitClassification: 'Bom',
+  comments: 'Sem Observações!'
+}
+```
+
+Com isto chegamos ao final do projeto. Espero que tenha gostado e aprendido bastante.
+
+Obrigado pela atenção e até o próximo projeto! :slightly_smiling_face: :man_technologist:
+
+
 
 
 

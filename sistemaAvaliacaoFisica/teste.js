@@ -5246,61 +5246,57 @@ function theAnd(){
    console.clear()
  }
 
-let choise = 0
-const userTEST = {}
-
-do{
-
-  let itsRegexNumber = false
-  let regexFromOneToThree = /^[1]$|^[2]$|^[3]$/
-  let regexFromOneToTwo = /^[1]$|^[2]$/
-  let objectSize = Object.keys(userTEST).length == 0
+function safProgram(){
+  let choise = 0
+  const userTEST = {}
 
   do{
 
-    choise == 3 ? `` : console.clear()
-    headerFunctions.systemHeader()
-    objectSize ? welcome() : ``
-    console.log(`[1] Iniciar a avaliação!`)
-    console.log(`[2] Sair do sistema!`)
-    objectSize ? `` : console.log(`[3] Mostrar resultados!`)
-    choise = input.question(``)
-    if(objectSize){
-      itsRegexNumber = validationFunctions.isRegularExpression(choise, regexFromOneToTwo)
-      console.clear()  
-    } else {
-      itsRegexNumber = validationFunctions.isRegularExpression(choise, regexFromOneToThree)
-    }
-    
-  }while(!itsRegexNumber)
-  
-  switch (Number(choise)) {
-    case 1:
-      load(`Iniciando`)
-      console.log(`Avaliação START`)
-      userTEST.name = input.question(`Digite seu nome: `)
-      console.clear()
-      break
-    case 3:
-      load(`Carregando`)
-      console.log(`MOSTRAR RESULTADOS`)
-      console.log(`NOME: ${userTEST.name}`)
-      break
-    default:
-      load(`Finalizando`)
+    let itsRegexNumber = false
+    let regexFromOneToThree = /^[1]$|^[2]$|^[3]$/
+    let regexFromOneToTwo = /^[1]$|^[2]$/
+    let objectSize = Object.keys(userTEST).length == 0
+
+    do{
+
+      choise == 3 ? `` : console.clear()
       headerFunctions.systemHeader()
-      theAnd()
-      headerFunctions.baseboard()
-      break
-  }
+      objectSize ? welcome() : ``
+      console.log(`[1] Iniciar a avaliação!`)
+      console.log(`[2] Sair do sistema!`)
+      objectSize ? `` : console.log(`[3] Mostrar resultados!`)
+      choise = input.question(``)
+      if(objectSize){
+        itsRegexNumber = validationFunctions.isRegularExpression(choise, regexFromOneToTwo)
+        console.clear()  
+      } else {
+        itsRegexNumber = validationFunctions.isRegularExpression(choise, regexFromOneToThree)
+      }
+      
+    }while(!itsRegexNumber)
+    
+    switch (Number(choise)) {
+      case 1:
+        load(`Iniciando`)
+        console.log(`Avaliação START`)
+        userTEST.name = input.question(`Digite seu nome: `)
+        console.clear()
+        break
+      case 3:
+        load(`Carregando`)
+        console.log(`MOSTRAR RESULTADOS`)
+        console.log(`NOME: ${userTEST.name}`)
+        break
+      default:
+        load(`Finalizando`)
+        headerFunctions.systemHeader()
+        theAnd()
+        headerFunctions.baseboard()
+        break
+    }
 
-}while(choise != 2)
-  
-
-  
-
-
- 
+  }while(choise != 2)
+}
 
 /*=======================================================================*/
 /* Anamnesis Functions */
