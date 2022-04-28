@@ -9,11 +9,10 @@ Olá dev's! Neste repositório vamos criar um **sistema de avaliação física**
 5. Testes Neuromuscular
 6. Testes Aeróbicos
 
-Veja o vídeo explicando o sistema clicando no link ao lado - [Sistema Avaliação Física](https://www.youtube.com/watch?v=0mHEuja3c_Y&list=PLHqoKScEn2PuAxQBubqmXHKbnAkrkHFIy)
+## Video
+Veja o vídeo explicando o sistema clicando no link ao lado - [Sistema Avaliação Física](https://www.youtube.com/watch?v=0mHEuja3c_Y&list=PLHqoKScEn2PuAxQBubqmXHKbnAkrkHFIy){:target="\_blank"}
 
-[![Sistema Avaliação Física]({https://www.pexels.com/pt-br/foto/computador-laptop-preto-e-cinza-546819/})]({https://www.youtube.com/watch?v=0mHEuja3c_Y&list=PLHqoKScEn2PuAxQBubqmXHKbnAkrkHFIy} "Sistema Avaliação Física")
-
-<a href="{https://www.youtube.com/watch?v=0mHEuja3c_Y&list=PLHqoKScEn2PuAxQBubqmXHKbnAkrkHFIy}" title="Sistema Avaliação Física"><img src="{image-url}" alt="Alternate Text" /></a>
+<a href="https://www.youtube.com/watch?v=0mHEuja3c_Y&list=PLHqoKScEn2PuAxQBubqmXHKbnAkrkHFIy" target="_blank">Hello, world!</a>
 
 Vamos começar?! 
 
