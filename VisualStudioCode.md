@@ -1,0 +1,45 @@
+# Visual Studio Code
+
+## settings.json
+
+```json
+{
+    "editor.fontSize": 16,
+    "terminal.integrated.fontSize": 16,
+    "workbench.iconTheme": "material-icon-theme",
+	"editor.bracketPairColorization.enabled": true,
+    "editor.minimap.enabled": false,
+    "workbench.editor.tabSizing": "shrink",
+    "explorer.compactFolders": false,
+
+    // formatter
+    "prettier.tabWidth": 2,
+    "prettier.semi": false, 
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "none",
+    "prettier.arrowParens": "avoid",
+    "prettier.endOfLine": "auto",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    
+    /*
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    */
+    
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.donotVerifyTags": true,
+    "tabnine.experimentalAutoImports": true,
+    "workbench.colorTheme": "Omni",
+    "files.autoSave": "afterDelay",
+    "emmet.includeLanguages": {
+        "njk": "html"
+    },
+    "window.zoomLevel": 1
+}
+```
+
