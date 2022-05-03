@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import Tasks from './components/Tasks'
 import "./App.css"
 
 const App = () => {
@@ -13,12 +14,14 @@ const App = () => {
       id: 2,
       title: 'Ler Livros',
       completed: true,
-    }
+    },
   ])
 
   return (
     <>
-      <div className="container"></div>
+      <div className="container">
+        <Tasks tasks={tasks} />
+      </div>
     </>
   )
 }
