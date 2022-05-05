@@ -527,13 +527,443 @@ export default Task;
 
 ## [30:25](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=1825s) - Adição de uma tarefa
 
+Na pasta **components** crie o arquivo **AddTask.jsx**. Neste arquivo vamos criar a parte para adicionar tarefas.
+
+Com isso, vamos mudar os nomes de algums arquivos, colocando a extenção **jsx**, são eles:
+
+- Task.js - Task.jsx
+- Tasks.js - Tasks.jsx
+- App.js - App.jsx
+
+Caso a aplicação pare, reinicie com **npm start**.
+
+Agora em **AddTask.jsx**:
+
+```jsx
+import React from 'react';
+
+const AddTask = () => {
+  return ( 
+    <input type="text" />
+   );
+}
+ 
+export default AddTask;
+```
+
+No arquivo **App.jsx** vamos importar o componente **AddTask.jsx**:
+
+```jsx
+import React, { useState } from 'react'
+
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+import "./App.css"
+
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  return (
+    <>
+      <div className="container">
+        <AddTask />
+        <Tasks tasks={tasks} />
+      </div>
+    </>
+  )
+}
+
+export default App
+```
+
+Para estilizar o **input** vamos criar o arquivo **AddTask.css**:
+
+```css
+.add-task-container {
+  margin: 15px 0;
+  width: 100%;
+  display: flex;
+}
+
+.add-task-input {
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: none;
+  flex: 2;
+  background-color: #444; 
+  color: #eee;
+  font-size: 16px;
+}
+```
+
+E em **AddTask.jsx** vamos importar esse **css** e adicionar as **className**:
+
+```jsx
+import React from 'react';
+import './AddTask.css'
+
+const AddTask = () => {
+  return ( 
+    <div className="add-task-container">
+      <input className="add-task-input" type="text" />
+    </div>
+   );
+}
+ 
+export default AddTask;
+```
+
 ## [35:01](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=2101s) - Criação do componente Button
+
+Vamos criar o componente **Button.jsx** em **components**:
+
+```jsx
+import React from 'react';
+
+const Button = ({ children, onClick }) => {
+  return (
+    <button onClick={onClick} className="button" >
+      { children }
+    </button> );
+}
+
+export default Button;
+```
+
+Para estilizar este componente, vamos criar o arquivo **Button.css**:
+
+```css
+.button {
+  background-color: chartreuse;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 5px;
+  width: 100%;
+  font-size:16px;
+  color: #444;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+```
+
+Importando o **css** no **Button**:
+
+```jsx
+import React from 'react';
+import './Button.css'
+
+const Button = ({ children, onClick }) => {
+  return (
+    <button onClick={onClick} className="button" >
+      { children }
+    </button> );
+}
+
+export default Button;
+```
+
+Depois, vamos importar esse componente **Button** em **AddTask.jsx**, passando o children(adicionar) como parâmetro:
+
+```jsx
+import React from 'react';
+import './AddTask.css'
+import Button from './Button';
+
+const AddTask = () => {
+  return ( 
+    <div className="add-task-container">
+      <input className="add-task-input" type="text" />
+      <Button> Adicionar </Button>
+    </div>
+   );
+}
+ 
+export default AddTask;
+```
+
+Agora vamos criar um **container** para colocar o **Button** dentro, logo, em **AddTask.css**:
+
+```css
+.add-task-container {
+  margin: 15px 0;
+  width: 100%;
+  display: flex;
+}
+
+.add-task-input {
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: none;
+  flex: 2;
+  background-color: #444; 
+  color: #eee;
+  font-size: 16px;
+}
+
+.add-task-button-container {
+  margin-left: 10px;
+  flex: 1;
+}
+```
+
+Em **AddTask.jsx**:
+
+```jsx
+import React from 'react';
+import './AddTask.css'
+import Button from './Button';
+
+const AddTask = () => {
+  return ( 
+    <div className="add-task-container">
+      <input className="add-task-input" type="text" />
+      <div className="add-task-button-container">
+        <Button> Adicionar </Button>
+      </div>
+      
+    </div>
+   );
+}
+ 
+export default AddTask;
+```
 
 ## [41:11](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=2471s) - Adição de uma tarefa
 
+Vamos começar adicionando o state e a function (**handleInputChange**) que vai receber o valor do input em **AddTask.jsx**:
+
+```jsx
+import React, { useState } from 'react';
+
+import './AddTask.css'
+import Button from './Button';
+
+const AddTask = () => {
+  const [inputData, setInputData] = useState("")
+
+  const handleInputChange = (e) => {
+    setInputData(e.target.value)
+  }
+
+  return ( 
+    <div className="add-task-container">
+      <input 
+        onChange={handleInputChange}
+        value={inputData}
+        className="add-task-input"
+        type="text" 
+      />
+      <div className="add-task-button-container">
+        <Button> Adicionar </Button>
+      </div>
+      
+    </div>
+   );
+}
+ 
+export default AddTask;
+```
+
+Em **App.jsx**, vamos criar a function que vai receber o title da task:
+
+```jsx
+import React, { useState } from 'react'
+
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+import "./App.css"
+import Button from './components/Button'
+
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  //adiciona o title na tasks
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [ ...tasks, {
+      title: taskTitle,
+      id:Math.random(10),
+      completed: false,
+    }]
+
+    setTasks(newTasks)
+  }
+
+  return (
+    <>
+      <div className="container">
+        <AddTask handleTaskAddition={handleTaskAddition}/>
+        <Tasks tasks={tasks} />
+      </div>
+    </>
+  )
+}
+
+export default App
+```
+
+Agora vamos passar a function **handleTaskAddition** para o **AddTask**, vamos criar a function **handleAddTaskClick** que quando clicar no botão **AddTask** será chamada pegando o que tem no input e passando como props para a function **handleTaskAddition** que por sua vez vai adicionar a nova task em **App.jsx**. Logo, em **AddTask**:
+
+```jsx
+import React, { useState } from 'react';
+
+import './AddTask.css'
+import Button from './Button';
+
+const AddTask = ({handleTaskAddition}) => {
+  const [inputData, setInputData] = useState("")
+
+  const handleInputChange = (e) => {
+    setInputData(e.target.value)
+  }
+
+  const handleAddTaskClick = () => {
+    handleTaskAddition(inputData)
+  }
+
+  return ( 
+    <div className="add-task-container">
+      <input 
+        onChange={handleInputChange}
+        value={inputData}
+        className="add-task-input"
+        type="text" 
+      />
+      <div className="add-task-button-container">
+        <Button onClick={handleAddTaskClick} > Adicionar </Button>
+      </div>
+      
+    </div>
+   );
+}
+ 
+export default AddTask;
+```
+
+Em **App.jsx** vamos melhorar o **random** importando uma biblioteca node. Na raiz do seu projeto, execute o comando abaixo no terminal:
+
+```shell
+npm install uuid
+```
+
+Essa biblioteca gera id's aleatórios.
+
+No arquivo **App.jsx** vamos importar essa biblioteca e chamar ela em **id** em vez do objeto Math.random:
+
+```jsx
+import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+import "./App.css"
 
 
 
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  //adiciona o title na tasks
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [ ...tasks, {
+      title: taskTitle,
+      id: uuidv4(),
+      completed: false,
+    }]
+
+    setTasks(newTasks)
+  }
+
+  return (
+    <>
+      <div className="container">
+        <AddTask handleTaskAddition={handleTaskAddition}/>
+        <Tasks tasks={tasks} />
+      </div>
+    </>
+  )
+}
+
+export default App
+```
+
+Em **AddTask.jsx** vamos setar o inputData para vazio para limpar o input após inserir uma nova task:
+
+```jsx
+import React, { useState } from 'react';
+
+import './AddTask.css'
+import Button from './Button';
+
+const AddTask = ({handleTaskAddition}) => {
+  const [inputData, setInputData] = useState("")
+
+  const handleInputChange = (e) => {
+    setInputData(e.target.value)
+  }
+
+  const handleAddTaskClick = () => {
+    handleTaskAddition(inputData)
+    setInputData('')
+  }
+
+  return ( 
+    <div className="add-task-container">
+      <input 
+        onChange={handleInputChange}
+        value={inputData}
+        className="add-task-input"
+        type="text" 
+      />
+      <div className="add-task-button-container">
+        <Button onClick={handleAddTaskClick} > Adicionar </Button>
+      </div>
+      
+    </div>
+   );
+}
+ 
+export default AddTask;
+```
+
+## [51:20](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3080s) - Conclusão de uma tarefa
 
 
 
