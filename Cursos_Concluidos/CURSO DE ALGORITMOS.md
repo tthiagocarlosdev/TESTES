@@ -1796,287 +1796,189 @@ inicio
 Fimalgoritmo
 ```
 
-PAREI
-
 **ESCOPO**: Local onde determinada variável vai funcionar.
 
 **TIPO 2: POR REFERÊNCIA**
 
+```pseudocode
 Procedimento Soma(var A, B: Inteiro)
 
 Inicio
-
-​	A <- A + 1
-
-​	B <- B + 2
-
-​	EscrevaL(“A soma vale”, A+B)
-
+	A <- A + 1
+	B <- B + 2
+	EscrevaL(“A soma vale”, A+B)
 FimProcedimento
 
 Inicio
-
-​	X <- 4
-
-​	Y <- 8
-
-​	Soma(X, Y)
-
-​	EscrevaL(X, Y)
-
+	X <- 4
+	Y <- 8
+	Soma(X, Y)
+	EscrevaL(X, Y)
 FimAlgoritmo
+```
 
+```pseudocode
 algoritmo "SEQUENCIA_DE_FIBONACCI_REFERENCIA"
 
 var
-
-​    C, X1, X2, X3: inteiro
+	C, X1, X2, X3: inteiro
 
 procedimento ProximoFibonacci (var A, B: Inteiro)
 
 var C: Inteiro
 
 inicio
-
-​     C <- A + B
-
-​     Escreva (C)
-
-​     A <- B
-
-​     B <- C
-
+	C <- A + B
+	Escreva (C)
+	A <- B
+	B <- C
 FimProcedimento
 
 inicio
-
-​     X1 <- 0
-
-​     Escreva(X1)
-
-​     X2 <- 1
-
-​     Escreva(X2)
-
-​     Para C <- 3 ate 10 faca
-
-​          ProximoFibonacci (X1, X2)
-
-​     FimPara
-
+	X1 <- 0
+	Escreva(X1)
+	X2 <- 1
+	Escreva(X2)
+	Para C <- 3 ate 10 faca
+		ProximoFibonacci (X1, X2)
+	FimPara
 Fimalgoritmo
+```
 
-**Aula #13 – FUNÇÕES**
 
+
+## Aula #13 – FUNÇÕES
+
+```pseudocode
 algoritmo "SOMA_FUNCAO"
 
 var
-
-   V1, V2, S: Inteiro
+	V1, V2, S: Inteiro
 
 Funcao soma(X, Y: Inteiro): Inteiro
-
 Inicio
-
-​     Retorne X + y
-
+	Retorne X + y
 FimFuncao
 
-
-
 inicio
-
-​     Escreva("Digite o primeiro valor: ")
-
-​     Leia(V1)
-
-​     Escreva("Digite o segundo valor: ")
-
-​     Leia(V2)
-
-​     S <- Soma(V1, V2)
-
-​     EscrevaL("A soma entre ", V1, " e ", V2, " e igual a ", S)
-
+	Escreva("Digite o primeiro valor: ")
+	Leia(V1)
+	Escreva("Digite o segundo valor: ")
+	Leia(V2)
+	S <- Soma(V1, V2)
+	EscrevaL("A soma entre ", V1, " e ", V2, " e igual a ", S)
 fimalgoritmo
+```
 
-
-
+```pseudocode
 algoritmo "ParImpar_Funcao"
 
 var
-
-   N: Inteiro
-
-   R: Caractere
-
-   
-
+	N: Inteiro
+	R: Caractere
+	
 Funcao ParOuImpar(V: Inteiro): Caractere
-
 Inicio
-
-​     Se (V % 2 = 0) entao
-
-​        Retorne "PAR"
-
-​     Senao
-
-​          Retorne "IMPAR"
-
-​     FimSe
-
+	Se (V % 2 = 0) entao
+		Retorne "PAR"
+	Senao
+		Retorne "IMPAR"
+	FimSe
 FimFuncao
 
-
-
 inicio
-
-​     Escreva("Digite um numero: ")
-
-​     Leia(N)
-
-​     R <- ParOuImpar(N)
-
-​     Escreva (" O numero ", N, " e um valor ", R)
-
+	Escreva("Digite um numero: ")
+	Leia(N)
+	R <- ParOuImpar(N)
+	Escreva (" O numero ", N, " e um valor ", R)
 Fimalgoritmo
+```
 
-
-
+```pseudocode
 algoritmo "FatorialFuncao"
 
 var
-
-   N, F: Inteiro
-
-
+	N, F: Inteiro
 
 Funcao Fatorial(V: Inteiro): Inteiro
-
 Var
-
-   C, R: Inteiro
+	C, R: Inteiro
 
 Inicio
-
-​     R <- 1
-
-​     Para C <- 1 ate V faca
-
-​          R <- R * C
-
-​     FimPara
-
-​     Retorne R
-
+	R <- 1
+	Para C <- 1 ate V faca
+		R <- R * C
+	FimPara
+	Retorne R
 FimFuncao
 
-
-
 inicio
-
-​     Escreva("Digite um numero: ")
-
-​     Leia(N)
-
-​     F <- Fatorial(N)
-
-​     EscrevaL("O valor de ", N, "! e igual a ", F)
-
+	Escreva("Digite um numero: ")
+	Leia(N)
+	F <- Fatorial(N)
+	EscrevaL("O valor de ", N, "! e igual a ", F)
 Fimalgoritmo
+```
 
+- **PASSAGEM DE PARAMETRO:**
 
-
-PASSAGEM DE PARAMETRO:
-
+```pseudocode
 algoritmo "SEQUENCIA_DE_FIBONACCI_FUNCAO"
 
 var
-
-​    I, T1, T2, T3: inteiro
+	I, T1, T2, T3: inteiro
 
 Funcao ProximoFibonacci (var N1, N2: Inteiro): Inteiro
-
 var
-
-   N3: Inteiro
-
+	N3: Inteiro
 inicio
-
-​     N3 <- N1 + N2
-
-​     N1 <- N2
-
-​     N2 <- N3
-
-​     Retorne N3
-
+	N3 <- N1 + N2
+	N1 <- N2
+	N2 <- N3
+	Retorne N3
 FimFuncao
 
 inicio
-
-​     T1 <- 0
-
-​     Escreva(T1)
-
-​     T2 <- 1
-
-​     Escreva(T2)
-
-​     Para T3 <- 3 ate 10 faca
-
-​          T3 <- ProximoFibonacci (T1, t2)
-
-​          Escreva(T3)
-
-​     FimPara
-
+	T1 <- 0
+	Escreva(T1)
+	T2 <- 1
+	Escreva(T2)
+	Para T3 <- 3 ate 10 faca
+		T3 <- ProximoFibonacci (T1, t2)
+		Escreva(T3)
+	FimPara
 Fimalgoritmo
+```
 
 - ​	**FUNÇÕES DO VISUALG:**
 
 **VALORES DE CARACTERE:**
 
+```pseudocode
 algoritmo "ANALIZADOR_DE_STRINGS"
 
 var
-
-   n: caractere
-
-   c: inteiro
-
+	n: caractere
+	c: inteiro
 inicio
+	Escreva("Digite seu nome: ")
+	Leia(n)
+	EscrevaL("Total de letras do seu nome: ", Compr(n))
+	EscrevaL("Seu nome em maiusculas e ", Maiusc(n))
+	EscrevaL("Seu nome em minusculas e ", Minusc(n))
+	EscrevaL("A primeira letra do seu nome e ", Copia(n, 1, 1))
+	EscrevaL("A ultima letra do seu nome e ", Copia(Maiusc(n), Compr(n), 1))
+	EscrevaL("Seu nome tem a letra A na posicao ", Pos("A", Maiusc(n)))
+	EscrevaL("O codigo da letra A e ", Asc("A"))
+	EscrevaL("A letra de codigo 65 e ", Carac(65))
 
-​     Escreva("Digite seu nome: ")
-
-​     Leia(n)
-
-​     EscrevaL("Total de letras do seu nome: ", Compr(n))
-
-​     EscrevaL("Seu nome em maiusculas e ", Maiusc(n))
-
-​     EscrevaL("Seu nome em minusculas e ", Minusc(n))
-
-​     EscrevaL("A primeira letra do seu nome e ", Copia(n, 1, 1))
-
-​     EscrevaL("A ultima letra do seu nome e ", Copia(Maiusc(n), Compr(n), 1))
-
-​     EscrevaL("Seu nome tem a letra A na posicao ", Pos("A", Maiusc(n)))
-
-​     EscrevaL("O codigo da letra A e ", Asc("A"))
-
-​     EscrevaL("A letra de codigo 65 e ", Carac(65))
-
-​     
-
-​     Para c <- Compr(n) ate 1 passo -1 faca
-
-​          Escreva(Copia(Maiusc(n), C, 1))
-
-​     FimPara
-
+	Para c <- Compr(n) ate 1 passo -1 faca
+		Escreva(Copia(Maiusc(n), C, 1))
+	FimPara
 Fimalgoritmo
+```
+
+PAREI
 
 **AULA 14 – VETORES – VARIÁVEIS COMPOSTAS, PARTE 1**
 
