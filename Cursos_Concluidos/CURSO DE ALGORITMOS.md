@@ -1978,639 +1978,340 @@ inicio
 Fimalgoritmo
 ```
 
-PAREI
+## AULA 14 – VETORES – VARIÁVEIS COMPOSTAS, PARTE 1
 
-**AULA 14 – VETORES – VARIÁVEIS COMPOSTAS, PARTE 1**
-
+```pseudocode
 algoritmo "teste_vetor"
-
 var
-
-   v: vetor[1..6] de inteiro
-
-   c: inteiro
-
+	v: vetor[1..6] de inteiro
+	c: inteiro
 inicio
-
-​     Para c <- 1 ate 6 faca
-
-​          Escreva("Digite o ", c, "o. valor: ")
-
-​          Leia (v[c])
-
-​     FimPara
-
-​     
-
-​     Para c <- 1 ate 6 faca
-
-​          Escreva ( "{", v[c], "}")
-
-​     FimPara
-
+	Para c <- 1 ate 6 faca
+		Escreva("Digite o ", c, "o. valor: ")
+		Leia (v[c])
+	FimPara
+	
+	Para c <- 1 ate 6 faca
+		Escreva ( "{", v[c], "}")
+	FimPara
 Fimalgoritmo
+```
 
+**Prática 01:**
 
-
-Prática 01:
-
+```pseudocode
 algoritmo "valores_pares_vetores"
-
 var
-
-   v: vetor[1..7] de inteiro
-
-   c, p: inteiro
-
+	v: vetor[1..7] de inteiro
+	c, p: inteiro
 inicio
-
-​     p <- 0
-
-​     Para c <- 1 ate 7 faca
-
-​          Escreva("Digite o ", c, "o. valor: ")
-
-​          Leia(v[c])
-
-​          Se (v[c] % 2 = 0) entao
-
-​             p <- p + 1
-
-​          FimSe
-
-​     FimPara
-
-​     Escreval(p, " sao numeros PARES")
-
-
-
+	p <- 0
+	Para c <- 1 ate 7 faca
+		Escreva("Digite o ", c, "o. valor: ")
+		Leia(v[c])
+		Se (v[c] % 2 = 0) entao
+			p <- p + 1
+		FimSe
+	FimPara
+	Escreval(p, " sao numeros PARES")
 Fimalgoritmo
+```
 
-
-
-
-
+```pseudocode
 algoritmo "valores_pares_vetores_02"
-
 var
-
-   v: vetor[1..7] de inteiro
-
-   c, p: inteiro
-
+	v: vetor[1..7] de inteiro
+	c, p: inteiro
 inicio
-
-​     p <- 0
-
-​     Para c <- 1 ate 7 faca
-
-​          Escreva("Digite o ", c, "o. valor: ")
-
-​          Leia(v[c])
-
-​     FimPara
-
-​     
-
-​     Para c <- 1 ate 7 faca
-
-​          Se (v[c] % 2 = 0) entao
-
-​             p <- p + 1
-
-​             EscrevaL("Valor PAR na ", c, "o. posicao")
-
-​          FimSe
-
-​     FimPara
-
-​     
-
-​     Escreval(p, " sao numeros PARES")
-
+	p <- 0
+	Para c <- 1 ate 7 faca
+		Escreva("Digite o ", c, "o. valor: ")
+		Leia(v[c])
+	FimPara
+	
+	Para c <- 1 ate 7 faca
+		Se (v[c] % 2 = 0) entao
+			p <- p + 1
+			EscrevaL("Valor PAR na ", c, "o. posicao")
+		FimSe
+	FimPara
+	Escreval(p, " sao numeros PARES")
 Fimalgoritmo
+```
 
-Prática 02:
+**Prática 02:**
 
+```pseudocode
 algoritmo "listagem_da_turma"
-
 var
-
-   nome: vetor[1..4] de caractere
-
-   n1: vetor[1..4] de real
-
-   n2: vetor[1..4] de real
-
-   m: vetor[1..4] de real
-
-   i: inteiro
-
+	nome: vetor[1..4] de caractere
+	n1: vetor[1..4] de real
+	n2: vetor[1..4] de real
+	m: vetor[1..4] de real
+	i: inteiro
 inicio
-
-​     Para i <- 1 ate 4 faca
-
-​          EscrevaL("ALUNO ", i)
-
-​          Escreva("Nome: ")
-
-​          Leia(nome[i])
-
-​          Escreva("Primeira Nota: ")
-
-​          Leia(n1[i])
-
-​          Escreva("Segunda Nota: ")
-
-​          Leia(n2[i])
-
-​          m[i] <- (n1[i] + n2[i]) / 2
-
-​     FimPara
-
-
-
-​     Limpatela
-
-​     
-
-​     EscrevaL(" LISTAGEM DE ALUNOS ")
-
-​     EscrevaL("--------------------")
-
-​     Para i <- 1 ate 4 faca
-
-​          EscrevaL(nome[i]:15, m[i]:4:1)
-
-​     FimPara
-
+	Para i <- 1 ate 4 faca
+		EscrevaL("ALUNO ", i)
+		Escreva("Nome: ")
+		Leia(nome[i])
+		Escreva("Primeira Nota: ")
+		Leia(n1[i])
+		Escreva("Segunda Nota: ")
+		Leia(n2[i])
+		m[i] <- (n1[i] + n2[i]) / 2
+	FimPara
+	Limpatela
+	EscrevaL(" LISTAGEM DE ALUNOS ")
+	EscrevaL("--------------------")
+	Para i <- 1 ate 4 faca
+		EscrevaL(nome[i]:15, m[i]:4:1)
+	FimPara
 Fimalgoritmo
+```
 
-
-
+```pseudocode
 algoritmo "listagem_da_turma_02"
-
 var
-
-   nome: vetor[1..4] de caractere
-
-   n1: vetor[1..4] de real
-
-   n2: vetor[1..4] de real
-
-   m: vetor[1..4] de real
-
-   i: inteiro
-
+	nome: vetor[1..4] de caractere
+	n1: vetor[1..4] de real
+	n2: vetor[1..4] de real
+	m: vetor[1..4] de real
+	i: inteiro
 inicio
-
-​     Para i <- 1 ate 4 faca
-
-​          EscrevaL("ALUNO ", i)
-
-​          Escreva("Nome: ")
-
-​          Leia(nome[i])
-
-​          Escreva("Primeira Nota: ")
-
-​          Leia(n1[i])
-
-​          Escreva("Segunda Nota: ")
-
-​          Leia(n2[i])
-
-​          m[i] <- (n1[i] + n2[i]) / 2
-
-​     FimPara
-
-
-
-​     Limpatela
-
-​     
-
-​     EscrevaL(" LISTAGEM DE ALUNOS ")
-
-​     EscrevaL("--------------------")
-
-​     Para i <- 1 ate 4 faca
-
-​          EscrevaL(nome[i]:15, m[i]:4:1)
-
-​     FimPara
-
-
-
-​     EscrevaL(" STATUS DOS ALUNOS ")
-
-​     EscrevaL("--------------------")
-
-​     
-
-​     Para i <- 1 ate 4 faca
-
-​          Se (m[i] >= 7) entao
-
-​             EscrevaL(nome[i]:15, " APROVADO")
-
-​          Senao
-
-​             EscrevaL(nome[i]:15, " REPROVADO")
-
-​          FimSe
-
-​     FimPara
-
+	Para i <- 1 ate 4 faca
+		EscrevaL("ALUNO ", i)
+		Escreva("Nome: ")
+		Leia(nome[i])
+		Escreva("Primeira Nota: ")
+		Leia(n1[i])
+		Escreva("Segunda Nota: ")
+		Leia(n2[i])
+		m[i] <- (n1[i] + n2[i]) / 2
+	FimPara
+	Limpatela
+	EscrevaL(" LISTAGEM DE ALUNOS ")
+	EscrevaL("--------------------")
+	Para i <- 1 ate 4 faca
+		EscrevaL(nome[i]:15, m[i]:4:1)
+	FimPara
+	EscrevaL(" STATUS DOS ALUNOS ")
+	EscrevaL("--------------------")
+	Para i <- 1 ate 4 faca
+		Se (m[i] >= 7) entao
+			EscrevaL(nome[i]:15, " APROVADO")
+		Senao
+			EscrevaL(nome[i]:15, " REPROVADO")
+		FimSe
+	FimPara
 Fimalgoritmo
+```
 
-
-
+```pseudocode
 algoritmo "listagem_da_turma_03©"
-
 var
-
-   nome: vetor[1..4] de caractere
-
-   n1: vetor[1..4] de real
-
-   n2: vetor[1..4] de real
-
-   m: vetor[1..4] de real
-
-   SM, MT: real
-
-   i, Tot: inteiro
-
+	nome: vetor[1..4] de caractere
+	n1: vetor[1..4] de real
+	n2: vetor[1..4] de real
+	m: vetor[1..4] de real
+	SM, MT: real
+	i, Tot: inteiro
 inicio
-
-​     Para i <- 1 ate 4 faca
-
-​          EscrevaL("ALUNO ", i)
-
-​          Escreva("Nome: ")
-
-​          Leia(nome[i])
-
-​          Escreva("Primeira Nota: ")
-
-​          Leia(n1[i])
-
-​          Escreva("Segunda Nota: ")
-
-​          Leia(n2[i])
-
-​          m[i] <- (n1[i] + n2[i]) / 2
-
-​          SM <- SM + m[i]
-
-​     FimPara
-
-​     MT <- SM/4
-
-​     Limpatela
-
-​     
-
-​     EscrevaL(" LISTAGEM DE ALUNOS ")
-
-​     EscrevaL("--------------------")
-
-​     Para i <- 1 ate 4 faca
-
-​          EscrevaL(nome[i]:15, m[i]:4:1)
-
-​          Se (m[i] > MT) entao
-
-​             Tot <- Tot + 1
-
-​          FimSe
-
-​     FimPara
-
-​     EscrevaL("Ao todo temos ", Tot, " alunos acima da media da turma que e ", MT:4:1)
-
-
-
+	Para i <- 1 ate 4 faca
+        EscrevaL("ALUNO ", i)
+        Escreva("Nome: ")
+        Leia(nome[i])
+        Escreva("Primeira Nota: ")
+        Leia(n1[i])
+        Escreva("Segunda Nota: ")
+        Leia(n2[i])
+        m[i] <- (n1[i] + n2[i]) / 2
+        SM <- SM + m[i]
+	FimPara
+	MT <- SM/4
+	Limpatela
+	EscrevaL(" LISTAGEM DE ALUNOS ")
+	EscrevaL("--------------------")
+	Para i <- 1 ate 4 faca
+		EscrevaL(nome[i]:15, m[i]:4:1)
+		Se (m[i] > MT) entao
+			Tot <- Tot + 1
+		FimSe
+	FimPara
+	EscrevaL("Ao todo temos ", Tot, " alunos acima da media da turma que e ", MT:4:1)
 Fimalgoritmo
+```
 
-Prática 03:
+**Prática 03:**
 
+```pseudocode
 algoritmo "SO_COM_C"
-
 var
-
-   nome: Caractere
-
-   soC: vetor[1..10] de Caractere
-
-   c, tot: Inteiro
-
+	nome: Caractere
+	soC: vetor[1..10] de Caractere
+	c, tot: Inteiro
 inicio
-
-​     tot <- 0
-
-​     Para c <- 1 ate 10 faca
-
-​          Escreva("Digite seu nome: ")
-
-​          Leia(nome)
-
-​          Se (copia(maiusc(nome), 1, 1) = "C") entao
-
-​             tot <- tot + 1
-
-​             soC[tot] <- nome
-
-​          FimSe
-
-​     FimPara
-
-​     
-
-​     Limpatela
-
-​     EscrevaL("LISTAGEM FINAL")
-
-​     Para c <- 1 ate tot faca
-
-​          EscrevaL(soC[c])
-
-​     FimPara
-
+	tot <- 0
+	Para c <- 1 ate 10 faca
+		Escreva("Digite seu nome: ")
+		Leia(nome)
+		Se (copia(maiusc(nome), 1, 1) = "C") entao
+			tot <- tot + 1
+			soC[tot] <- nome
+		FimSe
+	FimPara
+	Limpatela
+	EscrevaL("LISTAGEM FINAL")
+	Para c <- 1 ate tot faca
+		EscrevaL(soC[c])
+	FimPara
 Fimalgoritmo
+```
 
-Prática 04:
+**Prática 04:**
 
+```pseudocode
 algoritmo "ORDENA_VETOR"
-
 var
-
-   vet: vetor[1..10] de Inteiro
-
-   i, j, aux: Inteiro
-
+	vet: vetor[1..10] de Inteiro
+	i, j, aux: Inteiro
 inicio
-
-​     Para i <- 1 ate 10 faca
-
-​          Escreva("Digite um valor: ")
-
-​          Leia(vet[i])
-
-​     FimPara
-
-
-
-​     Para i <- 1 ate 9 faca
-
-​          Para j <- i + 1 ate 10 faca
-
-​               Se (vet[i] > vet[j]) entao
-
-​                  aux <- vet[i]
-
-​                  vet[i] <- vet[j]
-
-​                  vet[j] <- aux
-
-​               FimSe
-
-​          FimPara
-
-​     FimPara
-
-​     
-
-​     Para i <- 1 ate 10 faca
-
-​          Escreva("{", vet[i], "}")
-
-​     FimPara
-
+	Para i <- 1 ate 10 faca
+        Escreva("Digite um valor: ")
+        Leia(vet[i])
+	FimPara
+	
+	Para i <- 1 ate 9 faca
+		Para j <- i + 1 ate 10 faca
+			Se (vet[i] > vet[j]) entao
+				aux <- vet[i]
+				vet[i] <- vet[j]
+				vet[j] <- aux
+			FimSe
+		FimPara
+	FimPara
+	
+	Para i <- 1 ate 10 faca
+		Escreva("{", vet[i], "}")
+	FimPara
 Fimalgoritmo
+```
 
-Exercício 01:
+**Exercício 01:**
 
+```pseudocode
 algoritmo "CAMPEONATO_FUTEBOL"
-
 var
-
-   Time: vetor[1..3] de Caractere
-
-   C, B: inteiro
-
+	Time: vetor[1..3] de Caractere
+	C, B: inteiro
 Procedimento Topo()
-
 Inicio
-
-​     EscrevaL("----------------------")
-
-​     EscrevaL(" CAMPEONATO FUTEBOL  ")
-
-​     EscrevaL("----------------------")
-
+	EscrevaL("----------------------")
+	EscrevaL(" CAMPEONATO FUTEBOL  ")
+	EscrevaL("----------------------")
 FimProcedimento
-
 inicio
-
-​     Topo()
-
-​     Para C <- 1 ate 3 faca
-
-​          Escreva("Digite o ", C, "o. time: ")
-
-​          Leia(Time[c])
-
-​     FimPara
-
-​     
-
-​     Limpatela
-
-​     TOpo()
-
-​     Para C <- 1 ate 3 faca
-
-​          Para B <- 1 ate 3 faca
-
-​               Se (Time[C] <> Time[B]) entao
-
-​                  EscrevaL(Time[C]:10, " [  ] x [  ] ", Time[B])
-
-​               FimSe
-
-​          FimPara
-
-​     FimPara
-
-
-
+	Topo()
+	Para C <- 1 ate 3 faca
+		Escreva("Digite o ", C, "o. time: ")
+		Leia(Time[c])
+	FimPara
+	Limpatela
+	Topo()
+	Para C <- 1 ate 3 faca
+		Para B <- 1 ate 3 faca
+			Se (Time[C] <> Time[B]) entao
+				EscrevaL(Time[C]:10, " [  ] x [  ] ", Time[B])
+			FimSe
+		FimPara
+	FimPara
 Fimalgoritmo
+```
 
-Exercício 02:
+**Exercício 02:**
 
+```pseudocode
 algoritmo "CORRIGINDO_PROVAS"
-
 var
-
-   Gabarito: vetor[1..5] de caractere
-
-   Nome: vetor[1..3] de Caractere
-
-   RespAluno: vetor[1..5] de caractere
-
-   NotaAluno: vetor[1..5] de Inteiro
-
-   C, R, Q, SomaNotas: Inteiro
-
-   MediaTurma: Real
-
+	Gabarito: vetor[1..5] de caractere
+	Nome: vetor[1..3] de Caractere
+	RespAluno: vetor[1..5] de caractere
+	NotaAluno: vetor[1..5] de Inteiro
+	C, R, Q, SomaNotas: Inteiro
+	MediaTurma: Real
 inicio
-
-​     EscrevaL("PASSO 1 - Cadastro de gabarito")
-
-​     EscrevaL("------------------------------")
-
-​     Para C <- 1 ate 5 faca
-
-​          Escreva("Questao ", C, ": ")
-
-​          Leia(Gabarito[C])
-
-​     FimPara
-
-
-
-​     LimpaTela
-
-​     SomaNotas <- 0
-
-​     Para C <- 1 ate 3 faca
-
-​          EscrevaL("------------------------------")
-
-​          EscrevaL("ALUNO ", C)
-
-​          EscrevaL("------------------------------")
-
-​          Escreva("Nome: ")
-
-​          Leia(Nome[C])
-
-​          EscrevaL("RESPOSTAS DADAS")
-
-​          R <- 0
-
-​          Para Q <- 1 ate 5 faca
-
-​               Escreva("Questao", Q,": ")
-
-​               Leia(RespAluno[Q])
-
-​               Se RespAluno[Q] = Gabarito[Q] entao
-
-​                  R <- R + 2
-
-​               FimSe
-
-​               NotaAluno[C] <- R
-
-​          FimPara
-
-​     LimpaTela
-
-​     SomaNotas <- SomaNotas + NotaAluno[C]
-
-​     MediaTurma <- SomaNotas/C
-
-​     FimPara
-
-​     
-
-​     LimpaTela
-
-​     
-
-​     EscrevaL("------------------------------")
-
-​     EscrevaL("   N O T A S  F I N A I S    ")
-
-​     EscrevaL("------------------------------")
-
-​     Para C <- 1 ate 3 faca
-
-​          EscrevaL(Nome[C]:10, NotaAluno[C]:4:1)
-
-​     FimPara
-
-​     EscrevaL("------------------------------")
-
-​     EscrevaL("Media da Turma: ", MediaTurma:4:1)
-
-
-
+	EscrevaL("PASSO 1 - Cadastro de gabarito")
+	EscrevaL("------------------------------")
+	Para C <- 1 ate 5 faca
+		Escreva("Questao ", C, ": ")
+		Leia(Gabarito[C])
+	FimPara
+	LimpaTela
+	SomaNotas <- 0
+    Para C <- 1 ate 3 faca
+		EscrevaL("------------------------------")
+		EscrevaL("ALUNO ", C)
+		EscrevaL("------------------------------")
+		Escreva("Nome: ")
+		Leia(Nome[C])
+		EscrevaL("RESPOSTAS DADAS")
+		R <- 0
+		Para Q <- 1 ate 5 faca
+			Escreva("Questao", Q,": ")
+			Leia(RespAluno[Q])
+			Se RespAluno[Q] = Gabarito[Q] entao
+				R <- R + 2
+			FimSe
+			NotaAluno[C] <- R
+		FimPara
+		LimpaTela
+		SomaNotas <- SomaNotas + NotaAluno[C]
+		MediaTurma <- SomaNotas/C
+	FimPara
+	LimpaTela
+	EscrevaL("------------------------------")
+	EscrevaL("   N O T A S  F I N A I S    ")
+	EscrevaL("------------------------------")
+	Para C <- 1 ate 3 faca
+		EscrevaL(Nome[C]:10, NotaAluno[C]:4:1)
+	FimPara
+	EscrevaL("------------------------------")
+	EscrevaL("Media da Turma: ", MediaTurma:4:1)
 Fimalgoritmo
+```
 
-Exercício 03:
+**Exercício 03:**
 
+```pseudocode
 algoritmo "RESERVAR_CINEMA"
-
-Var
-
-   cad: vetor[1..10] de inteiro
-
-   cont, n: inteiro
-
-   r: Caractere
-
+var
+	cad: vetor[1..10] de inteiro
+	cont, n: inteiro
+	r: Caractere
 inicio
-
-​     Repita
-
-​           Para cont <- 1 ate 10 faca
-
-​                Se(cad[cont] = 1) entao
-
-​                   Escreva("[--]")
-
-​                Senao
-
-​                   Escreva("[B", cont, "]")
-
-​                FimSe
-
-​           FimPara
-
-​           EscrevaL(" ")
-
-​           EscrevaL("---------------------------------------------------")
-
-
-
-​           Escreva("Reservar a cadeira: B")
-
-​           Leia(n)
-
-​           Se (cad[n] = 1) entao
-
-​              EscrevaL("ERRO, cadeira ja reservada!")
-
-​           FimSe
-
-​           cad[n] <- 1
-
-​           Escreva("Quer reservar outra cadeira? [S/N] ")
-
-​           Leia(R)
-
-​           LimpaTela
-
-​     Ate R = "N"
-
-
-
+	Repita
+        Para cont <- 1 ate 10 faca
+            Se(cad[cont] = 1) entao
+                Escreva("[--]")
+            Senao
+                Escreva("[B", cont, "]")
+            FimSe
+        FimPara
+        EscrevaL(" ")
+        EscrevaL("---------------------------------------------------")
+        Escreva("Reservar a cadeira: B")
+        Leia(n)
+        Se (cad[n] = 1) entao
+            EscrevaL("ERRO, cadeira ja reservada!")
+        FimSe
+        cad[n] <- 1
+        Escreva("Quer reservar outra cadeira? [S/N] ")
+        Leia(R)
+        LimpaTela
+	Ate R = "N"
 Fimalgoritmo
+```
+
+PAREI
 
 **AULA 15 – VETORES, PARTE 2 - VARIÁVEIS COMPOSTAS HOMOGÊNEAS MULTIDIMENSIONAIS (MATRIZES)**
 
