@@ -5,7 +5,9 @@
 **Cursos:** 
 
 - Hardware (20 horas) - Curso de montagem e manutenção de computadores;
+  - Montando meu DeskTop - [clique aqui](https://www.instagram.com/stories/highlights/17885547524152527/)
 - Algoritmo (40 horas) - Curso de algoritmos e Lógica de Programação;
+  - Atividades - [clique aqui](https://github.com/tthiagocarlosdev/TESTES/blob/main/Cursos_Concluidos/CURSO%20DE%20ALGORITMOS.md)
 - Git e GitHub (20 horas) - Curso de versionamento de softwares;
 - Linux (40 horas) - Curso de sistema operacional Linux;
 - Curso HTML5 e CSS3: módulo 1 (40 horas) - Curso de linguagem de marcação de HiperTexto e estilização de componentes escritos em linguagens de marcação;
