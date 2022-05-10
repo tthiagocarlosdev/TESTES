@@ -965,7 +965,346 @@ export default AddTask;
 
 ## [51:20](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3080s) - Conclusão de uma tarefa
 
+Vamos adicionar a opção de completar a tarefa. Quando a tarefa for realizada, vamos poder marcar na lista de tarefas. Vamos voltar para **App.jsx** para criar uma function para alterar o **completed** da task e passá-la paara a **task**.
 
+```jsx
+import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+import "./App.css"
+
+
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  const handleTaskClick = (taskId) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id == taskId) return { ...task, completed: !task.completed }
+
+      return task
+    })
+
+    setTasks(newTasks)
+  }
+
+  //adiciona o title na tasks
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [ ...tasks, {
+      title: taskTitle,
+      id: uuidv4(),
+      completed: false,
+    }]
+
+    setTasks(newTasks)
+  }
+
+  return (
+    <>
+      <div className="container">
+        <AddTask handleTaskAddition={handleTaskAddition}/>
+        <Tasks tasks={tasks} handleTaskClick={handleTaskClick} />
+      </div>
+    </>
+  )
+}
+
+export default App
+```
+
+Vamos passar a **handleTaskClick** também em **Tasks.jsx**:
+
+```jsx
+import React from 'react'
+import Task from './Task'
+
+const Tasks = ( { tasks, handleTaskClick } ) => {
+  return (
+    <>
+      { tasks.map(task => (
+        <Task task={task} handleTaskClick={handleTaskClick} />
+      ))}
+    </>
+  )
+}
+
+export default Tasks
+```
+
+Vamos também passar no **Task.jsx**:
+
+```jsx
+import React from 'react';
+
+import "./Task.css";
+
+const Task = ({ task, handleTaskClick }) => {
+  return <div className="task-container">{ task.title }</div>
+}
+ 
+export default Task;
+```
+
+Ainda em **Task.jsx**, vamos criar um style condicional para a task:
+
+```jsx
+import React from 'react';
+
+import "./Task.css";
+
+const Task = ({ task, handleTaskClick }) => {
+  return(
+    <div 
+      className="task-container"
+      style={task.completed ? { borderLeft: "6px solid chartreuse"} : {}}
+    >
+      {task.title}
+    </div>
+  )
+  // return <div className="task-container">{ task.title }</div>
+}
+ 
+export default Task;
+```
+
+Agora vamos fazer com que ao clicar na task o **onClick** acione a **Task.jsx** passando o **id** e faça a marcação de que a tarefa foi realizada ou não:
+
+```jsx
+import React from 'react';
+
+import "./Task.css";
+
+const Task = ({ task, handleTaskClick }) => {
+  return(
+    <div 
+      className="task-container"
+      style={task.completed ? { borderLeft: "6px solid chartreuse"} : {}}
+    >
+      <div className="task-title" onClick={() => handleTaskClick(task.id)}>
+        {task.title}
+      </div>
+    </div>
+  )
+  // return <div className="task-container">{ task.title }</div>
+}
+ 
+export default Task;
+```
+
+Vamos colocar um **cursor** ao passar o mouse sobre cada task. Logo em **Task.css**:
+
+```css
+.task-container {
+  background-color: #444;
+  margin: 8px 0;
+  padding: 15px 20px;
+  display: flex;
+  border-radius: 5px;
+  justify-content: left;
+  color: #eee;
+  align-items: center;
+}
+
+.task-title {
+  cursor: pointer;
+}
+```
+
+## [58:07](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3487s) - Deleção de uma tarefa
+
+Vamos colocar o ícone de deletar. Em **Task.jsx**:
+
+```jsx
+import React from 'react';
+
+import "./Task.css";
+
+const Task = ({ task, handleTaskClick }) => {
+  return(
+    <div 
+      className="task-container"
+      style={task.completed ? { borderLeft: "6px solid chartreuse"} : {}}
+    >
+      <div className="task-title" onClick={() => handleTaskClick(task.id)}>
+        {task.title}
+      </div>
+
+      <div className="buttons-container">
+        <button className="remove-task-button">X</button>
+      </div>
+    </div>
+  )
+}
+ 
+export default Task;
+```
+
+Vamos estilizar este **button**, logo, em **Task.css**:
+
+```css
+.task-container {
+  background-color: #444;
+  margin: 8px 0;
+  padding: 15px 20px;
+  display: flex;
+  border-radius: 5px;
+  justify-content: space-between;
+  color: #eee;
+  align-items: center;
+}
+
+.task-title {
+  cursor: pointer;
+}
+
+.remove-task-button {
+  background-color: #444;
+  border: none;
+  font-size: 16px;
+  color: chartreuse;
+}
+```
+
+Em **App.jsx** vamos criar a funtion que vai deletar a task:
+
+```jsx
+import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+import "./App.css"
+
+
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  const handleTaskClick = (taskId) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id == taskId) return { ...task, completed: !task.completed }
+
+      return task
+    })
+
+    setTasks(newTasks)
+  }
+
+  //adiciona o title na tasks
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [ ...tasks, {
+      title: taskTitle,
+      id: uuidv4(),
+      completed: false,
+    }]
+
+    setTasks(newTasks)
+  }
+
+  // remove uma task
+  const handleTaskDeletion = (taskId) => {
+    const newTasks = tasks.filter(task => task.id != taskId)
+
+    setTasks(newTasks)
+  }
+
+  return (
+    <>
+      <div className="container">
+        <AddTask handleTaskAddition={handleTaskAddition}/>
+        <Tasks 
+          tasks={tasks}
+          handleTaskClick={handleTaskClick}
+          handleTaskDeletion={handleTaskDeletion}  
+        />
+      </div>
+    </>
+  )
+}
+
+export default App
+```
+
+Vamos chamar a function **handleTaskDeletion** em **Tasks.jsx**:
+
+```jsx
+import React from 'react'
+import Task from './Task'
+
+const Tasks = ( { tasks, handleTaskClick, handleTaskDeletion } ) => {
+  return (
+    <>
+      { tasks.map(task => (
+        <Task 
+          task={task}
+          handleTaskClick={handleTaskClick}
+          handleTaskDeletion={handleTaskDeletion}
+        />
+      ))}
+    </>
+  )
+}
+
+export default Tasks
+```
+
+E também chamar a function **handleTaskDeletion** em **Task.jsx**:
+
+```jsx
+import React from 'react';
+
+import "./Task.css";
+
+const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
+  return(
+    <div 
+      className="task-container"
+      style={task.completed ? { borderLeft: "6px solid chartreuse"} : {}}
+    >
+      <div className="task-title" onClick={() => handleTaskClick(task.id)}>
+        {task.title}
+      </div>
+
+      <div className="buttons-container">
+        <button 
+          className="remove-task-button" 
+          onClick={() => handleTaskDeletion(task.id)} 
+        >
+          X
+        </button>
+      </div>
+    </div>
+  )
+}
+ 
+export default Task;
+```
+
+## [01:02:55](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3775s) - Colocando os ícones
 
 
 
