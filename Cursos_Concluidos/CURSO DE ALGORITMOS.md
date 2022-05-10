@@ -2311,467 +2311,265 @@ inicio
 Fimalgoritmo
 ```
 
-PAREI
+## AULA 15 – VETORES, PARTE 2 - VARIÁVEIS COMPOSTAS HOMOGÊNEAS MULTIDIMENSIONAIS (MATRIZES)
 
-**AULA 15 – VETORES, PARTE 2 - VARIÁVEIS COMPOSTAS HOMOGÊNEAS MULTIDIMENSIONAIS (MATRIZES)**
-
-**var**
-
-​	**m****:** **vetor****[1..3, 1..2]** **de inteiro**
-
-​	**l, c****:** **inteiro**
-
-**inicio**
-
-​	**para** **l** **<-** **1** **ate** **3** **faca**
-
-​		**para** **c** **<-** **1** **ate** **2** **faca**
-
-​			**leia(****m[l,c]****)**
-
-​		**fimpara**
-
-​	**fimpara**
-
-Prática 01:
-
-algoritmo "LER_MATRIZ_3x2"
-
+```pseudocode
 var
+	m: vetor[1..3, 1..2] de inteiro
+	l, c: inteiro
+	inicio
+		para l <- 1 ate 3 faca
+			para c <- 1 ate 2 faca
+				leia(m[l,c])
+			fimpara
+		fimpara
+```
 
-   mat: vetor[1..3, 1..2] de inteiro
+**Prática 01:**
 
-   linha, coluna: inteiro
-
-inicio
-
-​     Para linha <-  1 ate 3 faca
-
-​          Para coluna <- 1 ate 2 faca
-
-​               Escreva("Digite um valor: ")
-
-​               Leia(mat[linha,coluna])
-
-​               Limpatela
-
-​          FimPara
-
-​     FimPara
-
-Fimalgoritmo
-
-Aprimoramento:
-
+```pseudocode
 algoritmo "LER_MATRIZ_3x2"
-
 var
-
-   mat: vetor[1..3, 1..2] de inteiro
-
-   linha, coluna: inteiro
-
+	mat: vetor[1..3, 1..2] de inteiro
+	linha, coluna: inteiro
 inicio
-
-​     Para linha <-  1 ate 3 faca
-
-​          Para coluna <- 1 ate 2 faca
-
-​               Escreva("Digite o valor da posicao [", linha, ",", coluna, "]: ")
-
-​               Leia(mat[linha,coluna])
-
-​               Limpatela
-
-​          FimPara
-
-​     FimPara
-
-​     
-
-​     Para linha <-  1 ate 3 faca
-
-​          Para coluna <- 1 ate 2 faca
-
-​               Escreva(mat[linha,coluna]:5)
-
-​          FimPara
-
-​          EscrevaL()
-
-​     FimPara
-
+	Para linha <-  1 ate 3 faca
+		Para coluna <- 1 ate 2 faca
+			Escreva("Digite um valor: ")
+			Leia(mat[linha,coluna])
+			Limpatela
+		FimPara
+	FimPara
 Fimalgoritmo
+```
 
-Prática 02:
+**Aprimoramento:**
 
+```pseudocode
+algoritmo "LER_MATRIZ_3x2"
+var
+	mat: vetor[1..3, 1..2] de inteiro
+	linha, coluna: inteiro
+inicio
+	Para linha <-  1 ate 3 faca
+		Para coluna <- 1 ate 2 faca
+			Escreva("Digite o valor da posicao [", linha, ",", coluna, "]: ")
+			Leia(mat[linha,coluna])
+			Limpatela
+		FimPara
+	FimPara
+
+	Para linha <-  1 ate 3 faca
+		Para coluna <- 1 ate 2 faca
+			Escreva(mat[linha,coluna]:5)
+		FimPara
+		EscrevaL()
+	FimPara
+Fimalgoritmo
+```
+
+**Prática 02:**
+
+```pseudocode
 algoritmo "MATRIZ_3x3_PAR"
-
 var
-
-   mat: vetor[1..3, 1..3] de inteiro
-
-   linha, coluna, TotPar: inteiro
-
+	mat: vetor[1..3, 1..3] de inteiro
+	linha, coluna, TotPar: inteiro
 inicio
-
-​     Para linha <-  1 ate 3 faca
-
-​          Para coluna <- 1 ate 3 faca
-
-​               Escreva("Digite o valor da posicao [", linha, ",", coluna, "]: ")
-
-​               Leia(mat[linha,coluna])
-
-​          FimPara
-
-​     FimPara
-
-
-
-​     EscrevaL("---------------")
-
-​     EscrevaL(" MINHA MATRIZ")
-
-​     EscrevaL("---------------")
-
-
-
-​     TotPar <- 0
-
-​     Para linha <-  1 ate 3 faca
-
-​          Para coluna <- 1 ate 3 faca
-
-​               Se (mat[linha, coluna] % 2 = 0) entao
-
-​                  Escreva("{", mat[linha,coluna]:2, "}")
-
-​                  TotPar <- TotPar + 1
-
-​               Senao
-
-​                    Escreva(mat[linha, coluna]:4)
-
-​               FimSe
-
-​          FimPara
-
-​          EscrevaL()
-
-​     FimPara
-
-​     EscrevaL("---------------")
-
-​     EscrevaL("Foram digitados ", TotPar, " numeros PAR!")
-
+	Para linha <-  1 ate 3 faca
+		Para coluna <- 1 ate 3 faca
+			Escreva("Digite o valor da posicao [", linha, ",", coluna, "]: ")
+			Leia(mat[linha,coluna])
+		FimPara
+	FimPara
+	EscrevaL("---------------")
+	EscrevaL(" MINHA MATRIZ")
+	EscrevaL("---------------")
+	TotPar <- 0
+	Para linha <-  1 ate 3 faca
+		Para coluna <- 1 ate 3 faca
+			Se (mat[linha, coluna] % 2 = 0) entao
+				Escreva("{", mat[linha,coluna]:2, "}")
+				TotPar <- TotPar + 1
+			Senao
+				Escreva(mat[linha, coluna]:4)
+			FimSe
+		FimPara
+		EscrevaL()
+	FimPara
+	EscrevaL("---------------")
+	EscrevaL("Foram digitados ", TotPar, " numeros PAR!")
 Fimalgoritmo
+```
 
-Prática 03:
+**Prática 03:**
 
+```pseudocode
 algoritmo "MATRIZ_IDENTIDADE_3x3"
-
 var
-
-   Matrizz: vetor[1..3, 1..3] de Inteiro
-
-   linha, coluna: Inteiro
-
+	Matrizz: vetor[1..3, 1..3] de Inteiro
+	linha, coluna: Inteiro
 inicio
+	Para linha <-  1 ate 3 faca
+		Para coluna <- 1 ate 3 faca
+			Se (linha = coluna) entao
+				Matrizz[linha, coluna] <- 1
+			Senao
+				Matrizz[linha, coluna] <- 0
+			FimSe
+		FimPara
+	FimPara
+	EscrevaL()
 
-​     Para linha <-  1 ate 3 faca
-
-​          Para coluna <- 1 ate 3 faca
-
-​               Se (linha = coluna) entao
-
-​                  Matrizz[linha, coluna] <- 1
-
-​               Senao
-
-​                    Matrizz[linha, coluna] <- 0
-
-​               FimSe
-
-​          FimPara
-
-​     FimPara
-
-
-
-​     EscrevaL()
-
-
-
-​     Para linha <-  1 ate 3 faca
-
-​          Para coluna <- 1 ate 3 faca
-
-​               Escreva(Matrizz[linha, coluna])
-
-​          FimPara
-
-​          EscrevaL()
-
-​     FimPara
-
+	Para linha <-  1 ate 3 faca
+		Para coluna <- 1 ate 3 faca
+			Escreva(Matrizz[linha, coluna])
+		FimPara
+		EscrevaL()
+	FimPara
 Fimalgoritmo
+```
 
-Prática 04:
+**Prática 04:**
 
+```pseudocode
 algoritmo "MATRIZ_4x4"
-
 var
-
-   Matrizz: vetor[1..4, 1..4] de Inteiro
-
-   linha, coluna, SomaPri, ProLin2, Maior3Col: Inteiro
-
+	Matrizz: vetor[1..4, 1..4] de Inteiro
+	linha, coluna, SomaPri, ProLin2, Maior3Col: Inteiro
 inicio
-
-​     Para linha <-  1 ate 4 faca
-
-​          Para coluna <- 1 ate 4 faca
-
-​               Escreva("Digite o valor da posicao [", linha, ", ", coluna, "]: ")
-
-​               Leia(Matrizz[linha, coluna])
-
-​          FimPara
-
-​     FimPara
-
-
-
-​     EscrevaL()
-
-​     EscrevaL("----------------------")
-
-​     SomaPri <- 0
-
-​     ProLin2 <- 1
-
-​     Maior3Col <- 0
-
-​     Para linha <-  1 ate 4 faca
-
-​          Para coluna <- 1 ate 4 faca
-
-​               Se (linha = coluna) entao
-
-​                  SomaPri <- SomaPri + Matrizz[linha, coluna]
-
-​               FimSe
-
-​               Se (linha = 2) entao
-
-​                  ProLin2 <- ProLin2 * Matrizz[linha, coluna]
-
-​               FimSe
-
-​               Se (coluna = 3) entao
-
-​                  Se (Matrizz[linha, coluna] > Maior3Col) entao
-
-​                     Maior3Col <- Matrizz[linha, coluna]
-
-​                  FimSe
-
-​               FimSe
-
-​               Escreva(Matrizz[linha, coluna]:5)
-
-​          FimPara
-
-​          EscrevaL()
-
-​     FimPara
-
-​     EscrevaL("----------------------")
-
-​     EscrevaL("A soma da Diagonal Principal e ", SomaPri)
-
-​     EscrevaL("O Produto da segunda linha e ", ProLin2)
-
-​     EscrevaL("O maior valor da terceira coluna e ", Maior3Col)
-
+	Para linha <-  1 ate 4 faca
+		Para coluna <- 1 ate 4 faca
+			Escreva("Digite o valor da posicao [", linha, ", ", coluna, "]: ")
+			Leia(Matrizz[linha, coluna])
+		FimPara
+	FimPara
+	EscrevaL()
+	EscrevaL("----------------------")
+	SomaPri <- 0
+	ProLin2 <- 1
+	Maior3Col <- 0
+	Para linha <-  1 ate 4 faca
+		Para coluna <- 1 ate 4 faca
+			Se (linha = coluna) entao
+				SomaPri <- SomaPri + Matrizz[linha, coluna]
+			FimSe
+			Se (linha = 2) entao
+				ProLin2 <- ProLin2 * Matrizz[linha, coluna]
+			FimSe
+			Se (coluna = 3) entao
+				Se (Matrizz[linha, coluna] > Maior3Col) entao
+					Maior3Col <- Matrizz[linha, coluna]
+				FimSe
+			FimSe
+			Escreva(Matrizz[linha, coluna]:5)
+		FimPara
+		EscrevaL()
+	FimPara
+	EscrevaL("----------------------")
+	EscrevaL("A soma da Diagonal Principal e ", SomaPri)
+	EscrevaL("O Produto da segunda linha e ", ProLin2)
+	EscrevaL("O maior valor da terceira coluna e ", Maior3Col)
 Fimalgoritmo
+```
 
-Exercício 01:
+**Exercício 01:**
 
+```pseudocode
 algoritmo "DISSECANDO_MATRIZ"
-
 var
-
-   v: vetor[1..4, 1..4] de inteiro
-
-   linha, coluna, OPCAO: Inteiro
-
+	v: vetor[1..4, 1..4] de inteiro
+	linha, coluna, OPCAO: Inteiro
 Procedimento Topo()
-
 Inicio
-
-​     EscrevaL("-------------------")
-
-​     EscrevaL("  MINHA MATRIZ    ")
-
-​     EscrevaL("-------------------")
-
+	EscrevaL("-------------------")
+	EscrevaL("  MINHA MATRIZ    ")
+	EscrevaL("-------------------")
 FimProcedimento
-
 inicio
-
-​     Para linha <- 1 ate 4 faca
-
-​          Para coluna <- 1 ate 4 faca
-
-​               Escreva("Digite o valor para a posicao [", linha, ",", coluna, "]: ")
-
-​               Leia(v[linha, coluna])
-
-​          FimPara
-
-​     FimPara
-
-​     LimpaTela
-
-
-
-​     Repita
-
-​           // MATRIZ COMPLETA
-
-​           Se OPCAO = 1 entao
-
-​              Topo()
-
-​              Para linha <- 1 ate 4 faca
-
-​                   Para coluna <- 1 ate 4 faca
-
-​                        Escreva(v[linha, coluna]:3)
-
-​                   FimPara
-
-​                   EscrevaL()
-
-​              FimPara
-
-​           FimSe
-
-​           // DIAGONAL PRINCIPAL
-
-​           Se OPCAO = 2 entao
-
-​              Topo()
-
-​              Para linha <- 1 ate 4 faca
-
-​                   Para coluna <- 1 ate 4 faca
-
-​                        Se (linha = coluna) entao
-
-​                           Escreva(v[linha, coluna]:3)
-
-​                        Senao
-
-​                             Escreva(" ":3)
-
-​                        FimSe
-
-​                   FimPara
-
-​                   EscrevaL()
-
-​              FimPara
-
-​           FimSe
-
-​           // TRIANGULO SUPERIOR
-
-​           Se OPCAO = 3 entao
-
-​              Topo()
-
-​              Para linha <- 1 ate 4 faca
-
-​                   Para coluna <- 1 ate 4 faca
-
-​                        Se (linha < coluna) entao
-
-​                           Escreva(v[linha, coluna]:3)
-
-​                        Senao
-
-​                             Escreva(" ":3)
-
-​                        FimSe
-
-​                   FimPara
-
-​                   EscrevaL()
-
-​              FimPara
-
-​           FimSe
-
-​           // TRIANGULO INFERIOR
-
-​           Se OPCAO = 4 entao
-
-​              Topo()
-
-​              Para linha <- 1 ate 4 faca
-
-​                   Para coluna <- 1 ate 4 faca
-
-​                        Se (linha > coluna) entao
-
-​                           Escreva(v[linha, coluna]:3)
-
-​                        Senao
-
-​                             Escreva(" ":3)
-
-​                        FimSe
-
-​                   FimPara
-
-​                   EscrevaL()
-
-​              FimPara
-
-​           FimSe
-
-​              EscrevaL()
-
-​              EscrevaL(" MENU DE OPCOES ")
-
-​              EscrevaL("==================")
-
-​              EscrevaL("[1] Mostrar a Matriz")
-
-​              EscrevaL("[2] Diagonal Principal")
-
-​              EscrevaL("[3] Triangulo Superior")
-
-​              EscrevaL("[4] Triangulo Infeiror")
-
-​              EscrevaL("[5] Sair")
-
-​              Escreva("======== OPCAO: ")
-
-​                    Leia(OPCAO)
-
-​              LimpaTela
-
-​     até OPCAO = 5
-
-​     Escreva("Saindo...")
-
+	Para linha <- 1 ate 4 faca
+		Para coluna <- 1 ate 4 faca
+			Escreva("Digite o valor para a posicao [", linha, ",", coluna, "]: ")
+			Leia(v[linha, coluna])
+		FimPara
+	FimPara
+	LimpaTela
+	Repita
+		// MATRIZ COMPLETA
+		Se OPCAO = 1 entao
+            Topo()
+            Para linha <- 1 ate 4 faca
+                Para coluna <- 1 ate 4 faca
+                    Escreva(v[linha, coluna]:3)
+                FimPara
+                EscrevaL()
+            FimPara
+		FimSe
+		// DIAGONAL PRINCIPAL
+		Se OPCAO = 2 entao
+			Topo()
+			Para linha <- 1 ate 4 faca
+				Para coluna <- 1 ate 4 faca
+					Se (linha = coluna) entao
+						Escreva(v[linha, coluna]:3)
+					Senao
+						Escreva(" ":3)
+					FimSe
+				FimPara
+				EscrevaL()
+			FimPara
+		FimSe
+		// TRIANGULO SUPERIOR
+		Se OPCAO = 3 entao
+			Topo()
+			Para linha <- 1 ate 4 faca
+				Para coluna <- 1 ate 4 faca
+					Se (linha < coluna) entao
+						Escreva(v[linha, coluna]:3)
+					Senao
+						Escreva(" ":3)
+					FimSe
+				FimPara
+				EscrevaL()
+			FimPara
+		FimSe
+		// TRIANGULO INFERIOR
+		Se OPCAO = 4 entao
+			Topo()
+			Para linha <- 1 ate 4 faca
+				Para coluna <- 1 ate 4 faca
+					Se (linha > coluna) entao
+						Escreva(v[linha, coluna]:3)
+					Senao
+						Escreva(" ":3)
+					FimSe
+				FimPara
+				EscrevaL()
+			FimPara
+		FimSe
+		EscrevaL()
+		EscrevaL(" MENU DE OPCOES ")
+		EscrevaL("==================")
+		EscrevaL("[1] Mostrar a Matriz")
+		EscrevaL("[2] Diagonal Principal")
+		EscrevaL("[3] Triangulo Superior")
+		EscrevaL("[4] Triangulo Infeiror")
+		EscrevaL("[5] Sair")
+		Escreva("======== OPCAO: ")
+		Leia(OPCAO)
+		LimpaTela
+	até OPCAO = 5
+	Escreva("Saindo...")
 Fimalgoritmo
+```
 
-Exercício 02:
+**Exercício 02:**
+
+```pseudocode
+Escreva("Jogo da velha")
+```
+
+
 
 
 
