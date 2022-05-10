@@ -1306,15 +1306,696 @@ export default Task;
 
 ## [01:02:55](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3775s) - Colocando os ícones
 
+Vamos colocar os icones usando a biblioteca **React-Icons**. Acesse o [link](https://react-icons.github.io/react-icons/) da biblioteca, copie o código de instalação e execute no projeto. Detalhe, para realizar a instalação, pare de executar o projeto. Após a instalação, execute **npm start** para voltar a rodar o projeto.
+
+```shell
+npm install react-icons --save
+```
+
+Depois de instalada, vamos fazer a importação da biblioteca para usá-la em **Task.jsx**:
+
+```jsx
+import React from 'react';
+import { CgClose } from 'react-icons/cg'
+
+import "./Task.css";
+
+const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
+  return(
+    <div 
+      className="task-container"
+      style={task.completed ? { borderLeft: "6px solid chartreuse"} : {}}
+    >
+      <div className="task-title" onClick={() => handleTaskClick(task.id)}>
+        {task.title}
+      </div>
+
+      <div className="buttons-container">
+        <button 
+          className="remove-task-button" 
+          onClick={() => handleTaskDeletion(task.id)} 
+        >
+          <CgClose />
+        </button>
+      </div>
+    </div>
+  )
+}
+ 
+export default Task;
+```
+
+## [01:04:20](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3860s) - Criação do componente Header
+
+Vamos criar o componente **Header.jsx** na pasta **components**.
+
+```jsx
+import React from 'react';
+
+const Header = () => {
+  return <h1 style={{ color: "#eee" }} >Minhas Tarefas</h1>
+}
+ 
+export default Header;
+```
+
+Em **App.jsx** vamos importar o **Header.jsx** e posicioná-lo dentro do **container**:
+
+```jsx
+import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+
+import Header from './components/Header'
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+
+import "./App.css"
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  const handleTaskClick = (taskId) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id == taskId) return { ...task, completed: !task.completed }
+
+      return task
+    })
+
+    setTasks(newTasks)
+  }
+
+  //adiciona o title na tasks
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [ ...tasks, {
+      title: taskTitle,
+      id: uuidv4(),
+      completed: false,
+    }]
+
+    setTasks(newTasks)
+  }
+
+  // remove uma task
+  const handleTaskDeletion = (taskId) => {
+    const newTasks = tasks.filter(task => task.id != taskId)
+
+    setTasks(newTasks)
+  }
+
+  return (
+    <>
+      <div className="container">
+        <Header />
+        <AddTask handleTaskAddition={handleTaskAddition}/>
+        <Tasks 
+          tasks={tasks}
+          handleTaskClick={handleTaskClick}
+          handleTaskDeletion={handleTaskDeletion}  
+        />
+      </div>
+    </>
+  )
+}
+
+export default App
+```
+
+## [01:05:40](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3940s) - Detalhes de uma tarefa
+
+Vamos colocar o ícone de detalhes de tarefa, importando com o nome **CgInfo** e depois posicionando o ícone antes do ícone de excluir tarefa. Em **Task.jsx**:
+
+```jsx
+import React from 'react';
+import { CgClose, CgInfo } from 'react-icons/cg'
+
+import "./Task.css";
+
+const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
+  return(
+    <div 
+      className="task-container"
+      style={task.completed ? { borderLeft: "6px solid chartreuse"} : {}}
+    >
+      <div className="task-title" onClick={() => handleTaskClick(task.id)}>
+        {task.title}
+      </div>
+
+      <div className="buttons-container">
+        <button 
+          className="see-task-datails-button" 
+        >
+          <CgInfo />
+        </button>
+        <button 
+          className="remove-task-button" 
+          onClick={() => handleTaskDeletion(task.id)} 
+        >
+          <CgClose />
+        </button>
+      </div>
+    </div>
+  )
+}
+ 
+export default Task;
+```
+
+Em **Task.css** vamos fazer a estilização desse ícone, apenas adicionando a _**className**_ na estilização do ícone de excluir tarefa:
+
+```css
+.task-container {
+  background-color: #444;
+  margin: 8px 0;
+  padding: 15px 20px;
+  display: flex;
+  border-radius: 5px;
+  justify-content: space-between;
+  color: #eee;
+  align-items: center;
+}
+
+.task-title {
+  cursor: pointer;
+}
+
+.remove-task-button, .see-task-datails-button {
+  background-color: #444;
+  border: none;
+  font-size: 24px;
+  color: chartreuse;
+}
+```
+
+## [01:07:12](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=4032s) - Entendendo páginas no React
+
+Execute o comando abaixo no terminal, na raiz deste projeto, para utilizar o **react-router-dom**:
+
+```shell
+npm install react-router-dom@5.2.0
+```
+
+Em outros projetos, execute o seguinte comando:
+
+```shell
+npm install react-router-dom
+```
+
+## [01:09:16](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=4156s) - Configurando o react-router-dom
+
+Em **App.jsx** vamos fazer a configuração. Importe o **BrowserRouter**, e o coloque ao redor do _**container**_:
+
+```jsx
+import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { BrowserRouter as Router} from 'react-router-dom'
+
+import Header from './components/Header'
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+
+import "./App.css"
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  const handleTaskClick = (taskId) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id == taskId) return { ...task, completed: !task.completed }
+
+      return task
+    })
+
+    setTasks(newTasks)
+  }
+
+  //adiciona o title na tasks
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [ ...tasks, {
+      title: taskTitle,
+      id: uuidv4(),
+      completed: false,
+    }]
+
+    setTasks(newTasks)
+  }
+
+  // remove uma task
+  const handleTaskDeletion = (taskId) => {
+    const newTasks = tasks.filter(task => task.id != taskId)
+
+    setTasks(newTasks)
+  }
+
+  return (
+    <Router>
+      <div className="container">
+        <Header />
+        <AddTask handleTaskAddition={handleTaskAddition}/>
+        <Tasks 
+          tasks={tasks}
+          handleTaskClick={handleTaskClick}
+          handleTaskDeletion={handleTaskDeletion}  
+        />
+      </div>
+    </Router>
+  )
+}
+
+export default App
+```
+
+Agora vamos fazer o mapeamento de cada "página" para os nossos componentes. Importe o **Route** do **react-router-dom** e vamos colocá-lo dentro do **Router** abaixo do **Header**:
+
+```jsx
+import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
+
+import Header from './components/Header'
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+
+import "./App.css"
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  const handleTaskClick = (taskId) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id == taskId) return { ...task, completed: !task.completed }
+
+      return task
+    })
+
+    setTasks(newTasks)
+  }
+
+  //adiciona o title na tasks
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [ ...tasks, {
+      title: taskTitle,
+      id: uuidv4(),
+      completed: false,
+    }]
+
+    setTasks(newTasks)
+  }
+
+  // remove uma task
+  const handleTaskDeletion = (taskId) => {
+    const newTasks = tasks.filter(task => task.id != taskId)
+
+    setTasks(newTasks)
+  }
+
+  return (
+    <Router>
+      <div className="container">
+        <Header />
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <>
+              <AddTask handleTaskAddition={handleTaskAddition}/>
+              <Tasks 
+                tasks={tasks}
+                handleTaskClick={handleTaskClick}
+                handleTaskDeletion={handleTaskDeletion}  
+              />
+            </>
+          )}
+        
+        />
+      </div>
+    </Router>
+  )
+}
+
+export default App
+```
+
+## [01:12:36](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=4356s) - Criação do componente Task Details
+
+Agora vamos criar outro **Route** que será para a "página" de detalhes. Em **components** crie o componente **TaskDetails.jsx**. Neste componente vamos colocar um botão (voltar) e a parte de detalhes da tarefa:
+
+```jsx
+import React from 'react';
+
+import Button from './Button'
+
+const TaskDetails = () => {
+  return ( 
+    <>
+      <div className="back-button-container">
+        <Button>Voltar</Button>
+      </div>
+      <div className="task-details-container">
+        <p></p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est animi perferendis iure beatae vitae consequatur.
+        </p>
+      </div>
+    </>
+   );
+}
+ 
+export default TaskDetails;
+```
+
+Em **App.jsx** vamos adicionar ouitro **Route** e importar **TaskDetails**:
+
+```jsx
+import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
+
+import Header from './components/Header'
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+import TaskDetails from './components/TaskDetails'
+
+
+import "./App.css"
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  const handleTaskClick = (taskId) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id == taskId) return { ...task, completed: !task.completed }
+
+      return task
+    })
+
+    setTasks(newTasks)
+  }
+
+  //adiciona o title na tasks
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [ ...tasks, {
+      title: taskTitle,
+      id: uuidv4(),
+      completed: false,
+    }]
+
+    setTasks(newTasks)
+  }
+
+  // remove uma task
+  const handleTaskDeletion = (taskId) => {
+    const newTasks = tasks.filter(task => task.id != taskId)
+
+    setTasks(newTasks)
+  }
+
+  return (
+    <Router>
+      <div className="container">
+        <Header />
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <>
+              <AddTask handleTaskAddition={handleTaskAddition}/>
+              <Tasks 
+                tasks={tasks}
+                handleTaskClick={handleTaskClick}
+                handleTaskDeletion={handleTaskDeletion}  
+              />
+            </>
+          )}
+        
+        />
+        <Route 
+          path="/2122" 
+          exact
+          render={TaskDetails}
+        />
+      </div>
+    </Router>
+  )
+}
+
+export default App
+```
+
+## [01:15:44](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=4544s) - Parâmetros na URL 
+
+Vamos passar o parâmetro para o **path** da Route **TaskDetails** em **App.jsx**. Nosse parâmetro nesse caso, será **taskTitle**:
+
+```jsx
+import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
+
+import Header from './components/Header'
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+import TaskDetails from './components/TaskDetails'
+
+
+import "./App.css"
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  const handleTaskClick = (taskId) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id == taskId) return { ...task, completed: !task.completed }
+
+      return task
+    })
+
+    setTasks(newTasks)
+  }
+
+  //adiciona o title na tasks
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [ ...tasks, {
+      title: taskTitle,
+      id: uuidv4(),
+      completed: false,
+    }]
+
+    setTasks(newTasks)
+  }
+
+  // remove uma task
+  const handleTaskDeletion = (taskId) => {
+    const newTasks = tasks.filter(task => task.id != taskId)
+
+    setTasks(newTasks)
+  }
+
+  return (
+    <Router>
+      <div className="container">
+        <Header />
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <>
+              <AddTask handleTaskAddition={handleTaskAddition}/>
+              <Tasks 
+                tasks={tasks}
+                handleTaskClick={handleTaskClick}
+                handleTaskDeletion={handleTaskDeletion}  
+              />
+            </>
+          )}
+        
+        />
+        <Route 
+          path="/:taskTitle" 
+          exact
+          component={TaskDetails}
+        />
+      </div>
+    </Router>
+  )
+}
+
+export default App
+```
+
+**UseParams** retorna os parâmteros que estamos utilizando na URL. Logo, em **TaskDetails**:
+
+```jsx
+import React from 'react';
+import { useParams } from 'react-router-dom';
+
+import Button from './Button'
+
+const TaskDetails = () => {
+  const params = useParams()
+
+  console.log(params)
+  return ( 
+    <>
+      <div className="back-button-container">
+        <Button>Voltar</Button>
+      </div>
+      <div className="task-details-container">
+        <h2>{params.taskTitle}</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est animi perferendis iure beatae vitae consequatur.
+        </p>
+      </div>
+    </>
+   );
+}
+ 
+export default TaskDetails;
+```
+
+## [01:19:34](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=4774s) - Estilizando o Task Details
+
+Na pasta **components** vamos criar o componente **TaskDetails.css** para estilizar:
+
+```css
+.task-details-container {
+  background: #444;
+  margin: 15px 0;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  color: #eee;
+  border-radius: 5px;
+}
+
+.task-details-container h2 {
+  margin-bottom: 5px;
+  color: chartreuse;
+}
+
+.back-button-container {
+  width: 30%;
+  margin-top: 10px;
+}
+```
+
+Em **TaskDetails.jsx** vamos importar o **TaskDetails.css**:
+
+```jsx
+import React from 'react';
+import { useParams } from 'react-router-dom';
+
+import Button from './Button'
+
+import './TaskDetails.css'
+
+const TaskDetails = () => {
+  const params = useParams()
+
+  console.log(params)
+  return ( 
+    <>
+      <div className="back-button-container">
+        <Button>Voltar</Button>
+      </div>
+      <div className="task-details-container">
+        <h2>{params.taskTitle}</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est animi perferendis iure beatae vitae consequatur.
+        </p>
+      </div>
+    </>
+   );
+}
+ 
+export default TaskDetails;
+```
+
+Em **index.css** vamos resetar as configurações de estilo:
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #222;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+```
+
+## [01:21:22](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=4882s) - Lidando com click na tarefa (Task Details)
+
+Vamos adiconar a funcionalidade para quando clicar no botão **informações** a aplicação seja direcionada para a página correspondente. 
+
+## [01:26:35](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5195s) - Chamando uma API de tarefas
 
 
 
-
-
-
-
-
-
+## [01:27:48](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5268s) - Entendendo useEffect
 
 
 
