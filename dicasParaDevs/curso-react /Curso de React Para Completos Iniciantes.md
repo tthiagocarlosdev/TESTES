@@ -1991,13 +1991,626 @@ code {
 
 Vamos adiconar a funcionalidade para quando clicar no botão **informações** a aplicação seja direcionada para a página correspondente. 
 
+Antes vamos colocar uma margem entre os ícones, em **Task.css**:
+
+```css
+.task-container {
+  background-color: #444;
+  margin: 8px 0;
+  padding: 15px 20px;
+  display: flex;
+  border-radius: 5px;
+  justify-content: space-between;
+  color: #eee;
+  align-items: center;
+}
+
+.task-title {
+  cursor: pointer;
+}
+
+.remove-task-button, .see-task-datails-button {
+  background-color: #444;
+  border: none;
+  font-size: 24px;
+  color: chartreuse;
+  margin: 0 5px;
+}
+```
+
+Para criar a navegação entre "páginas", vamos usar outro **hulk** do **react-router-dom**, que será o _**useHistory**_. Vamos criar a variável **history** recebendo o **useHistory**. Vamos também criar a function **handleTaskDetailsClick** e colá-la no _**onClick**_ do button informações. Logo, em **Task.jsx**:
+
+```jsx
+import React from 'react';
+import { CgClose, CgInfo } from 'react-icons/cg'
+import { useHistory } from 'react-router-dom'
+
+import "./Task.css";
+
+const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
+  const history = useHistory();
+
+  const handleTaskDetailsClick = () => {
+    history.push(`/${task.title}`)
+  }
+
+  return(
+    <div 
+      className="task-container"
+      style={task.completed ? { borderLeft: "6px solid chartreuse"} : {}}
+    >
+      <div className="task-title" onClick={() => handleTaskClick(task.id)}>
+        {task.title}
+      </div>
+
+      <div className="buttons-container">
+        <button 
+          className="see-task-datails-button"
+          onClick={handleTaskDetailsClick} 
+        >
+          <CgInfo />
+        </button>
+        <button 
+          className="remove-task-button" 
+          onClick={() => handleTaskDeletion(task.id)} 
+        >
+          <CgClose />
+        </button>
+      </div>
+    </div>
+  )
+}
+ 
+export default Task;
+```
+
+Vamos usar o **useHistory** no button **voltar**. Em **TaskDetails.jsx**:
+
+```jsx
+import React from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+
+import Button from './Button'
+
+import './TaskDetails.css'
+
+const TaskDetails = () => {
+  const params = useParams()
+  const history = useHistory()
+
+  const handleBackButtonClick = () => {
+    history.goBack()
+  }
+
+  return ( 
+    <>
+      <div className="back-button-container">
+        <Button onClick={handleBackButtonClick} >Voltar</Button>
+      </div>
+      <div className="task-details-container">
+        <h2>{params.taskTitle}</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est animi perferendis iure beatae vitae consequatur.
+        </p>
+      </div>
+    </>
+   );
+}
+ 
+export default TaskDetails;
+```
+
+Agora vamos adicionar um _**hover**_ ao button. Logo, em **Button.css**:
+
+```css
+.button {
+  background-color: chartreuse;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 5px;
+  width: 100%;
+  font-size:16px;
+  color: #444;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.5s ease;
+}
+
+.button:hover {
+  background-color: #444;
+  color: chartreuse;
+}
+```
+
+**ATENÇÃO!** 
+
+Nesta parte, ao configurar a navegação entre as "páginas" ao clicar nos botões informações e voltar, nada acontecia, apenas mudava o endereço na URL. Ao pesquisar nos comentários do curso, achei um comentário que sugeriu deletar todo o conteúdo do arquivo **index.js** e colocar o código abaixo. Apenas comentei o código que tinha no arquivo e adicionei o código sugerido e a navegação funcionou corretamente. Logo, em **index.js**:
+
+```js
+// import React from 'react';
+// import ReactDOM from 'react-dom/client';
+
+// import './index.css';
+// import App from './App';
+
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+import "./index.css";
+import App from "./App";
+
+ReactDOM.render(
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
+	document.getElementById("root")
+);
+```
+
 ## [01:26:35](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5195s) - Chamando uma API de tarefas
 
+Agora vamos usar uma API para adiconar as tasks automaticamente. Para isso, vamos instalar a biblioteca **axios** digitando o comando abaixo:
 
+```shell
+npm install axios
+```
+
+Em seguida, vamos importar no arquivo **App.jsx**:
+
+```jsx
+import React, { useState } from 'react'
+import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
+
+import Header from './components/Header'
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+import TaskDetails from './components/TaskDetails'
+
+
+import "./App.css"
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  const handleTaskClick = (taskId) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id == taskId) return { ...task, completed: !task.completed }
+
+      return task
+    })
+
+    setTasks(newTasks)
+  }
+
+  //adiciona o title na tasks
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [ ...tasks, {
+      title: taskTitle,
+      id: uuidv4(),
+      completed: false,
+    }]
+
+    setTasks(newTasks)
+  }
+
+  // remove uma task
+  const handleTaskDeletion = (taskId) => {
+    const newTasks = tasks.filter(task => task.id != taskId)
+
+    setTasks(newTasks)
+  }
+
+  return (
+    <Router>
+      <div className="container">
+        <Header />
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <>
+              <AddTask handleTaskAddition={handleTaskAddition}/>
+              <Tasks 
+                tasks={tasks}
+                handleTaskClick={handleTaskClick}
+                handleTaskDeletion={handleTaskDeletion}  
+              />
+            </>
+          )}
+        
+        />
+        <Route 
+          path="/:taskTitle" 
+          exact
+          component={TaskDetails}
+        />
+      </div>
+    </Router>
+  )
+}
+
+export default App
+```
 
 ## [01:27:48](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5268s) - Entendendo useEffect
 
+Para fazer a requisição HTTP logo quando a página for carregada, vamos usar o **hulk** _**useEffect**_. Este hulk executa um bloco de código, sempre que uma variável muda. No nosso projeto, vamos deixar a lista de variáveis vazia, pois só será executado o código quando a página for carregada pela primeira vez, e não todas as vezes em que a variável for modificada. 
 
+Comece fazendo a importação do **useEffect**.
+
+Para fazer uma requisição dentro do **useEffect**, vamos ter que colocá-la dentro de uma function assincrona, já que o **useEffect** não é assícrono, logo não pode retornar nada. Logo a function (**fetchTasks**) criada e chamada dentro do **useEffect** é que vai retornar a requisição. Logo, em **App.jsx**:
+
+```jsx
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
+
+import Header from './components/Header'
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+import TaskDetails from './components/TaskDetails'
+
+import "./App.css"
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const { data } = await axios.get(`https://jsonplaceholder.cypress.io/todos?_limit=10`)
+      console.log(data)
+    }
+    fetchTasks()
+  }, [])
+
+  const handleTaskClick = (taskId) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id == taskId) return { ...task, completed: !task.completed }
+
+      return task
+    })
+
+    setTasks(newTasks)
+  }
+
+  //adiciona o title na tasks
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [ ...tasks, {
+      title: taskTitle,
+      id: uuidv4(),
+      completed: false,
+    }]
+
+    setTasks(newTasks)
+  }
+
+  // remove uma task
+  const handleTaskDeletion = (taskId) => {
+    const newTasks = tasks.filter(task => task.id != taskId)
+
+    setTasks(newTasks)
+  }
+
+  return (
+    <Router>
+      <div className="container">
+        <Header />
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <>
+              <AddTask handleTaskAddition={handleTaskAddition}/>
+              <Tasks 
+                tasks={tasks}
+                handleTaskClick={handleTaskClick}
+                handleTaskDeletion={handleTaskDeletion}  
+              />
+            </>
+          )}
+        
+        />
+        <Route 
+          path="/:taskTitle" 
+          exact
+          component={TaskDetails}
+        />
+      </div>
+    </Router>
+  )
+}
+
+export default App
+```
+
+## [01:31:35](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5495s) - Armazenando as tarefas da API
+
+Agora vamos pegar as tarefas que foram armazenadas no **data** requisitado pela function **fetchTasks** e colocá-las no **useState**.
+
+Para isso, em **App.jsx** na function **fetchTasks** vamos chamar o **setTasks( )** passando o **data** como parâmetro:
+
+```jsx
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
+
+import Header from './components/Header'
+import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+import TaskDetails from './components/TaskDetails'
+
+import "./App.css"
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: 'Estudar Programação',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Ler Livros',
+      completed: true,
+    },
+  ])
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const { data } = await axios.get(`https://jsonplaceholder.cypress.io/todos?_limit=10`)
+      
+      setTasks(data)
+      
+    }
+
+    fetchTasks()
+
+  }, [])
+
+  const handleTaskClick = (taskId) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id == taskId) return { ...task, completed: !task.completed }
+
+      return task
+    })
+
+    setTasks(newTasks)
+  }
+
+  //adiciona o title na tasks
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [ ...tasks, {
+      title: taskTitle,
+      id: uuidv4(),
+      completed: false,
+    }]
+
+    setTasks(newTasks)
+  }
+
+  // remove uma task
+  const handleTaskDeletion = (taskId) => {
+    const newTasks = tasks.filter(task => task.id != taskId)
+
+    setTasks(newTasks)
+  }
+
+  return (
+    <Router>
+      <div className="container">
+        <Header />
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <>
+              <AddTask handleTaskAddition={handleTaskAddition}/>
+              <Tasks 
+                tasks={tasks}
+                handleTaskClick={handleTaskClick}
+                handleTaskDeletion={handleTaskDeletion}  
+              />
+            </>
+          )}
+        
+        />
+        <Route 
+          path="/:taskTitle" 
+          exact
+          component={TaskDetails}
+        />
+      </div>
+    </Router>
+  )
+}
+
+export default App
+```
+
+## [01:32:44](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5564s) - Corrigindo o componente Task
+
+Vamos corrigir um pequeno erro na disposição dos botões de informação e e fechar. Como esles estão dentro do _**.buttons-container**_, em **Task.css**:
+
+```css
+.task-container {
+  background-color: #444;
+  margin: 8px 0;
+  padding: 15px 20px;
+  display: flex;
+  border-radius: 5px;
+  justify-content: space-between;
+  color: #eee;
+  align-items: center;
+}
+
+.task-title {
+  cursor: pointer;
+}
+
+.buttons-container{
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.remove-task-button, .see-task-datails-button {
+  background-color: #444;
+  border: none;
+  font-size: 24px;
+  color: chartreuse;
+  margin: 0 5px;
+  cursor: pointer;
+}
+```
+
+## [01:33:41](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5621s) - Componentes funcionais vs componentes de classe
+
+Componentes funcionais são componetes que são funções. Podemos também escrever componentes através de **classes**. Porém os componentes em forma de classe estão deixados de lado, por serem limitados em relação ao componentes funcionais. Podemos construir a aplicação obtendo os mesmo resultados com componentes de classe, porém a sintaxe é bastante diferente e mais difícil.
+
+## [01:35:19](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5719s) - Criando um componente de classe
+
+Em **App.jsx** vamos comentar nosso app e escrever o código abaixo:
+
+```jsx
+class App extends React.Component {
+  render() {
+    return <h1>Hello World!</h1>;
+  }
+}
+
+export default App;
+```
+
+Usando **State**:
+
+```jsx
+class App extends React.Component {
+  constructor(){
+    super();
+
+    this.state = {
+      message: "welcome to class components!"
+    }
+  }
+  render() {
+    return  <div>
+              <h1>Hello World!</h1>;
+              <h2>{this.state.message}</h2>
+            </div>
+  }
+}
+```
+
+Executando um bloco de código assim que o componente for montado pela primeira vez:
+
+```jsx
+componentDidMount(){
+    console.log(`foi renderizado pela primeira vez`)
+  }
+```
+
+Adicionando um button para mudar a mensagem:
+
+```jsx
+class App extends React.Component {
+  constructor(){
+    super();
+
+    this.state = {
+      message: "welcome to class components!"
+    }
+  }
+
+  componentDidMount(){
+    console.log(`foi renderizado pela primeira vez`)
+  }
+
+  handleMessageChangeClick(){
+    this.setState({message: "welcome to react!"})
+  }
+
+  render() {
+    return (
+            <>
+              <h1>Hello World!</h1>;
+              <h2>{this.state.message}</h2>
+              <button onClick={this.handleMessageChangeClick.bind(this)}>Mudar mensagem</button>
+            </>
+            ) 
+  }
+}
+
+export default App;
+```
+
+Com estes exemplos, podemos observar que os componentes de classe são bem mais complexos do que os componentes funcionais. A maioria das empresas usam **componentes funcionais**, principalmente pelo uso dos **hulk's**.
+
+## [01:40:15](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=6015s) - Entendendo keys em listas
+
+No final a aplicação estará apresentando o seguinte erro:
+
+```shell
+Each child in a list should have a unique "key" prop.
+```
+
+Em **Tasks.jsx** vamos identificar o **key** de cada task que está sendo renderizada:
+
+```jsx
+import React from 'react'
+import Task from './Task'
+
+const Tasks = ( { tasks, handleTaskClick, handleTaskDeletion } ) => {
+  return (
+    <>
+      { tasks.map(task => (
+        <Task 
+          key={task.id}
+          task={task}
+          handleTaskClick={handleTaskClick}
+          handleTaskDeletion={handleTaskDeletion}
+        />
+      ))}
+    </>
+  )
+}
+
+export default Tasks
+```
+
+## [01:42:07](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=6127s) - Conclusão
 
 
 
