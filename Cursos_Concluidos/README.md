@@ -24,6 +24,7 @@
   - Trilha - O guia estelar de HTML;
   - Trilha - O guia estelar de CSS;
   - Trilha - O guia estelar de JavaScript;
+    - Atividades - [clique aqui](https://github.com/tthiagocarlosdev/TESTES/blob/main/Cursos_Concluidos/O%20guia%20estelar%20de%20JavaScript%20-%20RocketSeat.md)
   - Trilha - O guia estelar de Git;
   - Trilha - Guia estelar de GitHub
 
@@ -32,6 +33,7 @@
 **Cursos:** 
 
 - Curso de Git e GitHub
+  - Atividades - [clique aqui](https://github.com/tthiagocarlosdev/TESTES/blob/main/Cursos_Concluidos/Curso%20de%20Git%20e%20Github%20COMPLETO%202021%20%5BIniciantes%5D%20-%20Dev%20Aprender.md)
 - Curso JavaScript
 
 **Meu repósitório no GitHub:**
