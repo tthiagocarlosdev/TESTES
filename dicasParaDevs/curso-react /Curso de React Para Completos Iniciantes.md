@@ -40,7 +40,7 @@ O **FaceBook** é o criador do **React**. O **FaceBook** criou uma ferramenta pa
 
 No Google, pesquise por _**create-react-app**_ e acesse o link do [github](https://github.com/facebook/create-react-app) deste repositório.
 
-Acesse a paste pelo terminal e digite o seguinte comando:
+Acesse a pasta pelo terminal e digite o seguinte comando:
 
 ```shell
 npx create-react-app my-app
@@ -59,7 +59,7 @@ npm start
 
 Pronto, sua primeira aplicação **react** está rodando.
 
-Em **my-app** acesse a pasta **public** e em seguida o arquivo **index.html**. Neste Arquivo apague todos os cometários.
+Em **my-app** acesse a pasta **public** e em seguida o arquivo **index.html**. Neste arquivo apague todos os cometários.
 
 ```html
 <!DOCTYPE html>
@@ -90,6 +90,30 @@ Antes de seguir no projeto, no seu VSC, instale as seguintes extenções:
 - **Prettier - Code formatter**;
 - **Dracula Official**.
 
+O arquivo **index.js** envia toda a nossa aplicação para a **div.root** do arquivo **index.html** fazendo com que não precisemos nos preocupar com HTML.
+
+Arquivo **index.js**:
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from './reportWebVitals';
+
+ReactDOM.render(
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
+	document.getElementById("root")
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+```
+
 ## [11:05](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=665s) - Criação do nosso primeiro componente
 
 Agora na pasta **src**, abra o arquivo **App.js** e apague tudo, vamos começar a criar nosso componente do zero.
@@ -100,7 +124,7 @@ Agora na pasta **src**, abra o arquivo **App.js** e apague tudo, vamos começar 
 import React from 'react'
 ```
 
-- Vamos criar nossa funtion e exportá-la:
+- Vamos criar nossa function e exportá-la:
 
 ```react
 const App = () => {
@@ -129,7 +153,7 @@ const App = () => {
 
 ## [12:50](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=770s) - Organizando o projeto
 
-Agora vamos excluir aguns arquivos que não vamos precisar deles:
+Agora vamos excluir alguns arquivos que não vamos precisar deles:
 
 No terminal execute **Ctrl+c** para finalizar a execução da aplicação.
 
@@ -150,7 +174,23 @@ import reportWebVitals from './reportWebVitals';
 reportWebVitals();
 ```
 
-Agora rode a aplicação mais uma vez ` $ npm start ` e estará funcionando normal.
+Arquivo **index.js**:
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+
+ReactDOM.render(
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
+	document.getElementById("root")
+);
+```
+
+Agora rode a aplicação mais uma vez ` npm start ` e estará funcionando normal.
 
 ## [14:16](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=856s) - Início da construção do To Do List
 
@@ -266,7 +306,7 @@ const App = () => {
 }
 ```
 
-Desta maneira, você vai observar que mesmo clicando no botão a mensagem são será alterada. Isso ocorre porque ainda não foi implementado o **State**. Implementando o **State**:
+Desta maneira, você vai observar que mesmo clicando no botão a mensagem são será alterada. Isso ocorre porque ainda não foi implementado o **State**. **State** é um **hook** do react que rastrea o estado em um componente, geralmente dados ou propriedades. Com isso conseguimos alterar o conteúdo de uma variável. Para declarar o **State** escrevemos o nome da variável (**message**) e a function (**setMessage**) que vai ser chamada para alterar o valor da variável, dentro de **colchetes** recebendocom atribuição o **useState** e o conteúdo primário da variável. Em seguida dentro do evento **onClick**, passamos a function recebendo como parâmetro o novo valor da variável. Implementando o **State**:
 
 ```react
 import React, { useState } from 'react'
@@ -291,7 +331,7 @@ export default App
 
 Agora ao clicar no botão a mensagem será atualizada, porque o **State** foi atualizado.
 
-Vamos começar a criar as tarefas:
+Vamos começar a criar as tarefas que serão colocadas na variável **tasks**, tendo a function **setTasks** usada no **useState**:
 
 ```react
 import React, { useState } from 'react'
@@ -361,7 +401,7 @@ return (
 
 ## [22:53](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=1373s) - Entendendo props 
 
-**Props** são **dados** que você consegue passar de um **componente pai** para um **componente filho**.
+**Props** são **dados** que você consegue passar de um **componente pai** para um **componente filho**. E é com os props que vamos passar as **tasks** para o componente **Tasks**.
 
 Em **App.js** vamos fazer isso do componente pai **App** para o componente filho **Tasks**:
 
@@ -537,7 +577,7 @@ Com isso, vamos mudar os nomes de algums arquivos, colocando a extenção **jsx*
 
 Caso a aplicação pare, reinicie com **npm start**.
 
-Agora em **AddTask.jsx**:
+Agora em **AddTask.jsx**: PAREI
 
 ```jsx
 import React from 'react';
