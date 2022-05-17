@@ -577,7 +577,7 @@ Com isso, vamos mudar os nomes de algums arquivos, colocando a extenção **jsx*
 
 Caso a aplicação pare, reinicie com **npm start**.
 
-Agora em **AddTask.jsx**: PAREI
+Agora em **AddTask.jsx**:
 
 ```jsx
 import React from 'react';
@@ -868,7 +868,7 @@ const App = () => {
 export default App
 ```
 
-Agora vamos passar a function **handleTaskAddition** para o **AddTask**, vamos criar a function **handleAddTaskClick** que quando clicar no botão **AddTask** será chamada pegando o que tem no input e passando como props para a function **handleTaskAddition** que por sua vez vai adicionar a nova task em **App.jsx**. Logo, em **AddTask**:
+Agora vamos passar a function **handleTaskAddition** para o **AddTask**, vamos criar a function **handleAddTaskClick** que quando clicar no botão **AddTask** será chamada, pegando o que tem no input e passando como props para a function **handleTaskAddition** que por sua vez vai adicionar a nova task em **App.jsx**. Logo, em **AddTask**:
 
 ```jsx
 import React, { useState } from 'react';
@@ -1153,7 +1153,7 @@ Vamos colocar um **cursor** ao passar o mouse sobre cada task. Logo em **Task.cs
   padding: 15px 20px;
   display: flex;
   border-radius: 5px;
-  justify-content: left;
+  justify-content: space-between;
   color: #eee;
   align-items: center;
 }
@@ -1215,6 +1215,7 @@ Vamos estilizar este **button**, logo, em **Task.css**:
   border: none;
   font-size: 16px;
   color: chartreuse;
+  cursor: pointer;
 }
 ```
 
@@ -1344,7 +1345,7 @@ const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
 export default Task;
 ```
 
-## [01:02:55](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3775s) - Colocando os ícones
+## [01:02:55](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3775s) - Colocando os ícones - PAREI
 
 Vamos colocar os icones usando a biblioteca **React-Icons**. Acesse o [link](https://react-icons.github.io/react-icons/) da biblioteca, copie o código de instalação e execute no projeto. Detalhe, para realizar a instalação, pare de executar o projeto. Após a instalação, execute **npm start** para voltar a rodar o projeto.
 
