@@ -1345,7 +1345,7 @@ const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
 export default Task;
 ```
 
-## [01:02:55](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3775s) - Colocando os ícones - PAREI
+## [01:02:55](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3775s) - Colocando os ícones
 
 Vamos colocar os icones usando a biblioteca **React-Icons**. Acesse o [link](https://react-icons.github.io/react-icons/) da biblioteca, copie o código de instalação e execute no projeto. Detalhe, para realizar a instalação, pare de executar o projeto. Após a instalação, execute **npm start** para voltar a rodar o projeto.
 
@@ -1472,7 +1472,7 @@ const App = () => {
 export default App
 ```
 
-## [01:05:40](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3940s) - Detalhes de uma tarefa
+## [01:05:40](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3940s) - Detalhes de uma tarefa - PAREI
 
 Vamos colocar o ícone de detalhes de tarefa, importando com o nome **CgInfo** e depois posicionando o ícone antes do ícone de excluir tarefa. Em **Task.jsx**:
 
