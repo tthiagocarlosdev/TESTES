@@ -1472,7 +1472,7 @@ const App = () => {
 export default App
 ```
 
-## [01:05:40](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3940s) - Detalhes de uma tarefa - PAREI
+## [01:05:40](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=3940s) - Detalhes de uma tarefa
 
 Vamos colocar o ícone de detalhes de tarefa, importando com o nome **CgInfo** e depois posicionando o ícone antes do ícone de excluir tarefa. Em **Task.jsx**:
 
@@ -1815,7 +1815,7 @@ const App = () => {
         <Route 
           path="/2122" 
           exact
-          render={TaskDetails}
+          component={TaskDetails}
         />
       </div>
     </Router>
@@ -2030,7 +2030,7 @@ code {
 
 ## [01:21:22](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=4882s) - Lidando com click na tarefa (Task Details)
 
-Vamos adiconar a funcionalidade para quando clicar no botão **informações** a aplicação seja direcionada para a página correspondente. 
+Vamos adicionar a funcionalidade para quando clicar no botão **informações** a aplicação seja direcionada para a "página" correspondente. 
 
 Antes vamos colocar uma margem entre os ícones, em **Task.css**:
 
@@ -2059,7 +2059,7 @@ Antes vamos colocar uma margem entre os ícones, em **Task.css**:
 }
 ```
 
-Para criar a navegação entre "páginas", vamos usar outro **hulk** do **react-router-dom**, que será o _**useHistory**_. Vamos criar a variável **history** recebendo o **useHistory**. Vamos também criar a function **handleTaskDetailsClick** e colá-la no _**onClick**_ do button informações. Logo, em **Task.jsx**:
+Para criar a navegação entre "páginas", vamos usar outro **hulk** do **react-router-dom**, que será o _**useHistory**_. Vamos criar a variável **history** recebendo o **useHistory**. Vamos também criar a function **handleTaskDetailsClick** e colocá-la no _**onClick**_ do button informações. Logo, em **Task.jsx**:
 
 ```jsx
 import React from 'react';
@@ -2140,7 +2140,7 @@ const TaskDetails = () => {
 export default TaskDetails;
 ```
 
-Agora vamos adicionar um _**hover**_ ao button. Logo, em **Button.css**:
+Agora vamos adicionar um _**hover**_ e uma **transition** ao button. Logo, em **Button.css**:
 
 ```css
 .button {
@@ -2195,9 +2195,9 @@ ReactDOM.render(
 );
 ```
 
-## [01:26:35](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5195s) - Chamando uma API de tarefas
+## [01:26:35](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5195s) - Chamando uma API de tarefas - PAREI
 
-Agora vamos usar uma API para adiconar as tasks automaticamente. Para isso, vamos instalar a biblioteca **axios** digitando o comando abaixo:
+Agora vamos usar uma **API** para adicionar as tasks automaticamente. Para isso, vamos instalar a biblioteca **axios** digitando o comando abaixo:
 
 ```shell
 npm install axios

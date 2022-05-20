@@ -38,3 +38,55 @@ Em seguida, basta usá-la:
 <CgClose />
 ```
 
+- **Biblioteca react-router-dom**
+
+```shell
+npm install react-router-dom
+```
+
+Talvez seja preciso mudar a configuração do arquivo **index.js** de:
+
+```js
+ import React from 'react';
+ import ReactDOM from 'react-dom/client';
+
+ import './index.css';
+ import App from './App';
+
+ const root = ReactDOM.createRoot(document.getElementById('root'));
+ root.render(
+   <React.StrictMode>
+     <App />
+   </React.StrictMode>
+ );
+```
+
+Para:
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+
+import "./index.css";
+import App from "./App";
+
+ReactDOM.render(
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
+	document.getElementById("root")
+);
+```
+
+- **Biblioteca Axios**:
+
+```shell
+npm install axios
+```
+
+Importando a biblioteca:
+
+```jsx
+import axios from 'axios'
+```
+
