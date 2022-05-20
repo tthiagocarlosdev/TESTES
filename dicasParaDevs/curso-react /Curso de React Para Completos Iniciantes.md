@@ -2195,7 +2195,7 @@ ReactDOM.render(
 );
 ```
 
-## [01:26:35](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5195s) - Chamando uma API de tarefas - PAREI
+## [01:26:35](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5195s) - Chamando uma API de tarefas
 
 Agora vamos usar uma **API** para adicionar as tasks automaticamente. Para isso, vamos instalar a biblioteca **axios** digitando o comando abaixo:
 
@@ -2295,7 +2295,7 @@ export default App
 
 ## [01:27:48](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5268s) - Entendendo useEffect
 
-Para fazer a requisição HTTP logo quando a página for carregada, vamos usar o **hulk** _**useEffect**_. Este hulk executa um bloco de código, sempre que uma variável muda. No nosso projeto, vamos deixar a lista de variáveis vazia, pois só será executado o código quando a página for carregada pela primeira vez, e não todas as vezes em que a variável for modificada. 
+Para fazer a requisição HTTP logo quando a página for carregada, vamos usar o **hook** _**useEffect**_. Este hook executa um bloco de código, sempre que uma variável muda. No nosso projeto, vamos deixar a lista de variáveis vazia, pois só será executado o código quando a página for carregada pela primeira vez, e não todas as vezes em que a variável for modificada. 
 
 Comece fazendo a importação do **useEffect**.
 
@@ -2503,7 +2503,7 @@ export default App
 
 ## [01:32:44](https://www.youtube.com/watch?v=ErjWNvP6mko&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=21&t=5564s) - Corrigindo o componente Task
 
-Vamos corrigir um pequeno erro na disposição dos botões de informação e e fechar. Como esles estão dentro do _**.buttons-container**_, em **Task.css**:
+Vamos corrigir um pequeno erro na disposição dos botões de informação e fechar. Como eles estão dentro do _**.buttons-container**_, em **Task.css**:
 
 ```css
 .task-container {

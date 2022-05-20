@@ -1,0 +1,3 @@
+[submodule "my-app"]
+	path = my-app
+	url = /home/thiagocarlos/Downloads/CURSOS/PROGRAMAÇÃO/TESTES/dicasParaDevs/curso-react-2/my-app
