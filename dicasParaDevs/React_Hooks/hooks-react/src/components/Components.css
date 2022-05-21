@@ -1,0 +1,13 @@
+.container-useState, .container-useEffect {
+  max-width:500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 2px solid black;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.useState-button, .useState-state, .useEffect, .buttons-useEffect{
+  margin-top: 20px;
+}
