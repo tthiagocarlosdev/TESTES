@@ -166,6 +166,274 @@ export default HookUseState;
 
 ## [07:48](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=468s) - useEffect
 
+Usamos useEffect quando queremos executar alguma coisa quando alguma coisa acontecer ou alguma coisa mudar.
+
+Primeiro precisamos importar o **useEffect** do **react**:
+
+```jsx
+import React, { useState, useEffect } from 'react';
+```
+
+Em seguida vamos chamar o **useEffect**, passando uma arrow function e uma lista como parâmetros. Essa lista é o array de depências do **useEffect**:
+
+```jsx
+useEffect(() => {
+
+  }, [])
+```
+
+Se for passado o **useEffect** sem a lista, a function será executada sempre que o componente for renderizado novamente.
+
+Mas se a lista for passada, ela vai receber o valor que queremos assistir e o useEffect só será executado quando o valor que passarmos dentro da lista mudar:
+
+```jsx
+useEffect(() => {
+    console.log('resource type render')
+  }, [resourceType])
+```
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+import './Components.css'
+
+const HookUseEffect = () => {
+  const [resourceType, setResourceType] = useState("posts")
+
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
+      .then(response => response.json())
+      .then(json => console.log(json))
+  }, [resourceType])
+
+  const changeResourceType = (resourceType) => {
+    setResourceType(resourceType)
+  }
+
+  return ( 
+    <div className="container-useEffect">
+      <h1>useEffect</h1>
+      <div className="useEffect">
+        <h2> { resourceType } </h2>
+        <div className="buttons-useEffect" style={ {display: "flex", alignItems: "center" }}>
+          <button onClick={() => changeResourceType("posts")}>Posts</button>
+          <button onClick={() => changeResourceType("comments")}>Comments</button>
+          <button onClick={() => changeResourceType("todos")}>Todos</button>
+        </div>
+      </div>
+    </div>
+   );
+}
+ 
+export default HookUseEffect;
+```
+
+O **useEffect** não pode ser uma function assíncrona. Quando se quiser usar o **useEffect** de forma assíncrona, podemos criar dentro dele uma function assíncrona usando o **await** e chamar esta function dentro do **useEffect**:
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+import './Components.css'
+
+const HookUseEffect = () => {
+  const [resourceType, setResourceType] = useState("posts")
+
+  useEffect(() => {
+    const fetchResourceTypes = async () => {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
+      const responseJSON = await response.json()
+      
+      console.log(responseJSON)
+    }
+    fetchResourceTypes()
+  }, [resourceType])
+
+  const changeResourceType = (resourceType) => {
+    setResourceType(resourceType)
+  }
+
+  return ( 
+    <div className="container-useEffect">
+      <h1>useEffect</h1>
+      <div className="useEffect">
+        <h2> { resourceType } </h2>
+        <div className="buttons-useEffect" style={ {display: "flex", alignItems: "center" }}>
+          <button onClick={() => changeResourceType("posts")}>Posts</button>
+          <button onClick={() => changeResourceType("comments")}>Comments</button>
+          <button onClick={() => changeResourceType("todos")}>Todos</button>
+        </div>
+      </div>
+    </div>
+   );
+}
+ 
+export default HookUseEffect;
+```
+
+Podemos também renderizar o conteúdo que está sendo retornado do **useEffect**:
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+import './Components.css'
+
+const HookUseEffect = () => {
+  const [items, setItems] = useState([])
+  const [resourceType, setResourceType] = useState("posts")
+
+  useEffect(() => {
+    const fetchResourceTypes = async () => {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
+      const responseJSON = await response.json()
+      
+      setItems(responseJSON)
+    }
+    fetchResourceTypes()
+  }, [resourceType])
+
+  const changeResourceType = (resourceType) => {
+    setResourceType(resourceType)
+  }
+
+  return ( 
+    <div className="container-useEffect">
+      <h1>useEffect</h1>
+      <div className="useEffect">
+        <h2> { resourceType } </h2>
+        <div className="buttons-useEffect" style={ {display: "flex", alignItems: "center" }}>
+          <button onClick={() => changeResourceType("posts")}>Posts</button>
+          <button onClick={() => changeResourceType("comments")}>Comments</button>
+          <button onClick={() => changeResourceType("todos")}>Todos</button>
+        </div>
+      </div>
+      {items.map((item) => (
+        <div>
+          <p>{item.title}</p>
+          <p>{item.name}</p>
+        </div>
+      ))}
+    </div>
+   );
+}
+ 
+export default HookUseEffect;
+```
+
+Com o **useEffect** também podemos simular o comportamento do métodos **componentDidMount** e **componentWillUnmount**.
+
+O **componentDidMount** só é executando quando o componente é renderizado pela primeira vez. Logo, para fazer isso com o **useEffect**, basta passar a lista de parâmetro vazia:
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+import './Components.css'
+
+const HookUseEffect = () => {
+  const [items, setItems] = useState([])
+  const [resourceType, setResourceType] = useState("posts")
+
+  useEffect(() => {
+    const fetchResourceTypes = async () => {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
+      const responseJSON = await response.json()
+      
+      setItems(responseJSON)
+    }
+    // fetchResourceTypes()
+  }, [resourceType])
+
+  //componentDidMount
+  useEffect(() => {
+    console.log("componentDidMount")
+  },[])
+
+  const changeResourceType = (resourceType) => {
+    setResourceType(resourceType)
+  }
+
+  return ( 
+    <div className="container-useEffect">
+      <h1>useEffect</h1>
+      <div className="useEffect">
+        <h2> { resourceType } </h2>
+        <div className="buttons-useEffect" style={ {display: "flex", alignItems: "center" }}>
+          <button onClick={() => changeResourceType("posts")}>Posts</button>
+          <button onClick={() => changeResourceType("comments")}>Comments</button>
+          <button onClick={() => changeResourceType("todos")}>Todos</button>
+        </div>
+      </div>
+      {items.map((item) => (
+        <div>
+          <p>{item.title}</p>
+          <p>{item.name}</p>
+        </div>
+      ))}
+    </div>
+   );
+}
+ 
+export default HookUseEffect;
+```
+
+Para simular o **componentWillUnmount**:
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+import './Components.css'
+
+const HookUseEffect = () => {
+  const [items, setItems] = useState([])
+  const [resourceType, setResourceType] = useState("posts")
+
+  useEffect(() => {
+    const fetchResourceTypes = async () => {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
+      const responseJSON = await response.json()
+      
+      setItems(responseJSON)
+    }
+    // fetchResourceTypes()
+  }, [resourceType])
+
+  //componentDidMount
+  useEffect(() => {
+    console.log("componentDidMount")
+
+    return () => {
+      // componentWillUnmount
+      console.log("componentWillUnmount")
+    }
+  },[])
+
+  const changeResourceType = (resourceType) => {
+    setResourceType(resourceType)
+  }
+
+  return ( 
+    <div className="container-useEffect">
+      <h1>useEffect</h1>
+      <div className="useEffect">
+        <h2> { resourceType } </h2>
+        <div className="buttons-useEffect" style={ {display: "flex", alignItems: "center" }}>
+          <button onClick={() => changeResourceType("posts")}>Posts</button>
+          <button onClick={() => changeResourceType("comments")}>Comments</button>
+          <button onClick={() => changeResourceType("todos")}>Todos</button>
+        </div>
+      </div>
+      {items.map((item) => (
+        <div>
+          <p>{item.title}</p>
+          <p>{item.name}</p>
+        </div>
+      ))}
+    </div>
+   );
+}
+ 
+export default HookUseEffect;
+```
+
 
 
 ## [16:38](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=998s) - useRef

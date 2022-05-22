@@ -1,9 +1,30 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './Components.css'
 
 const HookUseEffect = () => {
+  const [items, setItems] = useState([])
   const [resourceType, setResourceType] = useState("posts")
+
+  useEffect(() => {
+    const fetchResourceTypes = async () => {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
+      const responseJSON = await response.json()
+      
+      setItems(responseJSON)
+    }
+    // fetchResourceTypes()
+  }, [resourceType])
+
+  //componentDidMount
+  useEffect(() => {
+    console.log("componentDidMount")
+
+    return () => {
+      // componentWillUnmount
+      console.log("componentWillUnmount")
+    }
+  },[])
 
   const changeResourceType = (resourceType) => {
     setResourceType(resourceType)
@@ -20,6 +41,12 @@ const HookUseEffect = () => {
           <button onClick={() => changeResourceType("todos")}>Todos</button>
         </div>
       </div>
+      {items.map((item) => (
+        <div>
+          <p>{item.title}</p>
+          <p>{item.name}</p>
+        </div>
+      ))}
     </div>
    );
 }
