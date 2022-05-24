@@ -5,6 +5,7 @@
   margin-top: 30px;
 }
 
-.first-container{
+.first-container,
+.second-container{
   display: flex;
 }

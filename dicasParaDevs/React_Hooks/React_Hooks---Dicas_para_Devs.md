@@ -434,11 +434,110 @@ const HookUseEffect = () => {
 export default HookUseEffect;
 ```
 
-
-
 ## [16:38](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=998s) - useRef
 
+O **useRef** guarda um valor assim como o **useState**, mas quando o valor é atualizado o componente não é renderizado novamente. Ex.:
+
+- Temos a missão de guardar em algum lugar, quantas vezes o nosso componente foi renderizado. No exemplo abaixo, o **renders** vai registrar quantas vezes o input foi alterado, sem precisar renderizar o componente novamente.:
+
+```jsx
+import React, { useState, useEffect, useRef} from 'react';
+
+import './Components.css'
+
+const HookUseRef = () => {
+  const [name, setName] = useState("")
+
+  const renders = useRef(0)
+
+  useEffect(() =>{
+    renders.current = renders.current + 1
+  })
+
+  return ( 
+    <div className="container-useRef">
+      <h1>useRef</h1>
+      <div className="useRef">
+        <input value={name} onChange={(e) => setName(e.target.value)} />
+        <p> Hello! My name is { name }</p>
+        <p> Renders: {renders.current}</p>
+      </div>
+    </div>
+   );
+}
+ 
+export default HookUseRef;
+```
+
+- Usamos também o **useRef** para referenciar elementos HTML. Neste próximo exemplo, vamos fazer com que o cursor foque no elemento **input** ao clicar no **button**:
+
+```jsx
+import React, { useState, useEffect, useRef} from 'react';
+
+import './Components.css'
+
+const HookUseRef = () => {
+  const [name, setName] = useState("")
+  
+  const inputRef = useRef()
+  
+  const focusInput = () => {
+    inputRef.current.focus()
+  }
+
+  return ( 
+    <div className="container-useRef">
+      <h1>useRef</h1>
+      <div className="useRef">
+        <input 
+          ref={inputRef} 
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
+        />
+        <p> Hello! My name is { name }</p>
+        <button onClick={focusInput} > Focus Input </button>
+      </div>
+    </div>
+   );
+}
+ 
+export default HookUseRef;
+```
+
+- Podemos também guardar um valor anterior de um **Staste**. Neste próximo exemplo, vamos guardar o último nome digitado no input:
+
+```jsx
+import React, { useState, useEffect, useRef} from 'react';
+
+import './Components.css'
+
+const HookUseRef = () => {
+  const [name, setName] = useState("")
+  
+  const previousName = useRef()
+
+  useEffect(() =>{
+    previousName.current = name
+  }, [name])
+
+  return ( 
+    <div className="container-useRef">
+      <h1>useRef</h1>
+      <div className="useRef">
+        <input value={name} onChange={(e) => setName(e.target.value)} />
+        <p> Hello! My name is { name }</p>
+        <p>An may name was {previousName.current}</p>
+      </div>
+    </div>
+   );
+}
+ 
+export default HookUseRef;
+```
+
 ## [23:23](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=1403s) - useReducer
+
+
 
 ## [34:42](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=2082s) - useContext
 

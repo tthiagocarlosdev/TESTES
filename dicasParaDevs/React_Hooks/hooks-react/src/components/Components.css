@@ -1,4 +1,6 @@
-.container-useState, .container-useEffect {
+.container-useState, 
+.container-useEffect, 
+.container-useRef {
   min-width: 400px;
   max-width:500px;
   margin: 30px auto;
@@ -9,6 +11,10 @@
   border-radius: 10px;
 }
 
-.useState-button, .useState-state, .useEffect, .buttons-useEffect{
+.useState-button, 
+.useState-state, 
+.useEffect, 
+.buttons-useEffect,
+.useRef, .useRef p{
   margin-top: 20px;
 }
