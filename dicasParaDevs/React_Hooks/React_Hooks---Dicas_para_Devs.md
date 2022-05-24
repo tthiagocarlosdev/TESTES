@@ -537,9 +537,142 @@ export default HookUseRef;
 
 ## [23:23](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=1403s) - useReducer
 
+Usamos o **useREducer** para gerenciar estado/State no componente, mas de uma maneira diferente do que o **useState**.
 
+- No exemplo abaixo, temos um contador que ao clicar no button **increment**, será incrementado valor a ele, e ao clicar no button **discremente**, acontecerá o contrário:
+
+```jsx
+// import React from 'react';
+import { useReducer } from 'react';
+
+const reducer = (state, action) => {
+  switch(action.type){
+    case "increment":
+      return{
+        counter: state.counter + 1
+      }
+    case "decrement":
+      return{
+        counter: state.counter - 1
+      }
+    default:
+      return state
+  }
+}
+
+
+const HookUseReducer = () => {
+  const [state, dispatch] = useReducer(reducer, { counter: 0})
+
+  return ( 
+    <div className="container-useReducer">
+      <h1>useReducer</h1>
+      <div className="useReducer">
+        <p>{state.counter}</p>
+        <button onClick={() => dispatch({ type: "increment" })}>Increment</button>
+        <button onClick={() => dispatch({ type: "decrement" })}>Decrement</button>
+      </div>
+    </div>
+   );
+}
+ 
+export default HookUseReducer;
+```
+
+- Agora vamos criar um componente que vai armazenar várias tarefas no State e mostrar elas na tela:
+
+```jsx
+import { useReducer, useState } from 'react';
+
+const reducer = (state, action) => {
+  switch(action.type){
+    case 'add-task':
+      return{
+        tasks: [...state.tasks, {name: action.payload, isCompleted: false}]
+      }
+    default:
+      return state
+  }
+}
+
+const HookUseReducer = () => {
+  const [state, dispatch] = useReducer(reducer, { tasks: [] })
+
+  const [inputValue, setInputValue] = useState("")
+  
+  return ( 
+    <div className="container-useReducer">
+      <h1>useReducer</h1>
+      <div className="useReducer">
+        <input value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+        <button onClick={() => { dispatch({ type: "add-task", payload: inputValue }); setInputValue("") }}>Adicionar</button>
+
+        {state.tasks.map((task) =>(
+          <p>{task.name}</p>
+        ))}
+      </div>
+    </div>
+   );
+}
+ 
+export default HookUseReducer;
+```
+
+- Quando utilizar o **useREducer**:
+
+```jsx
+import { useReducer, useState } from 'react';
+
+const reducer = (state, action) => {
+  switch(action.type){
+    case 'add-task':
+      return{
+        ...state,
+        tasks: [...state.tasks, {name: action.payload, isCompleted: false}]
+      }
+    case 'toggle-task':
+      return {
+        ...state,
+        tasks: state.tasks.map((item, index) => 
+          index == action.payload ? { ...item, isCompleted: !item.isCompleted } : item
+        )
+      }
+    default:
+      return state
+  }
+}
+
+const HookUseReducer = () => {
+  const [state, dispatch] = useReducer(reducer, { tasks: [] })
+
+  const [inputValue, setInputValue] = useState("")
+
+  return ( 
+    <div className="container-useReducer">
+      <h1>useReducer</h1>
+      <div className="useReducer">
+        <input value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+        <button onClick={() => { dispatch({ type: "add-task", payload: inputValue }); setInputValue("") }}>Adicionar</button>
+
+        {state.tasks.map((task, index) => (
+          <p 
+            onClick={() => dispatch({ type: "toggle-task", payload: index})} 
+            style={{ textDecoration: task.isCompleted ? "font-size: 20px" : "none" }}
+          >
+            {task.name}
+          </p>
+        ))}
+      </div>
+    </div>
+   );
+}
+ 
+export default HookUseReducer;
+```
 
 ## [34:42](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=2082s) - useContext
+
+PAREI
 
 ## [38:26](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=2306s) - useMemo
 

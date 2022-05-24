@@ -1,6 +1,7 @@
 .container-useState, 
 .container-useEffect, 
-.container-useRef {
+.container-useRef,
+.container-useReducer {
   min-width: 400px;
   max-width:500px;
   margin: 30px auto;
@@ -15,6 +16,7 @@
 .useState-state, 
 .useEffect, 
 .buttons-useEffect,
-.useRef, .useRef p{
+.useRef, .useRef p,
+.useReducer, .useReducer button, .useReducer p{
   margin-top: 20px;
 }

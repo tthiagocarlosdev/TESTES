@@ -2,6 +2,7 @@ import React from 'react';
 import HookUseState from './components/HookUseState'
 import HookUseEffect from './components/HookUseEffect'
 import HookUseRef from './components/HookUseRef'
+import HookUseReducer from './components/HookUseReducer'
 
 import './App.css'
 
@@ -16,6 +17,7 @@ const App = () => {
         </div>
         <div className="second-container">
           <HookUseRef />
+          <HookUseReducer />
         </div>
       </div>
     </>
