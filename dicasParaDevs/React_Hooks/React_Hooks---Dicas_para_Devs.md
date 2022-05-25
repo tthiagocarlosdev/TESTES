@@ -810,9 +810,129 @@ Ao executar este componente, clicando no button **Toggle Theme** ele irá mudar 
 
 ## [38:26](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=2306s) - useMemo
 
+Usado para otimizar a performance da nossa aplicação. Quando uma function está demandando muito desempenho de uma aplicação, o **useMemo** é indicado para melhorar a performance:
+
+```jsx
+import { useState, useMemo } from 'react';
+
+const HookUseMemo = () => {
+  const [number, setNumber] = useState(1)
+  const [text, setText] = useState("")
+
+  const doubleNumber = useMemo(() => {
+    return slowFunction(number);
+  }, [number]);
+
+  return ( 
+    <div className="conteiner-useMemo">
+      <h1>useMemo</h1>
+      <div className="useMemo">
+        <p>{ number }</p>
+        <input value={text} onChange={(e) => setText(e.target.value)}/>
+        <button onClick={()=> setNumber(2)}> Increment </button>
+        <p>text: {text}</p>
+      </div>
+    </div>
+    
+   );
+}
+
+const slowFunction = (num) => {
+  console.log("Slow function is being called!");
+  for(let i = 0; i <= 10000; i++){}
+  return num * 2;
+ };
+ 
+export default HookUseMemo;
+```
+
 ## [42:40](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=2560s) - useCallback
 
-## [49:03](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=2943s) - useLayoutEffect
+Também usado para resolver problemas de performance. Sempre que tiver uma function que está passando como prop e essa function tem algum tipo de processamento que leva um tempo que se executado sempre que o componente ser renderizado novamente vai causar um problema de performance. No nosso exemplo, termos uma chada para uma API que só será executada quando for algum button for clicado e não quando colocar algum valor no input:
+
+```jsx
+import { useState, useCallback } from 'react';
+
+import List from './HookUseCallback-list';
+
+const HookUseCallback = () => {
+  const [text, setText] = useState("")
+  const [ resourceType, setResourceType] = useState("posts")
+
+  const getItems = useCallback(async() =>{
+      console.log("getItems is being called!");
+      const response = await fetch(
+        `https://jsonplaceholder.typicode.com/${resourceType}`
+      );
+      const responseJSON = await response.json();
+  
+      return responseJSON
+  }, [resourceType])
+
+  return ( 
+    <div className="container-useCallback">
+      <h1>useCallback</h1>
+      <div className="useCallback">
+        <input value={text} onChange={(e)=> setText(e.target.value)} />
+
+        <button onClick={() =>setResourceType("posts")}>Posts</button>
+        <button onClick={() =>setResourceType("comments")}>Comments</button>
+        <button onClick={() =>setResourceType("todos")}>Todos</button>
+
+        <List getItems={getItems} />
+      </div>
+    </div>
+   );
+}
+ 
+export default HookUseCallback;
+```
+
+A diferença entre o **useMemo** e o **useCallback** é que o primeiro vai guardar em memória o retorno da function, já o segundo guarda a function. Para aplicabilidade do **useCallback**, devemos pensar em três perguntas:
+
+- Eu estou passando uma function como _**prop**_ para algum componente?
+
+  - No nosso exemplo sim:
+
+    ```jsx
+    <List getItems={getItems} />
+    ```
+
+- Esta function tem algum custo grande de performance?
+
+  - No nosso exemplo sim, a function faz um **fetch** em uma **API**:
+
+    ```jsx
+    const getItems = useCallback(async() =>{
+          console.log("getItems is being called!");
+          const response = await fetch(
+            `https://jsonplaceholder.typicode.com/${resourceType}`
+          );
+          const responseJSON = await response.json();
+      
+          return responseJSON
+      }, [resourceType])
+    ```
+
+- Esta function está sendo executada desnecessáriamente?
+
+  - No nosso exemplo sim: Era sempre executada quando mudava o **input**:
+
+    ```jsx
+    const getItems = async () => {
+        console.log("getItems is being called!");
+          const response = await fetch(
+            `https://jsonplaceholder.typicode.com/${resourceType}`
+          );
+          const responseJSON = await response.json();
+      
+          return responseJSON
+      }
+    ```
+
+Sendo sim para estas três perguntas, então devemos usar o **useCallbcak**.
+
+## [49:03](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=2943s) - useLayoutEffect - PAREI
 
 ## [52:29](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=3149s) - Conclusão
 

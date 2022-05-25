@@ -9,6 +9,9 @@ import ThemeContextProvider from './components/HookUseContext-theme-context'
 import Greeting from './components/HookUseContext-Greeting'
 import Message from './components/HookUseContext-Message'
 
+import HookUseMemo from './components/HookUseMemo'
+import HookUseCallback from './components/HookUseCallback'
+
 import './App.css'
 
 const App = () => {
@@ -25,10 +28,18 @@ const App = () => {
           <HookUseReducer />
         </div>
         <div className="third-container">
-          <ThemeContextProvider>
-            <Message />
-            <Greeting />
-          </ThemeContextProvider>
+          <div className="container-useContext">
+            <ThemeContextProvider>
+              <Message />
+              <Greeting />
+            </ThemeContextProvider>
+          </div>
+          <div>
+            <HookUseMemo />
+          </div>
+        </div>
+        <div className="fourth-container">
+          <HookUseCallback />
         </div>
       </div>
     </>

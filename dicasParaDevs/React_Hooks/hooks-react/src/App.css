@@ -6,6 +6,8 @@
 }
 
 .first-container,
-.second-container{
+.second-container,
+.third-container,
+.fourth-container{
   display: flex;
 }

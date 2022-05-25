@@ -16,9 +16,12 @@ const HookUseState = () => {
     <>
       <div className="container-useState">
         <h1>useState</h1>
-        <h2 className="useState-state"> { count } </h2>
-        <p> { theme }</p>
-        <button onClick={ incrementCount } className="useState-button"> Increment </button>
+        <div className="useState">
+          <h2 > { count } </h2>
+          <p> { theme }</p>
+          <button onClick={ incrementCount } > Increment </button>
+        </div>
+        
       </div>
       
     </>
