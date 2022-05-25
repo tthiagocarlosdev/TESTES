@@ -672,7 +672,141 @@ export default HookUseReducer;
 
 ## [34:42](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=2082s) - useContext
 
-PAREI
+No próximo componente, vamos criar um contexto que tem dois valores, sendo um tema e uma function que vai mudar esse tema. Vamos criar um _**Provider**_ que vai ficar em volta de tudo o que queremos que receba as props que ele vai passar. Usando o hook **useContext**:
+
+Aplicação principal:
+
+```jsx
+import React from 'react';
+
+import HookUseState from './components/HookUseState'
+import HookUseEffect from './components/HookUseEffect'
+import HookUseRef from './components/HookUseRef'
+import HookUseReducer from './components/HookUseReducer'
+
+import ThemeContextProvider from './components/HookUseContext-theme-context'
+import Greeting from './components/HookUseContext-Greeting'
+import Message from './components/HookUseContext-Message'
+
+import './App.css'
+
+const App = () => {
+  return ( 
+    <>
+      <div className="container">
+        <h1 className="title">Hooks React</h1>
+        <div className="first-container">
+          <HookUseState />
+          <HookUseEffect />
+        </div>
+        <div className="second-container">
+          <HookUseRef />
+          <HookUseReducer />
+        </div>
+        <div className="third-container">
+          <ThemeContextProvider>
+            <Message />
+            <Greeting />
+          </ThemeContextProvider>
+        </div>
+      </div>
+    </>
+   );
+}
+ 
+export default App;
+```
+
+O tema, a function e o provider:
+
+```jsx
+import { useState, createContext } from 'react';
+
+export const ThemeContext = createContext({
+  theme: "light",
+  toggleTheme: () => {},
+})
+
+const ThemeContextProvider = ({ children }) => {
+  const [theme, setTheme] = useState("light")
+
+  const toggleTheme = () => {
+    if(theme == "light"){
+      return setTheme("dark")
+    }
+
+    return setTheme("light")
+  }
+  return ( 
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <h1 className="useContext" >useContext</h1>
+      {children}
+    </ThemeContext.Provider>
+   )
+}
+ 
+export default ThemeContextProvider;
+```
+
+Componente **Mesage**:
+
+```jsx
+import { useContext } from 'react'
+import { ThemeContext } from "./HookUseContext-theme-context"
+
+const Message = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext)
+  return (
+    <>
+      <div
+        style={{
+          padding: 20,
+          borderRadius: 10,
+          backgroundColor: theme == 'light' ? '#eee' : '#333',
+          color: theme == 'dark' ? '#eee': '#333',
+        }}
+      >
+        <h1>Currente theme: { theme }</h1>
+
+        <button className="message-button" onClick={() => toggleTheme()}>Toggle Theme</button>
+      </div>
+    </>
+  );
+}
+ 
+export default Message;
+```
+
+Componente **Greeting**:
+
+```jsx
+import { useContext } from "react";
+
+import { ThemeContext } from "./HookUseContext-theme-context"
+
+const Greeting = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext)
+  return (
+    <>
+      <div
+        style={{
+          padding: 20,
+          borderRadius: 10,
+          backgroundColor: theme == 'light' ? '#eee' : '#333',
+          color: theme == 'dark' ? '#eee': '#333',
+          marginTop: 20,
+        }}
+      >
+        <h1>Hello World</h1>
+      </div>
+    </>
+  );
+}
+ 
+export default Greeting;
+```
+
+Ao executar este componente, clicando no button **Toggle Theme** ele irá mudar o tema de light para dark e vice-versa.
 
 ## [38:26](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=2306s) - useMemo
 

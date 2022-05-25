@@ -1,8 +1,13 @@
 import React from 'react';
+
 import HookUseState from './components/HookUseState'
 import HookUseEffect from './components/HookUseEffect'
 import HookUseRef from './components/HookUseRef'
 import HookUseReducer from './components/HookUseReducer'
+
+import ThemeContextProvider from './components/HookUseContext-theme-context'
+import Greeting from './components/HookUseContext-Greeting'
+import Message from './components/HookUseContext-Message'
 
 import './App.css'
 
@@ -18,6 +23,12 @@ const App = () => {
         <div className="second-container">
           <HookUseRef />
           <HookUseReducer />
+        </div>
+        <div className="third-container">
+          <ThemeContextProvider>
+            <Message />
+            <Greeting />
+          </ThemeContextProvider>
         </div>
       </div>
     </>

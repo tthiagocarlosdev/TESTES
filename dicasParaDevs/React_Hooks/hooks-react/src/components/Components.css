@@ -1,7 +1,8 @@
 .container-useState, 
 .container-useEffect, 
 .container-useRef,
-.container-useReducer {
+.container-useReducer,
+.third-container {
   min-width: 400px;
   max-width:500px;
   margin: 30px auto;
@@ -17,6 +18,11 @@
 .useEffect, 
 .buttons-useEffect,
 .useRef, .useRef p,
-.useReducer, .useReducer button, .useReducer p{
+.useReducer, .useReducer button, .useReducer p,
+.message-button{
   margin-top: 20px;
+}
+
+.useContext{
+  margin-bottom: 20px;
 }
