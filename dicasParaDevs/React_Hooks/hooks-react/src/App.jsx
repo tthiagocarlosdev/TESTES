@@ -12,6 +12,8 @@ import Message from './components/HookUseContext-Message'
 import HookUseMemo from './components/HookUseMemo'
 import HookUseCallback from './components/HookUseCallback'
 
+import HookUseLayoutEffect from './components/HookUseLayoutEffect'
+
 import './App.css'
 
 const App = () => {
@@ -40,6 +42,7 @@ const App = () => {
         </div>
         <div className="fourth-container">
           <HookUseCallback />
+          <HookUseLayoutEffect />
         </div>
       </div>
     </>

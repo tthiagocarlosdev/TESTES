@@ -932,7 +932,33 @@ A diferença entre o **useMemo** e o **useCallback** é que o primeiro vai guard
 
 Sendo sim para estas três perguntas, então devemos usar o **useCallbcak**.
 
-## [49:03](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=2943s) - useLayoutEffect - PAREI
+## [49:03](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=2943s) - useLayoutEffect
+
+O **useLayoutEffect** é quase semelhante ao **useEffect**. A diferença entre os dois é que o **useEffect** vai ser executado depois que o DOM já tive sido montado pelo react, enquanto que o **useLayoutEffect** vai ser executado antes do DOM ser montando pelo react:
+
+```jsx
+import { useLayoutEffect, useState } from 'react';
+
+const HookUseLayoutEffect = () => {
+  const [count, setCount] = useState(1);
+
+  useLayoutEffect(() => {
+    console.log(count);
+  }, [count]);
+
+  return ( 
+    <div className="container-useLayoutEffect">
+      <h1>useLayoutEffect</h1>
+      <div className="useLayoutEffect">
+        <h1>{count}</h1>
+        <button onClick={() => setCount((prev) => prev + 1)}>Increment</button>
+      </div>
+    </div>
+   );
+}
+ 
+export default HookUseLayoutEffect;
+```
 
 ## [52:29](https://www.youtube.com/watch?v=MA3Ngo32qiI&t=3149s) - Conclusão
 

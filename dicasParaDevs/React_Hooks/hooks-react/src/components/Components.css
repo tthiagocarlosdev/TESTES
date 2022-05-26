@@ -4,7 +4,8 @@
 .container-useReducer,
 .container-useContext, 
 .conteiner-useMemo,
-.container-useCallback {
+.container-useCallback,
+.container-useLayoutEffect {
   min-width: 400px;
   max-width:500px;
   margin: 30px auto;
@@ -21,10 +22,15 @@
 .useReducer *,
 .message-button,
 .useMemo *,
-.useCallback *{
+.useCallback *,
+.useLayoutEffect *{
   margin-top: 20px;
 }
 
+.useLayoutEffect button{
+  padding: 15px;
+  font-size: 14px;
+}
 .useContext{
   margin-bottom: 20px;
 }
