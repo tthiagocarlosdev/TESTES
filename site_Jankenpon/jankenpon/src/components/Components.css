@@ -1,0 +1,19 @@
+.title{
+  color:chartreuse;
+  overflow: auto;
+  text-align: center;
+  font-size: 30px;
+}
+
+.button {
+  background-color: chartreuse;
+  height: 70px;
+  padding: 0 10px;
+  border-radius: 5px;
+  width: 10%;
+  font-size:16px;
+  color: #444;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
