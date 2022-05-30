@@ -1,31 +1,37 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Win = ( props ) => {
-  // const [gameResult, setGameResult] = useState("")
+  let computerPlay = props.moves.computerResult
+  let humanPlay = props.moves.humanResult
+  const [winner, setWinner] = useState("")
+  
+  console.log(winner)
 
-  // if(humanPlay == "stone" && computerPlay == "scissors"){
-  //   setGameResult(true)
-  // } else if (humanPlay == "scissors" && computerPlay == "paper"){
-  //   setGameResult(true)
-  // } else if (humanPlay == "paper" && computerPlay == "stone"){
-  //   setGameResult(true)
-  // } else if(computerPlay == "stone" && computerPlay == "scissors"){
-  //   setGameResult(false)
-  // } else if (computerPlay == "scissors" && computerPlay == "paper"){
-  //   setGameResult(false)
-  // } else if (computerPlay == "paper" && computerPlay == "stone"){
-  //   setGameResult(false)
-  // } else {
-  //   setGameResult(0)
-  // }
-
-    // console.log(props)
-    // console.log(props.moves.humanResult)
-    // console.log(props.moves.computerResult)
+  useEffect(() => {
+    if(humanPlay == "stone" && computerPlay == "scissors"){
+      setWinner("Human")
+    } else if (humanPlay == "scissors" && computerPlay == "paper"){
+      setWinner("Human")
+    } else if (humanPlay == "paper" && computerPlay == "stone"){
+      setWinner("Human")
+    } else if(computerPlay == "stone" && humanPlay == "scissors"){
+      setWinner("Computer")
+    } else if (computerPlay == "scissors" && humanPlay == "paper"){
+      setWinner("Computer")
+    } else if (computerPlay == "paper" && humanPlay == "stone"){
+      setWinner("Computer")
+    } else if (computerPlay == humanPlay) {
+      setWinner("A tie")
+    }
+  },[computerPlay, humanPlay])
+  
+    console.log(props)
+    console.log(props.moves.humanResult)
+    console.log(props.moves.computerResult)
 
   return ( 
     <div className="win">
-      <h1> Win: </h1>
+      <h1> Winner: { winner }</h1>
     </div>
    );
 }

@@ -4,6 +4,7 @@ import React, { useState} from 'react';
 import Title from './components/Title'
 import Button from './components/Button'
 import ShowHumanChoice from './components/ShowHumanChoice';
+import ShowComputerChoice from './components/ShowComputerChoice';
 import Win from './components/Win'
 
 // Style
@@ -11,6 +12,7 @@ import './App.css';
 import { GiStoneAxe } from "react-icons/gi"
 import { RiFilePaper2Line } from "react-icons/ri"
 import { AiOutlineScissor } from "react-icons/ai"
+
 
 const App = () => {
   const [moves, setMoves] = useState(
@@ -28,41 +30,47 @@ const App = () => {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
-  // const handleShowComputerPlay = (choise) => {
-  //   if(choise == 1){
-  //     setComputerResulter("Pedra")
-  //     // handleAddComputerChoise("stone")
-  //   } else if(choise == 2) {
-  //     setComputerResulter("Papel")
-  //     // handleAddComputerChoise("paper")
-  //   } else if(choise == 3) {
-  //     setComputerResulter("Tesoura")
-  //     // handleAddComputerChoise("scissors")
-  //   }
-  // }
+  const handleComputerChoise = (choise) => {
+    
+    let computerChoise = ""
 
-  
+    if(choise == 1){
+      computerChoise = "stone"
+    } else if(choise == 2) {
+      computerChoise ="paper"
+    } else if(choise == 3) {
+      computerChoise = "scissors"
+    }
+
+    return computerChoise
+  }
 
   const handleAddChoise = (choise) => {
-    let computer  = hendleGetRandomIntInclusive(1,3)
-    console.log(computer)
+
+    let computer = hendleGetRandomIntInclusive(1,3)
+    let computerChoise = handleComputerChoise(computer)
+
+    // console.log(computer)
+
     if(choise == "stone"){
-      handleAddHumanChoise("stone", computer)
+      handleChoises("stone", computerChoise)
     } else if(choise == "paper") {
-      handleAddHumanChoise("paper", computer) 
+      handleChoises("paper", computerChoise) 
     } else if(choise == "scissors") {
-      handleAddHumanChoise("scissors", computer)
+      handleChoises("scissors", computerChoise)
     }
   }
 
-  const handleAddHumanChoise = (humanResult, computerResult) => {
+  const handleChoises = (humanResult, computerResult) => {
     const newMove =  { 
       humanResult: humanResult,
       computerResult: computerResult
      }
     setMoves(newMove)
   }
-  
+
+  // console.log(moves) 
+
   return ( 
     <div className="container-jankenpon">
       <Title />
@@ -73,7 +81,7 @@ const App = () => {
       </div>
       <div className="result">
         <ShowHumanChoice moves={moves}/>
-        <h1> Computer: { computerResult} </h1>
+        <ShowComputerChoice moves={moves}/>
         <Win moves={moves} />
       </div>
     </div>
