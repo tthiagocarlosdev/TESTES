@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
-const Win = ( props ) => {
+const Winner = ( props ) => {
   let computerPlay = props.moves.computerResult
   let humanPlay = props.moves.humanResult
-  const [winner, setWinner] = useState("")
-  
-  console.log(winner)
+  const [winner, setWinner] = useState(" ")
 
   useEffect(() => {
-    if(humanPlay == "stone" && computerPlay == "scissors"){
+    if (computerPlay == "" && humanPlay == "") { 
+      setWinner(" ")
+    } else if(humanPlay == "stone" && computerPlay == "scissors"){
       setWinner("Human")
     } else if (humanPlay == "scissors" && computerPlay == "paper"){
       setWinner("Human")
@@ -20,14 +20,10 @@ const Win = ( props ) => {
       setWinner("Computer")
     } else if (computerPlay == "paper" && humanPlay == "stone"){
       setWinner("Computer")
-    } else if (computerPlay == humanPlay) {
+    } else if (computerPlay == humanPlay){
       setWinner("A tie")
     }
   },[computerPlay, humanPlay])
-  
-    console.log(props)
-    console.log(props.moves.humanResult)
-    console.log(props.moves.computerResult)
 
   return ( 
     <div className="win">
@@ -36,7 +32,7 @@ const Win = ( props ) => {
    );
 }
  
-export default Win;
+export default Winner;
 
 // - papel/paper
 // - tesoura/scissors

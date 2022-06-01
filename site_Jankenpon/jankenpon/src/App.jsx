@@ -5,7 +5,9 @@ import Title from './components/Title'
 import Button from './components/Button'
 import ShowHumanChoice from './components/ShowHumanChoice';
 import ShowComputerChoice from './components/ShowComputerChoice';
-import Win from './components/Win'
+import Winner from './components/Winner'
+import Scoreboard from './components/Scoreboard';
+import NumberOfGames from './components/NumberOfGames';
 
 // Style
 import './App.css';
@@ -21,8 +23,6 @@ const App = () => {
       computerResult: "",
     }
   )
-
-  const [computerResult, setComputerResulter] = useState("")
 
   const hendleGetRandomIntInclusive = (min, max) => {
     min = Math.ceil(min)
@@ -50,8 +50,6 @@ const App = () => {
     let computer = hendleGetRandomIntInclusive(1,3)
     let computerChoise = handleComputerChoise(computer)
 
-    // console.log(computer)
-
     if(choise == "stone"){
       handleChoises("stone", computerChoise)
     } else if(choise == "paper") {
@@ -69,8 +67,6 @@ const App = () => {
     setMoves(newMove)
   }
 
-  // console.log(moves) 
-
   return ( 
     <div className="container-jankenpon">
       <Title />
@@ -80,9 +76,11 @@ const App = () => {
         <Button onClick={() => handleAddChoise("scissors")} > <AiOutlineScissor className="icon-button"/> </Button>
       </div>
       <div className="result">
-        <ShowHumanChoice moves={moves}/>
-        <ShowComputerChoice moves={moves}/>
-        <Win moves={moves} />
+        <ShowHumanChoice moves={moves} />
+        <ShowComputerChoice moves={moves} />
+        <Winner moves={moves} />
+        <Scoreboard moves={moves} />
+        <NumberOfGames moves={moves} />
       </div>
     </div>
    );
@@ -100,3 +98,6 @@ export default App;
 
 // BiJoystick - game
 // BiTrophy - trofeu
+
+// scoreboard
+// number of games

@@ -17,3 +17,13 @@
   cursor: pointer;
   border: none;
 }
+
+.button:hover {
+  background-color: #444;
+  color: chartreuse;
+  border: solid 2px chartreuse;
+}
+
+.result {
+  color: chartreuse;
+}

@@ -15,8 +15,6 @@ const ShowComputerChoice = ( props ) => {
       }
     }, [choice])
 
-    
-
   return ( 
     <h1>Computer: { computerChoise }</h1>
    );
