@@ -1,6 +1,6 @@
 # Sistema de Avaliação Física
 
-1. App
+1. App - home page
    1. personalDataFunctions
    2. anamnesisFunctions
    3. cardiorespiratoryFunctions
