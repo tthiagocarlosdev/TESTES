@@ -1,14 +1,15 @@
 # Sistema de Avaliação Física
 
-1. App - home page
-   1. personalDataFunctions
-   2. anamnesisFunctions
-   3. cardiorespiratoryFunctions
-   4. anthropometryFunctions
-   5. neuromuscularFunctions
-   6. aerobicFunctions
-   7. show results
-
+1. App
+   1. homePage
+   2. personalDataFunctions
+   3. anamnesisFunctions
+   4. cardiorespiratoryFunctions
+   5. anthropometryFunctions
+   6. neuromuscularFunctions
+   7. aerobicFunctions
+   8. show results
+   
 1. Dados pessoais
 
    1. Nome do usuário - input
