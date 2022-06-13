@@ -9,6 +9,8 @@ const Profile = ( { match } ) => {
       <h1> Profile </h1>
 
       <button onClick={() => navigate('/')} > Dashboard </button>
+      <button onClick={() => navigate('/profile/purchases')} > Purchases </button>
+      <button onClick={() => navigate('/profile/password')} > Password </button>
 
       <Outlet /> 
     </>
