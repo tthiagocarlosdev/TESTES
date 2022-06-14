@@ -1,0 +1,38 @@
+:root {
+  --background-color: #eee;
+  --color-text: rgb(69, 133, 253);
+}
+
+.container {
+  width: 60%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: var(--background-color);
+  color: var(--color-text);
+}
+
+/* personal Data */
+.page-title{
+  margin-left: 70%;
+}
+
+.input-name {
+  margin: 15px 0;
+  width: 90%;
+  display: flex;
+}
+
+.user-name-input {
+  height: 40px;
+  width: 100%;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: none;
+  flex: 2;
+  color: black;
+  font-size: 16px;
+  margin: 0 0 0 15px;
+}

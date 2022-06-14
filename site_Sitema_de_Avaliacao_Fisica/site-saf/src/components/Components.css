@@ -29,3 +29,7 @@
   background-color: var(--color-text);
   color: var(--background-color);
 }
+
+.button-next {
+  margin-left: 80%;
+}

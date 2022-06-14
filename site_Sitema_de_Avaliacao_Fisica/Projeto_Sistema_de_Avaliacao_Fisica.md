@@ -1,5 +1,7 @@
 # Sistema de Avaliação Física
 
+https://blog.betrybe.com/css/
+
 1. App
    1. homePage
    2. personalDataFunctions
