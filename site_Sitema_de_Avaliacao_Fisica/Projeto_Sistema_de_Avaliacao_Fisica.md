@@ -4,12 +4,12 @@ https://blog.betrybe.com/css/
 
 1. App
    1. homePage
-   2. personalDataFunctions
-   3. anamnesisFunctions
-   4. cardiorespiratoryFunctions
-   5. anthropometryFunctions
-   6. neuromuscularFunctions
-   7. aerobicFunctions
+   2. personalData
+   3. anamnesis
+   4. cardiorespiratory
+   5. anthropometry
+   6. neuromuscular
+   7. aerobic
    8. show results
    
 1. Dados pessoais

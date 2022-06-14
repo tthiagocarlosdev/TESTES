@@ -31,5 +31,6 @@
 }
 
 .button-next {
-  margin-left: 80%;
+  position: absolute;
+  left: 62.7%;
 }

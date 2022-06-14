@@ -30,7 +30,7 @@ const PersonalData = () => {
                 </div>
 
                 <div className="button-next">
-                    <Button onClick={() => navigate('/finalResult')} > Next </Button>
+                    <Button onClick={() => navigate('/anamnesis')} > Next </Button>
                 </div>
                 
             </div>
