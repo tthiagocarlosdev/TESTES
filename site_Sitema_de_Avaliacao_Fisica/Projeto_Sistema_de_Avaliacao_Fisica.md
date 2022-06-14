@@ -3,14 +3,14 @@
 https://blog.betrybe.com/css/
 
 1. App
-   1. homePage
-   2. personalData
-   3. anamnesis
-   4. cardiorespiratory
-   5. anthropometry
-   6. neuromuscular
-   7. aerobic
-   8. show results
+   1. homePage :heavy_check_mark:
+   2. personalData :heavy_check_mark:
+   3. anamnesis :heavy_check_mark:
+   4. cardiorespiratory :heavy_check_mark:
+   5. anthropometry :heavy_check_mark:
+   6. neuromuscular :heavy_check_mark:
+   7. aerobic :heavy_check_mark:
+   8. show results :heavy_check_mark:
    
 1. Dados pessoais
 

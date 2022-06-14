@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../components/Header'
@@ -8,6 +8,14 @@ import './Pages.css'
 
 const PersonalData = () => {
     const navigate = useNavigate();
+
+    const [ inputName, setInputName ] = useState("");
+
+    function handleInputName(e){
+        setInputName(e.target.value);
+    };
+
+    console.log(inputName)
 
     return ( 
         <>
@@ -24,13 +32,13 @@ const PersonalData = () => {
                     
                     <div className="input-name">
                         <h1> Name </h1>
-                        <input type="text" className="user-name-input" placeholder={"Full name..."}/>
+                        <input type="text" className="user-name-input" placeholder={"Full name..."} onChange={handleInputName} value={inputName}/>
                     </div>
                     
                 </div>
 
                 <div className="button-next">
-                    <Button onClick={() => navigate('/anamnesis')} > Next </Button>
+                    <Button onClick={()=> navigate('/anamnesis')} > Next </Button>
                 </div>
                 
             </div>
