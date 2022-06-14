@@ -1,17 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'
 
+//components
 import Header from '../components/Header'
 import Button from '../components/Button'
 
-import PersonalData from '../pages/PersonalData'
+import '../App.css'
 
 const Home = () => {
   let navigate = useNavigate()
-
-  const handlePersonalData = () => {
-    navigate('PersonalData')
-  }
 
   return ( 
     <>
@@ -19,10 +16,10 @@ const Home = () => {
         <Header> Physical Assessment System </Header>
         </div>
         <div className="start-assessment-button">
-          <Button onClick={() => handlePersonalData} > Start Assessment </Button>
+          <Button onClick={() => navigate('/personalData')} > Start Assessment </Button>
         </div>
         <div className="finish-assessment-button">
-          <Button> Finish Assessment </Button>
+          <Button onClick={() => navigate('/finalResult')} > Finish Assessment </Button>
         </div>
     </>
    );

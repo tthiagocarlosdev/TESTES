@@ -1,25 +1,16 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
-// Pages
-import Home from './pages/Home';
-import PersonalData from './pages/PersonalData'
+import Routes from './routes';
 
-import './App.css'
+// import './App.css'
 
 const App = () => {
 
-  
   return ( 
     <BrowserRouter>
-      <div className="app">
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/PersonalData' element={<PersonalData />} />
-        </Routes>
-      </div>
+      <Routes/>
     </BrowserRouter>
-    
    );
 }
  
