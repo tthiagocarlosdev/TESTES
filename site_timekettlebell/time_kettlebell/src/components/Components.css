@@ -1,0 +1,31 @@
+:root {
+  --background-color: #eee;
+  --color-text: rgb(69, 133, 253);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  background-color: var(--background-color);
+  color: var(--color-text);
+  font-size: 40px;
+}
+
+.button {
+  background-color: var(--background-color);
+  height: 50px;
+  padding: 0 10px;
+  border-radius: 5px;
+  width: 250px;
+  font-size:20px;
+  color: var(--color-text);
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+.button:hover {
+  background-color: var(--color-text);
+  color: var(--background-color);
+}
