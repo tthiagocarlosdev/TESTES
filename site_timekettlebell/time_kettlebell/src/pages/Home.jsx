@@ -1,19 +1,22 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'
 
 import Header from '../components/Header'
 import Button from '../components/Button'
 
+import './pages.css'
+
 const Home = () => {
+  let navigate = useNavigate()
   return ( 
     <>
       <Header/>
-
-      <div className="buttons">
+      <div className="container-buttons">
         <div className="button-registration">
-          <Button> Registration </Button>
+          <Button onClick={() => navigate('/registration')} > Registration </Button>
         </div>
         <div className="button-start">
-          <Button> Start </Button>
+          <Button onClick={() => navigate('/timer')} > Start </Button>
         </div>
       </div>
       

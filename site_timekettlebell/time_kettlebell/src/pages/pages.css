@@ -1,0 +1,42 @@
+
+.container-buttons {
+    background-color: #444;
+    margin: 10% 50px;
+    padding: 50px;
+    display: flex;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+
+
+/* Page Timer */
+.container-body {
+  background-color: rgb(0, 108, 232);
+  display: flex;
+  flex-direction: column;
+}
+
+.container-operator {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 100%;
+  display: flex;
+}
+
+.time-and-reps {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction:column;
+}
+
+.operation-button {
+  width: 40%;
+  height: 100%;
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(0, 75, 161);
+  flex: 2;
+}
+

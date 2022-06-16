@@ -1,6 +1,7 @@
 :root {
-  --background-color: #eee;
-  --color-text: rgb(69, 133, 253);
+  --background-color: rgb(71, 148, 236 );
+  --color-text: #eee;
+  --background-color-athlete-name: rgb(0, 75, 161);
 }
 
 .header {
@@ -8,8 +9,20 @@
   justify-content: center;
   padding: 1em;
   background-color: var(--background-color);
+  color: var(--background-color-athlete-name);
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  background-color: var(--background-color-athlete-name);
   color: var(--color-text);
-  font-size: 40px;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
 }
 
 .button {
@@ -29,3 +42,25 @@
   background-color: var(--color-text);
   color: var(--background-color);
 }
+
+.athlete-name{
+  display: flex;
+  justify-content: left;
+  padding: 1em;
+  background-color: var(--background-color-athlete-name);
+  color: var(--color-text);
+  font-size: 40px;
+}
+
+.repetitions,
+.time {
+  display: flex;
+  justify-content: center;
+  height: 50%;
+  font-size: 80px;
+  font-weight: bold;
+  color: var(--color-text);
+  padding: 20px;
+  /* border: 1px solid black; */
+}
+
