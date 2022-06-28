@@ -177,7 +177,7 @@ Tag _**strong**_ e _**em**_, exemplos de tag inline:
 </html>
 ```
 
-Tag _**p**_, eemplo de tag block:
+Tag _**p**_, exemplo de tag block:
 
 ```html
 <!DOCTYPE html>
@@ -206,17 +206,351 @@ Tag _**p**_, eemplo de tag block:
 
 ## [15:29](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=929s) — Links 
 
+```html
+<a href=""></a>
+```
 
+Todos os elementos possuem atributos no HTML.  A tag _**<a>**_ já vem com um atributo _**href**_ que indica para qual link quer apontar a tag a qual foi adicionado. Esse link pode ser um arquivo ou link externo. Importante lembrar que a tag _**<a>**_ é um elemento **inline**.
+
+```html
+	<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title> Curso de HTML </title>
+    </head>
+
+    <body>
+        <!-- Cabeçalhos -->
+        <h1> Cabeçalho nível 1 </h1>
+        <h2> Cabeçalho nível 2 </h2>
+        <h3> Cabeçalho nível 3 </h3>
+        <h4> Cabeçalho nível 4 </h4>
+        <h5> Cabeçalho nível 5 </h5>
+        <h6> Cabeçalho nível 6 </h6>
+
+        <!-- Parágrafos -->
+        <p> <a href="https://www.lipsum.com/" target="__blanck"> Lorem </a> ipsum dolor sit amet <p>consectetur</p> adipisicing elit. Soluta, doloremque!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur <em>adipisicing</em> elit. Quia exercitationem numquam dolore dolores impedit vero iusto incidunt omnis eaque reiciendis.</p>
+
+        <!-- Links -->
+        <a href="https://google.com" target="__blanck"> Google </a>
+    </body>
+
+</html>
+```
 
 ## [17:55](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=1075s) — Atributos de uma tag
 
+- Todas as tags podem ter atributos
+- Dão informaões sobre um elemento
+- São inseridas na tag de início
+- Padrão key value pairs (id="dicasparadevs")
+
 ## [19:27](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=1167s) — Tabelas
+
+```html
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title> Curso de HTML </title>
+    </head>
+
+    <body>
+        <!-- Cabeçalhos -->
+        <h1> Cabeçalho nível 1 </h1>
+        <h2> Cabeçalho nível 2 </h2>
+        <h3> Cabeçalho nível 3 </h3>
+        <h4> Cabeçalho nível 4 </h4>
+        <h5> Cabeçalho nível 5 </h5>
+        <h6> Cabeçalho nível 6 </h6>
+
+        <!-- Parágrafos -->
+        <p> <a href="https://www.lipsum.com/" target="__blanck"> Lorem </a> ipsum dolor sit amet consectetur adipisicing elit. Soluta, doloremque!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur <em>adipisicing</em> elit. Quia exercitationem numquam dolore dolores impedit vero iusto incidunt omnis eaque reiciendis.</p>
+
+        <!-- Links -->
+        <a href="https://google.com" target="__blanck"> Google </a>
+
+        <!-- Tabelas -->
+        <table>
+            <thead>
+                <tr>
+                    <th> Nome </th>
+                    <th> Email </th>
+                    <th> Idade </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> Thiago Carlos </td>
+                    <td> thiago@gmail.com </td>
+                    <td> 34 </td>
+                </tr>
+                <tr>
+                    <td> José da Silva </td>
+                    <td> jose@gmail.com </td>
+                    <td> 20 </td>
+                </tr>
+                <tr>
+                    <td> Maria Eduarda </td>
+                    <td> meduarda@gmail.com </td>
+                    <td> 15 </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+
+</html>
+```
+
+A tag _**<table>**_ indica que teremos uma tabela;
+
+A tag _**<thead>**_ indica o cabeçalho desta tabela;
+
+A tag _**<tbody>**_ indica o corpo da tabela;
+
+A tag _**<tr>**_ indica uma linha da tabela;
+
+A tag _**<th>**_ indica o conteúdo da célula do cabeçalho;
+
+A tag _**<td>**_ indica o conteúdo da célula do corpo.
 
 ## [21:20](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=1280s) — Formulários
 
+```html
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title> Curso de HTML </title>
+    </head>
+
+    <body>
+        <!-- Cabeçalhos -->
+        <h1> Cabeçalho nível 1 </h1>
+        <h2> Cabeçalho nível 2 </h2>
+        <h3> Cabeçalho nível 3 </h3>
+        <h4> Cabeçalho nível 4 </h4>
+        <h5> Cabeçalho nível 5 </h5>
+        <h6> Cabeçalho nível 6 </h6>
+
+        <!-- Parágrafos -->
+        <p> <a href="https://www.lipsum.com/" target="__blanck"> Lorem </a> ipsum dolor sit amet consectetur adipisicing elit. Soluta, doloremque!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur <em>adipisicing</em> elit. Quia exercitationem numquam dolore dolores impedit vero iusto incidunt omnis eaque reiciendis.</p>
+
+        <!-- Links -->
+        <a href="https://google.com" target="__blanck"> Google </a>
+
+        <br>
+        <hr>
+        <br>
+
+        <!-- Tabelas -->
+        <table>
+            <thead>
+                <tr>
+                    <th> Nome </th>
+                    <th> Email </th>
+                    <th> Idade </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> Thiago Carlos </td>
+                    <td> thiago@gmail.com </td>
+                    <td> 34 </td>
+                </tr>
+                <tr>
+                    <td> José da Silva </td>
+                    <td> jose@gmail.com </td>
+                    <td> 20 </td>
+                </tr>
+                <tr>
+                    <td> Maria Eduarda </td>
+                    <td> meduarda@gmail.com </td>
+                    <td> 15 </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <hr>
+        <br>
+
+        <!-- Formulários -->
+
+        <form action="form.php" method="POST" >
+            <div>
+                <label> Primeiro nome: </label>
+                <input type="text"placeholder="Entre seu primeiro nome">
+            </div>
+
+            <div>
+                <label> Segundo nome: </label>
+                <input type="text">
+            </div>
+
+            <div>
+                <label> E-mail: </label>
+                <input type="email">
+            </div>
+
+            <div>
+                <label> Gênero: </label>
+                <select>
+                    <option value="masculino"> Masculino </option>
+                    <option value="feminino"> Feminino </option>
+                </select>
+            </div>
+
+            <div>
+                <label> Data de nascimento: </label>
+                <input type="date">
+            </div>
+
+            <div>
+                <label> Senha: </label>
+                <input type="password">
+            </div>
+
+            <div>
+                <label> Mensagem: </label>
+                <textarea name="mensagem" id="" cols="30" rows="10"></textarea>
+            </div>
+
+            <input type="submit">
+
+        </form>
+
+    </body>
+
+</html>
+```
+
+Temos vários tipo de input's como: Texto, e-mail, select, data, senha, mensagem e o submit. Este último vai enviar os dados do formulário para a referência passada no atributo _**action**_ do elemento **form**.
+
 ## [28:10](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=1690s) — Botões
 
+```html
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title> Curso de HTML </title>
+    </head>
+
+    <body>
+        <!-- Cabeçalhos -->
+        <h1> Cabeçalho nível 1 </h1>
+        <h2> Cabeçalho nível 2 </h2>
+        <h3> Cabeçalho nível 3 </h3>
+        <h4> Cabeçalho nível 4 </h4>
+        <h5> Cabeçalho nível 5 </h5>
+        <h6> Cabeçalho nível 6 </h6>
+
+        <!-- Parágrafos -->
+        <p> <a href="https://www.lipsum.com/" target="__blanck"> Lorem </a> ipsum dolor sit amet consectetur adipisicing elit. Soluta, doloremque!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur <em>adipisicing</em> elit. Quia exercitationem numquam dolore dolores impedit vero iusto incidunt omnis eaque reiciendis.</p>
+
+        <!-- Links -->
+        <a href="https://google.com" target="__blanck"> Google </a>
+
+        <br>
+        <hr>
+        <br>
+
+        <!-- Tabelas -->
+        <table>
+            <thead>
+                <tr>
+                    <th> Nome </th>
+                    <th> Email </th>
+                    <th> Idade </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> Thiago Carlos </td>
+                    <td> thiago@gmail.com </td>
+                    <td> 34 </td>
+                </tr>
+                <tr>
+                    <td> José da Silva </td>
+                    <td> jose@gmail.com </td>
+                    <td> 20 </td>
+                </tr>
+                <tr>
+                    <td> Maria Eduarda </td>
+                    <td> meduarda@gmail.com </td>
+                    <td> 15 </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <hr>
+        <br>
+
+        <!-- Formulários -->
+
+        <form action="form.php" method="POST" >
+            <div>
+                <label> Primeiro nome: </label>
+                <input type="text"placeholder="Entre seu primeiro nome">
+            </div>
+
+            <div>
+                <label> Segundo nome: </label>
+                <input type="text">
+            </div>
+
+            <div>
+                <label> E-mail: </label>
+                <input type="email">
+            </div>
+
+            <div>
+                <label> Gênero: </label>
+                <select>
+                    <option value="masculino"> Masculino </option>
+                    <option value="feminino"> Feminino </option>
+                </select>
+            </div>
+
+            <div>
+                <label> Data de nascimento: </label>
+                <input type="date">
+            </div>
+
+            <div>
+                <label> Senha: </label>
+                <input type="password">
+            </div>
+
+            <div>
+                <label> Mensagem: </label>
+                <textarea name="mensagem" id="" cols="30" rows="10"></textarea>
+            </div>
+
+            <input type="submit">
+
+        </form>
+
+        <!-- Botões -->
+        <button> Click me </button> 
+
+    </body>
+
+</html>
+```
+
+Conseguimos adicionar botões, mas eles não possuem funcionalidade. Esta funcionalidade será adicionada apenas com php, javascript, etc.
+
 ## [28:44](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=1724s) — Imagens
+
+PAREI
 
 ## [30:40](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=1840s) — Blockquote
 
