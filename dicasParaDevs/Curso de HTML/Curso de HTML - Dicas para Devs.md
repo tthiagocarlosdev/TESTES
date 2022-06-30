@@ -550,20 +550,361 @@ Conseguimos adicionar botões, mas eles não possuem funcionalidade. Esta funcio
 
 ## [28:44](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=1724s) — Imagens
 
-PAREI
+A tag para adicionar imagens é a **<img src="" alt="">** a qual tem como atributo o **src** que indica o caminho da imagem e o **alt** contem o texto que será mostrado caso a imagem não seja carregada. A tag **<img>** é uma tag _**inline**_. Podemos adicionar também as propriedades **width** e **height**, porém é mais aconcelhável colocar esses atributos pelo **CSS**.
+
+```html
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title> Curso de HTML </title>
+    </head>
+
+    <body>
+        <!-- Cabeçalhos -->
+        <h1> Cabeçalho nível 1 </h1>
+        <h2> Cabeçalho nível 2 </h2>
+        <h3> Cabeçalho nível 3 </h3>
+        <h4> Cabeçalho nível 4 </h4>
+        <h5> Cabeçalho nível 5 </h5>
+        <h6> Cabeçalho nível 6 </h6>
+
+        <!-- Parágrafos -->
+        <p> <a href="https://www.lipsum.com/" target="__blanck"> Lorem </a> ipsum dolor sit amet consectetur adipisicing elit. Soluta, doloremque!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur <em>adipisicing</em> elit. Quia exercitationem numquam dolore dolores impedit vero iusto incidunt omnis eaque reiciendis.</p>
+
+        <!-- Links -->
+        <a href="https://google.com" target="__blanck"> Google </a>
+
+        <br>
+        <hr>
+        <br>
+
+        <!-- Tabelas -->
+        <table>
+            <thead>
+                <tr>
+                    <th> Nome </th>
+                    <th> Email </th>
+                    <th> Idade </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> Thiago Carlos </td>
+                    <td> thiago@gmail.com </td>
+                    <td> 34 </td>
+                </tr>
+                <tr>
+                    <td> José da Silva </td>
+                    <td> jose@gmail.com </td>
+                    <td> 20 </td>
+                </tr>
+                <tr>
+                    <td> Maria Eduarda </td>
+                    <td> meduarda@gmail.com </td>
+                    <td> 15 </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <hr>
+        <br>
+
+        <!-- Formulários -->
+
+        <form action="form.php" method="POST" >
+            <div>
+                <label> Primeiro nome: </label>
+                <input type="text"placeholder="Entre seu primeiro nome">
+            </div>
+
+            <div>
+                <label> Segundo nome: </label>
+                <input type="text">
+            </div>
+
+            <div>
+                <label> E-mail: </label>
+                <input type="email">
+            </div>
+
+            <div>
+                <label> Gênero: </label>
+                <select>
+                    <option value="masculino"> Masculino </option>
+                    <option value="feminino"> Feminino </option>
+                </select>
+            </div>
+
+            <div>
+                <label> Data de nascimento: </label>
+                <input type="date">
+            </div>
+
+            <div>
+                <label> Senha: </label>
+                <input type="password">
+            </div>
+
+            <div>
+                <label> Mensagem: </label>
+                <textarea name="mensagem" id="" cols="30" rows="10"></textarea>
+            </div>
+
+            <br>
+            <input type="submit">
+
+        </form>
+
+        <!-- Botões -->
+        <br>
+        <button> Click me </button> 
+
+        <!-- Imagens -->
+        <br>
+        <img src="./images/developer.jpeg" alt="Imagem de exemplo">
+
+    </body>
+
+</html>
+```
 
 ## [30:40](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=1840s) — Blockquote
 
+Esta tag é uma citação, que recebe com atributo o _**cite**_, que indica de qual site é a citação.
+
+```html
+<!-- Blockquote -->
+        <hr>
+        <br>
+        <blockquote cite="dicasparadevs.com.br">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur nesciunt aliquid quae eum laborum voluptatum perspiciatis nisi! Quaerat, ullam culpa.
+        </blockquote>
+```
+
 ## [31:20](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=1880s) — Abreviações
+
+A tag **<abbr>** recebe como atributo o _**title**_ que terá o texto completo da abreviação que foi colocada. Ao passar o mouse por cima da abreviação no site, o texto completo será exibido.
+
+```html
+<!-- Abreviações -->
+        <hr>
+        <br>
+        <p>Eu amo a <abbr title="World Wide Web">WWW</abbr>!</p>
+```
 
 ## [31:51](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=1911s) — Citações
 
+Essa tag **<cite>** também recebe uma citação, colocando-a em _intálico_.
+
+```html
+<!-- Citações -->
+        <hr>
+        <br>
+        <p>Tutorial feto por <cite>dicasparadevs</cite></p>
+```
+
+Arquivo completo das tags
+
+```html
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title> Curso de HTML </title>
+    </head>
+
+    <body style="background-color:#d4d4e9a1">
+
+        <nav>
+            <ul>
+              <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+
+        <!-- Cabeçalhos -->
+        <h1> Cabeçalho nível 1 </h1>
+        <h2> Cabeçalho nível 2 </h2>
+        <h3> Cabeçalho nível 3 </h3>
+        <h4> Cabeçalho nível 4 </h4>
+        <h5> Cabeçalho nível 5 </h5>
+        <h6> Cabeçalho nível 6 </h6>
+
+        <!-- Parágrafos -->
+        <p> <a href="https://www.lipsum.com/" target="__blanck"> Lorem </a> ipsum dolor sit amet consectetur adipisicing elit. Soluta, doloremque!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur <em>adipisicing</em> elit. Quia exercitationem numquam dolore dolores impedit vero iusto incidunt omnis eaque reiciendis.</p>
+
+        <!-- Links -->
+        <a href="https://google.com" target="__blanck"> Google </a>
+
+        <br>
+        <hr>
+        <br>
+
+        <!-- Tabelas -->
+        <table>
+            <thead>
+                <tr>
+                    <th> Nome </th>
+                    <th> Email </th>
+                    <th> Idade </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> Thiago Carlos </td>
+                    <td> thiago@gmail.com </td>
+                    <td> 34 </td>
+                </tr>
+                <tr>
+                    <td> José da Silva </td>
+                    <td> jose@gmail.com </td>
+                    <td> 20 </td>
+                </tr>
+                <tr>
+                    <td> Maria Eduarda </td>
+                    <td> meduarda@gmail.com </td>
+                    <td> 15 </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <hr>
+        <br>
+
+        <!-- Formulários -->
+
+        <form action="form.php" method="POST" >
+            <div>
+                <label> Primeiro nome: </label>
+                <input type="text"placeholder="Entre seu primeiro nome">
+            </div>
+
+            <div>
+                <label> Segundo nome: </label>
+                <input type="text">
+            </div>
+
+            <div>
+                <label> E-mail: </label>
+                <input type="email">
+            </div>
+
+            <div>
+                <label> Gênero: </label>
+                <select>
+                    <option value="masculino"> Masculino </option>
+                    <option value="feminino"> Feminino </option>
+                </select>
+            </div>
+
+            <div>
+                <label> Data de nascimento: </label>
+                <input type="date">
+            </div>
+
+            <div>
+                <label> Senha: </label>
+                <input type="password">
+            </div>
+
+            <div>
+                <label> Mensagem: </label>
+                <textarea name="mensagem" id="" cols="30" rows="10"></textarea>
+            </div>
+
+            <br>
+            <input type="submit">
+
+        </form>
+
+        <!-- Botões -->
+        <br>
+        <button> Click me </button> 
+
+        <!-- Imagens -->
+        <hr>
+        <br>
+        <img src="./images/developer.jpeg" alt="Imagem de exemplo">
+
+        <!-- Blockquote -->
+        <hr>
+        <br>
+        <blockquote cite="dicasparadevs.com.br">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur nesciunt aliquid quae eum laborum voluptatum perspiciatis nisi! Quaerat, ullam culpa.
+        </blockquote>
+
+        <!-- Abreviações -->
+        <hr>
+        <br>
+        <p>Eu amo a <abbr title="World Wide Web">WWW</abbr>!</p>
+
+        <!-- Citações -->
+        <hr>
+        <br>
+        <p>Tutorial feto por <cite>dicasparadevs</cite></p>
+
+    </body>
+
+</html>
+```
+
 ## [32:40](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=1960s) — Tags semânticas do HTML
+
+Um elemento semântico descreve claramente o seu significado para o navegador e para o desenvolvedor. As tags são usadas para criar e estruturar melhor o layout da página Web.
+
+![layout_HTML](/home/thiagocarlos/Downloads/CURSOS/PROGRAMAÇÃO/TESTES/dicasParaDevs/Curso de HTML/images/layout_HTML.png)
 
 ## [34:00](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=2040s) — Criando nossa página "Blog" com as tags semânticas
 
-## [35:05](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=2105s) — Listas
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+  </head>
+  <body style="background-color:#d4d4e9a1">
+    <header>
+      <h1>Meu Blog</h1>
+    </header>
 
-## [35:55](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=2155s) — Criando nossa página "Blog" com as tags semânticas
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+      </ul>
+    </nav>
+
+    <section>
+      <article>
+        <h1>Lorem, ipsum dolor.</h1>
+        <small>Postado por Thiago Carlos</small>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil, enim quisquam suscipit ea excepturi libero? Mollitia aut fugiat accusamus architecto.</p>
+      </article>
+
+      <article>
+        <h1>Lorem, ipsum dolor.</h1>
+        <small>Postado por Limeira</small>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil, enim quisquam suscipit ea excepturi libero? Mollitia aut fugiat accusamus architecto.</p>
+      </article>
+    </section>
+
+    <aside>
+      <ul>
+        <li><a href="exemplo.html">Desenvolvimento Web</a></li>
+        <li><a href="exemplo.html">Desenvolvimento Mobile</a></li>
+        <li><a href="exemplo.html">Carreira</a></li>
+      </ul>
+    </aside>
+    
+    <footer>
+      <p>&copy; dicasparadevs - 2020</p>
+    </footer>
+  </body>
+</html>
+```
 
 ## [39:00](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=2340s) — Pequena introdução ao CSS
+
