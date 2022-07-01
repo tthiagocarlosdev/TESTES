@@ -589,7 +589,7 @@ Arquivo completo das tags
 
 Um elemento semântico descreve claramente o seu significado para o navegador e para o desenvolvedor. As tags são usadas para criar e estruturar melhor o layout da página Web.
 
-![layout_HTML](/home/thiagocarlos/Downloads/CURSOS/PROGRAMAÇÃO/TESTES/dicasParaDevs/Curso de HTML/images/layout_HTML.png)
+![layout_HTML](https://user-images.githubusercontent.com/76978748/176800333-084a0c46-db7b-4d2d-833f-086dd8fe2365.png)
 
 ## [34:00](https://www.youtube.com/watch?v=r0CWl2EhR6Q&t=2040s) — Criando nossa página "Blog" com as tags semânticas
 
