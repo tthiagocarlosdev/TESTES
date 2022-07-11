@@ -112,7 +112,15 @@ h1 {
 
 ## HTML [07:14](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=434s) — CSS Selectors
 
+**Selector** é o elemento que queremos selecionar para estilizar;
 
+**Property** é o que quermos fazer com aquele elemento;
+
+**Value** é o valor atribuído a propriedade.
+
+![edojfcbz6sr7j0b2l6v1](/home/thiagocarlos/Downloads/CURSOS/PROGRAMAÇÃO/TESTES/dicasParaDevs/edojfcbz6sr7j0b2l6v1.webp)
+
+Algumas propriedades podem receber mais de um valor.
 
 ## [08:31](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=511s) — Classes e IDs
 
