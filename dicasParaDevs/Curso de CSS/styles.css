@@ -1,24 +1,36 @@
-.h1-vermelho {
-  color: red;
+* {
+  padding: 0;
+  margin: 0;
 }
-
-#primeiro-h1 {
-  color:green;
-}
-
 body {
-  background-color: red;
-  color: white;
+  font-family: 'Roboto Mono', monospace;
+  font-size:18px;
 }
 
-h1 {
-  color: #000000;
-}
+.container {
+  background-color: #333;
+  color: #eee;
+  width: 80%;
+  
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  /*  Mesma coisa que acima */
+  margin: 50px;
+  
+  padding-top: 60px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 60px;
+  /*  Mesma coisa que acima */
+  padding: 20px;
 
-p {
-  color: reg(0,0,255);
-}
+  border-top: 10px solid rgb(0, 0, 255);
+  border-left: 10px solid rgb(255, 0, 0);
+  border-right: 10px solid rgb(0, 255, 0);
+  border-bottom: 10px solid rgb(255, 255, 0);
+  /*  Mesma coisa que acima */
+  border: 10px solid brown;
 
-a {
-  color: rgba(0,0,255,0.6);
 }

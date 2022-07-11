@@ -241,15 +241,175 @@ a {
 
 ## [17:42](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=1062s) — Fontes internas
 
+Podemos alterar o estilo da fonte com três propriedades:
 
+- font-family
+-  font-size
+-  font-weight
+
+```html
+<body>
+  <div class="container">
+    <h1> Olá mundo! </h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque alias inventore minus, nam temporibus cupiditate asperiores nihil. Reprehenderit minima velit, id voluptates commodi cumque quasi alias molestiae autem temporibus.
+    </p>
+  </div>
+</body>
+```
+
+```css
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:18px;
+  font-weight:bold;
+}
+```
+
+Algumas fontes já vêm como padrão no HTML e CSS.
 
 ## [20:03](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=1203s) — Fontes externas
 
+Também podemos colocar fontes esternas como as fontes do site **Google Fontes**.
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <title>Curso CSS</title>
+</head>
+<body>
+  <div class="container">
+    <h1> Olá mundo! </h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque alias inventore minus, nam temporibus cupiditate asperiores nihil. Reprehenderit minima velit, id voluptates commodi cumque quasi alias molestiae autem temporibus.
+    </p>
+  </div>
+</body>
+</html>
+```
+
+```css
+body {
+  font-family: 'Roboto Mono', monospace;
+  font-size:18px;
+}
+```
 
 ## [24:24](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=1464s) — Margin, padding & border (box-model)
 
+- **Padding:** espaçamento **dentro** do conteúdo;
+- **Margin:** espaçamento **fora** do conteúdo;
+- **Border:** borda do conteúdo
 
+<img src="/home/thiagocarlos/Downloads/CURSOS/PROGRAMAÇÃO/TESTES/dicasParaDevs/images/padding-mardin-border-css.png" alt="padding-mardin-border-css" style="zoom: 67%;" />
+
+- Exemplificando o **padding**:
+  - Podemos aplicar o **padding** apenas em uma, duas ou três bordas diferentes ou em todas ao mesmo tempo:
+
+````css
+.container {
+  background-color: #333;
+  color: #eee;
+  width: 80%;
+  margin: auto;
+  padding-top: 60px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 60px;
+  /*  Mesma coisa que acima */
+  padding: 60px;
+  border: 3px solid red;
+}
+````
+
+- Border é uma linha adicionar em volta do conteúdo:
+  - Recebe como valor:
+    - espessura da linha
+    - tipo de linha
+    - cor da linha
+
+```css
+border: 3px solid red;
+```
+
+```css
+border: 15px dotted #fff;
+```
+
+```css
+border: 10px solid rgb(0, 0, 255);
+```
+
+Também podemos aplicar o **border** a margens individualizadas:
+
+```css
+border-top: 10px solid rgb(0, 0, 255);
+border-left: 10px solid rgb(255, 0, 0);
+border-right: 10px solid rgb(0, 255, 0);
+border-bottom: 10px solid rgb(255, 255, 0);
+```
+
+<img src="/home/thiagocarlos/Downloads/CURSOS/PROGRAMAÇÃO/TESTES/dicasParaDevs/images/border-css.png" alt="border-css" style="zoom:67%;" />
+
+- Exemplo de margens:
+
+```css
+margin-top: 50px;
+margin-left: 50px;
+margin-right: 50px;
+margin-bottom: 50px;
+/*  Mesma coisa que acima */
+margin: 50px;
+```
+
+- Arquivo CSS completo:
+
+```css
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: 'Roboto Mono', monospace;
+  font-size:18px;
+}
+
+.container {
+  background-color: #333;
+  color: #eee;
+  width: 80%;
+  
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  /*  Mesma coisa que acima */
+  margin: 50px;
+  
+  padding-top: 60px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 60px;
+  /*  Mesma coisa que acima */
+  padding: 20px;
+
+  border-top: 10px solid rgb(0, 0, 255);
+  border-left: 10px solid rgb(255, 0, 0);
+  border-right: 10px solid rgb(0, 255, 0);
+  border-bottom: 10px solid rgb(255, 255, 0);
+  /*  Mesma coisa que acima */
+  border: 10px solid brown;
+
+}
+```
 
 ## [30:16](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=1816s) — box-sizing
 
