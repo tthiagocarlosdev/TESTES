@@ -25,9 +25,88 @@
 
 Vamos criar uma pasta para nossa aula, abrir a pasta pelo VSCode e depois criar um arquivo **index.html**.
 
-
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso CSS</title>
+</head>
+<body>
+  <h1> Olá Mundo </h1>
+</body>
+</html>
+```
 
 ## HTML [3:35](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=215s) — As três formas de estilizar o nosso arquivo
+
+- Inline CSS: Direto no elemento HTML (má prática)
+  - Neste exemplo vamos colocar o _**style**_ dentro da tag **h1** no HTML para deixar o texto de h1 da cor vermelho:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso CSS</title>
+</head>
+<body>
+  <h1 style="color: red"> Olá Mundo </h1>
+</body>
+</html>
+```
+
+- CSS Interno: Usando tags `<style>` no documento HTML
+  - Neste exemplo vamos colocar atag _**style**_ dentro da tag _**head**_ no HTML para fazer a mesma tarefa do exemplo anterior, selecionando a tag **h1**:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso CSS</title>
+  <style>
+    h1 {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1> Olá Mundo </h1>
+</body>
+</html>
+```
+
+- CSS Externo: Importando um arquivo .css no HTML
+  - Neste exemplo vamos criar um arquivo **styles.css**, selecionar a tag **h1** e depois importar este arquivo dentro do nosso arquivo HTML através da tag _**link**_:
+
+```css
+h1 {
+  color: red;
+}
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Curso CSS</title>
+</head>
+<body>
+  <h1> Olá Mundo </h1>
+</body>
+</html>
+```
 
 
 
