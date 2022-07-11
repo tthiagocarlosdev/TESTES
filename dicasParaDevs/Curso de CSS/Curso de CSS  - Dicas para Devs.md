@@ -118,7 +118,7 @@ h1 {
 
 **Value** é o valor atribuído a propriedade.
 
-![edojfcbz6sr7j0b2l6v1](/home/thiagocarlos/Downloads/CURSOS/PROGRAMAÇÃO/TESTES/dicasParaDevs/edojfcbz6sr7j0b2l6v1.webp)
+<img src="/home/thiagocarlos/Downloads/CURSOS/PROGRAMAÇÃO/TESTES/dicasParaDevs/images/edojfcbz6sr7j0b2l6v1.webp" alt="edojfcbz6sr7j0b2l6v1" style="zoom: 50%;" />
 
 Algumas propriedades podem receber mais de um valor.
 
@@ -215,7 +215,29 @@ Estilizando o segundo e terceiro **h1**:
 
 ## [14:11](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=851s) — Cores no CSS
 
+- Podemos adcionar cores de tr6es maneiras:
+  - Nome da cor
+  - Hexadecimal
+  - RGB & RGBA
 
+```css
+body {
+  background-color: red;
+  color: white;
+}
+
+h1 {
+  color: #000000;
+}
+
+p {
+  color: rgb(0,0,255);
+}
+
+a {
+  color: rgba(0,0,255,0.6);
+}
+```
 
 ## [17:42](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=1062s) — Fontes internas
 

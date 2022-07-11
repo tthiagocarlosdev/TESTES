@@ -5,3 +5,20 @@
 #primeiro-h1 {
   color:green;
 }
+
+body {
+  background-color: red;
+  color: white;
+}
+
+h1 {
+  color: #000000;
+}
+
+p {
+  color: reg(0,0,255);
+}
+
+a {
+  color: rgba(0,0,255,0.6);
+}
