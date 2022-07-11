@@ -1,7 +1,7 @@
-* {
+/* * {
   padding: 0;
   margin: 0;
-}
+} */
 body {
   font-family: 'Roboto Mono', monospace;
   font-size:18px;
@@ -11,6 +11,7 @@ body {
   background-color: #333;
   color: #eee;
   width: 80%;
+  box-sizing: border-box;
   
   margin-top: 50px;
   margin-left: 50px;
@@ -33,4 +34,28 @@ body {
   /*  Mesma coisa que acima */
   border: 10px solid brown;
 
+}
+
+.main-aside h2 {
+  text-align: center;
+}
+
+.main-aside h2:hover {
+  color: green;
+  cursor: pointer;
+}
+
+.main-aside ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+.main-aside ul a {
+  text-decoration: none;
+  color: black;
+}
+
+.main-aside ul a:hover {
+  color: red;
 }

@@ -413,11 +413,53 @@ body {
 
 ## [30:16](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=1816s) — box-sizing
 
+- O uso do **box-sizing** vai fazer com que o **width** continue responsivo:
 
+```css
+box-sizing: border-box;
+```
 
 ## [32:04](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=1924s) — Listas, links e algumas pseudo-classes
 
+- O _**hover**_ musda o estilio do elemento quando o curso passa sobre o mesmo:
+- O _**visited**_ muda o estilo do link que foi visitado:
 
+```html
+<aside class="main-aside">
+    <h2> Redes Sociais </h2>
+    <ul>
+      <li><a href="https://www.twitter.com"> Twitter </a></li>
+      <li><a href="https://www.instagram.com"> Instagram </a></li>
+    </ul>
+  </aside>
+```
+
+```css
+
+.main-aside h2 {
+  text-align: center;
+}
+
+.main-aside h2:hover {
+  color: green;
+  cursor: pointer;
+}
+
+.main-aside ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+.main-aside ul a {
+  text-decoration: none;
+  color: black;
+}
+
+.main-aside ul a:hover {
+  color: red;
+}
+```
 
 ## [36:36](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=2196s)  — Criando e estilizando um formulário
 
