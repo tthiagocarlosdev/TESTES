@@ -1,3 +1,7 @@
-h1 {
+.h1-vermelho {
   color: red;
+}
+
+#primeiro-h1 {
+  color:green;
 }

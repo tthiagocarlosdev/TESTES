@@ -124,7 +124,94 @@ Algumas propriedades podem receber mais de um valor.
 
 ## [08:31](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=511s) — Classes e IDs
 
+Ao selecionar um elemento no CSS, todos os elementos semelhantes serão estilizados pelo CSS. Na imagem acima foi selecionado o elemento **p**, logo todos os elementos **p's** do arquivo HTML serão estilizados.
 
+- Usando **classes**:  selecionar mais de um elemento.
+- Usando **id**: selecionar apenas um elemento.
+  - No exemplo abaixo, vamos estilizar apenas o segundo "Olá mundo!". Para isto vamos colocar um atributo _**class**_ dentro do elemento **h1** e depois selecionar no CSS para estilizar:
+
+```html
+<body>
+  <h1> Olá Mundo </h1>
+  <h1 class="segundo-h1"> Olá Mundo </h1>
+  <h1> Olá Mundo </h1>
+</body>
+```
+
+```css
+.segundo-h1 {
+  color: red;
+}
+```
+
+Estilizando o segundo e terceiro **h1**:
+
+```html
+<body>
+  <h1> Olá Mundo </h1>
+  <h1 class="segundo-h1"> Olá Mundo </h1>
+  <h1 class="segundo-h1"> Olá Mundo </h1>
+</body>
+```
+
+```css
+.segundo-h1 {
+  color: red;
+}
+```
+
+- Estilizando com **id**:
+
+```html
+<body>
+  <h1> Olá Mundo </h1>
+  <h1 id="segundo-h1"> Olá Mundo </h1>
+  <h1> Olá Mundo </h1>
+</body>
+```
+
+```css
+#segundo-h1 {
+  color: red;
+}
+```
+
+- Diferença entre **id** e **class**:
+  - Usando **classes**:  selecionar mais de um elemento para aplicar o mesmo estilo.
+
+```html
+<body>
+  <h1> Olá Mundo </h1>
+  <h1 class="h1-vermelho" > Olá Mundo </h1>
+  <h1 class="h1-vermelho"> Olá Mundo </h1>
+</body>
+```
+
+```css
+.h1-vermelho {
+  color: red;
+}
+```
+
+- Usando **id**: selecionar apenas um elemento para aplicar o estilo.
+
+```html
+<body>
+  <h1 id="primeiro-h1"> Olá Mundo </h1>
+  <h1 class="h1-vermelho" > Olá Mundo </h1>
+  <h1 class="h1-vermelho"> Olá Mundo </h1>
+</body>
+```
+
+```css
+.h1-vermelho {
+  color: red;
+}
+
+#primeiro-h1 {
+  color:green;
+}
+```
 
 ## [14:11](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=851s) — Cores no CSS
 
