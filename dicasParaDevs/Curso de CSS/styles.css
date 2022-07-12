@@ -1,10 +1,10 @@
-/* * {
-  padding: 0;
-  margin: 0;
-} */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Roboto Mono', monospace;
-  font-size:18px;
+  font-size: 18px;
 }
 
 .container {
@@ -13,12 +13,12 @@ body {
   width: 80%;
   box-sizing: border-box;
   
-  margin-top: 50px;
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-bottom: 50px;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
   /*  Mesma coisa que acima */
-  margin: 50px;
+  margin: auto;
   
   padding-top: 60px;
   padding-left: 60px;
@@ -58,4 +58,35 @@ body {
 
 .main-aside ul a:hover {
   color: red;
+}
+
+/* Formulários */
+
+.main-form {
+  padding-left: 20px;
+}
+
+.main-form .form-group {
+  padding-bottom: 10px;
+}
+
+.main-form .form-group input {
+  padding: 10px;
+  width: 100%;
+}
+
+.main-form .form-group label {
+  display: block;
+}
+
+.button {
+  padding: 15px;
+  background-color:#333;
+  color: #eee;
+  border: none;
+}
+
+.box {
+  width: 80%;
+  margin: auto;
 }

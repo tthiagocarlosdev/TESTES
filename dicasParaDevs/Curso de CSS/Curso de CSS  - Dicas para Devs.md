@@ -463,7 +463,78 @@ box-sizing: border-box;
 
 ## [36:36](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=2196s)  — Criando e estilizando um formulário
 
+- No HTML:
 
+```html
+<div class="box">
+    <form action="form.php" method="POST" class="main-form">
+      <div class="form-group">
+          <label> Primeiro nome: </label>
+          <input type="text"placeholder="Entre seu primeiro nome">
+      </div>
+  
+      <div class="form-group">
+          <label> Segundo nome: </label>
+          <input type="text" placeholder="Entre seu segundo nome">
+      </div>
+  
+      <div class="form-group">
+          <label> E-mail: </label>
+          <input type="email" placeholder="Digite seu E-mail">
+      </div>
+  
+      <div class="form-group">
+          <label> Mensagem: </label>
+          <textarea name="mensagem"></textarea>
+      </div>
+  
+      <input class="button" type="submit">
+    </form>
+  </div>
+```
+
+- No CSS:
+
+```css
+/* Formulários */
+
+.main-form {
+  padding-left: 20px;
+}
+
+.main-form .form-group {
+  padding-bottom: 10px;
+}
+
+.main-form .form-group input {
+  padding: 10px;
+  width: 100%;
+}
+
+.main-form .form-group label {
+  display: block;
+}
+
+.button {
+  padding: 15px;
+  background-color:#333;
+  color: #eee;
+  border: none;
+}
+
+.box {
+  width: 80%;
+  margin: auto;
+}
+```
+
+- Lembrando que foi adicionado no início do arquivo a propriedade _**box-sizing**_ para todos os elementos do projeto:
+
+```css
+* {
+  box-sizing: border-box;
+}
+```
 
 ## [44:03](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=2643s) — Position
 
