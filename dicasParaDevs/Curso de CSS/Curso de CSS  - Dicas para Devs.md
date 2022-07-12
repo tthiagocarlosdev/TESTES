@@ -538,15 +538,25 @@ box-sizing: border-box;
 
 ## [44:03](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=2643s) — Position
 
+Propriedade **position** no CSS:
 
+- Static:
+- Relative:
+- Fixed
+- Absolute
+- Sticky
 
 ## [44:26](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=2666s) — position: static
 
+- Valor padrão;
+- Elemento segue o fluxo da página;
+- Propriedades top, bottom, right e left não são aplicáveis
 
+**IMAGEM POSITION-STATIC-CSS**
 
 ## [45:43](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=2743s) — position: relative
 
-
+PAREI
 
 ## [49:11](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=2951s) — position: absolute
 
