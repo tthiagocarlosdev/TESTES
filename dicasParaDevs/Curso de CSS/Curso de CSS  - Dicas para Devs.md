@@ -552,7 +552,7 @@ Propriedade **position** no CSS:
 - Elemento segue o fluxo da página;
 - Propriedades top, bottom, right e left não são aplicáveis
 
-**IMAGEM POSITION-STATIC-CSS**
+![position-static-css](https://user-images.githubusercontent.com/76978748/178475997-11087394-9249-4703-822c-c25860f88743.png)
 
 ## [45:43](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=2743s) — position: relative
 
