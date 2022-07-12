@@ -118,7 +118,7 @@ h1 {
 
 **Value** é o valor atribuído a propriedade.
 
-<img src="/home/thiagocarlos/Downloads/CURSOS/PROGRAMAÇÃO/TESTES/dicasParaDevs/images/edojfcbz6sr7j0b2l6v1.webp" alt="edojfcbz6sr7j0b2l6v1" style="zoom: 50%;" />
+![selectors-css](https://user-images.githubusercontent.com/76978748/178468790-508d33a0-8265-49d7-a2b6-821c23fe2250.png)
 
 Algumas propriedades podem receber mais de um valor.
 
@@ -309,7 +309,7 @@ body {
 - **Margin:** espaçamento **fora** do conteúdo;
 - **Border:** borda do conteúdo
 
-<img src="/home/thiagocarlos/Downloads/CURSOS/PROGRAMAÇÃO/TESTES/dicasParaDevs/images/padding-mardin-border-css.png" alt="padding-mardin-border-css" style="zoom: 67%;" />
+![padding-mardin-border-css](https://user-images.githubusercontent.com/76978748/178469094-effc23e7-0494-4c7b-ac12-105a0ad3bd36.png)
 
 - Exemplificando o **padding**:
   - Podemos aplicar o **padding** apenas em uma, duas ou três bordas diferentes ou em todas ao mesmo tempo:
@@ -357,7 +357,7 @@ border-right: 10px solid rgb(0, 255, 0);
 border-bottom: 10px solid rgb(255, 255, 0);
 ```
 
-<img src="/home/thiagocarlos/Downloads/CURSOS/PROGRAMAÇÃO/TESTES/dicasParaDevs/images/border-css.png" alt="border-css" style="zoom:67%;" />
+![border-css](https://user-images.githubusercontent.com/76978748/178469251-bd2958f7-44a8-4453-bd02-569218f37130.png)
 
 - Exemplo de margens:
 
