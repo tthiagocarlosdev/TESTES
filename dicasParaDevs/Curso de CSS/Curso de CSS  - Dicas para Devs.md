@@ -42,7 +42,7 @@ Vamos criar uma pasta para nossa aula, abrir a pasta pelo VSCode e depois criar 
 
 ## HTML [3:35](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=215s) — As três formas de estilizar o nosso arquivo
 
-- Inline CSS: Direto no elemento HTML (má prática)
+- **Inline CSS:** Direto no elemento HTML (má prática)
   - Neste exemplo vamos colocar o _**style**_ dentro da tag **h1** no HTML para deixar o texto de h1 da cor vermelho:
 
 ```html
@@ -60,7 +60,7 @@ Vamos criar uma pasta para nossa aula, abrir a pasta pelo VSCode e depois criar 
 </html>
 ```
 
-- CSS Interno: Usando tags `<style>` no documento HTML
+- **CSS Interno:** Usando tags `<style>` no documento HTML
   - Neste exemplo vamos colocar atag _**style**_ dentro da tag _**head**_ no HTML para fazer a mesma tarefa do exemplo anterior, selecionando a tag **h1**:
 
 ```html
@@ -83,7 +83,7 @@ Vamos criar uma pasta para nossa aula, abrir a pasta pelo VSCode e depois criar 
 </html>
 ```
 
-- CSS Externo: Importando um arquivo .css no HTML
+- **CSS Externo:** Importando um arquivo .css no HTML
   - Neste exemplo vamos criar um arquivo **styles.css**, selecionar a tag **h1** e depois importar este arquivo dentro do nosso arquivo HTML através da tag _**link**_:
 
 ```css
@@ -114,7 +114,7 @@ h1 {
 
 **Selector** é o elemento que queremos selecionar para estilizar;
 
-**Property** é o que quermos fazer com aquele elemento;
+**Property** é o que queremos fazer com aquele elemento;
 
 **Value** é o valor atribuído a propriedade.
 
@@ -215,7 +215,7 @@ Estilizando o segundo e terceiro **h1**:
 
 ## [14:11](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=851s) — Cores no CSS
 
-- Podemos adcionar cores de tr6es maneiras:
+- Podemos adcionar cores de três maneiras:
   - Nome da cor
   - Hexadecimal
   - RGB & RGBA
@@ -270,7 +270,7 @@ Algumas fontes já vêm como padrão no HTML e CSS.
 
 ## [20:03](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=1203s) — Fontes externas
 
-Também podemos colocar fontes esternas como as fontes do site **Google Fontes**.
+Também podemos colocar fontes externas, como as fontes do site [**Google Fontes**](https://fonts.google.com/).
 
 ```html
 <!DOCTYPE html>
@@ -330,7 +330,7 @@ body {
 }
 ````
 
-- Border é uma linha adicionar em volta do conteúdo:
+- **Border** é uma linha adicionada em volta do conteúdo:
   - Recebe como valor:
     - espessura da linha
     - tipo de linha
@@ -416,13 +416,15 @@ body {
 - O uso do **box-sizing** vai fazer com que o **width** continue responsivo:
 
 ```css
-box-sizing: border-box;
+* {
+  box-sizing: border-box;
+}
 ```
 
 ## [32:04](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=1924s) — Listas, links e algumas pseudo-classes
 
-- O _**hover**_ musda o estilio do elemento quando o curso passa sobre o mesmo:
-- O _**visited**_ muda o estilo do link que foi visitado:
+- O _**hover**_ é uma pseudo-classes do *CSS* que muda o estilio do elemento quando o cursor passa sobre o mesmo
+- O _**visited**_ é uma Pseudo-classe do *CSS* para indicar se o link em questão já foi visitado pelo usuário
 
 ```html
 <aside class="main-aside">
@@ -500,6 +502,7 @@ box-sizing: border-box;
 
 .main-form {
   padding-left: 20px;
+  margin: 1rem;
 }
 
 .main-form .form-group {
@@ -569,7 +572,7 @@ Propriedade **position** no CSS:
 ## [49:11](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=2951s) — position: absolute
 
 - Elemento é posicionado em relação ao seu elemento pai mais próximo que possui **position: relative**
-- Se o elemento não tiver nenhum elemento pai com **position : relative**, é posicionado em relação ao body
+- Se o elemento não tiver nenhum elemento pai com **position: relative**, é posicionado em relação ao **body**
 
 [Veja o exemplo aqui](https://www.w3schools.com/css/tryit.asp?filename=trycss_position_absolute)
 
@@ -619,7 +622,7 @@ Propriedade **position** no CSS:
 }
 ```
 
-- Zerando a *8margin* do **body**:
+- Zerando a **margin** do **body**:
 
 ```css
 body {
@@ -629,12 +632,12 @@ body {
 }
 ```
 
-- Agora vamos criar uma barra de menu:
+- Agora vamos criar uma barra de menu e aplicar **position: sticky**:
 
 ```html
 <nav id="main-navbar">
     <h1> Barra de navegação </h1>
-  </nav>
+</nav>
 ```
 
 ```css
@@ -713,7 +716,7 @@ O _**:hover**_ é uma pseudo-classe.
 }
 ```
 
-Podemos também selecionas elementos pares e ímpares:
+Podemos também selecionar elementos pares e ímpares:
 
 ```css
 .categories ul li:nth-child(even) {
@@ -727,7 +730,7 @@ Podemos também selecionas elementos pares e ímpares:
 
 ## [01:11:32](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=4292s) — Conclusão
 
-- Muto obrigado por ter chegado até aqui
+- Muito obrigado por ter chegado até aqui
 - Pratique bastante
 - Reveja caso for necessário
 
@@ -887,6 +890,7 @@ body {
 
 .main-form {
   padding-left: 20px;
+  margin: 1rem;
 }
 
 .main-form .form-group {
