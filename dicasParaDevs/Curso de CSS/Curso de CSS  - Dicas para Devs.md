@@ -589,11 +589,91 @@ Propriedade **position** no CSS:
 
 ## [59:53](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=3593s) — Aplicando "position" no nosso projeto
 
+- Vamos criar duas div's para aplicar position relative e absolute:
 
+```html
+<div class="box relative">
+    <div class="absolute">
+      <h1>olá mundo :) </h1>
+    </div>
+  </div>
+```
+
+```css
+/* Positions */
+.relative {
+  position: relative;
+  border: 3px solid #333;
+  height: 500px;
+  border-radius: 7px;
+}
+
+.relative .absolute {
+  position: absolute;
+  bottom: 0;
+}
+
+.relative .absolute h1 {
+  margin: 0;
+}
+```
+
+- Zerando a *8margin* do **body**:
+
+```css
+body {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 18px;
+  margin: 0;
+}
+```
+
+- Agora vamos criar uma barra de menu:
+
+```html
+<nav id="main-navbar">
+    <h1> Barra de navegação </h1>
+  </nav>
+```
+
+```css
+/*  Barra de navegação */
+
+#main-navbar {
+  background-color: #333;
+  color: #eee;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 10px;
+  position: sticky;
+  top: 0;
+}
+```
+
+- Vamos criar um **botton**  para aplicar position fixed ao mesmo:
+
+```html
+<button class="fixed-button"></button>
+```
+
+```css
+/*  Fixed Button */
+.fixed-button {
+  background-color: #333;
+  color: #eee;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 7px;
+}
+```
 
 ## [01:06:43](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=4003s) — Pseudo-classes (first-child, last-child e nth-child)
 
-
+PAREI
 
 ## [01:11:32](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=4292s) — Conclusão
 
