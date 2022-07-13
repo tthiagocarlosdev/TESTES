@@ -133,3 +133,29 @@ body {
   right: 0;
   margin: 7px;
 }
+
+/* Categories */
+
+.categories ul {
+  list-style: none;
+}
+
+.categories ul li:first-child {
+  color: red;
+}
+
+.categories ul li:last-child {
+  color: green;
+}
+
+.categories ul li:nth-child(3) {
+  color: blue;
+}
+
+.categories ul li:nth-child(even) {
+  color: brown;
+}
+
+.categories ul li:nth-child(odd) {
+  color: yellowgreen;
+}

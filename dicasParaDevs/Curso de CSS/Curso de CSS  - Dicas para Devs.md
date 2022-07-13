@@ -674,9 +674,59 @@ body {
 
 ## [01:06:43](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=4003s) — Pseudo-classes (first-child, last-child e nth-child)
 
-PAREI
+O _**:hover**_ é uma pseudo-classe.
+
+```html
+<div class="box categories">
+    <h2> Categorias </h2>
+    <ul>
+      <li>Lorem ipsum dolor sit amet.</li>
+      <li>Lorem ipsum dolor sit amet.</li>
+      <li>Lorem ipsum dolor sit amet.</li>
+      <li>Lorem ipsum dolor sit amet.</li>
+      <li>Lorem ipsum dolor sit amet.</li>
+    </ul>
+  </div>
+```
+
+- **first-child:** seleciona o primeiro elemento filho
+
+```css
+.categories ul li:first-child {
+  color: red;
+}
+```
+
+- **last-child:** seleciona o último elemento filho
+
+```css
+.categories ul li:last-child {
+  color: green;
+}
+```
+
+- **nth-child(n):** seleciona o n elemento filho
+
+```css
+.categories ul li:nth-child(3) {
+  color: blue;
+}
+```
+
+Podemos também selecionas elementos pares e ímpares:
+
+```css
+.categories ul li:nth-child(even) {
+  color: brown;
+}
+
+.categories ul li:nth-child(odd) {
+  color: yellowgreen;
+}
+```
 
 ## [01:11:32](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=4292s) — Conclusão
 
-
-
+- Muto obrigado por ter chegado até aqui
+- Pratique bastante
+- Reveja caso for necessário
