@@ -556,19 +556,36 @@ Propriedade **position** no CSS:
 
 ## [45:43](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=2743s) — position: relative
 
-PAREI
+- Elemento é posicionado em relação a sua posição normal
+- Propriedades top, bottom, right e left são aplicáveis
+
+**IMAGEM position-relative-1-css**
+
+**IMAGEM position-relative-2-css**
+
+[Veja o exemplo aqui](https://www.w3schools.com/css/tryit.asp?filename=trycss_position_relative)
 
 ## [49:11](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=2951s) — position: absolute
 
+- Elemento é posicionado em relação ao seu elemento pai mais próximo que possui **position: relative**
+- Se o elemento não tiver nenhum elemento pai com **position : relative**, é posicionado em relação ao body
 
+[Veja o exemplo aqui](https://www.w3schools.com/css/tryit.asp?filename=trycss_position_absolute)
 
 ## [55:14](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=3314s) — position: fixed
 
+- Elemento é posicionado em relação ao **viewport**
+- Sempre fica na mesma posição, mesmo se a página é rolada
+- Propriedades top, bottom, left e right são aplicáveis
 
+[Veja o exemplo aqui](https://www.w3schools.com/css/tryit.asp?filename=trycss_position_fixed)
 
 ## [58:09](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=3489s) — position: sticky
 
+- Elemento é posicionado em relação a posição do **scroll** do usuário
+- Propriedades top, bottom, left e right são aplicáveis
 
+[Veja o exemplo aqui](https://www.w3schools.com/css/tryit.asp?filename=trycss_position_fixed)
 
 ## [59:53](https://www.youtube.com/watch?v=r11FflkQqJs&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=2&t=3593s) — Aplicando "position" no nosso projeto
 
