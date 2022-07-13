@@ -730,3 +730,257 @@ Podemos também selecionas elementos pares e ímpares:
 - Muto obrigado por ter chegado até aqui
 - Pratique bastante
 - Reveja caso for necessário
+
+Arquivos finais:
+
+- HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <title>Curso CSS</title>
+</head>
+<body>
+  <nav id="main-navbar">
+    <h1> Barra de navegação </h1>
+  </nav>
+  <div class="container">
+    <h1> Olá mundo! </h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque alias inventore minus, nam temporibus cupiditate asperiores nihil. Reprehenderit minima velit, id voluptates commodi cumque quasi alias molestiae autem temporibus.
+    </p>
+  </div>
+
+  <aside class="main-aside">
+    <h2> Redes Sociais </h2>
+    <ul>
+      <li><a href="https://www.twitter.com"> Twitter </a></li>
+      <li><a href="https://www.instagram.com"> Instagram </a></li>
+    </ul>
+  </aside>
+
+  <div class="box">
+    <form action="form.php" method="POST" class="main-form">
+      <div class="form-group">
+          <label> Primeiro nome: </label>
+          <input type="text"placeholder="Entre seu primeiro nome">
+      </div>
+  
+      <div class="form-group">
+          <label> Segundo nome: </label>
+          <input type="text" placeholder="Entre seu segundo nome">
+      </div>
+  
+      <div class="form-group">
+          <label> E-mail: </label>
+          <input type="email" placeholder="Digite seu E-mail">
+      </div>
+  
+      <div class="form-group">
+          <label> Mensagem: </label>
+          <textarea name="mensagem"></textarea>
+      </div>
+  
+      <input class="button" type="submit">
+    </form>
+  </div>
+
+  <div class="box relative">
+    <div class="absolute">
+      <h1>olá mundo :) </h1>
+    </div>
+  </div>
+
+  <button class="fixed-button"></button>
+
+  <div class="box categories">
+    <h2> Categorias </h2>
+    <ul>
+      <li>Lorem ipsum dolor sit amet.</li>
+      <li>Lorem ipsum dolor sit amet.</li>
+      <li>Lorem ipsum dolor sit amet.</li>
+      <li>Lorem ipsum dolor sit amet.</li>
+      <li>Lorem ipsum dolor sit amet.</li>
+      <li>Lorem ipsum dolor sit amet.</li>
+    </ul>
+  </div>
+
+</body>
+</html>
+```
+
+- CSS
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 18px;
+  margin: 0;
+}
+
+.container {
+  background-color: #333;
+  color: #eee;
+  width: 80%;
+  box-sizing: border-box;
+  
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  /*  Mesma coisa que acima */
+  margin: auto;
+  
+  padding-top: 60px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 60px;
+  /*  Mesma coisa que acima */
+  padding: 20px;
+
+  border-top: 10px solid rgb(0, 0, 255);
+  border-left: 10px solid rgb(255, 0, 0);
+  border-right: 10px solid rgb(0, 255, 0);
+  border-bottom: 10px solid rgb(255, 255, 0);
+  /*  Mesma coisa que acima */
+  border: 10px solid brown;
+
+}
+
+.main-aside h2 {
+  text-align: center;
+}
+
+.main-aside h2:hover {
+  color: green;
+  cursor: pointer;
+}
+
+.main-aside ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+.main-aside ul a {
+  text-decoration: none;
+  color: black;
+}
+
+.main-aside ul a:hover {
+  color: red;
+}
+
+/* Formulários */
+
+.main-form {
+  padding-left: 20px;
+}
+
+.main-form .form-group {
+  padding-bottom: 10px;
+}
+
+.main-form .form-group input {
+  padding: 10px;
+  width: 100%;
+}
+
+.main-form .form-group label {
+  display: block;
+}
+
+.button {
+  padding: 15px;
+  background-color:#333;
+  color: #eee;
+  border: none;
+}
+
+.box {
+  width: 80%;
+  margin: auto;
+}
+
+/* Positions */
+.relative {
+  position: relative;
+  border: 3px solid #333;
+  height: 500px;
+  border-radius: 7px;
+}
+
+.relative .absolute {
+  position: absolute;
+  bottom: 0;
+}
+
+.relative .absolute h1 {
+  margin: 0;
+}
+
+/*  Barra de navegação */
+
+#main-navbar {
+  background-color: #333;
+  color: #eee;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 10px;
+  position: sticky;
+  top: 0;
+}
+
+/*  Fixed Button */
+.fixed-button {
+  background-color: #333;
+  color: #eee;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 7px;
+}
+
+/* Categories */
+
+.categories ul {
+  list-style: none;
+}
+
+.categories ul li:first-child {
+  color: red;
+}
+
+.categories ul li:last-child {
+  color: green;
+}
+
+.categories ul li:nth-child(3) {
+  color: blue;
+}
+
+.categories ul li:nth-child(even) {
+  color: brown;
+}
+
+.categories ul li:nth-child(odd) {
+  color: yellowgreen;
+}
+
+```
+
