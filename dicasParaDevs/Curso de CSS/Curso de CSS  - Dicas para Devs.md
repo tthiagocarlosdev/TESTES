@@ -559,9 +559,10 @@ Propriedade **position** no CSS:
 - Elemento é posicionado em relação a sua posição normal
 - Propriedades top, bottom, right e left são aplicáveis
 
-**IMAGEM position-relative-1-css**
+![position-relative-1-css](https://user-images.githubusercontent.com/76978748/178627732-7f1bb19c-8199-4af8-9e16-3a0552be6691.png)
 
-**IMAGEM position-relative-2-css**
+![position-relative-2-css](https://user-images.githubusercontent.com/76978748/178627736-2714f2e4-4f40-4d0c-bbf2-57bc334a6655.png)
+
 
 [Veja o exemplo aqui](https://www.w3schools.com/css/tryit.asp?filename=trycss_position_relative)
 
