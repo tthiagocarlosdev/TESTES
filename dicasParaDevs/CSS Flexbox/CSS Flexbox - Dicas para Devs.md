@@ -80,22 +80,22 @@ flex-direction: column;
   - Os items sempre ficam lado-a-lado, ou seja, na **horizontal**.
   - Main Axis - horizontal
 
-  **IMAGEM main-axis-flex-direction-row**
+![main-axis-flex-direction-row](https://user-images.githubusercontent.com/76978748/179209943-cd2e8dd9-77ee-4c42-b870-c344834b44d7.png)
 
   - Cross Axis - vertical
 
-  **IMAGEM cross-axis-flex-direction-row**
+![cross-axis-flex-direction-row](https://user-images.githubusercontent.com/76978748/179210022-5f85793b-4f41-4050-add0-e923bdbc8fe8.png)
 
 - flex-direction: column
 
   - Os items sempre ficam um abaixo do outro, ou seja, na **vertical**.
   - Main Axis - vertical
 
-  **IMAGEM main-axis-flex-direction-column**
+![main-axis-flex-direction-column](https://user-images.githubusercontent.com/76978748/179210067-526397cf-5ae5-4368-9216-9c2186a742f9.png)
 
   - Cross Axis - horizontal
 
-  **IMAGEM main-axis-flex-direction-column**
+![cross-axis-flex-direction-column](https://user-images.githubusercontent.com/76978748/179210143-62ba1f9c-ac3a-4f5e-bfc0-e0bb04390f95.png)
 
 ## [06:25](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=385s) — Formas de alinhamento (justify-content)
 
@@ -124,7 +124,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM row-flex-start**
+![row-flex-start](https://user-images.githubusercontent.com/76978748/179210336-a1b9e04f-f4e9-4ca6-85e8-606f53cdbf65.png)
 
 - Exemplo de flex-direction: row e justify-content: flex-end, itens alinhando no início da página no canto direito:
 
@@ -144,7 +144,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM row-flex-end**
+![row-flex-end](https://user-images.githubusercontent.com/76978748/179210389-7ac87ca8-dc0a-43e8-a8e1-ce899a4223a7.png)
 
 - Exemplo de flex-direction: column e justify-content: flex-start, itens alinhando no início da página. Note que foi necessário adicionar a altura do container:
 
@@ -164,7 +164,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM column-flex-start**
+![column-flex-start](https://user-images.githubusercontent.com/76978748/179210427-2d6dc549-90ea-4bc6-b13f-6969a915d95a.png)
 
 - Exemplo de flex-direction: column e justify-content: flex-end, itens alinhando no final da página:
 
@@ -184,7 +184,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM column-flex-end**
+![column-flex-end](https://user-images.githubusercontent.com/76978748/179210482-442a74f8-cbe9-46b6-b912-e40b3bef0187.png)
 
 - Exemplo de flex-direction: row e justify-content: center, itens alinhando no centro e início da página. Alinhamento horizontal:
 
@@ -204,7 +204,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM row-center**
+![row-center](https://user-images.githubusercontent.com/76978748/179210503-aa3eec99-8ec5-47a4-bb00-3a37a9fec644.png)
 
 - Exemplo de flex-direction: column e justify-content: center, itens alinhando no final da página. Alinhamento vertical:
 
@@ -224,7 +224,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM column-center**
+![column-center](https://user-images.githubusercontent.com/76978748/179210553-f1a90bc4-2c2c-4eb9-a6a4-0d8f8d02c850.png)
 
 - Exemplo de flex-direction: row e justify-content: space-between, itens distribuídos com o mesmo espaçamento entre eles. Alinhamento horizontal:
 
@@ -244,7 +244,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM row-space-between**
+![row-space-between](https://user-images.githubusercontent.com/76978748/179210577-51f0d721-d76a-4b2d-af59-58f41bf469ba.png)
 
 - Exemplo de flex-direction: column e justify-content: space-between, itens distribuídos com o mesmo espaçamento entre eles. Alinhamento vertical:
 
@@ -264,7 +264,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM column-space-between**
+![column-space-between](https://user-images.githubusercontent.com/76978748/179210609-877c7573-0fcd-4b44-941c-579590818d91.png)
 
 - Exemplo de flex-direction: row e justify-content: space-around, itens distribuídos com o mesmo espaçamento entre eles e com margem. Alinhamento horizontal:
 
@@ -284,7 +284,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM row-space-around**
+![row-space-around](https://user-images.githubusercontent.com/76978748/179210655-6f6e9197-ea9a-41a2-96fd-a84ab32637ab.png)
 
 - Exemplo de flex-direction: column e justify-content: space-around, itens distribuídos com o mesmo espaçamento entre eles e com margem. Alinhamento vertical:
 
@@ -304,7 +304,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM column-space-around**
+![column-space-around](https://user-images.githubusercontent.com/76978748/179210686-1496ed46-abec-4c73-9768-ffdb34d612b2.png)
 
 ## [11:55](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=715s) — Formas de alinhamento (align-items)
 
@@ -332,7 +332,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM row-align-items-stretch**
+![row-align-items-stretch](https://user-images.githubusercontent.com/76978748/179210746-f56339a6-e0f0-404c-a60a-45f60f02be86.png)
 
 - Exemplo de flex-direction: row e align-items: flex-start, itens distribuídos no início do container. Alinhamento **vertical**:
 
@@ -352,7 +352,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM row-align-items-flex-start**
+![row-align-items-flex-start](https://user-images.githubusercontent.com/76978748/179210783-c97a97ee-67bb-4715-b4a1-33af29cb474a.png)
 
 - Exemplo de flex-direction: row e align-items: flex-end, itens distribuídos no final do container. Alinhamento **vertical**:
 
@@ -372,7 +372,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM row-align-items-flex-end**
+![row-align-items-flex-end](https://user-images.githubusercontent.com/76978748/179210807-47948970-1941-41ef-ad32-8d1647f9af20.png)
 
 - Exemplo de flex-direction: row e align-items: center, itens distribuídos no centro do container. Alinhamento **vertical**:
 
@@ -392,7 +392,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM row-align-items-center**
+![row-align-items-center](https://user-images.githubusercontent.com/76978748/179210830-eed0af95-8d0c-4891-bb95-0945ee7ab428.png)
 
 - Exemplo de flex-direction: column e align-items: center, itens distribuídos no centro do container. Alinhamento **horizontal**:
 
