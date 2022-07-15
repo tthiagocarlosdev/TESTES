@@ -75,15 +75,331 @@ flex-direction: column;
 
 ## [04:12](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=252s) — Main Axis e Cross Axis
 
-PAREI
+- flex-direction: row
+
+  - Os items sempre ficam lado-a-lado, ou seja, na **horizontal**.
+  - Main Axis - horizontal
+
+  **IMAGEM main-axis-flex-direction-row**
+
+  - Cross Axis - vertical
+
+  **IMAGEM cross-axis-flex-direction-row**
+
+- flex-direction: column
+
+  - Os items sempre ficam um abaixo do outro, ou seja, na **vertical**.
+  - Main Axis - vertical
+
+  **IMAGEM main-axis-flex-direction-column**
+
+  - Cross Axis - horizontal
+
+  **IMAGEM main-axis-flex-direction-column**
 
 ## [06:25](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=385s) — Formas de alinhamento (justify-content)
 
+- **justify-content:** alinha os itens no **main axis**:
+  - **flex-start:** alinha os itens no início do container (padrão);
+  - **flex-end:** alinha os itens no final do container;
+  - **center:** alinha os itens no centro do container;
+  - **space-between:** distribui os itens igualmente no container;
+  - **space-around:** space-between com margem dos lados.
 
+- Exemplo de flex-direction: row e justify-content: flex-start, itens alinhando no início da página no canto esquerdo:
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM row-flex-start**
+
+- Exemplo de flex-direction: row e justify-content: flex-end, itens alinhando no início da página no canto direito:
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM row-flex-end**
+
+- Exemplo de flex-direction: column e justify-content: flex-start, itens alinhando no início da página. Note que foi necessário adicionar a altura do container:
+
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM column-flex-start**
+
+- Exemplo de flex-direction: column e justify-content: flex-end, itens alinhando no final da página:
+
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM column-flex-end**
+
+- Exemplo de flex-direction: row e justify-content: center, itens alinhando no centro e início da página. Alinhamento horizontal:
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM row-center**
+
+- Exemplo de flex-direction: column e justify-content: center, itens alinhando no final da página. Alinhamento vertical:
+
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM column-center**
+
+- Exemplo de flex-direction: row e justify-content: space-between, itens distribuídos com o mesmo espaçamento entre eles. Alinhamento horizontal:
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM row-space-between**
+
+- Exemplo de flex-direction: column e justify-content: space-between, itens distribuídos com o mesmo espaçamento entre eles. Alinhamento vertical:
+
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM column-space-between**
+
+- Exemplo de flex-direction: row e justify-content: space-around, itens distribuídos com o mesmo espaçamento entre eles e com margem. Alinhamento horizontal:
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM row-space-around**
+
+- Exemplo de flex-direction: column e justify-content: space-around, itens distribuídos com o mesmo espaçamento entre eles e com margem. Alinhamento vertical:
+
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM column-space-around**
 
 ## [11:55](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=715s) — Formas de alinhamento (align-items)
 
+- **align-items:** alinha os itens no **cross axis**:
+  - **stretch:** faz com que os itens cresçam igualmente (padrão);
+  - **flex-start:** alinha os itens no início do container;
+  - **flex-end:** alinha os itens no final do container;
+  - **center:** alinha os itens no centro do container;
 
+- Exemplo de flex-direction: row e align-items: stretch, itens distribuídos no início do container e ocupando a altura inteira do container. Alinhamento **vertical**:
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM row-align-items-stretch**
+
+- Exemplo de flex-direction: row e align-items: flex-start, itens distribuídos no início do container. Alinhamento **vertical**:
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM row-align-items-flex-start**
+
+- Exemplo de flex-direction: row e align-items: flex-end, itens distribuídos no final do container. Alinhamento **vertical**:
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM row-align-items-flex-end**
+
+- Exemplo de flex-direction: row e align-items: center, itens distribuídos no centro do container. Alinhamento **vertical**:
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgb(168, 165, 165);
+  height:600px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM row-align-items-center**
+
+- Exemplo de flex-direction: column e align-items: center, itens distribuídos no centro do container. Alinhamento **horizontal**:
+
+```css
+```
+
+PAREI - 14:00
 
 ## [15:06](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=906s) — Formas de alinhamento (align-content)
 
