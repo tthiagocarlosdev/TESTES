@@ -412,7 +412,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM column-align-items-center**
+![column-align-items-center](https://user-images.githubusercontent.com/76978748/179370986-d84a9c7b-f030-4c13-be0d-b675822b20f0.png)
 
 - Exemplo de flex-direction: column e align-items: flex-end, itens alinhados no canto direito/final do container. Alinhamento **horizontal**:
 
@@ -432,7 +432,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM column-align-items-flex-end**
+![column-align-items-flex-end](https://user-images.githubusercontent.com/76978748/179370996-e3e8cf0b-f4c1-408b-945a-58f01ffb608b.png)
 
 - Exemplo de flex-direction: column e align-items: flex-start, itens alinhados no canto esquerdo/início do container. Alinhamento **horizontal**:
 
@@ -452,7 +452,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM column-align-items-flex-start**
+![column-align-items-flex-start](https://user-images.githubusercontent.com/76978748/179371003-4c31ca9d-2b30-4196-9a75-97e20729c994.png)
 
 - Exemplo de flex-direction: column e align-items: stretch, itens distribuídos igualmente no início do container. Alinhamento **horizontal**:
 
@@ -472,7 +472,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM column-align-items-stretch**
+![column-align-items-stretch](https://user-images.githubusercontent.com/76978748/179371012-5864ed49-4652-4a37-93ea-f806e357729e.png)
 
 ## [15:06](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=906s) — Formas de alinhamento (align-content)
 
@@ -506,7 +506,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM flex-direction-row-align-content-stretch**
+![flex-direction-row-align-content-stretch](https://user-images.githubusercontent.com/76978748/179371035-ca23f544-8afb-4b19-80d6-578c874fb67d.png)
 
 - Exemplo de flex-direction: row e align-content: flex-start, linhas no início do container:
 
@@ -527,7 +527,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM flex-direction-row-align-content-flex-start**
+![flex-direction-row-align-content-flex-start](https://user-images.githubusercontent.com/76978748/179371045-a6326f93-1fd0-426b-afcf-e12e13627fcd.png)
 
 - Exemplo de flex-direction: row e align-content: flex-end, linhas no final do container:
 
@@ -548,7 +548,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM flex-direction-row-align-content-flex-end**
+![flex-direction-row-align-content-flex-end](https://user-images.githubusercontent.com/76978748/179371062-61bd2c5f-791e-4edb-a583-237689226ff8.png)
 
 - Exemplo de flex-direction: row e align-content: center, linhas no centro do container:
 
@@ -569,7 +569,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM flex-direction-row-align-content-center**
+![flex-direction-row-align-content-center](https://user-images.githubusercontent.com/76978748/179371077-c48facda-43be-4a13-b28d-07f59ba42ca7.png)
 
 - Exemplo de flex-direction: row e align-content: space-between, linhas distribuídas igualmente no container:
 
@@ -590,7 +590,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM flex-direction-row-align-content-space-between**
+![flex-direction-row-align-content-space-between](https://user-images.githubusercontent.com/76978748/179371083-cf1af4af-ee99-4bd7-b74f-1e63d785b505.png)
 
 - Exemplo de flex-direction: row e align-content: space-around, space-between com margens verticais:
 
@@ -611,7 +611,7 @@ flex-direction: column;
 }
 ```
 
-**IMAGEM flex-direction-row-align-content-space-around**
+![flex-direction-row-align-content-space-around](https://user-images.githubusercontent.com/76978748/179371093-5eb38f77-ed27-4fbf-a258-3d40bbe34af0.png)
 
 ## [18:48](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1128s) — Responsividade (flex-flow)
 
