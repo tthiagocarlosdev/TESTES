@@ -397,13 +397,221 @@ flex-direction: column;
 - Exemplo de flex-direction: column e align-items: center, itens distribuídos no centro do container. Alinhamento **horizontal**:
 
 ```css
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
 ```
 
-PAREI - 14:00
+**IMAGEM column-align-items-center**
+
+- Exemplo de flex-direction: column e align-items: flex-end, itens alinhados no canto direito/final do container. Alinhamento **horizontal**:
+
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM column-align-items-flex-end**
+
+- Exemplo de flex-direction: column e align-items: flex-start, itens alinhados no canto esquerdo/início do container. Alinhamento **horizontal**:
+
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM column-align-items-flex-start**
+
+- Exemplo de flex-direction: column e align-items: stretch, itens distribuídos igualmente no início do container. Alinhamento **horizontal**:
+
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM column-align-items-stretch**
 
 ## [15:06](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=906s) — Formas de alinhamento (align-content)
 
+- **align-content:** alinha as linhas do container verticalmente. É usado quando se tem mais de uma linha.
 
+  OBS.: Vamos precisar usar a propriedade `flex-flow: wrap;` para uasr o `align-content`:
+
+  - **stretch:** faz com que os itens cresçam igualmente (padrão);
+  - **flex-start:** alinha as linhas no início do container;
+  - **flex-end:** alinha as linhas no final do container;
+  - **center:** alinha as linhas no centro do container;
+  - **space-between:** distribui as linhas igualmente no container;
+  - **space-around:** space-between com margens verticais.
+
+- Exemplo de flex-direction: row e align-content: stretch, itens distribuídos igualmente no container:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  align-content: stretch;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM flex-direction-row-align-content-stretch**
+
+- Exemplo de flex-direction: row e align-content: flex-start, linhas no início do container:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  align-content: flex-start;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM flex-direction-row-align-content-flex-start**
+
+- Exemplo de flex-direction: row e align-content: flex-end, linhas no final do container:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  align-content: flex-end;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM flex-direction-row-align-content-flex-end**
+
+- Exemplo de flex-direction: row e align-content: center, linhas no centro do container:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  align-content: center;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM flex-direction-row-align-content-center**
+
+- Exemplo de flex-direction: row e align-content: space-between, linhas distribuídas igualmente no container:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  align-content: space-between;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM flex-direction-row-align-content-space-between**
+
+- Exemplo de flex-direction: row e align-content: space-around, space-between com margens verticais:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  align-content: space-around;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+```
+
+**IMAGEM flex-direction-row-align-content-space-around**
 
 ## [18:48](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1128s) — Responsividade (flex-flow)
 
