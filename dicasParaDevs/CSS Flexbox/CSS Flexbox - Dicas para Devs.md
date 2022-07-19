@@ -674,7 +674,7 @@ flex-flow: wrap-reverse;
 }
 ```
 
-**IMAGEM order-crescente**
+![order-crescente](https://user-images.githubusercontent.com/76978748/179809874-459b8727-75b1-4ef1-9ab6-cad9ed20c4e7.png)
 
 - Exemplo 2 - box's em ordem decrescente:
 
@@ -705,7 +705,7 @@ flex-flow: wrap-reverse;
 }
 ```
 
-**IMAGEM order-decrescente**
+![order-decrescente](https://user-images.githubusercontent.com/76978748/179809944-bc31e7f2-de54-4224-8517-fab378dc6e12.png)
 
 - Exemplo 3 - box's em ordem aleatória:
 
@@ -736,7 +736,7 @@ flex-flow: wrap-reverse;
 }
 ```
 
-**IMAGEM order-aleatorio**
+![order-aleatorio](https://user-images.githubusercontent.com/76978748/179810010-3348456e-91d6-4317-9ed2-ff01dee85195.png)
 
 ## [24:26](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1466s) — Propriedade "flex"
 
@@ -772,7 +772,7 @@ flex-flow: wrap-reverse;
 }
 ```
 
- **IMAGEM row-flex-1-1-1**
+![row-flex-1-1-1](https://user-images.githubusercontent.com/76978748/179810118-a0e28103-1393-4c6a-84d3-c01ca4afaced.png)
 
 - Exemplo 2 - Elemento do meio maior do que os outros:
 
@@ -803,7 +803,7 @@ flex-flow: wrap-reverse;
 }
 ```
 
-**IMAGEM row-flex-1-2-1**
+![row-flex-1-2-1](https://user-images.githubusercontent.com/76978748/179810164-0d6396d4-6d43-48d5-a94d-672de3e414de.png)
 
 - Exemplo 3 - Elemento de tamanho crescente:
 
@@ -835,7 +835,7 @@ flex-flow: wrap-reverse;
 
 ```
 
-**IMAGEM row-flex-1-2-3**
+![row-flex-1-2-3](https://user-images.githubusercontent.com/76978748/179810221-5e3697d3-df79-480c-b525-7c64f81a8634.png)
 
 - Exemplo 1 - Todos os elementos do mesmo tamanho:
 
@@ -866,7 +866,7 @@ flex-flow: wrap-reverse;
 }
 ```
 
-**IMAGEM column-flex-1-1-1**
+![column-flex-1-1-1](https://user-images.githubusercontent.com/76978748/179810286-758bb515-2692-4aa7-b19b-890677e859a6.png)
 
 - Exemplo 2 - Elemento do meio maior do que os outros:
 
@@ -897,7 +897,7 @@ flex-flow: wrap-reverse;
 }
 ```
 
-**IMAGEM column-flex-1-2-1**
+![column-flex-1-2-1](https://user-images.githubusercontent.com/76978748/179810362-aa115ef3-28c6-41db-9d53-37c4faed8a5a.png)
 
 - Exemplo 3 - Elemento de tamanho crescente:
 
@@ -928,7 +928,7 @@ flex-flow: wrap-reverse;
 }
 ```
 
-**IMAGEM column-flex-1-2-3**
+![column-flex-1-2-3](https://user-images.githubusercontent.com/76978748/179810414-2ab6c20b-8172-4b1c-903e-1b25a82b8aee.png)
 
 ## [27:20](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1640s) — Propriedade "flex-basis"
 
