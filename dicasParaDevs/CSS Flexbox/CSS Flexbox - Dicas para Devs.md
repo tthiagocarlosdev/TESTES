@@ -615,23 +615,325 @@ flex-direction: column;
 
 ## [18:48](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1128s) — Responsividade (flex-flow)
 
+- Com a propriedade **flex-flow** podemos adicionar responsividade ao nosso layout de uma forma muito simples.
+- Seus valores: 
+  - **nowrap:** não permite a quebra de linha;
 
+```css
+flex-flow: nowrap;
+```
+
+- **wrap:** quebra a linha assim que um dos itens não couber nela;
+
+```css
+flex-flow: wrap;
+```
+
+- **wrap-reverse:** mesma coisa que o wrap, mas a quebra acontece para a linha acima.
+
+```css
+flex-flow: wrap-reverse;
+```
 
 ## [21:51](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1311s) — Flex Item
 
+### Algumas propriedades do flex-item:
 
+- **order:** define a ordem do elemento no container;
+- **flex:** define o tamanho do elemento no **main-axis** baseado no tamanho do container;
+- **flex-basis:** define o tamanho do elemento baseado no **main-axis**.
 
 ## [22:16](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1336s) — Propriedade "order"
 
+- Exemplo 1 - box's em ordem crescente?:
 
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: row;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  order: 1;
+}
+
+.container .box-2 {
+  order: 2;
+}
+
+.container .box-3 {
+  order: 3;
+}
+```
+
+**IMAGEM order-crescente**
+
+- Exemplo 2 - box's em ordem decrescente:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: row;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  order: 3;
+}
+
+.container .box-2 {
+  order: 2;
+}
+
+.container .box-3 {
+  order: 1;
+}
+```
+
+**IMAGEM order-decrescente**
+
+- Exemplo 3 - box's em ordem aleatória:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: row;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  order: 3;
+}
+
+.container .box-2 {
+  order: 1;
+}
+
+.container .box-3 {
+  order: 2;
+}
+```
+
+**IMAGEM order-aleatorio**
 
 ## [24:26](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1466s) — Propriedade "flex"
 
+- Define o tamanho do elemento no **main-axis** baseado no tamanho do container.
+- Recebe como valor até o número 7, após esse valor, não sofre alteração:
 
+- Exemplo 1 - Todos os elementos do mesmo tamanho:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: row;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  flex: 1;
+}
+
+.container .box-2 {
+  flex: 1;
+}
+
+.container .box-3 {
+  flex: 1;
+}
+```
+
+ **IMAGEM row-flex-1-1-1**
+
+- Exemplo 2 - Elemento do meio maior do que os outros:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: row;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  flex: 1;
+}
+
+.container .box-2 {
+  flex: 2;
+}
+
+.container .box-3 {
+  flex: 1;
+}
+```
+
+**IMAGEM row-flex-1-2-1**
+
+- Exemplo 3 - Elemento de tamanho crescente:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: row;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  flex: 1;
+}
+
+.container .box-2 {
+  flex: 2;
+}
+
+.container .box-3 {
+  flex: 3;
+}
+
+```
+
+**IMAGEM row-flex-1-2-3**
+
+- Exemplo 1 - Todos os elementos do mesmo tamanho:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  flex: 1;
+}
+
+.container .box-2 {
+  flex: 1;
+}
+
+.container .box-3 {
+  flex: 1;
+}
+```
+
+**IMAGEM column-flex-1-1-1**
+
+- Exemplo 2 - Elemento do meio maior do que os outros:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  flex: 1;
+}
+
+.container .box-2 {
+  flex: 2;
+}
+
+.container .box-3 {
+  flex: 1;
+}
+```
+
+**IMAGEM column-flex-1-2-1**
+
+- Exemplo 3 - Elemento de tamanho crescente:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  flex: 1;
+}
+
+.container .box-2 {
+  flex: 2;
+}
+
+.container .box-3 {
+  flex: 3;
+}
+```
+
+**IMAGEM column-flex-1-2-3**
 
 ## [27:20](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1640s) — Propriedade "flex-basis"
 
-
+- Define o tamanho do elemento baseado no **main-axis**.
+- PAREI
 
 ## [29:35](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1775s) — Conclusão
 
