@@ -964,7 +964,7 @@ flex-flow: wrap-reverse;
 }
 ```
 
-**IMAGEM row-width**
+![row-width](https://user-images.githubusercontent.com/76978748/179963799-aa59b9c6-3ac3-4731-a262-1d2e553969d8.png)
 
 ```css
 .container {
@@ -993,7 +993,7 @@ flex-flow: wrap-reverse;
 }
 ```
 
-**IMAGEM column-width**
+![column-width](https://user-images.githubusercontent.com/76978748/179963868-aaafbf05-b331-44bc-b64f-6e8685ee11e0.png)
 
 - Exemplo usando **flex-basis**:
 
@@ -1024,7 +1024,7 @@ flex-flow: wrap-reverse;
 }
 ```
 
-**IMAGEM row-flex-basis**
+![row-flex-basis](https://user-images.githubusercontent.com/76978748/179963953-2ebefcfd-631f-40e8-9ff4-129af9962444.png)
 
 ```css
 .container {
@@ -1053,7 +1053,7 @@ flex-flow: wrap-reverse;
 }
 ```
 
-**IMAGEM column-flex-basis**
+![column-flex-basis](https://user-images.githubusercontent.com/76978748/179963999-c547bfc5-0384-4257-9f55-09bcceddccb8.png)
 
 ## [29:35](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1775s) — Conclusão
 
@@ -1065,7 +1065,7 @@ flex-flow: wrap-reverse;
 
 - Só se aplica para o **flex-item**:
 
-**IMAGEM align-self**
+![align-self](https://user-images.githubusercontent.com/76978748/179964050-4a4fb236-63a6-4b23-9be8-bd97493fa567.png)
 
 ## [31:15](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1875s) — Conclusão
 
