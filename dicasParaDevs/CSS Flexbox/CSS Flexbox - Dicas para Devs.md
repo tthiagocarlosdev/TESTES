@@ -933,15 +933,142 @@ flex-flow: wrap-reverse;
 ## [27:20](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1640s) — Propriedade "flex-basis"
 
 - Define o tamanho do elemento baseado no **main-axis**.
-- PAREI
+- Se comporta como **width** se a **flex-direction** for **row**, ou se comporta como **height** se a **flex-direction** for **column**.
+
+- Exemplo usando **widht**:
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: row;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  width: 15%;
+}
+
+.container .box-2 {
+  width: 15%;
+}
+
+.container .box-3 {
+  width: 15%;
+}
+```
+
+**IMAGEM row-width**
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  width: 15%;
+}
+
+.container .box-2 {
+  width: 15%;
+}
+
+.container .box-3 {
+  width: 15%;
+}
+```
+
+**IMAGEM column-width**
+
+- Exemplo usando **flex-basis**:
+
+``` css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: row;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  flex-basis: 15%;
+}
+
+.container .box-2 {
+  flex-basis: 15%;
+}
+
+.container .box-3 {
+  flex-basis: 15%;
+}
+```
+
+**IMAGEM row-flex-basis**
+
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  flex-basis: 15%;
+}
+
+.container .box-2 {
+  flex-basis: 15%;
+}
+
+.container .box-3 {
+  flex-basis: 15%;
+}
+```
+
+**IMAGEM column-flex-basis**
 
 ## [29:35](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1775s) — Conclusão
 
-
+- Prática, prática e mais prática.
+- Pesquise mais sobre Flexbox!
+  - [CSS-TRICKS](https://css-tricks.com/)
 
 ## [30:38](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1838s) — Propriedade "align-self"
 
+- Só se aplica para o **flex-item**:
 
+**IMAGEM align-self**
 
 ## [31:15](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1875s) — Conclusão
 
+- Assista esse curso quantas vezes for necessário.
+- Crie pequenos projetos utilizando o que você aprendeu aqui.
+- Meu muito obrigado!

@@ -2,7 +2,8 @@
   background-color: rgb(168, 165, 165);
   height: 800px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
 }
 
 .container div {
@@ -12,13 +13,15 @@
 }
 
 .container .box-1 {
-  flex: 1;
+  flex-basis: 33%;
+  align-self: flex-start;
 }
 
 .container .box-2 {
-  flex: 2;
+  flex-basis: 33%;
 }
 
 .container .box-3 {
-  flex: 1;
+  flex-basis: 33%;
+  align-self: flex-end;
 }
