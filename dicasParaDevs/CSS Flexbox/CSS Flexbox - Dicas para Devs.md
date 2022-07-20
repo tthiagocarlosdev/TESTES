@@ -1065,6 +1065,36 @@ flex-flow: wrap-reverse;
 
 - Só se aplica para o **flex-item**:
 
+```css
+.container {
+  background-color: rgb(168, 165, 165);
+  height: 800px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container div {
+  border: 1px solid black;
+  padding: 10px;
+  background-color:lightblue;
+}
+
+.container .box-1 {
+  flex-basis: 33%;
+  align-self: flex-start;
+}
+
+.container .box-2 {
+  flex-basis: 33%;
+}
+
+.container .box-3 {
+  flex-basis: 33%;
+  align-self: flex-end;
+}
+```
+
 ![align-self](https://user-images.githubusercontent.com/76978748/179964050-4a4fb236-63a6-4b23-9be8-bd97493fa567.png)
 
 ## [31:15](https://www.youtube.com/watch?v=0OWlr3D3wFA&list=PLm-VCNNTu3LlXF_xsvl6fzf9KBFb3jHN-&index=3&t=1875s) — Conclusão
