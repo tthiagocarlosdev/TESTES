@@ -110,6 +110,7 @@
 				align-items: center;
 				font-size: 3rem;
 				color: var(--white-color);
+				padding: 1rem;
 			}
 
 /* LINKS - LINKS - LINKS - LINKS - LINKS - LINKS - LINKS*/
@@ -132,8 +133,10 @@
 			.main .box-queries .links-queries a,
 			.main .box-others .links-others a,
 			.box-footer .links-social-media a {
+				display: block;
+				width: 9.5rem;
+				text-align: center;
 				text-decoration: none;
-				color: black;
 				padding: 0.5rem;
 				color: var(--white-color);
 				border: 1px solid var(--white-color);
@@ -167,15 +170,16 @@
 				flex-direction: row;
 				justify-content: flex-end;
 				align-items: center;
-
+				padding: 1em;
 			}
 			
 			.box-footer .links-social-media {
 				list-style: none;
-				flex: 1;
+				flex: 1.5;
 				display: flex;
 				flex-direction: row;
 				justify-content: flex-start;
 				align-items: center;
 				padding:0.5rem;
+				flex-flow: wrap;
 			}
