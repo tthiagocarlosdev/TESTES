@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+:root {
+		--grey: rgb(122, 139, 150);
+		--white-color: #dbdbdb;
+		--black-color: #000;
+		--white: #ffffff;
+}
+
+@media(max-width:1080px){
+	html{
+		font-size: 93.75%;
+	}
+}
+
+@media(max-width:720px){
+	html{
+		font-size: 87.5%;
+	}
+}
+
+@media(max-width:500px){
+	html{
+		font-size: 82.5%;
+	}
+}
+
+@media(max-width:300px){
+	html{
+		font-size: 75.5%;
+	}
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1rem;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	height:100vh;
+	background-color: var(--white);
+}
+
+/* HEADER - HEADER - HEADER - HEADER - HEADER - HEADER - HEADER */
+
+.header {
+	background-color: var(--grey);
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	order: 1;
+	flex: 1;
+}
+
+.header h1 {		
+	font-size: 2rem;
+	color: var(--white-color);
+	margin:auto;
+}
+
+.main {
+	display: flex;
+	flex-direction: row;
+	background-color: var(--light-brown-color);
+	order: 2;
+	flex: 4;
+	/* flex-flow: wrap; */
+}
+
+/* BOX's - BOX's - BOX's - BOX's - BOX's - BOX's - BOX's*/
+.main .box-instructions {
+	display: flex;
+	flex-direction: column;
+	order: 1;
+	flex: 1;
+	border: 2px solid rgb(250,200,0);
+  color: var(--white-color);
+}
+
+.main .box-generator {
+	border-top: 1px solid var(--brown-color);
+	border-bottom: 1px solid var(--brown-color);
+	order: 2;
+	flex: 3;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+  color:var(--white-color);
+	background-color: var(--dark-gray-color);
+	border: 2px solid rgb(237, 0, 0);
+}
+		
+/* TITLES - TITLES- TITLES- TITLES - TITLES*/
+
+.main .box-instructions .title-instructions,
+.main .box-generator .title-generator {
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	order: 1;
+	height: 10rem;
+	font-size: 2.5rem;
+	color: var(--white-color);
+}
+
+/* BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX */
+
+.main .box-instructions .text-instructions {
+	display: flex;
+	flex-direction: column;    
+	flex: 4;
+	order: 2;
+	border-top: 2px solid black; /* remove */
+}
+
+.main .box-instructions .text-instructions .paragraph-instructions {
+	display: flex;
+	flex-direction: column;
+	flex:1;
+	justify-content: center;
+	align-items:center;
+	padding: 0rem 1rem;
+}
+
+.main .box-instructions .text-instructions .paragraph-instructions p{
+	font-size: 1.5rem;
+	text-align: justify;
+	padding: 1rem 0.5rem;
+}
+
+.main .box-instructions .text-instructions .list-instructions {
+	flex:1;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items:flex-start;
+	padding:0rem 3rem;
+}
+
+.main .box-instructions .text-instructions .list-instructions li{
+	font-size: 1.5rem;
+	text-align:justify;
+	padding:0.2rem;
+}
+
+.main .box-generator .generator {
+	flex: 4;
+	display: flex;
+	flex-direction:row;
+	justify-content: center;
+	align-items: center;
+	order: 2;
+	border: 2px solid rgb(250,100,0); /*remove*/
+}
+
+.main .box-generator .generator .input-generator {
+	order:1;
+	display:flex;
+	flex-direction:column;
+	flex: 1;
+	justify-content: space-around;
+	align-items: center;
+	height:100%;
+	width:100%;
+	border: 2px solid pink;/*remove*/
+}
+
+.main .box-generator .generator .input-generator p {
+	display: flex;
+	flex-direction:column;
+	padding: 1rem;
+	font-size: 1.5rem;
+	text-align:justify;
+}
+
+.main .box-generator .generator .input-generator input {    
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width: auto;
+	height:2.5rem;
+	padding: 0 1.5rem;
+}
+
+.main .box-generator .generator .input-generator ::-webkit-input-placeholder {
+	display:flex;
+	color: grey;
+	font-size:0.8rem;
+}   
+
+
+.main .box-generator .generator .input-generator button {
+	border: 0;
+	height: 2.5rem;
+	padding: 0 1.5rem;
+	font-size: 1.2rem;
+	text-align:center;
+	color:white;
+	text-shadow: 1px 1px 1px var(--black-color);
+	border-radius: 5px;
+	background-color: rgb(95, 92, 92);
+	box-shadow: 1px 1px 1px 1px black;
+	cursor:pointer;
+}
+
+.main .box-generator .generator .input-generator button:hover {
+	background-color: grey;
+}
+
+.main .box-generator .generator .result-generator {
+	flex:1;
+	order:2;
+	height:100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	border: 2px solid purple; /* remove */
+}
+
+.main .box-generator .generator .result-generator p {
+	padding: 1rem;
+	font-size: 1.5rem;
+	text-align: justify;
+}
+
+.main .box-generator .generator .result-generator li{
+	list-style: none;
+	padding:0.8rem;
+	font-size:1.5rem;
+}
+
+.main .box-generator .generator .result-generator .result-password {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 80%;
+	/* border: 2px solid rgb(55, 237, 0); */
+}
+
+.main .box-generator .generator .result-generator .result-password #copy-password-button {
+	border:0;
+	height: 2.5rem;
+	padding: 0 1rem;
+	font-size: 1.2rem;
+	text-align:center;
+	color:var(--white-color);
+	text-shadow: 1px 1px 1px var(--black-color);
+	box-shadow: 1px 1px black;
+	border-radius: 5px;
+	background-color:rgb(95, 92, 92);
+	cursor:pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.main .box-generator .generator .result-generator .result-password #copy-password-button:hover {
+	background-color: grey;
+}
+
+.main .box-generator .generator .result-generator .result-password #copy-password-button img {
+	height: 1.5rem;
+}
+
+/* LINKS-BOTTONS - LINKS-BOTTONS - LINKS-BOTTONS - LINKS-BOTTONS - LINKS-BOTTONS 
+
+.main .box-general .links-general a,
+.main .box-queries .links-queries a,
+.main .box-others .links-others a {
+	text-decoration: none;
+	display: block;
+	color: black;
+	padding: 0.5rem;
+	color: var(--white-color);
+	border: 1px solid var(--white-color);
+	border-radius: 5px;
+	margin-left:0.5rem;
+	width: 250px;
+}
+
+.main .box-general .links-general a:hover,
+.main .box-queries .links-queries a:hover,
+.main .box-others .links-others a:hover {
+	background-color: var(--white-color);	
+	color: var(--dark-gray-color);
+	border: 1.5px solid var(--dark-gray-color)
+}*/
+
+/* BOX-FOOTER - BOX-FOOTER - BOX-FOOTER - BOX-FOOTER - BOX-FOOTER */
+.box-footer {
+	background-color: var(--grey);
+	display: flex;
+	flex-direction: row;
+	order: 3;
+	flex: 0.65;
+	flex-flow: wrap;
+}
+
+.box-footer .footer-title {
+	color: var(--white-color);
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+    padding:1rem;
+
+}
+
+.box-footer .links-social-media {
+	list-style: none;
+	flex: 1.5;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	padding:0.5rem;
+    flex-flow: wrap;
+}
+
+.box-footer .links-social-media a {
+				text-decoration: none;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: black;
+				padding: 0.5rem;
+				color: var(--white-color);
+				border: 1px solid var(--white-color);
+				border-radius: 5px;
+				margin-left:0.5rem;
+				width: 7rem;
+			}
+
+.box-footer .links-social-media a:hover {
+				background-color: var(--white-color);	
+				color: var(--black-color);
+				border: 1.5px solid var(--black-color);
+			}
