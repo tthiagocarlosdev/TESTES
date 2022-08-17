@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 :root {
-		--grey: rgb(122, 139, 150);
+		--grey-A: rgb(122, 139, 150);
+		--grey-B:rgb(118, 186, 232);
+		--grey-C:rgb(184, 210, 227);
+		--grey-D:rgb(51, 80, 99);
+		--grey-E: rgb(143, 163, 176);
 		--white-color: #dbdbdb;
 		--black-color: #000;
 		--white: #ffffff;
@@ -43,13 +47,12 @@
 	display: flex;
 	flex-direction: column;
 	height:100vh;
-	background-color: var(--white);
 }
 
 /* HEADER - HEADER - HEADER - HEADER - HEADER - HEADER - HEADER */
 
 .header {
-	background-color: var(--grey);
+	background-color: var(--grey-A);
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -71,14 +74,18 @@
 	flex: 4;
 	border-top: 2px solid var(--black-color);
 	border-bottom: 2px solid var(--black-color);
+	background: var(--grey-C);
 }
 
 /* BOX's - BOX's - BOX's - BOX's - BOX's - BOX's - BOX's*/
 .main .box-instructions {
-	display: flex;
-	flex-direction: column;
 	order: 1;
 	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
 
 .main .box-input-generator {
@@ -86,38 +93,51 @@
 	flex: 1;
 	display: flex;
 	flex-direction: column;
+	justify-content:center;
+	align-items: center;
+	width:100%;
 }
 
-.main .box-result-generator {
+.main .box-result-password {
 	order: 3;
 	flex: 1;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	background-color:green;
 }
 		
 /* TITLES - TITLES- TITLES- TITLES - TITLES*/
 
 .main .box-instructions .title-instructions,
-.main .box-input-generator .title-generator {
+.main .box-input-generator .title-generator,
+.main .box-result-password .title-result-password {
 	display: flex;
 	flex-direction: row;
 	flex: 1;
 	justify-content: center;
 	align-items: center;
 	order: 1;
-	height: 10rem;
+	line-height: 6rem;
+	width: 50%;
 	font-size: 2.5rem;
-	padding-top: 2rem;
-	padding-bottom: 1rem;
+	border-top: 1px solid var(--black-color);
+	border-bottom: 1px solid var(--black-color);
+	background-color: var(--grey-E);
 }
 
 /* BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX */
 
+/* instructions */
 .main .box-instructions .text-instructions {
 	display: flex;
 	flex-direction: column;    
 	flex: 1;
 	order: 2;
+	background-color: var(--grey-E);
+	width: 50%;
 }
 
 .main .box-instructions .text-instructions .paragraph-instructions {
@@ -126,6 +146,7 @@
 	flex:1;
 	justify-content: center;
 	align-items:center;
+	padding-top: 1rem;
 }
 
 .main .box-instructions .text-instructions .paragraph-instructions p{
@@ -140,6 +161,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items:center;
+	padding-bottom: 1rem;
 }
 
 .main .box-instructions .text-instructions .list-instructions li{
@@ -148,35 +170,28 @@
 	padding: 0.5rem;
 }
 
-.main .box-input-generator {
-	flex: 1;
-	display: flex;
-	flex-direction:column;
-	justify-content: center;
-	align-items: center;
-	order: 2;
-}
-
+/* input generator */
 .main .box-input-generator .input-generator {
 	order:2;
 	display:flex;
-	flex-direction:column;
+	flex-direction: column;
 	flex: 1;
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
-	height:100%;
-	width:100%;
+	padding: 1rem;
+	width: 50%;
+	background-color: var(--grey-E);
 }
 
-.main .box-generator .generator .input-generator p {
+.main .box-input-generator .input-generator p {
 	display: flex;
 	flex-direction: column;
 	padding: 1rem;
-	font-size: 1.2rem;
-	text-align:justify;
+	font-size: 1.5rem;
+	text-align: justify;
 }
 
-.main .box-generator .generator .input-generator input {    
+.main .box-input-generator .input-generator input {    
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -184,43 +199,48 @@
 	height: 2.5rem;
 	padding: 0 1.5rem;
 	border-radius: 5px;
+	margin-top: 1.5rem;
 }
 
-.main .box-generator .generator .input-generator ::-webkit-input-placeholder {
+.main .box-input-generator .input-generator input::-webkit-input-placeholder {
 	display:flex;
 	color: grey;
-	font-size:0.8rem;
+	font-size: 0.9rem;
+	text-align: center;
 }   
 
-
-.main .box-generator .generator .input-generator button {
+.main .box-input-generator .input-generator button {
 	border: 0;
 	height: 2.5rem;
 	padding: 0 1.5rem;
-	font-size: 1.2rem;
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
 	text-align:center;
-	color:white;
+	color:var(--white);
 	text-shadow: 1px 1px 1px var(--black-color);
 	border-radius: 5px;
-	background-color: rgb(95, 92, 92);
+	background-color: var(--grey-D);
 	box-shadow: 1px 1px 1px 1px black;
 	cursor:pointer;
 }
 
-.main .box-generator .generator .input-generator button:hover {
-	background-color: grey;
+.main .box-input-generator .input-generator button:hover {
+	background-color: var(--grey-A);
 }
 
-.main .box-generator .generator .result-generator {
-	flex:1;
-	order:2;
-	height:100%;
-	width: 100%;
+/* box result */
+.main .box-result-password .text-result-password {
+	flex: 1;
+	order: 2;
+	width: 50%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
+	background-color: var(--grey-E)
 }
+
+/* CONTINUA CONTINUA CONTINUA CONTINUA CONTINUA CONTINUA CONTINUA CONTINUA */
 
 .main .box-generator .generator .result-generator p {
 	padding: 1rem;
@@ -272,7 +292,7 @@
 
 /* BOX-FOOTER - BOX-FOOTER - BOX-FOOTER - BOX-FOOTER - BOX-FOOTER */
 .box-footer {
-	background-color: var(--grey);
+	background-color: var(--grey-A);
 	display: flex;
 	flex-direction: row;
 	order: 3;
