@@ -52,15 +52,15 @@
 	background-color: var(--grey);
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: center;
 	order: 1;
 	flex: 1;
 }
 
 .header h1 {		
-	font-size: 2rem;
-	margin:auto;
+	font-size: 3rem;
+	width: auto;
 	padding: 1.5rem;
 }
 
@@ -81,9 +81,16 @@
 	flex: 1;
 }
 
-.main .box-generator {
+.main .box-input-generator {
 	order: 2;
-	flex: 3;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.main .box-result-generator {
+	order: 3;
+	flex: 1;
 	display: flex;
 	flex-direction: column;
 }
@@ -91,7 +98,7 @@
 /* TITLES - TITLES- TITLES- TITLES - TITLES*/
 
 .main .box-instructions .title-instructions,
-.main .box-generator .title-generator {
+.main .box-input-generator .title-generator {
 	display: flex;
 	flex-direction: row;
 	flex: 1;
@@ -99,8 +106,9 @@
 	align-items: center;
 	order: 1;
 	height: 10rem;
-	font-size: 2rem;
-	padding: 2rem;
+	font-size: 2.5rem;
+	padding-top: 2rem;
+	padding-bottom: 1rem;
 }
 
 /* BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX */
@@ -108,9 +116,8 @@
 .main .box-instructions .text-instructions {
 	display: flex;
 	flex-direction: column;    
-	flex: 4;
+	flex: 1;
 	order: 2;
-	/* border-top: 2px solid black; remove */
 }
 
 .main .box-instructions .text-instructions .paragraph-instructions {
@@ -119,13 +126,12 @@
 	flex:1;
 	justify-content: center;
 	align-items:center;
-	padding: 1rem 1rem;
 }
 
 .main .box-instructions .text-instructions .paragraph-instructions p{
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	text-align: justify;
-	padding: 1rem 1rem;
+	padding: 1rem;
 }
 
 .main .box-instructions .text-instructions .list-instructions {
@@ -134,26 +140,25 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items:center;
-	padding:0rem 3rem;
 }
 
 .main .box-instructions .text-instructions .list-instructions li{
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	text-align:justify;
-	padding:0.2rem;
+	padding: 0.5rem;
 }
 
-.main .box-generator .generator {
-	flex: 4;
+.main .box-input-generator {
+	flex: 1;
 	display: flex;
-	flex-direction:row;
+	flex-direction:column;
 	justify-content: center;
 	align-items: center;
 	order: 2;
 }
 
-.main .box-generator .generator .input-generator {
-	order:1;
+.main .box-input-generator .input-generator {
+	order:2;
 	display:flex;
 	flex-direction:column;
 	flex: 1;

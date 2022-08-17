@@ -21,45 +21,47 @@
 
 				<div class="text-instructions">
 				    <div class="paragraph-instructions">
-				      <p> Este sistema foi desenvolvido para gerar senhas seguras.</p>
-					    <p> Para uma senha ser considerada segura, ela deve apresentar: </p>				    
+				    	<p> Este sistema foi desenvolvido para gerar senhas seguras.</p>
+						<p> Para uma senha ser considerada segura, ela deve apresentar: </p>				    
 				    </div>
 				    <ul class="list-instructions">
-							<li> Mínimo de 8 caracteres;</li>
-							<li> Letras maiúsculas;</li>
-							<li> Letras minusculas;</li>
-							<li> Números;</li>
-							<li> Símbolos.</li>
+						<li> Mínimo de 8 caracteres;</li>
+						<li> Letras maiúsculas;</li>
+						<li> Letras minusculas;</li>
+						<li> Números;</li>
+						<li> Símbolos.</li>
 				    </ul>
 				</div>
-	
+
 			</div>
 
-			<div class="box-generator">
+			<div class="box-input-generator">
+
 				<h1 class="title-generator">Gerar Senha</h1>
-				<div class="generator">
-				    <div class="input-generator">
-					    <p> Digite a quantidade de caracteres de sua senha: </p>
-					    <p> [ATENÇÃO]! Digite valores de 8 a 40.</p>
-					    <input type="" name="number-of-characters" id="number-of-characters" placeholder="Informe o tamanho de sua senha">
-					    <button type="button" value="generate"onclick="passwordGenerator()">Gerar senha</button>
-				    </div>
-				    <div class="result-generator">
-					    <p> Sua senha tem X caracteres, sendo: </p>
-					    <ul>
-								<li>X símbolos;</li>
-								<li>X números;</li>
-								<li>X letras maiúsculas;</li>
-								<li>X letras minúsculas.</li>
-					    </ul>
-							<div class="result-password">
-								<p>Sua senha é:</p>	
-								<button id="copy-password-button"> <img src="./images/copy-two-paper-sheets-interface-symbol.png"</button>	
-							</div>
-							<p id="password" >{'0137z$\PyaW`2bQldL.4M!6t5UGCVi8c9?p*rN</p>
-					    
-				    </div>
+
+				<div class="input-generator">
+					<p> Digite a quantidade de caracteres de sua senha: </p>
+					<p> [ATENÇÃO]! Digite valores de 8 a 40.</p>
+					<input type="" name="number-of-characters" id="number-of-characters" placeholder="Informe o tamanho de sua senha">
+					<button type="button" value="generate"onclick="passwordGenerator()">Gerar senha</button>
 				</div>
+				
+			</div>
+
+			<div class="box-result-generator">
+				<p> Sua senha tem X caracteres, sendo: </p>
+				<ul>
+					<li>X símbolos;</li>
+					<li>X números;</li>
+					<li>X letras maiúsculas;</li>
+					<li>X letras minúsculas.</li>
+				</ul>
+					<div class="result-password">
+						<p>Sua senha é:</p>	
+						<button id="copy-password-button"> <img src="./images/copy-two-paper-sheets-interface-symbol.png"</button>	
+					</div>
+					<p id="password" >{'0137z$\PyaW`2bQldL.4M!6t5UGCVi8c9?p*rN</p>
+				
 			</div>
 
 		</main>
