@@ -1,73 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap'); */
 
 :root {
   --blue: rgb(71, 148, 236 );
-  --white: rgb(255, 255, 255);
   --dark-blue: rgb(0, 75, 161);
+  --white: rgb(255, 255, 255);
   --black: rgb(0, 0, 0);
 }
 
+
+/* HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER */
 .header {
   display: flex;
+  flex-direction: column;
+  flex: 1;
+  order: 1;
   justify-content: center;
-  padding: 1em;
+  align-items: center;
   background-color: var(--blue);
   color: var(--dark-blue);
-  font-size: 45px;
+  font-size: 4rem;
   font-weight: bold;
+  line-height: 8rem;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  background-color: var(--dark-blue);
-  color: var(--white);
-  width: 100%;
-  text-align: center;
-  line-height: 5rem;
-}
-
-.button {
-  background-color: var(--blue);
-  height: 50px;
-  padding: 0 10px;
-  border-radius: 5px;
-  width: 250px;
-  font-size:20px;
-  color: var(--white);
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-}
-
-.button:hover {
-  background-color: var(--white);
-  color: var(--blue);
-}
-
-.athlete-name{
+/*BOX ATHLETE NAME BOX ATHLETE NAME BOX ATHLETE NAME BOX ATHLETE NAME */
+.box-athlete-name{
   display: flex;
-  justify-content: left;
-  padding: 1em;
-  background-color: var(--dark-blue);
-  color: var(--white);
-  font-size: 40px;
-}
-
-.repetitions {
-  display: flex;
+  flex-direction: column;
+  flex: 1;
+  order: 2;
   justify-content: center;
-  height: 50%;
-  font-size: 80px;
-  font-weight: bold;
+  align-items: flex-start;
+  line-height: 7rem;
+  font-size: 5rem;
+  background-color: var(--dark-blue);
   color: var(--white);
-  padding: 20px;
-  /* border: 1px solid black; */
 }
 
 /* TIME TIME TIME TIME TIME TIME TIME TIME TIME TIME TIME TIME */
+
+.box-time {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  order: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+}
+
 .timeContainer {
   display: flex;
+  flex: 1;
+  flex-direction: row;
   align-items: center;
   font-family: 'Rajdhani', sans-serif;
   font-weight: 600;
@@ -127,3 +112,44 @@
 .timeButton:hover {
   background-color: var(--dark-blue)
 }
+
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER */
+.footer {
+  position: absolute;
+  bottom: 0;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  width: 100%;
+  text-align: center;
+  line-height: 5rem;
+}
+
+.button {
+  background-color: var(--blue);
+  height: 50px;
+  padding: 0 10px;
+  border-radius: 5px;
+  width: 250px;
+  font-size:20px;
+  color: var(--white);
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+.button:hover {
+  background-color: var(--white);
+  color: var(--blue);
+}
+
+.repetitions {
+  display: flex;
+  justify-content: center;
+  height: 50%;
+  font-size: 80px;
+  font-weight: bold;
+  color: var(--white);
+  padding: 20px;
+  /* border: 1px solid black; */
+}
+

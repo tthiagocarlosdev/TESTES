@@ -25,7 +25,7 @@ const Time = () => {
   },[active, time])
 
   return ( 
-    <div>
+    <div className="box-time">
       <div className="timeContainer">
         <div>
           <span>{minuteLeft}</span>

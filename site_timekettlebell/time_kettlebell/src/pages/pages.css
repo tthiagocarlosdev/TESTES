@@ -1,3 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height:100vh;
+  /* background-color: var(--white); */
+}
+
+
+.box-time-reps {
+  display: flex;
+  flex-direction: row;
+  flex: 4;
+  order: 3;
+  border: 2px solid greenyellow;
+}
+
 
 .container-buttons {
     background-color: #444;
@@ -8,8 +24,6 @@
     justify-content: space-between;
 }
 
-
-/* Page Timer */
 .container-body {
   background-color: rgb(0, 108, 232);
   display: flex;
@@ -38,5 +52,5 @@
   justify-content: space-between;
   background-color: rgb(0, 75, 161);
   flex: 2;
-}
+} 
 

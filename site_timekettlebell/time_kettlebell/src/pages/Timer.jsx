@@ -76,20 +76,13 @@ const Timer = () => {
 
   return (
   
-      <div className="container-body">
+      <div className="container">
         <Header />
-        <AthleteName> Thiago Carlos </AthleteName>
-        <div className="container-operator">
-          <div className="time-and-reps">
-            <Repetitions> { repetitions } </Repetitions>
-            <Time/>
-          </div>
-          <div className="operation-button">
-            <Button className="child" onClick={changeTime}> Start </Button>
-            <Button className="child" onClick={changeRepetitions}> Click </Button>
-          </div>
+        <AthleteName> THIAGO CARLOS </AthleteName>
+        <div className="box-time-reps">
+          <Time/>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
 
    );
