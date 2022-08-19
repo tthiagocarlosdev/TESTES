@@ -82,7 +82,7 @@ const Timer = () => {
         <div className="container-operator">
           <div className="time-and-reps">
             <Repetitions> { repetitions } </Repetitions>
-            <Time> { gameTime } </Time>
+            <Time/>
           </div>
           <div className="operation-button">
             <Button className="child" onClick={changeTime}> Start </Button>

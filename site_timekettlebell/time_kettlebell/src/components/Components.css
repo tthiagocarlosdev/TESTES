@@ -1,15 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --background-color: rgb(71, 148, 236 );
-  --color-text: #eee;
-  --background-color-athlete-name: rgb(0, 75, 161);
+  --blue: rgb(71, 148, 236 );
+  --white: rgb(255, 255, 255);
+  --dark-blue: rgb(0, 75, 161);
+  --black: rgb(0, 0, 0);
 }
 
 .header {
   display: flex;
   justify-content: center;
   padding: 1em;
-  background-color: var(--background-color);
-  color: var(--background-color-athlete-name);
+  background-color: var(--blue);
+  color: var(--dark-blue);
   font-size: 45px;
   font-weight: bold;
 }
@@ -17,50 +20,110 @@
 .footer {
   position: absolute;
   bottom: 0;
-  background-color: var(--background-color-athlete-name);
-  color: var(--color-text);
+  background-color: var(--dark-blue);
+  color: var(--white);
   width: 100%;
-  height: 100px;
   text-align: center;
-  line-height: 100px;
+  line-height: 5rem;
 }
 
 .button {
-  background-color: var(--background-color);
+  background-color: var(--blue);
   height: 50px;
   padding: 0 10px;
   border-radius: 5px;
   width: 250px;
   font-size:20px;
-  color: var(--color-text);
+  color: var(--white);
   font-weight: bold;
   cursor: pointer;
   border: none;
 }
 
 .button:hover {
-  background-color: var(--color-text);
-  color: var(--background-color);
+  background-color: var(--white);
+  color: var(--blue);
 }
 
 .athlete-name{
   display: flex;
   justify-content: left;
   padding: 1em;
-  background-color: var(--background-color-athlete-name);
-  color: var(--color-text);
+  background-color: var(--dark-blue);
+  color: var(--white);
   font-size: 40px;
 }
 
-.repetitions,
-.time {
+.repetitions {
   display: flex;
   justify-content: center;
   height: 50%;
   font-size: 80px;
   font-weight: bold;
-  color: var(--color-text);
+  color: var(--white);
   padding: 20px;
   /* border: 1px solid black; */
 }
 
+/* TIME TIME TIME TIME TIME TIME TIME TIME TIME TIME TIME TIME */
+.timeContainer {
+  display: flex;
+  align-items: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.timeContainer > div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--white);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  font-size: 8.5rem;
+  text-align: center;
+}
+
+.timeContainer > div span {
+  flex: 1;
+}
+
+.timeContainer > div span:first-child {
+  border-right: 1px solid #f0f1f3;
+}
+
+.timeContainer > div span:last-child {
+  border-left: 1px solid #f0f1f3;
+}
+
+.timeContainer > span {
+  font-size: 6.25rem;
+  margin: 0 0.5rem;
+}
+
+.timeButton {
+  width: 100%;
+  height: 5rem;
+  margin-top: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  border: 0;
+  border-radius: 5px;
+
+  background-color: var(--blue);
+  color: var(--white);
+
+  font-size: 1.25rem;
+  font-weight: 600;
+
+  transition: background-color 0.5s;
+}
+
+.timeButton:hover {
+  background-color: var(--dark-blue)
+}
