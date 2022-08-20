@@ -20,7 +20,7 @@
   color: var(--dark-blue);
   font-size: 4rem;
   font-weight: bold;
-  line-height: 8rem;
+  line-height: 8.5rem;
 }
 
 /*BOX ATHLETE NAME BOX ATHLETE NAME BOX ATHLETE NAME BOX ATHLETE NAME */
@@ -46,7 +46,6 @@
   order: 1;
   justify-content: center;
   align-items: center;
-  background-color: green;
 }
 
 .timeContainer {
@@ -88,14 +87,15 @@
   margin: 0 0.5rem;
 }
 
-.timeButton {
-  width: 100%;
+.timeButton, .button {
+  width: 20rem;
   height: 5rem;
   margin-top: 2rem;
+  margin-bottom: 3rem;
 
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 
   border: 0;
   border-radius: 5px;
@@ -109,47 +109,38 @@
   transition: background-color 0.5s;
 }
 
-.timeButton:hover {
+.timeButton:hover, .button:hover {
   background-color: var(--dark-blue)
+}
+
+
+/* REPETITATIONS REPETITATIONS REPETITATIONS REPETITATIONS REPETITATIONS */
+.box-repetitions {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  order: 2;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  font-size: 8rem;
+  font-weight: bold;
+  color: var(--white);
 }
 
 /* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER */
 .footer {
-  position: absolute;
-  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  flex: 0.5;
+  order: 4;
+  justify-content: center;
+  align-items: center;
   background-color: var(--dark-blue);
   color: var(--white);
   width: 100%;
-  text-align: center;
-  line-height: 5rem;
+  line-height: 1rem;
 }
 
-.button {
-  background-color: var(--blue);
-  height: 50px;
-  padding: 0 10px;
-  border-radius: 5px;
-  width: 250px;
-  font-size:20px;
-  color: var(--white);
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-}
 
-.button:hover {
-  background-color: var(--white);
-  color: var(--blue);
-}
-
-.repetitions {
-  display: flex;
-  justify-content: center;
-  height: 50%;
-  font-size: 80px;
-  font-weight: bold;
-  color: var(--white);
-  padding: 20px;
-  /* border: 1px solid black; */
-}
 
