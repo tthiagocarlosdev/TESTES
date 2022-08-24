@@ -1,5 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap'); */
-
 :root {
   --blue: rgb(71, 148, 236 );
   --dark-blue: rgb(0, 75, 161);
@@ -142,5 +140,72 @@
   line-height: 1rem;
 }
 
+/* REGISTRATION REGISTRATION REGISTRATION REGISTRATION REGISTRATION */
+.container-registration {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
 
+.athlete-form {
+  display: flex;
+  flex-direction: column;
+  flex: 4;
+  order: 2;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-athlete-form{ 
+  font-size: 3rem;
+  color: var(--black);
+  padding: 2rem;
+}
+
+.text-athlete-form {
+  font-size: 2rem;
+  padding-bottom: 2rem;
+}
+
+.standard-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.input {
+  height: 3rem;
+  margin-top: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 0;
+  border-radius: 5px;
+
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 0 1rem;
+}
+
+.input-athlete-name,
+.input-athlete-test,
+.input-kettlebell-weight {
+  width: 25rem;
+  height: 3rem;
+  margin-top: 2rem;
+
+  display: flex;
+  text-align: center;
+
+  border: 0;
+  border-radius: 5px;
+
+  background-color: var(--white);
+  color: var(--black);
+
+  font-size: 1.25rem;
+  font-weight: 600;
+
+}
 
