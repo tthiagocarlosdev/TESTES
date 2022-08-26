@@ -15,14 +15,67 @@
         </header>
 
         <div class="box-registration">
-            <h1 class="title-athlete-form"> Registro do atleta: </h1>
-            <p class="text-athlete-form"> Digite as informações  abaixo: </p>
+            <h1 class="title-registration"> Registro do atleta: </h1>
+            <p class="text-registration"> Digite as informações  abaixo: </p>
             
+            <form id="form" class="form">
+                <div class="form-control">
+                    <label for="athleteName"> Nome do Atleta: </label>
+                    <input type="text" class="input" placeholder="Digite aqui...">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <small>TESTE</small>
+                </div>
+
+                <div class="form-control">
+                    <label for="athleteTest"> Nome da Prova: </label>
+                    <select class="input" name="select">
+                        <option value="talc" > TALC </option>
+                        <option value="jerk" > JERK </option>
+                        <option value="snatch" > SNATCH </option>
+                    </select>
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <small>TESTE</small>
+                </div>
+
+                <div class="form-control">
+                    <label for="kettlebellWeight"> Peso do Kettlebell: </label>
+                    <select class="input" name="select">
+                        <option value="12" > 12 kg </option>
+                        <option value="16" > 16 kg </option>
+                        <option value="20" > 20 kg </option>
+                        <option value="24" > 24 kg </option>
+                        <option value="28" > 28 kg </option>
+                        <option value="32" > 32 kg </option>
+                    </select>
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <small>TESTE</small>
+                </div>
+
+                <div class="form-control">
+                    <label for="timeTest"> Tempo da Prova: </label>
+                    <select class="input" name="select">
+                        <option value="5" > 5 min </option>
+                        <option value="10" > 10 min </option>
+                        <option value="30" > 30 min </option>
+                    </select>
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <small>TESTE</small>
+                </div>
+                
+                <button class="button" type="submit"> Registrar </button>
+
+            </form>
+
         </div>
         
         <footer class="footer" >
             Desenvolvido por Thiago Carlos
         </footer>
     </div>
+    <script src="https://kit.fontawesome.com/bec2f6bc88.js" crossorigin="anonymous"></script>
 </body>
 </html>

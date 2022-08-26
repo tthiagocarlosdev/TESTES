@@ -47,7 +47,7 @@ body {
 
 /* INDEX INDEX INDEX INDEX INDEX INDEX INDEX INDEX */
 
-.container-home, .container {
+.container-home {
     display: flex;
     flex-direction: column;
     height: 100vh;
