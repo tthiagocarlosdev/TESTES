@@ -85,7 +85,7 @@
   margin: 0 0.5rem;
 }
 
-.timeButton, .button {
+.button {
   width: 20rem;
   height: 5rem;
   margin-top: 2rem;
@@ -105,12 +105,21 @@
   font-weight: 600;
 
   transition: background-color 0.5s;
+  cursor: pointer;
 }
 
-.timeButton:hover, .button:hover {
+.button:hover {
   background-color: var(--dark-blue)
 }
 
+.start-test-button {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+
+.start-test-button:hover {
+  background-color: var(--blue);
+}
 
 /* REPETITATIONS REPETITATIONS REPETITATIONS REPETITATIONS REPETITATIONS */
 .box-repetitions {

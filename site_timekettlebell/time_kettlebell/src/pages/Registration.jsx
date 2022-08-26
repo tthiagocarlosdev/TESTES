@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 
 import '../components/Components.css'
@@ -22,9 +22,11 @@ const Registration = () => {
     examTime: 0,
   })
 
+  const [ loaded, setLoaded ] = useState(false)
+
   const handleAthlete = () => {
     const newAthlete = {
-      name: inputName,
+      athleteName: inputName,
       standard: inputStandard,
       kettlebellWeight: inputKettlebellWeight,
       examTime: inputExamTime,
@@ -32,7 +34,15 @@ const Registration = () => {
 
     setAthlete([newAthlete])
 
+    if(newAthlete.athleteName == "" || newAthlete.standard == "" || newAthlete.kettlebellWeight == 0 || newAthlete.examTime == 0) {
+      alert("Nenhum campo pode ficar em branco!")
+    } else {
+      setLoaded(true)  
+    }
+    
+
     console.log(newAthlete)
+    console.log(loaded)
   }
 
   return (
@@ -48,7 +58,7 @@ const Registration = () => {
                 <label className="input" > Nome do Atleta: </label>
                 <input 
                   type="text"
-                  onChange={e => setInputName(e.target.value.toUpperCase())}
+                  onChange={e => setInputName(e.target.value)}
                   value={inputName}
                   className="input-athlete-name"
                   placeholder="Digite o nome..."
@@ -59,7 +69,7 @@ const Registration = () => {
                 <label className="input" > Prova do atleta: </label>
                 <input 
                   type="text"
-                  onChange={e => setInputStandard(e.target.value.toUpperCase())}
+                  onChange={e => setInputStandard(e.target.value)}
                   value={inputStandard}
                   className="input-athlete-test"
                   placeholder="Digite a prova..."
@@ -87,20 +97,21 @@ const Registration = () => {
                   placeholder="Digite o tempo em min..."
                 />  
               </div>
-            </div>   
+            </div>
 
-          {/* <Button
-            type="submit"
-            onClick={()=> navigate('/timer')} 
-            // handleAthlete={handleAthlete}
-            className="load-test-page"
-          > Começar </Button> */}
+          { loaded ? (
+             <Button
+              type="submit"
+              onClick={()=> navigate('/timer',{inputName})} 
+              className="start-test-button"
+            > Começar </Button> 
+          ) : (
+            <Button
+              onClick={handleAthlete} 
+              className="load-test-button"
+            > Carregar </Button>
+          ) }
 
-          <Button
-            onClick={handleAthlete} 
-            className="load-test-page"
-          > Carregar </Button>
-          
         </div>
         
       <Footer/>

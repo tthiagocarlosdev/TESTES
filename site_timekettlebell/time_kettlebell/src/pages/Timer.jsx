@@ -9,12 +9,11 @@ import Repetitions from '../components/Repetitions'
 import Time from '../components/Time'
 
 const Timer = () => {
-
   return (
   
       <div className="container">
         <Header />
-        <AthleteName> THIAGO CARLOS </AthleteName>
+        <AthleteName> THIAGO CARLOS </AthleteName> 
         <div className="box-time-reps">
           <Time/>
           <Repetitions/>

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import Button from './Button'
+
 import '../components/Components.css'
 
 const Time = () => {
@@ -37,13 +39,10 @@ const Time = () => {
           <span>{secondRight}</span>
         </div>
       </div>
-      <button 
-        type="button"
-        className="timeButton"
-        onClick={startTime}
-      >
+      
+      <Button onClick={startTime}>
         Iniciar Tempo
-      </button>
+      </Button>
     </div>
     
    );
