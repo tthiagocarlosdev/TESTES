@@ -42,6 +42,16 @@ function checkInputs(){
   } else {
     setSuccessFor(timeTest)
   }
+
+  const formControls = form.querySelectorAll('.form-control')
+
+  const formIsValid = [...formControls].every((formControl) => {
+    return formControl.className === "form-control success"
+  })
+
+  if(formIsValid){
+    alert('O fomulário está 100% válido!')
+  }
 }
 
 function setErrorFor(input, message){

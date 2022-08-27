@@ -157,7 +157,7 @@ body {
   }
 
   /* BOTÃO REGISTRAR BOTÃO REGISTRAR BOTÃO REGISTRAR BOTÃO REGISTRAR */
-.form .button {
+.form .button-registration {
     width: 20rem;
     height: 4rem;
     margin-bottom: 1rem;
@@ -177,39 +177,41 @@ body {
   
     transition: background-color 0.5s;
     cursor: pointer;
+
+    visibility: visible;
   }
   
-  .form .button:hover {
+.form .button-registration:hover {
     background-color: var(--dark-blue)
-  }
+}
 
 
   /* BOTÃO COMEÇAR BOTÃO COMEÇAR BOTÃO COMEÇAR BOTÃO COMEÇAR */
-  .form #button {
+.form #button-start {
     width: 20rem;
     height: 4rem;
     margin-bottom: 1rem;
-  
+
     display: flex;
     align-items: center;
     justify-content: center;
-  
+
     border: 0;
     border-radius: 5px;
-  
+
     background-color: var(--dark-blue);
     color: var(--white);
-  
+
     font-size: 1.25rem;
     font-weight: 600;
-  
+
     transition: background-color 0.5s;
     cursor: pointer;
 
-    /* visibility: hidden; */
-  }
+    visibility: visible;
+}
 
-.form #button:hover {
+.form #button-start:hover {
     background-color: var(--blue)
 }
 
@@ -217,8 +219,16 @@ body {
     text-decoration: none;
 }
 
+.buttons-registration-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
 
-  /*  ERRO E SUCESSO ERRO E SUCESSO ERRO E SUCESSO ERRO E SUCESSO */
+/*  ERRO E SUCESSO ERRO E SUCESSO ERRO E SUCESSO ERRO E SUCESSO */
 
 .form-control.success i.fa-circle-check {
     visibility: visible;
@@ -238,4 +248,12 @@ body {
 .form-control.error small {
     visibility: visible;
     color: var(--red);
+}
+
+.form-control.success #button {
+    visibility: visible;
+}
+
+.form-control.success .button {
+    visibility: hidden;
 }
