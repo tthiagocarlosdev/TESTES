@@ -19,6 +19,8 @@ body {
     --dark-blue: rgb(0, 75, 161);
     --white: rgb(255, 255, 255);
     --black: rgb(0, 0, 0);
+    --green:rgb(93, 246, 93);
+    --red: rgb(253, 136, 52);
 }
 
 @media(max-width:1080px){
@@ -98,6 +100,7 @@ body {
     padding-bottom: 1rem;
 }
 
+/* FORMULÁRIO FORMULÁRIO FORMULÁRIO FORMULÁRIO */
 .form {
     display: flex;
     flex-direction: column;
@@ -133,20 +136,27 @@ body {
     padding: 0 1rem;
 }
 
+::-webkit-input-placeholder  { color: var(--black); }
+
 .form .form-control i {
     position: absolute;
-    top: 1rem;
+    top: 0.7rem;
     padding: 0 1rem;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 .form .form-control small {
     position: absolute;
-    top: 0.9rem;
+    top: 2.8rem;
+    margin-left: 11rem;
     padding: 0 3rem;
-    /* visibility: hidden; */
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    visibility: hidden;
   }
 
+  /* BOTÃO REGISTRAR BOTÃO REGISTRAR BOTÃO REGISTRAR BOTÃO REGISTRAR */
 .form .button {
     width: 20rem;
     height: 4rem;
@@ -172,3 +182,60 @@ body {
   .form .button:hover {
     background-color: var(--dark-blue)
   }
+
+
+  /* BOTÃO COMEÇAR BOTÃO COMEÇAR BOTÃO COMEÇAR BOTÃO COMEÇAR */
+  .form #button {
+    width: 20rem;
+    height: 4rem;
+    margin-bottom: 1rem;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    border: 0;
+    border-radius: 5px;
+  
+    background-color: var(--dark-blue);
+    color: var(--white);
+  
+    font-size: 1.25rem;
+    font-weight: 600;
+  
+    transition: background-color 0.5s;
+    cursor: pointer;
+
+    /* visibility: hidden; */
+  }
+
+.form #button:hover {
+    background-color: var(--blue)
+}
+
+.form a {
+    text-decoration: none;
+}
+
+
+  /*  ERRO E SUCESSO ERRO E SUCESSO ERRO E SUCESSO ERRO E SUCESSO */
+
+.form-control.success i.fa-circle-check {
+    visibility: visible;
+    color: var(--green);
+}
+
+.form-control.error i.fa-circle-exclamation {
+    visibility: visible;
+    color: var(--red);
+}
+
+.form-control.success small {
+    visibility: visible;
+    color: var(--green);
+}
+
+.form-control.error small {
+    visibility: visible;
+    color: var(--red);
+}

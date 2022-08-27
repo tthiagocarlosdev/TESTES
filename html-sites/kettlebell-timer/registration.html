@@ -20,8 +20,8 @@
             
             <form id="form" class="form">
                 <div class="form-control">
-                    <label for="athleteName"> Nome do Atleta: </label>
-                    <input type="text" class="input" placeholder="Digite aqui...">
+                    <label for="athleteName" > Nome do Atleta: </label>
+                    <input type="text" id="athleteName" class="input" placeholder="...">
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <i class="fa-solid fa-circle-check"></i>
                     <small>TESTE</small>
@@ -29,7 +29,8 @@
 
                 <div class="form-control">
                     <label for="athleteTest"> Nome da Prova: </label>
-                    <select class="input" name="select">
+                    <select class="input" name="select" id="athleteTest">
+                        <option value="" class="optionChoose" selected > ... </option>
                         <option value="talc" > TALC </option>
                         <option value="jerk" > JERK </option>
                         <option value="snatch" > SNATCH </option>
@@ -41,7 +42,8 @@
 
                 <div class="form-control">
                     <label for="kettlebellWeight"> Peso do Kettlebell: </label>
-                    <select class="input" name="select">
+                    <select class="input" name="select" id="kettlebellWeight">
+                        <option value="" class="optionChoose" selected > ... </option>
                         <option value="12" > 12 kg </option>
                         <option value="16" > 16 kg </option>
                         <option value="20" > 20 kg </option>
@@ -56,7 +58,8 @@
 
                 <div class="form-control">
                     <label for="timeTest"> Tempo da Prova: </label>
-                    <select class="input" name="select">
+                    <select class="input" name="select" id="timeTest">
+                        <option value="" class="optionChoose" selected > ... </option>
                         <option value="5" > 5 min </option>
                         <option value="10" > 10 min </option>
                         <option value="30" > 30 min </option>
@@ -67,6 +70,7 @@
                 </div>
                 
                 <button class="button" type="submit"> Registrar </button>
+                <a id="button" href="./time-and-reps.html"> Começar </a>
 
             </form>
 
@@ -77,5 +81,6 @@
         </footer>
     </div>
     <script src="https://kit.fontawesome.com/bec2f6bc88.js" crossorigin="anonymous"></script>
+    <script src="scrips.js"></script>
 </body>
 </html>
