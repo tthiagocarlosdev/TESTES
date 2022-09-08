@@ -102,7 +102,7 @@ const Registration = () => {
           { loaded ? (
              <Button
               type="submit"
-              onClick={()=> navigate('/timer',{inputName})} 
+              onClick={()=> navigate('/timer')}
               className="start-test-button"
             > Começar </Button> 
           ) : (
