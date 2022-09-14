@@ -97,23 +97,11 @@
 	align-items: center;
 	width:100%;
 }
-
-.main .box-result-password {
-	order: 3;
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	background-color:green;
-}
 		
 /* TITLES - TITLES- TITLES- TITLES - TITLES*/
 
 .main .box-instructions .title-instructions,
-.main .box-input-generator .title-generator,
-.main .box-result-password .title-result-password {
+.main .box-input-generator .title-generator {
 	display: flex;
 	flex-direction: row;
 	flex: 1;
@@ -229,6 +217,34 @@
 }
 
 /* box result */
+
+.main .box-result-password {
+	order: 3;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	/* background-color:green; */
+	/* visibility: hidden; */
+}
+
+.main .box-result-password .title-result-password {
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	order: 1;
+	line-height: 6rem;
+	width: 50%;
+	font-size: 2.5rem;
+	border-top: 1px solid var(--black-color);
+	border-bottom: 1px solid var(--black-color);
+	background-color: var(--grey-E);
+}
+
 .main .box-result-password .text-result-password {
 	flex: 1;
 	order: 2;
@@ -237,57 +253,50 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--grey-E)
+	background-color: var(--grey-E);
 }
 
-/* CONTINUA CONTINUA CONTINUA CONTINUA CONTINUA CONTINUA CONTINUA CONTINUA */
-
-.main .box-generator .generator .result-generator p {
+.main .box-result-password .text-result-password p {
 	padding: 1rem;
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	text-align: justify;
 }
 
-.main .box-generator .generator .result-generator #password {
-	font-size: 1.5rem;
-}
-
-.main .box-generator .generator .result-generator li{
+.main .box-result-password .text-result-password  li{
 	list-style: none;
 	padding:0.8rem;
-	font-size:1.2rem;
+	font-size:1.5rem;
 }
 
-.main .box-generator .generator .result-generator .result-password {
+.main .box-result-password .text-result-password .result-password {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
 	width: 80%;
+	/* background-color: aqua; */
 }
 
-.main .box-generator .generator .result-generator .result-password #copy-password-button {
-	border:0;
+.main .box-result-password .text-result-password .result-password #copy-password-button {
 	height: 2.5rem;
+	width: 4rem;
 	padding: 0 1rem;
 	font-size: 1.2rem;
-	text-align:center;
+	text-align: center;
 	box-shadow: 1px 1px 1px 1px black;
 	border-radius: 5px;
 	background-color:rgb(95, 92, 92);
-	cursor:pointer;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	color: black;
+	cursor: pointer;
 }
 
-.main .box-generator .generator .result-generator .result-password #copy-password-button:hover {
+.main .box-result-password .text-result-password  .result-password #copy-password-button:hover {
 	background-color: grey;
 }
 
-.main .box-generator .generator .result-generator .result-password #copy-password-button img {
-	height: 1.5rem;
+.main .box-result-password .text-result-password #password{
+	font-weight: bold;
+	padding: 1.5rem 0;
 }
 
 /* BOX-FOOTER - BOX-FOOTER - BOX-FOOTER - BOX-FOOTER - BOX-FOOTER */
