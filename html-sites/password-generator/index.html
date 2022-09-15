@@ -43,29 +43,8 @@
 					<p> Digite a quantidade de caracteres de sua senha: </p>
 					<p> [ATENÇÃO]! Digite valores de 8 a 40.</p>
 					<input type="" name="number-of-characters" id="number-of-characters" placeholder="Digite aqui">
-					<button type="button" value="generate"onclick="passwordGenerator()">Gerar senha</button>
-				</div>
-				
-			</div>
-
-			<div class="box-result-password">
-
-				<h1 class="title-result-password"> Senha Gerada </h1>
-
-				<div class="text-result-password">
-					<p> Sua senha tem X caracteres, sendo: </p>
-					<ul>
-						<li>X símbolos;</li>
-						<li>X números;</li>
-						<li>X letras maiúsculas;</li>
-						<li>X letras minúsculas.</li>
-					</ul>
-					<div class="result-password">
-						<p>Sua senha é:</p>	
-						<button id="copy-password-button" > <i class="fa-regular fa-copy"></i> </button>	
-					</div>
-					<p id="password" > {'0137z$\PyaW`2bQldL.4M!6t5UGCVi8c9?p*rN </p>
-				
+					<button type="button" value="generate" onclick="passwordGenerator()"> Gerar senha </button>
+					<a href="#open-modal" id="openModal"> Open modal </a>
 				</div>
 				
 			</div>
@@ -82,6 +61,35 @@
 				<li> <a href="https://www.linkedin.com/in/thiago-carlos-80a480244" target="_blank"> LinkedIn </a></li>
 			</ul>
 		</footer>
+
+		<div id="open-modal" class="modal-password">
+
+			<div class="box-modal-password">
+				
+				<div class="header-modal">
+					<h1 class="title-modal-password"> Senha Gerada </h1>
+					<a href="#fechar" title="Fechar" id="close-modal" > Close </a>
+				</div>
+				
+				<div class="text-modal-password">
+					<p> Sua senha tem X caracteres, sendo: </p>
+					<ul>
+						<li>X símbolos;</li>
+						<li>X números;</li>
+						<li>X letras maiúsculas;</li>
+						<li>X letras minúsculas.</li>
+					</ul>
+					<div class="result-password">
+						<p>Sua senha é:</p>	
+						<button id="copy-password-button" > <i class="fa-regular fa-copy"></i> </button>	
+					</div>
+					<p id="password" > {'0137z$\PyaW`2bQldL.4M!6t5UGCVi8c9?p*rN </p>
+				
+				</div>
+				
+			</div>
+		
+		</div>
 
 	</div>
 	<script src="https://kit.fontawesome.com/bec2f6bc88.js" crossorigin="anonymous"></script>
