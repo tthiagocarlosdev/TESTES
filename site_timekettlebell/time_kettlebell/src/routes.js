@@ -10,7 +10,7 @@ const MainRoutes = () => {
     <Routes>
       <Route path="/" element={ <Home/> } />
       <Route path="/registration" element={ <Registration /> } />
-      <Route path="/timer" element={ <Timer /> } />
+      <Route path="/timer" element={ <Timer props={{AthleteName:'Thiago Carlos'}} /> } />
     </Routes>
    );
 }
