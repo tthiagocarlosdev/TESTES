@@ -13,40 +13,30 @@
 			<h1> PASSWORD GENERATOR </h1>
 		</header>
 
+		<div class="sub-titles">
+			<h2 id="title-instructions"> Instruções </h2>
+			<h2 id="title-generator">Gerar Senha</h2>
+		</div>
+
 		<main class="main">
-
 			<div class="box-instructions">
-
-				<h1 class="title-instructions"> Instruções </h1>
-
-				<div class="text-instructions">
-					<div class="paragraph-instructions">
-						<p> Este sistema foi desenvolvido para gerar senhas seguras.</p>
-						<p> Para uma senha ser considerada segura, ela deve apresentar: </p>				    
-					</div>
-					<ul class="list-instructions">
-						<li> Mínimo de 8 caracteres;</li>
-						<li> Letras maiúsculas;</li>
-						<li> Letras minusculas;</li>
-						<li> Números;</li>
-						<li> Símbolos.</li>
-					</ul>
-				</div>
-
+				<p> Este sistema foi desenvolvido para gerar senhas seguras.</p>
+				<p> Para uma senha ser considerada segura, ela deve apresentar: </p>
+				<ul>
+					<li> <i class="fa-solid fa-key"></i> Mínimo de 8 caracteres; </li>
+					<li> <i class="fa-solid fa-key"></i> Letras maiúsculas; </li>
+					<li> <i class="fa-solid fa-key"></i> Letras minusculas; </li>
+					<li> <i class="fa-solid fa-key"></i> Números; </li>
+					<li> <i class="fa-solid fa-key"></i> Símbolos. </li>
+				</ul>
 			</div>
 
 			<div class="box-input-generator">
-
-				<h1 class="title-generator">Gerar Senha</h1>
-
-				<div class="input-generator">
-					<p> Digite a quantidade de caracteres de sua senha: </p>
-					<p> [ATENÇÃO]! Digite valores de 8 a 40.</p>
-					<input type="" name="number-of-characters" id="number-of-characters" placeholder="Digite aqui">
-					<button type="button" value="generate" onclick="passwordGenerator()"> Gerar senha </button>
-					<a href="#open-modal" id="openModal"> Open modal </a>
-				</div>
-				
+				<p> Digite a quantidade de caracteres de sua senha: </p>
+				<p> [ATENÇÃO]! Digite valores de 8 a 40.</p>
+				<input type="" name="number-of-characters" id="number-of-characters" placeholder="Digite aqui">
+				<button value="generate" onclick="passwordGenerator()"> Gerar senha </button>
+				<button class="button-open-modal" onclick="openModal()" > Open Modal </button>
 			</div>
 
 		</main>
@@ -63,14 +53,12 @@
 		</footer>
 
 		<div id="open-modal" class="modal-password">
-
 			<div class="box-modal-password">
-				
 				<div class="header-modal">
 					<h1 class="title-modal-password"> Senha Gerada </h1>
-					<a href="#fechar" title="Fechar" id="close-modal" > Close </a>
+					<button class="botton-close-modal" onclick="closeModal()" > Close </button>
 				</div>
-				
+
 				<div class="text-modal-password">
 					<p> Sua senha tem X caracteres, sendo: </p>
 					<ul>
@@ -93,5 +81,7 @@
 
 	</div>
 	<script src="https://kit.fontawesome.com/bec2f6bc88.js" crossorigin="anonymous"></script>
+	<!-- <script src="script.js"></script> -->
+	<script src="scripts.js"></script>
 </body>
 </html>

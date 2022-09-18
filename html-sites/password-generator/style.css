@@ -46,11 +46,10 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	height:100vh;
+	min-height: 100vh;
 }
 
 /* HEADER - HEADER - HEADER - HEADER - HEADER - HEADER - HEADER */
-
 .header {
 	background-color: var(--grey-A);
 	display: flex;
@@ -67,17 +66,35 @@
 	padding: 1.5rem;
 }
 
+/* SUB-TITLES SUB-TITLES SUB-TITLES SUB-TITLES SUB-TITLES SUB-TITLES SUB-TITLES */
+.sub-titles {
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+	order: 2;
+	justify-content: space-around;
+	align-items: center;
+	background-color: var(--grey-C);
+	border-top: 2px solid black;
+	border-bottom: 1px solid black;
+}
+
+.sub-titles h2 {
+	font-size: 2rem;
+}
+
+
+/* MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN */
 .main {
 	display: flex;
 	flex-direction: row;
-	order: 2;
+	order: 3;
 	flex: 4;
-	border-top: 2px solid var(--black-color);
 	border-bottom: 2px solid var(--black-color);
 	background: var(--grey-C);
 }
 
-/* BOX's - BOX's - BOX's - BOX's - BOX's - BOX's - BOX's*/
+/* BOX INSTRUCTIONS BOX INSTRUCTIONS BOX INSTRUCTIONS BOX INSTRUCTIONS BOX INSTRUCTIONS */
 .main .box-instructions {
 	order: 1;
 	flex: 1;
@@ -86,8 +103,20 @@
 	justify-content: center;
 	align-items: center;
 	width: 100%;
+	/* background-color: brown; */
 }
 
+.main .box-instructions p,
+.main .box-instructions li {
+	font-size: 1.5rem;
+	padding: 0.7rem 3rem;
+}
+
+.main .box-instructions li {
+	list-style: none;
+}
+
+/* BOX INPUT GENERATOR BOX INPUT GENERATOR BOX INPUT GENERATOR BOX INPUT GENERATOR */
 .main .box-input-generator {
 	order: 2;
 	flex: 1;
@@ -97,110 +126,33 @@
 	align-items: center;
 	width:100%;
 }
-		
-/* TITLES - TITLES- TITLES- TITLES - TITLES*/
 
-.main .box-instructions .title-instructions,
-.main .box-input-generator .title-generator {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	order: 1;
-	line-height: 6rem;
-	width: 100%;
-	font-size: 2.5rem;
-	border-bottom: 1px solid var(--black-color);
-	background-color: var(--grey-E);
-}
-
-/* BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX - BOX */
-
-/* instructions */
-.main .box-instructions .text-instructions {
-	display: flex;
-	flex-direction: column;    
-	flex: 2;
-	order: 2;
-	background-color: var(--grey-E);
-	width: 100%;
-}
-
-.main .box-instructions .text-instructions .paragraph-instructions {
-	display: flex;
-	flex-direction: column;
-	flex:1;
-	justify-content: center;
-	align-items:center;
-	padding-top: 1rem;
-}
-
-.main .box-instructions .text-instructions .paragraph-instructions p{
-	font-size: 1.5rem;
-	text-align: justify;
-	padding: 1rem;
-}
-
-.main .box-instructions .text-instructions .list-instructions {
-	flex:1;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items:center;
-	padding-bottom: 1rem;
-}
-
-.main .box-instructions .text-instructions .list-instructions li{
-	font-size: 1.5rem;
-	text-align:justify;
-	padding: 0.5rem;
-}
-
-/* input generator */
-.main .box-input-generator .input-generator {
-	order:2;
-	display:flex;
-	flex-direction: column;
-	flex: 2;
-	justify-content: center;
-	align-items: center;
-	padding: 1rem;
-	width: 100%;
-	background-color: var(--grey-E);
-}
-
-.main .box-input-generator .input-generator p {
-	display: flex;
-	flex-direction: column;
+.main .box-input-generator p {
 	padding: 1rem;
 	font-size: 1.5rem;
 	text-align: justify;
 }
 
-.main .box-input-generator .input-generator input {    
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: auto;
+
+.main .box-input-generator input {    
 	height: 2.5rem;
 	padding: 0 1.5rem;
 	border-radius: 5px;
 	margin-top: 1.5rem;
 }
 
-.main .box-input-generator .input-generator input::-webkit-input-placeholder {
-	display:flex;
+.main .box-input-generator input::-webkit-input-placeholder {
 	color: grey;
 	font-size: 0.9rem;
 	text-align: center;
 }   
 
-.main .box-input-generator .input-generator button {
+.main .box-input-generator button {
 	border: 0;
 	height: 2.5rem;
 	padding: 0 1.5rem;
 	font-size: 1.5rem;
-	margin-top: 1.5rem;
+	margin-top: 2.5rem;
 	text-align:center;
 	color:var(--white);
 	text-shadow: 1px 1px 1px var(--black-color);
@@ -210,11 +162,11 @@
 	cursor:pointer;
 }
 
-.main .box-input-generator .input-generator button:hover {
+.main .box-input-generator button:hover {
 	background-color: var(--grey-A);
 }
 
-/* modal password */
+/* MODAL PASSWORD  MODAL PASSWORD MODAL PASSWORD MODAL PASSWORD MODAL PASSWORD */
 #openModal {
 	text-decoration: none;
 	display: flex;
@@ -223,7 +175,7 @@
 	height: 2.5rem;
 	padding: 0 1.5rem;
 	font-size: 1.5rem;
-	margin-top: 1.5rem;
+	margin-top: 2rem;
 	text-align:center;
 	color:var(--white);
 	text-shadow: 1px 1px 1px var(--black-color);
@@ -238,36 +190,56 @@
 	opacity: 0.7;
 }
 
-
 .container .modal-password {
-	position: fixed;
+	/* position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgba(0,0,0,0.8);
-  z-index: 99999;
+  z-index: 999;
   opacity: 0;
   -webkit-transition: opacity 400ms ease-in;
   -moz-transition: opacity 400ms ease-in;
   transition: opacity 400ms ease-in;
   pointer-events: none;
+	display: flex; */
+	width: 100vw;
+  position: fixed;
+  top: 30px;
+  display: none;
+  z-index: 999;
+  justify-content: center;
 }
 
-.container .modal-password:target {
+/* .container .modal-password:target {
   opacity: 1;
   pointer-events: auto;
-}
+} */
 
 .container .modal-password .box-modal-password {
-	width: 30rem;
+	/* width: 30rem;
 	max-height: 25rem;
   position: relative;
   margin: 15% auto;
   padding: 15px 20px;
   background-color: rgb(68, 103, 246);
-  border-radius: 5px;
+  border-radius: 5px; */
+	display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background-color:whitesmoke;
+  border-radius: 10px;
+  width: 50%
+}
+
+.active {
+	display: flex;
+}
+
+.active .modal {
+  animation: modal .4s;
 }
 
 .container .modal-password .box-modal-password .header-modal {
@@ -357,7 +329,7 @@
 	background-color: var(--grey-A);
 	display: flex;
 	flex-direction: row;
-	order: 3;
+	order: 4;
 	flex: 0.65;
 	flex-flow: wrap;
 }
