@@ -4,6 +4,15 @@ const athleteTest = document.querySelector('select#athleteTest')
 const kettlebellWeight = document.querySelector('select#kettlebellWeight')
 const timeTest = document.querySelector('select#timeTest')
 
+const buttonRegistration = document.getElementById('button-registration')
+const buttonStart = document.getElementById('button-start')
+
+function changeButtons(){
+  buttonRegistration.classList.add('buttonRegistrationOff')
+  buttonStart.classList.add('buttonStartOn')
+  console.log('change ok')
+}
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -11,6 +20,7 @@ form.addEventListener('submit', (event) => {
 })
 
 function checkInputs(){
+
   const dataAthlete = {
     athleteName: athleteName.value,
     athleteTest: athleteTest.value,
@@ -50,7 +60,8 @@ function checkInputs(){
   })
 
   if(formIsValid){
-    alert('O fomulário está 100% válido!')
+    console.log('O fomulário está 100% válido!')
+    changeButtons()
   }
 }
 
@@ -74,4 +85,10 @@ function setSuccessFor(input){
 
   // Add class success
   formControl.className = 'form-control success'
+}
+
+/* REPETATION */
+function handleRepsClick(){
+  const repetations = document.querySelector('.repetations').value
+  console.log(repetations)
 }

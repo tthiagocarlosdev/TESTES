@@ -20,7 +20,7 @@ body {
     --white: rgb(255, 255, 255);
     --black: rgb(0, 0, 0);
     --green:rgb(93, 246, 93);
-    --red: rgb(253, 136, 52);
+    --red: rgb(149, 0, 0);
 }
 
 @media(max-width:1080px){
@@ -157,7 +157,7 @@ body {
   }
 
   /* BOTÃO REGISTRAR BOTÃO REGISTRAR BOTÃO REGISTRAR BOTÃO REGISTRAR */
-.form .button-registration {
+.form #button-registration {
     width: 20rem;
     height: 4rem;
     margin-bottom: 1rem;
@@ -178,10 +178,9 @@ body {
     transition: background-color 0.5s;
     cursor: pointer;
 
-    visibility: visible;
   }
   
-.form .button-registration:hover {
+.form #button-registration:hover {
     background-color: var(--dark-blue)
 }
 
@@ -208,7 +207,6 @@ body {
     transition: background-color 0.5s;
     cursor: pointer;
 
-    visibility: visible;
 }
 
 .form #button-start:hover {
@@ -256,4 +254,13 @@ body {
 
 .form-control.success .button {
     visibility: hidden;
+}
+
+.buttonStartOn {
+    display: flex;
+}
+
+.buttonRegistrationOff {
+    display: none;
+    background-color:green;
 }
