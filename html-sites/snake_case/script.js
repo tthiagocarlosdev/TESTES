@@ -8,14 +8,14 @@ function snakeCase() {
   let text_size = underlined_text.length
   let array_without_accent = []
   let text_snake_case = ''
-  let array_numbers = [] // delete
+  // let array_numbers = [] // comment
 
   //extraindo cada caracter da string para um array
   array_without_accent = underlined_text.split('')
 
   // processando cada caracter do array para detectar um acento ou símbolo e fazer a substituição
   for (let counter = 0; counter < text_size; counter++) {
-    array_numbers.push(underlined_text.charCodeAt(counter)) // comment
+    // array_numbers.push(underlined_text.charCodeAt(counter)) // comment
 
     //conditions
     let numbers =
@@ -123,8 +123,8 @@ function snakeCase() {
     }
   }
 
-  console.log(array_numbers) //delete
-  console.log(array_numbers.sort()) // delete
+  // console.log(array_numbers) //comment
+  // console.log(array_numbers.sort()) // comment
 
   //criando a nova string a partir dos novos valores do array
   text_snake_case = array_without_accent
@@ -133,7 +133,7 @@ function snakeCase() {
     .toLowerCase()
 
   string_final.value = `${text_snake_case}`
-  string_size.innerHTML = `${text_snake_case.length}`
+  string_size.innerHTML = `${text_snake_case.length} characters!`
 
   console.log(text_snake_case)
 }
@@ -141,8 +141,8 @@ function snakeCase() {
 /* function button copy */
 function copyToClipboard(){
   navigator.clipboard.writeText(string_final.value).then(() => {
-    alert(string_final.value)
-  })
+    alert(`Copied text: ${string_final.value}`)
+  }) 
 }
 
 /*

@@ -7,14 +7,62 @@
   font-family: 'Poppins', sans-serif;
 }
 
+:root {
+  --light_gray:#b8bfc4;
+  --light_blue: #9ED2F7;
+  --very_light_blue: #E6EFF5;
+  --dark_grey:#4B6475;
+  --gray:#B6BDC2;
+  --whitesmoke: #f5f5f5;
+  --black: #000000;
+}
+
+@media(max-width:1080px){
+	html{
+		font-size: 93.75%;
+	}
+}
+
+@media(max-width:720px){
+	html{
+		font-size: 87.5%;
+	}
+}
+
+@media(max-width:500px){
+	html{
+		font-size: 82.5%;
+	}
+}
+
+@media(max-width:300px){
+	html{
+		font-size: 75.5%;
+	}
+}
+
 body{
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(90deg, var(--gradient-primary-color) 0%, var(--gradient-secondary-color) 100%);
+  background: var(--light_gray);
+  background: linear-gradient(90deg, var(--light_gray) 0%, var(--light_blue) 16%, var(--dark_grey) 100%);
   display: flex;
   flex-direction: column;
-  /* justify-content: center;
-  align-items: center; */
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  width: 80%;
+  height: 100%;
+  background-color: var(--whitesmoke);
+  border-radius: 10px;
+}
+
+.main h1 {
+  font-size: 3rem;
+  text-align: center;
+  padding:  1rem;
 }
 
 .input_text,
@@ -22,28 +70,46 @@ body{
 .final_size {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  padding: 1rem;
+  justify-content: center;
   align-items: center;
-  width: 70vw;
-  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.input_text input,
+.final_string input {
+  margin-left: 3rem;
+  margin-right: 3rem;
+  width: 30rem;
+  display: flex;
+  padding: 1rem;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 1px 1px var(--black);
+  text-align: center;
 }
 
 .buttons {
   border: 0;
 	height: 2.5rem;
+  width: 7rem;
 	padding: 0 1.5rem;
 	font-size: 1.5rem;
-	/* margin-top: 2.5rem; */
 	text-align:center;
-	color:var(--white);
-	text-shadow: 1px 1px 1px var(--black-color);
+  background-color: var(--gray);
+	color:var(--black);
 	border-radius: 5px;
-	/* background-color: var(--grey-D); */
-	box-shadow: 1px 1px 1px 1px black;
+	box-shadow: 1px 1px 1px 1px var(--black);
 	cursor:pointer;
-  opacity: 1;
 }
 
 .buttons:hover {
-  opacity: 0.6;
+  background-color: var(--dark_grey);
+  color:var(--whitesmoke);
+}
+
+.final_size p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 4rem;
 }
