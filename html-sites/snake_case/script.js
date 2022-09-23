@@ -1,9 +1,10 @@
-function snakeCase() {
-  const typed_text = document.querySelector('input#typed-text').value
-  const string_final = document.querySelector('.string_final')
-  const string_size = document.querySelector('.string_size')
+const typed_text = document.querySelector('.typed-text')
+const string_final = document.querySelector('.string_final')
+const string_size = document.querySelector('.string_size')
 
-  let underlined_text = typed_text.replace(/ /gi, '_')
+function snakeCase() {
+
+  let underlined_text = typed_text.value.replace(/ /gi, '_')
   let text_size = underlined_text.length
   let array_without_accent = []
   let text_snake_case = ''
@@ -131,17 +132,21 @@ function snakeCase() {
     .replace(/,/gi, '')
     .toLowerCase()
 
-  string_final.innerHTML = `${text_snake_case}`
+  string_final.value = `${text_snake_case}`
   string_size.innerHTML = `${text_snake_case.length}`
+
+  console.log(text_snake_case)
 }
 
 /* function button copy */
-
-function copyText(){
-  let copied_text = document.getElementById("string_final");
-  copied_text.select();
-  copied_text.setSelectionRange(0, 999999);
-
-  document.execCommand("copy");
-  alert(`TEXT: ${copied_text.value}`)
+function copyToClipboard(){
+  navigator.clipboard.writeText(string_final.value).then(() => {
+    alert(string_final.value)
+  })
 }
+
+/*
+video clipboard
+https://www.youtube.com/watch?v=6-Egmf_BlXg
+ */
+
