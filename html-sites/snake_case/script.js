@@ -131,6 +131,17 @@ function snakeCase() {
     .replace(/,/gi, '')
     .toLowerCase()
 
-  string_final.innerHTML = `Final string: ${text_snake_case}`
-  string_size.innerHTML = `String size: ${text_snake_case.length}`
+  string_final.innerHTML = `${text_snake_case}`
+  string_size.innerHTML = `${text_snake_case.length}`
+}
+
+/* function button copy */
+
+function copyText(){
+  let copied_text = document.getElementById("string_final");
+  copied_text.select();
+  copied_text.setSelectionRange(0, 999999);
+
+  document.execCommand("copy");
+  alert(`TEXT: ${copied_text.value}`)
 }
