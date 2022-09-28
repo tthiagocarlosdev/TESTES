@@ -94,6 +94,7 @@ body {
     height: 5rem;
     margin-top: 2rem;
     margin-bottom: 3rem;
+    margin-left: 2rem;
   
     display: flex;
     align-items: center;
@@ -168,8 +169,7 @@ body {
 	background-color: var(--modal-button-hover);
 }
 
-/*
-MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL */
+/*MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL */
 .modal {
     display: block;
     position: fixed;
@@ -178,6 +178,7 @@ MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL */
     bottom: 0;
     left: 0;
     font-family: 'Rajdhani', sans-serif;
+    font-weight: 500;
     background-color: var(--background-model);
     z-index: 99999;
     opacity: 1;
