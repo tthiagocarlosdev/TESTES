@@ -1,10 +1,16 @@
 const modal = document.querySelector('.modal-password')
+const password = document.querySelector('#password')
 
-function openModal() {
-  modal.classList.add('active')
-  console.log('click')
-}
+password.value = `SENHA GERADA`
 
 function closeModal() {
-  modal.classList.remove('active')
+  modal.classList.add('closeModal')
+  password.innerHTML = password.value
+}
+
+/* function button copy */
+function copyToClipboard(){
+  navigator.clipboard.writeText(password.value).then(() => {
+    alert(`Copied text: ${password.value}`)
+  }) 
 }

@@ -1,3 +1,11 @@
+/* MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL */
+const modal = document.querySelector('.modal')
+
+function closeModal() {
+  modal.classList.add('closeModal')
+}
+
+/* SNAKE_CASE SNAKE_CASE SNAKE_CASE SNAKE_CASE SNAKE_CASE SNAKE_CASE SNAKE_CASE */
 const typed_text = document.querySelector('.typed-text')
 const string_final = document.querySelector('.string_final')
 const string_size = document.querySelector('.string_size')

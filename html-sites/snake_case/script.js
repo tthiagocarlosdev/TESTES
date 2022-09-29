@@ -1,5 +1,5 @@
 const typed_text = document.querySelector('.typed-text')
-const string_final = document.querySelector('.string_final')
+const password = document.querySelector('.string_final')
 const string_size = document.querySelector('.string_size')
 
 function snakeCase() {
@@ -132,7 +132,7 @@ function snakeCase() {
     .replace(/,/gi, '')
     .toLowerCase()
 
-  string_final.value = `${text_snake_case}`
+  password.value = `${text_snake_case}`
   string_size.innerHTML = `${text_snake_case.length} characters!`
 
   console.log(text_snake_case)
@@ -140,8 +140,8 @@ function snakeCase() {
 
 /* function button copy */
 function copyToClipboard(){
-  navigator.clipboard.writeText(string_final.value).then(() => {
-    alert(`Copied text: ${string_final.value}`)
+  navigator.clipboard.writeText(password.value).then(() => {
+    alert(`Copied text: ${password.value}`)
   }) 
 }
 
