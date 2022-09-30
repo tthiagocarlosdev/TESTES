@@ -185,15 +185,11 @@ body {
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
-  }
-  
-  .modal:target {
-    opacity: 1;
-  }
+}
 
-  .closeModal {
+.closeModal {
     display: none;
-  }
+}
   
 .modal .box-modal {
     width: 31.25rem;
