@@ -1,8 +1,13 @@
 /* variable declaration */
-const modal = document.querySelector('.modal-password')
-const password = document.querySelector('#password')
-const numberOfCharacters = document.querySelector('#number_of_characters')
+const numberOfCharactersTyped = document.querySelector('#number_of_characters_typed')
 
+const modal = document.querySelector('.modal-password')
+const numberOfCharactersModal = document.querySelector('#number_of_characters_modal')
+const symbolsModal = document.querySelector('#symbols_modal')
+const numbersModal = document.querySelector('#numbers_modal')
+const smallLettersModal = document.querySelector('#small_letters_modal')
+const capitalLettersModal = document.querySelector('#capital_letters_modal')
+const passwordModal = document.querySelector('#password_modal')
 
 /* functions declaration */
 //function close modal
@@ -15,8 +20,6 @@ function openModal(){
   modal.classList.add('openModal')
   modal.classList.remove('closeModal')
 }
-
-
 
 /* function regular expression */
 function isRegularExpression(stringValue, regex){
@@ -32,39 +35,37 @@ function getRandomIntInclusive(min, max){
 
 function passwordGenerator(){
   let regexNumber = /\d/gi
-  let itsNumber = isRegularExpression(String(numberOfCharacters.value), regexNumber)
+  let itsNumber = isRegularExpression(String(numberOfCharactersTyped.value), regexNumber)
 
   if (!itsNumber) {
     alert('[ATENÇÃO!] Valor incorreto! Digite um número!')
-  } else if (Number(numberOfCharacters.value) < 8 || Number(numberOfCharacters.value) > 40) {
+  } else if (Number(numberOfCharactersTyped.value) < 8 || Number(numberOfCharactersTyped.value) > 40) {
     alert('[ATENÇÃO!] Valor incorreto! Digite um valor entre 8 e 40!')  
-  } else if (itsNumber && Number(numberOfCharacters.value) >= 8 && Number(numberOfCharacters.value) <= 40) {
+  } else if (itsNumber && Number(numberOfCharactersTyped.value) >= 8 && Number(numberOfCharactersTyped.value) <= 40) {
 
     // definição da resposta e variáveis
-    let quantidadeCaracteres = Math.floor(numberOfCharacters.value)
-    console.log(`Quantidade caracteres: ${quantidadeCaracteres}`)
-    let mininoTipoCaractere = Number.parseInt(quantidadeCaracteres / 4) // Cada tipo caractere terá que apresentar uma quantidade mínima na senha.
-    console.log(`Minimo caracteres: ${mininoTipoCaractere}`)
-    let senhaEmNumero = []
-    let senhaEmCaractere = ''
-    let mininoCaracteres = false
-    let simbolo = 0
-    let numeros = 0
-    let letraMinusculas = 0
-    let letraMaiusculas = 0
+    let numberOfCharacters = Math.floor(numberOfCharactersTyped.value)
+    let minimumOfEachCharacter = Number.parseInt(numberOfCharacters / 4) // Cada tipo caractere terá que apresentar uma quantidade mínima na senha.
+    let passwordInNumber = []
+    let passwordInCharacter = ''
+    let minimumCharacter = false
+    let symbols = 0
+    let numbers = 0
+    let smallLetters = 0
+    let capitalLetters = 0
 
     //sorteio do valores da escala ascii
-    while(mininoCaracteres == false){
+    while(minimumCharacter == false){
       //sorteio do valores da escala ascii
-      for(let contador = 0; contador < quantidadeCaracteres; contador++) {
-        senhaEmNumero[contador] = getRandomIntInclusive(33, 126)
+      for(let counter = 0; counter < numberOfCharacters; counter++) {
+        passwordInNumber[counter] = getRandomIntInclusive(33, 126)
       }
 
       //validação para não repetir caracteres na senha
-      for (let a = 0; a < quantidadeCaracteres - 1; a++){
-        for (let b = a+1; b < quantidadeCaracteres; b++){
-          while (senhaEmNumero[a] == senhaEmNumero[b]){
-            senhaEmNumero[b] = getRandomIntInclusive(33, 126)
+      for (let a = 0; a < numberOfCharacters - 1; a++){
+        for (let b = a+1; b < numberOfCharacters; b++){
+          while (passwordInNumber[a] == passwordInNumber[b]){
+            passwordInNumber[b] = getRandomIntInclusive(33, 126)
             a = 0
             b = 1
           }
@@ -73,38 +74,40 @@ function passwordGenerator(){
 
 
       //validação quantidade dos tipos de caracteres
-      for (let contador = 0; contador < quantidadeCaracteres; contador++){
-        if (senhaEmNumero[contador] >= 33 && senhaEmNumero[contador] <= 47 || senhaEmNumero[contador] >= 58 && senhaEmNumero[contador] <= 64 || senhaEmNumero[contador] >= 91 && senhaEmNumero[contador] <= 96 || senhaEmNumero[contador] >= 122 && senhaEmNumero[contador] <= 126){
-          simbolo++
-        } else if (senhaEmNumero[contador] >= 48 && senhaEmNumero[contador] <=57){
-          numeros++
-        } else if (senhaEmNumero[contador] >= 97 && senhaEmNumero[contador] <=122){
-          letraMinusculas++
-        } else if (senhaEmNumero[contador] >= 65 && senhaEmNumero[contador] <=90){
-          letraMaiusculas++
+      for(let value of passwordInNumber){
+        if(value >= 33 && value <= 47 || value >= 58 && value <= 64 || value >= 91 && value <= 96 || value >= 122 && value <= 126){
+          symbols++
+        } else if (value >= 48 && value <=57) {
+          numbers++
+        } else if (value >= 97 && value <=122) {
+          smallLetters++
+        } else if (value >= 65 && value <=90) {
+          capitalLetters++
         }
       }
 
-      if (simbolo < mininoTipoCaractere || numeros < mininoTipoCaractere || letraMinusculas < mininoTipoCaractere || letraMaiusculas < mininoTipoCaractere){
-        mininoCaracteres = false
-        simbolo = 0
-        numeros = 0
-        letraMinusculas = 0
-        letraMaiusculas = 0
+      if (symbols < minimumOfEachCharacter || numbers < minimumOfEachCharacter || smallLetters < minimumOfEachCharacter || capitalLetters < minimumOfEachCharacter){
+        minimumCharacter = false
+        symbols = 0
+        numbers = 0
+        smallLetters = 0
+        capitalLetters = 0
       } else {
-        mininoCaracteres = true
+        minimumCharacter = true
       }
     }
 
     //confecção de senha a partir da tabela ascii em caracteres
-		for (let contador = 0; contador < quantidadeCaracteres; contador++){
-			senhaEmCaractere += String.fromCharCode(senhaEmNumero[contador])
+		for (let contador = 0; contador < numberOfCharacters; contador++){
+			passwordInCharacter += String.fromCharCode(passwordInNumber[contador])
 		}
 
-    password.innerHTML = senhaEmCaractere
-    console.log(password.innerHTML)
-    console.log(senhaEmCaractere)
-    console.log(senhaEmCaractere.length)
+    numberOfCharactersModal.innerHTML = numberOfCharacters
+    symbolsModal.innerHTML = symbols
+    numbersModal.innerHTML = numbers
+    smallLettersModal.innerHTML = smallLetters
+    capitalLettersModal.innerHTML = capitalLetters
+    passwordModal.innerHTML = passwordInCharacter
     openModal()
   }
   
@@ -112,23 +115,8 @@ function passwordGenerator(){
 
    /* function button copy */
   function copyToClipboard(){
-    navigator.clipboard.writeText(password.innerHTML).then(() => {
-      alert(`Copied text: ${password.innerHTML}`)
+    navigator.clipboard.writeText(passwordModal.innerHTML).then(() => {
+      alert(`Copied text: ${passwordModal.innerHTML}`)
     }) 
   }
    
-  /* variables */
-   
-   
-   
-
-   /*validations */
-  //  if(!itsNumber){
-  //    alert()
-  //  } else if (Number(numberOfCharacters) < 8 || Number(numberOfCharacters) > 40){
-  
-  //  } else {
-  //    modal.classList.add('active')
-  //    console.log(modal)
-  //    console.log(numberOfCharacters)
-  //  }

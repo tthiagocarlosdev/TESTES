@@ -283,9 +283,19 @@
 	background-color: var(--modal-button-hover);
 }
 
+#number_of_characters_modal, 
+#symbols_modal,
+#numbers_modal, 
+#small_letters_modal, 
+#capital_letters_modal {
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+
 /* password */
-.container .modal-password .box-modal-password .text-modal-password #password {
+.container .modal-password .box-modal-password .text-modal-password #password_modal {
 	margin-top: 0.7rem;
+	font-size: 1.2rem;
 	font-weight: bold;
 }
 
