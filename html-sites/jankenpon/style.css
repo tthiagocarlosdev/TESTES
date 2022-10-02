@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Rajdhani', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	font-size: 1rem;
+	color:--black-color;
+}
+
+.container {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+	flex-direction: row;
+    justify-content: center;
+    align-items: center;
+	background-color: #444;
+}
+
+.container_jankenpon {
+    border: 2px solid chartreuse;
+    border-radius: 5px;
+    width: 80%;
+    height: 100%;
+}
+
+#title_jankenpon {
+    font-size: 5rem;
+    padding: 1rem;
+    color:chartreuse;
+    text-align: center;
+}
+
+#title_jankenpon i {
+    font-size: 4rem;
+}
+
+.buttons_jankenpon {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+}
+
+.buttons {
+    color: chartreuse;
+    background-color: #444;
+    border: 2px solid chartreuse;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8rem;
+    height: 6rem;
+    cursor: pointer;
+}
+
+.buttons:hover {
+    color: #444;
+    background-color: chartreuse;
+}
+
+.buttons_jankenpon i {
+    font-size: 4rem;
+    
+}
+
+.scoreboard_jankenpon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    /* background-color: antiquewhite; */
+}
+
+.scoreboard_jankenpon p,
+.scoreboard_jankenpon span {
+    font-size: 2rem;
+    font-weight: 700;
+    color: chartreuse;
+}
