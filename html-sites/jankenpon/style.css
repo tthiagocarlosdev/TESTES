@@ -1,5 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
+:root {
+    --grey: #444;
+    --chartreuse: chartreuse;
+}
+
+@media(max-width:1080px){
+	html{
+		font-size: 93.75%;
+	}
+}
+
+@media(max-width:720px){
+	html{
+		font-size: 87.5%;
+	}
+}
+
+@media(max-width:500px){
+	html{
+		font-size: 82.5%;
+	}
+}
+
+@media(max-width:300px){
+	html{
+		font-size: 75.5%;
+	}
+}
+
 * {
 	padding: 0;
 	margin: 0;
@@ -7,8 +36,6 @@
 	font-family: 'Rajdhani', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-	font-size: 1rem;
-	color:--black-color;
 }
 
 .container {
@@ -18,11 +45,11 @@
 	flex-direction: row;
     justify-content: center;
     align-items: center;
-	background-color: #444;
+	background-color: var(--grey);
 }
 
 .container_jankenpon {
-    border: 2px solid chartreuse;
+    border: 2px solid var(--chartreuse);
     border-radius: 5px;
     width: 80%;
     height: 100%;
@@ -31,7 +58,7 @@
 #title_jankenpon {
     font-size: 5rem;
     padding: 1rem;
-    color:chartreuse;
+    color: var(--chartreuse);
     text-align: center;
 }
 
@@ -48,26 +75,29 @@
 }
 
 .buttons {
-    color: chartreuse;
-    background-color: #444;
-    border: 2px solid chartreuse;
+    color: var(--chartreuse);
+    background-color: var(--grey);
+    border: 2px solid var(--chartreuse);
     border-radius: 5px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 8rem;
-    height: 6rem;
+    height: 7rem;
     cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .buttons:hover {
-    color: #444;
-    background-color: chartreuse;
+    color: var(--grey);
+    background-color: var(--chartreuse);
 }
 
 .buttons_jankenpon i {
     font-size: 4rem;
-    
+    padding: 0.4rem;
 }
 
 .scoreboard_jankenpon {
@@ -76,12 +106,11 @@
     justify-content: center;
     align-items: center;
     padding: 1.5rem;
-    /* background-color: antiquewhite; */
 }
 
 .scoreboard_jankenpon p,
 .scoreboard_jankenpon span {
     font-size: 2rem;
     font-weight: 700;
-    color: chartreuse;
+    color: var(--chartreuse);
 }
