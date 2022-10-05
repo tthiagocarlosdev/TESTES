@@ -8,14 +8,15 @@ const scoreComputer = document.querySelector('#score_computer')
 let score_human = 0
 let score_computer = 0
 
-
+// generates a random number from the values ​​passed as a parameter
 function getRandomIntInclusive(min, max){
   min = Math.ceil(min)
   max = Math.floor(max)
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-const ComputerChoise = (choise) => {
+// determines the computer's play
+const handleComputerChoise = (choise) => {
 
   let computerChoise = ""
 
@@ -30,7 +31,18 @@ const ComputerChoise = (choise) => {
   return computerChoise
 }
 
-const Winner = (choiseHuman, choiseComputer) => {
+// show computer play in html
+const handleComputerPlay = () => {
+  computerPlay.innerHTML = handleComputerChoise(getRandomIntInclusive(1, 3))
+}
+
+// show who is the winner
+const handleScoreWinner = (choiseHuman, choiseComputer) => {
+  scoreWinner.innerHTML = handleWinner(choiseHuman, choiseComputer)
+}
+
+// determines who is the winner
+const handleWinner = (choiseHuman, choiseComputer) => {
 
   let winner = ""
 
@@ -38,22 +50,22 @@ const Winner = (choiseHuman, choiseComputer) => {
     winner = " "
   } else if(choiseHuman == "Stone" && choiseComputer == "Scissors"){
     winner = "Human"
-    ScoreHuman()
+    handleScoreHuman()
   } else if (choiseHuman == "Scissors" && choiseComputer == "Paper"){
     winner = "Human"
-    ScoreHuman()
+    handleScoreHuman()
   } else if (choiseHuman == "Paper" && choiseComputer == "Stone"){
     winner = "Human"
-    ScoreHuman()
+    handleScoreHuman()
   } else if(choiseComputer == "Stone" && choiseHuman == "Scissors"){
     winner = "Computer"
-    ScoreComputer()
+    handleScoreComputer()
   } else if (choiseComputer == "Scissors" && choiseHuman == "Paper"){
     winner = "Computer"
-    ScoreComputer()
+    handleScoreComputer()
   } else if (choiseComputer == "Paper" && choiseHuman == "Stone"){
     winner = "Computer"
-    ScoreComputer()
+    handleScoreComputer()
   } else if (choiseComputer == choiseHuman){
     winner = "A tie"
   }
@@ -61,49 +73,47 @@ const Winner = (choiseHuman, choiseComputer) => {
   return winner
 }
 
-const NumberOfGames = (number) => {
+// determine score and show in html
+const handleScoreHuman = () => {
+  ++score_human
+  scoreHuman.innerHTML = score_human
+}
+
+//determine score and show in html
+const handleScoreComputer = () => {
+  ++score_computer
+  scoreComputer.innerHTML = score_computer
+}
+
+// count the number of matches
+const handleNumberOfGames = (number) => {
   numberOfGames.innerHTML = number
 }
 
-const ScoreHuman = () => {
-  ++score_human
-}
-
-const ScoreComputer = () => {
-  ++score_computer
-}
-
-function stone(){
+//buttons play funtions buttons play funtions buttons play funtions buttons play funtions 
+const handleStone = () => {
   humanPlay.innerHTML = `Stone`
-  computerPlay.innerHTML = ComputerChoise(getRandomIntInclusive(1, 3))
-  scoreWinner.innerHTML = Winner(humanPlay.textContent, computerPlay.textContent)
-  NumberOfGames(++counter)
-  scoreHuman.innerHTML = score_human
-  scoreComputer.innerHTML = score_computer
-
+  handleComputerPlay()
+  handleScoreWinner(humanPlay.textContent, computerPlay.textContent)
+  handleNumberOfGames(++counter)
 }
 
-function paper(){
+const handlePaper = () => {
   humanPlay.innerHTML = `Paper`
-  computerPlay.innerHTML = ComputerChoise(getRandomIntInclusive(1, 3))
-  scoreWinner.innerHTML = Winner(humanPlay.textContent, computerPlay.textContent)
-  NumberOfGames(++counter)
-  scoreHuman.innerHTML = score_human
-  scoreComputer.innerHTML = score_computer
-
+  handleComputerPlay()
+  handleScoreWinner(humanPlay.textContent, computerPlay.textContent)
+  handleNumberOfGames(++counter)
 }
 
-function scissors(){
+const handlScissors = () => {
   humanPlay.innerHTML = `Scissors`
-  computerPlay.innerHTML = ComputerChoise(getRandomIntInclusive(1, 3))
-  scoreWinner.innerHTML = Winner(humanPlay.textContent, computerPlay.textContent)
-  NumberOfGames(++counter)
-  scoreHuman.innerHTML = score_human
-  scoreComputer.innerHTML = score_computer
-
+  handleComputerPlay()
+  handleScoreWinner(humanPlay.textContent, computerPlay.textContent)
+  handleNumberOfGames(++counter)
 }
 
-const Reset = () => {
+// button reset button reset button reset button reset button reset button reset button reset 
+const handleReset = () => {
   humanPlay.innerHTML = `******`
   computerPlay.innerHTML = `******`
   scoreWinner.innerHTML = `******`
@@ -112,5 +122,5 @@ const Reset = () => {
   score_computer = 0
   scoreHuman.innerHTML = score_human
   scoreComputer.innerHTML = score_computer
-  NumberOfGames(counter)
+  handleNumberOfGames(counter)
 }
