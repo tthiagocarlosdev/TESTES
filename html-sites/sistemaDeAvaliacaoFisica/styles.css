@@ -124,6 +124,7 @@
   border-radius: 5px;
   margin-left:0.5rem;
   width: 7rem;
+  transition: background-color 0.5s;
 }
 
 .links-social-media a:hover {
