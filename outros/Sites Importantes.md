@@ -7,3 +7,5 @@
 - <a href="https://docs.pipz.com/central-de-ajuda/learning-center/guia-basico-de-markdown#open">**MarkDown**</a>
 - [__Iconfu__](https://www.iconfu.com/)
 
+- [__fontawesome__](https://fontawesome.com/)
+

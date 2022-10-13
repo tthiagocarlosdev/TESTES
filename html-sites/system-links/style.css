@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 :root {
 		--white-color: #dbdbdb;
 		--red: #FF1301;
@@ -41,13 +42,13 @@
 	margin: 0;
 	box-sizing: border-box;
 	font-family: 'Roboto', sans-serif;
-	font-size: 1rem;
 }
 
 .container {
 	display: flex;
 	flex-direction: column;
 	height:100vh;
+	width: 100vw;
 	background-color: var(--white);
 }
 
@@ -55,20 +56,23 @@
 
 .header {
 	background-color: var(--blue);
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
-	align-items: center;
-	order: 1;
-	flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  order: 1;
+  flex: 1;
 }
 
 .header h1 {		
 	font-size: 2rem;
-	color: var(--white);
-	padding: 1rem;
+  color: var(--white);
+  padding: 1rem;
+  margin-right: 1rem;
 }
 
+
+/* MAIN - MAIN - MAIN - MAIN - MAIN - MAIN */
 .main {
 	display: flex;
 	flex-direction: column;
@@ -76,15 +80,15 @@
 	flex: 4;
 }
 
-/* BOX's - BOX's - BOX's - BOX's - BOX's - BOX's - BOX's*/
-.main .box-general {
+
+.box-general {
 	display: flex;
 	flex-direction: row;
 	order: 1;
 	flex: 1;
 }
 
-.main .box-queries {
+.box-queries {
 	border-top: 1px solid var(--blue);
 	border-bottom: 1px solid var(--blue);
 	order: 2;
@@ -93,7 +97,7 @@
 	flex-direction: row;
 }
 
-.main .box-others {
+.box-others {
 	order: 3;
 	flex: 1;
 	display: flex;
@@ -102,9 +106,9 @@
 		
 /* TITLES - TITLES- TITLES- TITLES - TITLES*/
 
-.main .box-general .title-general,
-.main .box-queries .title-queries,
-.main .box-others .title-others {
+.title-general,
+.title-queries,
+.title-others {
 	display: flex;
 	flex-direction: row;
 	flex: 1;
@@ -112,14 +116,15 @@
 	align-items: center;
 	font-size: 3rem;
 	color: var(--white-color);
+	text-shadow: 1px 2px 10px var(--black);
 	padding: 1rem;
 }
 
 /* LINKS - LINKS - LINKS - LINKS - LINKS - LINKS - LINKS*/
 
-.main .box-queries .links-queries,
-.main .box-general .links-general ,
-.main .box-others .links-others {
+.links-queries,
+.links-general,
+.links-others {
 	list-style: none;
 	flex: 3;
 	display: flex;
@@ -129,15 +134,25 @@
 	flex-flow: wrap;
 }
 
+.go_back_button {
+	list-style: none;
+	position: fixed;
+	top: 2.5rem;
+	left: 2.5rem;
+}
+
 /* LINKS-BOTTONS - LINKS-BOTTONS - LINKS-BOTTONS - LINKS-BOTTONS - LINKS-BOTTONS */
 
-.main .box-general .links-general a,
-.main .box-queries .links-queries a,
-.main .box-others .links-others a,
-.box-footer .links-social-media a {
+.links-general a,
+.links-queries a,
+.links-others a,
+.go_back_button a {
 	display: flex;
 	width: 9.5rem;
+  height: 3rem;
 	justify-content: center;
+  align-items: center;
+  text-align: center;
 	text-decoration: none;
 	padding: 0.5rem;
 	background-color: var(--card-background-color);
@@ -145,13 +160,13 @@
 	border: 1px solid var(--white-color);
 	border-radius: 5px;
 	margin-left:0.5rem;
-	box-shadow: black 0.2rem 0.2rem 0.5rem;
+	box-shadow: var(--black) 0.2rem 0.2rem 0.5rem;
 }
 
-.main .box-general .links-general a:hover,
-.main .box-queries .links-queries a:hover,
-.main .box-others .links-others a:hover,
-.box-footer .links-social-media a:hover {
+.links-general a:hover,
+.links-queries a:hover,
+.links-others a:hover,
+.go_back_button a:hover {
 	background-color: var(--gray);
 	box-shadow: none;
 	border: 1px solid var(--blue);
@@ -159,51 +174,56 @@
 
 /* BOX-FOOTER - BOX-FOOTER - BOX-FOOTER - BOX-FOOTER - BOX-FOOTER */
 .box-footer {
-	background-color: var(--blue);
 	display: flex;
 	flex-direction: row;
 	order: 3;
-	flex: 0.3;
-	flex-flow: wrap;
+	flex: 0.5;
+	background-color:var(--card-color);
+	border-top: 1px solid var(--blue);
 }
 
 .footer-title {
-	font-size: 1.2rem;
-	color: var(--white);
+	color: var(--white-color);
 	flex: 1;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
 	align-items: center;
-	padding: 1rem;
+	padding: 1em;
 }
 
 .links-social-media {
 	list-style: none;
-	flex: 1.5;
+	flex: 1.2;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 0.5rem;
+	padding:0.5rem;
 	flex-flow: wrap;
 }
 
 .links-social-media a {
-	font-size: 1.25rem;
-	font-weight: 600;
-	text-decoration: none;
 	display: flex;
+	width: 4rem;
+  height: 1rem;
 	justify-content: center;
-	align-items: center;
-	color: var(--white);
-	padding: 0.5rem;
-	background-color: var(--blue);
+  align-items: center;
+	text-decoration: none;
+	padding: 1rem;
+  margin-left:1rem;
+  background-color: var(--card-background-color);
+	color: var(--blue);
+	border: 1px solid var(--white-color);
 	border-radius: 5px;
-	margin-left:0.5rem;
-	width: 7rem;
+	box-shadow: var(--black) 0.2rem 0.2rem 0.5rem;
 }
 
 .links-social-media a:hover {
-	background-color: var(--modal-button-hover);
+	background-color: var(--blue);
+  color: var(--white-color);
+}
+
+.fa-brands, .fa-solid {
+	font-size: 1.5rem;
 }
