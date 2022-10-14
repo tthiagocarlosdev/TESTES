@@ -88,3 +88,30 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.button {
+    width: 15rem;
+    height: 5rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    border: 0;
+    border-radius: 5px;
+  
+    background-color: var(--blue);
+    color: var(--white);
+  
+    font-size: 1.25rem;
+    font-weight: 600;
+  
+    transition: background-color 0.5s;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: var(--dark-blue)
+  }

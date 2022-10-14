@@ -88,7 +88,13 @@ function setSuccessFor(input){
 }
 
 /* REPETATION */
+const repetations = document.querySelector('.repetations')
+repetations.innerText = 0
+
 function handleRepsClick(){
-  const repetations = document.querySelector('.repetations').value
+  
+  let reps = 0
+  ++reps
+  repetations.innerText = reps
   console.log(repetations)
 }
