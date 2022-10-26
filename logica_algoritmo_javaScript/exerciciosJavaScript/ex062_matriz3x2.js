@@ -36,12 +36,12 @@ function mostrarMatriz(matriz, linha){
 
 //declaração de variáveis
 let matriz3x2 = []
-let numeroDeLinhas = 0
-let numeroDeColunas = 0
+let numeroDeLinhas = 3
+let numeroDeColunas = 2
 
 header()
-numeroDeLinhas = input.question(`Digite a quantidade de linha: `)
-numeroDeColunas = input.question(`Digite a quantidade de coluna: `)
+// numeroDeLinhas = input.question(`Digite a quantidade de linha: `)
+// numeroDeColunas = input.question(`Digite a quantidade de coluna: `)
 matriz3x2 = criarMatriz(numeroDeLinhas, numeroDeColunas)
 console.clear()
 header()

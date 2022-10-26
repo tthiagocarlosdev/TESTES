@@ -1627,7 +1627,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-PAREI
+
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
@@ -1643,7 +1643,11 @@ Hoje chegamos ao exercício de número __62__, exercício que tem por título: _
 
 Crie um programa que solicite ao usuario inserir valores numa matriz de ordem 3x2. No final o programa deverá apresentar os valores inseridos pelo usuário.
 
+O que é uma matriz?
 
+A matriz é definida como sendo um vetor com mais de uma dimensão (geralmente duas). Enquanto o vetor armazena as informações de forma linear, a matriz armazena de forma tabular (com linha e colunas).
+
+Aqui em JavaScript, serão arrays bi-dimensionais.
 
 ```js
 var input = require('readline-sync')
@@ -1705,7 +1709,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-PAREI 63
+
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
@@ -1717,9 +1721,9 @@ Aproveitando, peço que se você não for **inscrito** neste canal, se **inscrev
 
 Fazendo isso você ajuda bastante o nosso canal a crescer.
 
-Hoje chegamos ao exercício de número __63__, exercício que tem por título: __Fatorial Função:__ e o exercício é o seguinte:
+Hoje chegamos ao exercício de número __63__, exercício que tem por título: __Matriz 3x3 Par__ e o exercício é o seguinte:
 
-
+PAREI
 
 ```js
 
