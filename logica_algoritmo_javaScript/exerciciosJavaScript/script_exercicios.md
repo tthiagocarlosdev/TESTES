@@ -1688,12 +1688,12 @@ function mostrarMatriz(matriz, linha){
 
 //declaração de variáveis
 let matriz3x2 = []
-let numeroDeLinhas = 0
-let numeroDeColunas = 0
+let numeroDeLinhas = 3
+let numeroDeColunas = 2
 
 header()
-numeroDeLinhas = input.question(`Digite a quantidade de linha: `)
-numeroDeColunas = input.question(`Digite a quantidade de coluna: `)
+// numeroDeLinhas = input.question(`Digite a quantidade de linha: `)
+// numeroDeColunas = input.question(`Digite a quantidade de coluna: `)
 matriz3x2 = criarMatriz(numeroDeLinhas, numeroDeColunas)
 console.clear()
 header()
@@ -1723,10 +1723,90 @@ Fazendo isso você ajuda bastante o nosso canal a crescer.
 
 Hoje chegamos ao exercício de número __63__, exercício que tem por título: __Matriz 3x3 Par__ e o exercício é o seguinte:
 
-PAREI
+Construa um programa que o usuario insira valores numa matriz 3x3. Deverá ser mostrada a posição a qual o usuário esta inserindo o valor. No final o programa deverá mostrar a matriz com todos o valores inseridos pelo usuário, destacando os valores pares. Deverá apresentar também o total de valores pares inseridos.
 
 ```js
+var input = require('readline-sync')
 
+//declaração de funções
+function header(){
+  console.log(`------------------------------`)
+  console.log(`      ex063_matriz3x3Par`)
+  console.log(`------------------------------`)
+}
+
+function rodape(){
+  console.log(`------------------------------`)
+}
+
+function criarMatriz(nLinha, nColuna){
+  let matriz = []
+  let array = []
+  // let x = 1
+
+  for(let i = 0; i < nLinha; i++){
+    for(let j = 0; j < nColuna; j++){
+      array.push(input.question(`Digite valor [${i}][${j}]: `))
+      // array.push(x)
+      // x += 1
+    }
+    matriz.push(array)
+    array = []
+  }
+  return matriz
+}
+
+function mostrarMatriz(matriz, linha){
+  for(let i = 0; i < linha; i++){
+    console.log(matriz[i])
+  }
+}
+
+function matrizComPar(matriz, nLinha, nColuna){
+  for(let i = 0; i < nLinha; i++){
+    for(let j = 0; j < nColuna; j++){
+      if(Number(matriz[i][j]) % 2 == 0){
+        matriz[i][j] = `(${matriz[i][j]})`
+      }
+    } 
+  }
+  return matriz
+}
+
+function somaMatrizPar(matriz, nLinhas, nColunas){
+  let soma = 0
+  for(let i = 0; i < nLinhas; i++){
+    for(let j = 0; j < nColunas; j++){
+      if(Number(matriz[i][j]) % 2 == 0){
+        soma++ 
+      }
+    } 
+  }
+  return soma
+}
+
+//declaração de variáveis
+let matriz3x3 = []
+let numeroDeLinhas = 3
+let numeroDeColunas = 3
+let matrizPar = []
+let totalPar = 0
+
+//entrada de dados
+header()
+matriz3x3 = criarMatriz(numeroDeLinhas, numeroDeColunas)
+console.clear()
+
+//processamento de dados
+totalPar = somaMatrizPar(matriz3x3, numeroDeLinhas, numeroDeColunas)
+matrizPar = matrizComPar(matriz3x3, numeroDeLinhas, numeroDeColunas)
+
+//saída de dados
+header()
+mostrarMatriz(matrizPar, numeroDeLinhas)
+rodape()
+console.log(`Total dos valores Pares: ${totalPar}`)
+rodape()
 ```
 
 ## LEMBRANDO
@@ -1749,11 +1829,62 @@ Aproveitando, peço que se você não for **inscrito** neste canal, se **inscrev
 
 Fazendo isso você ajuda bastante o nosso canal a crescer.
 
-Hoje chegamos ao exercício de número __**50**__, exercício que tem por título: __Fatorial Função:__ e o exercício é o seguinte:
+Hoje chegamos ao exercício de número __64__, exercício que tem por título: __Matriz Identidade 3x3__ e o exercício é o seguinte:
 
+Elabore um programa que mostre uma __matriz identidade__ de ordem 3x3.
 
+Na matemática, matriz identidade é uma matriz diagonal, cujos elementos da diagonal principal são todos iguais a 1.
 
 ```js
+var input = require('readline-sync')
+
+//declaração de funções
+function header(){
+  console.log(`------------------------------`)
+  console.log(`   ex064_MatrizIdentidade3x3`)
+  console.log(`------------------------------`)
+}
+
+function rodape(){
+  console.log(`------------------------------`)
+}
+
+function mostrarMatriz(matriz){
+  for(let i = 0; i < matriz.length; i++){
+    console.log(matriz[i])
+  }
+}
+
+function criarMatrizIdentidade(nLinha, nColuna){
+  let matriz = []
+  let array = []
+
+  for(let i = 0; i < nLinha; i++){
+    for(let j = 0; j < nColuna; j++){
+      if(i == j){
+        array.push(1)
+      } else {
+        array.push(0)
+      }
+    }
+    matriz.push(array)
+    array = []
+  }
+  return matriz
+}
+
+//declaração de variáveis
+let matrizIdentidade = []
+const NUMERO_DE_LINHAS = 3
+const NUMERO_DE_COLUNAS = 3
+
+//processamento de dados
+matrizIdentidade = criarMatrizIdentidade(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
+
+//saída de dados
+header()
+mostrarMatriz(matrizIdentidade)
+rodape()
 
 ```
 
@@ -1765,7 +1896,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-
+PAREI 65
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
@@ -1777,7 +1908,7 @@ Aproveitando, peço que se você não for **inscrito** neste canal, se **inscrev
 
 Fazendo isso você ajuda bastante o nosso canal a crescer.
 
-Hoje chegamos ao exercício de número __**50**__, exercício que tem por título: __Fatorial Função:__ e o exercício é o seguinte:
+Hoje chegamos ao exercício de número __65__, exercício que tem por título: __Matriz 4x4__ e o exercício é o seguinte:
 
 
 
