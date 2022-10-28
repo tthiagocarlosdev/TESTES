@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`   ex054_valoresParesVetores`)
   console.log(`------------------------------`)
@@ -17,7 +17,7 @@ var valores = []
 var valorPar = 0
 
 //entrada de dados
-header()
+cabecalho()
 for(let contador = 0; contador < QTDE_VALORES; contador++){
   valores[contador] = input.question(`Digite o ${contador + 1}º valor: `)
 }
@@ -31,7 +31,7 @@ for(let contador = 0; contador < QTDE_VALORES; contador++){
 
 //saída de dados
 console.clear()
-header()
+cabecalho()
 console.log("Valores digitados: ")
 console.log(valores)
 rodape()

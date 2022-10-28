@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`     ex049_parImparFuncao`)
   console.log(`------------------------------`)
@@ -19,7 +19,7 @@ function parOuImpar(valor){
 let numero = 0 
 
 //entrada de dados
-header()
+cabecalho()
 numero = Number(input.question("Digite um valor: "))
 
 //processamento  saída de dados

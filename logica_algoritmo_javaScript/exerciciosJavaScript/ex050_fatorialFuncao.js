@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`     ex050_fatorialFuncao`)
   console.log(`------------------------------`)
@@ -23,7 +23,7 @@ function fatorial(valor){
 let numero = 0
 
 //entrada de dados
-header()
+cabecalho()
 numero = Number(input.question("Digite um número: "))
 
 //processamento saída de dados

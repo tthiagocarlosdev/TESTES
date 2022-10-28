@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`         ex057_soComC`)
   console.log(`------------------------------`)
@@ -17,7 +17,7 @@ let nomesUsuarios = []
 let nomesComC = []
 
 //entrada de dados
-header()
+cabecalho()
 for(let contador = 0; contador < QTDE_DE_NOMES; contador++){
   nomesUsuarios[contador] = input.question(`Digite o ${contador + 1}º nome: `)
 }
@@ -31,7 +31,7 @@ for(let contador = 0; contador < QTDE_DE_NOMES; contador++){
 
 //saída de dados
 console.clear()
-header()
+cabecalho()
 console.log("Nomes só com C")
 rodape()
 console.log(nomesComC)

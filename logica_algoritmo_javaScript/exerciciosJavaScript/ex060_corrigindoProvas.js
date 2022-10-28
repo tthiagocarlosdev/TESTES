@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`    ex060_corrigindoProvas`)
   console.log(`------------------------------`)
@@ -23,13 +23,13 @@ let mediaDaTurma = 0
 
 //entrada de dados
 //cadastro gabarito
-header()
+cabecalho()
 for(let contador = 0; contador < QTDE_DE_QUESTOES; contador++){
   gabaritoQuestoes[contador] = input.question(`Gabarito da ${contador + 1}ª questão: `)
 }
 
 console.clear()
-header()
+cabecalho()
 
 //cadastro do aluno
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
@@ -40,7 +40,7 @@ for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
 for(let contadorA = 0; contadorA < QTDE_DE_ALUNOS; contadorA++){
   mediaAluno[contadorA] = 0
   console.clear()
-  header()
+  cabecalho()
 
   console.log(`Insira o gabarito do aluno ${alunos[contadorA]}:`)
   for(let contadorQ = 0; contadorQ < QTDE_DE_QUESTOES; contadorQ++){
@@ -59,7 +59,7 @@ mediaDaTurma = somaMediaDosAlunos / QTDE_DE_ALUNOS
 
 //saída de dados
 console.clear()
-header()
+cabecalho()
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
   console.log(`${alunos[contador]} - média ${mediaAluno[contador].toFixed(2)}`)
 }

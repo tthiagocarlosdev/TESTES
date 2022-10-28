@@ -638,7 +638,7 @@ Os **procedimentos** diferem das funções apenas por não retornarem resultado.
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`       ex048_somaFuncao`)
   console.log(`------------------------------`)
@@ -654,7 +654,7 @@ let valorB = 0
 let soma = 0
 
 //entrada de dados
-header()
+cabecalho()
 valorA = Number(input.question("Digite um valor: "))
 valorB = Number(input.question("Digite outro valor: "))
 soma = somaValores(valorA, valorB)
@@ -692,7 +692,7 @@ Construa um programa que tenha uma função que receba um valor e retorne se o v
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`     ex049_parImparFuncao`)
   console.log(`------------------------------`)
@@ -710,7 +710,7 @@ function parOuImpar(valor){
 let numero = 0 
 
 //entrada de dados
-header()
+cabecalho()
 numero = Number(input.question("Digite um valor: "))
 
 //processamento  saída de dados
@@ -746,7 +746,7 @@ Elabore um programa o qual o usuário digite um número e o programa tenha uma f
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`     ex050_fatorialFuncao`)
   console.log(`------------------------------`)
@@ -768,7 +768,7 @@ function fatorial(valor){
 let numero = 0
 
 //entrada de dados
-header()
+cabecalho()
 numero = Number(input.question("Digite um número: "))
 
 //processamento saída de dados
@@ -804,7 +804,7 @@ Crie um programa que o usuário digite os dois valores iniciais da sequência de
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`     ex051_fibonacciFuncao`)
   console.log(`------------------------------`)
@@ -830,7 +830,7 @@ let numeroB = 0
 let meuFibonacci = ""
 
 //entrada de dados
-header()
+cabecalho()
 numeroA = Number(input.question("Digite um valor: "))
 numeroB = Number(input.question("Digite outro valor: "))
 
@@ -840,7 +840,7 @@ meuFibonacci = numeroA+" "+numeroB
 meuFibonacci += fibonacci(numeroA, numeroB)
 
 //saída de dados
-header()
+cabecalho()
 console.log(meuFibonacci)
 console.log(`------------------------------`)
 ```
@@ -875,9 +875,13 @@ Nesse programa vamos utilzar algumas funções padrões da linguagem JavaScript.
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`   ex052_analisadorDeStrings`)
+  console.log(`------------------------------`)
+}
+
+function rodape(){
   console.log(`------------------------------`)
 }
 
@@ -885,11 +889,11 @@ function header(){
 let name = ""
 
 //entrada de dados
-header()
+cabecalho()
 name = String(input.question("Digite seu nome: "))
 
 //processamento saída de dados
-console.log(`------------------------------`)
+rodape()
 console.log(`Seu nome tem ${name.replace(/ /g, "").length} letras.`)
 console.log(`Seu nome em maiúsculo: ${name.toUpperCase()}`)
 console.log(`Seu nome em minúsculo: ${name.toLowerCase()}`)
@@ -898,7 +902,7 @@ console.log(`A última letra do seu nome é: ${name.charAt(name.length - 1)}`)
 console.log(`A posição da letra 'a' é: ${name.indexOf("a")+1}`)
 console.log(`O código ascii da letra 'a' é : ${name.charCodeAt(name.indexOf("a"))}`)
 console.log(`O código ascii 65 corresponde a: ${String.fromCharCode(65)}`)
-console.log(`------------------------------`)
+rodape()
 ```
 
 ## LEMBRANDO
@@ -937,7 +941,7 @@ importante destacar que Arrays JavaScript começam com índice zero: o primeiro 
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`       ex053_testeVetor`)
   console.log(`------------------------------`)
@@ -947,14 +951,14 @@ function header(){
 var array = []
 
 // entrada de dados
-header()
+cabecalho()
 for(contador = 0; contador <= 5; contador++){
     array[contador] = input.question(`Digite o ${contador+1}º valor: `)
 }
 
 //processamento e saída de dados
 console.clear()
-header()
+cabecalho()
 for(contador = 0; contador <= 5; contador++){
     console.log(array[contador])
 }
@@ -989,7 +993,7 @@ Crie um programa em que o usuário digite sete valores e no final o programa mos
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`   ex054_valoresParesVetores`)
   console.log(`------------------------------`)
@@ -1005,7 +1009,7 @@ var valores = []
 var valorPar = 0
 
 //entrada de dados
-header()
+cabecalho()
 for(let contador = 0; contador < QTDE_VALORES; contador++){
   valores[contador] = input.question(`Digite o ${contador + 1}º valor: `)
 }
@@ -1019,7 +1023,7 @@ for(let contador = 0; contador < QTDE_VALORES; contador++){
 
 //saída de dados
 console.clear()
-header()
+cabecalho()
 console.log("Valores digitados: ")
 console.log(valores)
 rodape()
@@ -1055,7 +1059,7 @@ Elabore um programa em que o usuário digite sete valores e no final o programa 
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`  ex055_valoresParesVetores2`)
   console.log(`------------------------------`)
@@ -1071,7 +1075,7 @@ let valores = []
 let valorPar = 0
 
 //entrada de dados
-header()
+cabecalho()
 for(let contador = 0; contador < QTDE_VALORES; contador++){
     valores[contador] = (input.question(`Digite o ${contador + 1}º valor: `))
 }
@@ -1085,7 +1089,7 @@ for(let contador = 0; contador < QTDE_VALORES; contador++){
 
 //saída de dados
 console.clear()
-header()
+cabecalho()
 console.log(`Foram digitados ${valorPar} valores pares!`)
 rodape()
 console.log("Posição => Valor Par: ")
@@ -1129,7 +1133,7 @@ Construa um programa em que sejam cadastrados os nomes de 4 alunos, e duas notas
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`     ex056_listagemDaTurma`)
   console.log(`------------------------------`)
@@ -1152,7 +1156,7 @@ let alunoAcimaDaMedia = 0
 
 //entrada de dados
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
-  header()
+  cabecalho()
   nome[contador] = input.question(`Nome do aluno nº ${contador + 1}: `)
   notaA[contador] = Number(input.question("Digite a 1ª nota: "))
   notaB[contador] = Number(input.question("Digite a 2ª nota: "))
@@ -1182,7 +1186,7 @@ for( let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
 }
 
 //saída de dados
-header()
+cabecalho()
 console.log(`NOME -> MÉDIA`)
 rodape()
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++) {
@@ -1230,7 +1234,7 @@ Desenvolva um programa que sejam cadastrados 10 nomes de usuários. No final o p
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`         ex057_soComC`)
   console.log(`------------------------------`)
@@ -1246,7 +1250,7 @@ let nomesUsuarios = []
 let nomesComC = []
 
 //entrada de dados
-header()
+cabecalho()
 for(let contador = 0; contador < QTDE_DE_NOMES; contador++){
   nomesUsuarios[contador] = input.question(`Digite o ${contador + 1}º nome: `)
 }
@@ -1260,7 +1264,7 @@ for(let contador = 0; contador < QTDE_DE_NOMES; contador++){
 
 //saída de dados
 console.clear()
-header()
+cabecalho()
 console.log("Nomes só com C")
 rodape()
 console.log(nomesComC)
@@ -1295,7 +1299,7 @@ Crie um programa em que o usuário digite 10 valores de forma aleatória e no fi
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`      ex058_Ordena Vetor`)
   console.log(`------------------------------`)
@@ -1315,7 +1319,7 @@ function getRandomIntInclusive(min, max){
 const QTDE_DE_VALORES = 10
 let listaDeValores = []
 
-header()
+cabecalho()
 for(let contador = 0; contador < QTDE_DE_VALORES; contador++){
   // valor[contador] = Number(input.question(`Insira o ${contador + 1}º valor: `))
   listaDeValores[contador] = Number(getRandomIntInclusive(0, 100))
@@ -1323,7 +1327,7 @@ for(let contador = 0; contador < QTDE_DE_VALORES; contador++){
 
 //saída de dados
 console.clear()
-header()
+cabecalho()
 console.log("Valores inseridos: ")
 for(let contador = 0; contador < QTDE_DE_VALORES; contador++){
   console.log(listaDeValores[contador])
@@ -1377,7 +1381,7 @@ Elabore um programa em que seja cadastrado 3 times e no final seja mostrado uma 
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`    ex059_campeonatoFutebol`)
   console.log(`------------------------------`)
@@ -1393,7 +1397,7 @@ let quantidadeDeTimes = 0
 let listaDeTimes = []
 
 //entrada de dados
-header()
+cabecalho()
 quantidadeDeTimes = Number(input.question("Informe a quantidade de times: "))
 rodape()
 for(let contador = 0; contador < quantidadeDeTimes; contador++){
@@ -1402,7 +1406,7 @@ for(let contador = 0; contador < quantidadeDeTimes; contador++){
 
 //processamento e saída de dados
 console.clear()
-header()
+cabecalho()
 console.log(" Tabela Final")
 rodape()
 for(let timeA = 0; timeA < quantidadeDeTimes; timeA++){
@@ -1443,7 +1447,7 @@ Construa um programa que seja cadastrado um gabarito com 5 questões. Cadastre t
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`    ex060_corrigindoProvas`)
   console.log(`------------------------------`)
@@ -1465,13 +1469,13 @@ let mediaDaTurma = 0
 
 //entrada de dados
 //cadastro gabarito
-header()
+cabecalho()
 for(let contador = 0; contador < QTDE_DE_QUESTOES; contador++){
   gabaritoQuestoes[contador] = input.question(`Gabarito da ${contador + 1}ª questão: `)
 }
 
 console.clear()
-header()
+cabecalho()
 
 //cadastro do aluno
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
@@ -1482,7 +1486,7 @@ for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
 for(let contadorA = 0; contadorA < QTDE_DE_ALUNOS; contadorA++){
   mediaAluno[contadorA] = 0
   console.clear()
-  header()
+  cabecalho()
 
   console.log(`Insira o gabarito do aluno ${alunos[contadorA]}:`)
   for(let contadorQ = 0; contadorQ < QTDE_DE_QUESTOES; contadorQ++){
@@ -1501,14 +1505,13 @@ mediaDaTurma = somaMediaDosAlunos / QTDE_DE_ALUNOS
 
 //saída de dados
 console.clear()
-header()
+cabecalho()
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
   console.log(`${alunos[contador]} - média ${mediaAluno[contador].toFixed(2)}`)
 }
 rodape()
 console.log(`A média da turma é: ${mediaDaTurma.toFixed(2)}`)
 rodape()
-
 ```
 
 ## LEMBRANDO
@@ -1539,7 +1542,7 @@ Desenvolva um programa que simule a reserva de cadeiras de um cinema. No total s
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`     ex061_reservarCinema`)
   console.log(`------------------------------`)
@@ -1581,7 +1584,7 @@ for(c = 1; c <= QTDE_CADEIRAS; c++){
 
 //cálculo do programa
 do{
-  header()
+  cabecalho()
   cadeirasCinema()
   rodape()
   cadeira = Number(input.question("Informe uma cadeira: "))
@@ -1589,7 +1592,7 @@ do{
   console.clear()
   while (cadeiraReservada(cadeira) == false) {
     console.clear()
-    header()
+    cabecalho()
     cadeirasCinema()
     rodape()
     console.log("Cadeira Reservada!")
@@ -1603,7 +1606,7 @@ do{
   }
   
   console.clear()
-  header()
+  cabecalho()
   cadeirasCinema()
   rodape()
 
@@ -1614,7 +1617,7 @@ do{
 
 //final do programa
 console.clear()
-header()
+cabecalho()
 console.log("Programa encerrado!")
 rodape()
 ```
@@ -1653,7 +1656,7 @@ Aqui em JavaScript, serão arrays bi-dimensionais.
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`        ex062_matriz3x2`)
   console.log(`------------------------------`)
@@ -1680,24 +1683,25 @@ function criarMatriz(nLinha, nColuna){
   return matriz
 }
 
-function mostrarMatriz(matriz, linha){
-  for(let i = 0; i < linha; i++){
+function mostrarMatriz(matriz){
+  for(let i = 0; i < matriz.length; i++){
     console.log(matriz[i])
   }
 }
 
 //declaração de variáveis
 let matriz3x2 = []
-let numeroDeLinhas = 3
-let numeroDeColunas = 2
+const NUMERO_DE_LINHAS = 3
+const NUMERO_DE_COLUNAS = 2
 
-header()
-// numeroDeLinhas = input.question(`Digite a quantidade de linha: `)
-// numeroDeColunas = input.question(`Digite a quantidade de coluna: `)
-matriz3x2 = criarMatriz(numeroDeLinhas, numeroDeColunas)
+//entrada de dados
+cabecalho()
+matriz3x2 = criarMatriz(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
 console.clear()
-header()
-mostrarMatriz(matriz3x2, numeroDeLinhas)
+
+//processamento e saida de dados
+cabecalho()
+mostrarMatriz(matriz3x2)
 rodape()
 ```
 
@@ -1729,7 +1733,7 @@ Construa um programa que o usuario insira valores numa matriz 3x3. Deverá ser m
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`      ex063_matriz3x3Par`)
   console.log(`------------------------------`)
@@ -1756,15 +1760,15 @@ function criarMatriz(nLinha, nColuna){
   return matriz
 }
 
-function mostrarMatriz(matriz, linha){
-  for(let i = 0; i < linha; i++){
+function mostrarMatriz(matriz){
+  for(let i = 0; i < matriz.length; i++){
     console.log(matriz[i])
   }
 }
 
-function matrizComPar(matriz, nLinha, nColuna){
-  for(let i = 0; i < nLinha; i++){
-    for(let j = 0; j < nColuna; j++){
+function matrizComPar(matriz){
+  for(let i = 0; i < matriz.length; i++){
+    for(let j = 0; j < matriz.length; j++){
       if(Number(matriz[i][j]) % 2 == 0){
         matriz[i][j] = `(${matriz[i][j]})`
       }
@@ -1773,10 +1777,10 @@ function matrizComPar(matriz, nLinha, nColuna){
   return matriz
 }
 
-function somaMatrizPar(matriz, nLinhas, nColunas){
+function somaMatrizPar(matriz){
   let soma = 0
-  for(let i = 0; i < nLinhas; i++){
-    for(let j = 0; j < nColunas; j++){
+  for(let i = 0; i < matriz.length; i++){
+    for(let j = 0; j < matriz.length; j++){
       if(Number(matriz[i][j]) % 2 == 0){
         soma++ 
       }
@@ -1787,23 +1791,23 @@ function somaMatrizPar(matriz, nLinhas, nColunas){
 
 //declaração de variáveis
 let matriz3x3 = []
-let numeroDeLinhas = 3
-let numeroDeColunas = 3
+const NUMERO_DE_LINHAS = 3
+const NUMERO_DE_COLUNAS = 3
 let matrizPar = []
 let totalPar = 0
 
 //entrada de dados
-header()
-matriz3x3 = criarMatriz(numeroDeLinhas, numeroDeColunas)
+cabecalho()
+matriz3x3 = criarMatriz(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
 console.clear()
 
 //processamento de dados
-totalPar = somaMatrizPar(matriz3x3, numeroDeLinhas, numeroDeColunas)
-matrizPar = matrizComPar(matriz3x3, numeroDeLinhas, numeroDeColunas)
+totalPar = somaMatrizPar(matriz3x3)
+matrizPar = matrizComPar(matriz3x3)
 
 //saída de dados
-header()
-mostrarMatriz(matrizPar, numeroDeLinhas)
+cabecalho()
+mostrarMatriz(matrizPar)
 rodape()
 console.log(`Total dos valores Pares: ${totalPar}`)
 rodape()
@@ -1839,7 +1843,7 @@ Na matemática, matriz identidade é uma matriz diagonal, cujos elementos da dia
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`   ex064_MatrizIdentidade3x3`)
   console.log(`------------------------------`)
@@ -1882,10 +1886,9 @@ const NUMERO_DE_COLUNAS = 3
 matrizIdentidade = criarMatrizIdentidade(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
 
 //saída de dados
-header()
+cabecalho()
 mostrarMatriz(matrizIdentidade)
 rodape()
-
 ```
 
 ## LEMBRANDO

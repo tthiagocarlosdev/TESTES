@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`     ex051_fibonacciFuncao`)
   console.log(`------------------------------`)
@@ -27,7 +27,7 @@ let numeroB = 0
 let meuFibonacci = ""
 
 //entrada de dados
-header()
+cabecalho()
 numeroA = Number(input.question("Digite um valor: "))
 numeroB = Number(input.question("Digite outro valor: "))
 
@@ -37,6 +37,6 @@ meuFibonacci = numeroA+" "+numeroB
 meuFibonacci += fibonacci(numeroA, numeroB)
 
 //saída de dados
-header()
+cabecalho()
 console.log(meuFibonacci)
 console.log(`------------------------------`)

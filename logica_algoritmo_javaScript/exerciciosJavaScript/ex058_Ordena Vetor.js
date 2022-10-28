@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`      ex058_Ordena Vetor`)
   console.log(`------------------------------`)
@@ -21,7 +21,7 @@ function getRandomIntInclusive(min, max){
 const QTDE_DE_VALORES = 10
 let listaDeValores = []
 
-header()
+cabecalho()
 for(let contador = 0; contador < QTDE_DE_VALORES; contador++){
   // valor[contador] = Number(input.question(`Insira o ${contador + 1}º valor: `))
   listaDeValores[contador] = Number(getRandomIntInclusive(0, 100))
@@ -29,7 +29,7 @@ for(let contador = 0; contador < QTDE_DE_VALORES; contador++){
 
 //saída de dados
 console.clear()
-header()
+cabecalho()
 console.log("Valores inseridos: ")
 for(let contador = 0; contador < QTDE_DE_VALORES; contador++){
   console.log(listaDeValores[contador])

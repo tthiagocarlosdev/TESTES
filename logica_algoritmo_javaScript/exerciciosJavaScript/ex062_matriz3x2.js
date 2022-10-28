@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`        ex062_matriz3x2`)
   console.log(`------------------------------`)
@@ -28,22 +28,23 @@ function criarMatriz(nLinha, nColuna){
   return matriz
 }
 
-function mostrarMatriz(matriz, linha){
-  for(let i = 0; i < linha; i++){
+function mostrarMatriz(matriz){
+  for(let i = 0; i < matriz.length; i++){
     console.log(matriz[i])
   }
 }
 
 //declaração de variáveis
 let matriz3x2 = []
-let numeroDeLinhas = 3
-let numeroDeColunas = 2
+const NUMERO_DE_LINHAS = 3
+const NUMERO_DE_COLUNAS = 2
 
-header()
-// numeroDeLinhas = input.question(`Digite a quantidade de linha: `)
-// numeroDeColunas = input.question(`Digite a quantidade de coluna: `)
-matriz3x2 = criarMatriz(numeroDeLinhas, numeroDeColunas)
+//entrada de dados
+cabecalho()
+matriz3x2 = criarMatriz(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
 console.clear()
-header()
-mostrarMatriz(matriz3x2, numeroDeLinhas)
+
+//processamento e saida de dados
+cabecalho()
+mostrarMatriz(matriz3x2)
 rodape()

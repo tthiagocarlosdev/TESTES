@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`       ex048_somaFuncao`)
   console.log(`------------------------------`)
@@ -17,7 +17,7 @@ let valorB = 0
 let soma = 0
 
 //entrada de dados
-header()
+cabecalho()
 valorA = Number(input.question("Digite um valor: "))
 valorB = Number(input.question("Digite outro valor: "))
 soma = somaValores(valorA, valorB)

@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`     ex056_listagemDaTurma`)
   console.log(`------------------------------`)
@@ -24,7 +24,7 @@ let alunoAcimaDaMedia = 0
 
 //entrada de dados
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
-  header()
+  cabecalho()
   nome[contador] = input.question(`Nome do aluno nº ${contador + 1}: `)
   notaA[contador] = Number(input.question("Digite a 1ª nota: "))
   notaB[contador] = Number(input.question("Digite a 2ª nota: "))
@@ -54,7 +54,7 @@ for( let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
 }
 
 //saída de dados
-header()
+cabecalho()
 console.log(`NOME -> MÉDIA`)
 rodape()
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++) {

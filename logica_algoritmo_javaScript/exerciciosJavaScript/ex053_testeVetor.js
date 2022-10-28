@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`       ex053_testeVetor`)
   console.log(`------------------------------`)
@@ -11,14 +11,14 @@ function header(){
 var array = []
 
 // entrada de dados
-header()
+cabecalho()
 for(contador = 0; contador <= 5; contador++){
     array[contador] = input.question(`Digite o ${contador+1}º valor: `)
 }
 
 //processamento e saída de dados
 console.clear()
-header()
+cabecalho()
 for(contador = 0; contador <= 5; contador++){
     console.log(array[contador])
 }

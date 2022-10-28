@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`   ex064_MatrizIdentidade3x3`)
   console.log(`------------------------------`)
@@ -44,6 +44,6 @@ const NUMERO_DE_COLUNAS = 3
 matrizIdentidade = criarMatrizIdentidade(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
 
 //saída de dados
-header()
+cabecalho()
 mostrarMatriz(matrizIdentidade)
 rodape()

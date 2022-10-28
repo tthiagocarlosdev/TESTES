@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`    ex059_campeonatoFutebol`)
   console.log(`------------------------------`)
@@ -17,7 +17,7 @@ let quantidadeDeTimes = 0
 let listaDeTimes = []
 
 //entrada de dados
-header()
+cabecalho()
 quantidadeDeTimes = Number(input.question("Informe a quantidade de times: "))
 rodape()
 for(let contador = 0; contador < quantidadeDeTimes; contador++){
@@ -26,7 +26,7 @@ for(let contador = 0; contador < quantidadeDeTimes; contador++){
 
 //processamento e saída de dados
 console.clear()
-header()
+cabecalho()
 console.log(" Tabela Final")
 rodape()
 for(let timeA = 0; timeA < quantidadeDeTimes; timeA++){

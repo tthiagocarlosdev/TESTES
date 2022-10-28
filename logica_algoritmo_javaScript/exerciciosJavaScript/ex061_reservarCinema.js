@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`     ex061_reservarCinema`)
   console.log(`------------------------------`)
@@ -43,7 +43,7 @@ for(c = 1; c <= QTDE_CADEIRAS; c++){
 
 //cálculo do programa
 do{
-  header()
+  cabecalho()
   cadeirasCinema()
   rodape()
   cadeira = Number(input.question("Informe uma cadeira: "))
@@ -51,7 +51,7 @@ do{
   console.clear()
   while (cadeiraReservada(cadeira) == false) {
     console.clear()
-    header()
+    cabecalho()
     cadeirasCinema()
     rodape()
     console.log("Cadeira Reservada!")
@@ -65,7 +65,7 @@ do{
   }
   
   console.clear()
-  header()
+  cabecalho()
   cadeirasCinema()
   rodape()
 
@@ -76,6 +76,6 @@ do{
 
 //final do programa
 console.clear()
-header()
+cabecalho()
 console.log("Programa encerrado!")
 rodape()

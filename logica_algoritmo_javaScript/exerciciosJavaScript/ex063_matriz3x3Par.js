@@ -1,7 +1,7 @@
 var input = require('readline-sync')
 
 //declaração de funções
-function header(){
+function cabecalho(){
   console.log(`------------------------------`)
   console.log(`      ex063_matriz3x3Par`)
   console.log(`------------------------------`)
@@ -28,15 +28,15 @@ function criarMatriz(nLinha, nColuna){
   return matriz
 }
 
-function mostrarMatriz(matriz, linha){
-  for(let i = 0; i < linha; i++){
+function mostrarMatriz(matriz){
+  for(let i = 0; i < matriz.length; i++){
     console.log(matriz[i])
   }
 }
 
-function matrizComPar(matriz, nLinha, nColuna){
-  for(let i = 0; i < nLinha; i++){
-    for(let j = 0; j < nColuna; j++){
+function matrizComPar(matriz){
+  for(let i = 0; i < matriz.length; i++){
+    for(let j = 0; j < matriz.length; j++){
       if(Number(matriz[i][j]) % 2 == 0){
         matriz[i][j] = `(${matriz[i][j]})`
       }
@@ -45,10 +45,10 @@ function matrizComPar(matriz, nLinha, nColuna){
   return matriz
 }
 
-function somaMatrizPar(matriz, nLinhas, nColunas){
+function somaMatrizPar(matriz){
   let soma = 0
-  for(let i = 0; i < nLinhas; i++){
-    for(let j = 0; j < nColunas; j++){
+  for(let i = 0; i < matriz.length; i++){
+    for(let j = 0; j < matriz.length; j++){
       if(Number(matriz[i][j]) % 2 == 0){
         soma++ 
       }
@@ -59,23 +59,23 @@ function somaMatrizPar(matriz, nLinhas, nColunas){
 
 //declaração de variáveis
 let matriz3x3 = []
-let numeroDeLinhas = 3
-let numeroDeColunas = 3
+const NUMERO_DE_LINHAS = 3
+const NUMERO_DE_COLUNAS = 3
 let matrizPar = []
 let totalPar = 0
 
 //entrada de dados
-header()
-matriz3x3 = criarMatriz(numeroDeLinhas, numeroDeColunas)
+cabecalho()
+matriz3x3 = criarMatriz(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
 console.clear()
 
 //processamento de dados
-totalPar = somaMatrizPar(matriz3x3, numeroDeLinhas, numeroDeColunas)
-matrizPar = matrizComPar(matriz3x3, numeroDeLinhas, numeroDeColunas)
+totalPar = somaMatrizPar(matriz3x3)
+matrizPar = matrizComPar(matriz3x3)
 
 //saída de dados
-header()
-mostrarMatriz(matrizPar, numeroDeLinhas)
+cabecalho()
+mostrarMatriz(matrizPar)
 rodape()
 console.log(`Total dos valores Pares: ${totalPar}`)
 rodape()
