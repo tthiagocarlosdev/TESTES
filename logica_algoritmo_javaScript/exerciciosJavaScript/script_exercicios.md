@@ -2225,7 +2225,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-PAREI 67
+PAREI
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
@@ -2237,9 +2237,9 @@ Aproveitando, peço que se você não for **inscrito** neste canal, se **inscrev
 
 Fazendo isso você ajuda bastante o nosso canal a crescer.
 
-Hoje chegamos ao exercício de número __**50**__, exercício que tem por título: __Fatorial Função:__ e o exercício é o seguinte:
+Hoje chegamos ao exercício de número __67__, exercício que tem por título: __Jogo Da Velha__ e o exercício é o seguinte:
 
-
+Crie um jogo da velha.
 
 ```js
 
