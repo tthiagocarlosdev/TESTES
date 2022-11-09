@@ -471,7 +471,7 @@ var input = require('readline-sync')
 // declaração de funções
 function cabecalho(){
   console.log(`------------------------------`)
-  console.log(`ex045_fazSomaProcedimento:`)
+  console.log(`   ex045_fazSomaProcedimento`)
   console.log(`------------------------------`)
 }
 
@@ -542,7 +542,8 @@ let numero = 0
 
 //entrada de dados
 cabecalho()
-numero = input.question("Digite um número: ")
+numero = Number(input.question(`Digite um número: `))
+
 //processamento e saída de dados
 parOuImpar(numero)
 console.log(`------------------------------`)
@@ -556,7 +557,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-
+PAREI
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 

@@ -10,16 +10,16 @@ function cabecalho(){
 
 //declaração de variáveis
 let maiorPeso = 0
-let nomeMaiorPeso = ''
-let nome = ''
+let nomeMaiorPeso = ``
+let nome = ``
 let peso = 0
 
-// entrada de dados
-for(let contador = 1; contador <= 5; contador++){
+//entrada de dados
+for(let contador = 0; contador < 5; contador++){
   cabecalho()
   nome = String(input.question(`Digite o nome: `))
   peso = Number(input.question(`Digite o peso (kg) de ${nome}: `))
-  // processamento de dados
+  //processamento de dados
   if(peso > maiorPeso){
     maiorPeso = peso
     nomeMaiorPeso = nome
@@ -27,7 +27,7 @@ for(let contador = 1; contador <= 5; contador++){
   console.clear()
 }
 
-// saída de dados
+//saída de dados
 cabecalho()
-console.log(`A pessoa mais pesada foi ${nomeMaiorPeso} com ${maiorPeso} kg`)
+console.log(`A pessoa mais pesada foi ${nomeMaiorPeso} com ${maiorPeso} kg.`)
 console.log(`------------------------------`)
