@@ -14,7 +14,7 @@ function rodape(){
 //declaração de variáveis
 const QTDE_VALORES = 7
 let valores = []
-let valorPar = 0
+let qtdeValoresPar = 0
 
 //entrada de dados
 cabecalho()
@@ -25,16 +25,16 @@ for(let contador = 0; contador < QTDE_VALORES; contador++){
 //processamento de dados
 for(let contador = 0; contador < QTDE_VALORES; contador++){
   if (valores[contador] % 2 == 0) {
-    valorPar++
+    qtdeValoresPar++
   }
 }
 
 //saída de dados
 console.clear()
 cabecalho()
-console.log(`Foram digitados ${valorPar} valores pares!`)
+console.log(`Foram digitados ${qtdeValoresPar} valores pares!`)
 rodape()
-console.log("Posição => Valor Par: ")
+console.log(`Posição => Valor Par: `)
 for(let contador = 0; contador < QTDE_VALORES; contador++){
   if (valores[contador] % 2 == 0) {
     console.log(`${contador} => ${valores[contador]}`)

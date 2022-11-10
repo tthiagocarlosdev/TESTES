@@ -8,18 +8,18 @@ function cabecalho(){
 }
 
 //declaração de variáveis
-var array = []
+let array = []
 
 // entrada de dados
 cabecalho()
-for(contador = 0; contador <= 5; contador++){
-    array[contador] = input.question(`Digite o ${contador+1}º valor: `)
+for(let contador = 0; contador < 6; contador++){
+  array[contador] = input.question(`Digite o ${contador + 1}º valor: `)
 }
 
 //processamento e saída de dados
 console.clear()
 cabecalho()
-for(contador = 0; contador <= 5; contador++){
-    console.log(array[contador])
+for(let contador = 0; contador < 6; contador++){
+ console.log( array[contador])
 }
 console.log(`------------------------------`)

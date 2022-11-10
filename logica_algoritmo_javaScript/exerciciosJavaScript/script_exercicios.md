@@ -854,7 +854,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-PAREI GRAVAR
+
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
@@ -887,21 +887,21 @@ function rodape(){
 }
 
 //declaração de variáveis
-let name = ""
+let nome = ""
 
 //entrada de dados
 cabecalho()
-name = String(input.question("Digite seu nome: "))
+nome = String(input.question(`Digite o seu nome: `))
 
 //processamento saída de dados
 rodape()
-console.log(`Seu nome tem ${name.replace(/ /g, "").length} letras.`)
-console.log(`Seu nome em maiúsculo: ${name.toUpperCase()}`)
-console.log(`Seu nome em minúsculo: ${name.toLowerCase()}`)
-console.log(`A primeira letra do seu nome é: ${name.charAt()}`)
-console.log(`A última letra do seu nome é: ${name.charAt(name.length - 1)}`)
-console.log(`A posição da letra 'a' é: ${name.indexOf("a")+1}`)
-console.log(`O código ascii da letra 'a' é : ${name.charCodeAt(name.indexOf("a"))}`)
+console.log(`Seu nome tem ${nome.replace(/ /g, "").length} letras.`)
+console.log(`Seu nome em maiúsculo: ${nome.toUpperCase()}`)
+console.log(`Seu nome em minúsculo: ${nome.toLowerCase()}`)
+console.log(`A primeira letra do seu nome é: ${nome.charAt()}`)
+console.log(`A última letra do seu nome é : ${nome.charAt(nome.length - 1)}`)
+console.log(`A posição da letra 'a' é: ${nome.indexOf("a")}`)
+console.log(`O código ascii da letra 'a' é: ${nome.charCodeAt(nome.indexOf("a"))}`)
 console.log(`O código ascii 65 corresponde a: ${String.fromCharCode(65)}`)
 rodape()
 ```
@@ -909,6 +909,8 @@ rodape()
 ## LEMBRANDO
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
+
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
 
 Até o próximo vídeo, valeu!
 
@@ -949,19 +951,19 @@ function cabecalho(){
 }
 
 //declaração de variáveis
-var array = []
+let array = []
 
 // entrada de dados
 cabecalho()
-for(contador = 0; contador <= 5; contador++){
-    array[contador] = input.question(`Digite o ${contador+1}º valor: `)
+for(let contador = 0; contador < 6; contador++){
+  array[contador] = input.question(`Digite o ${contador + 1}º valor: `)
 }
 
 //processamento e saída de dados
 console.clear()
 cabecalho()
-for(contador = 0; contador <= 5; contador++){
-    console.log(array[contador])
+for(let contador = 0; contador < 6; contador++){
+ console.log( array[contador])
 }
 console.log(`------------------------------`)
 ```
@@ -969,6 +971,8 @@ console.log(`------------------------------`)
 ## LEMBRANDO
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
+
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
 
 Até o próximo vídeo, valeu!
 
@@ -1006,8 +1010,8 @@ function rodape(){
 
 //declaração de variáveis
 const QTDE_VALORES = 7
-var valores = []
-var valorPar = 0
+let valores = []
+let qtdeValoresPar = 0
 
 //entrada de dados
 cabecalho()
@@ -1017,24 +1021,26 @@ for(let contador = 0; contador < QTDE_VALORES; contador++){
 
 //processamento de dados
 for(let contador = 0; contador < QTDE_VALORES; contador++){
-  if (valores[contador] % 2 == 0) {
-    valorPar++
+  if(valores[contador] % 2 == 0){
+    qtdeValoresPar++
   }
 }
 
 //saída de dados
 console.clear()
 cabecalho()
-console.log("Valores digitados: ")
+console.log(`Valores digitados: `)
 console.log(valores)
 rodape()
-console.log(`Foram digitados ${valorPar} valores pares!`)
+console.log(`Foram digitados ${qtdeValoresPar} valores pares!`)
 rodape()
 ```
 
 ## LEMBRANDO
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
+
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
 
 Até o próximo vídeo, valeu!
 
@@ -1073,7 +1079,7 @@ function rodape(){
 //declaração de variáveis
 const QTDE_VALORES = 7
 let valores = []
-let valorPar = 0
+let qtdeValoresPar = 0
 
 //entrada de dados
 cabecalho()
@@ -1084,16 +1090,16 @@ for(let contador = 0; contador < QTDE_VALORES; contador++){
 //processamento de dados
 for(let contador = 0; contador < QTDE_VALORES; contador++){
   if (valores[contador] % 2 == 0) {
-    valorPar++
+    qtdeValoresPar++
   }
 }
 
 //saída de dados
 console.clear()
 cabecalho()
-console.log(`Foram digitados ${valorPar} valores pares!`)
+console.log(`Foram digitados ${qtdeValoresPar} valores pares!`)
 rodape()
-console.log("Posição => Valor Par: ")
+console.log(`Posição => Valor Par: `)
 for(let contador = 0; contador < QTDE_VALORES; contador++){
   if (valores[contador] % 2 == 0) {
     console.log(`${contador} => ${valores[contador]}`)
@@ -1106,11 +1112,13 @@ rodape()
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
 
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.o.
+
 Até o próximo vídeo, valeu!
 
 ___
 
-
+PAREI GRAVAR
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
@@ -1211,6 +1219,8 @@ rodape()
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
 
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
+
 Até o próximo vídeo, valeu!
 
 ___
@@ -1275,6 +1285,8 @@ rodape()
 ## LEMBRANDO
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
+
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
 
 Até o próximo vídeo, valeu!
 
@@ -1358,6 +1370,8 @@ rodape()
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
 
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
+
 Até o próximo vídeo, valeu!
 
 ___
@@ -1423,6 +1437,8 @@ rodape()
 ## LEMBRANDO
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
+
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
 
 Até o próximo vídeo, valeu!
 
@@ -1518,6 +1534,8 @@ rodape()
 ## LEMBRANDO
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
+
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
 
 Até o próximo vídeo, valeu!
 
@@ -1627,6 +1645,8 @@ rodape()
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
 
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
+
 Até o próximo vídeo, valeu!
 
 ___
@@ -1709,6 +1729,8 @@ rodape()
 ## LEMBRANDO
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
+
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
 
 Até o próximo vídeo, valeu!
 
@@ -1818,6 +1840,8 @@ rodape()
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
 
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
+
 Até o próximo vídeo, valeu!
 
 ___
@@ -1895,6 +1919,8 @@ rodape()
 ## LEMBRANDO
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
+
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
 
 Até o próximo vídeo, valeu!
 
@@ -2026,6 +2052,8 @@ rodape()
 ## LEMBRANDO
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
+
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
 
 Até o próximo vídeo, valeu!
 
@@ -2221,6 +2249,8 @@ do {
 ## LEMBRANDO
 
 Bom galera, esse foi o exercício de hoje, lembrando, se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do vídeo, deixe seu **like**, e também **compartilhe** esse vídeo e o canal com seus amigos.
+
+Me siga também nas outras redes e também veja o repositório deste exercício e dos outros exercícios. Os links estão na descrição deste vídeo.
 
 Até o próximo vídeo, valeu!
 
