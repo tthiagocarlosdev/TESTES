@@ -557,7 +557,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-PAREI
+
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
@@ -582,27 +582,27 @@ function cabecalho(){
 }
 
 function fibonacci(valorA, valorB){
+  let fibonacci = valorA + ` ` + valorB
   let valorC = 0
   let contador = 1
-  while(contador <= 8){
+  while(contador <= 13){
     valorC = valorA + valorB
     valorA = valorB
     valorB = valorC
-    console.log(`${valorC}`)
+    fibonacci += ` ` + valorC
     contador++
   }
-  
+  console.log(fibonacci)
 }
 
 //declaração de variáveis
-const numberA = 0
-const numberB = 1
+const NUMERO_A = 0
+const NUMERO_B = 1
 
-//saída de dados
+//processamento e saída de dados
 cabecalho()
-console.log(`${numberA}`)
-console.log(`${numberB}`)
-fibonacci(numberA, numberB)
+fibonacci(NUMERO_A, NUMERO_B)
+console.log(`------------------------------`)
 ```
 
 ## LEMBRANDO
@@ -645,8 +645,8 @@ function cabecalho(){
   console.log(`------------------------------`)
 }
 
-function somaValores(numberA, numberB){
-    return numberA + numberB
+function somaValores(numeroA, numeroB){
+  return numeroA + numeroB
 }
 
 //declaração de variáveis
@@ -656,11 +656,11 @@ let soma = 0
 
 //entrada de dados
 cabecalho()
-valorA = Number(input.question("Digite um valor: "))
-valorB = Number(input.question("Digite outro valor: "))
-soma = somaValores(valorA, valorB)
+valorA = Number(input.question(`Digite um valor: `))
+valorB = Number(input.question(`Digite outro valor: `))
 
 //processamento e saída de dados
+soma = somaValores(valorA, valorB)
 console.log(`A soma entre ${valorA} e ${valorB} é igual a ${soma}`)
 console.log(`------------------------------`)
 ```
@@ -708,13 +708,13 @@ function parOuImpar(valor){
 }
 
 //declaração de variáveis
-let numero = 0 
+let numero = 0
 
 //entrada de dados
 cabecalho()
-numero = Number(input.question("Digite um valor: "))
+numero = Number(input.question(`Digite um valor: `))
 
-//processamento  saída de dados
+//processamento e saída de dados
 console.log(`O valor ${numero} é ${parOuImpar(numero)}`)
 console.log(`------------------------------`)
 ```
@@ -754,15 +754,15 @@ function cabecalho(){
 }
 
 function fatorial(valor){
-    contador = valor
-    let fatorial = 1
+  let contador = valor
+  let fatorial = 1
 
-    do {
-        fatorial *= contador
-        contador--
-    } while (contador > 0)
+  do {
+    fatorial *= contador
+    contador--
+  } while (contador > 0)
 
-    return fatorial
+  return fatorial
 }
 
 //declaração de variáveis
@@ -770,7 +770,7 @@ let numero = 0
 
 //entrada de dados
 cabecalho()
-numero = Number(input.question("Digite um número: "))
+numero = Number(input.question(`Digite um número: `))
 
 //processamento saída de dados
 console.log(`O fatorial de ${numero} é igual a ${fatorial(numero)}`)
@@ -814,15 +814,15 @@ function cabecalho(){
 function fibonacci(valorA, valorB){
   let string = " "
   let valorC = 0
-  
-  for(contador = 1; contador <= 8; contador++){
-      valorC = valorA + valorB
-      valorA = valorB
-      valorB = valorC
-      string += valorC + " "
+
+  for(let contador = 0; contador < 8; contador++){
+    valorC = valorA + valorB
+    valorA = valorB
+    valorB = valorC
+    string += valorC + " "
   }
 
-  return string        
+  return string
 }
 
 //declaração de variáveis
@@ -832,15 +832,15 @@ let meuFibonacci = ""
 
 //entrada de dados
 cabecalho()
-numeroA = Number(input.question("Digite um valor: "))
-numeroB = Number(input.question("Digite outro valor: "))
+numeroA = Number(input.question(`Digite um valor: `))
+numeroB = Number(input.question(`Digite outro valor: `))
 
 // processamento de dados
-console.clear()
-meuFibonacci = numeroA+" "+numeroB
+meuFibonacci = numeroA + " " + numeroB
 meuFibonacci += fibonacci(numeroA, numeroB)
 
 //saída de dados
+console.clear()
 cabecalho()
 console.log(meuFibonacci)
 console.log(`------------------------------`)
@@ -854,7 +854,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-
+PAREI GRAVAR
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
@@ -2226,7 +2226,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-PAREI
+
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 

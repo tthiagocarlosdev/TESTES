@@ -6,24 +6,24 @@ function cabecalho(){
 }
 
 function fibonacci(valorA, valorB){
+  let fibonacci = valorA + ` ` + valorB
   let valorC = 0
   let contador = 1
-  while(contador <= 8){
+  while(contador <= 13){
     valorC = valorA + valorB
     valorA = valorB
     valorB = valorC
-    console.log(`${valorC}`)
+    fibonacci += ` ` + valorC
     contador++
   }
-  
+  console.log(fibonacci)
 }
 
 //declaração de variáveis
-const numberA = 0
-const numberB = 1
+const NUMERO_A = 0
+const NUMERO_B = 1
 
-//saída de dados
+//processamento e saída de dados
 cabecalho()
-console.log(`${numberA}`)
-console.log(`${numberB}`)
-fibonacci(numberA, numberB)
+fibonacci(NUMERO_A, NUMERO_B)
+console.log(`------------------------------`)

@@ -16,12 +16,12 @@ function parOuImpar(valor){
 }
 
 //declaração de variáveis
-let numero = 0 
+let numero = 0
 
 //entrada de dados
 cabecalho()
-numero = Number(input.question("Digite um valor: "))
+numero = Number(input.question(`Digite um valor: `))
 
-//processamento  saída de dados
+//processamento e saída de dados
 console.log(`O valor ${numero} é ${parOuImpar(numero)}`)
 console.log(`------------------------------`)

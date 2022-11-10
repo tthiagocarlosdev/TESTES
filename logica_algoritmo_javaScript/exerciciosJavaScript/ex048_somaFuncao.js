@@ -7,8 +7,8 @@ function cabecalho(){
   console.log(`------------------------------`)
 }
 
-function somaValores(numberA, numberB){
-    return numberA + numberB
+function somaValores(numeroA, numeroB){
+  return numeroA + numeroB
 }
 
 //declaração de variáveis
@@ -18,10 +18,10 @@ let soma = 0
 
 //entrada de dados
 cabecalho()
-valorA = Number(input.question("Digite um valor: "))
-valorB = Number(input.question("Digite outro valor: "))
-soma = somaValores(valorA, valorB)
+valorA = Number(input.question(`Digite um valor: `))
+valorB = Number(input.question(`Digite outro valor: `))
 
 //processamento e saída de dados
+soma = somaValores(valorA, valorB)
 console.log(`A soma entre ${valorA} e ${valorB} é igual a ${soma}`)
 console.log(`------------------------------`)

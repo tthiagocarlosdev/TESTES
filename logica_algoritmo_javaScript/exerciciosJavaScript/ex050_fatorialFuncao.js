@@ -8,15 +8,15 @@ function cabecalho(){
 }
 
 function fatorial(valor){
-    contador = valor
-    let fatorial = 1
+  let contador = valor
+  let fatorial = 1
 
-    do {
-        fatorial *= contador
-        contador--
-    } while (contador > 0)
+  do {
+    fatorial *= contador
+    contador--
+  } while (contador > 0)
 
-    return fatorial
+  return fatorial
 }
 
 //declaração de variáveis
@@ -24,7 +24,7 @@ let numero = 0
 
 //entrada de dados
 cabecalho()
-numero = Number(input.question("Digite um número: "))
+numero = Number(input.question(`Digite um número: `))
 
 //processamento saída de dados
 console.log(`O fatorial de ${numero} é igual a ${fatorial(numero)}`)

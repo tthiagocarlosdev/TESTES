@@ -10,15 +10,15 @@ function cabecalho(){
 function fibonacci(valorA, valorB){
   let string = " "
   let valorC = 0
-  
-  for(contador = 1; contador <= 8; contador++){
-      valorC = valorA + valorB
-      valorA = valorB
-      valorB = valorC
-      string += valorC + " "
+
+  for(let contador = 0; contador < 8; contador++){
+    valorC = valorA + valorB
+    valorA = valorB
+    valorB = valorC
+    string += valorC + " "
   }
 
-  return string        
+  return string
 }
 
 //declaração de variáveis
@@ -28,15 +28,15 @@ let meuFibonacci = ""
 
 //entrada de dados
 cabecalho()
-numeroA = Number(input.question("Digite um valor: "))
-numeroB = Number(input.question("Digite outro valor: "))
+numeroA = Number(input.question(`Digite um valor: `))
+numeroB = Number(input.question(`Digite outro valor: `))
 
 // processamento de dados
-console.clear()
-meuFibonacci = numeroA+" "+numeroB
+meuFibonacci = numeroA + " " + numeroB
 meuFibonacci += fibonacci(numeroA, numeroB)
 
 //saída de dados
+console.clear()
 cabecalho()
 console.log(meuFibonacci)
 console.log(`------------------------------`)
