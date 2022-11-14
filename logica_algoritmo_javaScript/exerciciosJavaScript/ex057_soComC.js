@@ -18,12 +18,12 @@ let nomesComC = []
 
 //entrada de dados
 cabecalho()
-for(let contador = 0; contador < QTDE_DE_NOMES; contador++){
+for(let contador = 0; contador < QTDE_DE_NOMES; contador++) {
   nomesUsuarios[contador] = input.question(`Digite o ${contador + 1}º nome: `)
 }
 
 //processamento de dados
-for(let contador = 0; contador < QTDE_DE_NOMES; contador++){
+for(let contador = 0; contador < QTDE_DE_NOMES; contador++) {
   if(nomesUsuarios[contador].toUpperCase().indexOf('C') == 0){
     nomesComC.push(nomesUsuarios[contador].toUpperCase())
   }
@@ -33,7 +33,6 @@ for(let contador = 0; contador < QTDE_DE_NOMES; contador++){
 console.clear()
 cabecalho()
 console.log(`Nomes só com C`)
-rodape()
 for(let contador = 0; contador < nomesComC.length; contador++){
   console.log(`${contador + 1} - ${nomesComC[contador]}`)
 }

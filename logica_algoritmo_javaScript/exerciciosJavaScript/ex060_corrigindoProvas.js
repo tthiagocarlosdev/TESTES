@@ -28,30 +28,28 @@ for(let contador = 0; contador < QTDE_DE_QUESTOES; contador++){
   gabaritoQuestoes[contador] = input.question(`Gabarito da ${contador + 1}ª questão: `)
 }
 
+//cadastro do aluno
 console.clear()
 cabecalho()
-
-//cadastro do aluno
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
   alunos[contador] = input.question(`Informe o nome do ${contador + 1}º aluno: `)
 }
 
 //cadastro gabarito de cada aluno
 for(let contadorA = 0; contadorA < QTDE_DE_ALUNOS; contadorA++){
-  mediaAluno[contadorA] = 0
   console.clear()
   cabecalho()
+  mediaAluno[contadorA] = 0
 
-  console.log(`Insira o gabarito do aluno ${alunos[contadorA]}:`)
+  console.log(`Insira o gabarito do aluno ${alunos[contadorA]}`)
   for(let contadorQ = 0; contadorQ < QTDE_DE_QUESTOES; contadorQ++){
-    gabaritoAluno[contadorQ] = input.question(`Resposta da ${contadorQ + 1}º questão:`)
-    
+    gabaritoAluno[contadorQ] = input.question(`Reposta da ${contadorQ + 1}º questão: `)
+
     //processamento de dados
     if(gabaritoAluno[contadorQ] == gabaritoQuestoes[contadorQ]){
       mediaAluno[contadorA] += 2
     }
   }
-
   somaMediaDosAlunos += mediaAluno[contadorA]
 }
 
@@ -61,7 +59,7 @@ mediaDaTurma = somaMediaDosAlunos / QTDE_DE_ALUNOS
 console.clear()
 cabecalho()
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
-  console.log(`${alunos[contador]} - média ${mediaAluno[contador].toFixed(2)}`)
+  console.log(`${alunos[contador]} - média: ${mediaAluno[contador].toFixed(2)}`)
 }
 rodape()
 console.log(`A média da turma é: ${mediaDaTurma.toFixed(2)}`)

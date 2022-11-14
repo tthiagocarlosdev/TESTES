@@ -1294,7 +1294,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-PAREI GRAVAR
+
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
@@ -1316,7 +1316,7 @@ var input = require('readline-sync')
 //declaração de funções
 function cabecalho(){
   console.log(`------------------------------`)
-  console.log(`      ex058_Ordena Vetor`)
+  console.log(`       ex058_OrdenaVetor`)
   console.log(`------------------------------`)
 }
 
@@ -1325,48 +1325,60 @@ function rodape(){
 }
 
 function getRandomIntInclusive(min, max){
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min + 1)) + min
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }
+
 
 //declaração de variáveis
 const QTDE_DE_VALORES = 10
 let listaDeValores = []
 
+//entrada de dados
 cabecalho()
 for(let contador = 0; contador < QTDE_DE_VALORES; contador++){
-  // valor[contador] = Number(input.question(`Insira o ${contador + 1}º valor: `))
-  listaDeValores[contador] = Number(getRandomIntInclusive(0, 100))
+  // listaDeValores[contador] = Number(input.question(`Insira o ${contador + 1}º valor: `))
+  listaDeValores[contador] = getRandomIntInclusive(0, 100)
 }
 
 //saída de dados
 console.clear()
 cabecalho()
-console.log("Valores inseridos: ")
+console.log(`Valores inseridos`)
 for(let contador = 0; contador < QTDE_DE_VALORES; contador++){
   console.log(listaDeValores[contador])
 }
+rodape()
 
 //processamento de dados - bubble sort
-for(let A = 0; A < QTDE_DE_VALORES; A++){
-  for(let B = A+1; B < QTDE_DE_VALORES; B++){
-    if(listaDeValores[A] > listaDeValores[B]){
-      let x = listaDeValores[A]            
-      listaDeValores[A] = listaDeValores[B]
-      listaDeValores[B] = x
+for(let contadorA = 0; contadorA < QTDE_DE_VALORES; contadorA++){
+  for(let contadorB = contadorA+1; contadorB < QTDE_DE_VALORES; contadorB++){
+    if(listaDeValores[contadorA] > listaDeValores[contadorB]){
+      let troca = listaDeValores[contadorA]
+      listaDeValores[contadorA] = listaDeValores[contadorB]
+      listaDeValores[contadorB] = troca
     }
   }
 }
 
-//saídad de dados
-rodape()
-console.log("Valores ordenados: ")
+//saída de dados
+console.log(`Valores ordenados`)
 for(let contador = 0; contador < QTDE_DE_VALORES; contador++){
   console.log(listaDeValores[contador])
 }
 rodape()
 ```
+
+```js
+let vetorA = [10, 3, 5, 9, 8, 1, 4, 7, 2, 6]
+console.log(vetorA)
+console.log(vetorA.sort(function(a, b){
+  return a - b
+}))
+```
+
+
 
 ## LEMBRANDO
 
@@ -1408,14 +1420,13 @@ function rodape(){
   console.log(`------------------------------`)
 }
 
-
 // declaração de variáveis
 let quantidadeDeTimes = 0
 let listaDeTimes = []
 
 //entrada de dados
 cabecalho()
-quantidadeDeTimes = Number(input.question("Informe a quantidade de times: "))
+quantidadeDeTimes = Number(input.question(`Informe a quantidade de times: `))
 rodape()
 for(let contador = 0; contador < quantidadeDeTimes; contador++){
   listaDeTimes[contador] = input.question(`Digite o ${contador + 1}º time: `)
@@ -1424,14 +1435,14 @@ for(let contador = 0; contador < quantidadeDeTimes; contador++){
 //processamento e saída de dados
 console.clear()
 cabecalho()
-console.log(" Tabela Final")
+console.log(`Tabela Final`)
 rodape()
 for(let timeA = 0; timeA < quantidadeDeTimes; timeA++){
   for(let timeB = 0; timeB < quantidadeDeTimes; timeB++){
     if(timeA != timeB){
       console.log(`${listaDeTimes[timeA]} x ${listaDeTimes[timeB]}`)
-    }      
-  }   
+    }
+  }
 }
 rodape()
 ```
@@ -1493,30 +1504,28 @@ for(let contador = 0; contador < QTDE_DE_QUESTOES; contador++){
   gabaritoQuestoes[contador] = input.question(`Gabarito da ${contador + 1}ª questão: `)
 }
 
+//cadastro do aluno
 console.clear()
 cabecalho()
-
-//cadastro do aluno
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
   alunos[contador] = input.question(`Informe o nome do ${contador + 1}º aluno: `)
 }
 
 //cadastro gabarito de cada aluno
 for(let contadorA = 0; contadorA < QTDE_DE_ALUNOS; contadorA++){
-  mediaAluno[contadorA] = 0
   console.clear()
   cabecalho()
+  mediaAluno[contadorA] = 0
 
-  console.log(`Insira o gabarito do aluno ${alunos[contadorA]}:`)
+  console.log(`Insira o gabarito do aluno ${alunos[contadorA]}`)
   for(let contadorQ = 0; contadorQ < QTDE_DE_QUESTOES; contadorQ++){
-    gabaritoAluno[contadorQ] = input.question(`Resposta da ${contadorQ + 1}º questão:`)
-    
+    gabaritoAluno[contadorQ] = input.question(`Reposta da ${contadorQ + 1}º questão: `)
+
     //processamento de dados
     if(gabaritoAluno[contadorQ] == gabaritoQuestoes[contadorQ]){
       mediaAluno[contadorA] += 2
     }
   }
-
   somaMediaDosAlunos += mediaAluno[contadorA]
 }
 
@@ -1526,7 +1535,7 @@ mediaDaTurma = somaMediaDosAlunos / QTDE_DE_ALUNOS
 console.clear()
 cabecalho()
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
-  console.log(`${alunos[contador]} - média ${mediaAluno[contador].toFixed(2)}`)
+  console.log(`${alunos[contador]} - média: ${mediaAluno[contador].toFixed(2)}`)
 }
 rodape()
 console.log(`A média da turma é: ${mediaDaTurma.toFixed(2)}`)
@@ -1543,7 +1552,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-
+PAREI GRAVAR
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
