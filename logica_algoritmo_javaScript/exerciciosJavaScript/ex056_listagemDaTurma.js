@@ -3,7 +3,7 @@ var input = require('readline-sync')
 //declaração de funções
 function cabecalho(){
   console.log(`------------------------------`)
-  console.log(`     ex056_listagemDaTurma`)
+  console.log(`     `)
   console.log(`------------------------------`)
 }
 
@@ -25,29 +25,29 @@ let alunoAcimaDaMedia = 0
 //entrada de dados
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
   cabecalho()
-  nome[contador] = input.question(`Nome do aluno nº ${contador + 1}: `)
-  notaA[contador] = Number(input.question("Digite a 1ª nota: "))
-  notaB[contador] = Number(input.question("Digite a 2ª nota: "))
+  nome[contador] = String(input.question(`Nome do aluno nº ${contador + 1}: `))
+  notaA[contador] = Number(input.question(`Digite a 1ª nota: `))
+  notaB[contador] = Number(input.question(`Digite a 2ª nota: `))
   console.clear()
 }
 
 //processamento de dados
 for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
-    //definindo a média de cada aluno
-    media[contador] = ((notaA[contador] + notaB[contador]) / 2)
-    //definindo o status de cada aluno 
-    if(media[contador] >= 7){
-      status[contador] = `APROVADO`
-    } else {
-      status[contador] = `REPROVADO`
-    }
-    totalTurma += media[contador]
+  //definindo a média de cada aluno
+  media[contador] = ((notaA[contador] + notaB[contador]) / 2)
+  //definindo o status de cada aluno
+  if(media[contador] >= 7){
+    status[contador] = `APROVADO`
+  } else {
+    status[contador] = `REPROVADO`
+  }
+  totalTurma += media[contador]
 }
 //definindo a média da turma
 mediaTurma = totalTurma / QTDE_DE_ALUNOS
 
-//definindo a quantidade de alunos com média maior que a média da turma
-for( let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
+//definindo a quantidade de alunos com a média maior que a média da turma
+for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
   if(media[contador] > mediaTurma){
     alunoAcimaDaMedia++
   }
@@ -55,16 +55,16 @@ for( let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
 
 //saída de dados
 cabecalho()
-console.log(`NOME -> MÉDIA`)
+console.log(`NOME --> MÉDIA`)
 rodape()
-for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++) {
-  console.log(`${nome[contador]} -> ${media[contador]}`)
+for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
+  console.log(`${nome[contador]} --> ${media[contador]}`)
 }
 rodape()
-console.log(`NOME -> STATUS`)
+console.log(`NOME --> STATUS`)
 rodape()
-for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++) {
-  console.log(`${nome[contador]} -> ${status[contador]}`)
+for(let contador = 0; contador < QTDE_DE_ALUNOS; contador++){
+  console.log(`${nome[contador]} --> ${status[contador]}`)
 }
 rodape()
 console.log(`MÉDIA DA TURMA`)
