@@ -1552,7 +1552,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-PAREI GRAVAR
+
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
@@ -1567,6 +1567,16 @@ Fazendo isso você ajuda bastante o nosso canal a crescer.
 Hoje chegamos ao exercício de número __61__, exercício que tem por título: __Reservar Cinema__ e o exercício é o seguinte:
 
 Desenvolva um programa que simule a reserva de cadeiras de um cinema. No total serão 10 cadeiras. Quando o usuario escolher qual a sua cadeira, deverá ser apresentado quais as cadeiras estão livres e quais estão ocupadas. Caso o usuário escolha uma cadeira já ocupada, uma mensagem devera notificá-lo que a sua opção já foi escolhida e deverá perguntar se ele quer escolher outra. O programa sera encerrado quando o usuário optar por não escolher mais cadeiras.
+
+- [x] estrutura de repetição __do__ com __cabeçalho__ e pergunta se quer continuar (criação da variável __resposta__);
+- [x] estrutura de repetição para inserir valores no array __reserva__ ( criação da variável __reserva__);
+- [x] criação da function __cadeirasCinema__. Esta function mostra as cadeiras disponíveis do cinema;
+- [x] criação da variável __cadeira__. Esta variável recebe a opção escolhida pelo usuário;
+- [x] criação da estrutura de repetição __for__ que vai adicionar a __reserva__ a opção escolhida pelo usuário;
+- [x] chama functions __cabecalho__, __cadeirasCinema__, e __rodape__ para mostrar como ficou a reserva;
+- [ ] criação da function __cadeiraReservada__. Verifica se a cadeira está livre e retorna um valor booleano de acordo com a disponibilidade;
+- [ ] criação da estrutura de repetição __while__ que vai validar a opção escolhida pelo usuário;
+- [ ] 
 
 ```js
 var input = require('readline-sync')
@@ -1583,15 +1593,15 @@ function rodape(){
 }
 
 function cadeirasCinema(){
-  cinema = ""
-  for(c = 1; c <= QTDE_CADEIRAS; c++){
+  let cinema = ""
+  for(let c = 1; c <= QTDE_CADEIRAS; c++){
     cinema += `| ${reserva[c]}`
   }
   console.log(cinema)
 }
 
 function cadeiraReservada(numero){
-  for(c = 1; c <= QTDE_CADEIRAS; c++){
+  for(let c = 1; c <= QTDE_CADEIRAS; c++){
     if(reserva[numero] == "#"){
       return false
     } else {
@@ -1601,24 +1611,26 @@ function cadeiraReservada(numero){
 }
 
 //declaração de variáveis
+let resposta = ""
 const QTDE_CADEIRAS = 10
 let reserva = []
 let cadeira = 0
-let cinema = ""
-let resposta = ""
+
 
 //inserção de valores no array
-for(c = 1; c <= QTDE_CADEIRAS; c++){
+for(let c = 1; c <= QTDE_CADEIRAS; c++){
   reserva[c] = c
 }
 
-//cálculo do programa
+
 do{
+  //entrada de dados
   cabecalho()
   cadeirasCinema()
   rodape()
   cadeira = Number(input.question("Informe uma cadeira: "))
   
+  //processamento de dados
   console.clear()
   while (cadeiraReservada(cadeira) == false) {
     console.clear()
@@ -1635,11 +1647,13 @@ do{
     }   
   }
   
+  //saída de dados
   console.clear()
   cabecalho()
   cadeirasCinema()
   rodape()
 
+  //entrada de dados
   resposta = input.question("Quer continuar? [s][n]: ")
   console.clear()
     
@@ -1701,23 +1715,20 @@ function rodape(){
 function criarMatriz(nLinha, nColuna){
   let matriz = []
   let array = []
-  // let x = 1
 
   for(let i = 0; i < nLinha; i++){
     for(let j = 0; j < nColuna; j++){
-      array.push(input.question(`Digite valor [${i}][${j}]: `))
-      // array.push(x)
-      // x += 1
+      array.push(input.question(`Digite um valor: `))
     }
     matriz.push(array)
     array = []
   }
-  return matriz
+ return matriz
 }
 
-function mostrarMatriz(matriz){
-  for(let i = 0; i < matriz.length; i++){
-    console.log(matriz[i])
+function motrarMatriz(matriz){
+  for(let c = 0; c < matriz.length; c++){
+    console.log(matriz[c])
   }
 }
 
@@ -1729,11 +1740,11 @@ const NUMERO_DE_COLUNAS = 2
 //entrada de dados
 cabecalho()
 matriz3x2 = criarMatriz(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
-console.clear()
 
-//processamento e saida de dados
+//processamento e saída de dados
+console.clear()
 cabecalho()
-mostrarMatriz(matriz3x2)
+motrarMatriz(matriz3x2)
 rodape()
 ```
 
@@ -1747,7 +1758,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-
+PAREI GRAVAR
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 

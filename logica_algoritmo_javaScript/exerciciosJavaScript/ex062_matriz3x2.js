@@ -14,23 +14,20 @@ function rodape(){
 function criarMatriz(nLinha, nColuna){
   let matriz = []
   let array = []
-  // let x = 1
 
   for(let i = 0; i < nLinha; i++){
     for(let j = 0; j < nColuna; j++){
-      array.push(input.question(`Digite valor [${i}][${j}]: `))
-      // array.push(x)
-      // x += 1
+      array.push(input.question(`Digite um valor: `))
     }
     matriz.push(array)
     array = []
   }
-  return matriz
+ return matriz
 }
 
-function mostrarMatriz(matriz){
-  for(let i = 0; i < matriz.length; i++){
-    console.log(matriz[i])
+function motrarMatriz(matriz){
+  for(let c = 0; c < matriz.length; c++){
+    console.log(matriz[c])
   }
 }
 
@@ -42,9 +39,9 @@ const NUMERO_DE_COLUNAS = 2
 //entrada de dados
 cabecalho()
 matriz3x2 = criarMatriz(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
-console.clear()
 
-//processamento e saida de dados
+//processamento e saída de dados
+console.clear()
 cabecalho()
-mostrarMatriz(matriz3x2)
+motrarMatriz(matriz3x2)
 rodape()
