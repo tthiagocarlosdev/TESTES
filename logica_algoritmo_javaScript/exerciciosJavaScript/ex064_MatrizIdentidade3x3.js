@@ -1,5 +1,3 @@
-var input = require('readline-sync')
-
 //declaração de funções
 function cabecalho(){
   console.log(`------------------------------`)
@@ -11,19 +9,13 @@ function rodape(){
   console.log(`------------------------------`)
 }
 
-function mostrarMatriz(matriz){
-  for(let i = 0; i < matriz.length; i++){
-    console.log(matriz[i])
-  }
-}
-
 function criarMatrizIdentidade(nLinha, nColuna){
   let matriz = []
   let array = []
 
-  for(let i = 0; i < nLinha; i++){
-    for(let j = 0; j < nColuna; j++){
-      if(i == j){
+  for(let linha = 0; linha < nLinha; linha++){
+    for(let coluna = 0; coluna < nColuna; coluna++){
+      if(linha == coluna){
         array.push(1)
       } else {
         array.push(0)
@@ -33,6 +25,12 @@ function criarMatrizIdentidade(nLinha, nColuna){
     array = []
   }
   return matriz
+}
+
+function mostrarMatriz(matriz){
+  for(let contador = 0; contador < matriz.length; contador++){
+    console.log(matriz[contador])
+  }
 }
 
 //declaração de variáveis

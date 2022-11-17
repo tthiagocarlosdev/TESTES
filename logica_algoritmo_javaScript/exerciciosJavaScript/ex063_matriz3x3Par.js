@@ -14,13 +14,10 @@ function rodape(){
 function criarMatriz(nLinha, nColuna){
   let matriz = []
   let array = []
-  // let x = 1
 
-  for(let i = 0; i < nLinha; i++){
-    for(let j = 0; j < nColuna; j++){
-      array.push(input.question(`Digite valor [${i}][${j}]: `))
-      // array.push(x)
-      // x += 1
+  for(let linha = 0; linha < nLinha; linha++){
+    for(let coluna = 0; coluna < nColuna; coluna++){
+      array.push(input.question(`Digite o valor [${linha}][${coluna}]: `))
     }
     matriz.push(array)
     array = []
@@ -29,30 +26,30 @@ function criarMatriz(nLinha, nColuna){
 }
 
 function mostrarMatriz(matriz){
-  for(let i = 0; i < matriz.length; i++){
-    console.log(matriz[i])
+  for(let contador = 0; contador < matriz.length; contador++){
+    console.log(matriz[contador])
   }
 }
 
 function matrizComPar(matriz){
-  for(let i = 0; i < matriz.length; i++){
-    for(let j = 0; j < matriz.length; j++){
-      if(Number(matriz[i][j]) % 2 == 0){
-        matriz[i][j] = `(${matriz[i][j]})`
+  for(let linha = 0; linha < matriz.length; linha++){
+    for(let coluna = 0; coluna < matriz.length; coluna++){
+      if(Number(matriz[linha][coluna]) % 2 == 0){
+        matriz[linha][coluna] = `(${matriz[linha][coluna]})`
       }
-    } 
+    }
   }
   return matriz
 }
 
 function somaMatrizPar(matriz){
   let soma = 0
-  for(let i = 0; i < matriz.length; i++){
-    for(let j = 0; j < matriz.length; j++){
-      if(Number(matriz[i][j]) % 2 == 0){
-        soma++ 
+  for(let linha = 0; linha < matriz.length; linha++){
+    for(let coluna = 0; coluna < matriz.length; coluna++){
+      if(Number(matriz[linha][coluna]) % 2 == 0){
+        soma++
       }
-    } 
+    }
   }
   return soma
 }
@@ -67,13 +64,13 @@ let totalPar = 0
 //entrada de dados
 cabecalho()
 matriz3x3 = criarMatriz(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
-console.clear()
 
 //processamento de dados
 totalPar = somaMatrizPar(matriz3x3)
 matrizPar = matrizComPar(matriz3x3)
 
 //saída de dados
+console.clear()
 cabecalho()
 mostrarMatriz(matrizPar)
 rodape()
