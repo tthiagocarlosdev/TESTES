@@ -3,7 +3,7 @@ var input = require('readline-sync')
 //declaração de funções
 function cabecalho(){
   console.log(`------------------------------`)
-  console.log(`      ex067_Jogo Da Velha`)
+  console.log(`       ex067_JogoDaVelha`)
   console.log(`------------------------------`)
 }
 
@@ -16,8 +16,8 @@ function criarMatriz(nLinha, nColuna){
   let array = []
   let x = 1
 
-  for(let i = 0; i < nLinha; i++){
-    for(let j = 0; j < nColuna; j++){
+  for(let linha = 0; linha < nLinha; linha++){
+    for(let coluna = 0; coluna < nColuna; coluna++){
       array.push(`${x}`)
       x++
     }
@@ -28,41 +28,102 @@ function criarMatriz(nLinha, nColuna){
 }
 
 function mostrarMatriz(matriz){
-  for(let i = 0; i < matriz.length; i++){
-    console.log(matriz[i])
+  for(let contador = 0; contador < matriz.length; contador++){
+    console.log(matriz[contador])
   }
 }
 
-//declaração de variáveis
-let matriz = []
-const NUMERO_DE_LINHAS = 3
-const NUMERO_DE_COLUNAS = 3
-let jogadaX = 0
-let jogada0 = 0
-
-
-matriz = criarMatriz(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
-
-cabecalho()
-mostrarMatriz(matriz)
-jogadaX = input.question(`Vai jogar [x] em qual posição? `)
-verificaJogada(matriz, jogadaX)
-jogada0 = input.question(`Vai jogar [0] em qual posição? `)
-verificaJogada(matriz, jogada0)
-
-function verificaJogada(matriz, jogada){
-  for(let i = 0; i < matriz.length; i++){
-    for(let j = 0; j < matriz.length; j++){
-      if(jogada == matriz[i][j]){
-        matriz[i][j] = `x`
-      } else if(jogada != matriz[i][j]){
-        console.log(`Jogada inválida!`)
+function jogar(simbolo, numero){
+  let mudou = false
+  for(let linha = 0; linha < NUMERO_DE_LINHAS; linha++){
+    for(let coluna = 0; coluna < NUMERO_DE_COLUNAS; coluna++){
+      if( matriz3x3[linha][coluna] == numero){
+        matriz3x3[linha][coluna] = simbolo
+        mudou = true
       }
     }
   }
-  mostrarMatriz(matriz)
+  return mudou
 }
 
+function mudarJogador(){
+  if( simbolo == `X`){
+    simbolo = `O`
+  } else {
+    simbolo = `X`
+  }
+}
 
+function terminouVelha(){
+  let terminou = false
+  let ocorrencia = 0
+  
+  //jogos em linha
+  for(let linha = 0; linha < NUMERO_DE_LINHAS; linha++){
+    if(matriz3x3[linha][0] == matriz3x3[linha][1] && matriz3x3[linha][1] == matriz3x3[linha][2]){
+      terminou = true
+    }
+  }
 
+  //jogos em coluna
+  for(let coluna = 0; coluna < NUMERO_DE_LINHAS; coluna++){
+    if(matriz3x3[0][coluna] == matriz3x3[1][coluna] && matriz3x3[1][coluna] == matriz3x3[2][coluna]){
+      terminou = true
+    }
+  }
+
+  //jogos em diagonal
+  if(matriz3x3[0][0] == matriz3x3[1][1] && matriz3x3[1][1] == matriz3x3[2][2]){
+    terminou = true
+  }
+  if(matriz3x3[0][2] == matriz3x3[1][1] && matriz3x3[1][1] == matriz3x3[2][0]){
+    terminou = true
+  }
+
+  //jogos e velha
+  for(let linha = 0; linha < NUMERO_DE_LINHAS; linha++){
+    for(let coluna = 0; coluna < NUMERO_DE_COLUNAS; coluna++){
+      if( matriz3x3[linha][coluna] != `X` && matriz3x3[linha][coluna] != `O`){
+        ocorrencia++  
+      }
+    }
+  }
+
+  if(ocorrencia == 0){
+    terminou = true
+  }
+
+  //retorna se o jogo acabou ou não
+  return terminou
+}
+
+//declaração de variáveis
+matriz3x3 = []
+const NUMERO_DE_LINHAS = 3
+const NUMERO_DE_COLUNAS = 3
+let simbolo = `X`
+let posicao = 0
+let R = false
+
+//entrada de dados
+matriz3x3 = criarMatriz(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
+
+//saída de dados
+cabecalho()
+mostrarMatriz(matriz3x3)
+do {
+  do {
+    posicao = input.question(`Vai jogar [${simbolo}] em qual posição? `)
+    R = jogar(simbolo, posicao)
+    if(R == false){
+      console.log(`JOGADA INVÁLIDA!`)
+    }
+  } while (R != true)
+  mudarJogador()
+  console.clear()
+  cabecalho()
+  mostrarMatriz(matriz3x3)
+} while (terminouVelha() != true)
+rodape()
+console.log(`JOGO FINALIZADO!`)
 rodape()
