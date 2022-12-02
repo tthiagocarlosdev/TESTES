@@ -14,12 +14,12 @@ function rodape(){
 function criarMatriz(nLinha, nColuna){
   let matriz = []
   let array = []
-  let x = 1
+  let contador = 1
 
   for(let linha = 0; linha < nLinha; linha++){
     for(let coluna = 0; coluna < nColuna; coluna++){
-      array.push(`${x}`)
-      x++
+      array.push(`${contador}`)
+      contador++
     }
     matriz.push(array)
     array = []
@@ -57,7 +57,7 @@ function mudarJogador(){
 function terminouVelha(){
   let terminou = false
   let ocorrencia = 0
-  
+
   //jogos em linha
   for(let linha = 0; linha < NUMERO_DE_LINHAS; linha++){
     if(matriz3x3[linha][0] == matriz3x3[linha][1] && matriz3x3[linha][1] == matriz3x3[linha][2]){
@@ -76,15 +76,16 @@ function terminouVelha(){
   if(matriz3x3[0][0] == matriz3x3[1][1] && matriz3x3[1][1] == matriz3x3[2][2]){
     terminou = true
   }
+
   if(matriz3x3[0][2] == matriz3x3[1][1] && matriz3x3[1][1] == matriz3x3[2][0]){
     terminou = true
   }
 
-  //jogos e velha
+  //jogo em velha
   for(let linha = 0; linha < NUMERO_DE_LINHAS; linha++){
     for(let coluna = 0; coluna < NUMERO_DE_COLUNAS; coluna++){
       if( matriz3x3[linha][coluna] != `X` && matriz3x3[linha][coluna] != `O`){
-        ocorrencia++  
+        ocorrencia++
       }
     }
   }
@@ -98,32 +99,32 @@ function terminouVelha(){
 }
 
 //declaração de variáveis
-matriz3x3 = []
+let matriz3x3 = []
 const NUMERO_DE_LINHAS = 3
 const NUMERO_DE_COLUNAS = 3
 let simbolo = `X`
 let posicao = 0
-let R = false
+let resposta = false
 
 //entrada de dados
 matriz3x3 = criarMatriz(NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
 
-//saída de dados
+//processamento saída de dados
 cabecalho()
 mostrarMatriz(matriz3x3)
 do {
   do {
     posicao = input.question(`Vai jogar [${simbolo}] em qual posição? `)
-    R = jogar(simbolo, posicao)
-    if(R == false){
+    resposta = jogar(simbolo, posicao)
+    if( resposta == false ){
       console.log(`JOGADA INVÁLIDA!`)
     }
-  } while (R != true)
+  } while ( resposta == false )
   mudarJogador()
   console.clear()
   cabecalho()
   mostrarMatriz(matriz3x3)
-} while (terminouVelha() != true)
+} while ( terminouVelha() == false )
 rodape()
 console.log(`JOGO FINALIZADO!`)
 rodape()
