@@ -136,3 +136,19 @@ $ sudo apt-get update
 $ sudo apt-get install mpv
 ```
 
+___
+
+
+
+## Instalar fontes no Linux Mint
+
+```shell
+sudo apt install ttf-mscorefonts-installer
+```
+
+Para verificar as informações das fontes instaladas
+
+```shell
+apt show ttf-mscorefonts-installer
+```
+
