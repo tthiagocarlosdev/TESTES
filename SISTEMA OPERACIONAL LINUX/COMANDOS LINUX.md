@@ -12,7 +12,7 @@ $ PS1="${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\W \[\033[32m\]\$\[\033[
 $ PS1="${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\W \[\033[31m\]\$\[\033[00m\] "
 ```
 
-### Formatar pen Drive 
+## Formatar pen Drive 
 
 1. Exibir uma lista das mídias e discos conectados ao computador com seus detalhes:
 
@@ -151,4 +151,42 @@ Para verificar as informações das fontes instaladas
 ```shell
 apt show ttf-mscorefonts-installer
 ```
+
+___
+
+## Instalar nodejs
+
+- Instalando o __curl__:
+
+```shell
+sudo apt install curl
+```
+
+- Instalando a versão do node:
+
+```shell
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+```
+
+O número __18.x__ significa que vai ser instalado a versão mais estável da versão 18.
+
+- Instalando o Nodejs propriamente dito:
+
+```shell
+sudo apt-get install -y nodejs
+```
+
+- Para verificar a versão do nodejs:
+
+```shell
+node --version
+```
+
+- Para verificar a versão do __npm__:
+
+```shell
+npm --version
+```
+
+___
 

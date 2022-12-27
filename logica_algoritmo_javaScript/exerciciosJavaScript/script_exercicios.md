@@ -114,7 +114,7 @@ Fazendo isso você estará ajudando bastante o nosso canal a crescer.
 
 Hoje chegamos ao exercício de número **39**, exercício que tem por título: **Quantos entre 0 e 10** e o exercício é o seguinte:
 
-Desenvolva um programa em que o usuário digite até 6 valores e no final o programa apresente o total de valores entre 0 e 10; e a soma desses valores entre 0 e 10 que forem impares. Use a estrutura de repetiçao “for” (para em português).
+Desenvolva um programa em que o usuário digite até 6 valores e no final o programa apresente o total de valores entre 0 e 10; e a soma desses valores entre 0 e 10 que forem ímpares. Use a estrutura de repetição “for” (para em português).
 
 ```js
 var input = require('readline-sync')
@@ -301,7 +301,7 @@ Se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do v�
 
 ___
 
-
+PAREI
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
