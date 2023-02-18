@@ -1,3 +1,8 @@
+
+const { headerBaseboardFunctions } = require('./headerBaseboardFunctions') 
+
+headerBaseboardFunctions.header("headerBaseboardFunctions")
+
 console.log('Números entre 0 e 1(excluse)')
 var numeroAleatorio = Math.random()
 console.log(numeroAleatorio)
