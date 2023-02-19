@@ -1,12 +1,14 @@
 
 const { headerBaseboardFunctions } = require('./headerBaseboardFunctions') 
 
-headerBaseboardFunctions.header("headerBaseboardFunctions")
+headerBaseboardFunctions.header("Gerando um número aleatório")
 
 console.log('Números entre 0 e 1(excluse)')
-var numeroAleatorio = Math.random()
+headerBaseboardFunctions.line("Gerando um número aleatório")
+let numeroAleatorio = Math.random()
 console.log(numeroAleatorio)
-console.log('-------------------')
+headerBaseboardFunctions.line("Gerando um número aleatório")
+/*
 console.log('Números entre 0 e 10(excluse) com decimais')
 var numeroDecimais = Math.random() * 10
 console.log(numeroDecimais)
@@ -49,4 +51,4 @@ function getRandomIntInclusive(min, max){
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
-console.log(getRandomIntInclusive(1, 5))
+console.log(getRandomIntInclusive(1, 5))*/

@@ -227,12 +227,14 @@ function line(text){
 
 Esta foi nossa aplicação `line(text)`
 
-## 3. Export e Import
+## 3. NodeJS - module.export e require
 
-Vamos criar um arquivo para colocar as nossa functions de __cabeçalho__ e __rodape/linha__ e depois exportá-las e importá-las nas próximas aplicações.
+[link do tema](https://medium.com/@jonathanjuliani/nodejs-require-exports-module-exports-entenda-de-vez-9297dcd5654f)
+
+Vamos criar um arquivo para colocar as nossas functions de __cabeçalho__ e __rodape/linha__ e depois exportá-las e importá-las nas próximas aplicações.
 
 - Crie um arquivo com o nome __headerBaseboardFuctions.js__;
-- Dentro do arquivo vamos criar a variável __headerBaseboardFunctions__ onde será armazenado as functions:
+- Dentro do arquivo vamos criar o objeto __headerBaseboardFunctions__, que será a variável onde será armazenada as functions:
 
 ```js
 const headerBaseboardFunctions = {
@@ -240,7 +242,7 @@ const headerBaseboardFunctions = {
 }
 ```
 
-- Dentro desta variável, vamos colocar as functions `header()` e `line()`:
+- Dentro deste objeto, vamos colocar as functions `header()` e `line()`:
 
 ```js
 const headerBaseboardFunctions = {
@@ -289,7 +291,7 @@ const headerBaseboardFunctions = {
 }
 ```
 
-- Ao final vamos exportar a variável __headerBaseboardFunctions__:
+- Ao final vamos exportar o objeto __headerBaseboardFunctions__ usando o ___module.export___:
 
 ```js
 const headerBaseboardFunctions = {
@@ -342,7 +344,7 @@ module.exports = {
 }
 ```
 
-- Na próxima aplicação vamos importar  a const __headerBaseboardFunctions__
+- Na próxima aplicação vamos importar  a const __headerBaseboardFunctions__ usando o ___require___:
 
 ```js
 const { headerBaseboardFunctions } = require('./headerBaseboardFunctions') 
@@ -362,13 +364,11 @@ No console:
 -------------------------------------------------
 ```
 
-Na próxima aplicação, vamos trabalhar bastante __export__ e __import__.
-
-PAREI AQUI [clique](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/export)
+Na próxima aplicação, vamos trabalhar bastante ___module.export___ e ___require___.
 
 ## 4. Math.random( )
 
-O `Math.random()` é uma function que retorna um número pseudo-aleatório no intervalo `[0, 1[`, ou seja, de 0 (inclusivo) até, mas não incluindo, 1 (exclusivo), que depois você pode dimensionar para um intervalo desejado. 
+O `Math.random()` é uma function que retorna um número pseudo-aleatório no intervalo `[0, 1[`, ou seja, de 0 (inclusivo) até, mas não incluindo 1 (exclusivo), que depois você pode dimensionar para um intervalo desejado. 
 
 Você pode verificar a documentação em [math-random](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
 
@@ -382,6 +382,52 @@ Math.random()
 
 Um número pseudo-aleatório entre 0 (inclusivo) e 1 (exclusivo).
 
+Vamos criar nosso arquivo __generateRandomNumbers.js__ onde vamos executar o `Math.random()`. Dentro deste arquivo vamos importar através do __require__ o objeto __headerBaseboardFunctions__:
+
+```js
+const { headerBaseboardFunctions } = require('./headerBaseboardFunctions')
+```
+
+Agora vamos chamar a function `header()` passando como parâmetro o título do nosso tema:
+
+```js
+const { headerBaseboardFunctions } = require('./headerBaseboardFunctions') 
+
+headerBaseboardFunctions.header("Gerando um número aleatório")
+```
+
+Ao executar `node generateRandomNumbers.js`, no console:
+
+```shell
+-------------------------------------------------------
+              Gerando um número aleatório
+-------------------------------------------------------
+```
+
 - ### Exemplos:
 
   - ### [Gerando um número aleatório entre 0 (inclusivo) e 1 (exclusivo)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random#gerando_um_número_aleatório_entre_0_inclusivo_e_1_exclusivo)
+
+Vamos gerar um número aleatório entre 0 (inclusivo) e 1 (exclusivo), usando `Math.random()`:
+
+```js
+console.log('Números entre 0 e 1(excluse)')
+headerBaseboardFunctions.line("Gerando um número aleatório")
+let numeroAleatorio = Math.random()
+console.log(numeroAleatorio)
+headerBaseboardFunctions.line("Gerando um número aleatório")
+```
+
+No console:
+
+```shell
+-------------------------------------------------------
+              Gerando um número aleatório
+-------------------------------------------------------
+Números entre 0 e 1(excluse)
+-------------------------------------------------------
+0.10141020439217097
+-------------------------------------------------------
+```
+
+- ### [Gerando um número aleatório entre dois valores](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random#gerando_um_número_aleatório_entre_dois_valores)
