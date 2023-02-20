@@ -431,3 +431,406 @@ Números entre 0 e 1(excluse)
 ```
 
 - ### [Gerando um número aleatório entre dois valores](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random#gerando_um_número_aleatório_entre_dois_valores)
+
+Este exemplo retorna um número entre dois valores definidos. O valor retornado será __maior__ ou __igual__ a `min`, e __menor__ que `max`.
+
+```js
+console.log("Número aleatório entre dois valores")
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+}
+headerBaseboardFunctions.line("Gerando um número aleatório")
+console.log(getRandomArbitrary(0, 10)) 
+headerBaseboardFunctions.line("Gerando um número aleatório")
+```
+
+No console:
+
+```shell
+-------------------------------------------------------
+Número aleatório entre dois valores
+-------------------------------------------------------
+7.99271122220871
+-------------------------------------------------------
+```
+
+- ### [Gerando um número inteiro aleatório entre dois valores](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random#gerando_um_número_inteiro_aleatório_entre_dois_valores)
+
+Este exemplo retorna um número *inteiro* entre dois valores definidos. O valor não poderá ser __menor__ que `min` (ou do próximo inteiro maior que `min`, caso `min` __não seja inteiro__), e será menor (mas não igual) a `max`. A função `getRandomInt()` tem intervalo com o valor __mínimo incluído__ e o __máximo excluído__.
+
+```js
+console.log("Número inteiro aleatório entre dois valores")
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+}
+headerBaseboardFunctions.line("Gerando um número aleatório")
+console.log(getRandomInt(1, 10))
+headerBaseboardFunctions.line("Gerando um número aleatório")
+```
+
+No console:
+
+```shell
+-------------------------------------------------------
+Número inteiro aleatório entre dois valores
+-------------------------------------------------------
+7
+-------------------------------------------------------	
+```
+
+- ### [Gerando um número inteiro aleatório entre dois valores, inclusive](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random#gerando_um_número_inteiro_aleatório_entre_dois_valores_inclusive)
+
+Este exemplo retorna um número *inteiro* entre dois valores definidos. A função `getRandomIntInclusive()` tem intervalo com o valor mínimo e máximo incluído.
+
+```js
+console.log("Número inteiro aleatório entre dois valores, inclusive")
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+headerBaseboardFunctions.line("Gerando um número aleatório")
+console.log(getRandomIntInclusive(1, 10))
+headerBaseboardFunctions.line("Gerando um número aleatório")  
+```
+
+No console:
+
+```shell
+-------------------------------------------------------
+Número inteiro aleatório entre dois valores, inclusive
+-------------------------------------------------------
+10
+-------------------------------------------------------
+```
+
+Nosso arquivo completo:
+
+```js
+
+const { headerBaseboardFunctions } = require('./headerBaseboardFunctions') 
+
+headerBaseboardFunctions.header("Gerando um número aleatório")
+
+console.log('Números entre 0 e 1(excluse)')
+headerBaseboardFunctions.line("Gerando um número aleatório")
+let numeroAleatorio = Math.random()
+console.log(numeroAleatorio)
+headerBaseboardFunctions.line("Gerando um número aleatório")
+
+console.log("Número aleatório entre dois valores")
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+}
+headerBaseboardFunctions.line("Gerando um número aleatório")
+console.log(getRandomArbitrary(0, 10)) 
+headerBaseboardFunctions.line("Gerando um número aleatório")
+
+console.log("Número inteiro aleatório entre dois valores")
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+}
+headerBaseboardFunctions.line("Gerando um número aleatório")
+console.log(getRandomInt(1, 10))
+headerBaseboardFunctions.line("Gerando um número aleatório")
+
+console.log("Número inteiro aleatório entre dois valores, inclusive")
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+headerBaseboardFunctions.line("Gerando um número aleatório")
+console.log(getRandomIntInclusive(1, 10))
+headerBaseboardFunctions.line("Gerando um número aleatório")  
+
+```
+
+No console:
+
+```shell
+-------------------------------------------------------
+              Gerando um número aleatório
+-------------------------------------------------------
+Números entre 0 e 1(excluse)
+-------------------------------------------------------
+0.022794387738104938
+-------------------------------------------------------
+Número aleatório entre dois valores
+-------------------------------------------------------
+6.351774666991141
+-------------------------------------------------------
+Número inteiro aleatório entre dois valores
+-------------------------------------------------------
+3
+-------------------------------------------------------
+Número inteiro aleatório entre dois valores, inclusive
+-------------------------------------------------------
+10
+-------------------------------------------------------
+```
+
+## 5. snake_case with replace()
+
+Vamos construir uma aplicação que transforma um texto/frase inserida pelo usuário no formato __snake_case__. Para isto, vamos usar o método `replace()`.
+
+O método `replace()` retorna uma nova string com algumas ou todas as correspondências de um padrão substituídas por um determinado caractere (ou caracteres). O padrão pode ser uma string ou uma [`RegExp`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/RegExp), e a substituição pode ser uma string ou uma função a ser chamada para cada correspondência. Se o padrão for uma string, apenas a primeira ocorrência será substituída.
+
+A string original não é modificada.
+
+Documentação - [click me](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/replace)
+
+### Sintaxe
+
+```js
+str.replace(regexp|substr, newSubStr|function)
+```
+
+Na nossa aplicação, vamos começar declarando nossa variável de input e importando __headerBaseboardFunctions__:
+
+```js
+var input = require('readline-sync');
+
+const { headerBaseboardFunctions } = require('./headerBaseboardFunctions')
+```
+
+Em seguida vamos chamar a function `header()` passando como parâmetro o título da nossa aplicação:
+
+```js
+headerBaseboardFunctions.header("snake_case")
+```
+
+Vamos declarar mais declarar as variáveis para o texto inserido pelo usuário, o texto em minúsculo e o texto com underline:
+
+```js
+let inserted_text, lowercase_text, underlined_text
+```
+
+O próximo passo é solicitara ao usuário digitar um texto qualquer:
+
+```js
+//entrada de dados
+inserted_text = input.question("Enter the text: ")
+```
+
+Com o texto inserido, vamos começar a parte de processamento de dados, colocando todo o texto em minúsculo dentro da variável __lowercase_text__, com a function `toLowerCase()` que já trabalhamos no __ex052_analisadorDeStrings__:
+
+```js
+//procesamento de dados
+lowercase_text = inserted_text.toLowerCase()
+```
+
+Com o texto em minúsculo, vamos trocar todos os espaços por __underline__ usando a function `replace()` e armazenar dentro da variável __underlined_text__.  O médoto `replace()` recebe dois parâmetros. O primeiro pode ser uma string ou uma __RegExp__, e o segundo pode ser uma string ou uma função que ficará no lugar do termo a ser trocado. Confira a documentação no link inserido acima para se aprofundar mais no assunto, aqui vamos apenas mostrar como trocar o espaço em branco pelo underline usando RegExp e o método `replace()`:
+
+```js
+underlined_text = lowercase_text.replace(/ /gi, "_")
+```
+
+Com a parte de processamento de dados finalizada, agora vamos para a saía de dados. Para isto, vamos executar um `console.clear()` e em seguida chamar a function `header()`, mostrar o resultado final imprimindo a __underlined_text__ e por fim, chamando a function `line()`:
+
+```js
+//saída de dados
+console.clear()
+headerBaseboardFunctions.header("snake_case")
+console.log(underlined_text)
+headerBaseboardFunctions.line("snake_case")
+```
+
+Todo o nosso programa:
+
+```js
+var input = require('readline-sync');
+
+const { headerBaseboardFunctions } = require('./headerBaseboardFunctions')
+
+headerBaseboardFunctions.header("snake_case")
+
+let inserted_text, lowercase_text, underlined_text
+
+//entrada de dados
+inserted_text = input.question("Enter the text: ")
+
+//procesamento de dados
+lowercase_text = inserted_text.toLowerCase()
+underlined_text = lowercase_text.replace(/ /gi, "_")
+
+//saída de dados
+console.clear()
+headerBaseboardFunctions.header("snake_case")
+console.log(underlined_text)
+headerBaseboardFunctions.line("snake_case")
+```
+
+Ao executar, no console:
+
+```shell
+---------------------
+     snake_case
+---------------------
+Enter the text: Metodo Replace com JavaScript
+```
+
+```shell
+---------------------
+     snake_case
+---------------------
+metodo_replace_com_javascript
+---------------------
+```
+
+Pronto, a nossa aplicação está concluída. Agora conseguimos colocar qualquer texto no formato snake_case.
+
+## 6. function load() with method getTime()
+
+Nesta próxima aplicação aplicação, vamos construir uma function que vai simular um carregamento, usando o método `getTime()`. Esse carregamento será executado a cada 1 segundo, apresentando o percentual do carregamento.
+
+Crie um novo arquivo e coloque o nome de __loading.js__.
+
+Neste arquivos vamos começar declarando a function `loading()`:
+
+```js
+function loading(){
+  
+}
+```
+
+Em seguida, vamos declarar duas variáveis para armazenar uma string que será a linha do carregamento e o percentual:
+
+```js
+function loading(){
+    
+    let toLoad = `....`
+    let percentage = 20
+    
+}
+```
+
+O próximo passo é criar uma estrutura de repetição para que o carregamento aconteça até o percentual chegar em 100%. Dentro dessa estrutura vamos imprimir o carregamento e o percentual e depois incrementar tanto o carregamento como o percentual, para não entrar em loop infinito:
+
+```js
+function loading(){  
+    
+    let toLoad = `....`
+    let percentage = 20
+    while (percentage <= 100) {
+        console.clear()
+        console.log(`loading ${toLoad} ${percentage}%`)
+        toLoad += `....`
+        percentage += 20
+    }
+}
+```
+
+Porém se você executar o programa dessa maneira, ele só irá imprimir o carregamento e não é isso que queremos, queremos que ele mostre o carregamento a cada 1 segundo. Para isto vamos declarar outra function chamada de `syncDelay()`. Dentro desta function vamos passar o tempo em milissegundos que queremos para aparecer cada carregamento. esta function será chamada após imprimir o carregamento e o percentual:
+
+```js
+function loading(){
+    
+    let toLoad = `....`
+    let percentage = 20
+    while (percentage <= 100) {
+        console.clear()
+        console.log(`loading ${toLoad} ${percentage}%`)
+        syncDelay(1000);
+        toLoad += `....`
+        percentage += 20
+    }
+}
+```
+
+Agora vamos construir essa function `syncDelay()` utilizando o método `getTime()`. Para saber mais sobre esse método, faça a leitura da [documentação](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime). Esta function recebe como parâmetro o tempo em milissegundos e vai criar um delay de acordo com o tempo passado. No caso da nossa aplicação, 1 segundo:
+
+```js
+function loading(){
+  
+    function syncDelay(milliseconds){
+      let start = new Date().getTime();
+      let end=0;
+      while( (end-start) < milliseconds){
+          end = new Date().getTime();
+      }
+     }  
+    
+    let toLoad = `....`
+    let percentage = 20
+    while (percentage <= 100) {
+        console.clear()
+        console.log(`loading ${toLoad} ${percentage}%`)
+        syncDelay(1000);
+        toLoad += `....`
+        percentage += 20
+    }
+}
+```
+
+Agora é só chamar a function:
+
+```js
+function loading(){
+  
+    function syncDelay(milliseconds){
+      let start = new Date().getTime();
+      let end=0;
+      while( (end-start) < milliseconds){
+          end = new Date().getTime();
+      }
+     }  
+    
+    let toLoad = `....`
+    let percentage = 20
+    while (percentage <= 100) {
+        console.clear()
+        console.log(`loading ${toLoad} ${percentage}%`)
+        syncDelay(1000);
+        toLoad += `....`
+        percentage += 20
+    }
+}
+
+loading()
+```
+
+No console:
+
+```shell
+loading .... 20%
+```
+
+```shell
+loading ........ 40%
+```
+
+```shell
+loading ............ 60%
+```
+
+```shell
+loading ................ 80%
+```
+
+```shell
+loading .................... 100%
+```
+
+Vamos utilizar essa aplicação no próximo programa!
+
+## 7. jokenpo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
