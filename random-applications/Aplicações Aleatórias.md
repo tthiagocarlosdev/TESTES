@@ -820,9 +820,11 @@ loading .................... 100%
 
 Vamos utilizar essa aplicação no próximo programa!
 
-## 7. jokenpo
+## 7. Jokenpo
 
-Vamos começar adicionando a function `loading()` dentro do objeto __basicFunctions__:
+Esta aplicação será o famoso jogo __Jokenpon__, sendo jogado entre um jogador humano, o usuário, contra o computador.
+
+Vamos começar adicionando as functions `loading()`  e `getRandomIntInclusive()` dentro do objeto __basicFunctions__:
 
 ```js
 const basicFunctions = {
@@ -856,48 +858,262 @@ const basicFunctions = {
       line()
     },
 
-    line(text){
-      let textSize = text.length;
-      let lineSize = textSize * 2;
-      let line = ""
-  
-      for (let index = 0; index <= lineSize; index++) {
-        line += "-"
-      }
-  
-      console.log(line)
-    },
+  line(text){
+    let textSize = text.length;
+    let lineSize = textSize * 2;
+    let line = ""
 
-    loading(){
-  
-      function syncDelay(milliseconds){
-        let start = new Date().getTime();
-        let end=0;
-        while( (end-start) < milliseconds){
-          end = new Date().getTime();
-        }
-      }  
-        
-      let toLoad = `....`
-      let percentage = 20
-      while (percentage <= 100) {
-        console.clear()
-        console.log(`loading ${toLoad} ${percentage}%`)
-        syncDelay(1000);
-        toLoad += `....`
-        percentage += 20
+    for (let index = 0; index <= lineSize; index++) {
+      line += "-"
+    }
+
+    console.log(line)
+  },
+
+  loading(){
+
+    function syncDelay(milliseconds){
+      let start = new Date().getTime();
+      let end=0;
+      while( (end-start) < milliseconds){
+        end = new Date().getTime();
       }
-    },
+    }  
+      
+    let toLoad = `....`
+    let percentage = 20
+    while (percentage <= 100) {
+      console.clear()
+      console.log(`loading ${toLoad} ${percentage}%`)
+      syncDelay(1000);
+      toLoad += `....`
+      percentage += 20
+    }
+  },
+
+  getRandomIntInclusive(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+
 }
 
 module.exports = {
-    basicFunctions
+  basicFunctions
 }
 ```
 
+Vamos criar nosso arquivo __jankenpon.js__ e já importar o input com o __readlinesync__ e importar também o __basicFunctions__:
 
+```js
+var input = require('readline-sync');
 
+const { basicFunctions } = require('./basicFunctions')
+```
 
+Vamos chamar a function `loading()`, limpar a tela e apresentar o `header()` da nossa aplicação:
+
+```js
+basicFunctions.loading()
+console.clear()
+basicFunctions.header("Jankenpon")
+```
+
+No console:
+
+```shell
+loading .... 20%
+loading ........ 40%
+loading ............ 60%
+loading ................ 80%
+loading .................... 100%
+-------------------
+     Jankenpon
+-------------------
+```
+
+Vamos criar três variáveis que usaremos a princípio, que serão o nome do jogador, a opção jogada do humano e a opção de jogada do computador. Logo nossa declaração de variáveis ficará assim:
+```js
+//declaração de variáveis
+let playerName = ``;
+let humanPlay = 0;
+let cpuPlay = 0;
+```
+
+Na entrada de dados, vamos solicitar do usuário inserir seu nome e atribuí-lo a variável __playerName__:
+
+```js
+//entrada de dados
+basicFunctions.loading();
+console.clear();
+basicFunctions.header("Jankenpon");
+playerName = input.question("Digite seu nome: ").toLocaleUpperCase();
+```
+
+No console:
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+Digite seu nome: thiago
+```
+
+Antes de mostrar o nome do usuário e solicitar a escolha de sua jogada, vamos criar o menu  que apresentará as opções para o usuário. Em declaração de funções:
+
+```js
+//declaração de funções
+const playMenu = () => {
+    console.log("[1] PEDRA")
+    console.log("[2] TESOURA")
+    console.log("[3] PAPEL")
+}
+```
+
+Ainda na entrada de dados, vamos apresentar o nome do usuário e pedir para que o mesmo escolha uma das opções do menu, atribuindo essa escolha na variável __humanPlay__. Mas antes atribuir o valor a variável, vamos ter que validar o valor digitado pelo usuário e para isto vamos criar a function `validateNumber()`. Logo, em declaração de funções:
+
+```js
+const validateNumber = () => {
+    
+};
+```
+
+Esta function irá solicitar o input do usuário e analisará o valor digitado por ele. Caso seja valor um valor diferente de 1, 2 e 3, uma mensagem de erro será apresentada e será solicitado novamente para o usuário digitar um valor correto. Caso ele digite um valor errado novamente, a mensagem de erro deve aparecer novamente e uma nova solicitação para o usuário inserir um valor correto. Quando o usuário inserir um valor correto, o programa segue o seu fluxo normal.
+
+Para executar isso, vamos criar uma estrutura de repetição que será executada enquanto o usuário digitar um valor inválido:
+
+```js
+const validateNumber = () => {
+
+    let value = input.question();
+
+    while ( value != "1" && value != "2" && value != "3" ) {
+        console.clear();
+        basicFunctions.header("Jankenpon");
+        playMenu();
+        value = input.question();
+    };
+
+};
+```
+
+Note que ainda falta aparecer a mensagem de erro, e para isto vamos criar a function `errorMessage()` que vai imprimir essa mensagem. Em declaração de funções:
+
+```js
+const errorMessage = () => {
+    console.log("ATENÇÃO: JOGADA ERRADA!");
+    console.log("Digite um valor válido!");
+};
+```
+
+Agora basta chamar a function `errorMessage()` dentro da estrutura de repetição da function `validateNumber()`:
+
+```js
+const validateNumber = () => {
+
+    let value = input.question();
+
+    while ( value != "1" && value != "2" && value != "3" ) {
+        console.clear();
+        basicFunctions.header("Jankenpon");
+        errorMessage();
+        playMenu();
+        value = input.question();
+    };
+
+};
+```
+
+Por fim, quando o valor for validado, a function `validateNumber()` vai retornar esse valor:
+
+```js
+const validateNumber = () => {
+
+    let value = input.question();
+
+    while ( value != "1" && value != "2" && value != "3" ) {
+        console.clear();
+        basicFunctions.header("Jankenpon");
+        errorMessage();
+        playMenu();
+        value = input.question();
+    };
+
+    return Number(value);
+
+};
+```
+
+Agora, basta chamar a function `validateNumber()` atribuindo o seu retorno à variável __humanPlay__:
+
+```js
+console.clear();
+basicFunctions.header("Jankenpon");
+console.log(`${playerName} escolha sua jogada: `);
+playMenu();
+humanPlay = validateNumber();
+```
+
+No console:
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+THIAGO escolha sua jogada: 
+[1] PEDRA
+[2] TESOURA
+[3] PAPEL
+4
+```
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+ATENÇÃO: JOGADA ERRADA!
+Digite um valor válido!
+[1] PEDRA
+[2] TESOURA
+[3] PAPEL
+1
+```
+
+O próximo passo agora é atribuir um valor entre 1 e 3 a variável __cpuPlay__ que será a jogada do computador. Para isto, vamos importar a function `getRandomIntInclusive()` passando como parâmetro os valores 1 e 3:
+
+```js
+cpuPlay = basicFunctions.getRandomIntInclusive(1, 3);
+```
+
+Agora vamos apresentar apenas um `console.log()` para ver que está funcionando até agora:
+
+```js
+console.log(`${humanPlay}`);
+console.log(`${cpuPlay}`);
+```
+
+No console:
+
+```shell
+1
+2
+```
+
+Agora vamos declarar mais duas variáveis para guardar o resultado de cada jogador, de empate e o vencedor da partida:
+
+```js
+//declaração de variáveis
+let userName = ``;
+let userPlay = 0;
+let cpuPlay = 0;
+let userScore = 0;
+let cpuScore = 0;
+let tieScore = 0;
+let partialWinner = "";
+```
+
+documentar `winnerCalculation()`
 
 
 
