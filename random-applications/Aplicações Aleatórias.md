@@ -233,11 +233,11 @@ Esta foi nossa aplicação `line(text)`
 
 Vamos criar um arquivo para colocar as nossas functions de __cabeçalho__ e __rodape/linha__ e depois exportá-las e importá-las nas próximas aplicações.
 
-- Crie um arquivo com o nome __headerBaseboardFuctions.js__;
-- Dentro do arquivo vamos criar o objeto __headerBaseboardFunctions__, que será a variável onde será armazenada as functions:
+- Crie um arquivo com o nome basicFunctions.js__;
+- Dentro do arquivo vamos criar o objeto __basicFunctions__, que será a variável onde será armazenada as functions:
 
 ```js
-const headerBaseboardFunctions = {
+const basicFunctions = {
     
 }
 ```
@@ -245,7 +245,7 @@ const headerBaseboardFunctions = {
 - Dentro deste objeto, vamos colocar as functions `header()` e `line()`:
 
 ```js
-const headerBaseboardFunctions = {
+const basicFunctions = {
     
     header(text) {
         let textSize = text.length;
@@ -291,10 +291,10 @@ const headerBaseboardFunctions = {
 }
 ```
 
-- Ao final vamos exportar o objeto __headerBaseboardFunctions__ usando o ___module.export___:
+- Ao final vamos exportar o objeto __basicFunctions__ usando o ___module.export___:
 
 ```js
-const headerBaseboardFunctions = {
+const basicFunctions = {
     
     header(text) {
         let textSize = text.length;
@@ -340,28 +340,28 @@ const headerBaseboardFunctions = {
 }
 
 module.exports = {
-    headerBaseboardFunctions
+    basicFunctions
 }
 ```
 
-- Na próxima aplicação vamos importar  a const __headerBaseboardFunctions__ usando o ___require___:
+- Na próxima aplicação vamos importar  a const __basicFunctions__ usando o ___require___:
 
 ```js
-const { headerBaseboardFunctions } = require('./headerBaseboardFunctions') 
+const { basicFunctions } = require('./basicFunctions') 
 ```
 
-- Para executar alguma function, basta chamar a const __headerBaseboardFunctions__ com o nome da function que quer executar:
+- Para executar alguma function, basta chamar a const __basicFunctions__ com o nome da function que quer executar:
 
 ```js
-headerBaseboardFunctions.header("headerBaseboardFunctions")
+basicFunctions.header("basicFunctions")
 ```
 
 No console:
 
 ```shell
--------------------------------------------------
-            headerBaseboardFunctions
--------------------------------------------------
+-----------------------------
+       basicFunctions
+-----------------------------
 ```
 
 Na próxima aplicação, vamos trabalhar bastante ___module.export___ e ___require___.
@@ -385,15 +385,15 @@ Um número pseudo-aleatório entre 0 (inclusivo) e 1 (exclusivo).
 Vamos criar nosso arquivo __generateRandomNumbers.js__ onde vamos executar o `Math.random()`. Dentro deste arquivo vamos importar através do __require__ o objeto __headerBaseboardFunctions__:
 
 ```js
-const { headerBaseboardFunctions } = require('./headerBaseboardFunctions')
+const { basicFunctions } = require('./basicFunctions')
 ```
 
 Agora vamos chamar a function `header()` passando como parâmetro o título do nosso tema:
 
 ```js
-const { headerBaseboardFunctions } = require('./headerBaseboardFunctions') 
+const { basicFunctions } = require('./basicFunctions') 
 
-headerBaseboardFunctions.header("Gerando um número aleatório")
+basicFunctions.header("Gerando um número aleatório")
 ```
 
 Ao executar `node generateRandomNumbers.js`, no console:
@@ -412,10 +412,10 @@ Vamos gerar um número aleatório entre 0 (inclusivo) e 1 (exclusivo), usando `M
 
 ```js
 console.log('Números entre 0 e 1(excluse)')
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
 let numeroAleatorio = Math.random()
 console.log(numeroAleatorio)
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
 ```
 
 No console:
@@ -439,9 +439,9 @@ console.log("Número aleatório entre dois valores")
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
 console.log(getRandomArbitrary(0, 10)) 
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
 ```
 
 No console:
@@ -465,9 +465,9 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
 }
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
 console.log(getRandomInt(1, 10))
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
 ```
 
 No console:
@@ -491,9 +491,9 @@ function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
 console.log(getRandomIntInclusive(1, 10))
-headerBaseboardFunctions.line("Gerando um número aleatório")  
+basicFunctions.line("Gerando um número aleatório")  
 ```
 
 No console:
@@ -509,24 +509,26 @@ Número inteiro aleatório entre dois valores, inclusive
 Nosso arquivo completo:
 
 ```js
+const { basicFunctions } = require('./basicFunctions') 
 
-const { headerBaseboardFunctions } = require('./headerBaseboardFunctions') 
+basicFunctions.header("Gerando um número aleatório")
 
-headerBaseboardFunctions.header("Gerando um número aleatório")
 
 console.log('Números entre 0 e 1(excluse)')
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
 let numeroAleatorio = Math.random()
 console.log(numeroAleatorio)
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
+
 
 console.log("Número aleatório entre dois valores")
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
 console.log(getRandomArbitrary(0, 10)) 
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
+
 
 console.log("Número inteiro aleatório entre dois valores")
 function getRandomInt(min, max) {
@@ -534,9 +536,10 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
 }
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
 console.log(getRandomInt(1, 10))
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
+
 
 console.log("Número inteiro aleatório entre dois valores, inclusive")
 function getRandomIntInclusive(min, max) {
@@ -544,10 +547,9 @@ function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-headerBaseboardFunctions.line("Gerando um número aleatório")
+basicFunctions.line("Gerando um número aleatório")
 console.log(getRandomIntInclusive(1, 10))
-headerBaseboardFunctions.line("Gerando um número aleatório")  
-
+basicFunctions.line("Gerando um número aleatório")  
 ```
 
 No console:
@@ -595,13 +597,13 @@ Na nossa aplicação, vamos começar declarando nossa variável de input e impor
 ```js
 var input = require('readline-sync');
 
-const { headerBaseboardFunctions } = require('./headerBaseboardFunctions')
+const { basicFunctions } = require('./basicFunctions')
 ```
 
 Em seguida vamos chamar a function `header()` passando como parâmetro o título da nossa aplicação:
 
 ```js
-headerBaseboardFunctions.header("snake_case")
+basicFunctions.header("snake_case")
 ```
 
 Vamos declarar mais declarar as variáveis para o texto inserido pelo usuário, o texto em minúsculo e o texto com underline:
@@ -635,9 +637,9 @@ Com a parte de processamento de dados finalizada, agora vamos para a saía de da
 ```js
 //saída de dados
 console.clear()
-headerBaseboardFunctions.header("snake_case")
+basicFunctions.header("snake_case")
 console.log(underlined_text)
-headerBaseboardFunctions.line("snake_case")
+basicFunctions.line("snake_case")
 ```
 
 Todo o nosso programa:
@@ -645,9 +647,9 @@ Todo o nosso programa:
 ```js
 var input = require('readline-sync');
 
-const { headerBaseboardFunctions } = require('./headerBaseboardFunctions')
+const { basicFunctions } = require('./basicFunctions')
 
-headerBaseboardFunctions.header("snake_case")
+basicFunctions.header("snake_case")
 
 let inserted_text, lowercase_text, underlined_text
 
@@ -660,9 +662,9 @@ underlined_text = lowercase_text.replace(/ /gi, "_")
 
 //saída de dados
 console.clear()
-headerBaseboardFunctions.header("snake_case")
+basicFunctions.header("snake_case")
 console.log(underlined_text)
-headerBaseboardFunctions.line("snake_case")
+basicFunctions.line("snake_case")
 ```
 
 Ao executar, no console:
@@ -819,6 +821,79 @@ loading .................... 100%
 Vamos utilizar essa aplicação no próximo programa!
 
 ## 7. jokenpo
+
+Vamos começar adicionando a function `loading()` dentro do objeto __basicFunctions__:
+
+```js
+const basicFunctions = {
+    
+  header(text) {
+      let textSize = text.length;
+      let lineSize = textSize * 2;
+      let spaceSize = Math.ceil(textSize / 2)
+      let textWithSpace = ""
+    
+      for (let index = 0; index <= spaceSize; index++) {
+        if (index < spaceSize) {
+          textWithSpace += " "
+        } else if (index == spaceSize) {
+          textWithSpace += text
+        }
+      }
+    
+      function line() {
+        let line = ""
+    
+        for (let index = 0; index <= lineSize; index++) {
+          line += "-"
+        }
+    
+        console.log(line)
+      }
+    
+      line()
+      console.log(textWithSpace)
+      line()
+    },
+
+    line(text){
+      let textSize = text.length;
+      let lineSize = textSize * 2;
+      let line = ""
+  
+      for (let index = 0; index <= lineSize; index++) {
+        line += "-"
+      }
+  
+      console.log(line)
+    },
+
+    loading(){
+  
+      function syncDelay(milliseconds){
+        let start = new Date().getTime();
+        let end=0;
+        while( (end-start) < milliseconds){
+          end = new Date().getTime();
+        }
+      }  
+        
+      let toLoad = `....`
+      let percentage = 20
+      while (percentage <= 100) {
+        console.clear()
+        console.log(`loading ${toLoad} ${percentage}%`)
+        syncDelay(1000);
+        toLoad += `....`
+        percentage += 20
+      }
+    },
+}
+
+module.exports = {
+    basicFunctions
+}
+```
 
 
 

@@ -1,8 +1,8 @@
 var input = require('readline-sync');
 
-const { headerBaseboardFunctions } = require('./headerBaseboardFunctions')
+const { basicFunctions } = require('./basicFunctions')
 
-headerBaseboardFunctions.header("snake_case")
+basicFunctions.header("snake_case")
 
 let inserted_text, lowercase_text, underlined_text
 
@@ -15,6 +15,6 @@ underlined_text = lowercase_text.replace(/ /gi, "_")
 
 //saída de dados
 console.clear()
-headerBaseboardFunctions.header("snake_case")
+basicFunctions.header("snake_case")
 console.log(underlined_text)
-headerBaseboardFunctions.line("snake_case")
+basicFunctions.line("snake_case")
