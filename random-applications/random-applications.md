@@ -686,7 +686,7 @@ metodo_replace_com_javascript
 
 Pronto, a nossa aplicação está concluída. Agora conseguimos colocar qualquer texto no formato snake_case.
 
-## 6. function load() with method getTime()
+## 6. function loading() with method getTime()
 
 Nesta próxima aplicação aplicação, vamos construir uma function que vai simular um carregamento, usando o método `getTime()`. Esse carregamento será executado a cada 1 segundo, apresentando o percentual do carregamento.
 
@@ -1100,7 +1100,48 @@ No console:
 2
 ```
 
-Agora vamos declarar mais duas variáveis para guardar o resultado de cada jogador, de empate e o vencedor da partida:
+O próximo passo será criar uma function `playerChoice( ) que mostrará a escolha de cada jogador. Ela recebe como parâmetro um número, que é a escolha de cada jogador (__humanPlay__ e __cpuPlay__) e retorna __pedra__, __papel__ ou __tesoura__ de acordo com a escolha de cada jogada. Logo, em declaração de funções:
+
+```js
+const playerChoice = (number) => {
+
+  let choise = ""
+
+  if(number === 1){
+    choise = "Pedra"
+  } else if(number === 2) {
+    choise = "Papel"
+  } else if(number === 3) {
+    choise = "Tesoura"
+  }
+
+  return choise
+};
+```
+
+Vamos criar a parte de saída de dados. Logo, vamos deletar os `console.log()` que mostrava a jogada de cada jogador. Depois vamos limpar a tela, mostrar o __header__ e a mensagem __PLACAR PARCIAL:__. Abaixo vamos exibir o que cada jogador escolheu, chamando a function `playerChoice()`:
+
+```js
+//saída de dados
+console.clear();
+basicFunctions.header("Jankenpon");
+console.log("PLACAR PARCIAL: ");
+console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
+basicFunctions.line("Jankenpon");
+```
+
+No console:
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+PLACAR PARCIAL: 
+THIAGO : Papel x Pedra : CPU
+-------------------
+```
+
+Agora, nesta parte, vamos declarar as variáveis para guardar o resultado de cada jogador, de empate e o vencedor da partida, logo, em declaração de variáveis:
 
 ```js
 //declaração de variáveis
@@ -1113,9 +1154,574 @@ let tieScore = 0;
 let partialWinner = "";
 ```
 
-documentar `winnerCalculation()`
+A próxima etapa será criar a parte de processamento de dados. Nela, vamos atribuir a variável __partialWinner__ o vencedor da partida, através do retorno da function `winnerCalculation()` que também vamos criar. Esta function recebe como parâmetro as escolhas de cada jogador. Logo, em processamento de dados:
 
+```js
+//processamento de dados
+partialWinner = winnerCalculation(userPlay, cpuPlay);
+```
 
+Em declaração de variáveis vamos colocar a function `winnerCalculation()` recebendo como parâmetro as escolha de cada jogador e retornando o vencedor. Caso seja o usuário, retorna o nome do mesmo e se for o computador, retorna "CPU":
+
+```js
+const winnerCalculation = (userPlay, cpuPlay) => {
+
+    let winner = ""
+  
+    if ( userPlay == 1 && cpuPlay == 3 ) {
+      winner = userName;
+    } else if (userPlay == 3 && cpuPlay == 2 ) {
+      winner = userName;
+    } else if ( userPlay == 2 && cpuPlay == 1 ) {
+      winner = userName;
+    } else if( cpuPlay == 1 && userPlay == 3 ) {
+      winner = "CPU";
+    } else if ( cpuPlay == 3 && userPlay == 2 ) {
+      winner = "CPU";
+    } else if ( cpuPlay == 2 && userPlay == 1 ) {
+      winner = "CPU";
+    } else if ( cpuPlay == userPlay) {
+      winner = "Empate";
+    }
+  
+    return winner
+  }
+```
+
+Em saída de dados, vamos mostrar o vencedor da partida:
+
+```js
+//saída de dados
+console.clear();
+basicFunctions.header("Jankenpon");
+console.log("PLACAR PARCIAL: ");
+console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
+console.log(`Vencedor da partida: ${partialWinner}`)
+basicFunctions.line("Jankenpon");
+```
+
+No console:
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+PLACAR PARCIAL: 
+THIAGO : Tesoura x Pedra : CPU
+Vencedor da partida: CPU
+-------------------
+```
+
+Vamos aproveitar a function `winnerCalculation()` para adicionar a pontuação de cada jogador ou do empate. Logo, as variáveis __userScore__, __cpuScore__ e __tieScore__ serão incrementadas de acordo com a escolha de cada jogador. Na function `winnerCalculation()`:
+
+```js
+const winnerCalculation = (userPlay, cpuPlay) => {
+
+    let winner = ""
+  
+    if ( userPlay == 1 && cpuPlay == 3 ) {
+      winner = userName;
+      userScore++;
+    } else if (userPlay == 3 && cpuPlay == 2 ) {
+      winner = userName;
+      userScore++;
+    } else if ( userPlay == 2 && cpuPlay == 1 ) {
+      winner = userName;
+      userScore++;
+    } else if( cpuPlay == 1 && userPlay == 3 ) {
+      winner = "CPU";
+      cpuScore++;
+    } else if ( cpuPlay == 3 && userPlay == 2 ) {
+      winner = "CPU";
+      cpuScore++;
+    } else if ( cpuPlay == 2 && userPlay == 1 ) {
+      winner = "CPU";
+      cpuScore++;
+    } else if ( cpuPlay == userPlay) {
+      winner = "Empate";
+      tieScore++;
+    }
+  
+    return winner
+  }
+```
+
+Após isso, em saída de dados, vamos mostrar a pontuação de cada jogador até então e a quantidade de empates:
+
+```js
+//saída de dados
+console.clear();
+basicFunctions.header("Jankenpon");
+console.log("PLACAR PARCIAL: ");
+console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
+console.log(`Vencedor da partida: ${partialWinner}`);
+console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+console.log(`Empates: ${tieScore}`);
+basicFunctions.line("Jankenpon");
+```
+
+No console:
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+PLACAR PARCIAL: 
+THIAGO : Papel x Papel : CPU
+Vencedor da partida: Empate
+THIAGO 0 x 0 CPU
+Empates: 1
+-------------------
+```
+
+Nossa aplicação já está quase finalizada, mas você deve ter notado que ela é executada uma única vez. O que queremos é que ela realize várias partidas, de acordo com a escolha do usuário. Vamos criar a function `playAgainMenu()` que será um menu que vai perguntar para o usuário se ele quer continuar com o jogo ou não. Em declaração de funções:
+
+```js
+const playAgainMenu = () => {
+  console.log("Jogar mais uma vez? ");
+  console.log("[s] para sim");
+  console.log("[n] para não");
+};
+```
+
+Agora, vamos criar a variável __playAgain__ que vai receber a resposta da function `validateAnswer()`. Esta function validará a resposta do usuário, que só poderá digira __"s"__ ou __"n"__. Caso, ele digite qualquer outra resposta diferente, uma mensagem de erro deve ser apresentada e deverá ser solicitado ao usuário responder se quer continuar o jogo.
+
+Em declaração de variáveis:
+
+```js
+//declaração de variáveis
+let userName = ``;
+let userPlay = 0;
+let cpuPlay = 0;
+let userScore = 0;
+let cpuScore = 0;
+let tieScore = 0;
+let partialWinner = "";
+let playAgain = 0;
+```
+
+Logo após a saída de dados, vamos chamar a function `playAgainMenu()` e a variável __playAgain__ recebendo o retorno da function `validateAnswer()`:
+
+```js
+ playAgainMenu();
+ playAgain = validateAnswer();
+```
+
+Em declaração de funções, vamos criar a function `validateAnswer()`:
+
+```js
+const validateAnswer = () => {
+
+  answer = input.question().toLowerCase();
+  
+  while ( answer != "n" && answer != "s") {
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    errorMessage();
+    playAgainMenu();
+    answer = input.question().toLowerCase();
+  };
+
+  return answer;
+
+};
+```
+
+Agora, para o o programa repetir ou não, vamos colocar uma parte do programa dentro de um __do...while__.
+
+```js
+//entrada de dados
+basicFunctions.loading();
+console.clear();
+basicFunctions.header("Jankenpon");
+userName = input.question("Digite seu nome: ").toUpperCase();
+
+do {
+
+  console.clear();
+  basicFunctions.header("Jankenpon");
+  console.log(`${userName} escolha sua jogada: `);
+  playMenu();
+  userPlay = validateNumber();
+  cpuPlay = basicFunctions.getRandomIntInclusive(1, 3);
+
+  //processamento de dados
+  partialWinner = winnerCalculation(userPlay, cpuPlay);
+
+  //saída de dados
+  console.clear();
+  basicFunctions.header("Jankenpon");
+  console.log("PLACAR PARCIAL: ");
+  console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
+  console.log(`Vencedor da partida: ${partialWinner}`);
+  console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+  console.log(`Empates: ${tieScore}`);
+  basicFunctions.line("Jankenpon");
+
+  playAgainMenu();
+  playAgain = validateAnswer();
+
+} while ( playAgain != "n");
+```
+
+Agora o programa irá funcionar quantas vezes o usuário escolher a resposta __"s"__. No console:
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+THIAGO escolha sua jogada: 
+[1] PEDRA
+[2] PAPEL
+[3] TESOURA
+1
+```
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+PLACAR PARCIAL: 
+THIAGO : Pedra x Pedra : CPU
+Vencedor da partida: Empate
+THIAGO 0 x 0 CPU
+Empates: 1
+-------------------
+Jogar mais uma vez? 
+[s] para sim
+[n] para não
+s
+```
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+THIAGO escolha sua jogada: 
+[1] PEDRA
+[2] PAPEL
+[3] TESOURA
+2
+```
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+PLACAR PARCIAL: 
+THIAGO : Papel x Tesoura : CPU
+Vencedor da partida: CPU
+THIAGO 0 x 1 CPU
+Empates: 1
+-------------------
+Jogar mais uma vez? 
+[s] para sim
+[n] para não
+v
+```
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+ATENÇÃO: JOGADA ERRADA!
+Digite um valor válido!
+Jogar mais uma vez? 
+[s] para sim
+[n] para não
+n
+```
+
+Agora que o sistema de repetição está funcionando, vamos declarar a variável __matchCounter__ que será o contador de partidas:
+
+```js
+//declaração de variáveis
+let userName = ``;
+let userPlay = 0;
+let cpuPlay = 0;
+let userScore = 0;
+let cpuScore = 0;
+let tieScore = 0;
+let partialWinner = "";
+let playAgain = 0;
+let matchCounter = 0;
+```
+
+Em processamento de dados __matchCounter__ é incrementado a cada partida:
+
+```js
+//processamento de dados
+partialWinner = winnerCalculation(userPlay, cpuPlay);
+matchCounter++;
+```
+
+Na saída de dados, vamos apresentar a quantidade de partidas:
+
+```js
+//saída de dados
+  console.clear();
+  basicFunctions.header("Jankenpon");
+  console.log("PLACAR PARCIAL: ");
+  console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
+  console.log(`Vencedor da partida: ${partialWinner}`);
+  console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+  console.log(`Empates: ${tieScore}`);
+  console.log(`Nº de partidas: ${matchCounter}`);
+  basicFunctions.line("Jankenpon");
+```
+
+No console:
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+PLACAR PARCIAL: 
+THIAGO : Pedra x Tesoura : CPU
+Vencedor da partida: THIAGO
+THIAGO 2 x 0 CPU
+Empates: 1
+Nº de partidas: 3
+-------------------
+Jogar mais uma vez? 
+[s] para sim
+[n] para não
+```
+
+Estamos chegando ao final, mas você está percebendo que após o usuário escolher __"n"__ o programa se encerra e nada é apresentado. Vamos apresentar uma saída de dados final mostrando o vencedor do jogo, o placar, a quantidade de empates e o número de partidas. Todas estas variáveis já estão criadas, exceto o vencedor do jogo. Vamos declarar a variável __winner__, em declaração de variáveis:
+
+```js
+//declaração de variáveis
+let userName = ``;
+let userPlay = 0;
+let cpuPlay = 0;
+let userScore = 0;
+let cpuScore = 0;
+let tieScore = 0;
+let partialWinner = "";
+let playAgain = 0;
+let matchCounter = 0;
+let winner = "";
+```
+
+Para determinar o vencedor do jogo, vamos criar a function `gameWinner()`. Esta function receber como parâmetro os pontos de cada jogador e retorna o vencedor ou se o jogo foi empate. Logo, em declaração de funções:
+
+```js
+const gameWinner = (userScore, cpuScore) => {
+
+  if (userScore > cpuScore) {
+    return `${userName} VENCEDOR(A)!`
+  } else if (userScore < cpuScore) {
+    return "CPU VENCEDOR!";
+  } else {
+    return "JOGO EMPATADO!";
+  };
+};
+```
+
+Agora, após a estrutura de repetição __do...while__ vamos criar a ultima saída de dados, com as variáveis citadas acima:
+
+```js
+basicFunctions.loading();
+console.clear();
+basicFunctions.header("Jankenpon");
+console.log("RESULTADO FINAL: ");
+console.log(`${winner}`);
+console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+console.log(`Empates: ${tieScore}`);
+console.log(`Nº de partidas: ${matchCounter}`);
+basicFunctions.line("Jankenpon");
+```
+
+No console:
+
+```shell
+-------------------
+     Jankenpon
+-------------------
+RESULTADO FINAL: 
+CPU VENCEDOR!
+THIAGO 0 x 1 CPU
+Empates: 0
+Nº de partidas: 1
+-------------------
+```
+
+Finalizamos nossa aplicação. Abaixo vamos colocar o código completo para você conferir se tudo está de acordo:
+
+```js
+var input = require('readline-sync');
+
+const { basicFunctions } = require('./basicFunctions');
+
+//declaração de funções
+const playMenu = () => {
+    console.log("[1] PEDRA")
+    console.log("[2] PAPEL")
+    console.log("[3] TESOURA")
+}
+
+const validateNumber = () => {
+
+    let value = input.question();
+
+    while ( value != "1" && value != "2" && value != "3" ) {
+      console.clear();
+      basicFunctions.header("Jankenpon");
+      errorMessage();
+      playMenu();
+      value = input.question();
+    };
+
+    return Number(value);
+
+};
+
+const errorMessage = () => {
+    console.log("ATENÇÃO: JOGADA ERRADA!");
+    console.log("Digite um valor válido!");
+};
+
+const playerChoice = (number) => {
+
+  let choise = ""
+
+  if(number === 1){
+    choise = "Pedra"
+  } else if(number === 2) {
+    choise = "Papel"
+  } else if(number === 3) {
+    choise = "Tesoura"
+  }
+
+  return choise
+};
+
+const winnerCalculation = (userPlay, cpuPlay) => {
+
+    let winner = ""
+  
+    if ( userPlay == 1 && cpuPlay == 3 ) {
+      winner = userName;
+      userScore++;
+    } else if (userPlay == 3 && cpuPlay == 2 ) {
+      winner = userName;
+      userScore++;
+    } else if ( userPlay == 2 && cpuPlay == 1 ) {
+      winner = userName;
+      userScore++;
+    } else if( cpuPlay == 1 && userPlay == 3 ) {
+      winner = "CPU";
+      cpuScore++;
+    } else if ( cpuPlay == 3 && userPlay == 2 ) {
+      winner = "CPU";
+      cpuScore++;
+    } else if ( cpuPlay == 2 && userPlay == 1 ) {
+      winner = "CPU";
+      cpuScore++;
+    } else if ( cpuPlay == userPlay) {
+      winner = "Empate";
+      tieScore++;
+    }
+  
+    return winner
+};
+
+const playAgainMenu = () => {
+  console.log("Jogar mais uma vez? ");
+  console.log("[s] para sim");
+  console.log("[n] para não");
+};
+
+const validateAnswer = () => {
+
+  answer = input.question().toLowerCase();
+  
+  while ( answer != "n" && answer != "s") {
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    errorMessage();
+    playAgainMenu();
+    answer = input.question().toLowerCase();
+  };
+
+  return answer;
+
+};
+
+const gameWinner = (userScore, cpuScore) => {
+
+  if (userScore > cpuScore) {
+    return `${userName} VENCEDOR(A)!`
+  } else if (userScore < cpuScore) {
+    return "CPU VENCEDOR!";
+  } else {
+    return "JOGO EMPATADO!";
+  };
+};
+
+//declaração de variáveis
+let userName = ``;
+let userPlay = 0;
+let cpuPlay = 0;
+let userScore = 0;
+let cpuScore = 0;
+let tieScore = 0;
+let partialWinner = "";
+let playAgain = 0;
+let matchCounter = 0;
+let winner = "";
+
+//entrada de dados
+basicFunctions.loading();
+console.clear();
+basicFunctions.header("Jankenpon");
+userName = input.question("Digite seu nome: ").toUpperCase();
+
+do {
+
+  console.clear();
+  basicFunctions.header("Jankenpon");
+  console.log(`${userName} escolha sua jogada: `);
+  playMenu();
+  userPlay = validateNumber();
+  cpuPlay = basicFunctions.getRandomIntInclusive(1, 3);
+
+  //processamento de dados
+  partialWinner = winnerCalculation(userPlay, cpuPlay);
+  matchCounter++;
+  winner = gameWinner(userScore, cpuScore);
+
+  //saída de dados
+  console.clear();
+  basicFunctions.header("Jankenpon");
+  console.log("PLACAR PARCIAL: ");
+  console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
+  console.log(`Vencedor da partida: ${partialWinner}`);
+  console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+  console.log(`Empates: ${tieScore}`);
+  console.log(`Nº de partidas: ${matchCounter}`);
+  basicFunctions.line("Jankenpon");
+
+  playAgainMenu();
+  playAgain = validateAnswer();
+
+} while ( playAgain != "n");
+
+basicFunctions.loading();
+console.clear();
+basicFunctions.header("Jankenpon");
+console.log("RESULTADO FINAL: ");
+console.log(`${winner}`);
+console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+console.log(`Empates: ${tieScore}`);
+console.log(`Nº de partidas: ${matchCounter}`);
+basicFunctions.line("Jankenpon");
+```
+
+Chegamos ao final, espero que você tenha gostado desse desafio. Vamos para o próximo.
+
+## 8. Password Generator with 
 
 
 
