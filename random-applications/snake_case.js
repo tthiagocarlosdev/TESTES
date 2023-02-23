@@ -1,24 +1,20 @@
 var input = require('readline-sync');
 
-function header(){
-	console.log("=========================")
-	console.log("        snake_case")
-	console.log("=========================")
-}
+const { basicFunctions } = require('./basicFunctions')
 
-let text, tiny, underlined_text
+basicFunctions.header("snake_case")
 
-header()
+let inserted_text, lowercase_text, underlined_text
 
 //entrada de dados
-text = input.question("Enter the text: ")
+inserted_text = input.question("Enter the text: ")
 
 //procesamento de dados
-tiny = text.toLowerCase()
-underlined_text = tiny.replace(/ /gi, "_")
+lowercase_text = inserted_text.toLowerCase()
+underlined_text = lowercase_text.replace(/ /gi, "_")
 
 //saída de dados
 console.clear()
-header()
+basicFunctions.header("snake_case")
 console.log(underlined_text)
-console.log("=========================")
+basicFunctions.line("snake_case")
