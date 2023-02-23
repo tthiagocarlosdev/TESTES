@@ -301,7 +301,7 @@ Se você não for **inscrito** neste canal, se **inscreva**, se **gostar** do v�
 
 ___
 
-PAREI
+
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
@@ -938,7 +938,7 @@ Um vetor pode ser visto como uma variável que possui diversas posições, e com
 
 Arrays são objetos semelhantes a __listas__ que vêm com uma série de métodos embutidos para realizar operações de travessia e mutação. Nem o tamanho de um array JavaScript nem os tipos de elementos são fixos. Já que o tamanho de um array pode ser alterado a qualquer momento e os dados podem ser armazenados em posições não contíguas.
 
-importante destacar que Arrays JavaScript começam com índice zero: o primeiro elemento de um array está na posição __0__ e o último elemento está na posição equivalente ao valor da propriedade __length__ (tamanho) menos 1.
+Importante destacar que Arrays JavaScript começam com índice zero: o primeiro elemento de um array está na posição __0__ e o último elemento está na posição equivalente ao valor da propriedade __length__ (tamanho) menos 1.
 
 ```js
 var input = require('readline-sync')
@@ -1566,7 +1566,7 @@ Fazendo isso você ajuda bastante o nosso canal a crescer.
 
 Hoje chegamos ao exercício de número __61__, exercício que tem por título: __Reservar Cinema__ e o exercício é o seguinte:
 
-Desenvolva um programa que simule a reserva de cadeiras de um cinema. No total serão 10 cadeiras. Quando o usuario escolher qual a sua cadeira, deverá ser apresentado quais as cadeiras estão livres e quais estão ocupadas. Caso o usuário escolha uma cadeira já ocupada, uma mensagem devera notificá-lo que a sua opção já foi escolhida e deverá perguntar se ele quer escolher outra. O programa sera encerrado quando o usuário optar por não escolher mais cadeiras.
+Desenvolva um programa que simule a reserva de cadeiras de um cinema. No total serão 10 cadeiras. Quando o usuário escolher qual a sua cadeira, deverá ser apresentado quais as cadeiras estão livres e quais estão ocupadas. Caso o usuário escolha uma cadeira já ocupada, uma mensagem devera notificá-lo que a sua opção já foi escolhida e deverá perguntar se ele quer escolher outra. O programa será encerrado quando o usuário optar por não escolher mais cadeiras.
 
 - [x] estrutura de repetição __do__ com __cabeçalho__ e pergunta se quer continuar (criação da variável __resposta__);
 - [x] estrutura de repetição para inserir valores no array __reserva__ ( criação da variável __reserva__);
@@ -1690,7 +1690,7 @@ Fazendo isso você ajuda bastante o nosso canal a crescer.
 
 Hoje chegamos ao exercício de número __62__, exercício que tem por título: __Matriz 3x3__ e o exercício é o seguinte:
 
-Crie um programa que solicite ao usuario inserir valores numa matriz de ordem 3x3. No final o programa deverá apresentar os valores inseridos pelo usuário.
+Crie um programa que solicite ao usuário inserir valores numa matriz de ordem 3x3. No final o programa deverá apresentar os valores inseridos pelo usuário.
 
 O que é uma matriz?
 
@@ -1775,7 +1775,7 @@ Fazendo isso você ajuda bastante o nosso canal a crescer.
 
 Hoje chegamos ao exercício de número __63__, exercício que tem por título: __Matriz 3x3 Par__ e o exercício é o seguinte:
 
-Construa um programa que o usuario insira valores numa matriz 3x3. Deverá ser mostrada a posição a qual o usuário esta inserindo o valor. No final o programa deverá mostrar a matriz com todos o valores inseridos pelo usuário, destacando os valores pares. Deverá apresentar também o total de valores pares inseridos.
+Construa um programa que o usuário insira valores numa matriz 3x3. Deverá ser mostrada a posição a qual o usuário esta inserindo o valor. No final o programa deverá mostrar a matriz com todos o valores inseridos pelo usuário, destacando os valores pares. Deverá apresentar também o total de valores pares inseridos.
 
 ```js
 var input = require('readline-sync')
@@ -1960,7 +1960,7 @@ Fazendo isso você ajuda bastante o nosso canal a crescer.
 
 Hoje chegamos ao exercício de número __65__, exercício que tem por título: __Matriz 4x4__ e o exercício é o seguinte:
 
-Desenvolva um programa que o usuario insira valores numa matriz de ordem 4x4. O programa deverá apresentar o valores da matriz; a soma da Diagonal Principal, o produto da segunda linha e o maior valor da terceira coluna.
+Desenvolva um programa que o usuário insira valores numa matriz de ordem 4x4. O programa deverá apresentar o valores da matriz; a soma da Diagonal Principal, o produto da segunda linha e o maior valor da terceira coluna.
 
 ```js
 var input = require('readline-sync')
@@ -2083,7 +2083,7 @@ Até o próximo vídeo, valeu!
 
 ___
 
-
+PAREI
 
 Olá pessoas, sejam bem-vindos ao meu canal.
 
@@ -2097,7 +2097,7 @@ Fazendo isso você ajuda bastante o nosso canal a crescer.
 
 Hoje chegamos ao exercício de número __66__, exercício que tem por título: __Dissecando Matriz__ e o exercício é o seguinte:
 
-Crie um programa que o usuario insira valores numa matriz de ordem 4x4. O programa deve conter um menu com as opções: Matriz completa, Diagonal Esquerda-Direita, Triângulo Superior Direito, Triângulo Inferior Esquerdo, Diagonal Direita-Esquerda, Triângulo Inferior Direito, Triângulo Superior Esquerdo, Gerar outra Matriz e Encerrar Programa. O programa deve mostrar a matriz de acordo com a opção escolhida pelo usuário. Se o usuário escolhe matriz completa, deve ser mostrado a matriz completa, se o usuário escolher a diagonal principal, deve ser mostrado a diagonal principal e assim por diante.
+Crie um programa que o usuário insira valores numa matriz de ordem 4x4. O programa deve conter um menu com as opções: Matriz completa, Diagonal Esquerda-Direita, Triângulo Superior Direito, Triângulo Inferior Esquerdo, Diagonal Direita-Esquerda, Triângulo Inferior Direito, Triângulo Superior Esquerdo, Gerar outra Matriz e Encerrar Programa. O programa deve mostrar a matriz de acordo com a opção escolhida pelo usuário. Se o usuário escolhe matriz completa, deve ser mostrado a matriz completa, se o usuário escolher a diagonal principal, deve ser mostrado a diagonal principal e assim por diante.
 
 ```js
 var input = require('readline-sync')

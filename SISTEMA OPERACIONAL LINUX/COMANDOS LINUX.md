@@ -190,3 +190,23 @@ npm --version
 
 ___
 
+## Instalar ZSNES
+
+- ### Atualizar a lista de pacotes
+
+```shell
+sudo apt update
+```
+
+- ### Atualizar os pacotes dos programas:
+
+```shell
+sudo apt upgrade
+```
+
+- ### Instalar o zsnes
+
+```shell
+sudo apt install zsnes
+```
+
