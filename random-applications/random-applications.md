@@ -1,5 +1,25 @@
 # Aplicações Aleatórias
 
+### 1. header( );
+
+### 2. line ( );
+
+### 3. NodeJS - module.export e require( );
+
+### 4. Math.random( )
+
+### 5. snake_case with replace( )
+
+### 6. function loading( ) with method getTime( );
+
+### 7. Jokenpo
+
+### 8. Password Generator with fromCharCode( )...
+
+
+
+
+
 ## 1. header( text )
 
 Esta será a nossa function de cabeçalho. Ela recebe o texto que queremos mostrar no cabeçalho como parâmetro e mostrar o texto entre duas linhas, acima e abaixo do texto. O texto fica centralizado, conforme exemplo abaixo:
