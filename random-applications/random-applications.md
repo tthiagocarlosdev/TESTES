@@ -12,7 +12,7 @@
 
 ### 6. function loading( ) with method getTime( );
 
-### 7. Jokenpo
+### 7. Jankenpon( );
 
 ### 8. Password Generator with fromCharCode( )...
 
@@ -840,7 +840,7 @@ loading .................... 100%
 
 Vamos utilizar essa aplicação no próximo programa!
 
-## 7. Jokenpo
+## 7. Jankenpon
 
 Esta aplicação será o famoso jogo __Jokenpon__, sendo jogado entre um jogador humano, o usuário, contra o computador.
 
@@ -1741,7 +1741,219 @@ basicFunctions.line("Jankenpon");
 
 Chegamos ao final, espero que você tenha gostado desse desafio. Vamos para o próximo.
 
-## 8. Password Generator with 
+## 8. Password Generator with fromCharCode( )
+
+Esta próxima aplicação, será um gerador de senhas seguras. Todos nós já ouvimos casos de pessoas que tiveram suas redes sociais, e-mail's e outras aplicações usadas no dia-a-dia hackeadas. Para se evitar esse tipo de situação, colocar senhas seguras já é um bom começo. Uma senha segura é caracteriza por conter no mínimo de 8 caracteres, letras maiúsculas e minúsculas, números e símbolos.
+
+Esta será a nossa finalidade, criar um algoritmo que nos constitua uma senha segura.
+
+Vamos começar criando o nosso arquivo __passwordGenerator.js__.
+
+Começamos importando a nossa variável __input__:
+
+```js
+var input = require('readline-sync');
+```
+
+Vamos também criar o objeto __basicFunctions__ para importar algumas funções de __basicFunctions.js__:
+
+```js
+const { basicFunctions } = require('./basicFunctions');
+```
+
+Vamos colocar o nosso cabeçalho chamando a function `header()` e passando como parâmetro __passwordGenerator__:
+
+```js
+basicFunctions.header("passwordGenerator");
+```
+
+Executando o programa, no console:
+
+```shell
+-----------------------------------
+         passwordGenerator
+-----------------------------------
+```
+
+Nesta aplicação, o usuário só precisará informar a quantidade de caracteres que a senha terá, logo, vamos criar a variável que receberá esta quantidade. Em declaração de variáveis e entrada de dados:
+
+```js
+var input = require('readline-sync');
+
+const { basicFunctions } = require('./basicFunctions');
+
+//declaração de variáveis
+let numberOfCharacters = 0;
+
+//entrada de dados
+basicFunctions.header("passwordGenerator");
+numberOfCharacters = input.question("Digite o número de caracteres: ");
+```
+
+No console:
+
+```shell
+-----------------------------------
+         passwordGenerator
+-----------------------------------
+Digite o número de caracteres: 8
+```
+
+Acontece que precisamos validar esse valor que o usuário está digitando. Primeiro validar se realmente é um número e em seguida, se um número foi digitado, saber se a quantidade de caracteres que o usuário digitou vai gerar uma senha segura.
+
+Para validar se realmente o usuário digitou um número, vamos criar a variável __itsNumber__ que terá como valor booleano `false`.
+
+```js
+//declaração de variáveis
+let numberOfCharacters = 0;
+let itsNumber = false;
+```
+
+Em processamento de dados, __itsNumber__ recebe o retorno da function `isRegularExpression()`
+
+```js
+//processamento de dados
+itsNumber = isRegularExpression(numberOfCharacters, RegExpNumber);
+```
+
+Ainda em declaração de variáveis, vamos criar a variável __RegExpNumber__, que será atribuída com uma [Expressão Regular](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions) que procura por números, equivalente a [0-9]:
+
+```js
+//declaração de variáveis
+let numberOfCharacters = 0;
+let itsNumber = false;
+let RegExpNumber = /\d/gi;
+```
+
+Agora sim, podemos criar a parte de declaração de funções, onde começaremos com a function `isRegularExpression()`. Esta function recebe uma string e uma expressão regular como parâmetros e retorna __true__  caso dentro da string seja encontrada o padrão passado na expressão regular ou __false__, caso não seja encontrado. Para isto, vamos usar o método [`RegExp.prototype.test()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test),  que executa uma busca por uma correspondência entre uma expressão regular e uma string. Retorna `true` ou `false`. Logo, em declaração de funções:
+
+```js
+//declaração de funções
+function isRegularExpression(stringValue, regex){
+    return regex.test(stringValue) ? true : false
+}
+```
+
+Em saída de dados, vamos mostrar apenas a __itsNumber__:
+
+```js
+//saída de dados
+console.log(itsNumber);
+```
+
+Vamos mostrar o programa todo até o momento e depois realizar alguns testes.
+
+```js
+var input = require('readline-sync');
+
+const { basicFunctions } = require('./basicFunctions');
+
+//declaração de funções
+function isRegularExpression(stringValue, regex){
+    return regex.test(stringValue) ? true : false
+  }
+
+//declaração de variáveis
+let numberOfCharacters = 0;
+let itsNumber = false;
+let RegExpNumber = /\d/gi;
+
+//entrada de dados
+basicFunctions.header("passwordGenerator");
+numberOfCharacters = input.question("Digite o número de caracteres: ");
+
+//processamento de dados
+itsNumber = isRegularExpression(numberOfCharacters, RegExpNumber);
+
+//saída de dados
+console.log(itsNumber);
+```
+
+No console:
+
+```shell
+-----------------------------------
+         passwordGenerator
+-----------------------------------
+Digite o número de caracteres: 8
+true
+```
+
+```shell
+-----------------------------------
+         passwordGenerator
+-----------------------------------
+Digite o número de caracteres: h
+false
+```
+
+Até agora, podemos ver que a function `isRegularExpression()` está funcionando perfeitamente. 
+
+O próximo passo, será criar uma estrutura de repetição para solicitar do usuário digitar o valor  correto, caso ele não digite um número. Vamor criar a function `errorMessage()` que vai apresentar uma mensagem de erro para um valor inválido:
+
+```js
+function errorMessage(){
+    console.log("[ERROR]: Digite um valor válido!");
+};
+```
+
+Sempre que o usuário digitar qualquer valor que não seja um número, deverá aparecer a mensagem de erro e solicitado para o usuário inserir um valor correto, no caso, um número. logo, em processamento de dados:
+
+```js
+//processamento de dados
+itsNumber = isRegularExpression(numberOfCharacters, RegExpNumber);
+
+while (!itsNumber) {
+    console.clear();
+    basicFunctions.header("passwordGenerator");
+    errorMessage();
+    numberOfCharacters = input.question("Digite o número de caracteres: ");
+    itsNumber = isRegularExpression(numberOfCharacters, RegExpNumber);
+};
+```
+
+Por enquanto, vamos imprimir o valor digitado pelo usuário e a variável __itsNumber__:
+
+```js
+//saída de dados
+console.clear();
+basicFunctions.header("passwordGenerator");
+console.log(numberOfCharacters);
+console.log(itsNumber);
+basicFunctions.line("passwordGenerator");
+```
+
+No console:
+
+```shell
+-----------------------------------
+         passwordGenerator
+-----------------------------------
+Digite o número de caracteres: j
+```
+
+```shell
+-----------------------------------
+         passwordGenerator
+-----------------------------------
+[ERROR]: Digite um valor válido!
+Digite o número de caracteres: 8
+```
+
+```shell
+-----------------------------------
+         passwordGenerator
+-----------------------------------
+8
+true
+-----------------------------------
+```
+
+number Of Characters Typed - número de caracteres digitados
+
+
+
+
 
 
 
