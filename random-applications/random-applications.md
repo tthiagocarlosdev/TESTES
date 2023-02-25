@@ -1,8 +1,8 @@
-# Aplicações Aleatórias
+# Random applications
 
 ### 1. header( );
 
-### 2. line ( );
+### 2. line( );
 
 ### 3. NodeJS - module.export e require( );
 
@@ -12,7 +12,7 @@
 
 ### 6. function loading( ) with method getTime( );
 
-### 7. Jankenpon( );
+### 7. Jankenpon( ) with arrow functions;
 
 ### 8. Password Generator with fromCharCode( )...
 
@@ -842,7 +842,7 @@ Vamos utilizar essa aplicação no próximo programa!
 
 ## 7. Jankenpon
 
-Esta aplicação será o famoso jogo __Jokenpon__, sendo jogado entre um jogador humano, o usuário, contra o computador.
+Esta aplicação será o famoso jogo __Jankenpon__, sendo jogado entre um jogador humano, o usuário, contra o computador.
 
 Vamos começar adicionando as functions `loading()`  e `getRandomIntInclusive()` dentro do objeto __basicFunctions__:
 
@@ -991,7 +991,7 @@ const playMenu = () => {
 }
 ```
 
-Ainda na entrada de dados, vamos apresentar o nome do usuário e pedir para que o mesmo escolha uma das opções do menu, atribuindo essa escolha na variável __humanPlay__. Mas antes atribuir o valor a variável, vamos ter que validar o valor digitado pelo usuário e para isto vamos criar a function `validateNumber()`. Logo, em declaração de funções:
+Ainda na entrada de dados, vamos apresentar o nome do usuário e pedir para que o mesmo escolha uma das opções do menu, atribuindo essa escolha na variável __humanPlay__. Mas antes atribuir o valor a variável, vamos ter que validar o valor digitado pelo usuário e para isto vamos criar a function `validateNumber()`. Vamos declarar essa function como uma [Arrow Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions). Logo, em declaração de funções:
 
 ```js
 const validateNumber = () => {
