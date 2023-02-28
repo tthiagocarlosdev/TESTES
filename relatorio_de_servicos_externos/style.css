@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --background-color: whitesmoke;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Rajdhani', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	font-size: 1rem;
+	color:--black-color;
+    background-color: var(--background-color);
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+    width: 100vw;
+}
+
+.header {
+    /* background-color: brown; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 10rem;
+    border-bottom: 1px solid black;
+}
+
+.header .images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1.7;
+}
+
+.header img {
+    height: 7rem;
+    width: 10rem;   
+}
+
+#bandeira-pernambuco {
+    border: 1px solid black;
+}
+
+.header_title {
+    /* background-color: green; */
+    display: flex;
+    flex:3;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_title h1 {
+    font-size: 3rem;
+}
+
+.header_title h2 {
+    font-size: 1.5rem;
+    padding: 0.3rem;
+}
+
+.attendance_control {
+    background-color: chocolate;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex:3;
+}
+
+.container-title {
+    flex:0.5;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.container-title h2 {
+    font-size: 2rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid black;
+}
+
+.container-date-time {
+    flex:0.7;
+    display:flex;
+    width: 100vw;
+    padding-bottom: 0.5rem
+}
+
+.place_of_care,
+.date_and_time {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.place_of_care span,
+.date_and_time span,
+.reported_defect span,
+.performed_services span {
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    margin-left: 4rem;
+}
+
+.place_of_care input, .date_and_time input {
+    margin-left: 4rem;
+    width: 30rem;
+    height: 2.5rem;
+    display: flex;
+    text-align: center;
+    border-radius: 50px;
+    border: 2px solid black;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.container-services{ 
+    background-color: chartreuse;
+    flex: 3;
+    width: 100vw;
+    display: flex;
+}
+
+.reported_defect,
+.performed_services {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.reported_defect textarea,
+.performed_services textarea {
+    margin-left: 4rem;
+    width: 35rem;
+    border-radius: 15px;
+    border: 2px solid black;
+
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem;
+    background-color: lightgray;
+}
+
+.container-technician {
+    flex:1;
+}
+

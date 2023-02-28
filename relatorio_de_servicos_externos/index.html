@@ -5,60 +5,105 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>relatorio_de_servicos_externos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="header">
-        <img src="http://200.238.83.219/old-PCPE/brasao_policia_civil.png" alt="brasao da policia civil de pe">
-        <h1>POLÍCIA CIVIL DE PERNAMBUCO</h1>
-        <h2>Diretoria de Tecnologia da Informação</h2>
-        <h2>Relatório de Serviços Externos</h2>
-    </header>
+    <div class="container">
 
-    <div class="attendance_control">
-        <h2>Controle de atendimento</h2>
-        <div class="place_of_care">
-            <span> Local de atendimento </span>
-            <input type="text" class="place_of_care_input">
-        </div>
-        <div class="date_and_time">
-            <span>Data e Hora: <input type="datetime-local" name="date_and_time" id="date_and_time_input"></span>
-        </div>
-        <div class="reported_defect">
-            <span>Defeito informado:</span>
-            <input type="text" name="reported_defect" id="reported_defect_input">
-        </div>
-        <div class="performed_services">
-            <span>Serviços Executados:</span>
-            <input type="text" name="performed_services" id="performed_services_input">
-        </div>
-        <div class="technician">
-            <span>Técnico(s): </span>
-            <input type="text" name="technician" class="technician_input">
-            <input type="text" name="technician" class="technician_input">
-            <input type="text" name="technician" class="technician_input">
-            <input type="text" name="technician" class="technician_input">
-        </div>
-        <div class="registration">
-            <span>Matrícula: </span>
-            <input type="text" name="registration" class="registration_input">
-            <input type="text" name="registration" class="registration_input">
-            <input type="text" name="registration" class="registration_input">
-            <input type="text" name="registration" class="registration_input">
-        </div>
-    </div>
+        <header class="header">
+
+            <div class="images">
+                <img src="./images/bandeira_policia_civil.png" alt="brasao da policia civil de pe">
+            </div>
+            
+            <div class="header_title">
+                <h1>POLÍCIA CIVIL DE PERNAMBUCO</h1>
+                <h2>Diretoria de Tecnologia da Informação</h2>
+                <h2>Relatório de Serviços Externos</h2>        
+            </div>
+
+            <div class="images">
+                <img src="./images/bandeira_pernambuco.jpg" alt="bandeira de pernambuco" id="bandeira-pernambuco">    
+            </div>
+            
+        </header>
     
-    <div class="user">
-        <span>Usuário:</span>
-        <span>Nome legível:</span>
-        <input type="text" name="user_name" id="user_name">
-        <span>Assinatura:</span>
-        <input type="text" name="user_registration" id="user_registration">
-        <span class="signature">_____________________</span>
-    </div>
-    
+        <div class="attendance_control">
+
+            <div class="container-title">
+                <h2>Controle de atendimento</h2>
+            </div>
+
+            <div class="container-date-time">
+
+                <div class="place_of_care">
+                    <span> Local de atendimento: </span>
+                    <input type="text" class="place_of_care_input">
+                </div>
+                <div class="date_and_time">
+                    <span>Data e Hora: </span>
+                    <input type="datetime-local" name="date_and_time" id="date_and_time_input">
+                </div>
+
+            </div>
+
+            <div class="container-services">
+
+                <div class="reported_defect">
+                    <span>Defeito informado:</span>
+                    <textarea name="reported_defect" id="reported_defect" cols="30" rows="10" ></textarea>
+                </div>
+                <div class="performed_services">
+                    <span>Serviços Executados:</span>
+                    <textarea name="performed_services" id="performed_services" cols="30" rows="10" ></textarea>
+                </div>
+
+            </div>
+
+            <div class="container-technician">
+
+                <div class="technician">
+                    <span>Técnico(s): </span>
+                    <input type="text" name="technician" class="technician_input">
+                    <input type="text" name="technician" class="technician_input">
+                    <input type="text" name="technician" class="technician_input">
+                    <input type="text" name="technician" class="technician_input">
+                </div>
+                <div class="registration">
+                    <span>Matrícula: </span>
+                    <input type="text" name="registration" class="registration_input">
+                    <input type="text" name="registration" class="registration_input">
+                    <input type="text" name="registration" class="registration_input">
+                    <input type="text" name="registration" class="registration_input">
+                </div>
+
+            </div>
+
+        </div>
         
-    
+        <div class="user">
+            <span>Usuário:</span>
+            <span>Nome legível:</span>
+            <input type="text" name="user_name" id="user_name">
+            <span>Assinatura:</span>
+            <input type="text" name="user_registration" id="user_registration">
+            <span class="signature">_____________________</span>
+        </div>
+
+        <footer class="box-footer">
+            <h2 class="footer-title"> Desenvolvido por tthiagocarlosdev </h2>
+            <ul class="links-social-media">
+              <li> <a href="https://github.com/tthiagocarlosdev" target="_blank"> <i class="fa-brands fa-github"></i> </a></li>
+              <li> <a href="mailto:tthiagocarlos.dev@gmail.com" target="_blank"> <i class="fa-sharp fa-solid fa-g"></i> </a></li>
+              <li> <a href="https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw" target="_blank"> <i class="fa-brands fa-youtube"></i> </a></li>
+              <li> <a href="https://www.instagram.com/tthiagocarlos.dev/" target="_blank"> <i class="fa-brands fa-instagram"></i>  </a></li>
+              <li> <a href="https://www.linkedin.com/in/thiago-carlos-80a480244" target="_blank"> <i class="fa-brands fa-linkedin"></i>  </a></li>
+            </ul>
+          </footer>
+
+    </div>
+
     
 </body>
 </html>
