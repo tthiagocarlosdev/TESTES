@@ -13,20 +13,22 @@
 
         <header class="header">
 
-            <div class="images">
-                <img src="./images/bandeira_policia_civil.png" alt="brasao da policia civil de pe">
-            </div>
-            
-            <div class="header_title">
-                <h1>POLÍCIA CIVIL DE PERNAMBUCO</h1>
-                <h2>Diretoria de Tecnologia da Informação</h2>
-                <h2>Relatório de Serviços Externos</h2>        
+            <div class="sub-header">
+                <div class="containers-images">
+                    <img src="./images/bandeira_policia_civil.png" alt="brasao da policia civil de pe">
+                </div>
+                
+                <div class="header_title">
+                    <h1>POLÍCIA CIVIL DE PERNAMBUCO</h1>
+                    <h2>Diretoria de Tecnologia da Informação</h2>
+                    <h2>Relatório de Serviços Externos</h2>        
+                </div>
+    
+                <div class="containers-images">
+                    <img src="./images/bandeira_pernambuco.jpg" alt="bandeira de pernambuco" id="bandeira-pernambuco">    
+                </div>
             </div>
 
-            <div class="images">
-                <img src="./images/bandeira_pernambuco.jpg" alt="bandeira de pernambuco" id="bandeira-pernambuco">    
-            </div>
-            
         </header>
 
         <section class="attendance_control">
@@ -35,7 +37,7 @@
                 <h2>Controle de atendimento</h2>
             </div>
 
-            <form action="">
+            <form class="container-form" action="">
 
                 <div class="container-date-time">
 
@@ -49,8 +51,6 @@
                     </div>
                 </div>
 
-                <!-- PAREI -->
-
                 <div class="container-services">
 
                     <div class="reported_defect">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
 
-                <div class="container-technician">
+                <div class="container-technician-and-user">
 
                     <div class="technician">
                         <label>Técnico(s): </label>
@@ -79,16 +79,18 @@
                         <input type="text" name="registration" class="registration_input">
                         <input type="text" name="registration" class="registration_input">
                     </div>
-                </div>
 
-                <div class="user">
-                    <span>Usuário:</span>
-                    <span>Nome legível:</span>
-                    <input type="text" name="user_name" id="user_name">
-                    <span>Assinatura:</span>
-                    <input type="text" name="user_registration" id="user_registration">
-                    <span class="signature">_____________________</span>
-                </div>
+                    <div class="user">
+                        <label>Usuário:</label>
+                        <label>Nome legível:</label>
+                        <input type="text" name="user_name" id="user_name">
+                        <label>Matrícula:</label>
+                        <input type="text" name="user_registration" id="user_registration">
+                        <label>Assinatura:</label>
+                        <label class="signature">_____________________</label>
+                    </div>
+
+                </div>  
 
             </form>
 

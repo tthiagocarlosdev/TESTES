@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
-:root {
-    --background-color: whitesmoke;
-
-    --blue: rgb(71, 148, 236 );
-    --dark-blue: rgb(0, 75, 161);
-    --white: rgb(255, 255, 255);
-    --black: rgb(0, 0, 0);
-    --gray: rgb(143, 143, 143);
-    
-    --background-model: rgba(0,0,0,0.8);
-    --background-box-model:rgb(68, 103, 246);
-    --modal-button: rgb(242, 129, 129);
-    --modal-button-hover: rgb(0, 128, 0);
+:root{
+    --black-color: black;
+    --container-color: blueviolet;
+    --header-color: brown;
+    --sub-header-color: greenyellow;
+    --containers-images-color: blue;
+    --header_title_color: forestgreen;
+    --attendance_control_color: darkorange;
+    --container-title-color: deeppink;
+    --container-date-time-color: cadetblue;
+    --container-services-color: burlywood;
+    --container-technician-and-user-color: crimson;
+    --hover-color: lightgray;
 }
+
 
 * {
 	padding: 0;
@@ -22,35 +23,51 @@
 	font-family: 'Rajdhani', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-	font-size: 1rem;
-	color:--black-color;
-    background-color: var(--background-color);
+	font-size: 16px;
+    /* background-color: whitesmoke; */
 }
 
 .container {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-    width: 100vw;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--container-color);
 }
 
 .header {
-    /* background-color: brown; */
+    background-color: var(--header-color);
+    height: 10rem;
+    width: 100%;
     order: 1;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 10rem;
-    border-bottom: 1px solid black;
-}
-
-.header .images {
-    display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1.7;
+    border-bottom: 1px solid var(--black-color);
+}
+
+.sub-header{
+    background-color: var(--sub-header-color);
+    height: 10rem;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.containers-images {
+    background-color: var(--containers-images-color);
+    height: 10rem;
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .header img {
@@ -59,19 +76,20 @@
 }
 
 #bandeira-pernambuco {
-    border: 1px solid black;
+    border: 1px solid var(--black-color);
 }
 
 .header_title {
+    background-color: var(--header_title_color);
     display: flex;
-    flex:3;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .header_title h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .header_title h2 {
@@ -80,139 +98,252 @@
 }
 
 .attendance_control {
+    background-color: var(--attendance_control_color);
     order: 2;
-    background-color: chocolate;
+    width: 80%;
     display:flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex:3;
 }
 
 .container-title {
-    flex:0.5;
+    background-color: var(--container-title-color);
+    order: 1;
+    height: 5rem;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100vw;
 }
 
 .container-title h2 {
     font-size: 2rem;
+    width: auto;
+    border-bottom: 1px solid var(--black-color);
     padding: 0.5rem 0.5rem 0 0.5rem;
-    border-bottom: 1px solid black;
+}
+
+.container-form {
+    width: 100%;
+    order: 2;
 }
 
 .container-date-time {
-    flex:0.7;
+    background-color: var(--container-date-time-color);
+    order: 1;
+    width: 100%;
     display:flex;
     flex-wrap: wrap;
-    width: 100vw;
-    margin-top: 1rem;
-    padding-bottom: 0.5rem;
 }
 
 .place_of_care,
 .date_and_time {
-    flex:1;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
 }
 
+.place_of_care {
+    background-color: chartreuse;
+}
+
 .place_of_care label,
-.date_and_time label,
+.date_and_time label {
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 0.5rem 0 0.5rem;
+}
+
+.place_of_care input, .date_and_time input {
+    text-decoration: none;
+    width: 30rem;
+    height: 2.5rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    padding-right: 1.5rem;
+    margin-left: 3.75rem;
+
+}
+
+.container-services {
+    background-color: var(--container-services-color);
+    order: 2;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.reported_defect,
+.performed_services {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.reported_defect {
+    background-color: blue;
+}
+
 .reported_defect label,
 .performed_services label {
     font-size: 1.3rem;
     font-weight: 600;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
-    margin-left: 4rem;
+    padding: 0.5rem 0 0.5rem;
 }
 
-.place_of_care input, .date_and_time input {
-    margin-left: 4rem;
+
+.reported_defect textarea,
+.performed_services textarea {
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 90%;
+    border-radius: 10px;
+    border: 1px solid var(--black-color);
+
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem;
+    margin-left: 6.7rem;
+}
+
+.reported_defect textarea {
+    height: 7rem;
+}
+
+
+/* hover hover hover hover hover hover hover hover hover */
+.reported_defect textarea:hover,
+.performed_services textarea:hover,
+.place_of_care input:hover,
+.date_and_time input:hover {
+    background-color: var(--hover-color);
+}
+
+/* PAREI */
+
+.container-technician-and-user {
+    background-color: var(--container-technician-and-user-color);
+    /* flex:1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100vw;
+    margin: 2rem 2.5rem 0;
+    margin-top: 2rem;
+    margin-left: 6.5rem; 
+    background-color: aquamarine; */
+}
+
+.technician {
+    /* order:1;
+    display:flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    width: 100vw;
+    background-color: blue; */
+}
+
+.registration {
+    /* order: 2;
+    display:flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    width: 100vw;
+    background-color: blueviolet; */
+}
+
+.user {
+    /* order: 3;
+    display:flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    width: 100vw;
+    background-color: brown; */
+}
+
+.technician label,
+.registration label,
+.user label {
+    /* font-size: 1.4rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem; */
+}
+
+.technician_input,
+.registration_input {
+    /* margin-bottom: 0.5rem;
+    width: 15rem;
+    height: 2.5rem;
+    display: flex;
+    text-align: center;
+    border-radius: 50px;
+    border: 2px solid black;
+    font-size: 1.2rem;
+    font-weight: 600; */
+}
+
+#user_name {
+    /* margin-bottom: 0.5rem;
     width: 30rem;
     height: 2.5rem;
     display: flex;
     text-align: center;
     border-radius: 50px;
     border: 2px solid black;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 600; */
 }
 
-/* PAREI  */
-.container-services{ 
-    background-color: chartreuse;
-    flex: 3;
-    width: 100vw;
-    display: flex;
-}
-
-.reported_defect,
-.performed_services {
-    flex:1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-
-.reported_defect textarea,
-.performed_services textarea {
-    margin-left: 4rem;
-    width: 35rem;
-    border-radius: 15px;
-    border: 2px solid black;
-
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 0.5rem;
-    background-color: lightgray;
-}
-
-.container-technician {
-    flex:1;
-}
-
+/* footer - footer -  footer -  footer -  footer -  footer */
 .footer {
     order: 3;
+    width: 100%;
+    background-color: hotpink;
+    /* 
     display: flex;
 	flex-direction: row;
 	order: 3;
 	flex: 0.5;
-	background-color:var(--dark-blue);
+    width: 100vw;
+	background-color:var(--dark-blue); */
 }
 
 .footer-title {
-    color: var(--black);
+    /* color: var(--black);
 	flex: 1;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
 	align-items: center;
-	padding: 1rem;
+	padding: 1rem; */
 }
 
 .links-social-media {
-    list-style: none;
+    /* list-style: none;
 	flex: 1.2;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
 	padding:0.5rem;
-	flex-flow: wrap;
+	flex-flow: wrap; */
 }
 
 .links-social-media a {
-    display: flex;
+    /* display: flex;
     width: 4rem;
     height: 1rem;
     justify-content: center;
@@ -223,13 +354,13 @@
     background-color: var(--gray);
     color: var(--black);
     border-radius: 5px;
-    /* box-shadow: var(--black) 0.2rem 0.2rem 0.5rem; */
+    box-shadow: var(--black) 0.2rem 0.2rem 0.5rem; */
 }
 
 .links-social-media a:hover {
-	background-color: var(--modal-button-hover);
+	/* background-color: var(--modal-button-hover); */
 }
 
 .fa-brands, .fa-solid {
-	font-size: 1.5rem;
+	/* font-size: 1.5rem; */
 }
