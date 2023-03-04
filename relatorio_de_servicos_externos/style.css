@@ -2,7 +2,9 @@
 
 :root{
     --black-color: black;
-    --container-color: blueviolet;
+    --hover-color: lightgray;
+    
+    /* --container-color: blueviolet;
     --header-color: brown;
     --sub-header-color: greenyellow;
     --containers-images-color: blue;
@@ -10,9 +12,13 @@
     --attendance_control_color: darkorange;
     --container-title-color: deeppink;
     --container-date-time-color: cadetblue;
+    --place_of_care-color: chartreuse;
+    --reported_defect-color: blue;
     --container-services-color: burlywood;
     --container-technician-and-user-color: crimson;
-    --hover-color: lightgray;
+    --technician-color: darkolivegreen;
+    --registration-color: darkseagreen;
+    --user-color: coral; */
 }
 
 
@@ -149,7 +155,7 @@
 }
 
 .place_of_care {
-    background-color: chartreuse;
+    background-color: var(--place_of_care-color);
 }
 
 .place_of_care label,
@@ -159,9 +165,10 @@
     padding: 0.5rem 0 0.5rem;
 }
 
-.place_of_care input, .date_and_time input {
+.place_of_care input,
+.date_and_time input {
     text-decoration: none;
-    width: 30rem;
+    width: 25rem;
     height: 2.5rem;
     border: 1px solid black;
     border-radius: 10px;
@@ -171,7 +178,7 @@
     font-weight: 600;
 
     padding-right: 1.5rem;
-    margin-left: 3.75rem;
+    margin-left: 6.7rem;
 
 }
 
@@ -193,7 +200,7 @@
 }
 
 .reported_defect {
-    background-color: blue;
+    background-color: var(--reported_defect-color);
 }
 
 .reported_defect label,
@@ -209,11 +216,11 @@
     display: flex;
     flex-wrap: wrap;
 
-    width: 90%;
+    width: 85.3%;
     border-radius: 10px;
     border: 1px solid var(--black-color);
 
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 600;
     padding: 0.5rem;
     margin-left: 6.7rem;
@@ -223,90 +230,90 @@
     height: 7rem;
 }
 
-
-/* hover hover hover hover hover hover hover hover hover */
-.reported_defect textarea:hover,
-.performed_services textarea:hover,
-.place_of_care input:hover,
-.date_and_time input:hover {
-    background-color: var(--hover-color);
-}
-
-/* PAREI */
-
 .container-technician-and-user {
     background-color: var(--container-technician-and-user-color);
-    /* flex:1;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 100vw;
-    margin: 2rem 2.5rem 0;
-    margin-top: 2rem;
-    margin-left: 6.5rem; 
-    background-color: aquamarine; */
+    width: 100%;
 }
 
 .technician {
-    /* order:1;
+    background-color: var(--technician-color);
     display:flex;
     flex-direction: column;
-    margin-left: 2rem;
-    width: 100vw;
-    background-color: blue; */
+    flex: 1;
 }
 
 .registration {
-    /* order: 2;
+    background-color: var(--registration-color);
     display:flex;
     flex-direction: column;
-    margin-left: 2rem;
-    width: 100vw;
-    background-color: blueviolet; */
+    flex: 1;
 }
 
 .user {
-    /* order: 3;
+    background-color: var(--user-color);
     display:flex;
     flex-direction: column;
-    margin-left: 2rem;
-    width: 100vw;
-    background-color: brown; */
+    flex: 1.5;
 }
 
 .technician label,
 .registration label,
 .user label {
-    /* font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    padding-bottom: 0.5rem; */
+    padding: 0.5rem 0 0.5rem;
 }
 
 .technician_input,
 .registration_input {
-    /* margin-bottom: 0.5rem;
     width: 15rem;
     height: 2.5rem;
-    display: flex;
-    text-align: center;
-    border-radius: 50px;
-    border: 2px solid black;
+    border: 1px solid var(--black-color);
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    margin-left: 4rem;
+
     font-size: 1.2rem;
-    font-weight: 600; */
+    font-weight: 600;
+    text-align: center;
 }
 
-#user_name {
-    /* margin-bottom: 0.5rem;
-    width: 30rem;
+#user_name,
+#user_registration {
+    margin-left: 5rem;
+    width: 22rem;
     height: 2.5rem;
-    display: flex;
-    text-align: center;
-    border-radius: 50px;
-    border: 2px solid black;
+    border-radius: 10px;
+    border: 1px solid var(--black-color);
     font-size: 1.2rem;
-    font-weight: 600; */
+    font-weight: 600;
+    text-align: center;
 }
 
+#signature {
+    border-bottom: 1px solid var(--black-color);
+    width: 22rem;
+    margin-left: 5rem;
+
+}
+
+/* hover hover hover hover hover hover hover hover hover */
+.reported_defect textarea:hover,
+.performed_services textarea:hover,
+.place_of_care input:hover,
+.date_and_time input:hover,
+.technician_input:hover,
+.registration_input:hover,
+#user_name:hover,
+#user_registration:hover {
+    background-color: var(--hover-color);
+}
+
+
+/* PAREI */
 /* footer - footer -  footer -  footer -  footer -  footer */
 .footer {
     order: 3;
