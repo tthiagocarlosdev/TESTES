@@ -5,7 +5,7 @@
     --hover-color: lightgray;
     --container-color: whitesmoke;
     
-    /* --container-color: blueviolet;
+    --container-color: blueviolet;
     --header-color: brown;
     --sub-header-color: greenyellow;
     --containers-images-color: blue;
@@ -14,6 +14,7 @@
     --container-title-color: deeppink;
     --container-date-time-color: cadetblue;
     --place_of_care-color: chartreuse;
+    /*
     --reported_defect-color: blue;
     --container-services-color: burlywood;
     --container-technician-and-user-color: crimson;
@@ -23,7 +24,6 @@
     --footer-color: hotpink;
     --footer-title-color: firebrick; */
 }
-
 
 * {
 	padding: 0;
@@ -168,7 +168,6 @@
     font-weight: 600;
     padding: 0.5rem 0 0.5rem;
 }
-
 .place_of_care input,
 .date_and_time input {
     text-decoration: none;
@@ -186,6 +185,7 @@
 
 }
 
+/* parei - parei - parei - parei - parei - parei -  */
 .container-services {
     background-color: var(--container-services-color);
     order: 2;
