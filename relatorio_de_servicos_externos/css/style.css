@@ -14,15 +14,15 @@
     --container-title-color: deeppink;
     --container-date-time-color: cadetblue;
     --place_of_care-color: chartreuse;
-    /*
     --reported_defect-color: blue;
     --container-services-color: burlywood;
     --container-technician-and-user-color: crimson;
     --technician-color: darkolivegreen;
     --registration-color: darkseagreen;
+    /*
     --user-color: coral;
     --footer-color: hotpink;
-    --footer-title-color: firebrick; */
+    --footer-title-color: firebrick;*/
 }
 
 * {
@@ -167,9 +167,14 @@
     font-size: 1.3rem;
     font-weight: 600;
     padding: 0.5rem 0 0.5rem;
+    display: flex;
+    flex: 1;
 }
+
 .place_of_care input,
 .date_and_time input {
+    display: flex;
+    flex: 1;
     text-decoration: none;
     width: 25rem;
     height: 2.5rem;
@@ -185,7 +190,6 @@
 
 }
 
-/* parei - parei - parei - parei - parei - parei -  */
 .container-services {
     background-color: var(--container-services-color);
     order: 2;
