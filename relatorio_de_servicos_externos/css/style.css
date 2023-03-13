@@ -17,6 +17,7 @@
     --reported_defect-color: blue;
     --container-services-color: burlywood;
     --container-technician-and-user-color: crimson;
+    --sub-title-technician-and-registration-color: tomato;
     --technician-color: darkolivegreen;
     --registration-color: darkseagreen;
     /*
@@ -145,6 +146,7 @@
     background-color: var(--container-date-time-color);
     order: 1;
     width: 100%;
+    /* height: 6rem; */
     display:flex;
     flex-wrap: wrap;
 }
@@ -159,14 +161,14 @@
 }
 
 .place_of_care {
-    background-color: var(--place_of_care-color);
+    /* background-color: var(--place_of_care-color); */
 }
 
 .place_of_care label,
 .date_and_time label {
     font-size: 1.3rem;
     font-weight: 600;
-    padding: 0.5rem 0 0.5rem;
+    padding-top: 0.5rem;
     display: flex;
     flex: 1;
 }
@@ -177,9 +179,9 @@
     flex: 1;
     text-decoration: none;
     width: 25rem;
-    height: 2.5rem;
-    border: 1px solid black;
-    border-radius: 10px;
+    height: 10rem;
+    border: 0.063rem solid black;
+    border-radius: 0.63rem;
     
     text-align: center;
     font-size: 1.5rem;
@@ -225,8 +227,8 @@
     flex-wrap: wrap;
 
     width: 85.3%;
-    border-radius: 10px;
-    border: 1px solid var(--black-color);
+    border-radius: 0.625rem;
+    border: 0.063rem solid var(--black-color);
 
     font-size: 1.5rem;
     font-weight: 600;
@@ -241,40 +243,31 @@
 .container-technician-and-user {
     background-color: var(--container-technician-and-user-color);
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
 }
 
-.technician {
-    background-color: var(--technician-color);
-    display:flex;
-    flex-direction: column;
-    flex: 1;
+.sub-title-technician-and-registration {
+    background-color: var(--sub-title-technician-and-registration-color);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
-.registration {
-    background-color: var(--registration-color);
-    display:flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.user {
-    background-color: var(--user-color);
-    display:flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    flex: 1.5;
-}
-
-.technician label,
-.registration label,
-.user label {
-    font-size: 1.3rem;
+.sub-title-technician-and-registration h2 {
+    font-size: 1.5rem;
     font-weight: 600;
     padding: 0.5rem 0 0.5rem;
+}
+
+.technician {
+    background-color: var(--technician-color);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .technician_input,
@@ -283,32 +276,74 @@
     height: 2.5rem;
     border: 1px solid var(--black-color);
     border-radius: 10px;
-    margin-bottom: 0.5rem;
-    margin-left: 4rem;
+    margin: 0rem 0rem 0.5rem 6.7rem;
 
     font-size: 1.2rem;
     font-weight: 600;
     text-align: center;
+}
+
+.user {
+    background-color: var(--user-color);
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    flex: 1.5;
+}
+
+.user label {
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 0.5rem 0 0.5rem;
+    /* height: 6rem; */
 }
 
 #user_name,
 #user_registration {
-    margin-left: 5rem;
     width: 22rem;
     height: 2.5rem;
-    border-radius: 10px;
-    border: 1px solid var(--black-color);
+    border-radius: 0.63rem;
+    border: 0.063rem solid var(--black-color);
     font-size: 1.2rem;
     font-weight: 600;
     text-align: center;
 }
 
+.user label {
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding-top: 0.5rem;
+    display: flex;
+    flex: 1;
+}
+
+.box_user_name input,
+.box_user_registragion input {
+    display: flex;
+    flex: 1;
+    text-decoration: none;
+    width: 25rem;
+    height: 2.5rem;
+    border: 0.063rem solid black;
+    border-radius: 0.63rem;
+    
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    padding-right: 1.5rem;
+    margin: 0rem 0rem 4rem 6.7rem;
+
+}
+
 #button-to-view {
+    position: relative;
+    bottom: 1rem;
+    left: 55rem;
     border: 1px solid var(--black-color);
     border-radius: 10px;
     width: 10rem;
     height: 2.5rem;
-    margin: 1.4rem 0rem 0rem 11rem;
     font-size: 1.5rem;
     font-weight: 600;
     background-color: var(--hover-color);

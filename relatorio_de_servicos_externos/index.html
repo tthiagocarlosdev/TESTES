@@ -66,30 +66,36 @@
 
                 <div class="container-technician-and-user">
 
-                    <div class="technician">
-                        <label>Técnico(s): </label>
-                        <input type="text" name="technician" class="technician_input" id="technician_a" >
-                        <input type="text" name="technician" class="technician_input" id="technician_b" >
-                        <input type="text" name="technician" class="technician_input" id="technician_c" >
-                        <input type="text" name="technician" class="technician_input" id="technician_d" >
+                    <div class="sub-title-technician-and-registration">
+                        <h2>Técnico(s): </h2>
+                        <h2>Matrícula: </h2>
                     </div>
-                    <div class="registration">
-                        <label>Matrícula: </label>
-                        <input type="text" name="registration" class="registration_input" id="registration_a" >
-                        <input type="text" name="registration" class="registration_input" id="registration_b" >
-                        <input type="text" name="registration" class="registration_input" id="registration_c" >
-                        <input type="text" name="registration" class="registration_input" id="registration_d" >
+
+                    <div class="technician">
+
+                        <input type="text" name="technician" class="technician_input input-1" id="technician_a" >
+                        <input type="text" name="technician" class="registration_input input-2" id="registration_a" >
+                        <input type="text" name="technician" class="technician_input input-1" id="technician_b" >
+                        <input type="text" name="technician" class="registration_input input-2" id="registration_b" >
+                        <input type="text" name="technician" class="technician_input input-1" id="technician_c" >
+                        <input type="text" name="technician" class="registration_input input-2" id="registration_c" >
+                        <input type="text" name="technician" class="technician_input input-1" id="technician_d" >
+                        <input type="text" name="technician" class="registration_input input-2" id="registration_d" >
                     </div>
 
                     <div class="user">
-                        <label>Nome do usuário:</label>
-                        <input type="text" name="user_name" id="user_name">
-                        <label>Matrícula do usuário:</label>
-                        <input type="text" name="user_registration" id="user_registration">
-                        <!-- <label>Assinatura:</label>
-                        <label id="signature"></label> -->
-                        <button type="button" id="button-to-view" onclick="toView()">Visualizar</button>
+
+                        <div class="box_user_name">
+                            <label>Nome do usuário:</label>
+                            <input type="text" name="user_name" id="user_name">
+                        </div>
+                        <div class="box_user_registragion">
+                            <label>Matrícula do usuário:</label>
+                            <input type="text" name="user_registration" id="user_registration">
+                        </div>
                     </div>
+
+                    <button type="button" id="button-to-view" onclick="toView()">Visualizar</button>
 
                 </div>  
 
