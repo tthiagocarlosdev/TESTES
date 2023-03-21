@@ -135,13 +135,15 @@ function snakeCase() {
   password.value = `${text_snake_case}`
   string_size.innerHTML = `${text_snake_case.length} characters!`
 
-  console.log(text_snake_case)
+  // console.log(text_snake_case)
+  // console.log(typed_text.value)
 }
 
 /* function button copy */
 function copyToClipboard(){
   navigator.clipboard.writeText(password.value).then(() => {
     alert(`Copied text: ${password.value}`)
+    typed_text.value = ``
   }) 
 }
 
