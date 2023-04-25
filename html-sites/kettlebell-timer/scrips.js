@@ -1,8 +1,4 @@
-const form = document.querySelector('form#form')
-const athleteName = document.querySelector('input#athleteName')
-const athleteTest = document.querySelector('select#athleteTest')
-const kettlebellWeight = document.querySelector('select#kettlebellWeight')
-const timeTest = document.querySelector('select#timeTest')
+
 
 const buttonRegistration = document.getElementById('button-registration')
 const buttonStart = document.getElementById('button-start')
@@ -19,6 +15,12 @@ form.addEventListener('submit', (event) => {
 })
 
 function checkInputs(){
+
+  const form = document.querySelector('form#form')
+  const athleteName = document.querySelector('input#athleteName')
+  const athleteTest = document.querySelector('select#athleteTest')
+  const kettlebellWeight = document.querySelector('select#kettlebellWeight')
+  const timeTest = document.querySelector('select#timeTest')
 
   const dataAthlete = {
     athleteName: athleteName.value,
@@ -60,10 +62,11 @@ function checkInputs(){
 
   if(formIsValid){
     console.log('O fomulário está 100% válido!')
-    changeButtons()
+    var data_str = JSON.stringify(dataAthlete);
+    window.location.href = "time-and-reps.html?dataAthlete=" + encodeURIComponent(data_str);
   }
 
-  module.export = {dataAthlete}
+  
 }
 
 function setErrorFor(input, message){
@@ -90,18 +93,3 @@ function setSuccessFor(input){
 
 
 
-/* REPETATION */
-const repetations = document.querySelector('.repetations')
-const showAthleteName = document.querySelector('#show_athlete_name')
-console.log(showAthleteName)
-
-repetations.innerText = 0
-showAthleteName.innerText = dataAthlete.athleteName
-
-function handleRepsClick(){
-
-  let reps = 0
-  ++reps
-  repetations.innerText = reps
-  console.log(repetations)
-}
