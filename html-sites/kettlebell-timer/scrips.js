@@ -15,7 +15,6 @@ function changeButtons(){
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-
   checkInputs()
 })
 
@@ -63,6 +62,8 @@ function checkInputs(){
     console.log('O fomulário está 100% válido!')
     changeButtons()
   }
+
+  module.export = {dataAthlete}
 }
 
 function setErrorFor(input, message){
@@ -87,12 +88,18 @@ function setSuccessFor(input){
   formControl.className = 'form-control success'
 }
 
+
+
 /* REPETATION */
 const repetations = document.querySelector('.repetations')
+const showAthleteName = document.querySelector('#show_athlete_name')
+console.log(showAthleteName)
+
 repetations.innerText = 0
+showAthleteName.innerText = dataAthlete.athleteName
 
 function handleRepsClick(){
-  
+
   let reps = 0
   ++reps
   repetations.innerText = reps
