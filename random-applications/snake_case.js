@@ -152,7 +152,7 @@ inserted_text = input.question("Enter the text: ")
 text_information = snakeCase(inserted_text)
 
 //data output
-// console.clear()
+console.clear()
 basicFunctions.header("snake_case")
 console.log(`Texto de entrada: ${inserted_text}`)
 basicFunctions.line("snake_case")
