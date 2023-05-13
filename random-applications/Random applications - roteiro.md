@@ -16,6 +16,8 @@
 
 ### 8. Jankenpon( ) with arrow functions;
 
+### 9. Fibonacci até número x
+
 ### 10. Password Generator with fromCharCode( )...
 
 
@@ -1302,76 +1304,68 @@ O código implementa uma função em JavaScript que converte uma string em snake
 
 ## 8. Jankenpon( ) with arrow functions;
 
-- Introdução:
+- ### Introdução:
+
     - Cumprimente o público e apresente o código que será explicado no vídeo.
     - Diga que o código é um jogo de pedra, papel e tesoura feito em JavaScript, que pode ser jogado no console do Node.js.
 
-- Dependências:
+- ### Passo 1 - Dependências:
+
     - Mencione que o código requer o módulo `readline-sync`, que é usado para ler a entrada do usuário no console.
-    
+
     ```js
     var input = require('readline-sync');
     ```
-    
+
     - Diga que também há um arquivo de módulo chamado `basicFunctions`, que contém funções utilitárias usadas pelo jogo.
-    
+
     ```js
     const { basicFunctions } = require('./basicFunctions');
     ```
-    
-- Declaração de funções:
-    
+
+- ### Passo 2 - Declaração de funções:
+
     - Neste jogo teremos 8 funções que serão usadase explicadas conforme a nossa aplicação for construída, são elas:
-        - `playMenu()`
-        - `validateNumber()`
-        - `errorMessage()`
-        - `playerChoice()`
-        - `winnerCalculation()`
-        - `playAgainMenu()`
-        - `validateAnswer()`
-        - `gameWinner()`
+        - `playAgainMenu()` - utilizada no código principal do programa para exibir as opções de jogar novamente ou sair após o término de cada partida;
+        - `validateAnswer()` - garante que o usuário digite apenas "n" ou "s" antes de prosseguir para a próxima etapa do programa;
+        - `errorMessage()` - usada para exibir uma mensagem de erro se o usuário digitar um valor inválido;
+        - `playMenu()` -  exibe as opções do jogo para o usuário (pedra, papel, tesoura);
+        - `validateNumber()` -  valida a entrada do usuário no jogo pedindo ao usuário que escolha uma das três opções disponíveis 1, 2 e 3 (pedra, papel ou tesoura); 
+        - `winnerCalculation()` -  compara essas jogadas de acordo com as regras do jogo pedra-papel-tesoura e retorna o nome do vencedor da jogada. Atualiza a pontuação do usuário, da CPU e o número de empates;
+        - `playerChoice()` - recebe um número como parâmetro e retorna uma string correspondente a uma escolha de jogada exibindo a escolha do jogador na tela;;
+        - `gameWinner()` -  verifica o número de pontos do usuário e da CPU e retorna uma mensagem indicando quem foi o vencedor ou se o jogo acabou em empate.
+
     
-    
-    
-    
-    
-    - Mostre as funções do jogo, começando com `playMenu()`.
-    - Diga que essa função exibe as opções do jogo para o usuário.
-    - Em seguida, mostre a função `validateNumber()`.
-    - Explique que essa função é usada para validar a entrada do usuário e garantir que ela seja um número válido (1, 2 ou 3).
-    - Mostre a função `errorMessage()` e explique que ela é usada para exibir uma mensagem de erro se o usuário digitar um valor inválido.
-    - Em seguida, mostre a função `playerChoice()` e explique que ela é usada para converter o número escolhido pelo usuário em uma escolha de pedra, papel ou tesoura.
-    - Finalmente, mostre a função `winnerCalculation()` e explique que ela é usada para calcular quem ganhou a partida com base nas escolhas do usuário e da CPU.
-    
-- Declaração de variáveis:
+
+- ### Passe3 - Declaração de variáveis:
+
     - Mostre as variáveis do jogo e explique seu propósito.
 
     ```js
     //declaração de variáveis
     let userName = ``;
     let playAgain = 0;
-    
     let userPlay = 0;
     let cpuPlay = 0;
+    let partialWinner = "";
     let userScore = 0;
     let cpuScore = 0;
     let tieScore = 0;
-    let partialWinner = "";
     let matchCounter = 0;
     let winner = "";
     ```
 
     - `userName` é usado para armazenar o nome do usuário;
     - `playAgain`, que é usado para armazenar a resposta do usuário sobre se deseja jogar novamente;
-    - 
     - `userPlay` e `cpuPlay` armazenam a escolha do usuário e da CPU, respectivamente;
+    - `partialWinner`, que armazena quem ganhou a partida atual;
     - `userScore`, `cpuScore` e `tieScore` são usados para acompanhar o número de vitórias do usuário, da CPU e empates, respectivamente;
-    - `partialWinner`, que armazena quem ganhou a partida atual, e `matchCounter`, que é usado para contar o número de partidas jogadas;
+    - `matchCounter`, que é usado para contar o número de partidas jogadas;
     - `winner`, que é usado para armazenar quem ganhou o jogo no final.
 
     
 
-- Entrada de dados:
+- ### Passo 4 - Entrada de dados:
 
     - Aqui começa a nossa aplicação. Vamos iniciar chamando a function `loading()` do módulo `basicFunctions`:
 
@@ -1417,6 +1411,8 @@ O código implementa uma função em JavaScript que converte uma string em snake
     Digite seu nome: Jogador 1
     ```
 
+- ### Passo 5 - Loop do jogo
+
     - Em seguida,  o jogo é iniciado com um loop `do-while` que executa o jogo até que o usuário decida sair.
 
     ```js
@@ -1455,8 +1451,6 @@ O código implementa uma função em JavaScript que converte uma string em snake
       [s] para sim
       [n] para não
       ```
-
-      
 
     - Function `validateAnswer()`
 
@@ -1535,7 +1529,7 @@ O código implementa uma função em JavaScript que converte uma string em snake
       };
       ```
 
-    - Agora sim, com a variável `playAgain` definida, enquanto ela for diferente de `n` o jogo continua, caso sontrário, o jogo é encerrado:
+    - Agora sim, com a variável `playAgain` definida, enquanto ela for diferente de `n` o jogo continua, caso contrário, o jogo é encerrado:
 
     ```js
     do {
@@ -1550,6 +1544,12 @@ O código implementa uma função em JavaScript que converte uma string em snake
     - Após essa estrutura de repetição, vamos chamar a function `loading()`, limpar o console, chamar a function `header()`, imprimir que o jogo foi finalizado e em seguida, chamar a function `line()`:
 
     ```js
+    //entrada de dados
+    basicFunctions.loading();
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    userName = input.question("Digite seu nome: ").toUpperCase();
+    
     do {
       console.clear();
         
@@ -1618,25 +1618,693 @@ O código implementa uma função em JavaScript que converte uma string em snake
 
     
 
+
+- ### Passo 6 - Continuação da entrada de dados dentro do loop
+
+  - Dentro do loop `do-while`, vamos limpar o console,  chamar a function `header()` e em seguida mostrar o nome do usuário e pedir para ele escolher a sua jogada:
+
+```js
+do {
+
+  console.clear();
+  basicFunctions.header("Jankenpon");
+  console.log(`${userName} escolha sua jogada: `);
+
+  playAgainMenu();
+  playAgain = validateAnswer();
+
+} while ( playAgain != "n");
+```
+
+- No console:
+
+  ```sh
+  -------------------
+       Jankenpon
+  -------------------
+  JOGADOR 1 escolha sua jogada: 
+  Jogar mais uma vez? 
+  [s] para sim
+  [n] para não
+  ```
+
+- Nesta etapa, vamos usar a function `playMenu()` que exibe as opções do jogo para o usuário (pedra, papel, tesoura).
+
+- Function `playMenu()`:
+
+  - Vamos declarar  esta function em declarações de funções:
+
+  ```js
+  const playMenu = () => {
+      console.log("[1] PEDRA")
+      console.log("[2] PAPEL")
+      console.log("[3] TESOURA")
+  }
+  ```
+
+- Dentro do loop:
+
+```js
+do {
+
+  console.clear();
+  basicFunctions.header("Jankenpon");
+  console.log(`${userName} escolha sua jogada: `);
+  playMenu();
+
+  playAgainMenu();
+  playAgain = validateAnswer();
+
+} while ( playAgain != "n");
+```
+
+- No console:
+
+  ```shell
+  -------------------
+       Jankenpon
+  -------------------
+  JOGADOR 1 escolha sua jogada: 
+  [1] PEDRA
+  [2] PAPEL
+  [3] TESOURA
+  Jogar mais uma vez? 
+  [s] para sim
+  [n] para não
+  ```
+
+- Perceba que já está sendo solicitado do usuário se ele quer continuar ou encerrar a partidar sem ele escolher a opção de jogada.
+
+- Vamos usar a variável `userPlay` para armazenar essa opção de jogada do usuário.
+
+- A variável `userPlay` vai receber o retorno da function `validateNumber()` que é usada para validar a entrada do usuário no jogo.
+
+- O usuário só pode digitar os valores de 1 a 3, sendo digitado um valor diferente, uma mensagem de erro será apresentada e o usuário terá que escolher a jogada novamente.
+
+- Esta function tem o mesmo funcionamento da function `validateAnswer()`.
+
+- Function `validateNumber()`:
+
+  - Em declarações de funções:
+
+  ```js
+  const validateNumber = () => {
+  
+      let value = input.question();
+  
+      while ( value != "1" && value != "2" && value != "3" ) {
+        console.clear();
+        basicFunctions.header("Jankenpon");
+        errorMessage();
+        playMenu();
+        value = input.question();
+      };
+  
+      return Number(value);
+  
+  };
+  ```
+
+- No loop do jogo:
+
+  ```js
+  do {
+  
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    console.log(`${userName} escolha sua jogada: `);
+    playMenu();
+    userPlay = validateNumber();
+  
+    playAgainMenu();
+    playAgain = validateAnswer();
+  
+  } while ( playAgain != "n");
+  ```
+
+- No console:
+
+  ```shell
+  -------------------
+       Jankenpon
+  -------------------
+  JOGADOR 1 escolha sua jogada: 
+  [1] PEDRA
+  [2] PAPEL
+  [3] TESOURA
+  0
+  ```
+
+  ```shell
+  -------------------
+       Jankenpon
+  -------------------
+  ATENÇÃO: JOGADA ERRADA!
+  Digite um valor válido!
+  [1] PEDRA
+  [2] PAPEL
+  [3] TESOURA
+  
+  ```
+
+  ```shell
+  -------------------
+       Jankenpon
+  -------------------
+  ATENÇÃO: JOGADA ERRADA!
+  Digite um valor válido!
+  [1] PEDRA
+  [2] PAPEL
+  [3] TESOURA
+  1
+  ```
+
+  ```shell
+  -------------------
+       Jankenpon
+  -------------------
+  ATENÇÃO: JOGADA ERRADA!
+  Digite um valor válido!
+  [1] PEDRA
+  [2] PAPEL
+  [3] TESOURA
+  1
+  Jogar mais uma vez? 
+  [s] para sim
+  [n] para não
+  n
+  ```
+
+  ```shell
+  -------------------
+       Jankenpon
+  -------------------
+  Jogo Finalizado!
+  -------------------
+  ```
+
+- Nosso jogo está tomando forma, agora que definimos a opção de jogada do jogador humano, vamos contruir a opção de jogada do computador/CPU.
+
+- Essa opção de jogada será armazenada na variável `cpuPlay`.
+
+- Ela recebe o retorno da function `getRandomIntInclusive()` do módulo `basicFunctions`, passando como parâmetro os valos 1 e 3.
+
+- Logo, no loop do jogo:
+
+  ```js
+  do {
+  
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    console.log(`${userName} escolha sua jogada: `);
+    playMenu();
+    userPlay = validateNumber();
+    cpuPlay = basicFunctions.getRandomIntInclusive(1, 3);
+  
+    playAgainMenu();
+    playAgain = validateAnswer();
+  
+  } while ( playAgain != "n");
+  ```
+
+- Esta parte não aparece no console.
+
+- ### Passo 7 - Processamendo de dados
+
+- Vamos definir o vencedor da partida, que será armazenado na variável `partialWinner`;
+
+- Essa variável receberá o retorno da function `winnerCalculation()`;
+
+- A função `winnerCalculation()` recebe como parâmetros as jogadas do usuário (`userPlay`) e da CPU (`cpuPlay`). Em seguida, ela compara essas jogadas de acordo com as regras do jogo pedra-papel-tesoura e retorna o nome do vencedor da partida (`userName` para usuário, "CPU" para CPU ou "Empate" caso as jogadas sejam iguais);
+
+- Além disso, a função atualiza a pontuação do usuário (`userScore`) ou da CPU (`cpuScore`) de acordo com o vencedor da partida e também o quantidade de empates (`tieScore`);
+
+- Function `winnerCalculation()`:
+
+  ```js
+  const winnerCalculation = (userPlay, cpuPlay) => {
+  
+      let winner = ""
     
+      if ( userPlay == 1 && cpuPlay == 3 ) {
+        winner = userName;
+        userScore++;
+      } else if (userPlay == 3 && cpuPlay == 2 ) {
+        winner = userName;
+        userScore++;
+      } else if ( userPlay == 2 && cpuPlay == 1 ) {
+        winner = userName;
+        userScore++;
+      } else if( cpuPlay == 1 && userPlay == 3 ) {
+        winner = "CPU";
+        cpuScore++;
+      } else if ( cpuPlay == 3 && userPlay == 2 ) {
+        winner = "CPU";
+        cpuScore++;
+      } else if ( cpuPlay == 2 && userPlay == 1 ) {
+        winner = "CPU";
+        cpuScore++;
+      } else if ( cpuPlay == userPlay) {
+        winner = "Empate";
+        tieScore++;
+      }
+    
+      return winner
+  };
+  ```
 
-    PAREI
+  
 
-    - Dentro desse loop, vamos limpar o console,  chamar a function `header()` e em seguida mostrar o nome do usuário e pedir para ele escolher a sua jogada:
+- ### Passo 8 - Saída de dados
+
+  - Ainda dentro do loop do jogo, vamos contruir uma saída de dados que vai mostrar o placar parcial do jogo após cada partida, incluindo quem ganhou e o número de empates;
+  - Primeiro vamos limpar o console;
+  - Em seguida chamar a function `header()`;
+  - Mostrar a mensagem ¨PLACAR PARCIAL: ¨;
+
+  ```js
+  //saída de dados
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    console.log("PLACAR PARCIAL: ");
+  ```
+
+  - O próximo passo, será mostrar a escolha de cada jogador, imprimindo pedra/papel/tesoura de acordo com a escolha de cada um;
+  - Para isto, vamos usar a function `playerChoice()`
+
+  - Essa function recebe um número como parâmetro e retorna uma string correspondente a uma escolha de jogada de pedra, papel ou tesoura feita pelo jogador;
+  - Essa função é usada no programa para exibir a escolha do jogador na tela, por exemplo, quando o jogador escolhe pedra, o número 1 é passado como parâmetro para essa função e ela retorna a string "Pedra";
+  - Function `playerChoice()`:
+
+  ```js
+  const playerChoice = (number) => {
+  
+    let choise = ""
+  
+    if(number === 1){
+      choise = "Pedra"
+    } else if(number === 2) {
+      choise = "Papel"
+    } else if(number === 3) {
+      choise = "Tesoura"
+    }
+  
+    return choise
+  };
+  ```
+
+  - Em saída de dados dentro do loop, vamos mostrar a opção de jogada dos jogadores:
+
+  ```js
+  //saída de dados
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    console.log("PLACAR PARCIAL: ");
+    console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
+  ```
+
+  - No console:
+
+  ```sh
+  -------------------
+       Jankenpon
+  -------------------
+  PLACAR PARCIAL: 
+  JOGADOR 1 : Pedra x Papel : CPU
+  Jogar mais uma vez? 
+  [s] para sim
+  [n] para não
+  ```
+
+  - Agora vamos mostrar o vencedor da partidar, que foi definido na variável `partialWinner`, a pontução de cada jogador, que foi definido nas variáveis `userScore` e `cpuScore`, e vamos mostrar a quantidade de empates com a variável `tieScore`:
+
+  ```js
+  //saída de dados
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    console.log("PLACAR PARCIAL: ");
+    console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
+    console.log(`Vencedor da partida: ${partialWinner}`);
+    console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+    console.log(`Empates: ${tieScore}`);
+  ```
+
+  - No console:
+
+  ```sh
+  -------------------
+       Jankenpon
+  -------------------
+  PLACAR PARCIAL: 
+  JOGADOR 1 : Pedra x Pedra : CPU
+  Vencedor da partida: Empate
+  JOGADOR 1 0 x 0 CPU
+  Empates: 1
+  Jogar mais uma vez? 
+  [s] para sim
+  [n] para não
+  ```
+
+- ### Passo 9 - Quantidade de partidas e vencedor do jogo
+
+  - Em processamento de dados, vamos incrementar a variável `matchCounter` a cada partida que for jogada:
+
+  ```js
+  //processamento de dados
+    partialWinner = winnerCalculation(userPlay, cpuPlay);
+    matchCounter++;
+  ```
+
+  - Vamos atribuir a variável `winner`o vencedor do jogo;
+  - Usando a ffunction `gameWinner()`;
+  - A função `gameWinner()` verifica o número de pontos do usuário e da CPU e retorna uma mensagem indicando quem foi o vencedor ou se o jogo acabou em empate.
+  - Recebe como parâmetro os pontos dos jogadores (`userScore`/`cpuScore`);
+  - Se o `userScore` for maior do que o `cpuScore`, a função retorna a mensagem `"NOME DO USUÁRIO VENCEDOR(A)!"`, em que "NOME DO USUÁRIO" é o nome fornecido pelo usuário anteriormente. Caso contrário, se o `cpuScore` for maior do que o `userScore`, a função retorna a mensagem `"CPU VENCEDOR!"`. Finalmente, se os pontos forem iguais, a função retorna a mensagem `"JOGO EMPATADO!"`.
+  - Function `gameWinner():
+
+  ```js
+  const gameWinner = (userScore, cpuScore) => {
+  
+    if (userScore > cpuScore) {
+      return `${userName} VENCEDOR(A)!`
+    } else if (userScore < cpuScore) {
+      return "CPU VENCEDOR!";
+    } else {
+      return "JOGO EMPATADO!";
+    };
+  };
+  ```
+
+  - Em processamento de dados:
+
+  ```js
+   //processamento de dados
+    partialWinner = winnerCalculation(userPlay, cpuPlay);
+    matchCounter++;
+    winner = gameWinner(userScore, cpuScore);
+  ```
+
+  - Em saída de dados, vamos mostrar a quantidade de partidas jogadas e chamar a function `line()` do módulo `basicFunctions`:
+
+  ```js
+  //saída de dados
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    console.log("PLACAR PARCIAL: ");
+    console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
+    console.log(`Vencedor da partida: ${partialWinner}`);
+    console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+    console.log(`Empates: ${tieScore}`);
+    console.log(`Nº de partidas: ${matchCounter}`);
+    basicFunctions.line("Jankenpon");
+  ```
+
+  - No console:
+
+  ```sh
+  -------------------
+       Jankenpon
+  -------------------
+  PLACAR PARCIAL: 
+  JOGADOR 1 : Pedra x Pedra : CPU
+  Vencedor da partida: Empate
+  JOGADOR 1 0 x 0 CPU
+  Empates: 1
+  Nº de partidas: 1
+  -------------------
+  Jogar mais uma vez? 
+  [s] para sim
+  [n] para não
+  
+  ```
+
+  - Nosso jogo está praticamente finalizado, veja como ficou o nosso código dentro da estrutura `do-while`:
+
+  ```js
+  do {
+  
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    console.log(`${userName} escolha sua jogada: `);
+    playMenu();
+    userPlay = validateNumber();
+    cpuPlay = basicFunctions.getRandomIntInclusive(1, 3);
+  
+    //processamento de dados
+    partialWinner = winnerCalculation(userPlay, cpuPlay);
+    matchCounter++;
+    winner = gameWinner(userScore, cpuScore);
+  
+    //saída de dados
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    console.log("PLACAR PARCIAL: ");
+    console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
+    console.log(`Vencedor da partida: ${partialWinner}`);
+    console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+    console.log(`Empates: ${tieScore}`);
+    console.log(`Nº de partidas: ${matchCounter}`);
+    basicFunctions.line("Jankenpon");
+  
+    playAgainMenu();
+    playAgain = validateAnswer();
+  
+  } while ( playAgain != "n");
+  ```
+
+- ### Passo 10 - saída de dados final
+
+  - Quando finalizamos o jogo é mostrado apenas uma mensagem;
+
+  ```sh
+  -------------------
+       Jankenpon
+  -------------------
+  Jogo Finalizado!
+  -------------------
+  ```
+
+  - Vamos alterar isso, mostrados os dados finais do jogo, após ele ser encerrado;
+
+  - Logo, em saída de dados final:
+
+    - Chamar a function `loading()`;
+    - Limpar o console;
+    - Chamar a function `header()`;
+    - Mostrar a mensagem "RESULTADO FINAL: ";
+    - Mostrar o vencendor;
+    - Mostrar o placar do jogo;
+    - A quantidade de empates;
+    - O número de partidas;
+    - Chamar a function `line()`:
 
     ```js
+    //saída de dados final
+    basicFunctions.loading();
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    console.log("RESULTADO FINAL: ");
+    console.log(`${winner}`);
+    console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+    console.log(`Empates: ${tieScore}`);
+    console.log(`Nº de partidas: ${matchCounter}`);
+    basicFunctions.line("Jankenpon");
     ```
 
-    
+    - Ao executar e jogar 3 partidas, no console:
 
-- Processamento de dados:
-    - Mostre como o jogo processa a escolha do usuário e da CPU usando a função `winnerCalculation()`.
-    - Explique como `gameWinner()` é usada para determinar quem ganhou o jogo no final.
+    ```shell
+    -------------------
+         Jankenpon
+    -------------------
+    RESULTADO FINAL: 
+    JOGADOR 1 VENCEDOR(A)!
+    JOGADOR 1 1 x 0 CPU
+    Empates: 2
+    Nº de partidas: 3
+    -------------------
+    ```
 
-- Saída de dados:
-    - Mostre como o código exibe o placar parcial do jogo após cada partida, incluindo quem ganhou e o número de empates.
-    - Em seguida, mostre como o código pergunta ao usuário se deseja jogar novamente.
-    - Mostre como o jogo exibe o resultado final e o número total de
+- ### Código completo:
+
+```js
+var input = require('readline-sync');
+
+const { basicFunctions } = require('./basicFunctions');
+
+//declaração de funções
+const playAgainMenu = () => {
+  console.log("Jogar mais uma vez? ");
+  console.log("[s] para sim");
+  console.log("[n] para não");
+};
+
+const validateAnswer = () => {
+
+  answer = input.question().toLowerCase();
+  
+  while ( answer != "n" && answer != "s") {
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    errorMessage();
+    playAgainMenu();
+    answer = input.question().toLowerCase();
+  };
+
+  return answer;
+
+};
+
+const errorMessage = () => {
+  console.log("ATENÇÃO: JOGADA ERRADA!");
+  console.log("Digite um valor válido!");
+};
+
+const playMenu = () => {
+    console.log("[1] PEDRA")
+    console.log("[2] PAPEL")
+    console.log("[3] TESOURA")
+}
+
+const validateNumber = () => {
+
+    let value = input.question();
+
+    while ( value != "1" && value != "2" && value != "3" ) {
+      console.clear();
+      basicFunctions.header("Jankenpon");
+      errorMessage();
+      playMenu();
+      value = input.question();
+    };
+
+    return Number(value);
+
+};
+
+const winnerCalculation = (userPlay, cpuPlay) => {
+
+  let winner = ""
+
+  if ( userPlay == 1 && cpuPlay == 3 ) {
+    winner = userName;
+    userScore++;
+  } else if (userPlay == 3 && cpuPlay == 2 ) {
+    winner = userName;
+    userScore++;
+  } else if ( userPlay == 2 && cpuPlay == 1 ) {
+    winner = userName;
+    userScore++;
+  } else if( cpuPlay == 1 && userPlay == 3 ) {
+    winner = "CPU";
+    cpuScore++;
+  } else if ( cpuPlay == 3 && userPlay == 2 ) {
+    winner = "CPU";
+    cpuScore++;
+  } else if ( cpuPlay == 2 && userPlay == 1 ) {
+    winner = "CPU";
+    cpuScore++;
+  } else if ( cpuPlay == userPlay) {
+    winner = "Empate";
+    tieScore++;
+  }
+
+  return winner
+};
+
+
+
+const playerChoice = (number) => {
+
+  let choise = ""
+
+  if(number === 1){
+    choise = "Pedra"
+  } else if(number === 2) {
+    choise = "Papel"
+  } else if(number === 3) {
+    choise = "Tesoura"
+  }
+
+  return choise
+};
+
+const gameWinner = (userScore, cpuScore) => {
+
+  if (userScore > cpuScore) {
+    return `${userName} VENCEDOR(A)!`
+  } else if (userScore < cpuScore) {
+    return "CPU VENCEDOR!";
+  } else {
+    return "JOGO EMPATADO!";
+  };
+};
+
+//declaração de variáveis
+let userName = ``;
+let playAgain = 0;
+let userPlay = 0;
+let cpuPlay = 0;
+let partialWinner = "";
+let userScore = 0;
+let cpuScore = 0;
+let tieScore = 0;
+let matchCounter = 0;
+let winner = "";
+
+//entrada de dados
+basicFunctions.loading();
+console.clear();
+basicFunctions.header("Jankenpon");
+userName = input.question("Digite seu nome: ").toUpperCase();
+
+do {
+
+  console.clear();
+  basicFunctions.header("Jankenpon");
+  console.log(`${userName} escolha sua jogada: `);
+  playMenu();
+  userPlay = validateNumber();
+  cpuPlay = basicFunctions.getRandomIntInclusive(1, 3);
+
+  //processamento de dados
+  partialWinner = winnerCalculation(userPlay, cpuPlay);
+  matchCounter++;
+  winner = gameWinner(userScore, cpuScore);
+
+  //saída de dados
+  console.clear();
+  basicFunctions.header("Jankenpon");
+  console.log("PLACAR PARCIAL: ");
+  console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
+  console.log(`Vencedor da partida: ${partialWinner}`);
+  console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+  console.log(`Empates: ${tieScore}`);
+  console.log(`Nº de partidas: ${matchCounter}`);
+  basicFunctions.line("Jankenpon");
+
+  playAgainMenu();
+  playAgain = validateAnswer();
+
+} while ( playAgain != "n");
+
+//saída de dados final
+basicFunctions.loading();
+console.clear();
+basicFunctions.header("Jankenpon");
+console.log("RESULTADO FINAL: ");
+console.log(`${winner}`);
+console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+console.log(`Empates: ${tieScore}`);
+console.log(`Nº de partidas: ${matchCounter}`);
+basicFunctions.line("Jankenpon");
+```
+
+ 
+
+## 9. Fibonacci até número x
+
+
 
 
 

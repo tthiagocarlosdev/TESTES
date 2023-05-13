@@ -54,7 +54,7 @@ const basicFunctions = {
     let toLoad = `....`
     let percentage = 20
     while (percentage <= 100) {
-      // console.clear()
+      console.clear()
       console.log(`loading ${toLoad} ${percentage}%`)
       syncDelay(1000);
       toLoad += `....`
