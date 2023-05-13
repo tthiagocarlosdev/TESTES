@@ -1300,7 +1300,343 @@ Nº de caracteres: 32
 Conclusão:
 O código implementa uma função em JavaScript que converte uma string em snake_case, substituindo espaços e caracteres especiais por underlines e removendo acentos. Ele também permite que o usuário insira um texto via linha de comando e exibe a string em snake_case e seu tamanho na tela.
 
+## 8. Jankenpon( ) with arrow functions;
 
+- Introdução:
+    - Cumprimente o público e apresente o código que será explicado no vídeo.
+    - Diga que o código é um jogo de pedra, papel e tesoura feito em JavaScript, que pode ser jogado no console do Node.js.
+
+- Dependências:
+    - Mencione que o código requer o módulo `readline-sync`, que é usado para ler a entrada do usuário no console.
+    
+    ```js
+    var input = require('readline-sync');
+    ```
+    
+    - Diga que também há um arquivo de módulo chamado `basicFunctions`, que contém funções utilitárias usadas pelo jogo.
+    
+    ```js
+    const { basicFunctions } = require('./basicFunctions');
+    ```
+    
+- Declaração de funções:
+    
+    - Neste jogo teremos 8 funções que serão usadase explicadas conforme a nossa aplicação for construída, são elas:
+        - `playMenu()`
+        - `validateNumber()`
+        - `errorMessage()`
+        - `playerChoice()`
+        - `winnerCalculation()`
+        - `playAgainMenu()`
+        - `validateAnswer()`
+        - `gameWinner()`
+    
+    
+    
+    
+    
+    - Mostre as funções do jogo, começando com `playMenu()`.
+    - Diga que essa função exibe as opções do jogo para o usuário.
+    - Em seguida, mostre a função `validateNumber()`.
+    - Explique que essa função é usada para validar a entrada do usuário e garantir que ela seja um número válido (1, 2 ou 3).
+    - Mostre a função `errorMessage()` e explique que ela é usada para exibir uma mensagem de erro se o usuário digitar um valor inválido.
+    - Em seguida, mostre a função `playerChoice()` e explique que ela é usada para converter o número escolhido pelo usuário em uma escolha de pedra, papel ou tesoura.
+    - Finalmente, mostre a função `winnerCalculation()` e explique que ela é usada para calcular quem ganhou a partida com base nas escolhas do usuário e da CPU.
+    
+- Declaração de variáveis:
+    - Mostre as variáveis do jogo e explique seu propósito.
+
+    ```js
+    //declaração de variáveis
+    let userName = ``;
+    let playAgain = 0;
+    
+    let userPlay = 0;
+    let cpuPlay = 0;
+    let userScore = 0;
+    let cpuScore = 0;
+    let tieScore = 0;
+    let partialWinner = "";
+    let matchCounter = 0;
+    let winner = "";
+    ```
+
+    - `userName` é usado para armazenar o nome do usuário;
+    - `playAgain`, que é usado para armazenar a resposta do usuário sobre se deseja jogar novamente;
+    - 
+    - `userPlay` e `cpuPlay` armazenam a escolha do usuário e da CPU, respectivamente;
+    - `userScore`, `cpuScore` e `tieScore` são usados para acompanhar o número de vitórias do usuário, da CPU e empates, respectivamente;
+    - `partialWinner`, que armazena quem ganhou a partida atual, e `matchCounter`, que é usado para contar o número de partidas jogadas;
+    - `winner`, que é usado para armazenar quem ganhou o jogo no final.
+
+    
+
+- Entrada de dados:
+
+    - Aqui começa a nossa aplicação. Vamos iniciar chamando a function `loading()` do módulo `basicFunctions`:
+
+    ```js
+    //entrada de dados
+    basicFunctions.loading();
+    ```
+
+    - A function `loading()` exibe uma animação de carregamento:
+
+    ```shell
+    loading .... 20%
+    loading ........ 40%
+    loading ............ 60%
+    loading ................ 80%
+    loading .................... 100%
+    ```
+
+    - Em seguida, limpamos o console e chamamos a function `header()`, também do módulo `basicFunctions`, passando como parâmetro o título da aplicação, que é Jankenpon:
+
+    ```js
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    ```
+
+    - Em seguida é solicitado o nome do usuário que é armazenada na variável `userName`:
+
+    ```js
+    //entrada de dados
+    basicFunctions.loading();
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    userName = input.question("Digite seu nome: ").toUpperCase();
+    ```
+
+    - Note que o método `toUpperCase()` é chamado na string armazenada em `userName`, convertendo todo o texto para letras maiúsculas.
+    - No console:
+
+    ```shell
+    -------------------
+         Jankenpon
+    -------------------
+    Digite seu nome: Jogador 1
+    ```
+
+    - Em seguida,  o jogo é iniciado com um loop `do-while` que executa o jogo até que o usuário decida sair.
+
+    ```js
+    do {
+      console.clear();
+        
+      playAgainMenu();
+      playAgain = validateAnswer();
+    
+    } while ( playAgain != "n");
+    ```
+
+    - A decisão de continuar ou sair do jogo, vai vir da resposta após a execução das functions `playAgainMenu()` e `validateAnswer()` que será armazenada na variável `playAgain`. Se a resposta do usuário for `s` o jogo continua, se for `n `, o jogo é encerrado!
+
+    - Function `playAgainMenu()`:
+
+      - Imprime uma mensagem na tela pedindo ao usuário para decidir se ele deseja jogar novamente ou não.
+      - Usando o método `console.log()`, imprime três linhas de texto na tela:
+        - A primeira linha pergunta "Jogar mais uma vez?"
+        - As duas linhas seguintes apresentam as opções disponíveis para o usuário escolher. 
+          - A opção "[s] para sim" indica que o usuário pode digitar a letra "s" para indicar que ele deseja jogar novamente;
+          - A opção "[n] para não" indica que o usuário pode digitar a letra "n" para indicar que ele não deseja jogar novamente;
+
+      ```js
+      const playAgainMenu = () => {
+        console.log("Jogar mais uma vez? ");
+        console.log("[s] para sim");
+        console.log("[n] para não");
+      };
+      ```
+
+      - No console:
+
+      ```sh
+      Jogar mais uma vez? 
+      [s] para sim
+      [n] para não
+      ```
+
+      
+
+    - Function `validateAnswer()`
+
+      - Valida a entrada do usuário. A função pede para o usuário digitar uma resposta, que é convertida para minúsculas usando o método `.toLowerCase()`.
+
+      ```js
+      const validateAnswer = () => {
+      
+        answer = input.question().toLowerCase();
+      
+      };
+      ```
+
+      - Em seguida, a função entra em um loop enquanto a resposta do usuário **não** for "n" ou "s". 
+
+      ```js
+      const validateAnswer = () => {
+      
+        answer = input.question().toLowerCase();
+        
+        while ( answer != "n" && answer != "s") {
+          console.clear();
+          basicFunctions.header("Jankenpon");
+          errorMessage();
+          playAgainMenu();
+          answer = input.question().toLowerCase();
+        };
+      };
+      ```
+
+      - Dentro desse loop, a função executa algumas ações para indicar que a resposta do usuário foi inválida:
+
+        - Primeiro, ele limpa o console com "console.clear()", 
+
+        - Em seguida, ele exibe um cabeçalho "Jankenpon" e uma mensagem de erro com  a function `errorMessage()`;
+
+        - Function `errorMessage()`:
+
+          - Tem como objetivo imprimir uma mensagem de erro na tela caso a entrada do usuário seja inválida. A mensagem exibida é "ATENÇÃO: JOGADA ERRADA!" e "Digite um valor válido!":
+
+          ```js
+          const errorMessage = () => {
+            console.log("ATENÇÃO: JOGADA ERRADA!");
+            console.log("Digite um valor válido!");
+          };
+          ```
+
+          - No console:
+
+          ```sh
+          ATENÇÃO: JOGADA ERRADA!
+          Digite um valor válido!
+          ```
+
+      - Por último exibe o menu de jogar novamente com `playAgainMenu()`.
+
+      - Uma vez que a resposta do usuário é "n" ou "s", o loop é interrompido e a resposta do usuário é retornada e armazennada na variável `playAgain`. 
+
+      - A função "validateAnswer()" garante que o usuário digite apenas "n" ou "s" antes de prosseguir para a próxima etapa do programa.
+
+      ```js
+      const validateAnswer = () => {
+      
+        answer = input.question().toLowerCase();
+        
+        while ( answer != "n" && answer != "s") {
+          console.clear();
+          basicFunctions.header("Jankenpon");
+          errorMessage();
+          playAgainMenu();
+          answer = input.question().toLowerCase();
+        };
+      
+        return answer;
+      
+      };
+      ```
+
+    - Agora sim, com a variável `playAgain` definida, enquanto ela for diferente de `n` o jogo continua, caso sontrário, o jogo é encerrado:
+
+    ```js
+    do {
+      console.clear();
+        
+      playAgainMenu();
+      playAgain = validateAnswer();
+    
+    } while ( playAgain != "n");
+    ```
+
+    - Após essa estrutura de repetição, vamos chamar a function `loading()`, limpar o console, chamar a function `header()`, imprimir que o jogo foi finalizado e em seguida, chamar a function `line()`:
+
+    ```js
+    do {
+      console.clear();
+        
+      playAgainMenu();
+      playAgain = validateAnswer();
+    
+    } while ( playAgain != "n");
+    
+    basicFunctions.loading();
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    console.log("Jogo Finalizado!");
+    basicFunctions.line("Jankenpon");
+    ```
+
+    - No console:
+
+    ```sh
+    loading .... 20%
+    loading ........ 40%
+    loading ............ 60%
+    loading ................ 80%
+    loading .................... 100%
+    ```
+
+    ```sh
+    -------------------
+         Jankenpon
+    -------------------
+    Digite seu nome: Jogador 1    
+    ```
+
+    ```sh
+    Jogar mais uma vez? 
+    [s] para sim
+    [n] para não
+    m
+    ```
+
+    ```shell
+    -------------------
+         Jankenpon
+    -------------------
+    ATENÇÃO: JOGADA ERRADA!
+    Digite um valor válido!
+    Jogar mais uma vez? 
+    [s] para sim
+    [n] para não
+    s
+    ```
+
+    ```shell
+    Jogar mais uma vez? 
+    [s] para sim
+    [n] para não
+    n
+    ```
+
+    ```shell
+    -------------------
+         Jankenpon
+    -------------------
+    Jogo Finalizado!
+    -------------------
+    ```
+
+    
+
+    
+
+    PAREI
+
+    - Dentro desse loop, vamos limpar o console,  chamar a function `header()` e em seguida mostrar o nome do usuário e pedir para ele escolher a sua jogada:
+
+    ```js
+    ```
+
+    
+
+- Processamento de dados:
+    - Mostre como o jogo processa a escolha do usuário e da CPU usando a função `winnerCalculation()`.
+    - Explique como `gameWinner()` é usada para determinar quem ganhou o jogo no final.
+
+- Saída de dados:
+    - Mostre como o código exibe o placar parcial do jogo após cada partida, incluindo quem ganhou e o número de empates.
+    - Em seguida, mostre como o código pergunta ao usuário se deseja jogar novamente.
+    - Mostre como o jogo exibe o resultado final e o número total de
 
 
 

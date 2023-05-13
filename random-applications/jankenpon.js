@@ -3,6 +3,36 @@ var input = require('readline-sync');
 const { basicFunctions } = require('./basicFunctions');
 
 //declaração de funções
+const playAgainMenu = () => {
+  console.log("Jogar mais uma vez? ");
+  console.log("[s] para sim");
+  console.log("[n] para não");
+};
+
+const validateAnswer = () => {
+
+  answer = input.question().toLowerCase();
+  
+  while ( answer != "n" && answer != "s") {
+    console.clear();
+    basicFunctions.header("Jankenpon");
+    errorMessage();
+    playAgainMenu();
+    answer = input.question().toLowerCase();
+  };
+
+  return answer;
+
+};
+
+const errorMessage = () => {
+  console.log("ATENÇÃO: JOGADA ERRADA!");
+  console.log("Digite um valor válido!");
+};
+
+
+
+
 const playMenu = () => {
     console.log("[1] PEDRA")
     console.log("[2] PAPEL")
@@ -25,10 +55,7 @@ const validateNumber = () => {
 
 };
 
-const errorMessage = () => {
-    console.log("ATENÇÃO: JOGADA ERRADA!");
-    console.log("Digite um valor válido!");
-};
+
 
 const playerChoice = (number) => {
 
@@ -75,27 +102,9 @@ const winnerCalculation = (userPlay, cpuPlay) => {
     return winner
 };
 
-const playAgainMenu = () => {
-  console.log("Jogar mais uma vez? ");
-  console.log("[s] para sim");
-  console.log("[n] para não");
-};
 
-const validateAnswer = () => {
 
-  answer = input.question().toLowerCase();
-  
-  while ( answer != "n" && answer != "s") {
-    console.clear();
-    basicFunctions.header("Jankenpon");
-    errorMessage();
-    playAgainMenu();
-    answer = input.question().toLowerCase();
-  };
 
-  return answer;
-
-};
 
 const gameWinner = (userScore, cpuScore) => {
 
@@ -129,27 +138,28 @@ userName = input.question("Digite seu nome: ").toUpperCase();
 do {
 
   console.clear();
-  basicFunctions.header("Jankenpon");
-  console.log(`${userName} escolha sua jogada: `);
-  playMenu();
-  userPlay = validateNumber();
-  cpuPlay = basicFunctions.getRandomIntInclusive(1, 3);
+  
+  // basicFunctions.header("Jankenpon");
+  // console.log(`${userName} escolha sua jogada: `);
+  // playMenu();
+  // userPlay = validateNumber();
+  // cpuPlay = basicFunctions.getRandomIntInclusive(1, 3);
 
-  //processamento de dados
-  partialWinner = winnerCalculation(userPlay, cpuPlay);
-  matchCounter++;
-  winner = gameWinner(userScore, cpuScore);
+  // //processamento de dados
+  // partialWinner = winnerCalculation(userPlay, cpuPlay);
+  // matchCounter++;
+  // winner = gameWinner(userScore, cpuScore);
 
-  //saída de dados
-  console.clear();
-  basicFunctions.header("Jankenpon");
-  console.log("PLACAR PARCIAL: ");
-  console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
-  console.log(`Vencedor da partida: ${partialWinner}`);
-  console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
-  console.log(`Empates: ${tieScore}`);
-  console.log(`Nº de partidas: ${matchCounter}`);
-  basicFunctions.line("Jankenpon");
+  // //saída de dados
+  // console.clear();
+  // basicFunctions.header("Jankenpon");
+  // console.log("PLACAR PARCIAL: ");
+  // console.log(`${userName} : ${playerChoice(userPlay)} x ${playerChoice(cpuPlay)} : CPU`);
+  // console.log(`Vencedor da partida: ${partialWinner}`);
+  // console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+  // console.log(`Empates: ${tieScore}`);
+  // console.log(`Nº de partidas: ${matchCounter}`);
+  // basicFunctions.line("Jankenpon");
 
   playAgainMenu();
   playAgain = validateAnswer();
@@ -159,9 +169,11 @@ do {
 basicFunctions.loading();
 console.clear();
 basicFunctions.header("Jankenpon");
-console.log("RESULTADO FINAL: ");
-console.log(`${winner}`);
-console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
-console.log(`Empates: ${tieScore}`);
-console.log(`Nº de partidas: ${matchCounter}`);
+console.log("Jogo Finalizado!");
 basicFunctions.line("Jankenpon");
+
+// console.log("RESULTADO FINAL: ");
+// console.log(`${winner}`);
+// console.log(`${userName} ${userScore} x ${cpuScore} CPU`);
+// console.log(`Empates: ${tieScore}`);
+// console.log(`Nº de partidas: ${matchCounter}`);
