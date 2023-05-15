@@ -24,25 +24,29 @@
 
 ## 1. header( )
 
-Introdução:
-- Comece o vídeo explicando que o código é uma função em JavaScript que cria um cabeçalho para uma aplicação.
+### - Introdução:
 
-  ```shell
-  ---------------------------------------
-            título da aplicação
-  ---------------------------------------
-  ```
+- Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago e esse é o canal Thiago Carlos Dev. Hoje iniciamos essa sequência de aplicações aleatórias usando JavaScript;
+- Essa sequência está bem legal, são aplicações que eu fui construíndo a medidad que fui estudando e aprendendo lógica e algoritmos;
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos;
+- Vamos criar a função `header()`. Ela cria um cabeçalho estilizado no console, exibindo uma linha horizontal acima e abaixo do texto do cabeçalho, e centralizando o texto com base no tamanho fornecido.
 
-Passo 1: Variáveis
+```shell
+---------------------------------------
+          título da aplicação
+---------------------------------------
+```
 
-- Explique que a função recebe um argumento chamado 'text', que é o texto que será exibido no cabeçalho.
+### - Passo 1: Declaração de variáveis
+
+- A função recebe um argumento chamado 'text', que é o texto que será exibido no cabeçalho.
 
     ```js
     function header(text) {
     }
     ```
 
-- Mostre as variáveis que são declaradas dentro da função:
+- Variáveis que são declaradas dentro da função:
 
     ```js
     function header(text) {
@@ -53,12 +57,12 @@ Passo 1: Variáveis
     }
     ```
 
-    - 'textSize': recebe o tamanho do texto passado como argumento.
-    - 'lineSize': é o dobro do tamanho do texto, e será usado para criar a linha horizontal que fica acima e abaixo do cabeçalho.
-    - 'spaceSize': é o tamanho necessário para centralizar o texto na linha do cabeçalho. É calculado dividindo o tamanho do texto por dois e arredondando para cima.
-    - 'textWithSpace': é uma string vazia que será usada para criar a linha do cabeçalho com o texto centralizado.
+    - `textSize`: recebe o tamanho do texto passado como argumento usando a propriedade .[`length`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/length)
+    - `lineSize`: recebe o dobro do tamanho do texto, e será usado para criar a linha horizontal que fica acima e abaixo do cabeçalho.
+    - `spaceSize`: é o tamanho necessário para centralizar o texto na linha do cabeçalho. É calculado dividindo o tamanho do texto por dois e arredondando para cima, usando a função [`Math.ceil()`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil).
+    - `textWithSpace`: é uma string vazia que será usada para criar a linha do cabeçalho com o texto centralizado.
 
-Passo 2: Laço 'for'
+### - Passo 2: Laço 'for'
 
 ```js
   for (let index = 0; index <= spaceSize; index++) {
@@ -70,11 +74,13 @@ Passo 2: Laço 'for'
   }
 ```
 
-- Explique que a variável 'textWithSpace' é preenchida com espaços em branco no começo, para que o texto fique centralizado na linha do cabeçalho.
-- Mostre o laço 'for' que é usado para preencher a string 'textWithSpace':
-    - O laço começa em 0 e vai até 'spaceSize'.
-    - Se o índice é menor do que 'spaceSize', adiciona um espaço em branco na string 'textWithSpace'.
-    - Se o índice é igual a 'spaceSize', adiciona o texto passado como argumento na string 'textWithSpace'.
+- A variável `textWithSpace` é preenchida com espaços em branco no começo, para que o texto fique centralizado na linha do cabeçalho.
+- O laço 'for' que é usado para preencher a string `textWithSpace`:
+    - O laço começa em 0 e vai até `spaceSize`.
+    - Se o índice é menor do que `spaceSize`, adiciona um espaço em branco na string `textWithSpace`.
+    - Se o índice é igual a `spaceSize`, adiciona o texto passado como argumento na string `textWithSpace`.
+
+PAREI
 
 Passo 3: Função 'line()'
 
@@ -2303,6 +2309,109 @@ basicFunctions.line("Jankenpon");
  
 
 ## 9. Fibonacci até número x
+
+### - Introdução:
+
+- Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago e esse é o canal Thiago Carlos Dev. Hoje vamos construir mais uma aplicação usando JvaScript!
+- A plicação de hoje foi uma dúvida de um dos seguidores lá do Instagram, se você não me segue ainda, vai lá e segue. Não esqueça também de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos.
+- A nossa aplicação será o seguinte: Crie um algoritmo que receba um número e mostre a sequência de Fibonacci até no máximo esse número.
+
+### - Passo 1 - importanto módulo e funções:
+
+- Vamos importar o módulo `readline-sync`, que permite a leitura de entrada do usuário no console.
+
+```javascript
+var input = require('readline-sync');
+```
+- Em seguida, vamos importar o objeto `basicFunctions` do arquivo `basicFunctions.js` que está localizado no mesmo diretório que este arquivo.
+
+```javascript
+const { basicFunctions } = require('./basicFunctions');
+```
+### - Passo 2 - Declaração de variáveis:
+
+- Vamos declarar as variáveis usadas no programa:
+  -  `numA`, `numB` e `numC` são variáveis para auxiliar no cálculo da sequência de Fibonacci;
+  -  `numeroLimite` é a variável que armazena o número limite inserido pelo usuário;
+  -  `fibonacci` é uma string que armazenará os números da sequência de Fibonacci.
+
+```javascript
+//declaração de variáveis
+let numA = 0, numB = 1, numC  = 0;
+let numeroLimite = 0;
+let fibonacci = "";
+```
+### - Passo 3 - Entrada de dados:
+
+- Vamos chamar a função `header` do objeto `basicFunctions` para exibir um cabeçalho na saída, passasndo como parâmetro "Fibonacci ate x";
+- Em seguida, usamos a função `question` do `readline-sync` para solicitar ao usuário que digite o número limite e armazenamos o valor na variável `numeroLimite`.
+
+```javascript
+//entrada de dados
+basicFunctions.header("Fibonacci ate x");
+numeroLimite = input.question("Digite o número limite: ");
+```
+- Ao executar o código, no console:
+
+```shell
+-------------------------------
+        Fibonacci ate x
+-------------------------------
+Digite o número limite: 22
+```
+
+### - Passo 4 - Processamento de dados
+
+- Aqui, estamos iniciando a sequência de Fibonacci com os valores iniciais de `numA` e `numB`;
+- Concatenamos `numA` e `numB` à string `fibonacci` e atualizamos o valor de `numC` para a soma de `numA` e `numB`.
+
+```javascript
+fibonacci += numA + " " + numB;
+numC = numA + numB;
+```
+- Nessa estrutura de repetição `while`, continuamos a gerar a sequência de Fibonacci enquanto `numC` for menor ou igual ao `numeroLimite`;
+- A cada iteração, concatenamos o valor atual de `numC` à string `fibonacci` e atualizamos os valores de `numA`, `numB` e `numC` para o próximo número da sequência:
+
+```javascript
+while(numC <= numeroLimite){
+    fibonacci += " " + numC;
+    numA = numB;
+    numB = numC;
+    numC = numA + numB;
+}
+```
+### - Passo 5 - Saída de dados:
+
+- Por fim, limpamos o console com `console.clear()`;
+- Exibimos novamente o cabeçalho;
+- Mostramos o número limite digitado pelo usuário;
+- E exibimos a sequência de Fibonacci até o limite;
+- A função `line` do objeto `basicFunctions` é chamada para exibir uma linha horizontal no final:
+
+```javascript
+// saída de dados
+console.clear();
+basicFunctions.header("Fibonacci ate x");
+console.log(`Número limite: ${numeroLimite}`);
+console.log(fibonacci);
+basicFunctions.line("Fibonacci ate x");
+```
+- No console:
+
+```shell
+-------------------------------
+        Fibonacci ate x
+-------------------------------
+Número limite: 22
+0 1 1 2 3 5 8 13 21
+-------------------------------
+```
+
+### - Conclusão:
+
+- Espero que tenham gostado do código! Se você tiver alguma dúvida pode deixar nos comentários;
+- Não esqueça também de deixar o seu like no vídeo, comentar e compartihar com os amigos;
+- Até o próximo vídeo.
 
 
 
