@@ -30,7 +30,7 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-family: 'Rajdhani', sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 	font-size: 16px;
@@ -174,6 +174,7 @@
 }
 
 .place_of_care input,
+.place_of_care_input,
 .date_and_time input {
     display: flex;
     flex: 1;
@@ -336,8 +337,17 @@
 
 }
 
+.box-button{
+    background-color: antiquewhite;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 15px auto;
+}
+
 #button-to-view {
-    position: relative;
+    /* position: relative; */
+    width: 100%;
     bottom: 1rem;
     left: 55rem;
     border: 1px solid var(--black-color);

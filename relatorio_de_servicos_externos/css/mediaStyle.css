@@ -63,7 +63,8 @@
     }
 
     .place_of_care input,
-    .date_and_time input {
+    .date_and_time input,
+    .place_of_care_input {
         width: 20rem;
         height: 2rem;
         border-radius: 9px;        
