@@ -61,24 +61,21 @@
 }
 
 .container {
-    width: 100%;
-    height: 100%;
+    width: 1080px;
+    border: 2px solid black;
+    margin: 4rem auto;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--container-color);
+    /* background-color: var(--container-color); */
 }
-
-
 
 /* header - header - header - header - header - header - header - header - header - header - header - header - header */
 
 .header {
     background-color: var(--hover-color);
     height: 10rem;
-    width: 67.5rem;
+    width: 67.25rem;
     order: 1;
     display: flex;
     flex-wrap: wrap;
@@ -88,7 +85,7 @@
 }
 
 .sub-header{
-    background-color: var(--sub-header-color);
+    /* background-color: var(--sub-header-color); */
     height: 10rem;
     width: 67.5rem;
     display: flex;
@@ -98,26 +95,22 @@
 }
 
 .containers-images {
-    background-color: var(--containers-images-color);
-    height: 10rem;
+    /* background-color: var(--containers-images-color); */
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
 }
 
 
 .header img {
-    height: 7rem;
-    width: 10rem;   
+    height: 10rem;
+    width: 15rem;   
 }
 
 #bandeira-pernambuco {
     border: 1px solid var(--black-color);
 }
 
-
 .header_title {
-    background-color: var(--header_title_color);
+    /* background-color: var(--header_title_color); */
     width: 100%;
     text-align: center;
     line-height: 1.5rem;
@@ -135,106 +128,123 @@
 }
 
 /* container - container - container - container - container - container - container - container - container - container */
-/*
+
 .attendance_control {
-    background-color: var(--attendance_control_color);
+    /* background-color: var(--attendance_control_color); */
     order: 2;
-    width: 80%;
+    width: 100%;
     display:flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
 .container-title {
-    background-color: var(--container-title-color);
-    order: 1;
-    height: 5rem;
+    /* background-color: var(--container-title-color); */
+    /* order: 1; */
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
 .container-title h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     width: auto;
     border-bottom: 1px solid var(--black-color);
-    padding: 0.5rem 0.5rem 0 0.5rem;
+    padding: 1rem 0.5rem 0 0.5rem;
+    margin-bottom: 1.5rem;
 }
-
+ 
 .container-form {
     width: 100%;
     order: 2;
+    /* background-color: pink; */
 }
 
 .container-date-time {
-    background-color: var(--container-date-time-color);
+    /* background-color: var(--container-date-time-color); */
     order: 1;
     width: 100%;
     display:flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .place_of_care,
 .date_and_time {
-    flex: 1;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 0.5rem 0;
 }
 
 .place_of_care {
-    background-color: var(--place_of_care-color);
+    /* background-color: var(--place_of_care-color); */
 }
 
-.place_of_care label,
 .date_and_time label {
+    /* background-color: brown; */
+    padding: 0.5rem;
+    margin-left: 2rem;
     font-size: 1.3rem;
     font-weight: 600;
-    padding-top: 0.5rem;
-    display: flex;
-    flex: 1;
-    margin-bottom: 0.5rem;
 }
 
-.place_of_care input,
-.place_of_care_input,
+.place_of_care label{
+    /* background-color: brown; */
+    width: 18%;
+    padding: 0.5rem;
+    margin-left: 2rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
 .date_and_time input {
-    display: flex;
-    flex: 1;
-    text-decoration: none;
-    width: 45rem;
-    height: 10rem;
+    /* background-color: yellowgreen; */
+    width: 15rem;
     border: 0.063rem solid black;
     border-radius: 0.63rem;
     
     text-align: center;
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 600;
 
     padding: 0.5rem 0.3rem;
-    margin-left: 6.7rem;
+    margin-left: 1rem;
 
+}
+
+.place_of_care select{
+    width: 82%;
+    margin-right: 0.5rem;
+
+    border: 0.063rem solid black;
+    border-radius: 0.63rem;
+    
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+
+    padding: 0.5rem 0.3rem;
+    margin-left: 1rem;
+    background-color: white;
 }
 
 .container-services {
     background-color: var(--container-services-color);
     order: 2;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
 }
 
 .reported_defect,
 .performed_services {
+    background-color: blueviolet;
     flex: 1;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: flex-start;
     justify-content: flex-start;
 }
@@ -245,31 +255,30 @@
 
 .reported_defect label,
 .performed_services label {
+    background-color: bisque;
+    width: 14%;
+    padding: 0.5rem;
+    margin-left: 2rem;
     font-size: 1.3rem;
     font-weight: 600;
-    padding: 0.5rem 0 0.5rem;
 }
 
 
 .reported_defect textarea,
 .performed_services textarea {
     display: flex;
-    flex-wrap: wrap;
-
-    width: 85.3%;
+    width: 82.4%;
+    height: 7rem;
     border-radius: 0.625rem;
     border: 0.063rem solid var(--black-color);
 
     font-size: 1.5rem;
     font-weight: 600;
     padding: 0.5rem;
-    margin-left: 6.7rem;
+    margin: 0.5rem 0;
 }
 
-.reported_defect textarea {
-    height: 7rem;
-}
-
+/*
 .container-technician-and-user {
     background-color: var(--container-technician-and-user-color);
     display: flex;
@@ -398,6 +407,7 @@
 */
 
 /* footer - footer -  footer -  footer -  footer -  footer  footer -  footer -  footer -  footer -  footer - */
+
 .footer {
     background-color: var(--hover-color);
     order: 3;
@@ -408,7 +418,7 @@
     border-top: 1px solid var(--black-color);
     margin-top: 1rem;
 }
-
+/*
 .footer-title {
     background-color: var(--footer-title-color);
     color: var(--black);
@@ -448,11 +458,11 @@
 .fa-brands, .fa-solid {
 	font-size: 1.5rem;
 }
-
+*/
 /* hover - hover - hover - hover - hover - hover - hover - hover - hover - hover - hover - hover - hover - hover*/
 .reported_defect textarea:hover,
 .performed_services textarea:hover,
-.place_of_care input:hover,
+.place_of_care select:hover,
 .date_and_time input:hover,
 .technician_input:hover,
 .registration_input:hover,
