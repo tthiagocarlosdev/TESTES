@@ -3,7 +3,7 @@ function toView(){
     const technician = {}
     const registration = {}
 
-    pageData.serviceLocation = document.querySelector('.place_of_care_input').value
+    pageData.serviceLocation = document.querySelector('.place_of_care_select').value
     pageData.dateAndTime = document.querySelector('#date_and_time_input').value
     pageData.dateAndTimeInBrazilianFormat = dateTime(pageData.dateAndTime)
     
