@@ -1,0 +1,127 @@
+:root{
+    --black-color: black;
+    --hover-color: lightgray;
+    --container-color: whitesmoke;
+    
+    --container-color: blueviolet;
+    --header-color: brown;
+    --sub-header-color: greenyellow;
+    --containers-images-color: blue;
+    --header_title_color: forestgreen;
+    --attendance_control_color: darkorange;
+    --container-title-color: deeppink;
+    --container-date-time-color: cadetblue;
+    --place_of_care-color: chartreuse;
+    --reported_defect-color: blue;
+    --container-services-color: burlywood;
+    --container-technician-and-user-color: crimson;
+    --sub-title-technician-and-registration-color: tomato;
+    --technician-color: darkolivegreen;
+    --registration-color: darkseagreen;
+    /*
+    --user-color: coral;
+    --footer-color: hotpink;
+    --footer-title-color: firebrick;*/
+}
+
+
+@media(max-width:1080px){
+	html{
+		font-size: 90%;
+	}
+}
+
+@media(max-width:720px){
+	html{
+		font-size: 75%;
+	}
+}
+
+@media(max-width:600px){
+	html{
+		font-size: 60%;
+	}
+}
+
+@media(max-width:300px){
+	html{
+		font-size: 40%;
+	}
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	font-size: 16px;
+}
+
+.container {
+    width: 1080px;
+    border: 2px solid black;
+    margin: 4rem auto;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    /* background-color: var(--container-color); */
+}
+
+/* header - header - header - header - header - header - header - header - header - header - header - header - header */
+
+.header {
+    background-color: var(--hover-color);
+    height: 10rem;
+    width: 67.25rem;
+    /* order: 1; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--black-color);
+}
+
+.sub-header{
+    /* background-color: var(--sub-header-color); */
+    height: 10rem;
+    width: 67.5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.containers-images {
+    /* background-color: var(--containers-images-color); */
+    display: flex;
+}
+
+
+.header img {
+    height: 10rem;
+    width: 15rem;   
+}
+
+#bandeira-pernambuco {
+    border: 1px solid var(--black-color);
+}
+
+.header_title {
+    /* background-color: var(--header_title_color); */
+    width: 100%;
+    text-align: center;
+    line-height: 1.5rem;
+    padding: 1rem;
+}
+
+.header_title h1 {
+    font-size: 1.7rem;
+    padding: 0.6rem;
+}
+
+.header_title h2 {
+    font-size: 1.3rem;
+    padding: 0.3rem;
+}

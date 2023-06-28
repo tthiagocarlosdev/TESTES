@@ -59,6 +59,8 @@ function toView(){
         alert("Por favor, informe um número válido de matrícula do usuário!")
     } else {
         console.log(pageData)
+        var dados_str = JSON.stringify(pageData);
+        window.location.href = "page_view.html?pageData=" + encodeURIComponent(dados_str);
     }
 }
 
