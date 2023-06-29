@@ -1,27 +1,5 @@
 :root{
     --black-color: black;
-    --hover-color: lightgray;
-    --container-color: whitesmoke;
-    
-    --container-color: blueviolet;
-    --header-color: brown;
-    --sub-header-color: greenyellow;
-    --containers-images-color: blue;
-    --header_title_color: forestgreen;
-    --attendance_control_color: darkorange;
-    --container-title-color: deeppink;
-    --container-date-time-color: cadetblue;
-    --place_of_care-color: chartreuse;
-    --reported_defect-color: blue;
-    --container-services-color: burlywood;
-    --container-technician-and-user-color: crimson;
-    --sub-title-technician-and-registration-color: tomato;
-    --technician-color: darkolivegreen;
-    --registration-color: darkseagreen;
-    /*
-    --user-color: coral;
-    --footer-color: hotpink;
-    --footer-title-color: firebrick;*/
 }
 
 
@@ -60,22 +38,20 @@
 }
 
 .container {
-    width: 1080px;
-    border: 2px solid black;
+    width: 1024px;
+    border: 2px solid var(--black-color);
     margin: 4rem auto;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
-    /* background-color: var(--container-color); */
 }
 
 /* header - header - header - header - header - header - header - header - header - header - header - header - header */
 
 .header {
-    background-color: var(--hover-color);
     height: 10rem;
-    width: 67.25rem;
-    /* order: 1; */
+    width: 100%;
+    order: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -84,9 +60,8 @@
 }
 
 .sub-header{
-    /* background-color: var(--sub-header-color); */
-    height: 10rem;
-    width: 67.5rem;
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -94,14 +69,13 @@
 }
 
 .containers-images {
-    /* background-color: var(--containers-images-color); */
     display: flex;
 }
 
 
 .header img {
     height: 10rem;
-    width: 15rem;   
+    width: 15rem;
 }
 
 #bandeira-pernambuco {
@@ -109,19 +83,95 @@
 }
 
 .header_title {
-    /* background-color: var(--header_title_color); */
     width: 100%;
     text-align: center;
-    line-height: 1.5rem;
-    padding: 1rem;
+    line-height: 1.2rem;
 }
 
 .header_title h1 {
-    font-size: 1.7rem;
-    padding: 0.6rem;
+    font-size: 1.5rem;
+    padding-bottom: 0.6rem;
 }
 
 .header_title h2 {
-    font-size: 1.3rem;
-    padding: 0.3rem;
+    font-size: 1.1rem;
+    padding-top: 0.3rem;
+}
+
+/* view view view view view view view view view view view*/
+.view{
+    order:2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.container_title{
+    width: 100%;
+    text-align: center;
+}
+
+.container_title h2{
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--black-color);
+    padding: 1rem 0.5rem 0.3rem 0.5rem;
+    margin-bottom: 1.5rem;    
+}
+
+.date_and_time{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 1rem;
+}
+
+.date_and_time p{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.date_and_time label{
+    font-weight: normal;
+}
+
+h3{
+    font-size: 1.2rem;
+}
+
+p{
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+.container_services{
+    border-bottom: 1px solid var(--black-color);
+    padding: 1rem 0;
+    margin-bottom: 1.5rem;
+}
+
+.container_technician{
+    border-bottom: 1px solid var(--black-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.container_technician p{
+    font-weight: bold;
+}
+
+.container_technician label{
+    font-weight: normal;
+}
+
+.container_user p{
+    font-weight: bold;
+}
+
+.container_user label{
+    font-weight: normal;
+}
+
+
+#signature label{
+    margin-left: 0.5rem;
 }

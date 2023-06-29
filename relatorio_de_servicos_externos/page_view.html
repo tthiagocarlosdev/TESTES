@@ -7,7 +7,7 @@
     <title>Visualizar Relatório</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="dados">
         <header class="header">
 
             <div class="sub-header">
@@ -29,11 +29,11 @@
         </header>
 
         <div class="view">
-            <div class="container-title">
+            <div class="container_title">
                 <h2>Controle de atendimento</h2>
             </div>
 
-            <div class="container-date-time">
+            <div class="container_date_time_and_place_of_care">
                 <div class="date_and_time">
                     <p>Data: <label>28/06/2023</label></p>
                     <p>Hora: <label> 16:21</label></p>
@@ -41,11 +41,11 @@
 
                 <div class="place_of_care">
                     <h3>Unidade Policial:</h3>
-                    <p> DELEGACIA DE POLÍCIA DA 015ª CIRCUNSCRIÇÃO - ALTO DO PASCOAL - DIM/5ªDESEC</p>
+                    <p id="place_of_care"> DELEGACIA DE POLÍCIA DA 015ª CIRCUNSCRIÇÃO - ALTO DO PASCOAL - DIM/5ªDESEC</p>
                 </div>
             </div>
 
-            <div class="container-services">
+            <div class="container_services">
 
                 <div class="reported_defect">
                     <h3>Defeito Informado:</h3>
@@ -57,24 +57,23 @@
                 </div>
             </div>
 
-            <div class="container-technician">
-                <h3>Técnicos da DTI:</h3>
-                <p>Nome: <label>João José</label>, Matrícula: <label>123.123.1</label></p>
+            <div class="container_technician">
+                <h3>Técnico(s) da DTI:</h3>
+                <p id="first_technician">Nome: <label>João José</label>, Matrícula: <label>123.123.1</label></p>
                 <p>Nome: <label>João José</label>, Matrícula: <label>123.123.1</label></p>
                 <p>Nome: <label>João José</label>, Matrícula: <label>123.123.1</label></p>
                 <p>Nome: <label>João José</label>, Matrícula: <label>123.123.1</label></p>
             </div>
 
-            <div class="container-user">
+            <div class="container_user">
                 <h3>Usuário da Unidade Policial:</h3>
                 <p>Nome: <label>Lorem Ipsum</label>,  Matrícula: <label>321.321.3</label></p>
-                <label id="assinatura">____________________________</label>
+                <p id="signature">Assinatura:<label>_______________________________________</label></p>
             </div>
 
         </div>
 
     </div>
-    
     <script src="./script_page_view.js"></script>
 </body>
 </html>

@@ -50,7 +50,7 @@ function toView(){
     } else if (conditionTechnician) {
         alert("Por favor, informe pelo menos um técnico!")
     } else if (registrationNumbers == 0) {
-        alert("Por favor, informe uma matrícula válida!")
+        alert("Por favor, informe uma matrícula válida do técnico!")
     } else if (pageData.userName.length == 0) {
         alert("Por favor, informe o nome completo do usuário!")
     } else if (pageData.userRegistration.length == 0) {
