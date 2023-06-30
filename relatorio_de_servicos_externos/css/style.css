@@ -18,10 +18,6 @@
     --sub-title-technician-and-registration-color: tomato;
     --technician-color: darkolivegreen;
     --registration-color: darkseagreen;
-    /*
-    --user-color: coral;
-    --footer-color: hotpink;
-    --footer-title-color: firebrick;*/
 }
 
 @media(max-width:1080px){
