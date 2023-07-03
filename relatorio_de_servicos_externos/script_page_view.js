@@ -9,6 +9,13 @@ window.onload = function() {
     document.getElementById('time').innerHTML = dados.dateAndTimeInBrazilianFormat;
     document.getElementById('reported_defect').innerHTML = dados.reportedDefect;
     document.getElementById('performed_services').innerHTML = dados.performedServices;
+    let list = document.querySelector('#list_of_technicians')
+    
+    let content = '';
+    for (let i = 0; i < dados.techniciansData.names.length; i++) {
+        content += `<span style="font-weight: bold;">Nome:</span> ${dados.techniciansData.names[i]}, <span style="font-weight: bold;">Matrícula:</span> ${dados.techniciansData.enrollment[i]}<br>`;
+        list.innerHTML = content;
+    }
     document.getElementById('user_name').innerHTML = dados.userName;
     document.getElementById('user_registration').innerHTML = dados.userRegistration;
 

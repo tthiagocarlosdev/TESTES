@@ -156,14 +156,6 @@ p{
     margin-bottom: 1.5rem;
 }
 
-.container_technician p{
-    font-weight: bold;
-}
-
-.container_technician label{
-    font-weight: normal;
-}
-
 .container_user p{
     font-weight: bold;
 }

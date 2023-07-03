@@ -305,10 +305,21 @@
     align-items: center;
 }
 
-.technician div{
+.box_input{
     width: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr;
+}
+
+.box_list_of_technicians{
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem;
+
+}
+
+.box_list_of_technicians p{
+    font-size: 1.2rem;
 }
 
 .technician_input,
