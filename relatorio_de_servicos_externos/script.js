@@ -1,3 +1,38 @@
+let technical = {
+    names:[],
+    enrollment:[],
+}
+
+function addTechnicians(){
+    let name = document.querySelector('#name_technician').value;
+    let registration = document.querySelector('#registration_technician').value;
+    let lista = document.querySelector('#list_of_technicians')
+    const regex_registration = /(^[0-9]{3}.[0-9]{3}-[0-9])/
+
+    console.log(registration)
+    console.log(regex_registration.test(registration))
+    if( !regex_registration.test(registration) ){
+        alert("Informe uma matrícula correta!")
+    } else if(registration.length == 0){
+        alert("Por favor, informe a matrícula do técnico!")
+    } else if(name.length == 0){
+        alert("Por favor, informe o nome do técnico!")
+    } else {
+        technical.names.push(name);
+        technical.enrollment.push(registration);
+    }
+
+    
+    
+    let content = '';
+    for (let i = 0; i < technical.names.length; i++) {
+        content += `<span style="font-weight: bold;">Nome:</span> ${technical.names[i]}, <span style="font-weight: bold;">Matrícula:</span> ${technical.enrollment[i]}.<br>`;
+        lista.innerHTML = content;
+    }
+
+    console.log(technical)
+
+}
 function toView(){
     const pageData = {}
     const technician = {}

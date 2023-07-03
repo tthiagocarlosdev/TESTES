@@ -514,17 +514,15 @@
 
                     <div class="technician">
                         <div>
-                            <input type="text" name="technician" class="technician_input input-1" id="technician_a" >
-                            <input type="text" name="technician" class="registration_input input-2" id="registration_a" >
-                            <input type="text" name="technician" class="technician_input input-1" id="technician_b" >
-                            <input type="text" name="technician" class="registration_input input-2" id="registration_b" >
+                            <input type="text" name="technician" class="technician_input input-1" id="name_technician" >
+                            <input type="text" name="technician" class="registration_input input-2" id="registration_technician" >
                         </div>
                         <div>
-                            <input type="text" name="technician" class="technician_input input-1" id="technician_c" >
-                            <input type="text" name="technician" class="registration_input input-2" id="registration_c" >
-                            <input type="text" name="technician" class="technician_input input-1" id="technician_d" >
-                            <input type="text" name="technician" class="registration_input input-2" id="registration_d" >
+                            <p id="list_of_technicians">
+                                <!-- Nome: Thiago Carlos, Matrícula: 123.123-8 -->
+                            </p>
                         </div>
+                        <button type="button" class="button" onclick="addTechnicians()">Adicionar</button>
                         
                     </div>
 
@@ -541,7 +539,7 @@
                     </div>
 
                     <div class="box-button">
-                        <button type="button" id="button-to-view" onclick="toView()">Visualizar</button>
+                        <button type="button" class="button" onclick="toView()">Visualizar</button>
                     </div>
 
                 </div>  

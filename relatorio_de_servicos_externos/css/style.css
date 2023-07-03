@@ -381,8 +381,7 @@
     margin: 1.5rem auto;
 }
 
-#button-to-view {
-    /* margin-right: 5rem; */
+.button {
     border: 1px solid var(--black-color);
     border-radius: 10px;
     width: 10rem;
@@ -392,14 +391,6 @@
     background-color: var(--hover-color);
     cursor: pointer;
 }
-/*
-#signature {
-    border-bottom: 1px solid var(--black-color);
-    width: 22rem;
-    margin-left: 5rem;
-
-}
-*/
 
 /* footer - footer -  footer -  footer -  footer -  footer  footer -  footer -  footer -  footer -  footer - */
 
@@ -467,6 +458,6 @@
 }
 
 .links-social-media a:hover,
-#button-to-view:hover {
+.button:hover {
     background-color: var(--container-color);
 }
