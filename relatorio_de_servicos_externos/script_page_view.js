@@ -5,8 +5,8 @@ window.onload = function() {
     var dados = JSON.parse(decodeURIComponent(dados_str));
     console.log(dados)
     document.getElementById('place_of_care').innerHTML = dados.serviceLocation;
-    document.getElementById('date').innerHTML = dados.dateAndTimeInBrazilianFormat;
-    document.getElementById('time').innerHTML = dados.dateAndTimeInBrazilianFormat;
+    document.getElementById('date').innerHTML = dados.dateAndTimeInBrazilianFormat.date;
+    document.getElementById('time').innerHTML = dados.dateAndTimeInBrazilianFormat.time;
     document.getElementById('reported_defect').innerHTML = dados.reportedDefect;
     document.getElementById('performed_services').innerHTML = dados.performedServices;
     let list = document.querySelector('#list_of_technicians')

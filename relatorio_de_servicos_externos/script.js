@@ -3,13 +3,16 @@ let technical = {
     enrollment:[],
 }
 
+
 function addTechnicians(){
     let name = document.querySelector('#name_technician').value;
     let registration = document.querySelector('#registration_technician').value;
     let lista = document.querySelector('#list_of_technicians')
     const regex_registration = /(^[0-9]{3}.[0-9]{3}-[0-9])/
 
-    if( !regex_registration.test(registration) ){
+    if(containsInTheList(name, technical.names) || containsInTheList(registration, technical.enrollment)){
+        alert('Técnico já está na lista!')
+    } else if( !regex_registration.test(registration) ){
         alert("Informe uma matrícula correta!")
     } else if(registration.length == 0){
         alert("Por favor, informe a matrícula do técnico!")
@@ -33,6 +36,10 @@ function toView(){
     pageData.serviceLocation = document.querySelector('.place_of_care_select').value
     pageData.dateAndTime = document.querySelector('#date_and_time_input').value
     pageData.dateAndTimeInBrazilianFormat = dateTime(pageData.dateAndTime)
+    // console.log(dateTime(pageData.dateAndTime))
+    console.log(`dateAndTimeInBrazilianFormat: ${pageData.dateAndTimeInBrazilianFormat.date}`)
+    console.log(`dateAndTimeInBrazilianFormat: ${pageData.dateAndTimeInBrazilianFormat.time}`)
+    console.log(`dateAndTimeInBrazilianFormat: ${pageData.dateAndTimeInBrazilianFormat.dayOfWeek}`)
     pageData.reportedDefect = document.querySelector('#reported_defect').value
     pageData.performedServices = document.querySelector('#performed_services').value
     pageData.techniciansData = technical
@@ -63,28 +70,57 @@ function toView(){
 }
 
 //functions declarations
-function dateTime(value){
+function dateTime(value) {
+  if (value.length === 0) {
+    // Código para retornar a data, hora e dia da semana atuais
+    const computerDate = new Date();
+    const formatter = new Intl.DateTimeFormat("pt-br", {
+      dateStyle: "short",
+      timeStyle: "short"
+    });
+    const formattedDateTime = formatter.format(computerDate);
+    const [formattedDate, formattedTime] = formattedDateTime.split(", ");
+    const dayOfWeek = computerDate.toLocaleDateString("pt-br", {
+      weekday: "long"
+    });
+    const dateTimeObject = {
+      date: formattedDate,
+      time: formattedTime,
+      dayOfWeek: dayOfWeek
+    };
 
-    if(value.length == 0){
+    // console.log(dateTimeObject);
+    return dateTimeObject;
 
-        const computerDate = new Date()
-        const actual = new Intl.DateTimeFormat("pt-br", {
-            dateStyle: "short", timeStyle: "short"
-        }).format(computerDate)
+  } else {
+    // Código para retornar a data, hora e dia da semana a partir do valor fornecido
+    const arrayDate = value.split("");
+    const year = arrayDate.slice(0, 4).toString().replace(/,/g, "");
+    const month = arrayDate.slice(5, 7).toString().replace(/,/g, "");
+    const day = arrayDate.slice(8, 10).toString().replace(/,/g, "");
+    const hours = arrayDate.slice(11, 13).toString().replace(/,/g, "");
+    const minutes = arrayDate.slice(14, 16).toString().replace(/,/g, "");
+    const dateObject = new Date(year, month - 1, day);
+    const formatter = new Intl.DateTimeFormat("pt-br", {
+      weekday: "long"
+    });
+    const dayOfWeek = formatter.format(dateObject);
+    const dateTimeObject = {
+      date: `${day}/${month}/${year}`,
+      time: `${hours}:${minutes}`,
+      dayOfWeek: dayOfWeek
+    };
+    // console.log(dateTimeObject);
+    return dateTimeObject;
+  }
+}
 
-        return actual
 
+//função que testa se o valor digitado já se encontra na lista.
+function containsInTheList(value, list){
+    if(list.indexOf(value) != -1){
+        return true
     } else {
-        
-        const arrayDate = value.split("")
-        const year = arrayDate.slice(0, 4).toString().replace(/,/g, "") 
-        const month = arrayDate.slice(5, 7).toString().replace(/,/g, "")
-        const day = arrayDate.slice(8, 10).toString().replace(/,/g, "")
-        const hours = arrayDate.slice(11, 13).toString().replace(/,/g, "")
-        const minutes = arrayDate.slice(14, 16).toString().replace(/,/g, "")
-
-        return `${day}/${month}/${year}, ${hours}:${minutes}`
-        
+        return false
     }
-
 }
