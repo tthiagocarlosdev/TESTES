@@ -35,11 +35,9 @@ function toView(){
 
     pageData.serviceLocation = document.querySelector('.place_of_care_select').value
     pageData.dateAndTime = document.querySelector('#date_and_time_input').value
+    console.log(pageData.dateAndTime)
     pageData.dateAndTimeInBrazilianFormat = dateTime(pageData.dateAndTime)
-    // console.log(dateTime(pageData.dateAndTime))
-    console.log(`dateAndTimeInBrazilianFormat: ${pageData.dateAndTimeInBrazilianFormat.date}`)
-    console.log(`dateAndTimeInBrazilianFormat: ${pageData.dateAndTimeInBrazilianFormat.time}`)
-    console.log(`dateAndTimeInBrazilianFormat: ${pageData.dateAndTimeInBrazilianFormat.dayOfWeek}`)
+    console.log(dateTime(pageData.dateAndTime))
     pageData.reportedDefect = document.querySelector('#reported_defect').value
     pageData.performedServices = document.querySelector('#performed_services').value
     pageData.techniciansData = technical
@@ -71,50 +69,26 @@ function toView(){
 
 //functions declarations
 function dateTime(value) {
-  if (value.length === 0) {
-    // Código para retornar a data, hora e dia da semana atuais
-    const computerDate = new Date();
     const formatter = new Intl.DateTimeFormat("pt-br", {
-      dateStyle: "short",
-      timeStyle: "short"
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric"
     });
-    const formattedDateTime = formatter.format(computerDate);
-    const [formattedDate, formattedTime] = formattedDateTime.split(", ");
-    const dayOfWeek = computerDate.toLocaleDateString("pt-br", {
-      weekday: "long"
-    });
-    const dateTimeObject = {
-      date: formattedDate,
-      time: formattedTime,
-      dayOfWeek: dayOfWeek
-    };
 
-    // console.log(dateTimeObject);
-    return dateTimeObject;
+    if (value.length === 0) {
+        // Código para retornar a data, hora e dia da semana atuais
+        const computerDate = new Date();
+        return formatter.format(computerDate);
 
-  } else {
-    // Código para retornar a data, hora e dia da semana a partir do valor fornecido
-    const arrayDate = value.split("");
-    const year = arrayDate.slice(0, 4).toString().replace(/,/g, "");
-    const month = arrayDate.slice(5, 7).toString().replace(/,/g, "");
-    const day = arrayDate.slice(8, 10).toString().replace(/,/g, "");
-    const hours = arrayDate.slice(11, 13).toString().replace(/,/g, "");
-    const minutes = arrayDate.slice(14, 16).toString().replace(/,/g, "");
-    const dateObject = new Date(year, month - 1, day);
-    const formatter = new Intl.DateTimeFormat("pt-br", {
-      weekday: "long"
-    });
-    const dayOfWeek = formatter.format(dateObject);
-    const dateTimeObject = {
-      date: `${day}/${month}/${year}`,
-      time: `${hours}:${minutes}`,
-      dayOfWeek: dayOfWeek
-    };
-    // console.log(dateTimeObject);
-    return dateTimeObject;
-  }
+    } else {
+        // Código para retornar a data, hora e dia da semana a partir do valor fornecido
+        const dateObject = new Date(value);
+        return formatter.format(dateObject);
+    }
 }
-
 
 //função que testa se o valor digitado já se encontra na lista.
 function containsInTheList(value, list){

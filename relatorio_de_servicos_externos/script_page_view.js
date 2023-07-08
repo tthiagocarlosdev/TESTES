@@ -3,20 +3,18 @@ window.onload = function() {
     var urlParams = new URLSearchParams(queryString);
     var dados_str = urlParams.get('pageData');
     var dados = JSON.parse(decodeURIComponent(dados_str));
-    console.log(dados)
-    document.getElementById('place_of_care').innerHTML = dados.serviceLocation;
-    document.getElementById('date').innerHTML = dados.dateAndTimeInBrazilianFormat.date;
-    document.getElementById('time').innerHTML = dados.dateAndTimeInBrazilianFormat.time;
-    document.getElementById('reported_defect').innerHTML = dados.reportedDefect;
-    document.getElementById('performed_services').innerHTML = dados.performedServices;
+    document.getElementById('place_of_care').innerHTML = dados.serviceLocation.toUpperCase();
+    document.getElementById('date_and_time').innerHTML = dados.dateAndTimeInBrazilianFormat.toUpperCase();
+    document.getElementById('reported_defect').innerHTML = dados.reportedDefect.toUpperCase();
+    document.getElementById('performed_services').innerHTML = dados.performedServices.toUpperCase();
     let list = document.querySelector('#list_of_technicians')
     
     let content = '';
     for (let i = 0; i < dados.techniciansData.names.length; i++) {
-        content += `<span style="font-weight: bold;">Nome:</span> ${dados.techniciansData.names[i]}, <span style="font-weight: bold;">Matrícula:</span> ${dados.techniciansData.enrollment[i]}<br>`;
+        content += `<span style="font-weight: bold; font-size: 1.2rem;">Nome:</span> ${dados.techniciansData.names[i].toUpperCase()}, <span style="font-weight: bold; font-size: 1.2rem;">Matrícula:</span> ${dados.techniciansData.enrollment[i].toUpperCase()}<br>`;
         list.innerHTML = content;
     }
-    document.getElementById('user_name').innerHTML = dados.userName;
-    document.getElementById('user_registration').innerHTML = dados.userRegistration;
+    document.getElementById('user_name').innerHTML = dados.userName.toUpperCase();
+    document.getElementById('user_registration').innerHTML = dados.userRegistration.toUpperCase();
 
 }
