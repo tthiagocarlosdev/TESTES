@@ -37,3 +37,12 @@ function adicionar(){
 
     console.log(technical)
 }
+
+function listaFinal(){
+    let lista_final = document.querySelector('#lista_final')
+    let content = '';
+    for (let i = 0; i < technical.names.length; i++) {
+        content += `Nome: ${technical.names[i]}, Matrícula: ${technical.enrollment[i]}.<br>`;
+        lista_final.innerHTML = content;
+    }
+}
