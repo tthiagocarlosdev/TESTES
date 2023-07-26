@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input Infinito</title>
+    <style>
+        #unidadePolicial{
+            text-decoration: none;
+            border: none;
+            
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -13,6 +20,41 @@
         <input type="text" id="registration">
         <button onclick="adicionar()">Adicionar</button>
     </div>
+
+    <div class="unidades">
+        <select name="" id="" class="unidade_policial">
+            <option value="">SELECIONE</option>
+            <option value="DELEGACIA DE POLÍCIA DA 001ª CIRCUNSCRIÇÃO - RIO BRANCO - DP1ªCIRC DIM/1ªDESEC">DELEGACIA DE POLÍCIA DA 001ª CIRCUNSCRIÇÃO - RIO BRANCO - DP1ªCIRC DIM/1ªDESEC</option>
+            <option value="DELEGACIA DE POLÍCIA DA 002ª CIRCUNSCRIÇÃO - BOA VISTA - DP2ªCIRC DIM/1ªDESEC">DELEGACIA DE POLÍCIA DA 002ª CIRCUNSCRIÇÃO - BOA VISTA - DP2ªCIRC DIM/1ªDESEC</option>
+            <option value="DELEGACIA DE POLÍCIA DA 003ª CIRCUNSCRIÇÃO - JOANA BEZERRA - DP3ªCIRC DIM/1ªDESEC">DELEGACIA DE POLÍCIA DA 003ª CIRCUNSCRIÇÃO - JOANA BEZERRA - DP3ªCIRC DIM/1ªDESEC</option>
+            <option value="DELEGACIA DE POLÍCIA DA 004ª CIRCUNSCRIÇÃO - ESPINHEIRO - DP4ªCIRC DIM/2ªDESEC">DELEGACIA DE POLÍCIA DA 004ª CIRCUNSCRIÇÃO - ESPINHEIRO - DP4ªCIRC DIM/2ªDESEC</option>
+            <option value="DELEGACIA DE POLÍCIA DA 005ª CIRCUNSCRIÇÃO - CASA AMARELA - DP5ªCIRC DIM/5ªDESEC">DELEGACIA DE POLÍCIA DA 005ª CIRCUNSCRIÇÃO - CASA AMARELA - DP5ªCIRC DIM/5ªDESEC</option>
+            <option value="DELEGACIA DE POLÍCIA DA 006ª CIRCUNSCRIÇÃO - CORDEIRO - DP6ªCIRC DIM/2ªDESEC">DELEGACIA DE POLÍCIA DA 006ª CIRCUNSCRIÇÃO - CORDEIRO - DP6ªCIRC DIM/2ªDESEC</option>
+            <option value="DELEGACIA DE POLÍCIA DA 007ª CIRCUNSCRIÇÃO - BOA VIAGEM - DP7ªCIRC DIM/3ªDESEC">DELEGACIA DE POLÍCIA DA 007ª CIRCUNSCRIÇÃO - BOA VIAGEM - DP7ªCIRC DIM/3ªDESEC</option>
+            <option value="DELEGACIA DE POLÍCIA DA 008ª CIRCUNSCRIÇÃO - JORDÃO - DP8ªCIRC DIM/3ªDESEC">DELEGACIA DE POLÍCIA DA 008ª CIRCUNSCRIÇÃO - JORDÃO - DP8ªCIRC DIM/3ªDESEC</option>
+            <option value="DELEGACIA DE POLÍCIA DA 009ª CIRCUNSCRIÇÃO - IPSEP - DP9ªCIRC DIM/3ªDESEC">DELEGACIA DE POLÍCIA DA 009ª CIRCUNSCRIÇÃO - IPSEP - DP9ªCIRC DIM/3ªDESEC</option>
+            <option value="DELEGACIA DE POLÍCIA DA 010ª CIRCUNSCRIÇÃO - IBURA - DP10ªCIRC DIM/3ªDESEC">DELEGACIA DE POLÍCIA DA 010ª CIRCUNSCRIÇÃO - IBURA - DP10ªCIRC DIM/3ªDESEC</option>
+        </select>
+    </div>
+
+    <div class="unidades">
+        <input type="text" id="searchInput" placeholder="Pesquisar">
+        <label> Unidade Policial: </label>
+        <select name="" id="unidadePolicial" class="unidade_policial">
+          <option value=""></option>
+          <option value="DELEGACIA DE POLÍCIA DA 001ª CIRCUNSCRIÇÃO - RIO BRANCO - DP1ªCIRC DIM/1ªDESEC">DELEGACIA DE POLÍCIA DA 001ª CIRCUNSCRIÇÃO - RIO BRANCO - DP1ªCIRC DIM/1ªDESEC</option>
+          <option value="DELEGACIA DE POLÍCIA DA 002ª CIRCUNSCRIÇÃO - BOA VISTA - DP2ªCIRC DIM/1ªDESEC">DELEGACIA DE POLÍCIA DA 002ª CIRCUNSCRIÇÃO - BOA VISTA - DP2ªCIRC DIM/1ªDESEC</option>
+          <option value="DELEGACIA DE POLÍCIA DA 003ª CIRCUNSCRIÇÃO - JOANA BEZERRA - DP3ªCIRC DIM/1ªDESEC">DELEGACIA DE POLÍCIA DA 003ª CIRCUNSCRIÇÃO - JOANA BEZERRA - DP3ªCIRC DIM/1ªDESEC</option>
+          <option value="DELEGACIA DE POLÍCIA DA 004ª CIRCUNSCRIÇÃO - ESPINHEIRO - DP4ªCIRC DIM/2ªDESEC">DELEGACIA DE POLÍCIA DA 004ª CIRCUNSCRIÇÃO - ESPINHEIRO - DP4ªCIRC DIM/2ªDESEC</option>
+          <option value="DELEGACIA DE POLÍCIA DA 005ª CIRCUNSCRIÇÃO - CASA AMARELA - DP5ªCIRC DIM/5ªDESEC">DELEGACIA DE POLÍCIA DA 005ª CIRCUNSCRIÇÃO - CASA AMARELA - DP5ªCIRC DIM/5ªDESEC</option>
+          <option value="DELEGACIA DE POLÍCIA DA 006ª CIRCUNSCRIÇÃO - CORDEIRO - DP6ªCIRC DIM/2ªDESEC">DELEGACIA DE POLÍCIA DA 006ª CIRCUNSCRIÇÃO - CORDEIRO - DP6ªCIRC DIM/2ªDESEC</option>
+          <option value="DELEGACIA DE POLÍCIA DA 007ª CIRCUNSCRIÇÃO - BOA VIAGEM - DP7ªCIRC DIM/3ªDESEC">DELEGACIA DE POLÍCIA DA 007ª CIRCUNSCRIÇÃO - BOA VIAGEM - DP7ªCIRC DIM/3ªDESEC</option>
+          <option value="DELEGACIA DE POLÍCIA DA 008ª CIRCUNSCRIÇÃO - JORDÃO - DP8ªCIRC DIM/3ªDESEC">DELEGACIA DE POLÍCIA DA 008ª CIRCUNSCRIÇÃO - JORDÃO - DP8ªCIRC DIM/3ªDESEC</option>
+          <option value="DELEGACIA DE POLÍCIA DA 009ª CIRCUNSCRIÇÃO - IPSEP - DP9ªCIRC DIM/3ªDESEC">DELEGACIA DE POLÍCIA DA 009ª CIRCUNSCRIÇÃO - IPSEP - DP9ªCIRC DIM/3ªDESEC</option>
+          <option value="DELEGACIA DE POLÍCIA DA 010ª CIRCUNSCRIÇÃO - IBURA - DP10ªCIRC DIM/3ªDESEC">DELEGACIA DE POLÍCIA DA 010ª CIRCUNSCRIÇÃO - IBURA - DP10ªCIRC DIM/3ªDESEC</option>
+        </select>
+      </div>
+      
 
     <div>
         <h2>Usuários cadastrados</h2>
