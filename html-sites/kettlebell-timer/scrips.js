@@ -62,7 +62,7 @@ function checkInputs(){
 
   if(formIsValid){
     console.log('O fomulário está 100% válido!')
-    var data_str = JSON.stringify(dataAthlete);
+    const data_str = JSON.stringify(dataAthlete);
     window.location.href = "time-and-reps.html?dataAthlete=" + encodeURIComponent(data_str);
   }
 

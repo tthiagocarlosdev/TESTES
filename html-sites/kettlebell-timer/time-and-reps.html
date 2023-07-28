@@ -8,10 +8,10 @@
   <title> time and reps </title>
   <script>
     window.onload = function() {
-      var queryString = window.location.search;
-      var urlParams = new URLSearchParams(queryString);
-      var data_str = urlParams.get('dataAthlete');
-      var dataAthlete = JSON.parse(decodeURIComponent(data_str));
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const data_str = urlParams.get('dataAthlete');
+      const dataAthlete = JSON.parse(decodeURIComponent(data_str));
       console.log(dataAthlete)
 
       document.getElementById('show_athlete_name').innerHTML = `Nome do Atleta: ${dataAthlete.athleteName}`;
@@ -79,11 +79,6 @@
       </div>
 
       <div class="relogio">
-        <!-- <div>
-          <span id="horas">00</span>
-          <span class="tempo">Horas</span>
-        </div> -->
-
         <div>
           <span id="minutos">00</span>
           <span class="tempo">Minutos</span>
@@ -97,6 +92,7 @@
       
       <div class="box-repetitions">
         <h1 id="repetations" > 0 </h1>
+        <button id="botao_start" class="button" onclick="start()" > start </button>
         <button id="botao" class="button" onclick="atualizarValor()" > + 1 rep </button>
       </div>
       
