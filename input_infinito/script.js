@@ -43,4 +43,18 @@ function adicionar(){
         content += `Nome: ${technical.names[i]}, Matrícula: ${technical.enrollment[i]}.<br>`;
         lista.innerHTML = content;
     }
+<<<<<<< HEAD
+
+    console.log(technical)
+}
+
+function listaFinal(){
+    let lista_final = document.querySelector('#lista_final')
+    let content = '';
+    for (let i = 0; i < technical.names.length; i++) {
+        content += `Nome: ${technical.names[i]}, Matrícula: ${technical.enrollment[i]}.<br>`;
+        lista_final.innerHTML = content;
+    }
+=======
+>>>>>>> e89187529b5f70c26de81cda870882e243deeadf
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de Investimentos</title>
+</head>
+<body>
+  <h1>Calculadora de Investimentos</h1>
+  <form onsubmit="calcularMontante(event)">
+    <label for="salario">Salário:</label>
+    <input type="number" step="any" id="salario" required><br>
+
+    <label for="percentInvestimento">Percentual de Investimento por mês:</label>
+    <input type="number" step="any" id="percentInvestimento" required><br>
+
+    <label for="aumentoAnual">Percentual de Aumento Anual do Salário:</label>
+    <input type="number" step="any" id="aumentoAnual" required><br>
+
+    <label for="rendimentoAnual">Percentual de Rendimento Anual Esperado:</label>
+    <input type="number" step="any" id="rendimentoAnual" required><br>
+
+    <label for="anos">Tempo de Investimento (em anos):</label>
+    <input type="number" step="1" id="anos" required><br>
+
+    <input type="submit" value="Calcular">
+  </form>
+
+  <h2>Montante Final:</h2>
+  <p id="resultado"></p>
+
+  <script>
+    function calcularMontante(event) {
+      event.preventDefault();
+
+      let salario = parseFloat(document.getElementById("salario").value);
+      const percentInvestimento = parseFloat(document.getElementById("percentInvestimento").value) / 100;
+      const aumentoAnual = parseFloat(document.getElementById("aumentoAnual").value) / 100;
+      const rendimentoAnual = parseFloat(document.getElementById("rendimentoAnual").value) / 100;
+      const anos = parseInt(document.getElementById("anos").value);
+
+      let montante = 0;
+      let investimentoMensal = salario * percentInvestimento;
+
+      for (let k = 0; k < anos; k++) {
+        for (let i = 0; i < 12; i++) {
+          montante += investimentoMensal * (1 + rendimentoAnual / 12) ** (k * 12 + i);
+        }
+        salario += salario * aumentoAnual;
+        investimentoMensal = salario * percentInvestimento;
+      }
+
+      document.getElementById("resultado").innerText = `Montante Final: R$ ${montante.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
