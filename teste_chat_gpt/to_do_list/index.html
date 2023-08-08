@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container{
+            background-color: blanchedalmond;
+            width: 500px;
+            height: auto;
+            margin: 50px auto;
+            text-align: center;
+        }
+        h1{
+            padding-top: 10px;
+            border-bottom: 1px solid black;
+        }
+        .input{
+            font-size: 20px;
+            padding: 10px 15px;
+            text-align: center;
+        }
+
+        #taskList{
+            text-decoration: none;
+        }
+        .list{
+            margin-top: 15px;
+            border-top: 1px solid black;
+            text-align: initial;
+        }
+        li{
+            padding: 10px 0;
+        }
+        li span{
+            font-size: 20px;
+        }
+        i{
+            padding-left: 15px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input class="input" type="text" id="taskInput" placeholder="Digite uma tarefa">
+        <button class="input" onclick="addTask()">Adicionar</button>
+        <div class="list">
+            <ul type="none" id="taskList"></ul>
+        </div>
+        
+    </div>
+    
+    <script src="https://kit.fontawesome.com/bec2f6bc88.js" crossorigin="anonymous"></script>
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById("taskInput");
+            const taskList = document.getElementById("taskList");
+
+            if (taskInput.value.trim() !== "") {
+                const taskItem = document.createElement("li");
+                taskItem.innerHTML = `
+                    <input type="checkbox" onclick="toggleTask(this)">
+                    <span>${taskInput.value}</span>
+                    <a onclick="removeTask(this)" onclick="removeTask(this)"> <i class="fa-solid fa-rectangle-xmark"></i> </a>
+                `;
+                taskList.appendChild(taskItem);
+                taskInput.value = "";
+            }
+        }
+
+        function toggleTask(checkbox) {
+            const taskText = checkbox.nextElementSibling;
+            taskText.style.textDecoration = checkbox.checked ? "line-through" : "none";
+        }
+
+        function removeTask(button) {
+            const taskItem = button.parentElement;
+            taskItem.remove();
+        }
+    </script>
+</body>
+</html>
