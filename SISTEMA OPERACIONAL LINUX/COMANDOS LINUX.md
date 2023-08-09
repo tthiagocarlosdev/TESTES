@@ -235,3 +235,14 @@ sudo apt-get upgrade
 ```shell
  sudo apt-get autoremove
 ```
+
+## Desligar o computador
+- Desliga em 10 min:
+```shell
+  sudo shutdown -h +10
+```
+
+- Programar um horário:
+```shell
+  sudo shutdown -r HH:MM
+```
