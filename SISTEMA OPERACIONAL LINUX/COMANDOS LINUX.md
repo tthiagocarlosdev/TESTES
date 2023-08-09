@@ -210,3 +210,28 @@ sudo apt upgrade
 sudo apt install zsnes
 ```
 
+## Atualizar Sistema
+
+1. Para atualizar todos os pacotes:
+```shell
+sudo apt update
+```
+
+2. Visualizar o que precisa ser atualizado:
+```shell
+sudo apt list --upgradable
+```
+
+3. Para atualizar pacotes fora de data e ainda remover os obsoletos:
+```shell
+sudo apt-get dist-upgrade
+```
+4. Para atualização geral da distribuição, remoção de pacotes e correção de conflitos:
+```shell
+sudo apt-get upgrade
+```
+
+5. Para remover os pacotes que não serão mais necessários:
+```shell
+ sudo apt-get autoremove
+```
