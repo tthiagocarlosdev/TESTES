@@ -10,6 +10,7 @@ function loading(){
     
     let toLoad = `....`
     let percentage = 20
+
     while (percentage <= 100) {
         console.clear()
         console.log(`loading ${toLoad} ${percentage}%`)

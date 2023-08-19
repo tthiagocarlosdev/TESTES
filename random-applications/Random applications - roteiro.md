@@ -6,7 +6,7 @@
 
 ### 3. loading( );
 
-### 4. getRandomIntInclusive( );
+### 4. getRandomIntInclusive( ); PAREI
 
 ### 5. NodeJS - module.export e require( );
 
@@ -27,9 +27,9 @@
 ### - Introdução:
 
 - Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago e esse é o canal Thiago Carlos Dev. Hoje iniciamos essa sequência de aplicações aleatórias usando JavaScript;
-- Essa sequência está bem legal, são aplicações que eu fui construíndo a medidad que fui estudando e aprendendo lógica e algoritmos;
+- Essa sequência está bem legal, são aplicações que eu fui construíndo a medida que fui estudando e aprendendo lógica e algoritmos;
 - Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos;
-- Vamos criar a função `header()`. Ela cria um cabeçalho estilizado no console, exibindo uma linha horizontal acima e abaixo do texto do cabeçalho, e centralizando o texto com base no tamanho fornecido.
+- Vamos construir a função `header()`. Ela cria um cabeçalho estilizado no console, exibindo uma linha horizontal acima e abaixo do texto do cabeçalho, e centralizando o texto com base no tamanho do título da aplicação.
 
 ```shell
 ---------------------------------------
@@ -39,7 +39,7 @@
 
 ### - Passo 1: Declaração de variáveis
 
-- A função recebe um argumento chamado 'text', que é o texto que será exibido no cabeçalho.
+- A função recebe um argumento chamado 'text', que é o título da aplicação que será exibido no cabeçalho.
 
     ```js
     function header(text) {
@@ -79,16 +79,15 @@
     - O laço começa em 0 e vai até `spaceSize`.
     - Se o índice é menor do que `spaceSize`, adiciona um espaço em branco na string `textWithSpace`.
     - Se o índice é igual a `spaceSize`, adiciona o texto passado como argumento na string `textWithSpace`.
+    - Se o índice é maior do que `sapaceSize` o laço é encerrado e o programa segue para a próxima etapa.
 
-PAREI
-
-Passo 3: Função 'line()'
+### - Passo 3: Função 'line()'
 
 ```js
-  function line() {
+function line(size) {
     let line = ""
 
-    for (let index = 0; index <= lineSize; index++) {
+    for (let index = 0; index <= size; index++) {
       line += "-"
     }
 
@@ -96,23 +95,51 @@ Passo 3: Função 'line()'
   }
 ```
 
-- Explique que a função 'line()' é usada para criar a linha horizontal que fica acima e abaixo do cabeçalho.
+- A função `line()` é usada para criar a linha horizontal que fica acima e abaixo do cabeçalho. recebe como parâmetro a tamanho da linha já determinado no início da function `header()`:
 
-- Mostre a função 'line()':
-    - A variável 'line' é uma string vazia.
-    
-    - O laço 'for' é usado para preencher a string 'line' com caracteres '-', até que a string tenha o tamanho 'lineSize'.
-    
-    - A função 'console.log' é usada para imprimir a string 'line' no console.
-    
-      ```js
-      line()
-      console.log(textWithSpace)
-      line()
-      ```
+    ```js
+    function line(size) {
+        
+    }
+    ```
 
-Passo 4: Chamada da função
-- Explique que a função 'header()' é chamada no final do código, passando o argumento "título da aplicação".
+- A variável `line` é uma string vazia que vai receber os caracteres que formarão a  linha de acordo com o tamanho do título:
+
+    ```js
+    function line(size) {
+        let line = ""
+      }
+    ```
+
+- O laço 'for' é usado para preencher a string `line` com caracteres `-`, até que a string tenha o tamanho `lineSize`, que é o tamanho da linha:
+
+    ```js
+    function line(size) {
+        let line = ""
+    
+        for (let index = 0; index <= size; index++) {
+          line += "-"
+        }
+      }
+    ```
+
+- Por último, mostramos a linha com um `console.log()`:
+
+    ```js
+    function line(size) {
+        let line = ""
+    
+        for (let index = 0; index <= size; index++) {
+          line += "-"
+        }
+    
+        console.log(line)
+      }
+    ```
+
+### - Passo 4: Mostrar o cabeçalho
+
+- Ao final da function `header()`, vamos chamar a function `line()` e mostrar a variável `textWithSpace`que será o título centralizado entre as linhas:
 
     ```js
     function header(text) {
@@ -129,30 +156,65 @@ Passo 4: Chamada da função
         }
       }
     
-      function line() {
+      function line(size) {
         let line = ""
     
-        for (let index = 0; index <= lineSize; index++) {
+        for (let index = 0; index <= size; index++) {
           line += "-"
         }
     
         console.log(line)
       }
     
-      line()
+      line(lineSize)
       console.log(textWithSpace)
-      line()
+      line(lineSize)
+    }
+    ```
+
+    ### Passo 5 - Chamando a function `header()`:
+
+- A função `header()` é chamada no final do código, passando o argumento "título da aplicação".
+
+    ```js
+    function header(text) {
+      let textSize = text.length;
+      let lineSize = textSize * 2;
+      let spaceSize = Math.ceil(textSize / 2)
+      let textWithSpace = ""
+    
+      for (let index = 0; index <= spaceSize; index++) {
+        if (index < spaceSize) {
+          textWithSpace += " "
+        } else if (index == spaceSize) {
+          textWithSpace += text
+        }
+      }
+    
+      function line(size) {
+        let line = ""
+    
+        for (let index = 0; index <= size; index++) {
+          line += "-"
+        }
+    
+        console.log(line)
+      }
+    
+      line(lineSize)
+      console.log(textWithSpace)
+      line(lineSize)
     }
     
     header("título da aplicação")
     ```
 
-- Mostre a saída que é impressa no console:
-    - A linha horizontal é criada pela função 'line()'.
+- A saída que é impressa no console:
+    - A linha horizontal é criada pela função `line()`.
     
-    - A linha do cabeçalho é criada pela variável 'textWithSpace'.
+    - A linha do cabeçalho é criada pela variável `textWithSpace`.
     
-    - A linha horizontal é criada novamente pela função 'line()'.
+    - A linha horizontal é criada novamente pela função `line()`.
     
       ```shell
       ---------------------------------------
@@ -160,30 +222,35 @@ Passo 4: Chamada da função
       ---------------------------------------
       ```
 
-Conclusão:
-- Conclua o vídeo resumindo o que foi explicado e como o código funciona.
-- Encoraje o espectador a experimentar o código e personalizar o cabeçalho de acordo com suas necessidades.
+### - Conclusão:
+
+- Essa foi a function `header()`, espero que tenha gostado e entendido. Experimente passar outros títulos e veja como fica no console.
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos.
 
 
 
 ## 2. line( );
 
-Introdução:
-- Comece o vídeo explicando que o código é uma função em JavaScript que cria uma linha horizontal de caracteres "-".
+### - Introdução:
 
-  ```shell
-  ---------------------------------------
-  ```
+- Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago e esse é o canal [tthiagocarlosdev](https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw). Hoje vamos para a segunda aplicação aleatória usando JavaScript;
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos;
+- Vamos constuir a função `line()`, que exibe uma linha horizontal de caracteres "-" de acordo com o tamanho do título da aplicação.
 
-Passo 1: Variáveis
-- Explique que a função recebe um argumento chamado 'text', que é uma string que pode ser usada para identificar ou rotular a linha.
+```shell
+---------------------------------------
+```
+
+### - Passo 1: Variáveis
+
+- A função recebe um argumento chamado `text`, que é uma string que pode ser usada para identificar ou rotular a linha. Essa string será o título da aplicação:
 
     ```js
     function line(text){
     }
     ```
 
-- Mostre as variáveis que são declaradas dentro da função:
+- Variáveis que são declaradas dentro da função:
   
     ```js
     function line(text){
@@ -193,11 +260,11 @@ Passo 1: Variáveis
       }
     ```
     
-    - 'textSize': recebe o tamanho da string passada como argumento.
-    - 'lineSize': é o dobro do tamanho da string, e será usado para determinar o tamanho da linha horizontal que será criada.
-    - 'line': é uma string vazia que será usada para criar a linha horizontal com caracteres "-".
+    - `textSize`: recebe o tamanho da string passada como argumento.
+    - `lineSize`: é o dobro do tamanho da string, e será usado para determinar o tamanho da linha horizontal que será criada.
+    - `line`: é uma string vazia que será usada para criar a linha horizontal com caracteres "-".
 
-Passo 2: Laço 'for'
+### - Passo 2: Laço 'for'
 
 ```js
 function line(text){
@@ -211,14 +278,14 @@ function line(text){
   }
 ```
 
-- Mostre o laço 'for' que é usado para preencher a string 'line' com caracteres '-':
-    - O laço começa em 0 e vai até 'lineSize'.
-    - A cada iteração do laço, o caractere '-' é adicionado à string 'line'.
+- O laço `for` que é usado para preencher a string `line` com caracteres '-':
+    - O laço começa em 0 e vai até `lineSize`.
+    - A cada iteração do laço, o caractere '-' é adicionado à string `line`.
+    - Quando o índice for maior que `lineSize` o laço é encerrado e a string `line` não recebe mais caracteres '-'.
 
-Passo 3: Função 'console.log'
-- Explique que a função 'console.log' é usada para imprimir a linha horizontal no console.
+### - Passo 3: Função `console.log()`
 
-- Mostre a chamada da função 'console.log' com a string 'line' como argumento.
+- Ao final, vamos imprimir a linha chamando a função `console.log`()  passando a string `line` como argumento:
 
   ```js
   function line(text){
@@ -234,8 +301,10 @@ Passo 3: Função 'console.log'
   }
   ```
 
-Passo 4: Chamada da função
-- Explique que a função 'line()' é chamada no final do código, passando o argumento "título da aplicação".
+
+### - Passo 4: Chamada da função `line()`
+
+- A função 'line()' é chamada no final do código, passando o argumento "título da aplicação".
 
     ```js
     function line(text){
@@ -253,71 +322,76 @@ Passo 4: Chamada da função
       line("título da aplicação")
     ```
 
-- Mostre a saída que é impressa no console:
-    - Uma linha horizontal é criada com caracteres '-'.
-    
-    - A string passada como argumento não é usada para criar a linha, mas pode ser usada para identificá-la.
+- A saída que é impressa no console:
+    - Uma linha horizontal é criada com caracteres '-':
     
       ```shell
       ---------------------------------------
       ```
 
-Conclusão:
-- Conclua o vídeo resumindo o que foi explicado e como o código funciona.
-- Encoraje o espectador a experimentar o código e personalizar a linha horizontal de acordo com suas necessidades, usando diferentes caracteres ou tamanhos.
+### - Conclusão:
+
+- Essa foi a function `line()`, espero que tenha gostado e entendido. Experimente passar outros títulos e veja como fica no console.
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos.
 
 
 
 ## 3. loading( )
 
-Introdução:
-- Comece o vídeo explicando que o código é uma função em JavaScript que cria uma animação de carregamento de conteúdo.
+### - Introdução:
 
-  ```shell
-  loading .... 20%
-  loading ........ 40%
-  loading ............ 60%
-  loading ................ 80%
-  loading .................... 100%
-  ```
+- Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago e esse é o canal [tthiagocarlosdev](https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw). Hoje vamos para a terceira aplicação aleatória usando JavaScript;
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos;
+- Vamos construir a função `loading()`, que exibe uma animação de carregamento de conteúdo:
 
-  ```js
-  function loading(){
-  }
-  ```
+```shell
+loading .... 20%
+loading ........ 40%
+loading ............ 60%
+loading ................ 80%
+loading ..................... 100%
+```
 
-Passo 1: Função 'syncDelay'
-- Explique que a função 'syncDelay' é uma função auxiliar que introduz um atraso controlado na execução do código.
+```js
+function loading(){
+}
+```
 
-- Mostre a função 'syncDelay' e explique como ela funciona:
-    - Recebe um argumento 'milliseconds', que é a quantidade de tempo em milissegundos que a função deve esperar antes de continuar a execução.
-    
-    - Usa um laço 'while' para aguardar até que o tempo especificado tenha passado antes de continuar a execução.
-    
-    - A cada iteração do laço, o tempo atual é comparado com o tempo de início e, quando o tempo especificado é atingido, a função é interrompida e a execução continua.
-    
+### - Passo 1: Função `syncDelay()`
+
+- A função `syncDelay()` é uma função auxiliar que introduz um atraso controlado na execução do código.
+
+    - Recebe como argumento `milliseconds`, que é a quantidade de tempo em milissegundos que a função deve esperar antes de continuar a execução;
+
+    - Usa um laço `while para aguardar até que o tempo especificado tenha passado antes de continuar a execução;
+
+    - A cada iteração do laço, o tempo atual é comparado com o tempo de início e, quando o tempo especificado é atingido, a função é interrompida e a execução continua;
+
       ```js
           function syncDelay(milliseconds){
             let start = new Date().getTime();
             let end=0;
-            while( (end-start) < milliseconds){
+            while( (end - start) < milliseconds){
                 end = new Date().getTime();
             }
            }  
       ```
 
-Passo 2: Variáveis
-- Mostre as variáveis declaradas dentro da função 'loading':
+    - Esta função é usada apenas para que a animação aconteça no tempo que for passado como parâmetro em milissegundos, no nosso caso, sera de 1 segundo ou 1000 milissegundos.
+
+### - Passo 2: Variáveis
+
+- As variáveis declaradas dentro da função `loading()`:
   
     ```js
         let toLoad = `....`
         let percentage = 20
     ```
     
-    - 'toLoad': é uma string que contém uma sequência de pontos que serão usados para representar visualmente o progresso do carregamento.
-    - 'percentage': é uma variável que controla o progresso do carregamento e é inicializada com o valor 20%.
+    - `toLoad`: é uma string que contém uma sequência de pontos que serão usados para representar visualmente o progresso do carregamento.
+    - `percentage` : é uma variável que controla o progresso do carregamento e é inicializada com o valor 20.
 
-Passo 3: Laço 'while'
+### - Passo 3: Laço `while`
 
 ```js
     while (percentage <= 100) {
@@ -329,15 +403,14 @@ Passo 3: Laço 'while'
     }
 ```
 
-- Explique que o código usa um laço 'while' para simular o carregamento do conteúdo.
-- Mostre o laço 'while' e explique como ele funciona:
-    - O laço continua enquanto o valor da variável 'percentage' é menor ou igual a 100.
-    - A cada iteração do laço, o console é limpo (com a função 'console.clear()') e é exibida uma mensagem de carregamento que inclui a sequência de pontos 'toLoad' e o percentual completo do carregamento 'percentage'.
-    - É introduzido um atraso de 1 segundo usando a função auxiliar 'syncDelay'.
-    - A sequência de pontos 'toLoad' é atualizada com mais pontos (usando a atribuição '+=') para simular o progresso do carregamento.
-    - O valor da variável 'percentage' é atualizado em 20% a cada iteração para simular o progresso do carregamento.
+- O laço `while` é usado para simular o carregamento do conteúdo.
+    - O laço continua enquanto o valor da variável `percentage` é menor ou igual a 100;
+    - A cada iteração do laço, o console é limpo, com a função `console.clear()`, e é exibida uma mensagem de carregamento que inclui a sequência de pontos `toLoad` e o percentual completo do carregamento `percentage`;
+    - É introduzido um atraso de _1 segundo_ usando a função auxiliar `syncDelay()`;
+    - A sequência de pontos `toLoad` é atualizada com mais pontos, usando a atribuição `+=`, para simular o progresso do carregamento;
+    - O valor da variável `percentage` é atualizado com mais 20 a cada interação para simular o progresso do carregamento.
 
-Passo 4: Chamada da função
+### - Passo 4: Chamada da função `loading()`
 
 ```js
 function loading(){
@@ -352,6 +425,7 @@ function loading(){
     
     let toLoad = `....`
     let percentage = 20
+    
     while (percentage <= 100) {
         console.clear()
         console.log(`loading ${toLoad} ${percentage}%`)
@@ -362,12 +436,11 @@ function loading(){
 }
 
 loading()
-
 ```
 
-- Explique que a função 'loading()' é chamada no final do código para iniciar a animação de carregamento.
+- A função `loading()` é chamada no final do código para iniciar a animação de carregamento.
 
-- Mostre a saída que é impressa no console:
+- A saída que é impressa no console:
   
     ```shell
     loading .... 20%
@@ -380,11 +453,12 @@ loading()
     - A mensagem de carregamento é atualizada a cada iteração do laço 'while' para simular o progresso do carregamento.
     - Quando o valor da variável 'percentage' atinge 100%, a animação de carregamento termina.
 
-Conclusão:
-- Conclua o vídeo resumindo o que foi explicado e como o código funciona.
-- Encoraje o espectador a experimentar o código e personalizar a animação de carregamento de acordo com suas necessidades, alterando a sequência de pontos ou o tempo de atraso.
+### - Conclusão:
 
+- Essa foi a function `loading()`, espero que tenha gostado e entendido.
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos.
 
+PAREI
 
 ## 4. getRandomIntInclusive( );
 

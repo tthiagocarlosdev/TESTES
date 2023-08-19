@@ -12,19 +12,19 @@ function header(text) {
     }
   }
 
-  function line() {
+  function line(size) {
     let line = ""
 
-    for (let index = 0; index <= lineSize; index++) {
+    for (let index = 0; index <= size; index++) {
       line += "-"
     }
 
     console.log(line)
   }
 
-  line()
+  line(lineSize)
   console.log(textWithSpace)
-  line()
+  line(lineSize)
 }
 
 header("título da aplicação")
