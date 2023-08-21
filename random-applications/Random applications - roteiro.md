@@ -6,13 +6,13 @@
 
 ### 3. loading( );
 
-### 4. getRandomIntInclusive( ); PAREI
+### 4. getRandomIntInclusive( );
 
 ### 5. NodeJS - module.export e require( );
 
-### 6. Math.random( )
+### 6. basicFunctions
 
-### 7. snake_case with replace( )
+### 7. snake_case with replace( ) PAREI
 
 ### 8. Jankenpon( ) with arrow functions;
 
@@ -458,37 +458,46 @@ loading()
 - Essa foi a function `loading()`, espero que tenha gostado e entendido.
 - Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos.
 
-PAREI
+
 
 ## 4. getRandomIntInclusive( );
 
-Introdução:
+### - Introdução:
 
-- Comece o vídeo explicando que o código é uma função em JavaScript que gera um número inteiro aleatório entre dois valores passados como parâmetro para a função.
+- Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago e esse é o canal [tthiagocarlosdev](https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw). Hoje vamos para a terceira aplicação aleatória usando JavaScript;
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos;
+- Vamos construir a função `getRandomIntInclusive( )`, que é uma função em JavaScript que gera um número inteiro aleatório entre dois valores passados como parâmetro para a função.
 
 ```shell
 Número inteiro aleatório entre dois valores, inclusive
 4
 ```
 
-Passo 1: Declaração da função
+### - Passo 1: Declaração da função
 
-- A primeira linha do código declara a função "getRandomIntInclusive", que recebe dois parâmetros: "min" e "max".
+- A primeira linha do código declara a função `getRandomIntInclusive()`, que recebe dois parâmetros: `min` e `max`:
 
 ```js
 function getRandomIntInclusive(min, max) {
 }
 ```
 
-Passo 2: Arredondamento dos parâmetros
+### - Passo 2: Arredondamento dos parâmetros
 
-- Dentro da função, as variáveis "min" e "max" são arredondadas para cima e para baixo, respectivamente, usando os métodos Math.ceil e Math.floor.
-- Math.ceil(min): A função Math.ceil() arredonda um número para cima para o inteiro mais próximo. Neste caso, estamos arredondando "min" para cima para garantir que o valor mínimo seja um número inteiro.
-- Math.floor(max): A função Math.floor() arredonda um número para baixo para o inteiro mais próximo. Neste caso, estamos arredondando "max" para baixo para garantir que o valor máximo seja um número inteiro.
+- Dentro da função, as variáveis `min` e `max` são arredondadas para cima e para baixo, respectivamente, usando os métodos Math.ceil e Math.floor.
+- Math.ceil(min): A função `Math.ceil()` arredonda um número para cima para o inteiro mais próximo. Neste caso, estamos arredondando "min" para cima para garantir que o valor mínimo seja um número inteiro.
+- Math.floor(max): A função `Math.floor()` arredonda um número para baixo para o inteiro mais próximo. Neste caso, estamos arredondando "max" para baixo para garantir que o valor máximo seja um número inteiro.
 
-Passo 3: Cálculo e retorno do número aleatório
+```js
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+}
+```
 
-- Em seguida, a função usa a função Math.random para gerar um número aleatório entre 0 e 1, que é multiplicado pela diferença entre "max" e "min" acrescido de 1. Em seguida, o resultado é arredondado para baixo com a função Math.floor e o valor mínimo é adicionado ao resultado para obter um número aleatório entre "min" e "max". Esse número é então retornado pela função.
+### - Passo 3: Cálculo e retorno do número aleatório
+
+- Em seguida, a função usa a função `Math.random()` para gerar um número aleatório entre 0 e 1, que é multiplicado pela diferença entre "max" e "min" acrescido de 1. Em seguida, o resultado é arredondado para baixo com a função `Math.floor()` e o valor mínimo é adicionado ao resultado para obter um número aleatório entre `min` e `max`. Esse número é então retornado pela função.
 
 ```js
 function getRandomIntInclusive(min, max) {
@@ -498,47 +507,117 @@ function getRandomIntInclusive(min, max) {
 }
 ```
 
-- Explique que a função 'loading()' é chamada no final do código para executar a função getRandomIntInclusive(1, 10).
-
-- Mostre a saída que é impressa no console:
+- No console:
 
   ```sh
-  Número inteiro aleatório entre dois valores, inclusive
   4
   ```
 
-Conclusão:
+### - Conclusão:
 
-- Conclua o vídeo resumindo o que foi explicado e como o código funciona.
-- Encoraje o espectador a experimentar o código e personalizar a animação de carregamento de acordo com suas necessidades, alterando a sequência de pontos ou o tempo de atraso.
+- Essa foi a function `getRandomIntInclusive()`, espero que tenha gostado e entendido.
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos.
+- Faça você mesmo um teste passando outros valores como parâmetro.
 - E é assim que funciona a função para gerar um número inteiro aleatório entre dois valores. Espero que este vídeo tenha sido útil e se você tiver alguma dúvida, não hesite em deixar um comentário abaixo. Obrigado por assistir!
 
 
 
 ## 5. NodeJS - module.export e require( );
 
-Claro, aqui está um roteiro para explicar esse código:
+### - Introdução:
+
+- Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago e esse é o canal [tthiagocarlosdev](https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw). Hoje vamos para o quinto vídeio com nossas aplicações aleatórias usando JavaScript e NodeJS;
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos;
+- No Node.js, os conceitos de `module.exports` e `require()` são fundamentais para compartilhar código entre diferentes módulos e arquivos. Vamos explorar esses conceitos em detalhes:
+
+### - Passo 1: `module.exports`:
+
+`module.exports` é um objeto especial que faz parte do sistema de módulos do Node.js e é usado para exportar valores (funções, objetos, variáveis, etc.) de um módulo para que possam ser acessados em outros módulos que os importam usando a função `require()`.
+
+Exemplo de como usar `module.exports` para exportar uma função:
+
+```javascript
+// arquivo funcoes.js
+function soma(a, b) {
+  return a + b;
+}
+
+module.exports = soma;
+```
+
+### - Passo 2: `require()`:
+
+`require()` é uma função incorporada no Node.js que é usada para importar um módulo. Quando você chama `require('nome-do-modulo')`, o Node.js procura e carrega o módulo correspondente e retorna o valor exportado por esse módulo.
+
+Exemplo de como usar `require()` para importar uma função de outro módulo:
+
+```javascript
+// arquivo app.js
+const funcaoSoma = require('./funcoes');
+
+console.log(funcaoSoma(2, 3)); // Chama a função exportada do módulo funcoes.js
+```
+
+### - Passo3: Exportando Múltiplos Valores:
+
+Além de exportar apenas uma função ou valor, você também pode exportar múltiplos valores como um objeto usando `module.exports`. Isso é útil quando você deseja compartilhar várias funções ou variáveis.
+
+Exemplo de como exportar e importar múltiplos valores:
+
+```javascript
+// arquivo funcoes.js
+function soma(a, b) {
+  return a + b;
+}
+
+function subtracao(a, b) {
+  return a - b;
+}
+
+module.exports = {
+  soma,
+  subtracao
+};
+```
+
+```javascript
+// arquivo app.js
+const { soma, subtracao } = require('./funcoes');
+
+console.log(soma(5, 3)); // Chama a função soma
+console.log(subtracao(10, 4)); // Chama a função subtracao
+```
+
+- Esses são os fundamentos de como usar `module.exports` e `require()` no Node.js para compartilhar código entre módulos. Eles são essenciais para criar aplicativos modulares e reutilizáveis, permitindo que você organize e separe seu código em módulos distintos. Crie os arquivos dos exemplos acima e realize seus testes.
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos.
+- Faça você mesmo um teste criando outras funções, outros arquivos, variáveis e acessando em vários módulos.
+- Espero que este vídeo tenha sido útil e se você tiver alguma dúvida, não hesite em deixar um comentário abaixo. Obrigado por assistir e até o proóximo!
+
+## 6. basicFunctions:
+
+Agora vamos criar nosso arquivo com as funções que já mostramos nos outros vídeos para usá-las nas próximas aplicações:
+
+### - Introdução:
+
+- Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago e esse é o canal [tthiagocarlosdev](https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw). Hoje vamos para o sexto vídeo de nossas aplicações aleatórias usando JavaScript e NodeJS;
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos;
+- Hoje vamos criar o arquivo que receberá nossas funções com o nome `basicFunctions.js`
+- Dentro deste arquivo vamos criar um **objeto** com funções básicas e exportá-lo para ser utilizado em outros arquivos.
 
 ```js
 const basicFunctions = {
 
 }
-
-module.exports = {
-  basicFunctions
-}
+module.exports = { basicFunctions }
 ```
 
-Introdução:
-- Explicar o objetivo do código: criar um objeto com funções básicas e exportá-lo para ser utilizado em outros arquivos.
-- Fazer uma breve introdução sobre o que é um objeto em JavaScript.
-  - Um objeto é uma estrutura de dados que permite armazenar e organizar valores. Ele pode armazenar dados em forma de propriedades, que são pares chave-valor, e pode ter métodos, que são funções associadas ao objeto
+- Um objeto é uma estrutura de dados que permite armazenar e organizar valores. Ele pode armazenar dados em forma de propriedades, que são pares chave-valor, e pode ter métodos, que são funções associadas ao objeto
 
+### - Passo 1: Declaração do objeto
 
-Passo 1: Declaração do objeto
-- Explicar que o código começa com a declaração do objeto "basicFunctions".
+- Declaração do objeto `basicFunctions`.
 
-- Mostrar que esse objeto está vazio, sem nenhuma função ou propriedade.
+- Por enquanto, esse objeto está vazio, sem nenhuma função ou propriedade.
 
   ```js
   const basicFunctions = {
@@ -546,44 +625,43 @@ Passo 1: Declaração do objeto
   }
   ```
 
-Passo 2: Adição de funções ao objeto
-- Explicar que o objetivo do objeto é armazenar funções básicas.
+### - Passo 2: Adição de funções ao objeto
 
-- Mostrar que é possível adicionar funções ao objeto, como por exemplo a função "line" ou "loading".
+- O objetivo do objeto é armazenar funções básicas, aequelas que já criamos anteriormente.
 
-- Explicar que as funções podem ser adicionadas utilizando a sintaxe "nomeDaFuncao: function() { }".
+- As funções podem ser adicionadas utilizando a sintaxe `nomeDaFuncao: function() { },`  ou `nomeDaFuncao(){ },`.
 
   ```js
   const basicFunctions = {
       
     header(text) {
-        let textSize = text.length;
-        let lineSize = textSize * 2;
-        let spaceSize = Math.ceil(textSize / 2)
-        let textWithSpace = ""
-      
-        for (let index = 0; index <= spaceSize; index++) {
-          if (index < spaceSize) {
-            textWithSpace += " "
-          } else if (index == spaceSize) {
-            textWithSpace += text
-          }
+      let textSize = text.length;
+      let lineSize = textSize * 2;
+      let spaceSize = Math.ceil(textSize / 2)
+      let textWithSpace = ""
+    
+      for (let index = 0; index <= spaceSize; index++) {
+        if (index < spaceSize) {
+          textWithSpace += " "
+        } else if (index == spaceSize) {
+          textWithSpace += text
         }
-      
-        function line() {
-          let line = ""
-      
-          for (let index = 0; index <= lineSize; index++) {
-            line += "-"
-          }
-      
-          console.log(line)
+      }
+    
+      function line(size) {
+        let line = ""
+    
+        for (let index = 0; index <= size; index++) {
+          line += "-"
         }
-      
-        line()
-        console.log(textWithSpace)
-        line()
-      },
+    
+        console.log(line)
+      }
+    
+      line(lineSize)
+      console.log(textWithSpace)
+      line(lineSize)
+    },
   
     line(text){
       let textSize = text.length;
@@ -598,25 +676,26 @@ Passo 2: Adição de funções ao objeto
     },
   
     loading(){
-  
+    
       function syncDelay(milliseconds){
         let start = new Date().getTime();
         let end=0;
         while( (end-start) < milliseconds){
-          end = new Date().getTime();
+            end = new Date().getTime();
         }
-      }  
-        
+       }  
+      
       let toLoad = `....`
       let percentage = 20
+  
       while (percentage <= 100) {
-        console.clear()
-        console.log(`loading ${toLoad} ${percentage}%`)
-        syncDelay(1000);
-        toLoad += `....`
-        percentage += 20
+          console.clear()
+          console.log(`loading ${toLoad} ${percentage}%`)
+          syncDelay(1000);
+          toLoad += `....`
+          percentage += 20
       }
-    },
+  },
   
     getRandomIntInclusive(min, max) {
         min = Math.ceil(min);
@@ -627,22 +706,24 @@ Passo 2: Adição de funções ao objeto
   }
   ```
 
-Passo 3: Exportação do objeto
-- Explicar que, para que as funções do objeto possam ser utilizadas em outros arquivos, é necessário exportá-lo.
+### - Passo 3: Exportação do objeto
 
-- Mostrar que a exportação é feita utilizando o comando "module.exports".
+- Para que as funções do objeto possam ser utilizadas em outros arquivos, é necessário exportá-lo.
 
-- Explicar que a sintaxe utilizada é "module.exports = { nomeDoObjeto }".
+- A exportação é feita utilizando o comando `module.exports`.
+
+- Sintaxe utilizada é `module.exports = { nomeDoObjeto, função, variável }`.
 
   ```js
-  module.exports = {
-    basicFunctions
-  }
+  module.exports = { basicFunctions }
   ```
 
-Conclusão:
-- Recapitular os pontos principais do vídeo: a declaração do objeto, a adição de funções ao objeto e a exportação do objeto.
-- Reforçar a importância de entender objetos em JavaScript e como eles podem ser utilizados para organizar e reutilizar código em diferentes partes de uma aplicação.
+### - Conclusão:
+
+- Esse foi o `modulo.export: basicFunctions`, espero que tenha gostado e entendido.
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos.
+- Faça você mesmo um teste passando outros valores como parâmetro.
+- Espero que este vídeo tenha sido útil e se você tiver alguma dúvida, não hesite em deixar um comentário abaixo. Obrigado por assistir e até o próximo!
 
 ```js
 const basicFunctions = {
@@ -724,219 +805,7 @@ module.exports = {
 
 
 
-## 6. Math.random( )
-
-O `Math.random()` é uma function que retorna um número pseudo-aleatório no intervalo `[0, 1[`, ou seja, de 0 (inclusivo) até, mas não incluindo 1 (exclusivo), que depois você pode dimensionar para um intervalo desejado.
-
-Você pode verificar a documentação em [math-random](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
-
-- ### Sintaxe:
-
-```js
-Math.random()
-```
-
-- ### Valor retornado
-
-Um número pseudo-aleatório entre 0 (inclusivo) e 1 (exclusivo).
-
-Vamos criar nosso arquivo **generateRandomNumbers.js** onde vamos executar o `Math.random()`. Dentro deste arquivo vamos importar através do **require** o objeto **headerBaseboardFunctions**:
-
-```js
-const { basicFunctions } = require('./basicFunctions')
-```
-
-Agora vamos chamar a function `header()` passando como parâmetro o título do nosso tema:
-
-```js
-const { basicFunctions } = require('./basicFunctions') 
-
-basicFunctions.header("Gerando um número aleatório")
-```
-
-Ao executar `node generateRandomNumbers.js`, no console:
-
-```shell
--------------------------------------------------------
-              Gerando um número aleatório
--------------------------------------------------------
-```
-
-- ### Exemplos:
-
-  - ### [Gerando um número aleatório entre 0 (inclusivo) e 1 (exclusivo)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random#gerando_um_número_aleatório_entre_0_inclusivo_e_1_exclusivo)
-
-Vamos gerar um número aleatório entre 0 (inclusivo) e 1 (exclusivo), usando `Math.random()`:
-
-```js
-console.log('Números entre 0 e 1(excluse)')
-basicFunctions.line("Gerando um número aleatório")
-let numeroAleatorio = Math.random()
-console.log(numeroAleatorio)
-basicFunctions.line("Gerando um número aleatório")
-```
-
-No console:
-
-```shell
--------------------------------------------------------
-              Gerando um número aleatório
--------------------------------------------------------
-Números entre 0 e 1(excluse)
--------------------------------------------------------
-0.10141020439217097
--------------------------------------------------------
-```
-
-- ### [Gerando um número aleatório entre dois valores](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random#gerando_um_número_aleatório_entre_dois_valores)
-
-Este exemplo retorna um número entre dois valores definidos. O valor retornado será **maior** ou **igual** a `min`, e **menor** que `max`.
-
-```js
-console.log("Número aleatório entre dois valores")
-function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-}
-basicFunctions.line("Gerando um número aleatório")
-console.log(getRandomArbitrary(0, 10)) 
-basicFunctions.line("Gerando um número aleatório")
-```
-
-No console:
-
-```shell
--------------------------------------------------------
-Número aleatório entre dois valores
--------------------------------------------------------
-7.99271122220871
--------------------------------------------------------
-```
-
-- ### [Gerando um número inteiro aleatório entre dois valores](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random#gerando_um_número_inteiro_aleatório_entre_dois_valores)
-
-Este exemplo retorna um número *inteiro* entre dois valores definidos. O valor não poderá ser **menor** que `min` (ou do próximo inteiro maior que `min`, caso `min` **não seja inteiro**), e será menor (mas não igual) a `max`. A função `getRandomInt()` tem intervalo com o valor **mínimo incluído** e o **máximo excluído**.
-
-```js
-console.log("Número inteiro aleatório entre dois valores")
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
-}
-basicFunctions.line("Gerando um número aleatório")
-console.log(getRandomInt(1, 10))
-basicFunctions.line("Gerando um número aleatório")
-```
-
-No console:
-
-```shell
--------------------------------------------------------
-Número inteiro aleatório entre dois valores
--------------------------------------------------------
-7
--------------------------------------------------------	
-```
-
-- ### [Gerando um número inteiro aleatório entre dois valores, inclusive](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random#gerando_um_número_inteiro_aleatório_entre_dois_valores_inclusive)
-
-Este exemplo retorna um número *inteiro* entre dois valores definidos. A função `getRandomIntInclusive()` tem intervalo com o valor mínimo e máximo incluído.
-
-```js
-console.log("Número inteiro aleatório entre dois valores, inclusive")
-function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-basicFunctions.line("Gerando um número aleatório")
-console.log(getRandomIntInclusive(1, 10))
-basicFunctions.line("Gerando um número aleatório")  
-```
-
-No console:
-
-```sh
--------------------------------------------------------
-Número inteiro aleatório entre dois valores, inclusive
--------------------------------------------------------
-10
--------------------------------------------------------
-```
-
-Nosso arquivo completo:
-
-```js
-const { basicFunctions } = require('./basicFunctions') 
-
-basicFunctions.header("Gerando um número aleatório")
-
-
-console.log('Números entre 0 e 1(excluse)')
-basicFunctions.line("Gerando um número aleatório")
-let numeroAleatorio = Math.random()
-console.log(numeroAleatorio)
-basicFunctions.line("Gerando um número aleatório")
-
-
-console.log("Número aleatório entre dois valores")
-function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-}
-basicFunctions.line("Gerando um número aleatório")
-console.log(getRandomArbitrary(0, 10)) 
-basicFunctions.line("Gerando um número aleatório")
-
-
-console.log("Número inteiro aleatório entre dois valores")
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
-}
-basicFunctions.line("Gerando um número aleatório")
-console.log(getRandomInt(1, 10))
-basicFunctions.line("Gerando um número aleatório")
-
-
-console.log("Número inteiro aleatório entre dois valores, inclusive")
-function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-basicFunctions.line("Gerando um número aleatório")
-console.log(getRandomIntInclusive(1, 10))
-basicFunctions.line("Gerando um número aleatório")  
-```
-
-No console:
-
-```shell
--------------------------------------------------------
-              Gerando um número aleatório
--------------------------------------------------------
-Números entre 0 e 1(excluse)
--------------------------------------------------------
-0.022794387738104938
--------------------------------------------------------
-Número aleatório entre dois valores
--------------------------------------------------------
-6.351774666991141
--------------------------------------------------------
-Número inteiro aleatório entre dois valores
--------------------------------------------------------
-3
--------------------------------------------------------
-Número inteiro aleatório entre dois valores, inclusive
--------------------------------------------------------
-10
--------------------------------------------------------
-```
-
-## 
-
-## 7. snake_case with replace( )
+## 7. snake_case with replace( ) PAREI
 
 Introdução:
 
