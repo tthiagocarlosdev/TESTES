@@ -14,7 +14,7 @@
 
 ### 7. snake_case with replace( )
 
-### 8. Jankenpon( ) with arrow functions;
+### 8. Jankenpon( ) with arrow functions; PAREI
 
 ### 9. Fibonacci até número x
 
@@ -235,7 +235,7 @@ function line(size) {
 
 - Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago e esse é o canal [tthiagocarlosdev](https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw). Hoje vamos para a segunda aplicação aleatória usando JavaScript;
 - Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos;
-- Vamos constuir a função `line()`, que exibe uma linha horizontal de caracteres "-" de acordo com o tamanho do título da aplicação.
+- Vamos construir a função `line()`, que exibe uma linha horizontal de caracteres "-" de acordo com o tamanho do título da aplicação.
 
 ```shell
 ---------------------------------------
@@ -1243,6 +1243,172 @@ Nº de caracteres: 32
 ---------------------
 ```
 
+### - Código completo
+
+```js
+var input = require('readline-sync');
+
+const { basicFunctions } = require('./basicFunctions')
+
+//function declaration
+function snakeCase(text){
+
+    let underlined_text = text.replace(/ /gi, '_')
+    let input_text_size = underlined_text.length
+    let array_without_accent = []
+    let textData = {
+      text_snake_case: "",
+      output_text_size: 0,
+    }
+  
+    //extraindo cada caracter da string para um array
+    array_without_accent = underlined_text.split('')
+    console.log(array_without_accent)
+  
+    // processando cada caracter do array para detectar um acento ou símbolo e fazer a substituição
+    for (let counter = 0; counter < input_text_size; counter++) {
+  
+      //conditions
+      let numbers =
+        underlined_text.charCodeAt(counter) >= 48 &&
+        underlined_text.charCodeAt(counter) <= 57
+  
+      let capital_letters =
+        underlined_text.charCodeAt(counter) >= 65 &&
+        underlined_text.charCodeAt(counter) <= 90
+  
+      let small_letters =
+        underlined_text.charCodeAt(counter) >= 97 &&
+        underlined_text.charCodeAt(counter) <= 122
+  
+      let underline = underlined_text.charCodeAt(counter) === 95
+  
+      let letter_a =
+        (underlined_text.charCodeAt(counter) >= 192 &&
+          underlined_text.charCodeAt(counter) <= 197) ||
+        (underlined_text.charCodeAt(counter) >= 224 &&
+          underlined_text.charCodeAt(counter) <= 229)
+  
+      let letter_e =
+        (underlined_text.charCodeAt(counter) >= 200 &&
+          underlined_text.charCodeAt(counter) <= 203) ||
+        (underlined_text.charCodeAt(counter) >= 232 &&
+          underlined_text.charCodeAt(counter) <= 235)
+  
+      let letter_i =
+        (underlined_text.charCodeAt(counter) >= 204 &&
+          underlined_text.charCodeAt(counter) <= 207) ||
+        (underlined_text.charCodeAt(counter) >= 236 &&
+          underlined_text.charCodeAt(counter) <= 239) ||
+        underlined_text.charCodeAt(counter) === 305
+  
+      let letter_o =
+        (underlined_text.charCodeAt(counter) >= 210 &&
+          underlined_text.charCodeAt(counter) <= 214) ||
+        underlined_text.charCodeAt(counter) === 216 ||
+        (underlined_text.charCodeAt(counter) >= 242 &&
+          underlined_text.charCodeAt(counter) <= 246) ||
+        underlined_text.charCodeAt(counter) === 248
+  
+      let letter_u =
+        (underlined_text.charCodeAt(counter) >= 217 &&
+          underlined_text.charCodeAt(counter) <= 220) ||
+        (underlined_text.charCodeAt(counter) >= 249 &&
+          underlined_text.charCodeAt(counter) <= 252)
+  
+      let letter_c =
+        underlined_text.charCodeAt(counter) === 199 ||
+        underlined_text.charCodeAt(counter) === 231 ||
+        underlined_text.charCodeAt(counter) === 162
+  
+      let letter_y =
+        underlined_text.charCodeAt(counter) === 221 ||
+        underlined_text.charCodeAt(counter) === 253 ||
+        underlined_text.charCodeAt(counter) === 255 ||
+        underlined_text.charCodeAt(counter) === 376
+  
+      let letter_n =
+        underlined_text.charCodeAt(counter) === 209 ||
+        underlined_text.charCodeAt(counter) === 241
+  
+      let letter_d =
+        underlined_text.charCodeAt(counter) === 208 ||
+        underlined_text.charCodeAt(counter) === 240
+  
+      let letter_sz = underlined_text.charCodeAt(counter) === 223
+  
+      let letter_ae =
+        underlined_text.charCodeAt(counter) === 198 ||
+        underlined_text.charCodeAt(counter) === 230
+  
+      let letter_x = underlined_text.charCodeAt(counter) === 215
+  
+      //processamento
+      if (numbers && capital_letters && small_letters && underline) {
+      } else if (letter_a) {
+        array_without_accent[counter] = 'a'
+      } else if (letter_e) {
+        array_without_accent[counter] = 'e'
+      } else if (letter_i) {
+        array_without_accent[counter] = 'i'
+      } else if (letter_o) {
+        array_without_accent[counter] = 'o'
+      } else if (letter_u) {
+        array_without_accent[counter] = 'u'
+      } else if (letter_c) {
+        array_without_accent[counter] = 'c'
+      } else if (letter_y) {
+        array_without_accent[counter] = 'y'
+      } else if (letter_n) {
+        array_without_accent[counter] = 'n'
+      } else if (letter_d) {
+        array_without_accent[counter] = 'd'
+      } else if (letter_sz) {
+        array_without_accent[counter] = 'sz'
+      } else if (letter_ae) {
+        array_without_accent[counter] = 'ae'
+      } else if (letter_x) {
+        array_without_accent[counter] = 'x'
+      } else if (!numbers && !capital_letters && !small_letters && !underline) {
+        array_without_accent[counter] = ''
+      }
+    }
+  
+    console.log(array_without_accent)
+    //criando a nova string a partir dos novos valores do array
+    textData.text_snake_case = array_without_accent
+      .toString()
+      .replace(/,/gi, '')
+      .toLowerCase()
+  
+    //determinando a quantidade de caracteres
+    textData.output_text_size = textData.text_snake_case.length
+  
+    return textData
+  
+  }
+
+//variable declaration
+let inserted_text = "";
+let text_information = {};
+
+//data input
+basicFunctions.header("snake_case")
+inserted_text = input.question("Enter the text: ")
+
+//data processing
+text_information = snakeCase(inserted_text)
+
+//data output
+console.clear()
+basicFunctions.header("snake_case")
+console.log(`Texto de entrada: ${inserted_text}`)
+basicFunctions.line("snake_case")
+console.log(`Texto snake_case: ${text_information.text_snake_case}`)
+console.log(`Nº de caracteres: ${text_information.output_text_size}`)
+basicFunctions.line("snake_case")
+```
+
 ### - Conclusão:
 
 - Essa foi a `snakeCase()`,  uma função em JavaScript que converte uma string em snake_case, substituindo espaços e caracteres especiais por underlines e removendo acentos. Ele também permite que o usuário insira um texto via linha de comando e exibe a string em snake_case e seu tamanho na tela;
@@ -1252,30 +1418,31 @@ Nº de caracteres: 32
 
 
 
-## 8. Jankenpon( ) with arrow functions; PAREI
+## 8. Jankenpon( )
 
 - ### Introdução:
 
-    - Cumprimente o público e apresente o código que será explicado no vídeo.
-    - Diga que o código é um jogo de pedra, papel e tesoura feito em JavaScript, que pode ser jogado no console do Node.js.
+    - Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago e esse é o canal [tthiagocarlosdev](https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw). Hoje vamos para o oitavo vídeo com nossas aplicações aleatórias usando JavaScript e NodeJS;
+    - Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos;
+    - Este código é um jogo de pedra, papel e tesoura (Jankenpon) implementado em JavaScript que pode ser jogado no console do Node.js. Ele começa importando os módulos necessários e definindo uma série de funções para interagir com o jogador, validar entradas e calcular vencedores:
 
 - ### Passo 1 - Dependências:
 
-    - Mencione que o código requer o módulo `readline-sync`, que é usado para ler a entrada do usuário no console.
+    - A primeira linha do código importa a biblioteca readline-sync que permite a entrada de dados pelo usuário via linha de comando. 
 
     ```js
     var input = require('readline-sync');
     ```
 
-    - Diga que também há um arquivo de módulo chamado `basicFunctions`, que contém funções utilitárias usadas pelo jogo.
+    - A segunda linha importa as funções definidas no arquivo basicFunctions.js:
 
     ```js
-    const { basicFunctions } = require('./basicFunctions');
+    const { basicFunctions } = require('./basicFunctions')
     ```
 
 - ### Passo 2 - Declaração de funções:
 
-    - Neste jogo teremos 8 funções que serão usadase explicadas conforme a nossa aplicação for construída, são elas:
+    - Neste jogo teremos 8 funções que serão usadas e explicadas conforme a nossa aplicação for construída, são elas:
         - `playAgainMenu()` - utilizada no código principal do programa para exibir as opções de jogar novamente ou sair após o término de cada partida;
         - `validateAnswer()` - garante que o usuário digite apenas "n" ou "s" antes de prosseguir para a próxima etapa do programa;
         - `errorMessage()` - usada para exibir uma mensagem de erro se o usuário digitar um valor inválido;
@@ -1289,8 +1456,14 @@ Nº de caracteres: 32
 
 - ### Passe3 - Declaração de variáveis:
 
-    - Mostre as variáveis do jogo e explique seu propósito.
-
+    - `userName` é usado para armazenar o nome do usuário;
+    - `playAgain`, que é usado para armazenar a resposta do usuário sobre se deseja jogar novamente;
+    - `userPlay` e `cpuPlay` armazenam a escolha do usuário e da CPU, respectivamente;
+    - `partialWinner`, que armazena quem ganhou a partida atual;
+    - `userScore`, `cpuScore` e `tieScore` são usados para acompanhar o número de vitórias do usuário, da CPU e empates, respectivamente;
+    - `matchCounter`, que é usado para contar o número de partidas jogadas;
+    - `winner`, que é usado para armazenar quem ganhou o jogo no final:
+    
     ```js
     //declaração de variáveis
     let userName = ``;
@@ -1304,18 +1477,8 @@ Nº de caracteres: 32
     let matchCounter = 0;
     let winner = "";
     ```
-
-    - `userName` é usado para armazenar o nome do usuário;
-    - `playAgain`, que é usado para armazenar a resposta do usuário sobre se deseja jogar novamente;
-    - `userPlay` e `cpuPlay` armazenam a escolha do usuário e da CPU, respectivamente;
-    - `partialWinner`, que armazena quem ganhou a partida atual;
-    - `userScore`, `cpuScore` e `tieScore` são usados para acompanhar o número de vitórias do usuário, da CPU e empates, respectivamente;
-    - `matchCounter`, que é usado para contar o número de partidas jogadas;
-    - `winner`, que é usado para armazenar quem ganhou o jogo no final.
-
     
-
-- ### Passo 4 - Entrada de dados:
+- ### Passo 4 - Entrada de dados: PAREI
 
     - Aqui começa a nossa aplicação. Vamos iniciar chamando a function `loading()` do módulo `basicFunctions`:
 
