@@ -12,7 +12,7 @@
 
 ### 6. basicFunctions
 
-### 7. snake_case with replace( ) PAREI
+### 7. snake_case with replace( )
 
 ### 8. Jankenpon( ) with arrow functions;
 
@@ -805,13 +805,15 @@ module.exports = {
 
 
 
-## 7. snake_case with replace( ) PAREI
+## 7. snake_case with replace( )
 
-Introdução:
+### - Introdução:
 
-O código em questão implementa uma função em JavaScript chamada snakeCase que recebe uma string como entrada e retorna um objeto com duas informações: a string em snake_case e o tamanho da nova string. O código também usa algumas funções auxiliares definidas em um arquivo separado chamado basicFunctions.js. 
+- Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago Carlos e esse é o canal [tthiagocarlosdev](https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw). Hoje vamos para a sétima aplicação usando JavaScript e NodeJS;
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos;
+- O código em questão implementa uma função em JavaScript chamada `snakeCase()` que recebe uma string como entrada e retorna um objeto com duas informações: a string em formato **snake_case** e o **tamanho da nova string**. O código também usa algumas funções auxiliares definidas em um arquivo separado chamado `basicFunctions.js`.
 
-Passo 1: Importação de bibliotecas e definição de variáveis e funções
+### - Passo 1: Importação de bibliotecas e definição de variáveis e funções
 
 - A primeira linha do código importa a biblioteca readline-sync que permite a entrada de dados pelo usuário via linha de comando. 
 
@@ -825,16 +827,16 @@ var input = require('readline-sync');
 const { basicFunctions } = require('./basicFunctions')
 ```
 
-A terceira linha define uma função chamada snakeCase que recebe uma string como entrada e retorna um objeto com duas informações. A função não é executada nesta etapa.
+- A terceira linha define a função `snakeCase()` que recebe uma string como entrada e retorna um objeto com duas informações. A função não é executada nesta etapa.
 
 ```js
 //function declaration
 function snakeCase(text){...}
 ```
 
-Passo 2: Declaração de variáveis:
+### - Passo 2: Declaração de variáveis:
 
-- São declaradas duas variáveis, 'inserted_text' que vai receber o texto digitado pelo usuário e o objeto 'text_information'  que vai receber o retorno da function 'snakeCase()' com o texto no formato snake_case e a quantidade de caracteres:
+- São declaradas duas variáveis, `inserted_text` que vai receber o texto digitado pelo usuário e o objeto `text_information`  que vai receber o retorno da function `snakeCase()` com o texto no formato snake_case e a quantidade de caracteres:
 
 ```js
 //variable declaration
@@ -842,10 +844,11 @@ let inserted_text = "";
 let text_information = {};
 ```
 
-Passo 3: Entrada de dados e chamada da função
+### - Passo 3: Entrada de dados e chamada da função
 
-- Na entrada chamamos a function 'header()' do arquivo 'basicFunctions' e passamos como parâmetro o título da nossa aplicação;
-- Em seguinda, o código pede ao usuário que insira um texto. O texto inserido pelo usuário é armazenado em 'inserted_text' e em processamento de dados a função 'snakeCase()' é chamada com essa variável como parâmetro:
+- Na entrada chamamos a function `header()` do arquivo `basicFunctions` e passamos como parâmetro o título da nossa aplicação;
+- Em seguinda, o código pede ao usuário que insira um texto. O texto inserido pelo usuário é armazenado em `inserted_text` e em processamento de dados a função `snakeCase()` é chamada com essa variável como parâmetro;
+- O retorno da função `snakeCase()` e atribuído ao objeto `text_information`:
 
 ```js
 //data input
@@ -856,10 +859,10 @@ inserted_text = input.question("Enter the text: ")
 text_information = snakeCase(inserted_text)
 ```
 
-Passo 4: Processamento de texto
+### - Passo 4: Processamento de texto
 
-- A função 'snakeCase()' começa processando o texto passado como parâmetro que é a entrada do usuário;
-- Ela substitui todos os espaços em branco na string por underlines usando o método 'replace()':
+- A função `snakeCase()` começa processando o texto passado como parâmetro que é a entrada do usuário;
+- Ela substitui todos os espaços em branco na string por underlines usando o método `replace()` e atribui essa nova string a variável `underlined_text`:
 
 ```js
 function snakeCase(text){
@@ -867,7 +870,7 @@ function snakeCase(text){
 }
 ```
 
-- Em seguida armazena o tamanho do texto na variável 'input_text_size' usando o método '.length':
+- Em seguida armazena o tamanho do texto na variável `input_text_size` usando o método '.length':
 
 ```js
 function snakeCase(text){
@@ -886,7 +889,7 @@ function snakeCase(text){
 }
 ```
 
-- Ainda neste início da função, ela cria objeto 'textData' que vai receber a nova string em snake_case e seu tamanho e irá retornar esse objeto:
+- Ainda neste início da função, ela cria objeto `textData` que vai receber a nova string em snake_case e seu tamanho e irá retornar esse objeto:
 
 ```js
 function snakeCase(text){
@@ -900,13 +903,13 @@ function snakeCase(text){
 }
 ```
 
-- Extraindo cada caracter da string. Aqui usando o método split, cada caracter vai ser um item do array/lista:
+- Extraindo cada caracter da string. Aqui usando o método `split()`, cada caracter vai ser um item do array/lista:
 
 ```js
 array_without_accent = underlined_text.split('')
 ```
 
-Se der um 'console.log(array_without_accent)' veja como fica:
+Se der um `console.log(array_without_accent)` veja como fica:
 
 ```shell
 [
@@ -918,14 +921,12 @@ Se der um 'console.log(array_without_accent)' veja como fica:
 ]
 ```
 
+### - Passo 5: Processamento de caracteres especiais
 
-
-Passo 3: Processamento de caracteres especiais
-
-- Na estrutura de repetição 'for', para cada caractere, ela verifica se ele é um número, letra maiúscula, letra minúscula, underline ou um caractere especial.
+- Na estrutura de repetição `for`, para cada caractere, ela verifica se ele é um número, letra maiúscula, letra minúscula, underline ou um caractere especial.
 
 - Cada caractere especial encontrado é substituído por outro caractere equivalente. Por exemplo, se a função encontra um caractere acentuado como "é", ela o substitui por "e". Se encontrar um caractere "ç", ele é substituído por "c". Se encontrar um caractere especial, ele é simplesmente removido da string, conforme as condições.
-- Aqui vamos utilizar método [charCodeAt](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt) para analizar cada caracter da lista 'underlined_text' e fazer as substituições, conforme explicado acima:
+- Aqui vamos utilizar método [charCodeAt](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt) para analizar cada caracter da lista `underlined_text` e fazer as substituições, conforme explicado acima:
 
 ```js
  // processando cada caracter do array para detectar um acento ou símbolo e fazer a substituição
@@ -1038,13 +1039,11 @@ Passo 3: Processamento de caracteres especiais
     } 
 ```
 
-
-
-Passo 4: Criação de nova string
+### - Passo 6: Criação de nova string
 
 - Após o processamento de todos os caracteres, a função cria uma nova string a partir do array de caracteres, unindo-os novamente com underlines e convertendo tudo para letras minúsculas.
 
-- A nova string será adicionar ao objeto 'textData' na propriedade 'text_snake_case' convertendo os caracteres de 'array_without_accent' em string, tirando as vírgulas usando o método '.replace()' e colocando tudo em minúsculo:
+- A nova string será adicionar ao objeto `textData` na propriedade `text_snake_case` convertendo os caracteres de `array_without_accent` em string, usando o método `toString()`, tirando as vírgulas usando o método `replace()` e colocando tudo em minúsculo udando o método :
 
 ```js
 //criando a nova string a partir dos novos valores do array
@@ -1054,14 +1053,14 @@ Passo 4: Criação de nova string
       .toLowerCase()
 ```
 
-- Adicionamos também a quantidade de caracteres dessa string final no objeto 'textData' dentro da propriedade 'output_text_size', usando o método 'length':
+- Adicionamos também a quantidade de caracteres dessa string final no objeto `textData` dentro da propriedade `output_text_size`, usando o método `length`:
 
 ```js
 //determinando a quantidade de caracteres
 textData.output_text_size = textData.text_snake_case.length
 ```
 
-- Por último retornamos o objeto 'textData':
+- Por último retornamos o objeto `textData'`
 
 ```js
 return textData
@@ -1080,7 +1079,6 @@ function snakeCase(text){
       text_snake_case: "",
       output_text_size: 0,
     }
-  
   
     //extraindo cada caracter da string para um array
     array_without_accent = underlined_text.split('')
@@ -1164,7 +1162,7 @@ function snakeCase(text){
   
       let letter_x = underlined_text.charCodeAt(counter) === 215
   
-      //processing
+      //processamento
       if (numbers && capital_letters && small_letters && underline) {
       } else if (letter_a) {
         array_without_accent[counter] = 'a'
@@ -1195,6 +1193,7 @@ function snakeCase(text){
       }
     }
   
+    console.log(array_without_accent)
     //criando a nova string a partir dos novos valores do array
     textData.text_snake_case = array_without_accent
       .toString()
@@ -1209,9 +1208,7 @@ function snakeCase(text){
   }
 ```
 
-
-
-Passo 5: Exibição dos resultados
+### - Passo 7: Exibição dos resultados
 
 - A função retorna um objeto contendo a nova string em snake_case e seu tamanho, que são armazenados em uma variável. Em saída de dados, essas informações são exibidas na tela, utilizando as funções definidas no arquivo basicFunctions.js para formatar a saída. Mostramos também o texto de entrada:
 
@@ -1226,7 +1223,7 @@ console.log(`Nº de caracteres: ${text_information.output_text_size}`)
 basicFunctions.line("snake_case")
 ```
 
-Passo 6: Veja o código sendo executado
+### - Passo 8: Veja o código sendo executado
 
 ```shell
 ---------------------
@@ -1246,12 +1243,16 @@ Nº de caracteres: 32
 ---------------------
 ```
 
+### - Conclusão:
+
+- Essa foi a `snakeCase()`,  uma função em JavaScript que converte uma string em snake_case, substituindo espaços e caracteres especiais por underlines e removendo acentos. Ele também permite que o usuário insira um texto via linha de comando e exibe a string em snake_case e seu tamanho na tela;
+- Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos;
+- Faça você mesmo um teste inserido outros textos;
+- Espero que este vídeo tenha sido útil e se você tiver alguma dúvida, não hesite em deixar um comentário abaixo. Obrigado por assistir e até o próximo!
 
 
-Conclusão:
-O código implementa uma função em JavaScript que converte uma string em snake_case, substituindo espaços e caracteres especiais por underlines e removendo acentos. Ele também permite que o usuário insira um texto via linha de comando e exibe a string em snake_case e seu tamanho na tela.
 
-## 8. Jankenpon( ) with arrow functions;
+## 8. Jankenpon( ) with arrow functions; PAREI
 
 - ### Introdução:
 

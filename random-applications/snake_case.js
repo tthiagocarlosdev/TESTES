@@ -13,7 +13,6 @@ function snakeCase(text){
       output_text_size: 0,
     }
   
-  
     //extraindo cada caracter da string para um array
     array_without_accent = underlined_text.split('')
     console.log(array_without_accent)
@@ -96,7 +95,7 @@ function snakeCase(text){
   
       let letter_x = underlined_text.charCodeAt(counter) === 215
   
-      //processing
+      //processamento
       if (numbers && capital_letters && small_letters && underline) {
       } else if (letter_a) {
         array_without_accent[counter] = 'a'
@@ -127,6 +126,7 @@ function snakeCase(text){
       }
     }
   
+    console.log(array_without_accent)
     //criando a nova string a partir dos novos valores do array
     textData.text_snake_case = array_without_accent
       .toString()
@@ -152,7 +152,7 @@ inserted_text = input.question("Enter the text: ")
 text_information = snakeCase(inserted_text)
 
 //data output
-console.clear()
+// console.clear()
 basicFunctions.header("snake_case")
 console.log(`Texto de entrada: ${inserted_text}`)
 basicFunctions.line("snake_case")
