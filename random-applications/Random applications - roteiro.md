@@ -26,7 +26,7 @@
 
 ### - Introdução:
 
-- Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago e esse é o canal Thiago Carlos Dev. Hoje iniciamos essa sequência de aplicações aleatórias usando JavaScript;
+- Olá pessoas, sejam bem-vindas ao meu canal, meu nome é Thiago e esse é o canal Thiago Carlos Dev. Hoje iniciamos essa sequência de aplicações aleatórias usando JavaScript e NodeJS;
 - Essa sequência está bem legal, são aplicações que eu fui construíndo a medida que fui estudando e aprendendo lógica e algoritmos;
 - Não esqueça de deixar o seu like no vídeo, comentar e compartihar com os amigos que estão estudando lógica e algoritmos;
 - Vamos construir a função `header()`. Ela cria um cabeçalho estilizado no console, exibindo uma linha horizontal acima e abaixo do texto do cabeçalho, e centralizando o texto com base no tamanho do título da aplicação.
