@@ -246,3 +246,37 @@ sudo apt-get upgrade
 ```shell
   sudo shutdown -r HH:MM
 ```
+
+## Script para atualizar sistema
+
+Siga as etapas abaixo para criar um script:
+
+1. Abra um editor de texto em seu sistema, como o Nano ou o Vim.
+
+2. Cole os seguintes comandos no editor de texto:
+
+```bash
+#!/bin/bash
+
+# Atualiza a lista de pacotes
+sudo apt update
+
+# Lista os pacotes que podem ser atualizados
+sudo apt list --upgradable
+
+# Executa uma atualização mais completa do sistema
+sudo apt-get dist-upgrade
+
+# Executa uma atualização dos pacotes instalados
+sudo apt-get upgrade
+
+# Remove pacotes não utilizados
+sudo apt-get autoremove
+```
+
+3. Salve o arquivo com um nome significativo, como `atualizar_sistema.sh`. Certifique-se de que o arquivo tenha permissão de execução, o que você pode fazer usando o comando `chmod +x atualizar_sistema.sh`.
+
+4. Agora você pode executar o script digitando `./atualizar_sistema.sh` no terminal.
+
+Lembre-se de que a execução de comandos com privilégios de superusuário (sudo) requer cuidado. Certifique-se de entender o que cada comando faz antes de executar o script. Certos comandos podem exigir interação do usuário, como a confirmação para instalação ou atualização. Certifique-se de estar ciente disso ao usar um script automatizado.
+
