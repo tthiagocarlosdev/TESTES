@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input type search</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Input type search</h1>
+    </header>
+
+    <main>
+        <form id="form" class="form">
+            <section action="/search" method="get">
+                <label for="search-input">Pesquisar:</label>
+                <input type="search" id="search-input" list="options-list" name="q" placeholder="Digite sua pesquisa">
+                <datalist id="options-list"></datalist>
+                <button id="button" type="submit" > Carregar </button>
+            </section>
+        </form>
+        
+        <section id="mostrar-unidade-policial">
+            <label>Unidade Policial: </label>
+            <p id="unidade-policial"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Desenvolvido por <a href="https://github.com/tthiagocarlosdev" target="_blank"> tthiagocarlosdev </a> </p>
+    </footer>
+
+    <script type="module" src="./script.js"></script>
+</body>
+</html>
