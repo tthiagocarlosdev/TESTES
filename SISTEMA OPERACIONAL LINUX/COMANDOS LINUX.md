@@ -156,25 +156,9 @@ ___
 
 ## Instalar nodejs
 
-- Instalando o __curl__:
+- Instalando o Nodejs:
 
-```shell
-sudo apt install curl
-```
-
-- Instalando a versão do node:
-
-```shell
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-```
-
-O número __18.x__ significa que vai ser instalado a versão mais estável da versão 18.
-
-- Instalando o Nodejs propriamente dito:
-
-```shell
-sudo apt-get install -y nodejs
-```
+[Clique aqui](https://github.com/nodesource/distributions) para acessar o repositório NodeJs, escolha de acordo com seu sistema e a versão.
 
 - Para verificar a versão do nodejs:
 
@@ -279,4 +263,35 @@ sudo apt-get autoremove
 4. Agora você pode executar o script digitando `./atualizar_sistema.sh` no terminal.
 
 Lembre-se de que a execução de comandos com privilégios de superusuário (sudo) requer cuidado. Certifique-se de entender o que cada comando faz antes de executar o script. Certos comandos podem exigir interação do usuário, como a confirmação para instalação ou atualização. Certifique-se de estar ciente disso ao usar um script automatizado.
+
+## Sistema Linux:
+
+### Para verificar Versão do sistema:
+
+```shell
+sudo cat /etc/os-release
+```
+
+### Mostra a distribuição e a versão do seu sitema:
+
+```shell
+sudo cat /etc/lsb-release
+```
+
+### Configuração de acentuação:
+
+```shell
+sudo localectl
+```
+
+### Atualização do sistema utilizando o Apt:
+
+```shell
+sudo apt update
+sudo apt upgrade
+sudo apt full-upgrade
+sudo apt dist-upgrade
+sudo apt autoremove
+sudo apt autoclean
+```
 
