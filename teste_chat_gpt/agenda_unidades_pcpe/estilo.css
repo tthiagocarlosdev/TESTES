@@ -1,0 +1,13 @@
+.section-police-unit input { 
+    width: 90%;
+
+    border: 0.063rem solid black;
+    border-radius: 5px;
+    
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+
+    padding: 0.5rem 0.3rem;
+}
+
