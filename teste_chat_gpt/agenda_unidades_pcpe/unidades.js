@@ -1424,8 +1424,8 @@ const unidadesPoliciais = [
             "(81) 3719-9108"
         ],
         coordenadasDaUnidade: {
-            latitude: "",
-            longitude: ""
+            latitude: "-8.266713",
+            longitude: "-35.964342"
         }
     },
     {
@@ -4097,8 +4097,8 @@ const unidadesPoliciais = [
             "(87) 3841-3956"
         ],
         coordenadasDaUnidade: {
-            latitude: "",
-            longitude: ""
+            latitude: "-8.075795",
+            longitude: "-37.267268"
         }
     },
     {
@@ -4133,8 +4133,8 @@ const unidadesPoliciais = [
             "(87) 3842-0911"
         ],
         coordenadasDaUnidade: {
-            latitude: "",
-            longitude: ""
+            latitude: "-8.539152",
+            longitude: "-37.691650"
         }
     },
     {
