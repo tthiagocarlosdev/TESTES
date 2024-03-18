@@ -9,8 +9,8 @@ const unidadesPoliciais = [
             "(81) 3184-3805"
         ],
         coordenadasDaUnidade: {
-            latitude: "-8.060331",
-            longitude: "-34.880518"
+            latitude: "",
+            longitude: ""
         }
     },
     {

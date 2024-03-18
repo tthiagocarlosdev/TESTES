@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenda Unidades PCPE</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="./css/estilo.css">
 </head>
 <body>
+    <header>
+        <h1>Endereços e Telefones PCPE</h1>
+    </header>
     <form id="search-form">
         <fieldset class="section-police-unit" action="/search" method="get">
             <legend>Unidade Policial</legend>
@@ -15,25 +18,28 @@
             <input type="search" id="search-input" list="options-list" name="q" placeholder="Digite/Pesquise a unidade" >
             <datalist id="options-list"></datalist>
 
-            <button type="button" id="show-address-button">Mostrar Endereço</button>
+            <button type="button" id="show-address-button">Mostrar Endereço <i class="fa-solid fa-eye"></i></button>
 
         </fieldset>
     </form>
 
-    <div>
-        <p>Endereço: <span id="address-display"></span> </p>
-        <button id="copy-address-button">Copiar Endereço</button>
-    </div>
+    <section class="secao_resultado">
+        <div class="box_endereco">
+            <p>Endereço: <span id="address-display"></span> </p>
+            <button id="copy-address-button">Copiar Endereço <i class="fa-regular fa-copy"></i> </button>
+        </div>
+        
+        <div class="box_telefone">
+            <p>Telefone(s): <span id="telefone-display"></span> </p>
+        </div>
     
-    <div>
-        <p>Telefone: <span id="telefone-display"></span> </p>
-        <!-- <button id="copy-telefone-button">Copiar Telefone</button> -->
-    </div>
-
-    <div>
-        <iframe id="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4058240.75215817!2d-39.50934462849578!3d-6.6313021556049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7007c9d931c86c5%3A0x1de0196a93401726!2sPernambuco!5e0!3m2!1spt-BR!2sbr!4v1710516559473!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+        <div class="box_iframe">
+            <iframe id="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4058240.75215817!2d-39.50934462849578!3d-6.6313021556049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7007c9d931c86c5%3A0x1de0196a93401726!2sPernambuco!5e0!3m2!1spt-BR!2sbr!4v1710516559473!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
     
+    
+    <script src="https://kit.fontawesome.com/bec2f6bc88.js" crossorigin="anonymous"></script>
     <script type="module" src="script.js"></script>
 </body>
 </html>
