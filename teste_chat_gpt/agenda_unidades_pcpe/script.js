@@ -40,6 +40,9 @@ function carregarInformacoesUnidade() {
         carregarCoordenadasDaUnidade(informacoesUnidade);
         // Carregar o mapa da unidade
         carregarMapaDaUnidade(informacoesUnidade);
+
+        // Adicionar o botão "Copiar"
+        adicionarBotaoCopiar();
     } else {
         // Se não, exibir a mensagem no console
         console.log("Unidade não encontrada")
@@ -176,32 +179,35 @@ function carregarMapaDaUnidade(informacoesUnidade) {
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Função para adicionar o botão "Copiar" após o elemento <p>
+function adicionarBotaoCopiar() {
+    // Obter o elemento <p> dentro da div box_unidade_policial
+    const paragraphElement = document.querySelector('.box_unidade_policial p');
 
+    // Criar o botão "Copiar"
+    const copyButton = document.createElement('button');
+    copyButton.textContent = 'Copiar ';
 
+    // Criar o ícone
+    const iconElement = document.createElement('i');
+    iconElement.classList.add('fa', 'fa-regular', 'fa-copy');
 
+    // Adicionar o ícone como filho do botão
+    copyButton.appendChild(iconElement);
 
+    // Adicionar evento de clique ao botão "Copiar"
+    copyButton.addEventListener('click', function() {
+        // Copiar o nome da unidade para a área de transferência
+        copiarDados(document.getElementById('nome_da_unidade'));
+    });
 
-
-
-// copyAddressButton.addEventListener('click', copyToClipboard.bind(null, addressDisplay));
-
-function copyToClipboard(element) {
-    const text = element.textContent.trim();
-    const tempTextArea = document.createElement('textarea');
-    tempTextArea.value = text;
-    document.body.appendChild(tempTextArea);
-    tempTextArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(tempTextArea);
-    alert(`${text} copiado para a área de transferência.`);
+    // Adicionar o botão "Copiar" após o elemento <p>
+    paragraphElement.insertAdjacentElement('afterend', copyButton);
 }
 
-
 //Função para copiar o texto para a área de transferência
-function copiaTelefone(text) {
+function copiarDados(element) {
+    const text = element.textContent.trim();
     const tempTextArea = document.createElement('textarea');
     tempTextArea.value = text;
     document.body.appendChild(tempTextArea);
