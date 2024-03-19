@@ -18,7 +18,7 @@
             <input type="search" id="search-input" list="options-list" name="q" placeholder="Digite/Pesquise a unidade" >
             <datalist id="options-list"></datalist>
 
-            <button type="button" id="show-address-button">Carregar <i class="fa-solid fa-eye"></i></button>
+            <button type="button" id="botao_carregar">Carregar <i class="fa-solid fa-eye"></i></button>
 
         </fieldset>
     </form>
@@ -26,15 +26,17 @@
     <section class="secao_resultado">
         <div class="box_unidade_policial">
             <p>Unidade Policial: <span id="nome_da_unidade"></span></p>
+            <button id="copy-address-button">Copiar <i class="fa-regular fa-copy"></i> </button>
         </div>
 
         <div class="box_endereco">
             <p>Endereço: <span id="endereco_da_unidade"></span> </p>
-            <button id="copy-address-button">Copiar Endereço <i class="fa-regular fa-copy"></i> </button>
+            <button id="copy-address-button">Copiar <i class="fa-regular fa-copy"></i> </button>
         </div>
         
         <div class="box_telefone">
-            <p>Telefone(s): <span id="telefone-display"></span> </p>
+            <p>Telefone(s): <span id="telefones_da_unidade"></span> </p>
+            <button id="copy-address-button">Copiar <i class="fa-regular fa-copy"></i> </button>
         </div>
     
         <div class="box_iframe">

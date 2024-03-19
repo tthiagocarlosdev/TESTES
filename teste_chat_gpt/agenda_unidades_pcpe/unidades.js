@@ -4072,8 +4072,8 @@ const unidadesPoliciais = [
             "(87) 3821-8582"
         ],
         coordenadasDaUnidade: {
-            latitude: "",
-            longitude: ""
+            latitude: "-8.417852",
+            longitude: "-37.061177"
         }
     },
     {
