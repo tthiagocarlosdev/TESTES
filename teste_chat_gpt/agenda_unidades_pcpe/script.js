@@ -1,30 +1,9 @@
-// Adicionar evento de carregamento à página
-window.addEventListener('DOMContentLoaded', () => {
-    // Exibir as informações da primeira unidade ao carregar a página
-    carregarPrimeiraUnidade();
-     // Verificar se as informações da unidade foram retornadas
-     if (informacoesUnidade) {
-        // Exibir as informações no console
-        console.log(informacoesUnidade);
-    } else {
-        // Se não, exibir a mensagem no console
-        console.log("Unidade não encontrada");
-    }
-});
-
 // Importando a lista de unidades
 import { unidadesPoliciais } from './unidades.js';
 
 // Obtendo referências aos elementos do DOM
 const datalist = document.getElementById('options-list'); // Preencher o datalist com as opções de unidades
 const botaoCarregar = document.getElementById('botao_carregar');
-
-// Definir informacoesUnidade como uma variável global
-let informacoesUnidade = null;
-
-const copyAddressButton = document.getElementById('copy-address-button');
-const copyTelefoneButton = document.getElementById('copy-telefone-button');
-
 
 // Iterar sobre a matriz de unidades e adicionar cada nome de unidade ao datalist
 unidadesPoliciais.forEach(unidade => {
@@ -44,7 +23,7 @@ botaoCarregar.addEventListener('click', function(event) {
 // Função para carregar as informações da unidade ao ser clicado o botão ou ao carregar a página
 function carregarInformacoesUnidade() {
     // Obter as informações da unidade selecionada
-    informacoesUnidade = obterInformacoesUnidadeSelecionada();
+    const informacoesUnidade = obterInformacoesUnidadeSelecionada();
 
     // Verificar se as informações da unidade foram retornadas
     if (informacoesUnidade) {
@@ -57,10 +36,10 @@ function carregarInformacoesUnidade() {
         carregarEnderecoDaUnidade(informacoesUnidade);
         // Carregar os telefones da unidade
         carregarTelefoneDaUnidade(informacoesUnidade);
+        // Carregar as coordenadas da unidade
+        carregarCoordenadasDaUnidade(informacoesUnidade);
         // Carregar o mapa da unidade
         carregarMapaDaUnidade(informacoesUnidade);
-        // Adicionar o botão "Copiar" para copiar o nome da unidade
-        adicionarBotaoCopiar(informacoesUnidade.nomeDaUnidade);
     } else {
         // Se não, exibir a mensagem no console
         console.log("Unidade não encontrada")
@@ -157,6 +136,26 @@ function carregarTelefoneDaUnidade(informacoesUnidade) {
 }
 
 
+// Função para carregar as coordenadas da unidade no elemento span
+function carregarCoordenadasDaUnidade(informacoesUnidade) {
+    // Obter o elemento span com o ID "latitude_longitude_da_unidade"
+    const spanCoordenadas = document.getElementById('latitude_longitude_da_unidade');
+
+    // Verificar se as informações da unidade foram fornecidas e se as coordenadas estão disponíveis
+    if (informacoesUnidade && informacoesUnidade.coordenadasDaUnidade && informacoesUnidade.coordenadasDaUnidade.latitude && informacoesUnidade.coordenadasDaUnidade.longitude) {
+        // Obter as coordenadas da unidade
+        const latitude = informacoesUnidade.coordenadasDaUnidade.latitude;
+        const longitude = informacoesUnidade.coordenadasDaUnidade.longitude;
+
+        // Atualizar o conteúdo do span com as coordenadas da unidade no formato "latitude,longitude"
+        spanCoordenadas.textContent = `${latitude},${longitude}`;
+    } else {
+        // Se as informações da unidade ou as coordenadas não estiverem disponíveis, limpar o conteúdo do span
+        spanCoordenadas.textContent = 'Coordenadas não disponíveis';
+    }
+}
+
+
 // Função para carregar o mapa da unidade no elemento iframe
 function carregarMapaDaUnidade(informacoesUnidade) {
     // Obter o elemento iframe com o ID "map-frame"
@@ -175,51 +174,6 @@ function carregarMapaDaUnidade(informacoesUnidade) {
         iframeMapa.src = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4058240.75215817!2d-39.50934462849578!3d-6.6313021556049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7007c9d931c86c5%3A0x1de0196a93401726!2sPernambuco!5e0!3m2!1spt-BR!2sbr!4v1710516559473!5m2!1spt-BR!2sbr`;
     }
 }
-
-// Função para exibir as informações da primeira unidade
-function carregarPrimeiraUnidade() {
-    if (unidadesPoliciais.length > 0) {
-        const primeiraUnidade = unidadesPoliciais[0];
-        carregarNomeDaUnidade(primeiraUnidade);
-        carregarEnderecoDaUnidade(primeiraUnidade);
-        carregarTelefoneDaUnidade(primeiraUnidade);
-        carregarMapaDaUnidade(primeiraUnidade);
-        informacoesUnidade = primeiraUnidade; // Atualiza a variável global
-    } else {
-        console.log("Nenhuma unidade encontrada");
-    }
-}
-
-
-
-// Função para adicionar o botão "Copiar" após o elemento <p> da div com a classe "box_unidade_policial"
-function adicionarBotaoCopiar(nomeUnidade) {
-    // Criar o botão "Copiar"
-    const botaoCopiar = document.createElement('button');
-    botaoCopiar.textContent = 'Copiar';
-    
-    // Adicionar um evento de clique ao botão "Copiar" para copiar o nome da unidade para a área de transferência
-    botaoCopiar.addEventListener('click', () => {
-        // Copiar o nome da unidade para a área de transferência
-        navigator.clipboard.writeText(nomeUnidade)
-            .then(() => console.log(`"${nomeUnidade}" copiado para a área de transferência.`))
-            .catch(err => console.error('Erro ao copiar para a área de transferência:', err));
-    });
-
-    // Selecionar a div com a classe "box_unidade_policial"
-    const divUnidadePolicial = document.querySelector('.box_unidade_policial');
-
-    // Verificar se a div foi encontrada
-    if (divUnidadePolicial) {
-        // Adicionar o botão "Copiar" após o elemento <p> da div
-        divUnidadePolicial.appendChild(botaoCopiar);
-    } else {
-        console.error('Div com a classe "box_unidade_policial" não encontrada.');
-    }
-}
-
-
-
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
