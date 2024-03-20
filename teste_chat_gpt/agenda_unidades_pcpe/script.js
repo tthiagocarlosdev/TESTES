@@ -41,6 +41,9 @@ function carregarInformacoesUnidade() {
         // Carregar o mapa da unidade
         carregarMapaDaUnidade(informacoesUnidade);
 
+        // Adicionar dinamicamente o botão "Copiar Todos" após carregar as informações da unidade
+        adicionarBotaoCopiarTudo();
+
         // Chamando a função para adicionar o botão "Copiar" na div box_unidade_policial
         adicionarBotaoCopiar('box_unidade_policial', 'nome_da_unidade');
 
@@ -55,7 +58,7 @@ function carregarInformacoesUnidade() {
 
         // Chamar a função para adicionar o botão "Copiar Todos" na div box_telefone
         adicionarBotaoCopiarTodos();
-        
+
     } else {
         // Se não, exibir a mensagem no console
         console.log("Unidade não encontrada")
@@ -306,3 +309,50 @@ function copiarTodosOsTelefones(classeUl, classeLi) {
     copiarDados({ textContent: todosOsTelefones });
 }
 
+
+// Função para adicionar o botão "Copiar Todos" após o carregamento das informações da unidade
+function adicionarBotaoCopiarTudo() {
+    // Obter a div onde o botão será adicionado
+    const botaoCopiarTudoDiv = document.querySelector('.botao_copiar_tudo');
+
+    // Criar o botão "Copiar Todos"
+    const copyAllButton = document.createElement('button');
+    copyAllButton.textContent = 'Copiar Tudo ';
+
+    // Criar o ícone para o botão
+    const iconElement = document.createElement('i');
+    iconElement.classList.add('fa', 'fa-regular', 'fa-copy');
+
+    // Adicionar o ícone como filho do botão
+    copyAllButton.appendChild(iconElement);
+
+    // Adicionar evento de clique ao botão "Copiar Todos"
+    copyAllButton.addEventListener('click', function() {
+        // Copiar todos os dados da unidade para a área de transferência
+        copiarTodosOsDados();
+    });
+
+    // Adicionar o botão "Copiar Todos" à div
+    botaoCopiarTudoDiv.appendChild(copyAllButton);
+}
+
+
+// Função para copiar todos os dados da unidade para a área de transferência
+function copiarTodosOsDados() {
+    // Obter todas as informações da unidade
+    const nomeDaUnidade = document.getElementById('nome_da_unidade').textContent.trim();
+    const enderecoDaUnidade = document.getElementById('endereco_da_unidade').textContent.trim();
+    
+    // Obter os telefones da unidade e remover o texto "Copiar"
+    const telefonesDaUnidade = Array.from(document.querySelectorAll('#telefones_da_unidade .numero_de_telefone'))
+                                     .map(telefone => telefone.textContent.replace('Copiar', '').trim())
+                                     .join(', ');
+
+    const coordenadasDaUnidade = document.getElementById('latitude_longitude_da_unidade').textContent.trim();
+
+    // Concatenar todas as informações em uma string
+    const dadosUnidade = `Nome: ${nomeDaUnidade}\nEndereço: ${enderecoDaUnidade}\nTelefones: ${telefonesDaUnidade}\nCoordenadas: ${coordenadasDaUnidade}`;
+
+    // Copiar os dados da unidade para a área de transferência
+    copiarDados({ textContent: dadosUnidade });
+}
