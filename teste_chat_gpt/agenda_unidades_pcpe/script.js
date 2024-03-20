@@ -41,8 +41,15 @@ function carregarInformacoesUnidade() {
         // Carregar o mapa da unidade
         carregarMapaDaUnidade(informacoesUnidade);
 
-        // Adicionar o botão "Copiar"
-        adicionarBotaoCopiar();
+        // Chamando a função para adicionar o botão "Copiar" na div box_unidade_policial
+        adicionarBotaoCopiar('box_unidade_policial', 'nome_da_unidade');
+
+        // Chamando a função para adicionar o botão "Copiar" na div box_endereco
+        adicionarBotaoCopiar('box_endereco', 'endereco_da_unidade');
+
+        // Chamando a função para adicionar o botão "Copiar" na div box_iframe
+        adicionarBotaoCopiar('box_iframe', 'latitude_longitude_da_unidade');
+        
     } else {
         // Se não, exibir a mensagem no console
         console.log("Unidade não encontrada")
@@ -132,6 +139,9 @@ function carregarTelefoneDaUnidade(informacoesUnidade) {
 
         // Adicionar a lista de telefones ao span
         spanTelefonesUnidade.appendChild(listaTelefones);
+
+          // Chamar a função para adicionar o botão "Copiar" em cada item da lista de telefones
+          adicionarBotaoCopiarTelefone();
     } else {
         // Se as informações da unidade ou os telefones não estiverem disponíveis, limpar o conteúdo do span
         spanTelefonesUnidade.textContent = '';
@@ -179,14 +189,14 @@ function carregarMapaDaUnidade(informacoesUnidade) {
 }
 
 
-// Função para adicionar o botão "Copiar" após o elemento <p>
-function adicionarBotaoCopiar() {
-    // Obter o elemento <p> dentro da div box_unidade_policial
-    const paragraphElement = document.querySelector('.box_unidade_policial p');
+// Função para adicionar o botão "Copiar" após o elemento <p> em uma div específica
+function adicionarBotaoCopiar(nomeDaDiv, idDoSpan) {
+    // Obter o elemento <p> dentro da div especificada
+    const paragraphElement = document.querySelector(`.${nomeDaDiv} p`);
 
     // Criar o botão "Copiar"
     const copyButton = document.createElement('button');
-    copyButton.textContent = 'Copiar ';
+    copyButton.textContent = 'Copiar';
 
     // Criar o ícone
     const iconElement = document.createElement('i');
@@ -197,8 +207,8 @@ function adicionarBotaoCopiar() {
 
     // Adicionar evento de clique ao botão "Copiar"
     copyButton.addEventListener('click', function() {
-        // Copiar o nome da unidade para a área de transferência
-        copiarDados(document.getElementById('nome_da_unidade'));
+        // Copiar o texto do span para a área de transferência
+        copiarDados(document.getElementById(idDoSpan));
     });
 
     // Adicionar o botão "Copiar" após o elemento <p>
@@ -215,5 +225,26 @@ function copiarDados(element) {
     document.execCommand('copy');
     document.body.removeChild(tempTextArea);
     alert(`${text} copiado para a área de transferência.`);
+}
+
+
+// Função para adicionar o botão "Copiar" em cada item da lista de telefones
+function adicionarBotaoCopiarTelefone() {
+    // Obter a lista de telefones da unidade
+    const listaTelefones = document.querySelectorAll('#telefones_da_unidade li');
+
+    // Iterar sobre cada item da lista de telefones
+    listaTelefones.forEach(itemLista => {
+        // Criar o botão "Copiar" para o telefone
+        const copyButton = document.createElement('button');
+        copyButton.textContent = 'Copiar ';
+        copyButton.addEventListener('click', function() {
+            // Copiar o texto do telefone para a área de transferência
+            copiarDados(itemLista);
+        });
+
+        // Adicionar o botão "Copiar" antes do telefone no item da lista
+        itemLista.appendChild(copyButton);
+    });
 }
 
