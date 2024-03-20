@@ -49,6 +49,12 @@ function carregarInformacoesUnidade() {
 
         // Chamando a função para adicionar o botão "Copiar" na div box_iframe
         adicionarBotaoCopiar('box_iframe', 'latitude_longitude_da_unidade');
+
+        // Chamar a função para adicionar o botão "Copiar" em cada item da lista de telefones
+        adicionarBotaoCopiarTelefone('lista_numeros_de_telefones', 'numero_de_telefone');
+
+        // Chamar a função para adicionar o botão "Copiar Todos" na div box_telefone
+        adicionarBotaoCopiarTodos();
         
     } else {
         // Se não, exibir a mensagem no console
@@ -143,14 +149,11 @@ function carregarTelefoneDaUnidade(informacoesUnidade) {
         // Adicionar a lista de telefones ao span
         spanTelefonesUnidade.appendChild(listaTelefones);
 
-        // Chamar a função para adicionar o botão "Copiar" em cada item da lista de telefones
-        adicionarBotaoCopiarTelefone();
     } else {
         // Se as informações da unidade ou os telefones não estiverem disponíveis, limpar o conteúdo do span
         spanTelefonesUnidade.textContent = '';
     }
 }
-
 
 
 // Função para carregar as coordenadas da unidade no elemento span
@@ -219,23 +222,11 @@ function adicionarBotaoCopiar(nomeDaDiv, idDoSpan) {
     paragraphElement.insertAdjacentElement('afterend', copyButton);
 }
 
-//Função para copiar o texto para a área de transferência
-function copiarDados(element) {
-    const text = element.textContent.trim();
-    const tempTextArea = document.createElement('textarea');
-    tempTextArea.value = text;
-    document.body.appendChild(tempTextArea);
-    tempTextArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(tempTextArea);
-    alert(`${text} copiado para a área de transferência.`);
-}
-
 
 // Função para adicionar o botão "Copiar" após cada elemento li da lista de telefones
-function adicionarBotaoCopiarTelefone() {
+function adicionarBotaoCopiarTelefone(classeUl, classeLi) {
     // Obter a lista de telefones da unidade
-    const listaTelefones = document.querySelectorAll('.lista_numeros_de_telefones .numero_de_telefone');
+    const listaTelefones = document.querySelectorAll(`.${classeUl} .${classeLi}`);
 
     // Iterar sobre cada item da lista de telefones
     listaTelefones.forEach(itemLista => {
@@ -255,3 +246,63 @@ function adicionarBotaoCopiarTelefone() {
         itemLista.insertAdjacentElement('afterend', copyButton);
     });
 }
+
+
+//Função para copiar o texto para a área de transferência
+function copiarDados(element) {
+    const text = element.textContent.trim();
+    const tempTextArea = document.createElement('textarea');
+    tempTextArea.value = text;
+    document.body.appendChild(tempTextArea);
+    tempTextArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempTextArea);
+    alert(`${text} copiado para a área de transferência.`);
+}
+
+
+// Função para adicionar o botão "Copiar Todos" após o elemento <p> na div box_telefone
+function adicionarBotaoCopiarTodos(classeUl, classeLi) {
+    // Obter o elemento <p> dentro da div box_telefone
+    const paragraphElement = document.querySelector('.box_telefone p');
+
+    // Criar o botão "Copiar Todos"
+    const copyAllButton = document.createElement('button');
+    copyAllButton.textContent = 'Copiar Todos ';
+
+    // Criar o ícone para o botão
+    const iconElement = document.createElement('i');
+    iconElement.classList.add('fa', 'fa-regular', 'fa-copy');
+
+    // Adicionar o ícone como filho do botão
+    copyAllButton.appendChild(iconElement);
+
+    // Adicionar evento de clique ao botão "Copiar Todos"
+    copyAllButton.addEventListener('click', function() {
+         // Copiar todos os números de telefone para a área de transferência
+        copiarTodosOsTelefones('lista_numeros_de_telefones', 'numero_de_telefone');
+    });
+
+    // Adicionar o botão "Copiar Todos" após o elemento <p> na div box_telefone
+    paragraphElement.insertAdjacentElement('afterend', copyAllButton);
+}
+
+
+
+// Função para copiar todos os números de telefone para a área de transferência
+function copiarTodosOsTelefones(classeUl, classeLi) {
+    // Obter todos os elementos de número de telefone
+    const numerosTelefone = document.querySelectorAll(`.${classeUl} .${classeLi}`);
+
+    // Inicializar uma variável para armazenar todos os números de telefone
+    let todosOsTelefones = '';
+
+    // Iterar sobre cada número de telefone e adicioná-lo à string
+    numerosTelefone.forEach(numero => {
+        todosOsTelefones += numero.textContent.trim() + '\n'; // Adicionando um quebra de linha entre cada número
+    });
+
+    // Copiar a string de todos os números de telefone para a área de transferência
+    copiarDados({ textContent: todosOsTelefones });
+}
+
