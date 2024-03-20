@@ -116,6 +116,7 @@ function carregarEnderecoDaUnidade(informacoesUnidade) {
 }
 
 
+
 // Função para carregar os telefones da unidade no elemento span
 function carregarTelefoneDaUnidade(informacoesUnidade) {
     // Obter o elemento span com o ID "telefones_da_unidade"
@@ -128,25 +129,28 @@ function carregarTelefoneDaUnidade(informacoesUnidade) {
 
         // Criar uma lista não ordenada para os telefones
         const listaTelefones = document.createElement('ul');
+        listaTelefones.classList.add('lista_numeros_de_telefones'); // Adicionando a classe à lista
 
         // Iterar sobre os telefones da unidade
         informacoesUnidade.telefoneDaUnidade.forEach(telefone => {
             // Criar um item de lista para cada telefone
             const itemLista = document.createElement('li');
             itemLista.textContent = telefone;
+            itemLista.classList.add('numero_de_telefone'); // Adicionando a classe ao elemento li
             listaTelefones.appendChild(itemLista);
         });
 
         // Adicionar a lista de telefones ao span
         spanTelefonesUnidade.appendChild(listaTelefones);
 
-          // Chamar a função para adicionar o botão "Copiar" em cada item da lista de telefones
-          adicionarBotaoCopiarTelefone();
+        // Chamar a função para adicionar o botão "Copiar" em cada item da lista de telefones
+        adicionarBotaoCopiarTelefone();
     } else {
         // Se as informações da unidade ou os telefones não estiverem disponíveis, limpar o conteúdo do span
         spanTelefonesUnidade.textContent = '';
     }
 }
+
 
 
 // Função para carregar as coordenadas da unidade no elemento span
@@ -196,7 +200,7 @@ function adicionarBotaoCopiar(nomeDaDiv, idDoSpan) {
 
     // Criar o botão "Copiar"
     const copyButton = document.createElement('button');
-    copyButton.textContent = 'Copiar';
+    copyButton.textContent = 'Copiar ';
 
     // Criar o ícone
     const iconElement = document.createElement('i');
@@ -228,23 +232,26 @@ function copiarDados(element) {
 }
 
 
-// Função para adicionar o botão "Copiar" em cada item da lista de telefones
+// Função para adicionar o botão "Copiar" após cada elemento li da lista de telefones
 function adicionarBotaoCopiarTelefone() {
     // Obter a lista de telefones da unidade
-    const listaTelefones = document.querySelectorAll('#telefones_da_unidade li');
+    const listaTelefones = document.querySelectorAll('.lista_numeros_de_telefones .numero_de_telefone');
 
     // Iterar sobre cada item da lista de telefones
     listaTelefones.forEach(itemLista => {
         // Criar o botão "Copiar" para o telefone
         const copyButton = document.createElement('button');
         copyButton.textContent = 'Copiar ';
+        const icon = document.createElement('i');
+        icon.classList.add('fa', 'fa-regular', 'fa-copy');
+        copyButton.appendChild(icon);
+
         copyButton.addEventListener('click', function() {
-            // Copiar o texto do telefone para a área de transferência
+            // Copiar apenas o número de telefone para a área de transferência
             copiarDados(itemLista);
         });
 
-        // Adicionar o botão "Copiar" antes do telefone no item da lista
-        itemLista.appendChild(copyButton);
+        // Adicionar o botão "Copiar" após o telefone no item da lista
+        itemLista.insertAdjacentElement('afterend', copyButton);
     });
 }
-
