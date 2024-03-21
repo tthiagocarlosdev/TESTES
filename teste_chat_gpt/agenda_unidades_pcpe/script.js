@@ -22,6 +22,9 @@ botaoCarregar.addEventListener('click', function(event) {
 
 // Função para carregar as informações da unidade ao ser clicado o botão ou ao carregar a página
 function carregarInformacoesUnidade() {
+    // Remover os botões de cópia existentes
+    removerBotoesCopiar();
+
     // Obter as informações da unidade selecionada
     const informacoesUnidade = obterInformacoesUnidadeSelecionada();
 
@@ -63,6 +66,12 @@ function carregarInformacoesUnidade() {
         // Se não, exibir a mensagem no console
         console.log("Unidade não encontrada")
     }
+}
+
+// Função para remover os botões de cópia existentes
+function removerBotoesCopiar() {
+    // Remover todos os botões de cópia existentes
+    document.querySelectorAll('.botao_copiar').forEach(botao => botao.remove());
 }
 
 
@@ -215,6 +224,9 @@ function adicionarBotaoCopiar(nomeDaDiv, idDoSpan) {
     // Adicionar o ícone como filho do botão
     copyButton.appendChild(iconElement);
 
+    // Adicionar a classe ao botão
+    copyButton.classList.add('botao_copiar');
+
     // Adicionar evento de clique ao botão "Copiar"
     copyButton.addEventListener('click', function() {
         // Copiar o texto do span para a área de transferência
@@ -280,6 +292,9 @@ function adicionarBotaoCopiarTodos(classeUl, classeLi) {
     // Adicionar o ícone como filho do botão
     copyAllButton.appendChild(iconElement);
 
+    // Adicionar a classe ao botão
+    copyAllButton.classList.add('botao_copiar');
+
     // Adicionar evento de clique ao botão "Copiar Todos"
     copyAllButton.addEventListener('click', function() {
          // Copiar todos os números de telefone para a área de transferência
@@ -325,6 +340,9 @@ function adicionarBotaoCopiarTudo() {
 
     // Adicionar o ícone como filho do botão
     copyAllButton.appendChild(iconElement);
+
+    // Adicionar a classe ao botão
+    copyAllButton.classList.add('botao_copiar');
 
     // Adicionar evento de clique ao botão "Copiar Todos"
     copyAllButton.addEventListener('click', function() {
