@@ -97,6 +97,7 @@ function obterInformacoesUnidadeSelecionada() {
         return informacoesUnidadeSelecionada;
     } else {
         // Se a unidade não for encontrada, imprimir a mensagem no console
+        alert('Unidade não encontrada');
         console.log('Unidade não encontrada');
         // Retornar null para indicar que a unidade não foi encontrada
         return null;
