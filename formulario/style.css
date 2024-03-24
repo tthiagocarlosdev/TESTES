@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+/* .largura_da_pagina {
+    width: 1024px;
+    margin: 0 auto;
+    border: 1px solid black;
+} */
+
+header {
+    background-color: powderblue;
+
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 42px;
+}
+
+main {
+    background-color: peru;
+    height: 76.5%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    background-color: palevioletred;
+
+    height: 280px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    font-size: 24px;
+    font-weight: bold;
+    padding: 16px;
+}
+
+.box_inputs, .box_botao {
+    /* background-color: purple; */
+    width: 100%;
+    padding: 8px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.inputs {
+    width: 70%;
+    border-radius: 3px;
+    height: 28px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.box_botao {
+    justify-content: center;
+}
+
+.botao {
+    font-size: 20px;
+    padding: 8px 16px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+footer {
+    background-color: powderblue;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    position: absolute;
+    bottom: 0;
+}
+
+footer p a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+footer p a:hover {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding: 8px;
+}
