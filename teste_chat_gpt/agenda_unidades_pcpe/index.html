@@ -11,18 +11,17 @@
         <div class="largura_da_pagina">
             <figure>
                 <img class="bandeiras" src="./img/bandeira_pcpe.png" alt="bandeira da pcpe" title="bandeira da pcpe">
-                <img class="bandeiras" src="./img/Bandeira_de_Pernambuco.svg.png" alt="bandeira de pernambuco" title="bandeira de pernambuco">
+                <img class="bandeiras" id="bandeira_pernambuco" src="./img/Bandeira_de_Pernambuco.svg.png" alt="bandeira de pernambuco" title="bandeira de pernambuco">
             </figure>
             <h1 class="titulo">Endereços e Telefones PCPE</h1>
         </div>
     </header>
     <main>
-        <form id="search-form">
+        <form id="search-form" class="largura_da_pagina">
             <fieldset class="section-police-unit" action="/search" method="get">
-                <legend>Unidade Policial</legend>
     
                 <label for="search-input">Unidade Policial:</label>
-                <input type="search" id="search-input" list="options-list" name="q" placeholder="Digite/Pesquise a unidade" >
+                <input type="search" id="search-input" list="options-list" name="q" placeholder="Pesquise a unidade policial" required>
                 <datalist id="options-list"></datalist>
     
                 <button type="button" id="botao_carregar">Carregar <i class="fa-solid fa-eye"></i></button>
