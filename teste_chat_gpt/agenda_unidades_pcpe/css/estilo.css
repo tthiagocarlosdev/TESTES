@@ -133,7 +133,7 @@ form {
 }
 
 .boxs_resultado {
-    /* background-color: peru; */
+    background-color: peru;
     width: 100%;
     padding: 8px 16px;
     display: flex;
@@ -153,11 +153,40 @@ form {
     font-weight: normal;
 }
 
-.box_iframe {
+.box_secao_telefone {
+    width: 100%;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: start;
+    /* padding: 8px 0; */
 }
+
+
+.lista_numeros_de_telefones {
+    background-color: powderblue;
+    width: 100%;
+    margin-top: 16px;
+}
+
+.lista_numeros_de_telefones li {
+    background-color: #049934;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+}
+
+.box_iframe {
+    padding: 32px 0;
+    background-color: purple;
+}
+
+.botao_copiar_tudo {
+    /* background-color: #FFCB02; */
+    justify-content: center;
+}
+
 
 /* BOX-FOOTER - BOX-FOOTER - BOX-FOOTER - BOX-FOOTER - BOX-FOOTER */
 .boxSocialMedia {
