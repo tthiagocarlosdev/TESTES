@@ -25,6 +25,9 @@ function carregarInformacoesUnidade() {
     // Remover os botões de cópia existentes
     removerBotoesCopiar();
 
+    // Remover a lista de telefones existente
+    removerListaDeTelefones();
+
     // Obter as informações da unidade selecionada
     const informacoesUnidade = obterInformacoesUnidadeSelecionada();
 
@@ -57,7 +60,7 @@ function carregarInformacoesUnidade() {
         adicionarBotaoCopiar('box_localizacao', 'latitude_longitude_da_unidade');
 
         // Chamar a função para adicionar o botão "Copiar" em cada item da lista de telefones
-        adicionarBotaoCopiarTelefone('lista_numeros_de_telefones', 'numero_de_telefone');
+        adicionarBotaoCopiarTelefone('lista_numeros_de_telefones', 'span_numero_de_telefone');
 
         // Chamar a função para adicionar o botão "Copiar Todos" na div box_telefone
         adicionarBotaoCopiarTodos();
@@ -72,6 +75,11 @@ function carregarInformacoesUnidade() {
 function removerBotoesCopiar() {
     // Remover todos os botões de cópia existentes
     document.querySelectorAll('.botao_copiar').forEach(botao => botao.remove());
+}
+
+// Função para remover a lista de telefones existente
+function removerListaDeTelefones() {
+    document.querySelectorAll('.lista_numeros_de_telefones').forEach(lista => lista.remove());
 }
 
 
@@ -140,6 +148,7 @@ function carregarEnderecoDaUnidade(informacoesUnidade) {
 function carregarTelefoneDaUnidade(informacoesUnidade) {
     // Obter o elemento span com o ID "telefones_da_unidade"
     const spanTelefonesUnidade = document.getElementById('telefones_da_unidade');
+    const divBoxSecaoTelefone = document.getElementById('box_secao_telefone');
 
     // Verificar se as informações da unidade foram fornecidas e se os telefones estão disponíveis
     if (informacoesUnidade && informacoesUnidade.telefoneDaUnidade && informacoesUnidade.telefoneDaUnidade.length > 0) {
@@ -154,13 +163,17 @@ function carregarTelefoneDaUnidade(informacoesUnidade) {
         informacoesUnidade.telefoneDaUnidade.forEach(telefone => {
             // Criar um item de lista para cada telefone
             const itemLista = document.createElement('li');
-            itemLista.textContent = telefone;
+            const spanLista = document.createElement('span');
+            spanLista.textContent = telefone;
             itemLista.classList.add('numero_de_telefone'); // Adicionando a classe ao elemento li
+            spanLista.classList.add('span_numero_de_telefone')
+            itemLista.appendChild(spanLista)
             listaTelefones.appendChild(itemLista);
         });
 
         // Adicionar a lista de telefones ao span
         spanTelefonesUnidade.appendChild(listaTelefones);
+        divBoxSecaoTelefone.appendChild(listaTelefones);
 
     } else {
         // Se as informações da unidade ou os telefones não estiverem disponíveis, limpar o conteúdo do span
@@ -255,6 +268,7 @@ function adicionarBotaoCopiarTelefone(classeUl, classeLi) {
 
         // Adicionar a classe ao botão
         copyButton.classList.add('botao_copiar');
+        // console.log(itemLista)
 
         copyButton.addEventListener('click', function() {
             // Copiar apenas o número de telefone para a área de transferência
@@ -302,7 +316,7 @@ function adicionarBotaoCopiarTodos(classeUl, classeLi) {
     // Adicionar evento de clique ao botão "Copiar Todos"
     copyAllButton.addEventListener('click', function() {
          // Copiar todos os números de telefone para a área de transferência
-        copiarTodosOsTelefones('lista_numeros_de_telefones', 'numero_de_telefone');
+        copiarTodosOsTelefones('lista_numeros_de_telefones', 'span_numero_de_telefone');
     });
 
     // Adicionar o botão "Copiar Todos" após o elemento <p> na div box_telefone
@@ -366,7 +380,7 @@ function copiarTodosOsDados() {
     const enderecoDaUnidade = document.getElementById('endereco_da_unidade').textContent.trim();
     
     // Obter os telefones da unidade e remover o texto "Copiar"
-    const telefonesDaUnidade = Array.from(document.querySelectorAll('#telefones_da_unidade .numero_de_telefone'))
+    const telefonesDaUnidade = Array.from(document.querySelectorAll('.lista_numeros_de_telefones .span_numero_de_telefone'))
                                      .map(telefone => telefone.textContent.replace('Copiar', '').trim())
                                      .join(', ');
 

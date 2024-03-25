@@ -65,7 +65,7 @@ form {
 }
 
 .section-police-unit {
-    background-color: palegreen;
+    /* background-color: palegreen; */
 
     padding: 16px;
     display: flex;
@@ -114,7 +114,7 @@ form {
 
 /* SEÇÃO RESULTADO SEÇÃO RESULTADO SEÇÃO RESULTADO SEÇÃO RESULTADO SEÇÃO RESULTADO  */
 .secao_resultado {
-    background-color: palevioletred;
+    /* background-color: palevioletred; */
     padding: 42px 0 42px 0;
 
     display: flex;
@@ -133,7 +133,7 @@ form {
 }
 
 .boxs_resultado {
-    background-color: peru;
+    /* background-color: peru; */
     width: 100%;
     padding: 8px 16px;
     display: flex;
@@ -163,13 +163,13 @@ form {
 
 
 .lista_numeros_de_telefones {
-    background-color: powderblue;
+    /* background-color: powderblue; */
     width: 100%;
     margin-top: 16px;
 }
 
 .lista_numeros_de_telefones li {
-    background-color: #049934;
+    /* background-color: #049934; */
     list-style-type: none;
     display: flex;
     justify-content: space-between;
@@ -177,9 +177,13 @@ form {
     padding: 8px 16px;
 }
 
+.lista_numeros_de_telefones li span {
+    font-size: 20px;
+}
+
 .box_iframe {
     padding: 32px 0;
-    background-color: purple;
+    /* background-color: purple; */
 }
 
 .botao_copiar_tudo {
