@@ -54,7 +54,7 @@ function carregarInformacoesUnidade() {
         adicionarBotaoCopiar('box_endereco', 'endereco_da_unidade');
 
         // Chamando a função para adicionar o botão "Copiar" na div box_iframe
-        adicionarBotaoCopiar('box_iframe', 'latitude_longitude_da_unidade');
+        adicionarBotaoCopiar('box_localizacao', 'latitude_longitude_da_unidade');
 
         // Chamar a função para adicionar o botão "Copiar" em cada item da lista de telefones
         adicionarBotaoCopiarTelefone('lista_numeros_de_telefones', 'numero_de_telefone');
@@ -64,7 +64,7 @@ function carregarInformacoesUnidade() {
 
     } else {
         // Se não, exibir a mensagem no console
-        console.log("Unidade não encontrada")
+        console.log("Unidade não encontrada!")
     }
 }
 
@@ -97,8 +97,8 @@ function obterInformacoesUnidadeSelecionada() {
         return informacoesUnidadeSelecionada;
     } else {
         // Se a unidade não for encontrada, imprimir a mensagem no console
-        alert('Unidade não encontrada');
-        console.log('Unidade não encontrada');
+        alert('Digite o nome de uma unidade!');
+        console.log('Unidade não encontrada!');
         // Retornar null para indicar que a unidade não foi encontrada
         return null;
     }
@@ -252,6 +252,9 @@ function adicionarBotaoCopiarTelefone(classeUl, classeLi) {
         const icon = document.createElement('i');
         icon.classList.add('fa', 'fa-regular', 'fa-copy');
         copyButton.appendChild(icon);
+
+        // Adicionar a classe ao botão
+        copyButton.classList.add('botao_copiar');
 
         copyButton.addEventListener('click', function() {
             // Copiar apenas o número de telefone para a área de transferência
