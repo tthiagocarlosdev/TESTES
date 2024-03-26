@@ -47,7 +47,7 @@ function carregarInformacoesUnidade() {
         // Carregar o mapa da unidade
         carregarMapaDaUnidade(informacoesUnidade);
 
-        // Adicionar dinamicamente o botão "Copiar Todos" após carregar as informações da unidade
+        // Adicionar dinamicamente o botão "Copiar Tudo" após carregar as informações da unidade
         adicionarBotaoCopiarTudo();
 
         // Chamando a função para adicionar o botão "Copiar" na div box_unidade_policial
@@ -346,7 +346,9 @@ function copiarTodosOsTelefones(classeUl, classeLi) {
 // Função para adicionar o botão "Copiar Todos" após o carregamento das informações da unidade
 function adicionarBotaoCopiarTudo() {
     // Obter a div onde o botão será adicionado
-    const botaoCopiarTudoDiv = document.querySelector('.botao_copiar_tudo');
+    const boxBotaoCopiarTudoDiv = document.querySelector('.box_botao_copiar_tudo');
+
+    boxBotaoCopiarTudoDiv.classList.add('boxs_resultado')
 
     // Criar o botão "Copiar Todos"
     const copyAllButton = document.createElement('button');
@@ -369,7 +371,7 @@ function adicionarBotaoCopiarTudo() {
     });
 
     // Adicionar o botão "Copiar Todos" à div
-    botaoCopiarTudoDiv.appendChild(copyAllButton);
+    boxBotaoCopiarTudoDiv.appendChild(copyAllButton);
 }
 
 

@@ -116,6 +116,7 @@ form {
 .secao_resultado {
     /* background-color: palevioletred; */
     padding: 42px 0 42px 0;
+    margin-bottom: 42px;
 
     display: flex;
     flex-direction: column;
@@ -161,11 +162,16 @@ form {
     /* padding: 8px 0; */
 }
 
+.box_telefone {
+    /* border: none; */
+}
+
 
 .lista_numeros_de_telefones {
     /* background-color: powderblue; */
     width: 100%;
     margin-top: 16px;
+    border-bottom: 1px solid var(--black);
 }
 
 .lista_numeros_de_telefones li {
@@ -183,78 +189,77 @@ form {
 
 .box_iframe {
     padding: 32px 0;
+    border-bottom: 1px solid var(--black);
     /* background-color: purple; */
 }
 
-.botao_copiar_tudo {
+.box_botao_copiar_tudo {
     /* background-color: #FFCB02; */
     justify-content: center;
 }
 
 
 /* BOX-FOOTER - BOX-FOOTER - BOX-FOOTER - BOX-FOOTER - BOX-FOOTER */
-.boxSocialMedia {
-    padding: 10px 10px 10px 0;
-}
-
-.linksSocialMedia {
-    list-style: none;
-    flex: 1.2;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding:0.5rem;
-    flex-flow: wrap;
-}
-
-.buttonsSocialMedia {
-    display: flex;
-    width: 4rem;
-    height: 1rem;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    padding: 1rem;
-    margin-left:1rem;
-    background-color: var(--white);
-    color: var(--blue);
-    border-radius: 5px;
-}
-
-.fa-brands, .fa-solid {
-    font-size: 1.5rem;
-}
-
-.buttonsSocialMedia:hover {
-    background-color: var(--blue);
-    color: var(--white);
-    border: 1px solid var(--white);
-}
-
-
 .rodape {
-    height: 100px;
+    height: 80px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    flex: 0.5 1;
     background-color:var(--blue);
-    padding: 1rem 0;
+    padding: 16px 0;
 }
 
-.textoRodape {
+.boxTextoRodape {
+    /* background-color: purple; */
     color: var(--white);
-    flex: 1;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    padding: 1rem;
+    flex: 1 1 50%;
+    padding: 16px 0;
 }
 
-.textoRodape span{
+.boxTextoRodape span {
     font-weight: bold;
-    padding-left: 0.4rem;
+}
+
+.boxLinksSocialMedia {
+    /* background-color: plum; */
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1 1 50%;
+    flex-wrap: wrap;
+    padding: 16px 0;
+}
+
+.buttonsSocialMedia {
+    display: flex;
+    width: 80px;
+    height: 16px;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 16px;
+    margin-left: 16px;
+    background-color: var(--white);
+    color: var(--blue);
+    border-radius: 5px;
+    box-shadow: var(--black) 0.2rem 0.2rem 0.5rem;
+}
+
+/* .fa-brands, .fa-solid {
+    font-size: 24px;
+} */
+
+.buttonsSocialMedia:hover {
+    background-color: var(--blue);
+    color: var(--white);
+    /* border: 1px solid var(--white); */
 }
