@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações do Sistema</title>
+</head>
+<body>
+
+<h1>Informações do Sistema</h1>
+
+<div id="info-sistema">
+    <p><strong>Sistema Operacional:</strong> <span id="sistema-operacional"></span></p>
+    <p><strong>Navegador:</strong> <span id="navegador"></span></p>
+    <p><strong>Resolução da Tela:</strong> <span id="resolucao-tela"></span></p>
+    <p><strong>Endereço IP Público:</strong> <span id="endereco-ip-publico"></span></p>
+</div>
+
+<script>
+    // Obter informações sobre o sistema operacional
+    const sistemaOperacional = window.navigator.platform;
+    document.getElementById('sistema-operacional').textContent = sistemaOperacional;
+
+    // Obter informações sobre o navegador
+    const navegador = window.navigator.userAgent;
+    document.getElementById('navegador').textContent = navegador;
+
+    // Obter resolução da tela
+    const larguraTela = window.screen.width;
+    const alturaTela = window.screen.height;
+    document.getElementById('resolucao-tela').textContent = `${larguraTela} x ${alturaTela}`;
+
+    // Obter o endereço IP público
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        const enderecoIP = data.ip;
+        document.getElementById('endereco-ip-publico').textContent = enderecoIP;
+      })
+      .catch(error => {
+        console.error('Erro ao obter o endereço IP:', error);
+      });
+</script>
+
+<script src="sistemaOperacional.js"></script>
+
+</body>
+</html>
