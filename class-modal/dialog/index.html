@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialog</title>
+</head>
+<style>
+    #botao_video_youtube {
+        position: fixed;
+        bottom: 1rem;
+        left: 1rem;
+        text-decoration: none;
+        padding: 0.5rem 1.5rem;
+        border: 1px solid black;
+        border-radius: 3px;
+        color: black;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    #botao_video_youtube:hover {
+        color: white;
+        background-color: black;
+    }
+
+    div {
+        margin-top: 2rem;
+    }
+
+    dialog::backdrop {
+        background-color: rgb(0, 0, 0, 0.5);
+    }
+    dialog{
+        border: none;
+        border-radius: .5rem;
+        box-shadow: 0 0 1em rgb(0 0 0 / .3);
+        width: 80%;
+    }
+</style>
+<body>
+    <header>
+        <h1>Elemento Dialog</h1>
+    </header>
+    <main>
+        <div>
+            <label for="">Abri dialog show( )</label>
+            <button id="botao_abrir_show">Abrir Dialog</button>
+        </div>
+
+        <div>
+            <label for="">Abri dialog showModal( )</label>
+            <button id="botao_abrir_show_modal">Abrir Dialog</button>
+        </div>
+        
+    </main>
+    <footer>
+        <a id="botao_video_youtube" href="https://www.youtube.com/watch?v=hg66uftLsTQ" target="_blank">Video Youtube</a>
+    </footer>
+
+    <dialog id="elemento_dialog">
+        <h2>Title</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum et natus laudantium deserunt tenetur eius deleniti totam, iusto eligendi quas cupiditate quis quibusdam quam recusandae laboriosam debitis sint molestiae architecto enim accusamus fugiat repellat. Modi eligendi aliquid id vero cupiditate maiores hic soluta quasi expedita! Qui adipisci voluptas inventore ex?</p>
+        <button id="botao_fechar_modal">Fechar Dialog</button>
+    </dialog>
+    
+    <script>
+        const botaoAbrirShow = document.getElementById('botao_abrir_show');
+        const botaoAbrirShowModal = document.getElementById('botao_abrir_show_modal');
+        const botaoFecharModal = document.getElementById('botao_fechar_modal');
+        const modal = document.getElementById('elemento_dialog');
+
+        botaoAbrirShow.onclick = function () {
+            modal.show();
+        };
+
+        botaoAbrirShowModal.onclick = function () {
+            modal.showModal();
+        };
+
+        botaoFecharModal.onclick = function () {
+            modal.close();
+        }
+
+    </script>
+</body>
+</html>
