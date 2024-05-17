@@ -109,6 +109,7 @@ function adicionarBotaoCopiar(nomeDaDiv, idDoSpan) {
 
     // Adicionar a classe ao botão
     copyButton.classList.add('botao_copiar');
+    copyButton.classList.add('button');
 
     // Adicionar evento de clique ao botão "Copiar"
     copyButton.addEventListener('click', function() {

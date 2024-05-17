@@ -7,41 +7,40 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>App Sistemas</h1>
+    <header class="displayFlexCenterCenter">
+        <h1>Sistema de Senhas</h1>
     </header>
-    <main>
-        <section id="secaoInput">
-            <div>
+    <main class="displayFlexCenterCenter">
+        <section id="secaoInput" class="displayFlexCenterCenter">
                 <input type="search" id="nome_do_sistema" list="opcoes_de_sistemas" name="nome_do_sistema" placeholder="Informe o nome do sistema" required>
                 <datalist id="opcoes_de_sistemas"></datalist>
-                <button onclick="buscarSistema()">Buscar</button>
-            </div>
+                <button class="button" onclick="buscarSistema()">Carregar</button>
         </section>
-        <section id="secaoResultado">
+        <section id="secaoResultado" class="displayFlexCenterCenter">
             <h2>Sistemas</h2>
             <div id="box_link_sistema">
-                <a href="" id="linkSistema" target="_blank" > Link </a>
+                <p>Link: <a class="button" href="" id="linkSistema" target="_blank" > Link </a></p>
             </div>
             <div id="box_login_sistema">
                 <p>Login: <span id="login"> Teste Login </span></p>
             </div>
             <div id="box_senha_sistema">
                 <p>Senha: <span id="senha"> Teste Senha </span></p>
-            </div>
-            
+            </div>  
         </section>
     </main>
-    <footer>
-        <p>Desenvolvido por Thiago Carlos</p>
+    <footer class="displayFlexCenterCenter">
+        <p>Desenvolvido por tthiagocarlosdev</p>
     </footer>
 
      <!-- Modal -->
      <dialog id="modal">
         <h2>Escolha o Tipo de Sistema</h2>
-        <button class="button" onclick="loadJSON('sistemasPessoais.json')">Sistemas Pessoais</button>
-        <button class="button" onclick="loadJSON('sistemasTrabalho.json')">Sistemas Trabalho</button>
-        <button class="button" onclick="loadJSON('sistemasBancos.json')">Sistemas Bancos</button>
+        <div id="box_buttons">
+            <button class="button" onclick="loadJSON('sistemasPessoais.json')">Sistemas Pessoais</button>
+            <button class="button" onclick="loadJSON('sistemasTrabalho.json')">Sistemas Trabalho</button>
+            <button class="button" onclick="loadJSON('sistemasBancos.json')">Sistemas Bancos</button>
+        </div>
     </dialog>
 
     <script src="script.js"></script>
