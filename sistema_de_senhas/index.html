@@ -34,12 +34,11 @@
     </footer>
 
      <!-- Modal -->
-     <dialog id="modal">
-        <h2>Escolha o Tipo de Sistema</h2>
+    <dialog id="modal">
+        <h2>Carregar Arquivo</h2>
         <div id="box_buttons">
-            <button class="button" onclick="loadJSON('sistemasPessoais.json')">Sistemas Pessoais</button>
-            <button class="button" onclick="loadJSON('sistemasTrabalho.json')">Sistemas Trabalho</button>
-            <button class="button" onclick="loadJSON('sistemasBancos.json')">Sistemas Bancos</button>
+            <input class="button" type="file" id="fileInput" accept=".json">
+            <button class="button" onclick="escolherArquivo()">Carregar Arquivo</button>
         </div>
     </dialog>
 

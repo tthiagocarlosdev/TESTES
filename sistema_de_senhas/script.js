@@ -2,21 +2,31 @@ let senhasData = {};
 const janelaDialog = document.getElementById("modal");
 const datalist = document.getElementById('opcoes_de_sistemas')
 
+function escolherArquivo() {
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+    if (file) {
+        loadJSON(file);
+    } else {
+        alert("Por favor, selecione um arquivo JSON.");
+    }
+}
 
-function loadJSON(filename) {
-    fetch(filename)
-        .then(response => response.json())
-        .then(data => {
-            senhasData = data;
+function loadJSON(file) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        try {
+            senhasData = JSON.parse(event.target.result);
             alert("Arquivo JSON carregado com sucesso!");
-            console.log(senhasData);
+            // console.log(senhasData);
             listaSistemas(senhasData.senhas);
             closeModal();
-        })
-        .catch(error => {
+        } catch (error) {
             alert("Erro ao carregar o arquivo JSON.");
             console.error(error);
-        });
+        }
+    };
+    reader.readAsText(file);
 }
 
 
@@ -37,7 +47,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 function listaSistemas(lista){
-    console.log(lista)
+    // console.log(lista)
     // Verifica se lista.senhas é uma matriz
     if (Array.isArray(lista)) {
         // Itera sobre a lista de sistemas
@@ -80,10 +90,17 @@ function buscarSistema() {
     document.getElementById('login').textContent = sistema.login;
     document.getElementById('senha').textContent = sistema.senha;
 
+     // Remover botões "Copiar" existentes antes de adicionar novos
+     removerBotoesCopiar();
     adicionarBotaoCopiar('box_login_sistema', 'login');
     adicionarBotaoCopiar('box_senha_sistema', 'senha');
 }
 
+// Função para remover todos os botões "Copiar" existentes
+function removerBotoesCopiar() {
+    const existingCopyButtons = document.querySelectorAll('.botao_copiar');
+    existingCopyButtons.forEach(button => button.remove());
+}
 
 //Função para copiar o texto para a área de transferência
 function copiarDados(element) {
