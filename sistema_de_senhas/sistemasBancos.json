@@ -4,13 +4,21 @@
         "nomeDoSistema": "Banco do Brasil",
         "endereco": "https://www.bb.com.br",
         "login": "bb_user",
-        "senha": "BBPass123"
+        "senha": "BBPass123",
+        "outros" : {
+          "outrosNomes": ["Outro Brasil", "Outro Brasil 2"], 
+          "outrosSenhas": ["senhaOutroBBPass123", "senhaOutroBBPass456"]
+        }
       },
       {
         "nomeDoSistema": "Bradesco",
         "endereco": "https://www.bradesco.com.br",
         "login": "bradesco_user",
-        "senha": "Bradesco456"
+        "senha": "Bradesco456",
+        "outros" : {
+          "outrosNomes": [], 
+          "outrosSenhas": []
+        }
       },
       {
         "nomeDoSistema": "Itaú",

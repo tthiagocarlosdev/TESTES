@@ -78,11 +78,14 @@ function buscarSistema() {
 
     // Procurar pelo sistema na lista de senhas
     const sistema = senhasData.senhas.find(s => s.nomeDoSistema.toLowerCase() === nomeDoSistema);
+    // console.log(sistema);
 
     if (!sistema) {
         alert("Sistema não encontrado.");
         return;
     }
+
+    // console.log(sistema);
 
     // Atualizar a UI com as informações do sistema
     document.getElementById('linkSistema').href = sistema.endereco;
@@ -90,10 +93,95 @@ function buscarSistema() {
     document.getElementById('login').textContent = sistema.login;
     document.getElementById('senha').textContent = sistema.senha;
 
-     // Remover botões "Copiar" existentes antes de adicionar novos
-     removerBotoesCopiar();
-    adicionarBotaoCopiar('box_login_sistema', 'login');
-    adicionarBotaoCopiar('box_senha_sistema', 'senha');
+    // console.log(Object.keys(sistema.outros).length);
+    
+    // console.log(getArraySizes(sistema.outros));
+    
+    console.log(verificarConteudoOutros(sistema));
+
+    // if (verificarConteudoOutros(sistema)) {
+    //     atualizarOutros(sistema);
+
+    //     sistema.outros.outrosNomes.forEach(element => {
+    //         console.log(element);
+    //     });
+    // } else {
+    //     console.log("Array vazio");
+
+    //     atualizarOutros(sistema);
+        
+    //     // const outrosElement = document.getElementById('outros');
+    //     // outrosElement.innerHTML = `Outros: <span id="outro_senha"> Não possui </span>`;
+    // };
+
+    if (sistema.outros.length === 0 && sistema.outrosSenha.length === 0) {
+        const outrosElement = document.getElementById('outros');
+        outrosElement.innerHTML = `Outros: <span id="outro_senha"> Não possui </span>`;
+    } else {
+        const outrosElement = document.getElementById('outros');
+        outrosElement.innerHTML = `${sistema.outros}: <span id="outro_senha">${sistema.outrosSenha}</span>`;
+    };
+
+    // Remover botões "Copiar" existentes antes de adicionar novos
+    removerBotoesCopiar();
+
+    // Adicionar botões "Copiar" 
+    if ( sistema.login.length !== 0 ) {
+        adicionarBotaoCopiar('box_login_sistema', 'login');
+    };
+    if ( sistema.senha.length !== 0 ) {
+        adicionarBotaoCopiar('box_senha_sistema', 'senha');
+    };
+    if (sistema.outros.length !== 0 && sistema.outrosSenha.length !== 0) {
+        adicionarBotaoCopiar('box_outro', 'outro_senha');
+    };
+    
+}
+
+// Função para atualizar os elementos 'outros' e 'outro_senha'
+function atualizarOutros(sistema) {
+    const outrosElement = document.getElementById('outros');
+    outrosElement.innerHTML = ""; // Limpa o conteúdo existente
+
+    sistema.outros.outrosNomes.forEach((nome, index) => {
+        const nomeElement = document.createElement('span');
+        nomeElement.textContent = `${nome}: `;
+
+        const senhaElement = document.createElement('span');
+        senhaElement.id = 'outro_senha';
+        senhaElement.textContent = sistema.outros.outrosSenhas[index];
+
+        // Adiciona os elementos criados ao elemento 'outros'
+        outrosElement.appendChild(nomeElement);
+        outrosElement.appendChild(senhaElement);
+        outrosElement.appendChild(document.createElement('br')); // Adiciona uma quebra de linha
+    });
+}
+
+
+function verificarConteudoOutros(obj) {
+    let resultado = false;
+
+    if (Array.isArray(obj.outros.outrosNomes) && obj.outros.outrosNomes.length > 0) {
+        resultado = true;
+    }
+
+    if (Array.isArray(obj.outros.outrosSenhas) && obj.outros.outrosSenhas.length > 0) {
+        resultado = true;
+    }
+
+    return resultado;
+}
+
+// Função que retorna um novo objeto contendo os tamanhos dos arrays presentes no objeto original
+function getArraySizes(obj) {
+    const sizes = {};
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key) && Array.isArray(obj[key])) {
+            sizes[key] = obj[key].length;
+        }
+    }
+    return sizes;
 }
 
 // Função para remover todos os botões "Copiar" existentes
