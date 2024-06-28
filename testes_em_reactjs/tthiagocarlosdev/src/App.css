@@ -1,0 +1,54 @@
+:root {
+  --pretoZeroPontoCincoOpacidade:rgba(0, 0, 0, 0.5);
+  --pretoZeroPontoQuatroOpacidade:rgba(0, 0, 0, 0.4);
+  --preto:#000000;
+  --branco: white;
+  --cinzaEscuro:#1F1F1F;
+  --cinzaEscuroClaro: #595957;
+  --cinza: #898681;
+  --cinzaClaroEscuro:#B9B8B6;
+  --cinzaClaro: #DAD9D8;
+}
+  
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.larguraDaPagina {
+  width: 1280px;
+}
+
+.displayFlexCenterCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* Para telas com largura entre 769px e 1279px */
+@media screen and (min-width: 769px) and (max-width: 1279px){
+  .larguraDaPagina {
+      width: 100%;
+      padding: 16px;
+  }
+}
+
+/* Para telas com largura entre 481px e 768px */
+@media screen and (min-width: 481px) and (max-width: 768px){
+  .larguraDaPagina {
+      width: 100%;
+      padding: 16px;
+  }
+}
+
+/* Para telas com largura até e 480px */
+@media screen and (max-width: 480px){
+  .larguraDaPagina {
+      width: 100%;
+      padding: 16px;
+  }
+}

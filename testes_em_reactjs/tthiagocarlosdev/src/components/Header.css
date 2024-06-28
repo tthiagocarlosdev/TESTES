@@ -1,0 +1,113 @@
+header {
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    gap: 24px;
+
+    background-image: url('../assets/pexels-fox-3829230.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.containerNav {
+    min-height: 80px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
+}
+
+.linksCabecalho {
+    text-decoration: none;
+    color: var(--branco);
+    font-size: 16px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--branco);
+    transition: 1s all ease;
+}
+
+.linksCabecalho:hover{
+    font-weight: bold;
+    background-color: var(--pretoZeroPontoCincoOpacidade);
+    padding: 8px 12px;
+    border-radius: 3px;
+    border: none;
+}
+
+.textoDoTitulo {
+    flex: 1 1 50%;
+    flex-direction: column;
+    gap: 16px;
+    color: var(--branco);
+}
+
+.textoDoTitulo h1, .textoDoTitulo h2 {
+    background-color: var(--pretoZeroPontoQuatroOpacidade);
+    padding: 16px 48px;
+    border-radius: 5px;
+}
+
+.textoDoTitulo h1 {
+    font-size: 48px;
+}
+
+.textoDoTitulo h2 {
+    font-size: 38px;
+}
+
+
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* Para telas com largura entre 769px e 1279px */
+@media (min-width: 769px) and (max-width: 1279px){
+    .textoDoTitulo h1 {
+        font-size: 38px;
+    }
+    
+    .textoDoTitulo h2 {
+        font-size: 28px;
+    }
+}
+
+/* Para telas com largura entre 481px e 768px */
+@media (min-width: 481px) and (max-width: 768px){
+    .containerNav {
+        justify-content: center;
+    }
+
+    .linksCabecalho:hover{
+        padding: 4px 8px;
+    }
+
+    .textoDoTitulo h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+    
+    .textoDoTitulo h2 {
+        font-size: 20px;
+    }
+}
+
+/* Para telas com largura até e 480px */
+@media screen and (max-width: 480px){
+    .containerNav {
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 8px;
+    }
+
+    .linksCabecalho:hover{
+        padding: 4px 8px;
+    }
+
+    .textoDoTitulo h1 {
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .textoDoTitulo h2 {
+        font-size: 16px;
+        text-align: center;
+    }
+}
