@@ -1,5 +1,5 @@
-import "./Header.css"
-import "../App.css";
+import "../Header/Header.css"
+import "../../App.css";
 
 function Header () {
     return (
