@@ -9,7 +9,7 @@ header {
     background-size: cover;
 }
 
-.containerNav {
+.container-nav {
     min-height: 80px;
     display: flex;
     justify-content: flex-end;
@@ -17,7 +17,7 @@ header {
     gap: 40px;
 }
 
-.linksCabecalho {
+.header-links {
     text-decoration: none;
     color: var(--branco);
     font-size: 16px;
@@ -26,7 +26,7 @@ header {
     transition: 1s all ease;
 }
 
-.linksCabecalho:hover{
+.header-links:hover{
     font-weight: bold;
     background-color: var(--pretoZeroPontoCincoOpacidade);
     padding: 8px 12px;
@@ -34,24 +34,24 @@ header {
     border: none;
 }
 
-.textoDoTitulo {
+.container-title-text {
     flex: 1 1 50%;
     flex-direction: column;
     gap: 16px;
     color: var(--branco);
 }
 
-.textoDoTitulo h1, .textoDoTitulo h2 {
+.container-title-text h1, .container-title-text h2 {
     background-color: var(--pretoZeroPontoQuatroOpacidade);
     padding: 16px 48px;
     border-radius: 5px;
 }
 
-.textoDoTitulo h1 {
+.container-title-text h1 {
     font-size: 48px;
 }
 
-.textoDoTitulo h2 {
+.container-title-text h2 {
     font-size: 38px;
 }
 
@@ -60,53 +60,53 @@ header {
 /* media  media  media  media  media  media  media  media  media  media  media */
 /* Para telas com largura entre 769px e 1279px */
 @media (min-width: 769px) and (max-width: 1279px){
-    .textoDoTitulo h1 {
+    .container-title-text h1 {
         font-size: 38px;
     }
     
-    .textoDoTitulo h2 {
+    .container-title-text h2 {
         font-size: 28px;
     }
 }
 
 /* Para telas com largura entre 481px e 768px */
 @media (min-width: 481px) and (max-width: 768px){
-    .containerNav {
+    .container-nav {
         justify-content: center;
     }
 
-    .linksCabecalho:hover{
+    .header-links:hover{
         padding: 4px 8px;
     }
 
-    .textoDoTitulo h1 {
+    .container-title-text h1 {
         font-size: 30px;
         text-align: center;
     }
     
-    .textoDoTitulo h2 {
+    .container-title-text h2 {
         font-size: 20px;
     }
 }
 
 /* Para telas com largura até e 480px */
 @media screen and (max-width: 480px){
-    .containerNav {
+    .container-nav {
         justify-content: center;
         flex-wrap: wrap;
         margin: 8px;
     }
 
-    .linksCabecalho:hover{
+    .header-links:hover{
         padding: 4px 8px;
     }
 
-    .textoDoTitulo h1 {
+    .container-title-text h1 {
         font-size: 20px;
         text-align: center;
     }
     
-    .textoDoTitulo h2 {
+    .container-title-text h2 {
         font-size: 16px;
         text-align: center;
     }

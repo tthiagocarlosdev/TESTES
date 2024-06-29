@@ -1,0 +1,82 @@
+#about-me-section {
+    width: 100%;
+    align-items: normal;
+    background-color: var(--cinzaClaro);
+}
+
+.about-me-section {
+    flex-direction: column;
+}
+
+.container-photo-and-text-about-me {
+    width: 100%;
+    margin: 64px 0px;
+    gap: 20px;
+}
+
+.container-photo-and-text-about-me figure {
+    height: 100%;
+    flex: 1 1 30%;
+}
+
+.container-photo-and-text-about-me img {
+    border-radius: 50%;
+    width: 85%;
+}
+
+.container-text-about-me {
+    flex: 1 1 70%;
+    height: 100%;
+    flex-direction: column;
+    text-align: center;
+    font-size: 20px;
+    line-height: 32px;
+    padding: 16px;
+    color: var(--cinzaEscuroClaro);
+}
+
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* Para telas com largura entre 769px e 1279px */
+@media (min-width: 769px) and (max-width: 1279px){
+    .container-text-about-me {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}
+
+/* Para telas com largura entre 481px e 768px */
+@media (min-width: 481px) and (max-width: 768px){
+    .container-photo-and-text-about-me {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .container-photo-and-text-about-me img {
+        border-radius: 50%;
+        width:60%;
+    }
+
+    .container-text-about-me {
+        font-size: 16px;
+        line-height: 26px;
+    }
+}
+
+/* Para telas com largura até e 480px */
+@media screen and (max-width: 480px){
+    .container-photo-and-text-about-me {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .container-photo-and-text-about-me img {
+        border-radius: 50%;
+        width:45%;
+    }
+
+    .container-text-about-me {
+        font-size: 14px;
+        line-height: 24px;
+    }
+}

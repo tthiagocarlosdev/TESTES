@@ -1,4 +1,4 @@
-.sectionTitle {
+.subtitle-section {
     width: 100%;
     height: 80px;
     margin-top: 60px;
@@ -11,7 +11,7 @@
 /* media  media  media  media  media  media  media  media  media  media  media */
 /* Para telas com largura entre 769px e 1279px */
 @media screen and (min-width: 769px) and (max-width: 1279px){
-    .sectionTitle {
+    .subtitle-section {
         margin-top: 40px;
         font-size: 33px;
     }
@@ -19,7 +19,7 @@
 
 /* Para telas com largura entre 481px e 768px */
 @media screen and (min-width: 481px) and (max-width: 768px){
-    .sectionTitle {
+    .subtitle-section {
         margin-top: 20px;
         font-size: 31px;
     }
@@ -27,7 +27,7 @@
 
 /* Para telas com largura até e 480px */
 @media screen and (max-width: 480px){
-    .sectionTitle {
+    .subtitle-section {
         height: 60px;
         margin-top: 0;
         font-size: 29px;

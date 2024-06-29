@@ -3,14 +3,14 @@ import "../../App.css";
 
 function Header () {
     return (
-        <header id="cabecalho" className="displayFlexCenterCenter">
-            <nav className="containerNav larguraDaPagina ">
-                <a className="linksCabecalho" href="#sectionSobreMim">Sobre mim</a>
-                <a className="linksCabecalho" href="#sectionTecnologias">Tecnologias</a>
-                <a className="linksCabecalho" href="#sectionProjetos">Projetos</a>
-                <a className="linksCabecalho" href="#sectionContatos">Contatos</a>
+        <header id="header" className="display-flex-center-center">
+            <nav className="container-nav page-width ">
+                <a className="header-links" href="#about-me-section">Sobre mim</a>
+                <a className="header-links" href="#sectionTecnologias">Tecnologias</a>
+                <a className="header-links" href="#sectionProjetos">Projetos</a>
+                <a className="header-links" href="#sectionContatos">Contatos</a>
             </nav>
-            <div className="textoDoTitulo larguraDaPagina displayFlexCenterCenter">
+            <div className="container-title-text page-width display-flex-center-center">
                 <h1>Olá! Meu nome é Thiago Carlos e</h1>
                 <h2>Eu sou desenvolvedor front-end</h2>
             </div>

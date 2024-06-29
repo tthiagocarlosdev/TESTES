@@ -18,10 +18,6 @@
 
 /* media  media  media  media  media  media  media  media  media  media  media */
 /* media  media  media  media  media  media  media  media  media  media  media */
-/* Para telas com largura entre 481px e 768px */
-@media screen and (min-width: 481px) and (max-width: 768px){
-    
-}
 
 /* Para telas com largura até e 480px */
 @media screen and (max-width: 480px){

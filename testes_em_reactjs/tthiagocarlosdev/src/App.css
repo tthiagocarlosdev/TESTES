@@ -16,11 +16,11 @@ body {
   height: 100%;
 }
 
-.larguraDaPagina {
+.page-width {
   width: 1280px;
 }
 
-.displayFlexCenterCenter {
+.display-flex-center-center {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +31,7 @@ body {
 /* media  media  media  media  media  media  media  media  media  media  media */
 /* Para telas com largura entre 769px e 1279px */
 @media screen and (min-width: 769px) and (max-width: 1279px){
-  .larguraDaPagina {
+  .page-width {
       width: 100%;
       padding: 16px;
   }
@@ -39,7 +39,7 @@ body {
 
 /* Para telas com largura entre 481px e 768px */
 @media screen and (min-width: 481px) and (max-width: 768px){
-  .larguraDaPagina {
+  .page-width {
       width: 100%;
       padding: 16px;
   }
@@ -47,7 +47,7 @@ body {
 
 /* Para telas com largura até e 480px */
 @media screen and (max-width: 480px){
-  .larguraDaPagina {
+  .page-width {
       width: 100%;
       padding: 16px;
   }

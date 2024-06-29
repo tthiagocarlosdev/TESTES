@@ -1,5 +1,5 @@
 
-.rodape {
+.footer {
     background-color: var(--cinzaEscuro);
     width: 100%;
     min-height: 80px;
@@ -7,31 +7,31 @@
     color: var(--branco);
 }
 
-.containerLarguraDoRodape {
+.container-footer-width {
     min-height: 100%;
 }
 
-.textoRodape {
+.footer-text {
     min-height: 100%;
     flex: 1 1 80%;
     justify-content: flex-start;
     gap: 5px;
 }
 
-.textoRodape a {
+.footer-text a {
     color: var(--branco);
     text-decoration: none;
     font-weight: bold;
 }
 
-.textoRodape a:hover {
+.footer-text a:hover {
     background-color: var(--pretoZeroPontoCincoOpacidade);
     padding: 8px 12px;
     border-radius: 3px;
     border: none;
 }
 
-.setaRodape {
+.footer-arrow {
     height: 100%;
     flex: 1 1 20%;
     justify-content: flex-end;
@@ -54,34 +54,34 @@
 /* media  media  media  media  media  media  media  media  media  media  media */
 /* Para telas com largura entre 769px e 1279px */
 @media screen and (min-width: 769px) and (max-width: 1279px){
-    .containerLarguraDoRodape {
+    .container-footer-width {
         padding: 16px 24px;
     }
 }
 
 /* Para telas com largura entre 481px e 768px */
 @media screen and (min-width: 481px) and (max-width: 768px){
-    .containerLarguraDoRodape {
+    .container-footer-width {
         padding: 16px 24px;
     }
 }
 
 /* Para telas com largura entre 271px e 480px */
 @media screen and (min-width: 271px) and (max-width: 480px){
-    .containerLarguraDoRodape {
+    .container-footer-width {
         padding: 8px;
         flex-wrap: wrap;
     }
 
-    .textoRodape {
+    .footer-text {
         font-size: 12px;
     }
 
-    .textoRodape a {
+    .footer-text a {
         font-size: 12px;
     }
     
-    .setaRodape {
+    .footer-arrow {
     
         display: flex;
     }
@@ -93,22 +93,22 @@
 
 /* Para telas com largura até e 270px */
 @media screen and (max-width: 270px){
-    .containerLarguraDoRodape {
+    .container-footer-width {
         padding: 8px;
         flex-wrap: wrap;
         gap: 5px;
     }
 
-    .textoRodape {
+    .footer-text {
         font-size: 12px;
         justify-content: center;
     }
 
-    .textoRodape a {
+    .footer-text a {
         font-size: 12px;
     }
     
-    .setaRodape {
+    .footer-arrow {
     
         display: flex;
         justify-content: center;
