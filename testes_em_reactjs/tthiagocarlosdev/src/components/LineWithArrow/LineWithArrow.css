@@ -1,0 +1,31 @@
+.line-with-arrow {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.line {
+    width: 150px;
+    border-bottom: 2px dotted var(--cinzaEscuroClaro);
+}
+
+.fa-angles-down {
+    color: var(--cinzaEscuroClaro);
+}
+
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* Para telas com largura entre 481px e 768px */
+@media screen and (min-width: 481px) and (max-width: 768px){
+    
+}
+
+/* Para telas com largura até e 480px */
+@media screen and (max-width: 480px){
+    .LineWithArrow {
+        gap: 20px;
+    }   
+}
