@@ -1,6 +1,7 @@
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import AboutMeSection from './components/AboutMeSection/AboutMeSection';
+import TechnologiesSection from './components/TechnologiesSection/TechnologiesSection'
 
 import './App.css';
 
@@ -10,6 +11,7 @@ function App() {
     <>
       <Header/>
       <AboutMeSection />
+      <TechnologiesSection />
       <Footer/>
     </>
   )
