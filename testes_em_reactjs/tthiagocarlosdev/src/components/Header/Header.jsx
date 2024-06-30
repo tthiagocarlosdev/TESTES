@@ -7,7 +7,7 @@ function Header () {
             <nav className="container-nav page-width ">
                 <a className="header-links" href="#about-me-section">Sobre mim</a>
                 <a className="header-links" href="#section-tecnologias">Tecnologias</a>
-                <a className="header-links" href="#sectionProjetos">Projetos</a>
+                <a className="header-links" href="#projects-section">Projetos</a>
                 <a className="header-links" href="#sectionContatos">Contatos</a>
             </nav>
             <div className="container-title-text page-width display-flex-center-center">
