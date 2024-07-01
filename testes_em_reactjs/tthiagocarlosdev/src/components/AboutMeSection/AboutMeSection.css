@@ -1,7 +1,7 @@
 #about-me-section {
     width: 100%;
     align-items: normal;
-    background-color: var(--cinzaClaro);
+    background-color: var(--lightGray);
 }
 
 .about-me-section {
@@ -32,7 +32,7 @@
     font-size: 20px;
     line-height: 32px;
     padding: 16px;
-    color: var(--cinzaEscuroClaro);
+    color: var(--lightDarkGray);
 }
 
 /* media  media  media  media  media  media  media  media  media  media  media */

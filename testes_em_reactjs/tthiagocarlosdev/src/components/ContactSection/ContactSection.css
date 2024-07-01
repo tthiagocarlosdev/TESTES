@@ -1,5 +1,5 @@
 #contact-section {
-    background-color: var(--cinzaClaroEscuro);
+    background-color: var(--darkLightGray);
     width: 100%;
 }
 
@@ -20,7 +20,7 @@
     width: calc((100% / 6) - 5px);
     flex-direction: column;
     gap: 20px;
-    color: var(--cinzaEscuroClaro);
+    color: var(--lightDarkGray);
     transition: 0.3s all;
 }
 
@@ -28,11 +28,11 @@
     font-size: 60px;
     width: 100%;
     text-align: center;
-    color: var(--cinzaEscuroClaro);
+    color: var(--lightDarkGray);
 }
 
 .contact-links:hover {
-    border: 3px solid var(--cinzaEscuroClaro);
+    border: 3px solid var(--lightDarkGray);
     font-weight: bold;
 }
 
@@ -52,7 +52,7 @@
     }
 
     .contact-links:hover {
-        border: 2px solid var(--cinzaEscuroClaro);
+        border: 2px solid var(--lightDarkGray);
     }
 
     .contact-links i {
@@ -73,7 +73,7 @@
     }
 
     .contact-links:hover {
-        border: 1px solid var(--cinzaEscuroClaro);
+        border: 1px solid var(--lightDarkGray);
     }
 
     .contact-links i {

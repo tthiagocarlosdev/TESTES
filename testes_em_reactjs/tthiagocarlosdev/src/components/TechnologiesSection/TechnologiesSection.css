@@ -1,6 +1,6 @@
 #section-tecnologias {
     width: 100%;
-    background-color: var(--cinzaClaroEscuro);
+    background-color: var(--darkLightGray);
 }
 
 .container-technology-icons {
@@ -10,7 +10,7 @@
 }
 
 .box-technologies-icons {
-    background-color: var(--cinzaClaro);
+    background-color: var(--lightGray);
     border-radius: 50%;
     height: 90px;
     width: 90px;
@@ -19,16 +19,16 @@
 
 .box-technologies-icons i {
     font-size: 60px;
-    color: var(--cinzaEscuroClaro);
+    color: var(--lightDarkGray);
     transition: 1s all ease;
 }
 
 .box-technologies-icons:hover {
-    background-color: var(--cinzaEscuroClaro);
+    background-color: var(--lightDarkGray);
 }
 
 .box-technologies-icons i:hover {
-    color: var(--cinzaClaro);
+    color: var(--lightGray);
 }
 
 

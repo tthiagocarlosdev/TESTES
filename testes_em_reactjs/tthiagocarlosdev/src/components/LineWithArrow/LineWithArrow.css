@@ -9,11 +9,11 @@
 
 .line {
     width: 150px;
-    border-bottom: 2px dotted var(--cinzaEscuroClaro);
+    border-bottom: 2px dotted var(--lightDarkGray);
 }
 
 .fa-angles-down {
-    color: var(--cinzaEscuroClaro);
+    color: var(--lightDarkGray);
 }
 
 /* media  media  media  media  media  media  media  media  media  media  media */

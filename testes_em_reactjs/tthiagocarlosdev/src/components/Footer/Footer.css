@@ -1,10 +1,10 @@
 
 .footer {
-    background-color: var(--cinzaEscuro);
+    background-color: var(--darkGrey);
     width: 100%;
     min-height: 80px;
     justify-content: space-around;
-    color: var(--branco);
+    color: var(--white);
 }
 
 .container-footer-width {
@@ -19,13 +19,13 @@
 }
 
 .footer-text a {
-    color: var(--branco);
+    color: var(--white);
     text-decoration: none;
     font-weight: bold;
 }
 
 .footer-text a:hover {
-    background-color: var(--pretoZeroPontoCincoOpacidade);
+    background-color: var(--blackZeroPointFiveOpacity);
     padding: 8px 12px;
     border-radius: 3px;
     border: none;
@@ -40,13 +40,13 @@
 
 .fa-circle-arrow-up {
     font-size: 48px;
-    color: var(--branco);
+    color: var(--white);
 }
 
 .fa-circle-arrow-up:hover{
-    color: var(--cinzaEscuro);
-    background-color: var(--cinzaClaro);
-    border: 2px solid var(--cinzaClaro);
+    color: var(--darkGrey);
+    background-color: var(--lightGray);
+    border: 2px solid var(--lightGray);
     border-radius: 50%;
 }
 

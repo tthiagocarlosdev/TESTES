@@ -19,16 +19,16 @@ header {
 
 .header-links {
     text-decoration: none;
-    color: var(--branco);
+    color: var(--white);
     font-size: 16px;
     padding-bottom: 4px;
-    border-bottom: 1px solid var(--branco);
+    border-bottom: 1px solid var(--white);
     transition: 1s all ease;
 }
 
 .header-links:hover{
     font-weight: bold;
-    background-color: var(--pretoZeroPontoCincoOpacidade);
+    background-color: var(--blackZeroPointFiveOpacity);
     padding: 8px 12px;
     border-radius: 3px;
     border: none;
@@ -38,11 +38,11 @@ header {
     flex: 1 1 50%;
     flex-direction: column;
     gap: 16px;
-    color: var(--branco);
+    color: var(--white);
 }
 
 .container-title-text h1, .container-title-text h2 {
-    background-color: var(--pretoZeroPontoQuatroOpacidade);
+    background-color: var(--blackZeroPointFourOpacity);
     padding: 16px 48px;
     border-radius: 5px;
 }
