@@ -8,7 +8,7 @@ function Header () {
                 <a className="header-links" href="#about-me-section">Sobre mim</a>
                 <a className="header-links" href="#section-tecnologias">Tecnologias</a>
                 <a className="header-links" href="#projects-section">Projetos</a>
-                <a className="header-links" href="#sectionContatos">Contatos</a>
+                <a className="header-links" href="#contact-section">Contatos</a>
             </nav>
             <div className="container-title-text page-width display-flex-center-center">
                 <h1>Olá! Meu nome é Thiago Carlos e</h1>
