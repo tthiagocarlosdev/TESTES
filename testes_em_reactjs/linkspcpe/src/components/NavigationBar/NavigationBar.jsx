@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import './NavigationBar.css'
 
 const NavigationBar = () => {
-    const generalSection = '#generalSection';
-    const queriesSection = '#queriesSection';
-    const otherSection = '#otherSection';
-    const dtiSection = '#dtiSection';
-    const downloadsSection = '#downloadsSection';
+    const generalSection = '#general-section';
+    const queriesSection = '#queries-section';
+    const otherSection = '#other-section';
+    const dtiSection = '#dti-section';
+    const downloadsSection = '#downloads-section';
 
     // Função para formatar a primeira letra em maiúsculo
     const firstLetterCapitalized = (text) => {
@@ -15,7 +15,7 @@ const NavigationBar = () => {
     }
 
     // Função para formatar a data e hora
-    const dataHora = () => {
+    const dateAndTime = () => {
         const formatter = new Intl.DateTimeFormat("pt-br", {
             weekday: "long",
             day: "numeric",
@@ -30,15 +30,15 @@ const NavigationBar = () => {
     }
 
     // State para armazenar a data e hora formatada
-    const [dataHoraAtual, setDataHoraAtual] = useState('');
+    const [currentDateAndTime, setCurrentDateAndTime] = useState('');
 
     useEffect(() => {
         // Atualiza a data e hora atual assim que o componente é montado
-        setDataHoraAtual(dataHora());
+        setCurrentDateAndTime(dateAndTime());
 
         // Atualiza a data e hora a cada segundo
         const intervalId = setInterval(() => {
-            setDataHoraAtual(dataHora());
+            setCurrentDateAndTime(dateAndTime());
         }, 1000); // 1000 milissegundos = 1 segundo
 
         // Limpa o intervalo quando o componente é desmontado
@@ -46,17 +46,17 @@ const NavigationBar = () => {
     }, []);
 
     return ( 
-        <section className="sectionNavigatorBar displayFlexCenterCenter">
-            <div className="containerNavigatorBar pageWidth displayFlexCenterCenter">
-                <div className="dateAndTimeBox displayFlexCenterCenter">
-                    <p className="paragraphDateAndTime">{dataHoraAtual}</p>
+        <section className="section-navigator-bar display-flex-center-center">
+            <div className="container-navigator-bar page-width display-flex-center-center">
+                <div className="date-and-time-box display-flex-center-center">
+                    <p className="paragraph-date-and-time">{currentDateAndTime}</p>
                 </div>
-                <nav className="navigationBox displayFlexCenterCenter">
-                    <a className='navigationButtons' href={generalSection}  rel="noopener noreferrer">Geral</a>
-                    <a className='navigationButtons' href={queriesSection}  rel="noopener noreferrer">Consultas</a>
-                    <a className='navigationButtons' href={otherSection}  rel="noopener noreferrer">Outros</a>
-                    <a className='navigationButtons' href={dtiSection}  rel="noopener noreferrer">DTI</a>
-                    <a className='navigationButtons' href={downloadsSection}  rel="noopener noreferrer">Downloads</a>
+                <nav className="navigation-box display-flex-center-center">
+                    <a className='navigation-buttons' href={generalSection}  rel="noopener noreferrer">Geral</a>
+                    <a className='navigation-buttons' href={queriesSection}  rel="noopener noreferrer">Consultas</a>
+                    <a className='navigation-buttons' href={otherSection}  rel="noopener noreferrer">Outros</a>
+                    <a className='navigation-buttons' href={dtiSection}  rel="noopener noreferrer">DTI</a>
+                    <a className='navigation-buttons' href={downloadsSection}  rel="noopener noreferrer">Downloads</a>
                 </nav>
             </div>
         </section>
