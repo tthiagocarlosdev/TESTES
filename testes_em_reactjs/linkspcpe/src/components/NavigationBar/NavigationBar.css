@@ -1,0 +1,180 @@
+.sectionNavigatorBar {
+    background-color: var(--blue);
+    width: 100%;
+    height: 4.688rem;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.containerNavigatorBar {
+    height: 100%;
+    border-bottom: 0.063rem solid var(--white);
+}
+
+.dateAndTimeBox {
+    height: 100%;
+    flex: 1 1 50%;
+    justify-content: flex-start;
+}
+
+.paragraphDateAndTime {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.navigationBox {
+    height: 100%;
+    flex: 1 1 50%;
+    justify-content: flex-end;
+    gap: 1.25rem;
+}
+
+.navigationButtons {
+    text-decoration: none;
+    text-align: center;
+	color: var(--white);
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.5s all ease;
+    position: relative;
+}
+
+.navigationButtons::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--white);
+    transition: width 0.3s ease, left 0.3s ease, transform 0.3s ease; 
+    transform: scaleX(0);
+    transform-origin: center bottom;
+}
+
+.navigationButtons:hover::before {
+    width: 100%;
+    left: 0;
+    transform: scaleX(1);
+}
+
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* Para telas com largura entre 900px e 1279px */
+@media screen and (min-width: 900px) and (max-width: 1279px){
+    .sectionNavigatorBar {
+        height: 4.063rem;
+        padding: 0;
+    }
+
+    .paragraphDateAndTime {
+        font-size: 1.344rem;
+    }
+
+    .navigationBox {
+        gap: 1.125rem;
+    }
+
+    .navigationButtons {
+        font-size: 1.125rem;
+    }
+
+}
+
+/* Para telas com largura entre 768px e 900px*/
+@media screen and (min-width: 769px) and (max-width: 900px) {
+    .sectionNavigatorBar {
+        height: 4.063rem;
+        padding: 0;
+    }
+
+    .paragraphDateAndTime {
+        font-size: 1.125rem;
+    }
+
+    .navigationBox {
+        gap: 1rem;
+    }
+
+    .navigationButtons {
+        font-size: 1rem;
+    }
+}
+
+/* Para telas com largura entre 481px e 768px */
+@media screen and (min-width: 481px) and (max-width: 768px){
+    .sectionNavigatorBar {
+        height: 3.8rem;
+        padding: 0;
+    }
+
+    .containerNavigatorBar {
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
+
+    .dateAndTimeBox {
+        justify-content: center;
+        height: 50%;
+    }
+
+    .paragraphDateAndTime {
+        font-size: 0.938rem;
+    }
+
+    .navigationBox {
+        height: 50%;
+        justify-content: center;
+        gap: 0.7rem;
+    }
+
+    .navigationButtons {
+        font-size: 0.938rem;
+    }
+
+    .navigationButtons::before {
+        bottom: -1px;
+    }
+}
+
+/* Para telas com largura até e 480px */
+@media screen and (max-width: 480px){
+    .sectionNavigatorBar {
+        height: 3.438rem;
+        padding: 0;
+    }
+
+    .containerNavigatorBar {
+        flex-wrap: wrap;
+        gap: 0.7rem;
+    }
+
+    .dateAndTimeBox {
+        justify-content: center;
+        height: 50%;
+    }
+
+    .paragraphDateAndTime {
+        font-size: 0.75rem;
+    }
+
+    .navigationBox {
+        height: 50%;
+        justify-content: center;
+        gap: 0.7rem;
+    }
+
+    .navigationButtons {
+        font-size: 0.75rem;
+        padding-bottom: 0.3rem;
+    }
+
+    .navigationButtons::before {
+        bottom: 2px;
+    }
+}

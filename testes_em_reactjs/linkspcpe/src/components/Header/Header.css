@@ -1,0 +1,120 @@
+.sectionHeader {
+    background-color: var(--blue);
+    width: 100%;
+    height: 14.063rem;
+    padding: 1rem;
+    flex-direction: column;
+    position: relative;
+}
+
+.containerHeader {
+    margin-top: 4.688rem;
+    height: 100%;
+}
+
+.containerTitleText {
+    flex: 1 1 50%;
+    height: 100%;
+    justify-content: flex-start;
+}
+
+.title {
+    font-size: 4.25rem;
+    color: var(--white);
+}
+
+.containerHeaderImages {
+    flex: 1 1 50%;
+    height: 100%;
+    gap: 0.625rem;
+    justify-content: flex-end;
+}
+  
+
+.headerImages {
+    height: 6.5rem;
+}
+
+
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* Para telas com largura entre 901px e 1279px */
+@media screen and (min-width: 901px) and (max-width: 1279px){
+    .pageWidth {
+      width: 100%;
+    }
+
+    .containerHeader {
+        width: 100%;
+        padding: 0;
+    }
+
+    .title {
+        font-size: 3.75rem;
+    }
+
+  }
+  
+  
+  /* Para telas com largura entre 769px e 900px*/
+  @media screen and (min-width: 769px) and (max-width: 900px){
+    .pageWidth {
+      width: 100%;
+    }
+
+    .containerHeader {
+        width: 100%;
+        padding: 0;
+    }
+
+    .title {
+        font-size: 3.25rem;
+    }
+
+    .headerImages {
+        height: 5.625rem;
+    }
+
+  }
+  
+  /* Para telas com largura entre 481px e 768px */
+  @media screen and (min-width: 481px) and (max-width: 768px){
+    .pageWidth {
+      width: 100%;
+    }
+
+    .containerHeader {
+        width: 100%;
+        padding: 0;
+    }
+
+    .title {
+        font-size: 2.188rem;
+    }
+
+    .headerImages {
+        height: 4.688rem;
+    }
+
+  }
+  
+  /* Para telas com largura até e 480px */
+  @media screen and (max-width: 480px){
+    .pageWidth {
+      width: 100%;
+    }
+
+    .containerHeader {
+        width: 100%;
+        padding: 0;
+    }
+
+    .title {
+        font-size: 1.688rem;
+    }
+
+    .headerImages {
+        height: 3.125rem;
+    }
+
+  }
