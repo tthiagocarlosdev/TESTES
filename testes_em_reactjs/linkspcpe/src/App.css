@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+    --white-color: #dbdbdb;
+    --red: #FF1301;
+    --blue: #005f98;
+    --yellow: #FFCB02;
+    --green: #049934;
+    --black: #000000;
+    --white: #ffffff;
+    --gray: #bdbdbd;
+    --card-background-color: #f5f5f5;
+    --cardBackgroundBoxShadow: rgba(0, 0, 0, 0.5);
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height:100vh;
+  width: 100%;
+  background-color: var(--white);
+}
+
+.pageWidth {
+  width: 1280px;
+}
+
+.displayFlexCenterCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linksSections {
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 6rem 0 1rem 0;
+}
+
+.projectCardContainer {
+    width: 100%;
+    gap: 2.188rem;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+}
+
+.noCardAvailable {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: var(--blue);
+}
+
+/* MAIN - MAIN - MAIN - MAIN - MAIN - MAIN */
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* Para telas com largura entre 901px e 1279px */
+@media screen and (min-width: 901px) and (max-width: 1279px){
+  .pageWidth {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .linksSections {
+    width: 100%;
+    padding: 5rem 0 1rem 0;
+  }
+  
+  .projectCardContainer {
+    gap: 1.875rem;
+    padding: 1.5rem 0;
+  }
+}
+
+
+/* Para telas com largura entre 769px e 900px*/
+@media screen and (min-width: 769px) and (max-width: 900px){
+  .pageWidth {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .linksSections {
+    width: 100%;
+    padding-top: 4.5rem;
+  }
+
+  .projectCardContainer {
+    gap: 1.563rem;
+    padding: 1rem 0;
+  }
+
+}
+
+/* Para telas com largura entre 481px e 768px */
+@media screen and (min-width: 481px) and (max-width: 768px){
+  .pageWidth {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .linksSections {
+    width: 100%;
+    padding-top: 4.5rem;
+  }
+
+  .projectCardContainer {
+    gap: 1.25rem;
+    padding: 1rem 0;
+  }
+}
+
+/* Para telas com largura até e 480px */
+@media screen and (max-width: 480px){
+  .pageWidth {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .linksSections {
+    width: 100%;
+    padding-top: 4rem;
+  }
+
+  .projectCardContainer {
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+  }
+}
