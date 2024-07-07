@@ -1,14 +1,14 @@
 import './App.css'
 
 import Header from './components/Header/Header';
-import GeneralLinksSection from './components/GeneralLinksSection/GeneralLinksSection';
+import Main from './components/Main/Main';
 
 function App() {
 
   return (
     <>
       <Header />
-      <GeneralLinksSection />
+      <Main />
       
     </>
   )
