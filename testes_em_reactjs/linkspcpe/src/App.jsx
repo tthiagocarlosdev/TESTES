@@ -1,30 +1,15 @@
 import './App.css'
 
 import Header from './components/Header/Header';
-import SectionSubtitle from './components/SectionSubtitle/SectionSubtitle';
-import ListOfImagesAndSystems from '../src/components/ListOfImagesAndSystems/ListOfImagesAndGeneralSystems';
-import Card from './components/Card/Card';
+import GeneralLinksSection from './components/GeneralLinksSection/GeneralLinksSection';
 
 function App() {
 
   return (
     <>
       <Header />
+      <GeneralLinksSection />
       
-      <SectionSubtitle sectionSubtitle='Teste' />
-      {ListOfImagesAndSystems.length > 0 ? (
-              ListOfImagesAndSystems.map((projeto, index) => (
-                  <Card
-                      key={index}
-                      image={projeto.image}
-                      imageTitle={projeto.imageTitle}
-                      systemName={projeto.systemName}
-                      systemAddress={projeto.systemAddress}
-                  />
-              ))
-          ) : (
-              <p className="noCardAvailable displayFlexCenterCenter">Nenhum card disponível no momento.</p>
-      )}
     </>
   )
 }

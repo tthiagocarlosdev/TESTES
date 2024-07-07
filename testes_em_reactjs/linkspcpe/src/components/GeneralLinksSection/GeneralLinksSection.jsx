@@ -1,22 +1,17 @@
-import React from 'react';
-
-
 import SectionSubtitle from '../SectionSubtitle/SectionSubtitle';
 import ListOfImagesAndSystems from '../ListOfImagesAndSystems/ListOfImagesAndGeneralSystems';
-import WebsiteCards from '../WebsiteCards/WebsiteCards';
-
-
+import Card from '../Card/Card';
 
  const GeneralLinksSection = () => {
 
   return ( 
-    <section id="generalSection" className="linksSections generalLinksSection pageWidth displayFlexCenterCenter">
+    <section id="general-section" className="links-sections generalLinksSection page-width display-flex-center-center">
       <SectionSubtitle sectionSubtitle='Sistemas Gerais' />
 
-      <div className="projectCardContainer displayFlexCenterCenter">
+      <div className="project-card-container display-flex-center-center">
           {ListOfImagesAndSystems.length > 0 ? (
               ListOfImagesAndSystems.map((projeto, index) => (
-                  <WebsiteCards
+                  <Card
                       key={index}
                       image={projeto.image}
                       imageTitle={projeto.imageTitle}
@@ -25,7 +20,7 @@ import WebsiteCards from '../WebsiteCards/WebsiteCards';
                   />
               ))
           ) : (
-              <p className="noCardAvailable displayFlexCenterCenter">Nenhum card disponível no momento.</p>
+              <p className="no-card-available display-flex-center-center">Nenhum card disponível no momento.</p>
           )}
       </div>
 

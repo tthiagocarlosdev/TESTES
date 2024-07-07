@@ -32,20 +32,20 @@
   align-items: center;
 }
 
-.linksSections {
+.links-sections {
   flex-direction: column;
   justify-content: space-around;
   padding: 6rem 0 1rem 0;
 }
 
-.projectCardContainer {
+.project-card-container {
     width: 100%;
     gap: 2.188rem;
     flex-wrap: wrap;
     padding: 2rem 0;
 }
 
-.noCardAvailable {
+.no-card-available {
     width: 100%;
     padding: 1rem;
     font-size: 1.5rem;
@@ -67,12 +67,12 @@
     padding: 1rem;
   }
 
-  .linksSections {
+  .links-sections {
     width: 100%;
     padding: 5rem 0 1rem 0;
   }
   
-  .projectCardContainer {
+  .project-card-container {
     gap: 1.875rem;
     padding: 1.5rem 0;
   }
@@ -86,12 +86,12 @@
     padding: 1rem;
   }
 
-  .linksSections {
+  .links-sections {
     width: 100%;
     padding-top: 4.5rem;
   }
 
-  .projectCardContainer {
+  .project-card-container {
     gap: 1.563rem;
     padding: 1rem 0;
   }
@@ -105,12 +105,12 @@
     padding: 0.5rem;
   }
 
-  .linksSections {
+  .links-sections {
     width: 100%;
     padding-top: 4.5rem;
   }
 
-  .projectCardContainer {
+  .project-card-container {
     gap: 1.25rem;
     padding: 1rem 0;
   }
@@ -123,12 +123,12 @@
     padding: 1rem;
   }
 
-  .linksSections {
+  .links-sections {
     width: 100%;
     padding-top: 4rem;
   }
 
-  .projectCardContainer {
+  .project-card-container {
     gap: 0.5rem;
     padding: 0.5rem 0;
   }
