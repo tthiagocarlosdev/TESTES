@@ -39,6 +39,10 @@
 /* media  media  media  media  media  media  media  media  media  media  media */
 /* Para telas com largura entre 901px e 1279px */
 @media screen and (min-width: 901px) and (max-width: 1279px){
+    .section-header {
+        height: 13.5rem;
+    }
+
     .page-width {
       width: 100%;
     }
@@ -46,6 +50,7 @@
     .container-header {
         width: 100%;
         padding: 0;
+        margin-top: 4.3rem;
     }
 
     .title {
@@ -57,6 +62,10 @@
   
   /* Para telas com largura entre 769px e 900px*/
   @media screen and (min-width: 769px) and (max-width: 900px){
+    .section-header {
+        height: 12.5rem;
+    }
+
     .page-width {
       width: 100%;
     }
@@ -64,6 +73,7 @@
     .container-header {
         width: 100%;
         padding: 0;
+        margin-top: 4rem;
     }
 
     .title {
@@ -78,6 +88,10 @@
   
   /* Para telas com largura entre 481px e 768px */
   @media screen and (min-width: 481px) and (max-width: 768px){
+    .section-header {
+        height: 11rem;
+    }
+
     .page-width {
       width: 100%;
     }
@@ -85,6 +99,7 @@
     .container-header {
         width: 100%;
         padding: 0;
+        margin-top: 3.7rem;
     }
 
     .title {
@@ -99,6 +114,10 @@
   
   /* Para telas com largura até e 480px */
   @media screen and (max-width: 480px){
+    .section-header {
+        height: 8rem;
+    }
+
     .page-width {
       width: 100%;
     }
@@ -106,7 +125,9 @@
     .container-header {
         width: 100%;
         padding: 0;
+        margin-top: 3.5rem;
     }
+
 
     .title {
         font-size: 1.688rem;
