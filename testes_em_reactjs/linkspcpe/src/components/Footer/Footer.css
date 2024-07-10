@@ -1,0 +1,120 @@
+
+.footer {
+    background-color: var(--blue);
+    width: 100%;
+    min-height: 80px;
+    justify-content: space-around;
+    color: var(--white);
+}
+
+.container-footer-width {
+    min-height: 100%;
+}
+
+.footer-text {
+    min-height: 100%;
+    flex: 1 1 80%;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.footer-text a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-text a:hover {
+    background-color: var(--card-background-box-shadow);
+    padding: 8px 12px;
+    border-radius: 3px;
+    border: none;
+}
+
+.footer-arrow {
+    height: 100%;
+    flex: 1 1 20%;
+    justify-content: flex-end;
+    text-decoration: none;
+}
+
+.fa-circle-arrow-up {
+    font-size: 48px;
+    color: var(--white);
+}
+
+.fa-circle-arrow-up:hover{
+    color: var(--blue);
+    background-color: var(--white);
+    border: 1px solid var(--white);
+    border-radius: 50%;
+}
+
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* media  media  media  media  media  media  media  media  media  media  media */
+/* Para telas com largura entre 769px e 1279px */
+@media screen and (min-width: 769px) and (max-width: 1279px){
+    .container-footer-width {
+        padding: 16px 24px;
+    }
+}
+
+/* Para telas com largura entre 481px e 768px */
+@media screen and (min-width: 481px) and (max-width: 768px){
+    .container-footer-width {
+        padding: 16px 24px;
+    }
+}
+
+/* Para telas com largura entre 271px e 480px */
+@media screen and (min-width: 271px) and (max-width: 480px){
+    .container-footer-width {
+        padding: 8px;
+        flex-wrap: wrap;
+    }
+
+    .footer-text {
+        font-size: 12px;
+    }
+
+    .footer-text a {
+        font-size: 12px;
+    }
+    
+    .footer-arrow {
+    
+        display: flex;
+    }
+
+    .fa-circle-arrow-up {
+        font-size: 38px;
+    }
+}
+
+/* Para telas com largura até e 270px */
+@media screen and (max-width: 270px){
+    .container-footer-width {
+        padding: 8px;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .footer-text {
+        font-size: 12px;
+        justify-content: center;
+    }
+
+    .footer-text a {
+        font-size: 12px;
+    }
+    
+    .footer-arrow {
+    
+        display: flex;
+        justify-content: center;
+    }
+
+    .fa-circle-arrow-up {
+        font-size: 38px;
+    }
+}
