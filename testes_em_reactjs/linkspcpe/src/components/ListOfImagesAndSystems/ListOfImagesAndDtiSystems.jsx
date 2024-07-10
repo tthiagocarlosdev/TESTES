@@ -52,13 +52,7 @@ const ListOfImagesAndDtiSystems = [
         imageTitle:'Endereços e Telefones PCPE',
         systemName:'Endereços e Telefones',
         systemAddress: 'https://tthiagocarlosdev.github.io/projects_website/projetos/telefones_enderecos_pcpe/index.html',
-    },
-    // {
-    //     image:'imagemTeste.png',
-    //     imageTitle:'Acompanhamento do Vencimento dos Certificados Digitais!',
-    //     systemName:'CERTIFICADOS DIGITAIS',
-    //     systemAddress: 'https://app.powerbi.com/view?r=eyJrIjoiN2Y2ODBkYTktMWQ1Zi00YzA0LWExYzUtMjdhMDE4ODNhODE3IiwidCI6Ijk3ZjU2ODZlLTBlM2QtNDAzNS04MjZkLTMwM2EzMmI3Mjk0MiJ9',
-    // },
+    }
 ];
 
 export default ListOfImagesAndDtiSystems;

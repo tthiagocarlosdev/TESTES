@@ -4,8 +4,6 @@ import "./Card.css"
 
 const Card = ({ image, systemName, systemAddress, imageTitle }) => {
   const imageSrc = image ? new URL(`../../assets/img/${image}`, import.meta.url).href : '';
-  console.log(imageSrc)
-  console.log(`Imagem: ${image} - System Name: ${systemName} - System Adrees: ${systemAddress}, Image Title: ${imageTitle}`)
 
   return (
     <div className="card display-flex-center-center">

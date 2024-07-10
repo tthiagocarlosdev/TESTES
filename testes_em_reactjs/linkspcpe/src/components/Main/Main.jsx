@@ -2,7 +2,7 @@
 import GeneralLinksSection from '../GeneralLinksSection/GeneralLinksSection';
 import QueriesLinksSection from '../QueriesLinksSection/QueriesLinksSection';
 import OthersLinksSection from '../OthersLinksSection/OthersLinksSection';
-// import DtiLinksSection from '../DtiLinksSection/DtiLinksSection';
+import DtiLinksSection from '../DtiLinksSection/DtiLinksSection';
 // import DownloadLinksSection from '../DownloadLinksSection/DownloadLinksSection';
 
 
@@ -12,8 +12,8 @@ const Main = () => {
       <GeneralLinksSection/>
       <QueriesLinksSection/>
       <OthersLinksSection />
-      {/* <DtiLinksSection />
-      <DownloadLinksSection /> */}
+      <DtiLinksSection />
+      {/* <DownloadLinksSection /> */}
     </div>
    );
 }
