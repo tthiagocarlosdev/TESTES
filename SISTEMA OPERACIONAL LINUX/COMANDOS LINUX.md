@@ -129,12 +129,24 @@ instalar mpv ou mplayer
 no terminal
 
 ```shell
-$ sudo apt-get update
+sudo apt-get update
 ```
 
 ```shell
-$ sudo apt-get install mpv
+sudo apt-get install mpv
 ```
+
+ou
+
+```shell
+sudo add-apt-repository universe
+sudo apt update
+sudo apt install mplayer mplayer-gui
+```
+
+
+
+
 
 ___
 
