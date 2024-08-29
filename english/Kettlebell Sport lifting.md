@@ -1,6 +1,6 @@
 # Kettlebell Sport lifting
 
-![220px-Russian_stamps_no_534_—_Dumb-bell_lifting](/home/th/Documents/english/220px-Russian_stamps_no_534_—_Dumb-bell_lifting.jpg)	
+​	![220px-Russian_stamps_no_534_—_Dumb-bell_lifting](/home/th/Documents/TESTES/english/220px-Russian_stamps_no_534_—_Dumb-bell_lifting.jpg)
 
 1. Describe the sport
 
