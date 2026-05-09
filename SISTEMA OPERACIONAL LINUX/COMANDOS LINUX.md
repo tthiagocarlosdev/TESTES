@@ -307,3 +307,59 @@ sudo apt autoremove
 sudo apt autoclean
 ```
 
+
+## 1. Limpeza de pacotes e restos do sistema
+Abra o terminal (Ctrl+Alt+T) e execute estes comandos, um por um:
+
+* Limpar o cache do gerenciador de pacotes (isso costuma liberar muito espaço):
+
+  ```shell
+  sudo apt clean
+  ```
+
+* Remover programas e dependências que não são mais usados:
+
+```shell
+sudo apt autoremove --purge
+```
+
+* Limpar o cache de miniaturas de imagens (thumbnails):
+
+```shell
+rm -rf ~/.cache/thumbnails/*
+```
+
+
+## 2. Verificar se o log de erros está "gigante"
+Às vezes, quando o teclado apresenta erro (como o seu bug do Caps Lock), o Linux escreve milhões de linhas em um arquivo de texto, que cresce até lotar o disco.
+
+* Verifique o tamanho da pasta de logs:
+
+```shell
+du -sh /var/log
+```
+
+* Se essa pasta tiver vários GBs, você pode limpar os logs antigos com:
+
+```shell
+sudo journalctl --vacuum-size=50M
+```
+
+
+## 3. Localizar onde está o resto do espaço
+Se ainda assim você não tiver pelo menos 10GB livres, use este comando para descobrir qual pasta está escondendo arquivos grandes:
+
+```shell
+sudo du -cha --max-depth=1 / | sort -rh | head -n 10
+```
+
+(Ele vai listar as 10 maiores pastas da sua raiz).
+------------------------------
+## Por que focar no espaço antes do teclado?
+O Linux Mint usa o disco para criar "arquivos de troca" (swap) e arquivos temporários de configuração de hardware. Se o disco está lotado:
+
+   1. O sistema não consegue salvar a sua preferência de layout "Inglês".
+   2. Ele falha ao carregar o driver correto do teclado externo.
+   3. As atualizações que corrigem bugs de teclado (comuns em notebooks Positivo) não conseguem ser instaladas.
+
+Após rodar o sudo apt clean, quanto de espaço livre o seu sistema passou a mostrar?
