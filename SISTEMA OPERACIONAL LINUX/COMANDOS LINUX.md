@@ -363,3 +363,10 @@ O Linux Mint usa o disco para criar "arquivos de troca" (swap) e arquivos tempor
    3. As atualizações que corrigem bugs de teclado (comuns em notebooks Positivo) não conseguem ser instaladas.
 
 Após rodar o sudo apt clean, quanto de espaço livre o seu sistema passou a mostrar?
+
+## Verifica quanto espaço livre e ocupado tem nos discos.
+
+```shell
+df -h
+```
+
